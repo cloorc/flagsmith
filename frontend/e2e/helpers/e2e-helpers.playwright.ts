@@ -228,7 +228,6 @@ export class E2EHelpers {
     const userRow = this.page.locator('[data-test^="user-item-"]').filter({ hasText: identifier }).first();
     await userRow.waitFor({ state: 'visible', timeout: LONG_TIMEOUT });
     await userRow.locator('a').first().click();
-    await this.page.waitForLoadState('networkidle');
     await this.waitForElementVisible('#add-trait');
   }
 
@@ -434,7 +433,6 @@ export class E2EHelpers {
     // Wait for modal and General tab content to fully load before switching tabs
     await this.waitForElementVisible('.modal-open');
     await this.waitForElementVisible(byId('role-name'));
-    await this.page.waitForLoadState('networkidle');
     await this.click(byId('members-tab'));
     await this.click(byId('assigned-users'));
     for (const userId of users) {
@@ -628,7 +626,6 @@ export class E2EHelpers {
 
   // Create an environment
   async createEnvironment(name: string) {
-    await this.page.waitForLoadState('networkidle');
     await this.waitForElementVisible('[name="envName"]');
     const nameInput = this.page.locator('[name="envName"]').first();
     await nameInput.click();
@@ -888,7 +885,6 @@ export class E2EHelpers {
     await this.waitForElementVisible('#create-feature-modal');
 
     // Click the "Add Tag" button to open tag interface
-    await this.page.waitForLoadState('networkidle');
     const addTagButton = this.page.locator('button').filter({ hasText: 'Add Tag' });
     await addTagButton.waitFor({ state: 'visible', timeout: LONG_TIMEOUT });
     await addTagButton.scrollIntoViewIfNeeded();
