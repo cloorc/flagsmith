@@ -26,6 +26,7 @@ test.describe('Environment Permission Tests', () => {
       gotoTraits,
       login,
       logout,
+      reloadUntilVisible,
       setUserPermission,
       toggleFeature,
       waitForElementClickable,
@@ -87,7 +88,9 @@ test.describe('Environment Permission Tests', () => {
     log('User with permissions can see environment')
     await login(E2E_NON_ADMIN_USER_WITH_ENV_PERMISSIONS, PASSWORD)
     await gotoProject(PROJECT_NAME)
-    await waitForElementVisible(byId('switch-environment-production'))
+    // VIEW_ENVIRONMENT was just granted; the env list was fetched on
+    // navigation, so reload until it reflects the new permission.
+    await reloadUntilVisible(byId('switch-environment-production'))
     await logout()
 
     log('User with permissions can update feature state')

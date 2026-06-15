@@ -872,12 +872,36 @@ export class E2EHelpers {
     if (entityName) {
       await this.click(byId(`permissions-${entityName.toLowerCase()}`));
     }
+    // The toggle saves async via POST/PUT to .../user-permissions/. Await it
+    // before closing the modal — otherwise logout can abort the in-flight
+    // save and the grant never lands, so the next user can't see the entity.
+    const saved = this.page.waitForResponse(
+      (res) =>
+        res.url().includes('/user-permissions/') &&
+        res.request().method() !== 'GET',
+      { timeout: LONG_TIMEOUT },
+    );
     if (permission === 'ADMIN') {
       await this.click(byId(`admin-switch-${level}`));
     } else {
       await this.click(byId(`permission-switch-${permission}`));
     }
+    await saved;
     await this.closeModal();
+  }
+
+  // Reload the page until a selector becomes visible. For state that is
+  // eventually consistent across a fresh navigation (e.g. a just-granted
+  // permission) — waiting on a single page load can't help, because the data
+  // was already fetched without it.
+  async reloadUntilVisible(selector: string, timeout: number = LONG_TIMEOUT) {
+    logUsingLastSection(`Reload until visible ${selector}`);
+    await expect(async () => {
+      await this.page.reload();
+      await expect(this.page.locator(selector).first()).toBeVisible({
+        timeout: 5000,
+      });
+    }).toPass({ timeout });
   }
 
   // Create a tag
