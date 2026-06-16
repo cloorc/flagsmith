@@ -32,6 +32,7 @@ import {
   FlagsmithValue,
   TagStrategy,
   FeatureType,
+  LifecycleStage,
 } from './responses'
 import { UtmsType } from './utms'
 
@@ -395,6 +396,21 @@ export type Req = {
     group_owners?: number[]
     sort_field?: string
     sort_direction?: SortOrder
+    lifecycle_stage?: LifecycleStage
+    evaluation_period_days?: number
+  }
+  getLifecycleStatusCounts: {
+    project: string
+    environment: number
+    evaluation_period_days?: number
+    search?: string | null
+    tag_strategy?: TagStrategy
+    tags?: string
+    is_archived?: boolean
+    value_search?: string | null
+    is_enabled?: boolean | null
+    owners?: number[]
+    group_owners?: number[]
   }
   getProjectFlag: { project: number; id: number }
   getRolesPermissionUsers: { organisation_id: number; role_id: number }

@@ -8,7 +8,6 @@ import type { FilterState } from 'common/types/featureFilters'
 type RemoveSectionProps = {
   flags: ProjectFlag[]
   isLoading: boolean
-  isCheckingEvaluations: boolean
   error: unknown
   projectId: number
   filters: FilterState
@@ -22,7 +21,6 @@ const RemoveSection: FC<RemoveSectionProps> = ({
   filters,
   flags,
   hasFilters,
-  isCheckingEvaluations,
   isLoading,
   onClearFilters,
   onFilterChange,
@@ -50,17 +48,6 @@ const RemoveSection: FC<RemoveSectionProps> = ({
     [selectedIds],
   )
 
-  if (isCheckingEvaluations && !isLoading) {
-    return (
-      <div className='text-center py-4'>
-        <Loader />
-        <p className='text-muted mt-2'>
-          Checking evaluation data for features...
-        </p>
-      </div>
-    )
-  }
-
   return (
     <SectionShell
       id='remove-list'
@@ -73,7 +60,7 @@ const RemoveSection: FC<RemoveSectionProps> = ({
       hasFilters={hasFilters}
       onFilterChange={onFilterChange}
       onClearFilters={onClearFilters}
-      emptyLabel='No stale features found with zero code references and zero evaluations in the selected environments and period.'
+      emptyLabel='No stale features found with zero code references and zero evaluations in this environment and period.'
       nextPage={nextPage}
       prevPage={prevPage}
       goToPage={goToPage}

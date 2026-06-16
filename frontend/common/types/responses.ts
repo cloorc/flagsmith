@@ -741,7 +741,18 @@ export type ProjectFlag = {
     last_successful_repository_scanned_at: string
     last_feature_found_at: string
   }[]
+  lifecycle_stage?: LifecycleStage | null
 }
+
+export type LifecycleStage =
+  | 'NEW'
+  | 'LIVE'
+  | 'PERMANENT'
+  | 'STALE'
+  | 'NEEDS_MONITORING'
+  | 'TO_REMOVE'
+
+export type LifecycleStatusCounts = Record<LifecycleStage, number>
 
 export type FeatureListProviderData = {
   projectFlags: ProjectFlag[] | null
@@ -1269,6 +1280,7 @@ export type Res = {
   rolePermission: PagedResponse<RolePermission>
   projectFlags: PagedResponse<ProjectFlag>
   projectFlag: ProjectFlag
+  lifecycleStatusCounts: LifecycleStatusCounts
   identityFeatureStatesAll: IdentityFeatureState[]
   createRolesPermissionUsers: RolePermissionUser
   rolesPermissionUsers: PagedResponse<RolePermissionUser>

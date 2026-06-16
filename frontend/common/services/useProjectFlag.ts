@@ -132,6 +132,22 @@ export const projectFlagService = service
         }),
       }),
 
+      getLifecycleStatusCounts: builder.query<
+        Res['lifecycleStatusCounts'],
+        Req['getLifecycleStatusCounts']
+      >({
+        providesTags: (_res, _meta, req) => [
+          {
+            id: [req?.project, req?.environment].filter(Boolean).join('-'),
+            type: 'ProjectFlag',
+          },
+        ],
+        query: ({ project, ...params }) => ({
+          params,
+          url: `projects/${project}/features/lifecycle-status-counts/`,
+        }),
+      }),
+
       getProjectFlag: builder.query<Res['projectFlag'], Req['getProjectFlag']>({
         providesTags: (res) => [{ id: res?.id, type: 'ProjectFlag' }],
         query: (query: Req['getProjectFlag']) => ({
@@ -284,6 +300,7 @@ export const {
   useAddFlagOwnersMutation,
   useCreateProjectFlagMutation,
   useGetFeatureListQuery,
+  useGetLifecycleStatusCountsQuery,
   useGetProjectFlagQuery,
   useGetProjectFlagsQuery,
   useRemoveFlagGroupOwnersMutation,

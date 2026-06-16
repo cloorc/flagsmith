@@ -3,7 +3,16 @@ import type { IconName } from 'components/icons/Icon'
 import type { FilterState } from 'common/types/featureFilters'
 import type { Section } from './types'
 import { SortOrder } from 'common/types/requests'
-import { TagStrategy } from 'common/types/responses'
+import { LifecycleStage, TagStrategy } from 'common/types/responses'
+
+export const SECTION_TO_STAGE: Record<Section, LifecycleStage> = {
+  live: 'LIVE',
+  monitor: 'NEEDS_MONITORING',
+  new: 'NEW',
+  permanent: 'PERMANENT',
+  remove: 'TO_REMOVE',
+  stale: 'STALE',
+}
 
 export const DEFAULT_FILTER_STATE: FilterState = {
   group_owners: [],
