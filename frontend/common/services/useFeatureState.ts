@@ -1,5 +1,4 @@
 import {
-  Environment,
   FeatureState,
   FlagsmithValue,
   PagedResponse,
@@ -43,23 +42,20 @@ export const toUpdateFeatureValue = (
 // endpoint instead of the legacy versioned/non-versioned paths. Legacy is
 // required when:
 // - the feature is multivariate — not supported by the endpoint yet (#7642)
-// - change requests are enabled — the endpoint rejects workflow environments
 // - any value involved is null — the endpoint cannot represent null values
+//
+// Change-request environments are not checked here: such edits are routed to
+// the change-request flow upstream (the FeatureListProvider action split and
+// FeatureRow.onChange gate), so this is only ever reached for direct, non-CR
+// edits. Reaching it in a workflow environment would be a caller bug.
 export const canUseConsolidatedFeatureUpdate = ({
-  environment,
   projectFlag,
   values,
 }: {
-  environment: Environment
   projectFlag: ProjectFlag
   values: FlagsmithValue[]
 }): boolean => {
   if (projectFlag.multivariate_options?.length) {
-    return false
-  }
-  if (
-    Utils.changeRequestsEnabled(environment.minimum_change_request_approvals)
-  ) {
     return false
   }
   return values.every((value) => toUpdateFeatureValue(value) !== null)
@@ -149,7 +145,7 @@ export const featureStateService = service
       //
       // Returns { saved: false } when the update is not eligible —
       // callers should fall back to the legacy update paths (multivariate
-      // flags until #7642, change requests, null values).
+      // flags until #7642, null values).
       updateFeature: builder.mutation<
         Res['updateFeature'],
         Req['updateFeature']
@@ -175,7 +171,6 @@ export const featureStateService = service
           const { environment, environmentDefault, projectFlag } = query
           if (
             !canUseConsolidatedFeatureUpdate({
-              environment,
               projectFlag,
               values: [
                 environmentDefault.value,
@@ -248,8 +243,8 @@ export const featureStateService = service
       /**
        * @deprecated Legacy update path for non-versioned environments.
        * Eligible updates go through the updateFeature mutation above
-       * (#7641); this remains for multivariate flags (until #7642), change
-       * requests, null flag values and identity overrides.
+       * (#7641); this remains for multivariate flags (until #7642), null
+       * flag values and identity overrides.
        */
       updateFeatureState: builder.mutation<
         Res['featureState'],
@@ -283,8 +278,8 @@ export async function getFeatureStates(
 
 /**
  * @deprecated Legacy update path — prefer updateFeature (#7641). Remains
- * for multivariate flags (until #7642), change requests, null flag values
- * and identity overrides.
+ * for multivariate flags (until #7642), null flag values and identity
+ * overrides.
  */
 export async function updateFeatureState(
   store: any,
@@ -335,8 +330,7 @@ async function toggleFeatureStates(
     return
   }
 
-  // Legacy fallbacks — multivariate flags (until #7642), change requests
-  // and null flag values
+  // Legacy fallbacks — multivariate flags (until #7642) and null flag values
   if (environment.use_v2_feature_versioning) {
     const versionRes = await createAndSetFeatureVersion(store, {
       environmentApiKey: environment.api_key,

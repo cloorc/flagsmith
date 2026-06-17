@@ -330,8 +330,8 @@ const controller = {
 
     // Try the consolidated update endpoint first (#7641) — it returns
     // saved: false when the update is ineligible (multivariate flags until
-    // #7642, change requests, null values), in which case we fall through
-    // to the legacy paths below
+    // #7642, null values), in which case we fall through to the legacy
+    // paths below
     if (environmentFlag && env) {
       const typedValue = Utils.getTypedValue(
         flag.initial_value,
@@ -390,7 +390,7 @@ const controller = {
     }
 
     // Legacy paths below — still needed for multivariate flags (until #7642),
-    // change requests, null flag values, and flags with no environment state
+    // null flag values, and flags with no environment state
 
     if (env.use_v2_feature_versioning) {
       controller.editVersionedFeatureState(
