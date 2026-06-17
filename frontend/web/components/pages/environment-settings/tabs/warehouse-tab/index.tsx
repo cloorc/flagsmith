@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react'
+import { FC, useEffect, useMemo, useState } from 'react'
 import {
   useCreateWarehouseConnectionMutation,
   useDeleteWarehouseConnectionMutation,
@@ -20,26 +20,49 @@ type WarehouseTabProps = {
 
 const WarehouseTab: FC<WarehouseTabProps> = ({ environmentId }) => {
   const [editing, setEditing] = useState(false)
+  const [isEnabling, setIsEnabling] = useState(false)
 
   const {
     data: connections,
     isError,
     isLoading,
   } = useGetWarehouseConnectionsQuery(
-    { environmentId },
+    { environmentId, exclude_event_stats: true },
     { skip: !environmentId },
   )
+  const { data: connectionsWithStats, isFetching: isFetchingStats } =
+    useGetWarehouseConnectionsQuery(
+      { environmentId, exclude_event_stats: false },
+      { skip: !environmentId },
+    )
   const [createConnection, { isLoading: isCreating }] =
     useCreateWarehouseConnectionMutation()
   const [deleteConnection] = useDeleteWarehouseConnectionMutation()
   const [updateConnection] = useUpdateWarehouseConnectionMutation()
 
-  const connection = connections?.[0]
+  const baseConnection = connections?.[0]
+  const connection = useMemo(() => {
+    if (!baseConnection) return undefined
+    const statsConnection = connectionsWithStats?.find(
+      (item) => item.id === baseConnection.id,
+    )
+    return statsConnection
+      ? {
+          ...baseConnection,
+          total_events_received: statsConnection.total_events_received,
+          unique_events_count: statsConnection.unique_events_count,
+        }
+      : baseConnection
+  }, [baseConnection, connectionsWithStats])
   const connectionId = connection?.id
   const connectionStatus = connection?.status
 
   const [testConnection, { isLoading: isSendingTestEvent }] =
     useTestWarehouseConnectionMutation()
+
+  useEffect(() => {
+    if (connection) setIsEnabling(false)
+  }, [connection])
 
   useEffect(() => {
     const interval = getWarehousePollingInterval(connectionStatus)
@@ -55,10 +78,14 @@ const WarehouseTab: FC<WarehouseTabProps> = ({ environmentId }) => {
     openConfirm({
       body: 'This will enable a Flagsmith Warehouse connection for this environment. Are you sure you want to proceed?',
       onYes: () => {
+        setIsEnabling(true)
         createConnection({ environmentId, warehouse_type: 'flagsmith' })
           .unwrap()
           .then(() => toast('Warehouse connection created'))
-          .catch(() => toast('Failed to create warehouse connection', 'danger'))
+          .catch(() => {
+            setIsEnabling(false)
+            toast('Failed to create warehouse connection', 'danger')
+          })
       },
       title: 'Connect Flagsmith Warehouse',
     })
@@ -142,7 +169,7 @@ const WarehouseTab: FC<WarehouseTabProps> = ({ environmentId }) => {
         <WarehouseSetup
           onEnableFlagsmith={handleEnableFlagsmith}
           onCreateSnowflake={handleCreateSnowflake}
-          isCreating={isCreating}
+          isCreating={isCreating || isEnabling}
         />
       </div>
     )
@@ -174,6 +201,7 @@ const WarehouseTab: FC<WarehouseTabProps> = ({ environmentId }) => {
         }
         onSendTestEvent={handleSendTestEvent}
         isSendingTestEvent={isSendingTestEvent}
+        isLoadingStats={isFetchingStats}
       />
     </div>
   )

@@ -24,6 +24,7 @@ import {
   StageActionType,
   StageActionBody,
   ChangeRequest,
+  ExpectedDirection,
   ExperimentStatus,
   MetricAggregation,
   MetricDirection,
@@ -877,7 +878,7 @@ export type Req = {
     userId: number
   }
   getUserPermissions: {
-    id?: number
+    id?: number | string
     userId: number | undefined
     level: PermissionLevel
   }
@@ -1039,7 +1040,10 @@ export type Req = {
     project_id: number
     gitlab_project_id: number
   }>
-  getWarehouseConnections: { environmentId: string }
+  getWarehouseConnections: {
+    environmentId: string
+    exclude_event_stats?: boolean
+  }
   createWarehouseConnection: {
     environmentId: string
     warehouse_type: string
@@ -1060,7 +1064,12 @@ export type Req = {
   }>
   createExperiment: {
     environmentId: string
-    body: { name: string; hypothesis: string; feature: number }
+    body: {
+      name: string
+      hypothesis: string
+      feature: number
+      metrics: { metric: number; expected_direction: ExpectedDirection }[]
+    }
   }
   experimentAction: { environmentId: string; experimentId: number }
   deleteExperiment: { environmentId: string; experimentId: number }
@@ -1085,5 +1094,15 @@ export type Req = {
     body: Req['createMetric']['body']
   }
   deleteMetric: { environmentId: string; metricId: number }
+  createMultivariateOption: {
+    project_id: string | number
+    feature_id: number
+    body: Partial<MultivariateOption> & { feature: number }
+  }
+  saveMultivariateOptions: {
+    project_id: string | number
+    feature_id: number
+    multivariate_options: Partial<MultivariateOption>[]
+  }
   // END OF TYPES
 }
