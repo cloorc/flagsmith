@@ -64,7 +64,8 @@ const EditIdentity: FC<EditIdentityType> = ({ data, environmentId }) => {
       <Button
         disabled={!data}
         theme='text'
-        className='text-primary'
+        style={{ lineHeight: 'inherit' }}
+        className='text-primary d-flex align-items-center'
         onClick={handleFocus}
       >
         Edit

@@ -1,4 +1,3 @@
-import Button from 'components/base/forms/Button'
 import Icon from 'components/icons/Icon'
 
 type StageArrowProps = {
@@ -12,13 +11,14 @@ const StageArrow = ({ onAddStage, showAddStageButton }: StageArrowProps) => {
       <div className='d-flex align-items-center stage-line'>
         <div className='flex-1 line-divider' />
         {showAddStageButton && (
-          <Button
-            theme='icon'
-            className='border-1 border-primary rounded-circle color-primary'
+          <button
+            type='button'
+            className='stage-add-btn'
+            aria-label='Add stage'
             onClick={onAddStage}
           >
-            <Icon name='plus' fill='#6837FC' width={20} />
-          </Button>
+            <Icon name='plus' />
+          </button>
         )}
         <div className='arrow-container'>
           <div className='arrow-container__wrapper'>

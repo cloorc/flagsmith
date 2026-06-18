@@ -1,6 +1,7 @@
 import React, { FC, useEffect } from 'react'
 import PanelSearch from './PanelSearch'
 import Button from './base/forms/Button'
+import IconButton from './base/IconButton'
 import Icon from './icons/Icon'
 import {
   useGetExternalResourcesQuery,
@@ -83,7 +84,9 @@ const ExternalResourceRow: FC<ExternalResourceRowType> = ({
         </div>
       </div>
       <div className='table-column text-center' style={{ width: '80px' }}>
-        <Button
+        <IconButton
+          variant='filled'
+          aria-label='Unlink external resource'
           onClick={() =>
             openModal2(
               'Unlink External Resources',
@@ -122,10 +125,9 @@ const ExternalResourceRow: FC<ExternalResourceRowType> = ({
               </div>,
             )
           }
-          className='btn btn-with-icon'
         >
-          <Icon name='trash-2' width={20} fill='#656D7B' />
-        </Button>
+          <Icon name='trash-2' />
+        </IconButton>
       </div>
     </Row>
   )

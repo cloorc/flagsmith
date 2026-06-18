@@ -2,6 +2,7 @@ import React, { FC, useEffect } from 'react'
 import { HealthProvider } from 'common/types/responses'
 import PanelSearch from 'components/PanelSearch'
 import Button from 'components/base/forms/Button'
+import IconButton from 'components/base/IconButton'
 
 import Icon from 'components/icons/Icon'
 
@@ -205,15 +206,16 @@ const EditHealthProvider: FC<EditHealthProviderType> = ({
                           >
                             {webhook}
                           </div>
-                          <Button
+                          <IconButton
                             onClick={() => {
                               Utils.copyToClipboard(webhook)
                             }}
-                            theme='icon'
+                            size='small'
+                            aria-label='Copy webhook URL'
                             className='ms-2'
                           >
                             <Icon name='copy' />
-                          </Button>
+                          </IconButton>
                         </div>
                       </Flex>
                     )}

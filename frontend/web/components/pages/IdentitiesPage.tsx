@@ -13,6 +13,7 @@ import { Req } from 'common/types/requests'
 import CreateUserModal from 'components/modals/CreateUser'
 import PanelSearch from 'components/PanelSearch'
 import Button from 'components/base/forms/Button'
+import IconButton from 'components/base/IconButton'
 import JSONReference from 'components/JSONReference'
 import Utils from 'common/utils/utils'
 import Icon from 'components/icons/Icon'
@@ -264,10 +265,10 @@ const IdentitiesPage: FC<{ props: any }> = (props) => {
                     </div>
                   </Link>
                   <div className='table-column'>
-                    <Button
+                    <IconButton
                       id='remove-feature'
-                      className='btn btn-with-icon'
-                      type='button'
+                      variant='filled'
+                      aria-label={`Delete identity ${identifier}`}
                       onClick={() => {
                         if (id) {
                           removeIdentity(id, identifier, environmentId)
@@ -280,8 +281,8 @@ const IdentitiesPage: FC<{ props: any }> = (props) => {
                         }
                       }}
                     >
-                      <Icon name='trash-2' width={20} fill='#656D7B' />
-                    </Button>
+                      <Icon name='trash-2' />
+                    </IconButton>
                   </div>
                 </Row>
               ) : (

@@ -141,28 +141,6 @@ button.btn {
     }
   }
 
-  &.btn-icon {
-    padding:0;
-    height: 32px;
-    width: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: $body-color;
-    svg {
-      width: 18px;
-      height: 18px;
-    }
-    path {
-      fill: var(--color-icon-secondary);
-    }
-    &:hover,&:focus {
-      background-color: $bg-light300;
-      path {
-        fill: var(--color-icon-default);
-      }
-    }
-  }
   &-with-icon {
     padding: 0 14px;
     background-color: $basic-alpha-8;
@@ -350,12 +328,6 @@ $add-btn-size: 34px;
 
 .dark {
   .btn {
-    &.btn-icon {
-      color: $body-color-dark;
-      &:hover,&:focus {
-        background-color: $bg-dark300;
-      }
-    }
     &.btn-secondary {
       color: white;
       background-color: $btn-secondary-bg-dark !important;

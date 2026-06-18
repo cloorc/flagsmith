@@ -13,7 +13,7 @@ import Permission from 'common/providers/Permission'
 import Tag from './tags/Tag'
 import Icon from './icons/Icon'
 import Constants from 'common/constants'
-import Button from './base/forms/Button'
+import IconButton from './base/IconButton'
 import EmptyState from './EmptyState'
 import Tooltip from './Tooltip'
 import { withRouter } from 'react-router-dom'
@@ -253,15 +253,15 @@ class CompareEnvironments extends Component {
                             >
                               {p.projectFlagLeft.name}
                             </div>
-                            <Button
+                            <IconButton
                               onClick={() => {
                                 Utils.copyToClipboard(p.projectFlagLeft.name)
                               }}
-                              theme='icon'
                               className='ms-2 me-2'
+                              aria-label='Copy feature name'
                             >
                               <Icon name='copy' />
-                            </Button>
+                            </IconButton>
                           </Row>
                         }
                       >

@@ -4,6 +4,7 @@ import { useGetRolesQuery } from 'common/services/useRole'
 import { User, Role } from 'common/types/responses'
 import PanelSearch from './PanelSearch'
 import Button from './base/forms/Button'
+import IconButton from './base/IconButton'
 import ConfirmDeleteRole from './modals/ConfirmDeleteRole'
 import Icon from './icons/Icon'
 import Panel from './base/grid/Panel'
@@ -158,16 +159,16 @@ const RolesTable: FC<RolesTableType> = ({ organisationId, users }) => {
               }}
               className='table-column text-center'
             >
-              <Button
+              <IconButton
                 id='remove-role'
-                type='button'
+                variant='filled'
+                aria-label={`Delete role ${role.name}`}
                 onClick={() => {
                   deleteRole(role)
                 }}
-                className='btn btn-with-icon'
               >
-                <Icon name='trash-2' width={20} fill='#656D7B' />
-              </Button>
+                <Icon name='trash-2' />
+              </IconButton>
             </div>
           </Row>
         )}

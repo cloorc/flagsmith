@@ -21,7 +21,7 @@ import { getViewMode } from 'common/useViewMode'
 import { useHasPermission } from 'common/providers/Permission'
 import API from 'project/api'
 import Constants from 'common/constants'
-import Button from 'components/base/forms/Button'
+import IconButton from 'components/base/IconButton'
 import Icon from 'components/icons/Icon'
 import CreateFlagModal from 'components/modals/create-feature'
 import { useHistory } from 'react-router-dom'
@@ -127,15 +127,16 @@ const FeatureOverrideRow: FC<FeatureOverrideRowProps> = ({
         <Row>
           Edit User Feature:{' '}
           <span className='standard-case'>{projectFlag.name}</span>
-          <Button
+          <IconButton
             onClick={() => {
               Utils.copyToClipboard(projectFlag.name)
             }}
-            theme='icon'
+            size='small'
+            aria-label='Copy feature name'
             className='ms-2'
           >
             <Icon name='copy' />
-          </Button>
+          </IconButton>
         </Row>
       </span>,
       <CreateFlagModal

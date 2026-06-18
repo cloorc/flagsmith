@@ -10,7 +10,7 @@ import Icon from 'components/icons/Icon'
 import FeatureValue from './FeatureValue'
 import FeatureAction, { FeatureActionProps } from './FeatureAction'
 import classNames from 'classnames'
-import Button from 'components/base/forms/Button'
+import IconButton from 'components/base/IconButton'
 import {
   Environment,
   FeatureListProviderData,
@@ -250,15 +250,16 @@ const FeatureRow: FC<FeatureRowProps> = (props) => {
         <span>
           {permission ? 'Edit Feature' : 'Feature'}: {projectFlag.name}
         </span>
-        <Button
+        <IconButton
           onClick={() => {
             Utils.copyToClipboard(projectFlag.name)
           }}
-          theme='icon'
+          size='small'
+          aria-label='Copy feature name'
           className='ms-2'
         >
           <Icon name='copy' />
-        </Button>
+        </IconButton>
         {ownerChips.length > 0 && (
           <div className='d-flex align-items-center gap-1 ms-3'>
             <Icon name='people' width={16} fill='#9DA4AE' />

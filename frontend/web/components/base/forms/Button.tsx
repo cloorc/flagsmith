@@ -4,7 +4,6 @@ import { ButtonHTMLAttributes, HTMLAttributeAnchorTarget } from 'react'
 
 export const themeClassNames = {
   danger: 'btn-danger',
-  icon: 'btn-icon',
   outline: 'btn--outline',
   primary: 'btn-primary',
   secondary: 'btn-secondary',
@@ -52,6 +51,14 @@ export const Button = React.forwardRef<
       themeClassNames[theme],
       sizeClassNames[size],
     )
+    const content =
+      React.Children.count(children) > 1 ? (
+        <span className='d-flex h-100 align-items-center justify-content-center gap-2'>
+          {children}
+        </span>
+      ) : (
+        children
+      )
     return href ? (
       <a
         onClick={rest.onClick as React.MouseEventHandler}
@@ -61,7 +68,7 @@ export const Button = React.forwardRef<
         rel='noreferrer'
         ref={ref as React.RefObject<HTMLAnchorElement>}
       >
-        {children}
+        {content}
       </a>
     ) : (
       <button
@@ -71,7 +78,7 @@ export const Button = React.forwardRef<
         className={classes}
         ref={ref as React.RefObject<HTMLButtonElement>}
       >
-        {children}
+        {content}
       </button>
     )
   },

@@ -8,6 +8,7 @@ import {
   useDeleteSamlAttributeMappingMutation,
   useGetSamlAttributeMappingQuery,
 } from 'common/services/useSamlAttributeMapping'
+import IconButton from 'components/base/IconButton'
 
 type SAMLAttributeMappingTableType = {
   samlConfigurationId: number
@@ -77,10 +78,11 @@ const SAMLAttributeMappingTable: FC<SAMLAttributeMappingTableType> = ({
               </Tooltip>
             </Flex>
             <div className='table-column'>
-              <Button
+              <IconButton
                 id='delete-attribute'
                 data-test='delete-attribute'
-                type='button'
+                variant='filled'
+                aria-label='Delete SAML attribute'
                 onClick={(e) => {
                   openModal2(
                     'Delete SAML attribute',
@@ -119,10 +121,9 @@ const SAMLAttributeMappingTable: FC<SAMLAttributeMappingTableType> = ({
                   e.stopPropagation()
                   e.preventDefault()
                 }}
-                className='btn btn-with-icon'
               >
-                <Icon name='trash-2' width={20} />
-              </Button>
+                <Icon name='trash-2' />
+              </IconButton>
             </div>
           </Row>
         )}

@@ -24,3 +24,36 @@
         }
     }
 }
+
+.stage-add-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 1px solid var(--color-border-action);
+    border-radius: var(--radius-full);
+    background: transparent;
+    cursor: pointer;
+    color: var(--color-icon-action);
+    transition: background-color var(--duration-fast) var(--easing-standard);
+
+    svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    path {
+        fill: var(--color-icon-action);
+    }
+
+    &:hover {
+        background-color: var(--color-surface-action-subtle);
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--color-border-action);
+        outline-offset: 2px;
+    }
+}

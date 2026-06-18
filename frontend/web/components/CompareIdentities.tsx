@@ -17,6 +17,7 @@ import { sortBy } from 'lodash'
 import { useHasPermission } from 'common/providers/Permission'
 import Constants from 'common/constants'
 import Button from './base/forms/Button'
+import IconButton from './base/IconButton'
 import ProjectStore from 'common/stores/project-store'
 import SegmentOverridesIcon from './icons/SegmentOverridesIcon'
 import IdentityOverridesIcon from './icons/IdentityOverridesIcon'
@@ -307,13 +308,14 @@ const CompareIdentities: FC<CompareIdentitiesType> = ({
                           {description}
                         </Tooltip>
                       </span>
-                      <Button
+                      <IconButton
                         onClick={() => Utils.copyToClipboard(name)}
-                        theme='icon'
+                        size='small'
+                        aria-label='Copy feature name'
                         className='ms-2 me-2'
                       >
                         <Icon name='copy' />
-                      </Button>
+                      </IconButton>
                       <SegmentOverridesIcon
                         count={data.num_segment_overrides}
                       />

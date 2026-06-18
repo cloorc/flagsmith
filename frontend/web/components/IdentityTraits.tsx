@@ -3,6 +3,7 @@ import PanelSearch from './PanelSearch'
 import Utils from 'common/utils/utils'
 import Constants from 'common/constants'
 import Button from './base/forms/Button'
+import IconButton from './base/IconButton'
 import FeatureValue from './feature-summary/FeatureValue'
 import Icon from './icons/Icon'
 import Panel from './base/grid/Panel'
@@ -184,16 +185,16 @@ const IdentityTraits: FC<IdentityTraitsType> = ({
                 Constants.environmentPermissions(
                   EnvironmentPermission.MANAGE_IDENTITIES,
                 ),
-                <Button
+                <IconButton
                   id='remove-feature'
-                  className='btn btn-with-icon'
-                  type='button'
+                  variant='filled'
+                  aria-label={`Delete trait ${trait_key}`}
                   disabled={!manageUserPermission}
                   onClick={() => removeTrait(id, trait_key)}
                   data-test={`delete-user-trait-${i}`}
                 >
-                  <Icon name='trash-2' width={20} fill='#656D7B' />
-                </Button>,
+                  <Icon name='trash-2' />
+                </IconButton>,
               )}
             </div>
           </Row>
