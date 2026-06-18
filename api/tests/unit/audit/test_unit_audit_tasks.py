@@ -158,6 +158,7 @@ def test_create_audit_log_from_historical_record__skip_audit_log_true__does_not_
 def test_create_audit_log_from_historical_record__valid_record__creates_audit_log_with_correct_fields(  # type: ignore[no-untyped-def]
     mocker,
     monkeypatch,
+    settings,
 ):
     # Given
     log_message = "a log message"
@@ -200,6 +201,7 @@ def test_create_audit_log_from_historical_record__valid_record__creates_audit_lo
     mocked_audit_log_model_class.get_history_record_model_class.return_value = (
         mocked_historical_record_model_class
     )
+    mocked_close_all = mocker.patch("audit.tasks.connections.close_all")
 
     history_record_class_path = (
         f"app.models.{mocked_historical_record_model_class.name}"
@@ -223,6 +225,100 @@ def test_create_audit_log_from_historical_record__valid_record__creates_audit_lo
         master_api_key=None,
         created_date=history_instance.history_date,
     )
+    mocked_close_all.assert_not_called()
+
+
+def test_create_audit_log_from_historical_record__separate_thread__closes_database_connections(
+    mocker,
+    settings,
+):
+    # Given
+    settings.TASK_RUN_METHOD = TaskRunMethod.SEPARATE_THREAD
+
+    log_message = "a log message"
+    related_object_id = 1
+    related_object_type = RelatedObjectType.ENVIRONMENT
+
+    mock_environment = mocker.MagicMock(spec=Environment)
+
+    instance = mocker.MagicMock()
+    instance.get_skip_create_audit_log.return_value = False
+    instance.get_audit_log_author.return_value = None
+    instance.get_create_log_message.return_value = log_message
+    instance.get_environment_and_project.return_value = mock_environment, None
+    instance.get_audit_log_related_object_id.return_value = related_object_id
+    instance.get_audit_log_related_object_type.return_value = related_object_type
+    instance.get_extra_audit_log_kwargs.return_value = {}
+    history_instance = mocker.MagicMock(
+        history_id=1,
+        instance=instance,
+        master_api_key=None,
+        history_type="+",
+        history_date=timezone.now(),
+    )
+
+    history_user = mocker.MagicMock()
+    history_user.id = 1
+
+    mocked_historical_record_model_class = mocker.MagicMock(
+        name="DummyHistoricalRecordModelClass"
+    )
+    mocked_historical_record_model_class.objects.get.return_value = history_instance
+
+    mocked_user_model_class = mocker.MagicMock()
+    mocker.patch("audit.tasks.get_user_model", return_value=mocked_user_model_class)
+    mocked_user_model_class.objects.filter.return_value.first.return_value = (
+        history_user
+    )
+
+    mocked_audit_log_model_class = mocker.patch("audit.tasks.AuditLog")
+    mocked_audit_log_model_class.get_history_record_model_class.return_value = (
+        mocked_historical_record_model_class
+    )
+    mocked_close_all = mocker.patch("audit.tasks.connections.close_all")
+
+    history_record_class_path = (
+        f"app.models.{mocked_historical_record_model_class.name}"
+    )
+
+    # When
+    create_audit_log_from_historical_record(
+        history_instance.history_id, history_user.id, history_record_class_path
+    )
+
+    # Then
+    mocked_close_all.assert_called_once_with()
+
+
+def test_create_audit_log_from_historical_record__separate_thread_exception__closes_database_connections(
+    mocker,
+    settings,
+) -> None:
+    # Given
+    settings.TASK_RUN_METHOD = TaskRunMethod.SEPARATE_THREAD
+
+    mocked_historical_record_model_class = mocker.MagicMock(
+        name="DummyHistoricalRecordModelClass"
+    )
+    mocked_historical_record_model_class.objects.get.side_effect = RuntimeError(
+        "boom"
+    )
+
+    mocked_audit_log_model_class = mocker.patch("audit.tasks.AuditLog")
+    mocked_audit_log_model_class.get_history_record_model_class.return_value = (
+        mocked_historical_record_model_class
+    )
+    mocked_close_all = mocker.patch("audit.tasks.connections.close_all")
+
+    history_record_class_path = (
+        f"app.models.{mocked_historical_record_model_class.name}"
+    )
+
+    # When / Then
+    with pytest.raises(RuntimeError, match="boom"):
+        create_audit_log_from_historical_record(1, None, history_record_class_path)
+
+    mocked_close_all.assert_called_once_with()
 
 
 def test_create_audit_log_from_historical_record__cascade_deleted_feature_segment__does_nothing(

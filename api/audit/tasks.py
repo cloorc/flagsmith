@@ -2,12 +2,15 @@ import logging
 import typing
 from datetime import datetime
 
+from django.conf import settings
 from django.contrib.auth import get_user_model
+from django.db import connections
 from django.utils import timezone
 from task_processor.decorators import (
     register_task_handler,
 )
 from task_processor.models import TaskPriority
+from task_processor.task_run_method import TaskRunMethod
 
 from audit.constants import (
     FEATURE_STATE_UPDATED_BY_CHANGE_REQUEST_MESSAGE,
@@ -16,6 +19,11 @@ from audit.constants import (
 from audit.models import AuditLog, RelatedObjectType  # type: ignore[attr-defined]
 
 logger = logging.getLogger(__name__)
+
+
+def _close_thread_database_connections() -> None:
+    if settings.TASK_RUN_METHOD == TaskRunMethod.SEPARATE_THREAD:
+        connections.close_all()
 
 
 @register_task_handler(priority=TaskPriority.HIGHEST)
@@ -83,59 +91,62 @@ def create_audit_log_from_historical_record(  # type: ignore[no-untyped-def]
     history_user_id: typing.Optional[int],
     history_record_class_path: str,
 ):
-    model_class = AuditLog.get_history_record_model_class(history_record_class_path)
-    history_instance = model_class.objects.get(history_id=history_instance_id)  # type: ignore[attr-defined]
+    try:
+        model_class = AuditLog.get_history_record_model_class(history_record_class_path)
+        history_instance = model_class.objects.get(history_id=history_instance_id)  # type: ignore[attr-defined]
 
-    if (
-        history_instance.history_type == "~"
-        and history_instance.prev_record
-        and not history_instance.diff_against(history_instance.prev_record).changes
-    ):
-        return
+        if (
+            history_instance.history_type == "~"
+            and history_instance.prev_record
+            and not history_instance.diff_against(history_instance.prev_record).changes
+        ):
+            return
 
-    instance = history_instance.instance
-    if instance.get_skip_create_audit_log():
-        return
+        instance = history_instance.instance
+        if instance.get_skip_create_audit_log():
+            return
 
-    if history_user_id is not None:
-        user_model = get_user_model()
-        history_user = user_model.objects.filter(id=history_user_id).first()
-    else:
-        history_user = instance.get_audit_log_author(history_instance)
+        if history_user_id is not None:
+            user_model = get_user_model()
+            history_user = user_model.objects.filter(id=history_user_id).first()
+        else:
+            history_user = instance.get_audit_log_author(history_instance)
 
-    if not (history_user or history_instance.master_api_key):
-        return
+        if not (history_user or history_instance.master_api_key):
+            return
 
-    environment, project = instance.get_environment_and_project()
+        environment, project = instance.get_environment_and_project()
 
-    related_object_id = instance.get_audit_log_related_object_id(history_instance)
-    related_object_type = instance.get_audit_log_related_object_type(history_instance)
+        related_object_id = instance.get_audit_log_related_object_id(history_instance)
+        related_object_type = instance.get_audit_log_related_object_type(history_instance)
 
-    if not related_object_id:
-        return
+        if not related_object_id:
+            return
 
-    log_message = {
-        "+": instance.get_create_log_message,
-        "-": instance.get_delete_log_message,
-        "~": instance.get_update_log_message,
-    }[history_instance.history_type](history_instance)
+        log_message = {
+            "+": instance.get_create_log_message,
+            "-": instance.get_delete_log_message,
+            "~": instance.get_update_log_message,
+        }[history_instance.history_type](history_instance)
 
-    if not log_message:
-        return
+        if not log_message:
+            return
 
-    AuditLog.objects.create(
-        history_record_id=history_instance.history_id,
-        history_record_class_path=history_record_class_path,
-        environment=environment,
-        project=project,
-        author=history_user,
-        related_object_id=related_object_id,
-        related_object_type=related_object_type.name,
-        log=log_message,
-        master_api_key=history_instance.master_api_key,
-        created_date=history_instance.history_date,
-        **instance.get_extra_audit_log_kwargs(history_instance),
-    )
+        AuditLog.objects.create(
+            history_record_id=history_instance.history_id,
+            history_record_class_path=history_record_class_path,
+            environment=environment,
+            project=project,
+            author=history_user,
+            related_object_id=related_object_id,
+            related_object_type=related_object_type.name,
+            log=log_message,
+            master_api_key=history_instance.master_api_key,
+            created_date=history_instance.history_date,
+            **instance.get_extra_audit_log_kwargs(history_instance),
+        )
+    finally:
+        _close_thread_database_connections()
 
 
 @register_task_handler()
