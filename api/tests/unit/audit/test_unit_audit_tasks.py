@@ -300,9 +300,7 @@ def test_create_audit_log_from_historical_record__separate_thread_exception__clo
     mocked_historical_record_model_class = mocker.MagicMock(
         name="DummyHistoricalRecordModelClass"
     )
-    mocked_historical_record_model_class.objects.get.side_effect = RuntimeError(
-        "boom"
-    )
+    mocked_historical_record_model_class.objects.get.side_effect = RuntimeError("boom")
 
     mocked_audit_log_model_class = mocker.patch("audit.tasks.AuditLog")
     mocked_audit_log_model_class.get_history_record_model_class.return_value = (
