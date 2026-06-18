@@ -51,14 +51,6 @@ export const Button = React.forwardRef<
       themeClassNames[theme],
       sizeClassNames[size],
     )
-    const content =
-      React.Children.count(children) > 1 ? (
-        <span className='d-flex h-100 align-items-center justify-content-center gap-2'>
-          {children}
-        </span>
-      ) : (
-        children
-      )
     return href ? (
       <a
         onClick={rest.onClick as React.MouseEventHandler}
@@ -68,7 +60,7 @@ export const Button = React.forwardRef<
         rel='noreferrer'
         ref={ref as React.RefObject<HTMLAnchorElement>}
       >
-        {content}
+        {children}
       </a>
     ) : (
       <button
@@ -78,7 +70,7 @@ export const Button = React.forwardRef<
         className={classes}
         ref={ref as React.RefObject<HTMLButtonElement>}
       >
-        {content}
+        {children}
       </button>
     )
   },
