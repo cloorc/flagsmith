@@ -395,6 +395,9 @@ INFLUXDB_ORG = env.str("INFLUXDB_ORG", default="")
 USE_POSTGRES_FOR_ANALYTICS = env.bool("USE_POSTGRES_FOR_ANALYTICS", default=False)
 USE_CACHE_FOR_USAGE_DATA = env.bool("USE_CACHE_FOR_USAGE_DATA", default=True)
 
+# Base URL of the Control Plane that licensed Instances report usage snapshots to.
+CONTROL_PLANE_URL = env.str("CONTROL_PLANE_URL", default=None)
+
 API_USAGE_CACHE_SECONDS = env.int("API_USAGE_CACHE_SECONDS", default=0)
 
 if not API_USAGE_CACHE_SECONDS:
