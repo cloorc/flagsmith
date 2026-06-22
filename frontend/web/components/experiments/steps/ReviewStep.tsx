@@ -4,6 +4,11 @@ import Button from 'components/base/forms/Button'
 import ContentCard from 'components/base/grid/ContentCard'
 import VariationTable from 'components/experiments/VariationTable'
 import { getExpectedDirectionLabel } from 'components/experiments/constants'
+import {
+  VariationSplitEntry,
+  buildRolloutSummary,
+  getRolloutSummaryRows,
+} from 'components/experiments/rollout'
 import './ReviewStep.scss'
 
 type ReviewStepProps = {
@@ -12,8 +17,11 @@ type ReviewStepProps = {
   selectedFeature: ProjectFlag | null
   selectedMetric: Metric | null
   expectedDirection: ExpectedDirection | null
+  rolloutPercentage: number
+  variationSplit: VariationSplitEntry[]
   onEditSetup: () => void
   onEditMeasurement: () => void
+  onEditRollout: () => void
 }
 
 const ReviewStep: FC<ReviewStepProps> = ({
@@ -21,9 +29,12 @@ const ReviewStep: FC<ReviewStepProps> = ({
   hypothesis,
   name,
   onEditMeasurement,
+  onEditRollout,
   onEditSetup,
+  rolloutPercentage,
   selectedFeature,
   selectedMetric,
+  variationSplit,
 }) => {
   return (
     <div className='d-flex flex-column gap-4'>
@@ -63,6 +74,24 @@ const ReviewStep: FC<ReviewStepProps> = ({
           </>
         )}
       </ContentCard>
+
+      {selectedFeature && (
+        <ContentCard
+          title='Rollout'
+          action={
+            <Button theme='text' size='xSmall' onClick={onEditRollout}>
+              Edit
+            </Button>
+          }
+        >
+          <p className='mb-0'>
+            {buildRolloutSummary(
+              rolloutPercentage,
+              getRolloutSummaryRows(selectedFeature, variationSplit),
+            )}
+          </p>
+        </ContentCard>
+      )}
 
       <ContentCard
         title={selectedMetric ? 'Measurement (1 metric)' : 'Measurement'}

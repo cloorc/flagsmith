@@ -222,8 +222,11 @@ const CreateExperimentWizard: FC<CreateExperimentWizardProps> = ({
             selectedFeature={selectedFeature}
             selectedMetric={selectedMetric}
             expectedDirection={expectedDirection}
+            rolloutPercentage={rolloutPercentage}
+            variationSplit={variationSplit}
             onEditSetup={() => setCurrentStep(0)}
             onEditMeasurement={() => setCurrentStep(MEASUREMENT_STEP)}
+            onEditRollout={() => setCurrentStep(1)}
           />
         )
       default:
