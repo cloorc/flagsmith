@@ -5,8 +5,15 @@ import Icon from 'components/icons/Icon'
 import OnboardingHeader from 'components/pages/onboarding/OnboardingHeader'
 import ThemeToggle from 'components/pages/onboarding/ThemeToggle'
 import OnboardingConnectPanel from 'components/pages/onboarding/OnboardingConnectPanel'
+import OnboardingTerminal, {
+  OnboardingTerminalStatus,
+} from 'components/pages/onboarding/OnboardingTerminal'
+import OnboardingFlagsTable, {
+  OnboardingFlagsTableStatus,
+} from 'components/pages/onboarding/OnboardingFlagsTable'
 import { useEnsureOnboardingResources } from 'components/pages/onboarding/hooks/useEnsureOnboardingResources'
 import { useOnboardingFlagRename } from 'components/pages/onboarding/hooks/useOnboardingFlagRename'
+import { useOnboardingFlag } from 'components/pages/onboarding/hooks/useOnboardingFlag'
 import { useUpdateOrganisationMutation } from 'common/services/useOrganisation'
 import { useUpdateProjectMutation } from 'common/services/useProject'
 import './OnboardingFlow.scss'
@@ -16,7 +23,7 @@ import './OnboardingFlow.scss'
 //
 // Resources (org / project / Dev + Prod / first flag) are bootstrapped
 // idempotently by useEnsureOnboardingResources, and the inline header chips
-// persist renames. TODO(#7766): the verify console / flags table land on top.
+// persist renames; the verify terminal and flags table render below (#7766).
 const OnboardingFlow: FC = () => {
   const {
     caseSensitive,
@@ -58,6 +65,16 @@ const OnboardingFlow: FC = () => {
     featureName,
     projectId,
   })
+
+  // Verify terminal + flags table. They stay in the pre-connection state until
+  // the first-evaluation signal lands (#7767); the Dev toggle is real now.
+  const terminalStatus: OnboardingTerminalStatus = 'listening'
+  const flagsStatus: OnboardingFlagsTableStatus = 'waiting'
+  const {
+    enabled: flagEnabled,
+    isToggling,
+    toggle: toggleFlag,
+  } = useOnboardingFlag(environment, projectId, featureName)
 
   // Org/project are single-field PATCHes; the shell nav adopts the new names on
   // its next load.
@@ -149,6 +166,19 @@ const OnboardingFlow: FC = () => {
       <OnboardingConnectPanel
         environmentKey={environmentKey}
         featureName={featureName}
+      />
+      <OnboardingTerminal status={terminalStatus} featureName={featureName} />
+      <OnboardingFlagsTable
+        status={flagsStatus}
+        flags={[
+          {
+            description: 'Controls the demo button shown to your users',
+            enabled: flagEnabled,
+            name: featureName,
+          },
+        ]}
+        onToggle={(_flag, next) => toggleFlag(next)}
+        togglingFlag={isToggling ? featureName : null}
       />
       <div className='d-flex justify-content-end'>
         <Button theme='text' onClick={skipToApp}>
