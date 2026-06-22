@@ -1040,6 +1040,15 @@ export type Req = {
       hypothesis: string
       feature: number
       metrics: { metric: number; expected_direction: ExpectedDirection }[]
+      experiment_rollout: {
+        enabled: boolean
+        rollout_percentage: number
+        feature_state_value: FeatureStateValue
+        multivariate_feature_state_values: {
+          multivariate_feature_option: number
+          percentage_allocation: number
+        }[]
+      }
     }
   }
   experimentAction: { environmentId: string; experimentId: number }
