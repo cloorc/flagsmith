@@ -18,10 +18,13 @@
     width: 100%;
     max-width: 760px;
     overflow: hidden;
-    border-radius: 12px;
+    border-radius: var(--radius-xl);
     background: var(--color-surface-default);
-    border: 1px solid var(--color-border-action);
-    box-shadow: var(--shadow-lg);
+    // Accent border + purple glow to lift the connected card (matches the mock).
+    // Derived from the action colour with oklch alpha so it tracks the theme.
+    border: 1px solid oklch(from var(--color-border-action) l c h / 0.4);
+    box-shadow: 0 18px 44px 2px oklch(from var(--color-border-action) l c h / 0.2),
+      var(--shadow-md);
     transition: opacity var(--duration-fast) var(--easing-standard),
       box-shadow var(--duration-fast) var(--easing-standard),
       border-color var(--duration-fast) var(--easing-standard);
