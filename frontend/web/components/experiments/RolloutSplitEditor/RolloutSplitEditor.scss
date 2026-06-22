@@ -1,0 +1,66 @@
+.rollout-split {
+  &__row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 4px;
+    border-top: 1px solid var(--color-border-default);
+
+    &:first-of-type {
+      border-top: none;
+    }
+  }
+
+  &__name {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    min-width: 120px;
+  }
+
+  &__name-text {
+    font-size: var(--font-body-size);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-default);
+  }
+
+  &__control-tag {
+    font-size: var(--font-caption-xs-size);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-secondary);
+    background: var(--color-surface-muted);
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+  }
+
+  &__value {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__value-badge {
+    display: inline-block;
+    font-family: var(--font-family);
+    font-size: var(--font-body-sm-size);
+    color: var(--color-text-default);
+    background: var(--color-surface-muted);
+    padding: 6px 12px;
+    border-radius: var(--radius-md);
+    word-break: break-all;
+    max-width: 100%;
+  }
+
+  &__weight {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    width: 100px;
+    justify-content: flex-end;
+  }
+
+  &__weight-readonly {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-secondary);
+  }
+}
