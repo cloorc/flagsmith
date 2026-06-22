@@ -85,7 +85,8 @@
     font-size: 12px;
   }
 
+  // Match the ENABLED header column width so the toggle lines up under it.
   &__toggle {
-    width: 56px;
+    width: 96px;
   }
 }
