@@ -70,6 +70,7 @@ const OnboardingFlow: FC = () => {
   const {
     enabled: flagEnabled,
     isToggling,
+    tags: flagTags,
     toggle: toggleFlag,
   } = useOnboardingFlag(environment, projectId, featureName)
 
@@ -172,6 +173,7 @@ const OnboardingFlow: FC = () => {
             description: 'Controls the demo button shown to your users',
             enabled: flagEnabled,
             name: featureName,
+            tags: flagTags,
           },
         ]}
         onToggle={(_flag, next) => toggleFlag(next)}
