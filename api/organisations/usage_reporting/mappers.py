@@ -32,13 +32,7 @@ def _aggregate(usage_data: list[UsageData]) -> tuple[int, ApiCallBreakdown]:
         traits=sum(data.traits for data in usage_data),
         environment_documents=sum(data.environment_document for data in usage_data),
     )
-    api_call_total = (
-        breakdown.flags
-        + breakdown.identities
-        + breakdown.traits
-        + breakdown.environment_documents
-    )
-    return api_call_total, breakdown
+    return _total_api_calls(usage_data), breakdown
 
 
 def _project_usage(
