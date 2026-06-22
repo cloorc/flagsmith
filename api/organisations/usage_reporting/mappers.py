@@ -18,12 +18,6 @@ from projects.models import Project
 MAX_PROJECT_USAGE_ROWS = 5_000
 
 
-def _complete_hour_window() -> tuple[datetime, datetime]:
-    hour_end = timezone.now().replace(minute=0, second=0, microsecond=0)
-    hour_start = hour_end - timedelta(hours=1)
-    return hour_start, hour_end
-
-
 def _total_api_calls(usage_data: list[UsageData]) -> int:
     return sum(
         data.flags + data.identities + data.traits + data.environment_document
@@ -74,7 +68,8 @@ def _project_usage(
 
 
 def map_organisation_to_usage_snapshot(organisation: Organisation) -> UsageSnapshot:
-    hour_start, hour_end = _complete_hour_window()
+    hour_end = timezone.now().replace(minute=0, second=0, microsecond=0)
+    hour_start = hour_end - timedelta(hours=1)
     api_call_total, api_call_breakdown = _aggregate(
         get_usage_data_for_window(organisation, hour_start, hour_end)
     )
