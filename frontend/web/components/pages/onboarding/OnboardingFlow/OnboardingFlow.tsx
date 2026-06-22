@@ -5,15 +5,12 @@ import Icon from 'components/icons/Icon'
 import OnboardingHeader from 'components/pages/onboarding/OnboardingHeader'
 import ThemeToggle from 'components/pages/onboarding/ThemeToggle'
 import OnboardingConnectPanel from 'components/pages/onboarding/OnboardingConnectPanel'
-import OnboardingTerminal, {
-  OnboardingTerminalStatus,
-} from 'components/pages/onboarding/OnboardingTerminal'
-import OnboardingFlagsTable, {
-  OnboardingFlagsTableStatus,
-} from 'components/pages/onboarding/OnboardingFlagsTable'
+import OnboardingTerminal from 'components/pages/onboarding/OnboardingTerminal'
+import OnboardingFlagsTable from 'components/pages/onboarding/OnboardingFlagsTable'
 import { useEnsureOnboardingResources } from 'components/pages/onboarding/hooks/useEnsureOnboardingResources'
 import { useOnboardingFlagRename } from 'components/pages/onboarding/hooks/useOnboardingFlagRename'
 import { useOnboardingFlag } from 'components/pages/onboarding/hooks/useOnboardingFlag'
+import { useOnboardingConnection } from 'components/pages/onboarding/hooks/useOnboardingConnection'
 import { useUpdateOrganisationMutation } from 'common/services/useOrganisation'
 import { useUpdateProjectMutation } from 'common/services/useProject'
 import './OnboardingFlow.scss'
@@ -66,10 +63,10 @@ const OnboardingFlow: FC = () => {
     projectId,
   })
 
-  // Verify terminal + flags table. They stay in the pre-connection state until
-  // the first-evaluation signal lands (#7767); the Dev toggle is real now.
-  const terminalStatus: OnboardingTerminalStatus = 'listening'
-  const flagsStatus: OnboardingFlagsTableStatus = 'waiting'
+  // Verify terminal + flags table. The connection status is stubbed until the
+  // first-evaluation signal lands (#7767, behind useOnboardingConnection); the
+  // Dev toggle is real now.
+  const connection = useOnboardingConnection()
   const {
     enabled: flagEnabled,
     isToggling,
@@ -167,9 +164,9 @@ const OnboardingFlow: FC = () => {
         environmentKey={environmentKey}
         featureName={featureName}
       />
-      <OnboardingTerminal status={terminalStatus} featureName={featureName} />
+      <OnboardingTerminal status={connection} featureName={featureName} />
       <OnboardingFlagsTable
-        status={flagsStatus}
+        status={connection === 'connected' ? 'connected' : 'waiting'}
         flags={[
           {
             description: 'Controls the demo button shown to your users',
