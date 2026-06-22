@@ -28,6 +28,8 @@ const CONNECT_TABS: OnboardingTab<ConnectTab>[] = [
 export type OnboardingConnectPanelProps = {
   environmentKey: string
   featureName: string
+  onCopyInstall?: () => void
+  onCopyWire?: () => void
 }
 
 // Two ways to connect an app to the pre-created flag: paste an agent-agnostic
@@ -37,6 +39,8 @@ export type OnboardingConnectPanelProps = {
 const OnboardingConnectPanel: FC<OnboardingConnectPanelProps> = ({
   environmentKey,
   featureName,
+  onCopyInstall,
+  onCopyWire,
 }) => {
   const [tab, setTab] = useState<ConnectTab>('manual')
 
@@ -68,6 +72,8 @@ const OnboardingConnectPanel: FC<OnboardingConnectPanelProps> = ({
         <ConnectYourCodePanel
           environmentKey={environmentKey}
           featureName={featureName}
+          onCopyInstall={onCopyInstall}
+          onCopyWire={onCopyWire}
         />
       </OnboardingTabPanel>
     </div>

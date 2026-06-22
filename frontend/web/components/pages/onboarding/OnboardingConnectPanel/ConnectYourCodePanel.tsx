@@ -12,13 +12,18 @@ const PACKAGE_MANAGERS: PackageManager[] = ['npm', 'yarn']
 export type ConnectYourCodePanelProps = {
   environmentKey: string
   featureName: string
+  onCopyInstall?: () => void
+  onCopyWire?: () => void
 }
 
 // "Connect your code" tab: pick an SDK, then copy the install + wire snippets,
-// pre-filled with the real env key and flag this onboarding created.
+// pre-filled with the real env key and flag this onboarding created. The copy
+// actions feed the verify checklist.
 const ConnectYourCodePanel: FC<ConnectYourCodePanelProps> = ({
   environmentKey,
   featureName,
+  onCopyInstall,
+  onCopyWire,
 }) => {
   const [sdkLang, setSdkLang] = useState<SdkLang>(SDK_LANGS[0])
   const [installPm, setInstallPm] = useState<PackageManager>('npm')
@@ -40,6 +45,7 @@ const ConnectYourCodePanel: FC<ConnectYourCodePanelProps> = ({
         <CodeCard
           code={installCode}
           language='bash'
+          onCopy={onCopyInstall}
           headerLeft={
             sdkSnippet.installYarn ? (
               <div className='onboarding-connect__pm d-inline-flex'>
@@ -74,6 +80,7 @@ const ConnectYourCodePanel: FC<ConnectYourCodePanelProps> = ({
         <CodeCard
           code={sdkSnippet.wire}
           language={sdkSnippet.language}
+          onCopy={onCopyWire}
           headerLeft={
             <span className='onboarding-connect__codecard-lang'>
               {sdkLang.label}

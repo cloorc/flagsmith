@@ -63,10 +63,13 @@ const OnboardingFlow: FC = () => {
     projectId,
   })
 
-  // Verify terminal + flags table. The connection status is stubbed until the
+  // Verify terminal + flags table. The checklist ticks as the user copies the
+  // install / wire snippets; the connection step is stubbed until the
   // first-evaluation signal lands (#7767, behind useOnboardingConnection); the
   // Dev toggle is real now.
   const connection = useOnboardingConnection()
+  const [installCopied, setInstallCopied] = useState(false)
+  const [snippetCopied, setSnippetCopied] = useState(false)
   const {
     enabled: flagEnabled,
     isToggling,
@@ -164,8 +167,15 @@ const OnboardingFlow: FC = () => {
       <OnboardingConnectPanel
         environmentKey={environmentKey}
         featureName={featureName}
+        onCopyInstall={() => setInstallCopied(true)}
+        onCopyWire={() => setSnippetCopied(true)}
       />
-      <OnboardingTerminal status={connection} featureName={featureName} />
+      <OnboardingTerminal
+        featureName={featureName}
+        installCopied={installCopied}
+        snippetCopied={snippetCopied}
+        connected={connection === 'connected'}
+      />
       <OnboardingFlagsTable
         status={connection === 'connected' ? 'connected' : 'waiting'}
         flags={[

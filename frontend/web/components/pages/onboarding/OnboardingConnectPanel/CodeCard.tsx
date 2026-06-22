@@ -10,11 +10,18 @@ export type CodeCardProps = {
   language: string
   // Left side of the card header (e.g. the language label or npm/yarn pills).
   headerLeft: ReactNode
+  // Fires when the user copies the code (drives the verify checklist).
+  onCopy?: () => void
 }
 
 // Owns its own "Copied" feedback so each card is independent. Highlight escapes
 // the body for display; Copy uses the raw string.
-const CodeCard: FC<CodeCardProps> = ({ code, headerLeft, language }) => {
+const CodeCard: FC<CodeCardProps> = ({
+  code,
+  headerLeft,
+  language,
+  onCopy,
+}) => {
   const { copied, copy } = useCopyFeedback()
 
   return (
@@ -25,7 +32,10 @@ const CodeCard: FC<CodeCardProps> = ({ code, headerLeft, language }) => {
           theme='primary'
           size='small'
           className='ms-auto'
-          onClick={() => copy(code)}
+          onClick={() => {
+            copy(code)
+            onCopy?.()
+          }}
         >
           <span
             className='d-inline-flex align-items-center gap-1'
