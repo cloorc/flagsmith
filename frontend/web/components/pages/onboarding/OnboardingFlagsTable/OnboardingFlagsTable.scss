@@ -1,0 +1,88 @@
+// "Your flags" card. A normal light/dark surface (unlike the terminal), so it
+// uses the semantic tokens. Connected lifts it with the action/purple border +
+// glow to draw the eye; waiting dims it until the first evaluation lands.
+.onboarding-flags {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+
+  &__title {
+    margin: 0;
+    color: var(--color-text-default);
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  &__table {
+    width: 100%;
+    max-width: 760px;
+    overflow: hidden;
+    border-radius: 12px;
+    background: var(--color-surface-default);
+    border: 1px solid var(--color-border-action);
+    box-shadow: var(--shadow-lg);
+    transition: opacity var(--duration-fast) var(--easing-standard),
+      box-shadow var(--duration-fast) var(--easing-standard),
+      border-color var(--duration-fast) var(--easing-standard);
+
+    // Until the SDK connects the flag is real but quiet: no accent, dimmed.
+    &--waiting {
+      border-color: var(--color-border-default);
+      box-shadow: none;
+      opacity: 0.7;
+    }
+  }
+
+  &__head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 20px;
+    border-bottom: 1px solid var(--color-border-default);
+  }
+
+  &__col {
+    color: var(--color-text-secondary);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+
+    &--feature {
+      flex: 1;
+    }
+    &--enabled {
+      width: 96px;
+    }
+  }
+
+  &__row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 20px;
+  }
+
+  &__feature {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__name-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__desc {
+    margin: 0;
+    color: var(--color-text-secondary);
+    font-size: 12px;
+  }
+
+  &__toggle {
+    width: 56px;
+  }
+}
