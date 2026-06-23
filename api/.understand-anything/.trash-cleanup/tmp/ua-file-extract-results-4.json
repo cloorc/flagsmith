@@ -1,0 +1,3309 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 23,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "environments/admin.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 39,
+      "nonEmptyLines": 32,
+      "classes": [
+        {
+          "name": "WebhookInline",
+          "startLine": 12,
+          "endLine": 14,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "EnvironmentAdmin",
+          "startLine": 18,
+          "endLine": 39,
+          "methods": [
+            "rebuild_environments"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "WebhookInline",
+          "line": 12,
+          "isDefault": false
+        },
+        {
+          "name": "EnvironmentAdmin",
+          "line": 17,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "rebuild_environments",
+          "callee": "rebuild_environment_document.delay",
+          "lineNumber": 39
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 2,
+        "functionCount": 0,
+        "classCount": 2
+      }
+    },
+    {
+      "path": "environments/api_keys.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 19,
+      "nonEmptyLines": 12,
+      "functions": [
+        {
+          "name": "generate_client_api_key",
+          "startLine": 6,
+          "endLine": 7,
+          "params": []
+        },
+        {
+          "name": "generate_server_api_key",
+          "startLine": 10,
+          "endLine": 11,
+          "params": []
+        },
+        {
+          "name": "generate_api_key",
+          "startLine": 14,
+          "endLine": 19,
+          "params": [
+            "prefix"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "generate_client_api_key",
+          "line": 6,
+          "isDefault": false
+        },
+        {
+          "name": "generate_server_api_key",
+          "line": 10,
+          "isDefault": false
+        },
+        {
+          "name": "generate_api_key",
+          "line": 14,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "generate_client_api_key",
+          "callee": "generate_api_key",
+          "lineNumber": 7
+        },
+        {
+          "caller": "generate_server_api_key",
+          "callee": "generate_api_key",
+          "lineNumber": 11
+        },
+        {
+          "caller": "generate_api_key",
+          "callee": "create_hash",
+          "lineNumber": 19
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 3,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "environments/authentication.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 49,
+      "nonEmptyLines": 39,
+      "classes": [
+        {
+          "name": "EnvironmentKeyAuthentication",
+          "startLine": 14,
+          "endLine": 49,
+          "methods": [
+            "__init__",
+            "authenticate"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "EnvironmentKeyAuthentication",
+          "line": 14,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "__init__",
+          "callee": "super(EnvironmentKeyAuthentication, self).__init__",
+          "lineNumber": 21
+        },
+        {
+          "caller": "__init__",
+          "callee": "super",
+          "lineNumber": 21
+        },
+        {
+          "caller": "authenticate",
+          "callee": "request.META.get",
+          "lineNumber": 25
+        },
+        {
+          "caller": "authenticate",
+          "callee": "api_key.startswith",
+          "lineNumber": 26
+        },
+        {
+          "caller": "authenticate",
+          "callee": "AuthenticationFailed",
+          "lineNumber": 27
+        },
+        {
+          "caller": "authenticate",
+          "callee": "Environment.get_from_cache",
+          "lineNumber": 29
+        },
+        {
+          "caller": "authenticate",
+          "callee": "AuthenticationFailed",
+          "lineNumber": 31
+        },
+        {
+          "caller": "authenticate",
+          "callee": "AuthenticationFailed",
+          "lineNumber": 34
+        },
+        {
+          "caller": "authenticate",
+          "callee": "api_key.startswith",
+          "lineNumber": 39
+        },
+        {
+          "caller": "authenticate",
+          "callee": "log_extra",
+          "lineNumber": 42
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "environments/constants.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 8,
+      "nonEmptyLines": 8,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "environments/enums.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 6,
+      "nonEmptyLines": 4,
+      "classes": [
+        {
+          "name": "EnvironmentDocumentCacheMode",
+          "startLine": 4,
+          "endLine": 6,
+          "methods": [],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "EnvironmentDocumentCacheMode",
+          "line": 4,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "environments/exceptions.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 2,
+      "nonEmptyLines": 2,
+      "classes": [
+        {
+          "name": "EnvironmentHeaderNotPresentError",
+          "startLine": 1,
+          "endLine": 2,
+          "methods": [],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "EnvironmentHeaderNotPresentError",
+          "line": 1,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "environments/identities/admin.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 16,
+      "nonEmptyLines": 11,
+      "classes": [
+        {
+          "name": "IdentityAdmin",
+          "startLine": 7,
+          "endLine": 11,
+          "methods": [],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "IdentityAdmin",
+          "line": 7,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "environments/identities/managers.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 52,
+      "nonEmptyLines": 43,
+      "classes": [
+        {
+          "name": "IdentityManager",
+          "startLine": 15,
+          "endLine": 52,
+          "methods": [
+            "get_by_natural_key",
+            "get_or_create_for_sdk",
+            "with_context"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "IdentityManager",
+          "line": 15,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "get_by_natural_key",
+          "callee": "self.get",
+          "lineNumber": 21
+        },
+        {
+          "caller": "get_or_create_for_sdk",
+          "callee": "self.with_context().get_or_create",
+          "lineNumber": 28
+        },
+        {
+          "caller": "get_or_create_for_sdk",
+          "callee": "self.with_context",
+          "lineNumber": 28
+        },
+        {
+          "caller": "with_context",
+          "callee": "self.select_related(\n            \"environment\",\n            \"environment__project\",\n            *(\n                f\"environment__{integration['relation_name']}\"\n                for integration in (integrations or IDENTITY_INTEGRATIONS)\n            ),\n            *(extra_select_related or []),\n        ).prefetch_related",
+          "lineNumber": 41
+        },
+        {
+          "caller": "with_context",
+          "callee": "self.select_related",
+          "lineNumber": 41
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "environments/identities/models.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 305,
+      "nonEmptyLines": 257,
+      "classes": [
+        {
+          "name": "Identity",
+          "startLine": 18,
+          "endLine": 305,
+          "methods": [
+            "natural_key",
+            "composite_key",
+            "get_hash_key",
+            "get_all_feature_states",
+            "get_overridden_feature_states",
+            "get_segments",
+            "get_all_user_traits",
+            "__str__",
+            "generate_traits",
+            "update_traits"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "Identity",
+          "line": 18,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "get_hash_key",
+          "callee": "str",
+          "lineNumber": 50
+        },
+        {
+          "caller": "get_all_feature_states",
+          "callee": "self.get_segments",
+          "lineNumber": 71
+        },
+        {
+          "caller": "get_all_feature_states",
+          "callee": "Q",
+          "lineNumber": 74
+        },
+        {
+          "caller": "get_all_feature_states",
+          "callee": "Q",
+          "lineNumber": 76
+        },
+        {
+          "caller": "get_all_feature_states",
+          "callee": "Q",
+          "lineNumber": 79
+        },
+        {
+          "caller": "get_all_feature_states",
+          "callee": "Q",
+          "lineNumber": 81
+        },
+        {
+          "caller": "get_all_feature_states",
+          "callee": "Q",
+          "lineNumber": 85
+        },
+        {
+          "caller": "get_all_feature_states",
+          "callee": "get_environment_flags_list",
+          "lineNumber": 97
+        },
+        {
+          "caller": "get_all_feature_states",
+          "callee": "Prefetch",
+          "lineNumber": 103
+        },
+        {
+          "caller": "get_all_feature_states",
+          "callee": "MultivariateFeatureStateValue.objects.select_related",
+          "lineNumber": 105
+        },
+        {
+          "caller": "get_all_feature_states",
+          "callee": "self.environment.get_hide_disabled_flags",
+          "lineNumber": 123
+        },
+        {
+          "caller": "get_all_feature_states",
+          "callee": "identity_flags.values",
+          "lineNumber": 125
+        },
+        {
+          "caller": "get_all_feature_states",
+          "callee": "list",
+          "lineNumber": 127
+        },
+        {
+          "caller": "get_all_feature_states",
+          "callee": "identity_flags.values",
+          "lineNumber": 127
+        },
+        {
+          "caller": "get_overridden_feature_states",
+          "callee": "self.identity_features.all",
+          "lineNumber": 136
+        },
+        {
+          "caller": "get_segments",
+          "callee": "self.identity_traits.all",
+          "lineNumber": 151
+        },
+        {
+          "caller": "get_segments",
+          "callee": "self.environment.get_segments_from_cache",
+          "lineNumber": 155
+        },
+        {
+          "caller": "get_segments",
+          "callee": "self.environment.project.get_segments_from_cache",
+          "lineNumber": 157
+        },
+        {
+          "caller": "get_segments",
+          "callee": "map_environment_to_evaluation_context",
+          "lineNumber": 160
+        },
+        {
+          "caller": "get_segments",
+          "callee": "get_evaluation_result",
+          "lineNumber": 166
+        },
+        {
+          "caller": "get_all_user_traits",
+          "callee": "self.identity_traits.all",
+          "lineNumber": 174
+        },
+        {
+          "caller": "generate_traits",
+          "callee": "Trait",
+          "lineNumber": 201
+        },
+        {
+          "caller": "generate_traits",
+          "callee": "Trait.generate_trait_value_data",
+          "lineNumber": 204
+        },
+        {
+          "caller": "generate_traits",
+          "callee": "trait_data_item.get",
+          "lineNumber": 206
+        },
+        {
+          "caller": "generate_traits",
+          "callee": "trait_models_to_persist.append",
+          "lineNumber": 209
+        },
+        {
+          "caller": "generate_traits",
+          "callee": "trait_models.append",
+          "lineNumber": 210
+        },
+        {
+          "caller": "generate_traits",
+          "callee": "Trait.objects.bulk_create",
+          "lineNumber": 213
+        },
+        {
+          "caller": "update_traits",
+          "callee": "self.identity_traits.all",
+          "lineNumber": 228
+        },
+        {
+          "caller": "update_traits",
+          "callee": "set",
+          "lineNumber": 230
+        },
+        {
+          "caller": "update_traits",
+          "callee": "trait_data_item.get",
+          "lineNumber": 238
+        },
+        {
+          "caller": "update_traits",
+          "callee": "Trait",
+          "lineNumber": 241
+        },
+        {
+          "caller": "update_traits",
+          "callee": "Trait.generate_trait_value_data",
+          "lineNumber": 242
+        },
+        {
+          "caller": "update_traits",
+          "callee": "transient_traits.append",
+          "lineNumber": 247
+        },
+        {
+          "caller": "update_traits",
+          "callee": "keys_to_delete.add",
+          "lineNumber": 253
+        },
+        {
+          "caller": "update_traits",
+          "callee": "Trait.generate_trait_value_data(trait_value).items",
+          "lineNumber": 262
+        },
+        {
+          "caller": "update_traits",
+          "callee": "Trait.generate_trait_value_data",
+          "lineNumber": 262
+        },
+        {
+          "caller": "update_traits",
+          "callee": "setattr",
+          "lineNumber": 263
+        },
+        {
+          "caller": "update_traits",
+          "callee": "updated_traits.append",
+          "lineNumber": 264
+        },
+        {
+          "caller": "update_traits",
+          "callee": "new_traits.append",
+          "lineNumber": 267
+        },
+        {
+          "caller": "update_traits",
+          "callee": "Trait",
+          "lineNumber": 268
+        },
+        {
+          "caller": "update_traits",
+          "callee": "Trait.generate_trait_value_data",
+          "lineNumber": 269
+        },
+        {
+          "caller": "update_traits",
+          "callee": "current_traits.items",
+          "lineNumber": 280
+        },
+        {
+          "caller": "update_traits",
+          "callee": "self.identity_traits.filter(trait_key__in=keys_to_delete).delete",
+          "lineNumber": 283
+        },
+        {
+          "caller": "update_traits",
+          "callee": "self.identity_traits.filter",
+          "lineNumber": 283
+        },
+        {
+          "caller": "update_traits",
+          "callee": "Trait.objects.bulk_update",
+          "lineNumber": 285
+        },
+        {
+          "caller": "update_traits",
+          "callee": "Trait.objects.bulk_create",
+          "lineNumber": 291
+        },
+        {
+          "caller": "update_traits",
+          "callee": "chain",
+          "lineNumber": 298
+        },
+        {
+          "caller": "update_traits",
+          "callee": "current_traits.values",
+          "lineNumber": 299
+        }
+      ],
+      "metrics": {
+        "importCount": 8,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "environments/identities/serializers.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 135,
+      "nonEmptyLines": 103,
+      "classes": [
+        {
+          "name": "IdentifierOnlyIdentitySerializer",
+          "startLine": 15,
+          "endLine": 18,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "IdentitySerializerFull",
+          "startLine": 21,
+          "endLine": 27,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "IdentitySerializer",
+          "startLine": 30,
+          "endLine": 49,
+          "methods": [
+            "save"
+          ],
+          "properties": []
+        },
+        {
+          "name": "SDKIdentitiesQuerySerializer",
+          "startLine": 52,
+          "endLine": 54,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "IdentityAllFeatureStatesFeatureSerializer",
+          "startLine": 57,
+          "endLine": 60,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "IdentityAllFeatureStatesSegmentSerializer",
+          "startLine": 63,
+          "endLine": 65,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "IdentityAllFeatureStatesMVFeatureOptionSerializer",
+          "startLine": 68,
+          "endLine": 74,
+          "methods": [
+            "get_value"
+          ],
+          "properties": []
+        },
+        {
+          "name": "IdentityAllFeatureStatesMVFeatureStateValueSerializer",
+          "startLine": 77,
+          "endLine": 79,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "IdentityAllFeatureStatesSerializer",
+          "startLine": 82,
+          "endLine": 128,
+          "methods": [
+            "get_feature_state_value",
+            "get_overridden_by",
+            "get_segment"
+          ],
+          "properties": []
+        },
+        {
+          "name": "IdentitySourceIdentityRequestSerializer",
+          "startLine": 131,
+          "endLine": 135,
+          "methods": [],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "IdentifierOnlyIdentitySerializer",
+          "line": 15,
+          "isDefault": false
+        },
+        {
+          "name": "IdentitySerializerFull",
+          "line": 21,
+          "isDefault": false
+        },
+        {
+          "name": "IdentitySerializer",
+          "line": 30,
+          "isDefault": false
+        },
+        {
+          "name": "SDKIdentitiesQuerySerializer",
+          "line": 52,
+          "isDefault": false
+        },
+        {
+          "name": "IdentityAllFeatureStatesFeatureSerializer",
+          "line": 57,
+          "isDefault": false
+        },
+        {
+          "name": "IdentityAllFeatureStatesSegmentSerializer",
+          "line": 63,
+          "isDefault": false
+        },
+        {
+          "name": "IdentityAllFeatureStatesMVFeatureOptionSerializer",
+          "line": 68,
+          "isDefault": false
+        },
+        {
+          "name": "IdentityAllFeatureStatesMVFeatureStateValueSerializer",
+          "line": 77,
+          "isDefault": false
+        },
+        {
+          "name": "IdentityAllFeatureStatesSerializer",
+          "line": 82,
+          "isDefault": false
+        },
+        {
+          "name": "IdentitySourceIdentityRequestSerializer",
+          "line": 131,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "save",
+          "callee": "kwargs.get",
+          "lineNumber": 37
+        },
+        {
+          "caller": "save",
+          "callee": "self.validated_data.get",
+          "lineNumber": 38
+        },
+        {
+          "caller": "save",
+          "callee": "Identity.objects.filter(\n            environment=environment, identifier=identifier\n        ).exists",
+          "lineNumber": 40
+        },
+        {
+          "caller": "save",
+          "callee": "Identity.objects.filter",
+          "lineNumber": 40
+        },
+        {
+          "caller": "save",
+          "callee": "ValidationError",
+          "lineNumber": 43
+        },
+        {
+          "caller": "save",
+          "callee": "super(IdentitySerializer, self).save",
+          "lineNumber": 49
+        },
+        {
+          "caller": "save",
+          "callee": "super",
+          "lineNumber": 49
+        },
+        {
+          "caller": "get_feature_state_value",
+          "callee": "Environment.get_from_cache",
+          "lineNumber": 102
+        },
+        {
+          "caller": "get_feature_state_value",
+          "callee": "identity.get_hash_key",
+          "lineNumber": 104
+        },
+        {
+          "caller": "get_feature_state_value",
+          "callee": "isinstance",
+          "lineNumber": 108
+        },
+        {
+          "caller": "get_feature_state_value",
+          "callee": "instance.get_feature_state_value_by_hash_key",
+          "lineNumber": 109
+        },
+        {
+          "caller": "get_feature_state_value",
+          "callee": "instance.get_value",
+          "lineNumber": 111
+        },
+        {
+          "caller": "get_overridden_by",
+          "callee": "getattr",
+          "lineNumber": 114
+        },
+        {
+          "caller": "get_overridden_by",
+          "callee": "getattr",
+          "lineNumber": 116
+        },
+        {
+          "caller": "get_overridden_by",
+          "callee": "self.context.get",
+          "lineNumber": 118
+        },
+        {
+          "caller": "get_segment",
+          "callee": "getattr",
+          "lineNumber": 124
+        },
+        {
+          "caller": "get_segment",
+          "callee": "IdentityAllFeatureStatesSegmentSerializer",
+          "lineNumber": 125
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 10,
+        "functionCount": 0,
+        "classCount": 10
+      }
+    },
+    {
+      "path": "environments/identities/traits/admin.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 35,
+      "nonEmptyLines": 30,
+      "classes": [
+        {
+          "name": "TraitAdmin",
+          "startLine": 8,
+          "endLine": 30,
+          "methods": [],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "TraitAdmin",
+          "line": 8,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "environments/identities/traits/constants.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 4,
+      "nonEmptyLines": 3,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "environments/identities/traits/exceptions.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 2,
+      "nonEmptyLines": 2,
+      "classes": [
+        {
+          "name": "TraitPersistenceError",
+          "startLine": 1,
+          "endLine": 2,
+          "methods": [],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "TraitPersistenceError",
+          "line": 1,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "environments/identities/traits/fields.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 39,
+      "nonEmptyLines": 29,
+      "classes": [
+        {
+          "name": "TraitValueField",
+          "startLine": 16,
+          "endLine": 39,
+          "methods": [
+            "to_internal_value",
+            "to_representation"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "TraitValueField",
+          "line": 16,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "to_internal_value",
+          "callee": "type",
+          "lineNumber": 22
+        },
+        {
+          "caller": "to_internal_value",
+          "callee": "str",
+          "lineNumber": 25
+        },
+        {
+          "caller": "to_internal_value",
+          "callee": "len",
+          "lineNumber": 27
+        },
+        {
+          "caller": "to_internal_value",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 28
+        },
+        {
+          "caller": "to_representation",
+          "callee": "value.get",
+          "lineNumber": 34
+        },
+        {
+          "caller": "to_representation",
+          "callee": "isinstance",
+          "lineNumber": 34
+        },
+        {
+          "caller": "to_representation",
+          "callee": "logger.warning",
+          "lineNumber": 37
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "environments/identities/traits/models.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 132,
+      "nonEmptyLines": 109,
+      "classes": [
+        {
+          "name": "Trait",
+          "startLine": 10,
+          "endLine": 132,
+          "methods": [
+            "natural_key",
+            "trait_value",
+            "transient",
+            "transient",
+            "get_trait_value",
+            "get_trait_value_key_name",
+            "generate_trait_value_data",
+            "__str__",
+            "save"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "Trait",
+          "line": 10,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "trait_value",
+          "callee": "self.get_trait_value",
+          "lineNumber": 58
+        },
+        {
+          "caller": "transient",
+          "callee": "getattr",
+          "lineNumber": 62
+        },
+        {
+          "caller": "get_trait_value",
+          "callee": "type_mapping.get",
+          "lineNumber": 81
+        },
+        {
+          "caller": "get_trait_value_key_name",
+          "callee": "{\n            INTEGER: \"integer_value\",\n            BOOLEAN: \"boolean_value\",\n            STRING: \"string_value\",\n            FLOAT: \"float_value\",\n        }.get",
+          "lineNumber": 85
+        },
+        {
+          "caller": "generate_trait_value_data",
+          "callee": "isinstance",
+          "lineNumber": 109
+        },
+        {
+          "caller": "generate_trait_value_data",
+          "callee": "value.get",
+          "lineNumber": 109
+        },
+        {
+          "caller": "generate_trait_value_data",
+          "callee": "type",
+          "lineNumber": 113
+        },
+        {
+          "caller": "generate_trait_value_data",
+          "callee": "Trait.get_trait_value_key_name",
+          "lineNumber": 118
+        },
+        {
+          "caller": "save",
+          "callee": "TraitPersistenceError",
+          "lineNumber": 128
+        },
+        {
+          "caller": "save",
+          "callee": "super(Trait, self).save",
+          "lineNumber": 132
+        },
+        {
+          "caller": "save",
+          "callee": "super",
+          "lineNumber": 132
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "environments/identities/traits/serializers.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 106,
+      "nonEmptyLines": 81,
+      "classes": [
+        {
+          "name": "TraitSerializerFull",
+          "startLine": 10,
+          "endLine": 20,
+          "methods": [
+            "get_trait_value"
+          ],
+          "properties": []
+        },
+        {
+          "name": "TraitSerializerBasic",
+          "startLine": 23,
+          "endLine": 30,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "IncrementTraitValueSerializer",
+          "startLine": 33,
+          "endLine": 77,
+          "methods": [
+            "to_representation",
+            "create",
+            "_build_query_data",
+            "_build_default_data",
+            "validate"
+          ],
+          "properties": []
+        },
+        {
+          "name": "TraitKeysSerializer",
+          "startLine": 80,
+          "endLine": 81,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "DeleteAllTraitKeysSerializer",
+          "startLine": 84,
+          "endLine": 91,
+          "methods": [
+            "delete"
+          ],
+          "properties": []
+        },
+        {
+          "name": "TraitSerializer",
+          "startLine": 94,
+          "endLine": 106,
+          "methods": [],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "TraitSerializerFull",
+          "line": 10,
+          "isDefault": false
+        },
+        {
+          "name": "TraitSerializerBasic",
+          "line": 23,
+          "isDefault": false
+        },
+        {
+          "name": "IncrementTraitValueSerializer",
+          "line": 33,
+          "isDefault": false
+        },
+        {
+          "name": "TraitKeysSerializer",
+          "line": 80,
+          "isDefault": false
+        },
+        {
+          "name": "DeleteAllTraitKeysSerializer",
+          "line": 84,
+          "isDefault": false
+        },
+        {
+          "name": "TraitSerializer",
+          "line": 94,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "get_trait_value",
+          "callee": "obj.get_trait_value",
+          "lineNumber": 20
+        },
+        {
+          "caller": "create",
+          "callee": "Trait.objects.get_or_create",
+          "lineNumber": 47
+        },
+        {
+          "caller": "create",
+          "callee": "self._build_query_data",
+          "lineNumber": 48
+        },
+        {
+          "caller": "create",
+          "callee": "self._build_default_data",
+          "lineNumber": 49
+        },
+        {
+          "caller": "create",
+          "callee": "exceptions.ValidationError",
+          "lineNumber": 53
+        },
+        {
+          "caller": "create",
+          "callee": "validated_data.get",
+          "lineNumber": 55
+        },
+        {
+          "caller": "create",
+          "callee": "trait.save",
+          "lineNumber": 56
+        },
+        {
+          "caller": "_build_query_data",
+          "callee": "validated_data.get",
+          "lineNumber": 61
+        },
+        {
+          "caller": "_build_query_data",
+          "callee": "self.context.get",
+          "lineNumber": 62
+        },
+        {
+          "caller": "_build_query_data",
+          "callee": "Identity.objects.get_or_create",
+          "lineNumber": 64
+        },
+        {
+          "caller": "_build_query_data",
+          "callee": "validated_data.get",
+          "lineNumber": 66
+        },
+        {
+          "caller": "validate",
+          "callee": "request.environment.trait_persistence_allowed",
+          "lineNumber": 73
+        },
+        {
+          "caller": "validate",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 74
+        },
+        {
+          "caller": "delete",
+          "callee": "self.context.get",
+          "lineNumber": 88
+        },
+        {
+          "caller": "delete",
+          "callee": "Trait.objects.filter(\n            identity__environment=environment, trait_key=self.validated_data.get(\"key\")\n        ).delete",
+          "lineNumber": 89
+        },
+        {
+          "caller": "delete",
+          "callee": "Trait.objects.filter",
+          "lineNumber": 89
+        },
+        {
+          "caller": "delete",
+          "callee": "self.validated_data.get",
+          "lineNumber": 90
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 6,
+        "functionCount": 0,
+        "classCount": 6
+      }
+    },
+    {
+      "path": "environments/identities/traits/views.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 285,
+      "nonEmptyLines": 241,
+      "classes": [
+        {
+          "name": "TraitViewSet",
+          "startLine": 40,
+          "endLine": 108,
+          "methods": [
+            "initial",
+            "get_queryset",
+            "get_permissions",
+            "perform_create",
+            "perform_update",
+            "destroy"
+          ],
+          "properties": []
+        },
+        {
+          "name": "SDKTraitsDeprecated",
+          "startLine": 111,
+          "endLine": 178,
+          "methods": [
+            "post"
+          ],
+          "properties": []
+        },
+        {
+          "name": "SDKTraits",
+          "startLine": 181,
+          "endLine": 285,
+          "methods": [
+            "get_serializer_class",
+            "get_serializer_context",
+            "create",
+            "increment_value",
+            "bulk_create"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "TraitViewSet",
+          "line": 40,
+          "isDefault": false
+        },
+        {
+          "name": "SDKTraitsDeprecated",
+          "line": 111,
+          "isDefault": false
+        },
+        {
+          "name": "SDKTraits",
+          "line": 181,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "initial",
+          "callee": "Identity.objects.select_related(\"environment\").get",
+          "lineNumber": 45
+        },
+        {
+          "caller": "initial",
+          "callee": "Identity.objects.select_related",
+          "lineNumber": 45
+        },
+        {
+          "caller": "initial",
+          "callee": "Identity.DoesNotExist",
+          "lineNumber": 49
+        },
+        {
+          "caller": "initial",
+          "callee": "super().initial",
+          "lineNumber": 56
+        },
+        {
+          "caller": "initial",
+          "callee": "super",
+          "lineNumber": 56
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "getattr",
+          "lineNumber": 62
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "Trait.objects.none",
+          "lineNumber": 63
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "Trait.objects.filter",
+          "lineNumber": 65
+        },
+        {
+          "caller": "get_permissions",
+          "callee": "IsAuthenticated",
+          "lineNumber": 69
+        },
+        {
+          "caller": "get_permissions",
+          "callee": "NestedEnvironmentPermissions",
+          "lineNumber": 70
+        },
+        {
+          "caller": "perform_create",
+          "callee": "serializer.save",
+          "lineNumber": 84
+        },
+        {
+          "caller": "perform_update",
+          "callee": "serializer.save",
+          "lineNumber": 87
+        },
+        {
+          "caller": "destroy",
+          "callee": "request.query_params.get",
+          "lineNumber": 100
+        },
+        {
+          "caller": "destroy",
+          "callee": "self.get_object",
+          "lineNumber": 101
+        },
+        {
+          "caller": "destroy",
+          "callee": "Trait.objects.filter(\n                trait_key=trait.trait_key,\n                identity__environment=trait.identity.environment,\n            ).delete",
+          "lineNumber": 102
+        },
+        {
+          "caller": "destroy",
+          "callee": "Trait.objects.filter",
+          "lineNumber": 102
+        },
+        {
+          "caller": "destroy",
+          "callee": "Response",
+          "lineNumber": 106
+        },
+        {
+          "caller": "destroy",
+          "callee": "super(TraitViewSet, self).destroy",
+          "lineNumber": 108
+        },
+        {
+          "caller": "destroy",
+          "callee": "super",
+          "lineNumber": 108
+        },
+        {
+          "caller": "post",
+          "callee": "Response",
+          "lineNumber": 127
+        },
+        {
+          "caller": "post",
+          "callee": "Identity.objects.get_or_create",
+          "lineNumber": 131
+        },
+        {
+          "caller": "post",
+          "callee": "Response",
+          "lineNumber": 137
+        },
+        {
+          "caller": "post",
+          "callee": "Trait.objects.get_or_create",
+          "lineNumber": 144
+        },
+        {
+          "caller": "post",
+          "callee": "Response",
+          "lineNumber": 150
+        },
+        {
+          "caller": "post",
+          "callee": "trait.generate_trait_value_data",
+          "lineNumber": 158
+        },
+        {
+          "caller": "post",
+          "callee": "TraitSerializerFull",
+          "lineNumber": 160
+        },
+        {
+          "caller": "post",
+          "callee": "trait_full_serializer.is_valid",
+          "lineNumber": 164
+        },
+        {
+          "caller": "post",
+          "callee": "trait_full_serializer.save",
+          "lineNumber": 165
+        },
+        {
+          "caller": "post",
+          "callee": "Response",
+          "lineNumber": 166
+        },
+        {
+          "caller": "post",
+          "callee": "self.get_serializer",
+          "lineNumber": 167
+        },
+        {
+          "caller": "post",
+          "callee": "Response",
+          "lineNumber": 170
+        },
+        {
+          "caller": "post",
+          "callee": "Response",
+          "lineNumber": 175
+        },
+        {
+          "caller": "get_serializer_context",
+          "callee": "super(SDKTraits, self).get_serializer_context",
+          "lineNumber": 195
+        },
+        {
+          "caller": "get_serializer_context",
+          "callee": "super",
+          "lineNumber": 195
+        },
+        {
+          "caller": "create",
+          "callee": "super(SDKTraits, self).create",
+          "lineNumber": 201
+        },
+        {
+          "caller": "create",
+          "callee": "super",
+          "lineNumber": 201
+        },
+        {
+          "caller": "create",
+          "callee": "forward_trait_request.delay",
+          "lineNumber": 204
+        },
+        {
+          "caller": "create",
+          "callee": "dict",
+          "lineNumber": 207
+        },
+        {
+          "caller": "increment_value",
+          "callee": "self.get_serializer",
+          "lineNumber": 221
+        },
+        {
+          "caller": "increment_value",
+          "callee": "serializer.is_valid",
+          "lineNumber": 222
+        },
+        {
+          "caller": "increment_value",
+          "callee": "serializer.save",
+          "lineNumber": 223
+        },
+        {
+          "caller": "increment_value",
+          "callee": "serializer.data.copy",
+          "lineNumber": 227
+        },
+        {
+          "caller": "increment_value",
+          "callee": "payload.update",
+          "lineNumber": 228
+        },
+        {
+          "caller": "increment_value",
+          "callee": "payload.pop",
+          "lineNumber": 228
+        },
+        {
+          "caller": "increment_value",
+          "callee": "forward_trait_request.delay",
+          "lineNumber": 229
+        },
+        {
+          "caller": "increment_value",
+          "callee": "dict",
+          "lineNumber": 232
+        },
+        {
+          "caller": "increment_value",
+          "callee": "Response",
+          "lineNumber": 238
+        },
+        {
+          "caller": "bulk_create",
+          "callee": "request.environment.trait_persistence_allowed",
+          "lineNumber": 244
+        },
+        {
+          "caller": "bulk_create",
+          "callee": "BadRequest",
+          "lineNumber": 245
+        },
+        {
+          "caller": "bulk_create",
+          "callee": "Q",
+          "lineNumber": 250
+        },
+        {
+          "caller": "bulk_create",
+          "callee": "trait.get",
+          "lineNumber": 253
+        },
+        {
+          "caller": "bulk_create",
+          "callee": "Q",
+          "lineNumber": 254
+        },
+        {
+          "caller": "bulk_create",
+          "callee": "trait.get",
+          "lineNumber": 255
+        },
+        {
+          "caller": "bulk_create",
+          "callee": "traits.append",
+          "lineNumber": 260
+        },
+        {
+          "caller": "bulk_create",
+          "callee": "Trait.objects.filter(delete_filter_query).delete",
+          "lineNumber": 263
+        },
+        {
+          "caller": "bulk_create",
+          "callee": "Trait.objects.filter",
+          "lineNumber": 263
+        },
+        {
+          "caller": "bulk_create",
+          "callee": "self.get_serializer",
+          "lineNumber": 265
+        },
+        {
+          "caller": "bulk_create",
+          "callee": "serializer.is_valid",
+          "lineNumber": 266
+        },
+        {
+          "caller": "bulk_create",
+          "callee": "serializer.save",
+          "lineNumber": 267
+        },
+        {
+          "caller": "bulk_create",
+          "callee": "forward_trait_requests.delay",
+          "lineNumber": 270
+        },
+        {
+          "caller": "bulk_create",
+          "callee": "dict",
+          "lineNumber": 273
+        },
+        {
+          "caller": "bulk_create",
+          "callee": "Response",
+          "lineNumber": 279
+        },
+        {
+          "caller": "bulk_create",
+          "callee": "logger.error",
+          "lineNumber": 282
+        },
+        {
+          "caller": "bulk_create",
+          "callee": "str",
+          "lineNumber": 282
+        },
+        {
+          "caller": "bulk_create",
+          "callee": "Response",
+          "lineNumber": 283
+        }
+      ],
+      "metrics": {
+        "importCount": 7,
+        "exportCount": 3,
+        "functionCount": 0,
+        "classCount": 3
+      }
+    },
+    {
+      "path": "environments/identities/views.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 334,
+      "nonEmptyLines": 288,
+      "classes": [
+        {
+          "name": "IdentityViewSet",
+          "startLine": 41,
+          "endLine": 96,
+          "methods": [
+            "get_queryset",
+            "get_permissions",
+            "get_environment_from_request",
+            "perform_create",
+            "perform_update"
+          ],
+          "properties": []
+        },
+        {
+          "name": "SDKIdentitiesDeprecated",
+          "startLine": 99,
+          "endLine": 144,
+          "methods": [
+            "get"
+          ],
+          "properties": []
+        },
+        {
+          "name": "SDKIdentities",
+          "startLine": 148,
+          "endLine": 334,
+          "methods": [
+            "get",
+            "get_serializer_context",
+            "post",
+            "_get_additional_filters",
+            "_get_single_feature_state_response",
+            "_get_all_feature_states_for_user_response"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "IdentityViewSet",
+          "line": 41,
+          "isDefault": false
+        },
+        {
+          "name": "SDKIdentitiesDeprecated",
+          "line": 99,
+          "isDefault": false
+        },
+        {
+          "name": "SDKIdentities",
+          "line": 147,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "get_queryset",
+          "callee": "getattr",
+          "lineNumber": 46
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "Identity.objects.none",
+          "lineNumber": 47
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "self.get_environment_from_request",
+          "lineNumber": 49
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "Identity.objects.filter",
+          "lineNumber": 50
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "self.request.query_params.get",
+          "lineNumber": 52
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "search_query.startswith",
+          "lineNumber": 54
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "search_query.endswith",
+          "lineNumber": 54
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "queryset.filter",
+          "lineNumber": 56
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "search_query.replace",
+          "lineNumber": 57
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "queryset.filter",
+          "lineNumber": 61
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "queryset.order_by",
+          "lineNumber": 65
+        },
+        {
+          "caller": "get_permissions",
+          "callee": "IsAuthenticated",
+          "lineNumber": 71
+        },
+        {
+          "caller": "get_permissions",
+          "callee": "NestedEnvironmentPermissions",
+          "lineNumber": 72
+        },
+        {
+          "caller": "get_environment_from_request",
+          "callee": "Environment.objects.get",
+          "lineNumber": 88
+        },
+        {
+          "caller": "perform_create",
+          "callee": "self.get_environment_from_request",
+          "lineNumber": 91
+        },
+        {
+          "caller": "perform_create",
+          "callee": "serializer.save",
+          "lineNumber": 92
+        },
+        {
+          "caller": "perform_update",
+          "callee": "self.get_environment_from_request",
+          "lineNumber": 95
+        },
+        {
+          "caller": "perform_update",
+          "callee": "serializer.save",
+          "lineNumber": 96
+        },
+        {
+          "caller": "get",
+          "callee": "Identity.objects.get_or_create_for_sdk",
+          "lineNumber": 115
+        },
+        {
+          "caller": "get",
+          "callee": "is_database_replica_setup",
+          "lineNumber": 121
+        },
+        {
+          "caller": "get",
+          "callee": "using_database_replica(Identity.objects)\n                .with_context()\n                .get",
+          "lineNumber": 123
+        },
+        {
+          "caller": "get",
+          "callee": "using_database_replica(Identity.objects)\n                .with_context",
+          "lineNumber": 123
+        },
+        {
+          "caller": "get",
+          "callee": "using_database_replica",
+          "lineNumber": 123
+        },
+        {
+          "caller": "get",
+          "callee": "identity.get_all_user_traits",
+          "lineNumber": 128
+        },
+        {
+          "caller": "get",
+          "callee": "namedtuple",
+          "lineNumber": 131
+        },
+        {
+          "caller": "get",
+          "callee": "IdentityFlagsWithTraitsAndSegments",
+          "lineNumber": 134
+        },
+        {
+          "caller": "get",
+          "callee": "identity.get_all_feature_states",
+          "lineNumber": 135
+        },
+        {
+          "caller": "get",
+          "callee": "identity.get_segments",
+          "lineNumber": 137
+        },
+        {
+          "caller": "get",
+          "callee": "IdentitySerializerWithTraitsAndSegments",
+          "lineNumber": 140
+        },
+        {
+          "caller": "get",
+          "callee": "Response",
+          "lineNumber": 144
+        },
+        {
+          "caller": "get",
+          "callee": "request.query_params.get",
+          "lineNumber": 169
+        },
+        {
+          "caller": "get",
+          "callee": "Response",
+          "lineNumber": 171
+        },
+        {
+          "caller": "get",
+          "callee": "request.query_params.get",
+          "lineNumber": 175
+        },
+        {
+          "caller": "get",
+          "callee": "Identity",
+          "lineNumber": 176
+        },
+        {
+          "caller": "get",
+          "callee": "timezone.now",
+          "lineNumber": 177
+        },
+        {
+          "caller": "get",
+          "callee": "Identity.objects.get_or_create_for_sdk",
+          "lineNumber": 183
+        },
+        {
+          "caller": "get",
+          "callee": "is_database_replica_setup",
+          "lineNumber": 189
+        },
+        {
+          "caller": "get",
+          "callee": "using_database_replica(Identity.objects)\n                .with_context()\n                .get",
+          "lineNumber": 191
+        },
+        {
+          "caller": "get",
+          "callee": "using_database_replica(Identity.objects)\n                .with_context",
+          "lineNumber": 191
+        },
+        {
+          "caller": "get",
+          "callee": "using_database_replica",
+          "lineNumber": 191
+        },
+        {
+          "caller": "get",
+          "callee": "forward_identity_request.delay",
+          "lineNumber": 199
+        },
+        {
+          "caller": "get",
+          "callee": "dict",
+          "lineNumber": 202
+        },
+        {
+          "caller": "get",
+          "callee": "request.GET.dict",
+          "lineNumber": 205
+        },
+        {
+          "caller": "get",
+          "callee": "request.environment.updated_at.timestamp",
+          "lineNumber": 213
+        },
+        {
+          "caller": "get",
+          "callee": "request.query_params.get",
+          "lineNumber": 216
+        },
+        {
+          "caller": "get",
+          "callee": "self._get_single_feature_state_response",
+          "lineNumber": 218
+        },
+        {
+          "caller": "get",
+          "callee": "self._get_all_feature_states_for_user_response",
+          "lineNumber": 222
+        },
+        {
+          "caller": "get_serializer_context",
+          "callee": "super(SDKIdentities, self).get_serializer_context",
+          "lineNumber": 229
+        },
+        {
+          "caller": "get_serializer_context",
+          "callee": "super",
+          "lineNumber": 229
+        },
+        {
+          "caller": "get_serializer_context",
+          "callee": "hasattr",
+          "lineNumber": 230
+        },
+        {
+          "caller": "get_serializer_context",
+          "callee": "getattr",
+          "lineNumber": 234
+        },
+        {
+          "caller": "get_serializer_context",
+          "callee": "self._get_additional_filters",
+          "lineNumber": 236
+        },
+        {
+          "caller": "post",
+          "callee": "self.get_serializer",
+          "lineNumber": 248
+        },
+        {
+          "caller": "post",
+          "callee": "serializer.is_valid",
+          "lineNumber": 249
+        },
+        {
+          "caller": "post",
+          "callee": "serializer.save",
+          "lineNumber": 250
+        },
+        {
+          "caller": "post",
+          "callee": "instance.get",
+          "lineNumber": 251
+        },
+        {
+          "caller": "post",
+          "callee": "forward_identity_request.delay",
+          "lineNumber": 254
+        },
+        {
+          "caller": "post",
+          "callee": "dict",
+          "lineNumber": 257
+        },
+        {
+          "caller": "post",
+          "callee": "IdentifyWithTraitsSerializer",
+          "lineNumber": 265
+        },
+        {
+          "caller": "post",
+          "callee": "self.get_serializer_context",
+          "lineNumber": 267
+        },
+        {
+          "caller": "post",
+          "callee": "Response",
+          "lineNumber": 269
+        },
+        {
+          "caller": "post",
+          "callee": "request.environment.updated_at.timestamp",
+          "lineNumber": 272
+        },
+        {
+          "caller": "_get_additional_filters",
+          "callee": "Q",
+          "lineNumber": 278
+        },
+        {
+          "caller": "_get_single_feature_state_response",
+          "callee": "self.get_serializer_context",
+          "lineNumber": 287
+        },
+        {
+          "caller": "_get_single_feature_state_response",
+          "callee": "identity.get_all_feature_states",
+          "lineNumber": 289
+        },
+        {
+          "caller": "_get_single_feature_state_response",
+          "callee": "self._get_additional_filters",
+          "lineNumber": 290
+        },
+        {
+          "caller": "_get_single_feature_state_response",
+          "callee": "SDKIdentityFeatureStateSerializer",
+          "lineNumber": 293
+        },
+        {
+          "caller": "_get_single_feature_state_response",
+          "callee": "Response",
+          "lineNumber": 296
+        },
+        {
+          "caller": "_get_single_feature_state_response",
+          "callee": "Response",
+          "lineNumber": 300
+        },
+        {
+          "caller": "_get_all_feature_states_for_user_response",
+          "callee": "identity.get_all_feature_states",
+          "lineNumber": 317
+        },
+        {
+          "caller": "_get_all_feature_states_for_user_response",
+          "callee": "self._get_additional_filters",
+          "lineNumber": 318
+        },
+        {
+          "caller": "_get_all_feature_states_for_user_response",
+          "callee": "self.get_serializer_class",
+          "lineNumber": 320
+        },
+        {
+          "caller": "_get_all_feature_states_for_user_response",
+          "callee": "serializer_class",
+          "lineNumber": 321
+        },
+        {
+          "caller": "_get_all_feature_states_for_user_response",
+          "callee": "identity.identity_traits.all",
+          "lineNumber": 325
+        },
+        {
+          "caller": "_get_all_feature_states_for_user_response",
+          "callee": "self.get_serializer_context",
+          "lineNumber": 327
+        },
+        {
+          "caller": "_get_all_feature_states_for_user_response",
+          "callee": "identify_integrations",
+          "lineNumber": 330
+        },
+        {
+          "caller": "_get_all_feature_states_for_user_response",
+          "callee": "Response",
+          "lineNumber": 332
+        }
+      ],
+      "metrics": {
+        "importCount": 6,
+        "exportCount": 3,
+        "functionCount": 0,
+        "classCount": 3
+      }
+    },
+    {
+      "path": "environments/models.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 735,
+      "nonEmptyLines": 644,
+      "classes": [
+        {
+          "name": "Environment",
+          "startLine": 80,
+          "endLine": 620,
+          "methods": [
+            "create_feature_states",
+            "clear_environment_cache",
+            "update_environment_document_cache",
+            "delete_from_dynamo",
+            "delete_environment_document_from_cache",
+            "enable_v2_versioning",
+            "__str__",
+            "natural_key",
+            "is_workflow_enabled",
+            "clone",
+            "get_environment_from_request",
+            "get_from_cache",
+            "write_environment_documents",
+            "get_feature_state",
+            "get_identity_overrides_queryset",
+            "_get_active_feature_states_ids",
+            "get_features_metrics_queryset",
+            "_get_latest_segment_state_ids_subquery",
+            "get_segment_metrics_queryset",
+            "get_change_requests_metrics_queryset",
+            "get_scheduled_metrics_queryset",
+            "is_bad_key",
+            "set_bad_key",
+            "trait_persistence_allowed",
+            "get_segments_from_cache",
+            "get_environment_document",
+            "get_create_log_message",
+            "get_update_log_message",
+            "get_hide_disabled_flags",
+            "_get_environment_document_from_cache",
+            "_get_environment_document_from_db",
+            "_get_environment",
+            "_get_project"
+          ],
+          "properties": []
+        },
+        {
+          "name": "Webhook",
+          "startLine": 623,
+          "endLine": 698,
+          "methods": [
+            "generate_webhook_feature_state_data"
+          ],
+          "properties": []
+        },
+        {
+          "name": "EnvironmentAPIKey",
+          "startLine": 701,
+          "endLine": 735,
+          "methods": [
+            "natural_key",
+            "is_valid",
+            "send_to_dynamo",
+            "delete_from_dynamo",
+            "_should_update_dynamo"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "Environment",
+          "line": 80,
+          "isDefault": false
+        },
+        {
+          "name": "Webhook",
+          "line": 623,
+          "isDefault": false
+        },
+        {
+          "name": "EnvironmentAPIKey",
+          "line": 701,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "create_feature_states",
+          "callee": "FeatureState.create_initial_feature_states_for_environment",
+          "lineNumber": 170
+        },
+        {
+          "caller": "clear_environment_cache",
+          "callee": "environment_cache.delete_many",
+          "lineNumber": 175
+        },
+        {
+          "caller": "clear_environment_cache",
+          "callee": "self.initial_value",
+          "lineNumber": 176
+        },
+        {
+          "caller": "clear_environment_cache",
+          "callee": "self.api_keys.all",
+          "lineNumber": 176
+        },
+        {
+          "caller": "update_environment_document_cache",
+          "callee": "environment_document_cache.delete",
+          "lineNumber": 181
+        },
+        {
+          "caller": "update_environment_document_cache",
+          "callee": "self.initial_value",
+          "lineNumber": 181
+        },
+        {
+          "caller": "update_environment_document_cache",
+          "callee": "self.write_environment_documents",
+          "lineNumber": 182
+        },
+        {
+          "caller": "delete_from_dynamo",
+          "callee": "delete_environment_from_dynamo.delay",
+          "lineNumber": 189
+        },
+        {
+          "caller": "delete_environment_document_from_cache",
+          "callee": "environment_document_cache.delete",
+          "lineNumber": 198
+        },
+        {
+          "caller": "enable_v2_versioning",
+          "callee": "get_openfeature_client().get_boolean_value",
+          "lineNumber": 210
+        },
+        {
+          "caller": "enable_v2_versioning",
+          "callee": "get_openfeature_client",
+          "lineNumber": 210
+        },
+        {
+          "caller": "clone",
+          "callee": "deepcopy",
+          "lineNumber": 237
+        },
+        {
+          "caller": "clone",
+          "callee": "uuid.uuid4",
+          "lineNumber": 239
+        },
+        {
+          "caller": "clone",
+          "callee": "create_hash",
+          "lineNumber": 241
+        },
+        {
+          "caller": "clone",
+          "callee": "clone.save",
+          "lineNumber": 243
+        },
+        {
+          "caller": "clone",
+          "callee": "clone_environment_feature_states.delay",
+          "lineNumber": 250
+        },
+        {
+          "caller": "clone",
+          "callee": "clone_environment_feature_states",
+          "lineNumber": 252
+        },
+        {
+          "caller": "get_environment_from_request",
+          "callee": "Environment.objects.select_related(\n            \"project\", \"project__organisation\"\n        ).get",
+          "lineNumber": 263
+        },
+        {
+          "caller": "get_environment_from_request",
+          "callee": "Environment.objects.select_related",
+          "lineNumber": 263
+        },
+        {
+          "caller": "get_from_cache",
+          "callee": "logger.warning",
+          "lineNumber": 270
+        },
+        {
+          "caller": "get_from_cache",
+          "callee": "cls.is_bad_key",
+          "lineNumber": 273
+        },
+        {
+          "caller": "get_from_cache",
+          "callee": "environment_cache.get",
+          "lineNumber": 276
+        },
+        {
+          "caller": "get_from_cache",
+          "callee": "cls.objects.select_related(*select_related_args).defer",
+          "lineNumber": 283
+        },
+        {
+          "caller": "get_from_cache",
+          "callee": "cls.objects.select_related",
+          "lineNumber": 283
+        },
+        {
+          "caller": "get_from_cache",
+          "callee": "base_qs.filter",
+          "lineNumber": 286
+        },
+        {
+          "caller": "get_from_cache",
+          "callee": "base_qs.filter",
+          "lineNumber": 287
+        },
+        {
+          "caller": "get_from_cache",
+          "callee": "qs_for_embedded_api_key.union(qs_for_fk_api_key).get",
+          "lineNumber": 290
+        },
+        {
+          "caller": "get_from_cache",
+          "callee": "qs_for_embedded_api_key.union",
+          "lineNumber": 290
+        },
+        {
+          "caller": "get_from_cache",
+          "callee": "cls.set_bad_key",
+          "lineNumber": 292
+        },
+        {
+          "caller": "get_from_cache",
+          "callee": "logger.info",
+          "lineNumber": 293
+        },
+        {
+          "caller": "get_from_cache",
+          "callee": "environment_cache.set",
+          "lineNumber": 296
+        },
+        {
+          "caller": "write_environment_documents",
+          "callee": "Q",
+          "lineNumber": 312
+        },
+        {
+          "caller": "write_environment_documents",
+          "callee": "Q",
+          "lineNumber": 312
+        },
+        {
+          "caller": "write_environment_documents",
+          "callee": "list",
+          "lineNumber": 314
+        },
+        {
+          "caller": "write_environment_documents",
+          "callee": "cls.objects.filter_for_document_builder",
+          "lineNumber": 315
+        },
+        {
+          "caller": "write_environment_documents",
+          "callee": "Prefetch",
+          "lineNumber": 319
+        },
+        {
+          "caller": "write_environment_documents",
+          "callee": "FeatureState.objects.select_related",
+          "lineNumber": 321
+        },
+        {
+          "caller": "write_environment_documents",
+          "callee": "Prefetch",
+          "lineNumber": 325
+        },
+        {
+          "caller": "write_environment_documents",
+          "callee": "MultivariateFeatureStateValue.objects.select_related",
+          "lineNumber": 327
+        },
+        {
+          "caller": "write_environment_documents",
+          "callee": "getattr",
+          "lineNumber": 340
+        },
+        {
+          "caller": "write_environment_documents",
+          "callee": "RuntimeError",
+          "lineNumber": 346
+        },
+        {
+          "caller": "write_environment_documents",
+          "callee": "environment_wrapper.write_environments",
+          "lineNumber": 349
+        },
+        {
+          "caller": "write_environment_documents",
+          "callee": "environment_v2_wrapper.write_environments",
+          "lineNumber": 355
+        },
+        {
+          "caller": "write_environment_documents",
+          "callee": "environment_document_cache.set_many",
+          "lineNumber": 360
+        },
+        {
+          "caller": "write_environment_documents",
+          "callee": "map_environment_to_sdk_document",
+          "lineNumber": 363
+        },
+        {
+          "caller": "get_feature_state",
+          "callee": "next",
+          "lineNumber": 382
+        },
+        {
+          "caller": "get_feature_state",
+          "callee": "filter",
+          "lineNumber": 383
+        },
+        {
+          "caller": "get_feature_state",
+          "callee": "self.feature_states.filter",
+          "lineNumber": 385
+        },
+        {
+          "caller": "get_identity_overrides_queryset",
+          "callee": "self._get_active_feature_states_ids",
+          "lineNumber": 390
+        },
+        {
+          "caller": "get_identity_overrides_queryset",
+          "callee": "FeatureState.objects.filter",
+          "lineNumber": 394
+        },
+        {
+          "caller": "_get_active_feature_states_ids",
+          "callee": "FeatureState.objects.get_live_feature_states(\n            environment=self,\n            **(filter_kwargs or {}),\n        ).filter",
+          "lineNumber": 402
+        },
+        {
+          "caller": "_get_active_feature_states_ids",
+          "callee": "FeatureState.objects.get_live_feature_states",
+          "lineNumber": 402
+        },
+        {
+          "caller": "_get_active_feature_states_ids",
+          "callee": "group_fields.append",
+          "lineNumber": 411
+        },
+        {
+          "caller": "_get_active_feature_states_ids",
+          "callee": "list",
+          "lineNumber": 413
+        },
+        {
+          "caller": "_get_active_feature_states_ids",
+          "callee": "base_qs.values(*group_fields)\n            .annotate(id=Max(\"id\"))\n            .values_list",
+          "lineNumber": 414
+        },
+        {
+          "caller": "_get_active_feature_states_ids",
+          "callee": "base_qs.values(*group_fields)\n            .annotate",
+          "lineNumber": 414
+        },
+        {
+          "caller": "_get_active_feature_states_ids",
+          "callee": "base_qs.values",
+          "lineNumber": 414
+        },
+        {
+          "caller": "_get_active_feature_states_ids",
+          "callee": "Max",
+          "lineNumber": 415
+        },
+        {
+          "caller": "get_features_metrics_queryset",
+          "callee": "self._get_active_feature_states_ids",
+          "lineNumber": 420
+        },
+        {
+          "caller": "get_features_metrics_queryset",
+          "callee": "FeatureState.objects.filter",
+          "lineNumber": 424
+        },
+        {
+          "caller": "_get_latest_segment_state_ids_subquery",
+          "callee": "FeatureState.objects.get_live_feature_states(\n            environment=self,\n            additional_filters=Q(\n                identity_id__isnull=True,\n                feature_segment_id__isnull=False,\n            ),\n        ).filter",
+          "lineNumber": 428
+        },
+        {
+          "caller": "_get_latest_segment_state_ids_subquery",
+          "callee": "FeatureState.objects.get_live_feature_states",
+          "lineNumber": 428
+        },
+        {
+          "caller": "_get_latest_segment_state_ids_subquery",
+          "callee": "Q",
+          "lineNumber": 430
+        },
+        {
+          "caller": "_get_latest_segment_state_ids_subquery",
+          "callee": "list",
+          "lineNumber": 436
+        },
+        {
+          "caller": "_get_latest_segment_state_ids_subquery",
+          "callee": "feature_states_qs.values(\n                \"feature_id\", \"feature_segment_id\", \"environment_id\"\n            )\n            .annotate(id=Max(\"id\"))\n            .values_list",
+          "lineNumber": 437
+        },
+        {
+          "caller": "_get_latest_segment_state_ids_subquery",
+          "callee": "feature_states_qs.values(\n                \"feature_id\", \"feature_segment_id\", \"environment_id\"\n            )\n            .annotate",
+          "lineNumber": 437
+        },
+        {
+          "caller": "_get_latest_segment_state_ids_subquery",
+          "callee": "feature_states_qs.values",
+          "lineNumber": 437
+        },
+        {
+          "caller": "_get_latest_segment_state_ids_subquery",
+          "callee": "Max",
+          "lineNumber": 440
+        },
+        {
+          "caller": "get_segment_metrics_queryset",
+          "callee": "self._get_latest_segment_state_ids_subquery",
+          "lineNumber": 445
+        },
+        {
+          "caller": "get_segment_metrics_queryset",
+          "callee": "FeatureState.objects.filter",
+          "lineNumber": 446
+        },
+        {
+          "caller": "get_change_requests_metrics_queryset",
+          "callee": "ChangeRequest.objects.filter",
+          "lineNumber": 452
+        },
+        {
+          "caller": "get_scheduled_metrics_queryset",
+          "callee": "ChangeRequest.objects.filter",
+          "lineNumber": 462
+        },
+        {
+          "caller": "get_scheduled_metrics_queryset",
+          "callee": "Q",
+          "lineNumber": 468
+        },
+        {
+          "caller": "get_scheduled_metrics_queryset",
+          "callee": "Q",
+          "lineNumber": 469
+        },
+        {
+          "caller": "get_scheduled_metrics_queryset",
+          "callee": "Q",
+          "lineNumber": 470
+        },
+        {
+          "caller": "get_scheduled_metrics_queryset",
+          "callee": "timezone.now",
+          "lineNumber": 470
+        },
+        {
+          "caller": "get_scheduled_metrics_queryset",
+          "callee": "Q",
+          "lineNumber": 472
+        },
+        {
+          "caller": "get_scheduled_metrics_queryset",
+          "callee": "Q",
+          "lineNumber": 473
+        },
+        {
+          "caller": "get_scheduled_metrics_queryset",
+          "callee": "Q",
+          "lineNumber": 474
+        },
+        {
+          "caller": "get_scheduled_metrics_queryset",
+          "callee": "timezone.now",
+          "lineNumber": 474
+        },
+        {
+          "caller": "get_scheduled_metrics_queryset",
+          "callee": "Q",
+          "lineNumber": 476
+        },
+        {
+          "caller": "get_scheduled_metrics_queryset",
+          "callee": "Q",
+          "lineNumber": 477
+        },
+        {
+          "caller": "get_scheduled_metrics_queryset",
+          "callee": "Q",
+          "lineNumber": 478
+        },
+        {
+          "caller": "get_scheduled_metrics_queryset",
+          "callee": "timezone.now",
+          "lineNumber": 478
+        },
+        {
+          "caller": "get_scheduled_metrics_queryset",
+          "callee": "qs.filter(scheduled_q).values_list",
+          "lineNumber": 481
+        },
+        {
+          "caller": "get_scheduled_metrics_queryset",
+          "callee": "qs.filter",
+          "lineNumber": 481
+        },
+        {
+          "caller": "get_scheduled_metrics_queryset",
+          "callee": "list",
+          "lineNumber": 482
+        },
+        {
+          "caller": "get_scheduled_metrics_queryset",
+          "callee": "set",
+          "lineNumber": 482
+        },
+        {
+          "caller": "get_scheduled_metrics_queryset",
+          "callee": "ChangeRequest.objects.filter",
+          "lineNumber": 483
+        },
+        {
+          "caller": "is_bad_key",
+          "callee": "bad_environments_cache.get",
+          "lineNumber": 492
+        },
+        {
+          "caller": "set_bad_key",
+          "callee": "bad_environments_cache.get",
+          "lineNumber": 499
+        },
+        {
+          "caller": "set_bad_key",
+          "callee": "bad_environments_cache.set",
+          "lineNumber": 500
+        },
+        {
+          "caller": "trait_persistence_allowed",
+          "callee": "getattr",
+          "lineNumber": 509
+        },
+        {
+          "caller": "get_segments_from_cache",
+          "callee": "environment_segments_cache.get",
+          "lineNumber": 517
+        },
+        {
+          "caller": "get_segments_from_cache",
+          "callee": "list",
+          "lineNumber": 519
+        },
+        {
+          "caller": "get_segments_from_cache",
+          "callee": "Segment.live_objects.filter(\n                    feature_segments__feature_states__environment=self\n                ).prefetch_related",
+          "lineNumber": 520
+        },
+        {
+          "caller": "get_segments_from_cache",
+          "callee": "Segment.live_objects.filter",
+          "lineNumber": 520
+        },
+        {
+          "caller": "get_segments_from_cache",
+          "callee": "environment_segments_cache.set",
+          "lineNumber": 530
+        },
+        {
+          "caller": "get_environment_document",
+          "callee": "cls._get_environment_document_from_cache",
+          "lineNumber": 543
+        },
+        {
+          "caller": "get_environment_document",
+          "callee": "cls._get_environment_document_from_db",
+          "lineNumber": 544
+        },
+        {
+          "caller": "_get_environment_document_from_cache",
+          "callee": "environment_document_cache.get",
+          "lineNumber": 563
+        },
+        {
+          "caller": "_get_environment_document_from_cache",
+          "callee": "cls._get_environment_document_from_db",
+          "lineNumber": 565
+        },
+        {
+          "caller": "_get_environment_document_from_cache",
+          "callee": "environment_document_cache.set",
+          "lineNumber": 566
+        },
+        {
+          "caller": "_get_environment_document_from_cache",
+          "callee": "flagsmith_environment_document_cache_queries_total.labels(\n            result=CACHE_HIT if cache_hit else CACHE_MISS,\n        ).inc",
+          "lineNumber": 568
+        },
+        {
+          "caller": "_get_environment_document_from_cache",
+          "callee": "flagsmith_environment_document_cache_queries_total.labels",
+          "lineNumber": 568
+        },
+        {
+          "caller": "_get_environment_document_from_db",
+          "callee": "using_database_replica",
+          "lineNumber": 579
+        },
+        {
+          "caller": "_get_environment_document_from_db",
+          "callee": "manager.filter_for_document_builder(\n            api_key=api_key,\n            extra_prefetch_related=[\n                Prefetch(\n                    \"feature_states\",\n                    queryset=FeatureState.objects.select_related(\n                        \"feature\",\n                        \"feature_state_value\",\n                        \"identity\",\n                        \"environment_feature_version\",\n                        \"identity__environment\",\n                    ).prefetch_related(\n                        Prefetch(\n                            \"identity__identity_features\",\n                            queryset=FeatureState.objects.select_related(\n                                \"feature\", \"feature_state_value\", \"environment\"\n                            ),\n                        ),\n                        Prefetch(\n                            \"identity__identity_features__multivariate_feature_state_values\",\n                            queryset=MultivariateFeatureStateValue.objects.select_related(\n                                \"multivariate_feature_option\"\n                            ),\n                        ),\n                    ),\n                ),\n                Prefetch(\n                    \"feature_states__multivariate_feature_state_values\",\n                    queryset=MultivariateFeatureStateValue.objects.select_related(\n                        \"multivariate_feature_option\"\n                    ),\n                ),\n            ],\n        ).get",
+          "lineNumber": 580
+        },
+        {
+          "caller": "_get_environment_document_from_db",
+          "callee": "manager.filter_for_document_builder",
+          "lineNumber": 580
+        },
+        {
+          "caller": "_get_environment_document_from_db",
+          "callee": "Prefetch",
+          "lineNumber": 583
+        },
+        {
+          "caller": "_get_environment_document_from_db",
+          "callee": "FeatureState.objects.select_related(\n                        \"feature\",\n                        \"feature_state_value\",\n                        \"identity\",\n                        \"environment_feature_version\",\n                        \"identity__environment\",\n                    ).prefetch_related",
+          "lineNumber": 585
+        },
+        {
+          "caller": "_get_environment_document_from_db",
+          "callee": "FeatureState.objects.select_related",
+          "lineNumber": 585
+        },
+        {
+          "caller": "_get_environment_document_from_db",
+          "callee": "Prefetch",
+          "lineNumber": 592
+        },
+        {
+          "caller": "_get_environment_document_from_db",
+          "callee": "FeatureState.objects.select_related",
+          "lineNumber": 594
+        },
+        {
+          "caller": "_get_environment_document_from_db",
+          "callee": "Prefetch",
+          "lineNumber": 598
+        },
+        {
+          "caller": "_get_environment_document_from_db",
+          "callee": "MultivariateFeatureStateValue.objects.select_related",
+          "lineNumber": 600
+        },
+        {
+          "caller": "_get_environment_document_from_db",
+          "callee": "Prefetch",
+          "lineNumber": 606
+        },
+        {
+          "caller": "_get_environment_document_from_db",
+          "callee": "MultivariateFeatureStateValue.objects.select_related",
+          "lineNumber": 608
+        },
+        {
+          "caller": "_get_environment_document_from_db",
+          "callee": "map_environment_to_sdk_document",
+          "lineNumber": 614
+        },
+        {
+          "caller": "generate_webhook_feature_state_data",
+          "callee": "type",
+          "lineNumber": 636
+        },
+        {
+          "caller": "generate_webhook_feature_state_data",
+          "callee": "ValueError",
+          "lineNumber": 646
+        },
+        {
+          "caller": "generate_webhook_feature_state_data",
+          "callee": "ValueError",
+          "lineNumber": 649
+        },
+        {
+          "caller": "generate_webhook_feature_state_data",
+          "callee": "feature.created_date.strftime",
+          "lineNumber": 667
+        },
+        {
+          "caller": "is_valid",
+          "callee": "timezone.now",
+          "lineNumber": 720
+        },
+        {
+          "caller": "send_to_dynamo",
+          "callee": "environment_api_key_wrapper.write_api_key",
+          "lineNumber": 724
+        },
+        {
+          "caller": "delete_from_dynamo",
+          "callee": "environment_api_key_wrapper.delete_api_key",
+          "lineNumber": 728
+        }
+      ],
+      "metrics": {
+        "importCount": 14,
+        "exportCount": 3,
+        "functionCount": 0,
+        "classCount": 3
+      }
+    },
+    {
+      "path": "environments/permissions/managers.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 12,
+      "nonEmptyLines": 9,
+      "classes": [
+        {
+          "name": "EnvironmentPermissionManager",
+          "startLine": 6,
+          "endLine": 12,
+          "methods": [
+            "get_queryset"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "EnvironmentPermissionManager",
+          "line": 6,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "get_queryset",
+          "callee": "super(EnvironmentPermissionManager, self)\n            .get_queryset()\n            .filter",
+          "lineNumber": 9
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "super(EnvironmentPermissionManager, self)\n            .get_queryset",
+          "lineNumber": 9
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "super",
+          "lineNumber": 9
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "environments/permissions/models.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 56,
+      "nonEmptyLines": 44,
+      "classes": [
+        {
+          "name": "EnvironmentPermissionModel",
+          "startLine": 8,
+          "endLine": 12,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "UserEnvironmentPermission",
+          "startLine": 15,
+          "endLine": 36,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "UserPermissionGroupEnvironmentPermission",
+          "startLine": 39,
+          "endLine": 56,
+          "methods": [],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "EnvironmentPermissionModel",
+          "line": 8,
+          "isDefault": false
+        },
+        {
+          "name": "UserEnvironmentPermission",
+          "line": 15,
+          "isDefault": false
+        },
+        {
+          "name": "UserPermissionGroupEnvironmentPermission",
+          "line": 39,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 3,
+        "functionCount": 0,
+        "classCount": 3
+      }
+    },
+    {
+      "path": "environments/permissions/permissions.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 160,
+      "nonEmptyLines": 124,
+      "classes": [
+        {
+          "name": "EnvironmentKeyPermissions",
+          "startLine": 17,
+          "endLine": 29,
+          "methods": [
+            "has_permission",
+            "has_object_permission"
+          ],
+          "properties": []
+        },
+        {
+          "name": "EnvironmentPermissions",
+          "startLine": 32,
+          "endLine": 61,
+          "methods": [
+            "has_permission",
+            "has_object_permission"
+          ],
+          "properties": []
+        },
+        {
+          "name": "IdentityPermissions",
+          "startLine": 64,
+          "endLine": 86,
+          "methods": [
+            "has_permission",
+            "has_object_permission"
+          ],
+          "properties": []
+        },
+        {
+          "name": "NestedEnvironmentPermissions",
+          "startLine": 89,
+          "endLine": 133,
+          "methods": [
+            "__init__",
+            "has_permission",
+            "has_object_permission"
+          ],
+          "properties": []
+        },
+        {
+          "name": "TraitPersistencePermissions",
+          "startLine": 136,
+          "endLine": 146,
+          "methods": [
+            "has_permission",
+            "has_object_permission"
+          ],
+          "properties": []
+        },
+        {
+          "name": "EnvironmentAdminPermission",
+          "startLine": 149,
+          "endLine": 160,
+          "methods": [
+            "has_permission",
+            "has_object_permission"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "EnvironmentKeyPermissions",
+          "line": 17,
+          "isDefault": false
+        },
+        {
+          "name": "EnvironmentPermissions",
+          "line": 32,
+          "isDefault": false
+        },
+        {
+          "name": "IdentityPermissions",
+          "line": 64,
+          "isDefault": false
+        },
+        {
+          "name": "NestedEnvironmentPermissions",
+          "line": 89,
+          "isDefault": false
+        },
+        {
+          "name": "TraitPersistencePermissions",
+          "line": 136,
+          "isDefault": false
+        },
+        {
+          "name": "EnvironmentAdminPermission",
+          "line": 149,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "has_permission",
+          "callee": "hasattr",
+          "lineNumber": 20
+        },
+        {
+          "caller": "has_permission",
+          "callee": "exceptions.PermissionDenied",
+          "lineNumber": 23
+        },
+        {
+          "caller": "has_permission",
+          "callee": "super().has_permission",
+          "lineNumber": 34
+        },
+        {
+          "caller": "has_permission",
+          "callee": "super",
+          "lineNumber": 34
+        },
+        {
+          "caller": "has_permission",
+          "callee": "int",
+          "lineNumber": 39
+        },
+        {
+          "caller": "has_permission",
+          "callee": "request.data.get",
+          "lineNumber": 39
+        },
+        {
+          "caller": "has_permission",
+          "callee": "Project.objects.get",
+          "lineNumber": 44
+        },
+        {
+          "caller": "has_permission",
+          "callee": "request.user.has_project_permission",
+          "lineNumber": 45
+        },
+        {
+          "caller": "has_object_permission",
+          "callee": "request.user.has_project_permission",
+          "lineNumber": 54
+        },
+        {
+          "caller": "has_object_permission",
+          "callee": "request.user.has_environment_permission",
+          "lineNumber": 56
+        },
+        {
+          "caller": "has_object_permission",
+          "callee": "request.user.is_environment_admin",
+          "lineNumber": 58
+        },
+        {
+          "caller": "has_permission",
+          "callee": "view.kwargs.get",
+          "lineNumber": 68
+        },
+        {
+          "caller": "has_permission",
+          "callee": "Environment.objects.get",
+          "lineNumber": 69
+        },
+        {
+          "caller": "has_permission",
+          "callee": "request.user.is_environment_admin",
+          "lineNumber": 70
+        },
+        {
+          "caller": "has_object_permission",
+          "callee": "request.user.is_organisation_admin",
+          "lineNumber": 80
+        },
+        {
+          "caller": "has_object_permission",
+          "callee": "request.user.is_environment_admin",
+          "lineNumber": 83
+        },
+        {
+          "caller": "__init__",
+          "callee": "super(NestedEnvironmentPermissions, self).__init__",
+          "lineNumber": 100
+        },
+        {
+          "caller": "__init__",
+          "callee": "super",
+          "lineNumber": 100
+        },
+        {
+          "caller": "__init__",
+          "callee": "self.action_permission_map.setdefault",
+          "lineNumber": 103
+        },
+        {
+          "caller": "has_permission",
+          "callee": "view.kwargs.get",
+          "lineNumber": 109
+        },
+        {
+          "caller": "has_permission",
+          "callee": "Environment.objects.get",
+          "lineNumber": 110
+        },
+        {
+          "caller": "has_permission",
+          "callee": "request.user.has_environment_permission",
+          "lineNumber": 115
+        },
+        {
+          "caller": "has_permission",
+          "callee": "request.user.is_environment_admin",
+          "lineNumber": 120
+        },
+        {
+          "caller": "has_object_permission",
+          "callee": "request.user.has_environment_permission",
+          "lineNumber": 126
+        },
+        {
+          "caller": "has_object_permission",
+          "callee": "self.get_environment_from_object_callable",
+          "lineNumber": 128
+        },
+        {
+          "caller": "has_object_permission",
+          "callee": "request.user.is_environment_admin",
+          "lineNumber": 131
+        },
+        {
+          "caller": "has_object_permission",
+          "callee": "self.get_environment_from_object_callable",
+          "lineNumber": 132
+        },
+        {
+          "caller": "has_permission",
+          "callee": "Environment.objects.get",
+          "lineNumber": 152
+        },
+        {
+          "caller": "has_permission",
+          "callee": "view.kwargs.get",
+          "lineNumber": 153
+        },
+        {
+          "caller": "has_permission",
+          "callee": "request.user.is_environment_admin",
+          "lineNumber": 155
+        },
+        {
+          "caller": "has_object_permission",
+          "callee": "request.user.is_environment_admin",
+          "lineNumber": 160
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 6,
+        "functionCount": 0,
+        "classCount": 6
+      }
+    },
+    {
+      "path": "environments/permissions/serializers.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 37,
+      "nonEmptyLines": 29,
+      "classes": [
+        {
+          "name": "CreateUpdateUserEnvironmentPermissionSerializer",
+          "startLine": 12,
+          "endLine": 17,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "ListUserEnvironmentPermissionSerializer",
+          "startLine": 20,
+          "endLine": 23,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "CreateUpdateUserPermissionGroupEnvironmentPermissionSerializer",
+          "startLine": 26,
+          "endLine": 31,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "ListUserPermissionGroupEnvironmentPermissionSerializer",
+          "startLine": 34,
+          "endLine": 37,
+          "methods": [],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "CreateUpdateUserEnvironmentPermissionSerializer",
+          "line": 12,
+          "isDefault": false
+        },
+        {
+          "name": "ListUserEnvironmentPermissionSerializer",
+          "line": 20,
+          "isDefault": false
+        },
+        {
+          "name": "CreateUpdateUserPermissionGroupEnvironmentPermissionSerializer",
+          "line": 26,
+          "isDefault": false
+        },
+        {
+          "name": "ListUserPermissionGroupEnvironmentPermissionSerializer",
+          "line": 34,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 4,
+        "functionCount": 0,
+        "classCount": 4
+      }
+    }
+  ]
+}

@@ -1,0 +1,208 @@
+{
+  "projectRoot": "/Users/wadii/flagsmith-projects/flagsmith/api",
+  "batchFiles": [
+    {
+      "path": "features/release_pipelines/core/models.py",
+      "language": "python",
+      "sizeLines": 288,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/signals.py",
+      "language": "python",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/tasks.py",
+      "language": "python",
+      "sizeLines": 162,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/versioning/dataclasses.py",
+      "language": "python",
+      "sizeLines": 50,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/versioning/exceptions.py",
+      "language": "python",
+      "sizeLines": 20,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/versioning/managers.py",
+      "language": "python",
+      "sizeLines": 69,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/versioning/models.py",
+      "language": "python",
+      "sizeLines": 389,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/versioning/permissions.py",
+      "language": "python",
+      "sizeLines": 99,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/versioning/receivers.py",
+      "language": "python",
+      "sizeLines": 83,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/versioning/schemas.py",
+      "language": "python",
+      "sizeLines": 55,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/versioning/signals.py",
+      "language": "python",
+      "sizeLines": 3,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/versioning/tasks.py",
+      "language": "python",
+      "sizeLines": 376,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/versioning/urls.py",
+      "language": "python",
+      "sizeLines": 45,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/versioning/versioning_service.py",
+      "language": "python",
+      "sizeLines": 571,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/versioning/views.py",
+      "language": "python",
+      "sizeLines": 316,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/workflows/core/exceptions.py",
+      "language": "python",
+      "sizeLines": 18,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/workflows/core/models.py",
+      "language": "python",
+      "sizeLines": 357,
+      "fileCategory": "code"
+    },
+    {
+      "path": "segments/tasks.py",
+      "language": "python",
+      "sizeLines": 37,
+      "fileCategory": "code"
+    }
+  ],
+  "batchImportData": {
+    "features/release_pipelines/core/models.py": [
+      "audit/constants.py",
+      "audit/related_object_type.py",
+      "features/release_pipelines/core/constants.py",
+      "features/release_pipelines/core/exceptions.py",
+      "features/release_pipelines/core/models.py",
+      "features/versioning/models.py",
+      "projects/models.py",
+      "users/models.py"
+    ],
+    "features/signals.py": [],
+    "features/tasks.py": [
+      "environments/models.py",
+      "features/models.py",
+      "features/multivariate/models.py"
+    ],
+    "features/versioning/dataclasses.py": [
+      "features/feature_states/models.py",
+      "features/versioning/dataclasses.py"
+    ],
+    "features/versioning/exceptions.py": [],
+    "features/versioning/managers.py": [],
+    "features/versioning/models.py": [
+      "api_keys/models.py",
+      "features/versioning/dataclasses.py",
+      "features/versioning/exceptions.py",
+      "features/versioning/managers.py",
+      "features/versioning/signals.py"
+    ],
+    "features/versioning/permissions.py": [
+      "environments/models.py",
+      "features/models.py",
+      "features/versioning/models.py"
+    ],
+    "features/versioning/receivers.py": [
+      "environments/tasks.py",
+      "features/signals.py",
+      "features/versioning/models.py",
+      "features/versioning/signals.py",
+      "features/versioning/tasks.py",
+      "features/versioning/versioning_service.py"
+    ],
+    "features/versioning/schemas.py": [
+      "features/models.py",
+      "features/versioning/models.py"
+    ],
+    "features/versioning/signals.py": [],
+    "features/versioning/tasks.py": [
+      "audit/constants.py",
+      "audit/models.py",
+      "audit/related_object_type.py",
+      "features/models.py",
+      "features/versioning/exceptions.py",
+      "features/versioning/models.py",
+      "features/versioning/schemas.py",
+      "features/versioning/versioning_service.py",
+      "users/models.py"
+    ],
+    "features/versioning/urls.py": [
+      "features/versioning/views.py"
+    ],
+    "features/versioning/versioning_service.py": [
+      "environments/models.py",
+      "features/feature_states/models.py",
+      "features/models.py",
+      "features/versioning/dataclasses.py",
+      "features/versioning/exceptions.py",
+      "features/versioning/models.py"
+    ],
+    "features/versioning/views.py": [
+      "environments/models.py",
+      "features/models.py",
+      "features/serializers.py",
+      "features/versioning/exceptions.py",
+      "features/versioning/models.py",
+      "features/versioning/permissions.py",
+      "features/versioning/serializers.py",
+      "users/models.py"
+    ],
+    "features/workflows/core/exceptions.py": [],
+    "features/workflows/core/models.py": [
+      "audit/constants.py",
+      "audit/related_object_type.py",
+      "audit/tasks.py",
+      "features/workflows/core/exceptions.py",
+      "features/workflows/core/models.py"
+    ],
+    "segments/tasks.py": [
+      "audit/constants.py",
+      "audit/models.py",
+      "audit/related_object_type.py",
+      "segments/models.py"
+    ]
+  }
+}

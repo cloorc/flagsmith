@@ -1,0 +1,813 @@
+{
+  "nodes": [
+    {
+      "id": "file:environments/dynamodb/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "environments/dynamodb/__init__.py",
+      "summary": "Package entry point for the DynamoDB environments subpackage, re-exporting the wrapper classes, DTO types, and capacity exception for convenient import elsewhere.",
+      "tags": ["entry-point", "barrel", "dynamodb"],
+      "complexity": "simple",
+      "languageNotes": "Python package barrel that surfaces selected symbols from submodules."
+    },
+    {
+      "id": "file:environments/dynamodb/constants.py",
+      "type": "file",
+      "name": "constants.py",
+      "filePath": "environments/dynamodb/constants.py",
+      "summary": "Defines DynamoDB table key names, document key prefixes, and capacity-related constants shared across the environments DynamoDB wrappers.",
+      "tags": ["config", "constants", "dynamodb"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:environments/dynamodb/services.py",
+      "type": "file",
+      "name": "services.py",
+      "filePath": "environments/dynamodb/services.py",
+      "summary": "Business-logic layer that migrates project environments to the v2 DynamoDB document model, paginating identity overrides within a capacity budget and writing the resulting changeset.",
+      "tags": ["service", "dynamodb", "migration", "business-logic"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:environments/dynamodb/types.py",
+      "type": "file",
+      "name": "types.py",
+      "filePath": "environments/dynamodb/types.py",
+      "summary": "Dataclass DTOs for DynamoDB project metadata and identity-override changesets, including the DynamoProjectMetadata record that tracks identity migration lifecycle state.",
+      "tags": ["type-definition", "data-model", "dynamodb", "dataclass"],
+      "complexity": "moderate",
+      "languageNotes": "Uses Python dataclasses with an enum-driven migration status and asdict serialisation for persistence."
+    },
+    {
+      "id": "file:environments/dynamodb/utils.py",
+      "type": "file",
+      "name": "utils.py",
+      "filePath": "environments/dynamodb/utils.py",
+      "summary": "Helper utilities for DynamoDB documents: estimating serialised document size, JSON-encoding Decimals, and building/parsing v2 identity-override document keys.",
+      "tags": ["utility", "dynamodb", "serialization"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:environments/dynamodb/wrappers/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "environments/dynamodb/wrappers/__init__.py",
+      "summary": "Package entry point for the DynamoDB wrappers subpackage, re-exporting the environment API key, environment, and identity wrapper classes.",
+      "tags": ["entry-point", "barrel", "dynamodb"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:environments/dynamodb/wrappers/base.py",
+      "type": "file",
+      "name": "base.py",
+      "filePath": "environments/dynamodb/wrappers/base.py",
+      "summary": "Abstract base wrapper providing shared DynamoDB table access (lazy boto3 resource, table-name resolution, enablement check) and paginated scan/query iteration for concrete wrappers.",
+      "tags": ["service", "dynamodb", "factory", "base-class"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:environments/dynamodb/wrappers/environment_api_key_wrapper.py",
+      "type": "file",
+      "name": "environment_api_key_wrapper.py",
+      "filePath": "environments/dynamodb/wrappers/environment_api_key_wrapper.py",
+      "summary": "DynamoDB wrapper for persisting and deleting environment API key documents using batched writes.",
+      "tags": ["service", "dynamodb", "data-access"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:environments/dynamodb/wrappers/environment_wrapper.py",
+      "type": "file",
+      "name": "environment_wrapper.py",
+      "filePath": "environments/dynamodb/wrappers/environment_wrapper.py",
+      "summary": "DynamoDB wrappers for environment documents covering both the legacy and v2 schemas, handling optional compression, identity-override read/write/delete, and emitting document size and compression-ratio metrics.",
+      "tags": ["service", "dynamodb", "data-access", "compression"],
+      "complexity": "complex",
+      "languageNotes": "Three-class hierarchy (base + v1 + v2) with an OpenFeature-gated compression path and Prometheus metric observations on each write."
+    },
+    {
+      "id": "file:environments/dynamodb/wrappers/exceptions.py",
+      "type": "file",
+      "name": "exceptions.py",
+      "filePath": "environments/dynamodb/wrappers/exceptions.py",
+      "summary": "Defines the CapacityBudgetExceeded exception raised when a DynamoDB migration scan exhausts its allotted read-capacity budget.",
+      "tags": ["exception", "dynamodb", "type-definition"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:environments/dynamodb/wrappers/identity_wrapper.py",
+      "type": "file",
+      "name": "identity_wrapper.py",
+      "filePath": "environments/dynamodb/wrappers/identity_wrapper.py",
+      "summary": "DynamoDB wrapper for identity documents providing CRUD, UUID lookups, capacity-bounded paginated iteration, search, and engine-based segment-membership resolution for an identity.",
+      "tags": ["service", "dynamodb", "data-access", "segmentation"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:environments/metrics.py",
+      "type": "file",
+      "name": "metrics.py",
+      "filePath": "environments/metrics.py",
+      "summary": "Declares Prometheus histogram metrics for DynamoDB environment document size and compression ratio used by the environment wrappers.",
+      "tags": ["monitoring", "metrics", "prometheus"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:features/dataclasses.py",
+      "type": "file",
+      "name": "dataclasses.py",
+      "filePath": "features/dataclasses.py",
+      "summary": "Defines the EnvironmentFeatureOverridesData DTO that tallies segment and identity override counts per feature for an environment.",
+      "tags": ["type-definition", "data-model", "dataclass"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:features/features_service.py",
+      "type": "file",
+      "name": "features_service.py",
+      "filePath": "features/features_service.py",
+      "summary": "Business-logic service that aggregates per-feature override counts for an environment, dispatching to either the core (relational) or edge (DynamoDB) data source depending on the project's identity overrides backend.",
+      "tags": ["service", "business-logic", "feature-flags", "aggregation"],
+      "complexity": "moderate",
+      "languageNotes": "Uses a ThreadPoolExecutor to parallelise the edge identity-override lookup against the relational flag query."
+    },
+    {
+      "id": "function:environments/dynamodb/services.py:migrate_environments_to_v2",
+      "type": "function",
+      "name": "migrate_environments_to_v2",
+      "filePath": "environments/dynamodb/services.py",
+      "lineRange": [23, 80],
+      "summary": "Migrates all environments of a project to the v2 DynamoDB document model, collecting paginated identity overrides within a capacity budget and writing the resulting changeset.",
+      "tags": ["migration", "dynamodb", "service"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:environments/dynamodb/services.py:_iter_paginated_overrides",
+      "type": "function",
+      "name": "_iter_paginated_overrides",
+      "filePath": "environments/dynamodb/services.py",
+      "lineRange": [83, 105],
+      "summary": "Iterates identity documents across environments via the identity wrapper, validating each and mapping engine feature states to v2 identity-override records.",
+      "tags": ["migration", "dynamodb", "generator"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:environments/dynamodb/types.py:DynamoProjectMetadata",
+      "type": "class",
+      "name": "DynamoProjectMetadata",
+      "filePath": "environments/dynamodb/types.py",
+      "lineRange": [33, 83],
+      "summary": "Dataclass record persisted in DynamoDB tracking a project's identity-migration lifecycle, with methods to trigger, start, and finish the migration and to load/save/delete the metadata item.",
+      "tags": ["data-model", "dynamodb", "migration", "dataclass"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:environments/dynamodb/types.py:IdentityOverrideV2",
+      "type": "class",
+      "name": "IdentityOverrideV2",
+      "filePath": "environments/dynamodb/types.py",
+      "lineRange": [86, 93],
+      "summary": "DTO representing a single identity-level feature override in the v2 DynamoDB document model.",
+      "tags": ["data-model", "dynamodb", "dataclass"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:environments/dynamodb/types.py:EdgeV2MigrationResult",
+      "type": "class",
+      "name": "EdgeV2MigrationResult",
+      "filePath": "environments/dynamodb/types.py",
+      "lineRange": [103, 105],
+      "summary": "DTO bundling the identity-overrides changeset and resulting status produced by an edge v2 migration run.",
+      "tags": ["data-model", "dynamodb", "dataclass"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:environments/dynamodb/utils.py:estimate_document_size",
+      "type": "function",
+      "name": "estimate_document_size",
+      "filePath": "environments/dynamodb/utils.py",
+      "lineRange": [7, 15],
+      "summary": "Estimates the serialised byte size of a DynamoDB document by JSON-encoding it with a Decimal-aware default encoder.",
+      "tags": ["utility", "serialization", "dynamodb"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:environments/dynamodb/utils.py:get_environments_v2_identity_override_document_key",
+      "type": "function",
+      "name": "get_environments_v2_identity_override_document_key",
+      "filePath": "environments/dynamodb/utils.py",
+      "lineRange": [31, 43],
+      "summary": "Builds the composite DynamoDB sort key for a v2 identity-override document from a feature id and identity uuid.",
+      "tags": ["utility", "dynamodb", "key-building"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:environments/dynamodb/wrappers/base.py:BaseDynamoWrapper",
+      "type": "class",
+      "name": "BaseDynamoWrapper",
+      "filePath": "environments/dynamodb/wrappers/base.py",
+      "lineRange": [25, 90],
+      "summary": "Abstract base for DynamoDB wrappers, lazily resolving a boto3 table, exposing an enablement check, and providing capacity-aware paginated scan and query iteration.",
+      "tags": ["base-class", "dynamodb", "data-access", "factory"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:environments/dynamodb/wrappers/environment_api_key_wrapper.py:DynamoEnvironmentAPIKeyWrapper",
+      "type": "class",
+      "name": "DynamoEnvironmentAPIKeyWrapper",
+      "filePath": "environments/dynamodb/wrappers/environment_api_key_wrapper.py",
+      "lineRange": [15, 31],
+      "summary": "DynamoDB wrapper that batch-writes and deletes environment API key documents.",
+      "tags": ["service", "dynamodb", "data-access"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:environments/dynamodb/wrappers/environment_wrapper.py:BaseDynamoEnvironmentWrapper",
+      "type": "class",
+      "name": "BaseDynamoEnvironmentWrapper",
+      "filePath": "environments/dynamodb/wrappers/environment_wrapper.py",
+      "lineRange": [46, 104],
+      "summary": "Abstract environment-document wrapper handling batched writes with optional OpenFeature-gated compression and emission of document size and compression-ratio metrics.",
+      "tags": ["base-class", "dynamodb", "data-access", "compression"],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:environments/dynamodb/wrappers/environment_wrapper.py:DynamoEnvironmentWrapper",
+      "type": "class",
+      "name": "DynamoEnvironmentWrapper",
+      "filePath": "environments/dynamodb/wrappers/environment_wrapper.py",
+      "lineRange": [107, 126],
+      "summary": "Legacy v1 DynamoDB environment-document wrapper mapping environments to documents and providing single-item get and delete operations.",
+      "tags": ["service", "dynamodb", "data-access"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:environments/dynamodb/wrappers/environment_wrapper.py:DynamoEnvironmentV2Wrapper",
+      "type": "class",
+      "name": "DynamoEnvironmentV2Wrapper",
+      "filePath": "environments/dynamodb/wrappers/environment_wrapper.py",
+      "lineRange": [129, 234],
+      "summary": "V2 DynamoDB environment wrapper with partition/sort key schema, querying and updating identity overrides via key-condition expressions and deleting environments and their override documents.",
+      "tags": ["service", "dynamodb", "data-access", "identity-overrides"],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:environments/dynamodb/wrappers/exceptions.py:CapacityBudgetExceeded",
+      "type": "class",
+      "name": "CapacityBudgetExceeded",
+      "filePath": "environments/dynamodb/wrappers/exceptions.py",
+      "lineRange": [4, 11],
+      "summary": "Exception raised when a capacity-bounded DynamoDB scan exceeds its allocated read-capacity budget.",
+      "tags": ["exception", "dynamodb", "type-definition"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:environments/dynamodb/wrappers/identity_wrapper.py:DynamoIdentityWrapper",
+      "type": "class",
+      "name": "DynamoIdentityWrapper",
+      "filePath": "environments/dynamodb/wrappers/identity_wrapper.py",
+      "lineRange": [37, 210],
+      "summary": "DynamoDB wrapper for identity documents offering CRUD, UUID lookups with 404 helpers, capacity-bounded paginated iteration, search, and engine-based segment-id resolution for an identity.",
+      "tags": ["service", "dynamodb", "data-access", "segmentation"],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:features/dataclasses.py:EnvironmentFeatureOverridesData",
+      "type": "class",
+      "name": "EnvironmentFeatureOverridesData",
+      "filePath": "features/dataclasses.py",
+      "lineRange": [6, 27],
+      "summary": "DTO tracking per-feature segment and identity override counts for an environment, with a helper to increment the identity-override tally.",
+      "tags": ["data-model", "dataclass", "feature-flags"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:features/features_service.py:get_overrides_data",
+      "type": "function",
+      "name": "get_overrides_data",
+      "filePath": "features/features_service.py",
+      "lineRange": [20, 44],
+      "summary": "Entry point that returns per-feature override data for an environment, routing to the edge or core data source based on the project's identity overrides backend.",
+      "tags": ["service", "business-logic", "feature-flags", "dispatch"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:features/features_service.py:get_core_overrides_data",
+      "type": "function",
+      "name": "get_core_overrides_data",
+      "filePath": "features/features_service.py",
+      "lineRange": [47, 73],
+      "summary": "Computes per-feature override counts from the relational store, tallying segment and identity overrides across the environment's flag list.",
+      "tags": ["service", "business-logic", "feature-flags", "aggregation"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:features/features_service.py:get_edge_overrides_data",
+      "type": "function",
+      "name": "get_edge_overrides_data",
+      "filePath": "features/features_service.py",
+      "lineRange": [76, 114],
+      "summary": "Computes per-feature override counts for edge (DynamoDB) projects, fetching identity overrides in parallel with the relational flag query via a thread pool.",
+      "tags": ["service", "business-logic", "feature-flags", "concurrency"],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:environments/dynamodb/__init__.py",
+      "target": "file:environments/dynamodb/types.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/dynamodb/__init__.py",
+      "target": "file:environments/dynamodb/wrappers/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/dynamodb/__init__.py",
+      "target": "file:environments/dynamodb/wrappers/exceptions.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/dynamodb/services.py",
+      "target": "file:environments/dynamodb/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/dynamodb/services.py",
+      "target": "file:environments/dynamodb/types.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/dynamodb/services.py",
+      "target": "file:environments/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/dynamodb/services.py",
+      "target": "file:projects/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/dynamodb/wrappers/__init__.py",
+      "target": "file:environments/dynamodb/wrappers/environment_api_key_wrapper.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/dynamodb/wrappers/__init__.py",
+      "target": "file:environments/dynamodb/wrappers/environment_wrapper.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/dynamodb/wrappers/__init__.py",
+      "target": "file:environments/dynamodb/wrappers/identity_wrapper.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/dynamodb/wrappers/environment_api_key_wrapper.py",
+      "target": "file:environments/dynamodb/wrappers/base.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/dynamodb/wrappers/environment_wrapper.py",
+      "target": "file:environments/dynamodb/constants.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/dynamodb/wrappers/environment_wrapper.py",
+      "target": "file:environments/dynamodb/types.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/dynamodb/wrappers/environment_wrapper.py",
+      "target": "file:environments/dynamodb/utils.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/dynamodb/wrappers/environment_wrapper.py",
+      "target": "file:environments/dynamodb/wrappers/base.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/dynamodb/wrappers/environment_wrapper.py",
+      "target": "file:environments/metrics.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/dynamodb/wrappers/identity_wrapper.py",
+      "target": "file:environments/dynamodb/constants.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/dynamodb/wrappers/identity_wrapper.py",
+      "target": "file:environments/dynamodb/wrappers/base.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/dynamodb/wrappers/identity_wrapper.py",
+      "target": "file:environments/dynamodb/wrappers/exceptions.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/metrics.py",
+      "target": "file:environments/dynamodb/constants.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/features_service.py",
+      "target": "file:environments/dynamodb/utils.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/features_service.py",
+      "target": "file:features/dataclasses.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/features_service.py",
+      "target": "file:features/versioning/versioning_service.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/dynamodb/services.py",
+      "target": "function:environments/dynamodb/services.py:migrate_environments_to_v2",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:environments/dynamodb/services.py",
+      "target": "function:environments/dynamodb/services.py:_iter_paginated_overrides",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:environments/dynamodb/services.py",
+      "target": "function:environments/dynamodb/services.py:migrate_environments_to_v2",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:environments/dynamodb/services.py:migrate_environments_to_v2",
+      "target": "function:environments/dynamodb/services.py:_iter_paginated_overrides",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/dynamodb/types.py",
+      "target": "class:environments/dynamodb/types.py:DynamoProjectMetadata",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:environments/dynamodb/types.py",
+      "target": "class:environments/dynamodb/types.py:IdentityOverrideV2",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:environments/dynamodb/types.py",
+      "target": "class:environments/dynamodb/types.py:EdgeV2MigrationResult",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:environments/dynamodb/types.py",
+      "target": "class:environments/dynamodb/types.py:DynamoProjectMetadata",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/dynamodb/types.py",
+      "target": "class:environments/dynamodb/types.py:IdentityOverrideV2",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/dynamodb/types.py",
+      "target": "class:environments/dynamodb/types.py:EdgeV2MigrationResult",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/dynamodb/utils.py",
+      "target": "function:environments/dynamodb/utils.py:estimate_document_size",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:environments/dynamodb/utils.py",
+      "target": "function:environments/dynamodb/utils.py:get_environments_v2_identity_override_document_key",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:environments/dynamodb/utils.py",
+      "target": "function:environments/dynamodb/utils.py:estimate_document_size",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/dynamodb/utils.py",
+      "target": "function:environments/dynamodb/utils.py:get_environments_v2_identity_override_document_key",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/dynamodb/wrappers/base.py",
+      "target": "class:environments/dynamodb/wrappers/base.py:BaseDynamoWrapper",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:environments/dynamodb/wrappers/base.py",
+      "target": "class:environments/dynamodb/wrappers/base.py:BaseDynamoWrapper",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/dynamodb/wrappers/environment_api_key_wrapper.py",
+      "target": "class:environments/dynamodb/wrappers/environment_api_key_wrapper.py:DynamoEnvironmentAPIKeyWrapper",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:environments/dynamodb/wrappers/environment_api_key_wrapper.py",
+      "target": "class:environments/dynamodb/wrappers/environment_api_key_wrapper.py:DynamoEnvironmentAPIKeyWrapper",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:environments/dynamodb/wrappers/environment_api_key_wrapper.py:DynamoEnvironmentAPIKeyWrapper",
+      "target": "class:environments/dynamodb/wrappers/base.py:BaseDynamoWrapper",
+      "type": "inherits",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "file:environments/dynamodb/wrappers/environment_wrapper.py",
+      "target": "class:environments/dynamodb/wrappers/environment_wrapper.py:BaseDynamoEnvironmentWrapper",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:environments/dynamodb/wrappers/environment_wrapper.py",
+      "target": "class:environments/dynamodb/wrappers/environment_wrapper.py:DynamoEnvironmentWrapper",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:environments/dynamodb/wrappers/environment_wrapper.py",
+      "target": "class:environments/dynamodb/wrappers/environment_wrapper.py:DynamoEnvironmentV2Wrapper",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:environments/dynamodb/wrappers/environment_wrapper.py",
+      "target": "class:environments/dynamodb/wrappers/environment_wrapper.py:BaseDynamoEnvironmentWrapper",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/dynamodb/wrappers/environment_wrapper.py",
+      "target": "class:environments/dynamodb/wrappers/environment_wrapper.py:DynamoEnvironmentWrapper",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/dynamodb/wrappers/environment_wrapper.py",
+      "target": "class:environments/dynamodb/wrappers/environment_wrapper.py:DynamoEnvironmentV2Wrapper",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:environments/dynamodb/wrappers/environment_wrapper.py:BaseDynamoEnvironmentWrapper",
+      "target": "class:environments/dynamodb/wrappers/base.py:BaseDynamoWrapper",
+      "type": "inherits",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "class:environments/dynamodb/wrappers/environment_wrapper.py:DynamoEnvironmentWrapper",
+      "target": "class:environments/dynamodb/wrappers/environment_wrapper.py:BaseDynamoEnvironmentWrapper",
+      "type": "inherits",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "class:environments/dynamodb/wrappers/environment_wrapper.py:DynamoEnvironmentV2Wrapper",
+      "target": "class:environments/dynamodb/wrappers/environment_wrapper.py:BaseDynamoEnvironmentWrapper",
+      "type": "inherits",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "class:environments/dynamodb/wrappers/environment_wrapper.py:BaseDynamoEnvironmentWrapper",
+      "target": "function:environments/dynamodb/utils.py:estimate_document_size",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/dynamodb/wrappers/exceptions.py",
+      "target": "class:environments/dynamodb/wrappers/exceptions.py:CapacityBudgetExceeded",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:environments/dynamodb/wrappers/exceptions.py",
+      "target": "class:environments/dynamodb/wrappers/exceptions.py:CapacityBudgetExceeded",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/dynamodb/wrappers/identity_wrapper.py",
+      "target": "class:environments/dynamodb/wrappers/identity_wrapper.py:DynamoIdentityWrapper",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:environments/dynamodb/wrappers/identity_wrapper.py",
+      "target": "class:environments/dynamodb/wrappers/identity_wrapper.py:DynamoIdentityWrapper",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:environments/dynamodb/wrappers/identity_wrapper.py:DynamoIdentityWrapper",
+      "target": "class:environments/dynamodb/wrappers/base.py:BaseDynamoWrapper",
+      "type": "inherits",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "class:environments/dynamodb/wrappers/identity_wrapper.py:DynamoIdentityWrapper",
+      "target": "class:environments/dynamodb/wrappers/exceptions.py:CapacityBudgetExceeded",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:features/dataclasses.py",
+      "target": "class:features/dataclasses.py:EnvironmentFeatureOverridesData",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/dataclasses.py",
+      "target": "class:features/dataclasses.py:EnvironmentFeatureOverridesData",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/features_service.py",
+      "target": "function:features/features_service.py:get_overrides_data",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/features_service.py",
+      "target": "function:features/features_service.py:get_core_overrides_data",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/features_service.py",
+      "target": "function:features/features_service.py:get_edge_overrides_data",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/features_service.py",
+      "target": "function:features/features_service.py:get_overrides_data",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/features_service.py",
+      "target": "function:features/features_service.py:get_core_overrides_data",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/features_service.py",
+      "target": "function:features/features_service.py:get_edge_overrides_data",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:features/features_service.py:get_overrides_data",
+      "target": "function:features/features_service.py:get_edge_overrides_data",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:features/features_service.py:get_overrides_data",
+      "target": "function:features/features_service.py:get_core_overrides_data",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:features/features_service.py:get_core_overrides_data",
+      "target": "class:features/dataclasses.py:EnvironmentFeatureOverridesData",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:features/features_service.py:get_edge_overrides_data",
+      "target": "function:environments/dynamodb/utils.py:get_environments_v2_identity_override_document_key",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:features/features_service.py:get_edge_overrides_data",
+      "target": "class:features/dataclasses.py:EnvironmentFeatureOverridesData",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

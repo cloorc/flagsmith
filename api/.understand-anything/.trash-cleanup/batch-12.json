@@ -1,0 +1,412 @@
+{
+  "nodes": [
+    {
+      "id": "file:segment_membership/mappers.py",
+      "type": "file",
+      "name": "mappers.py",
+      "filePath": "segment_membership/mappers.py",
+      "summary": "Maps DynamoDB identity documents into ClickHouse row tuples, flattening and coercing trait values for the segment-membership backfill pipeline.",
+      "tags": ["data-pipeline", "serialization", "utility", "clickhouse"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:segment_membership/metrics.py",
+      "type": "file",
+      "name": "metrics.py",
+      "filePath": "segment_membership/metrics.py",
+      "summary": "Defines Prometheus counters and histograms tracking segment-membership backfill and refresh task volume, duration, and failures.",
+      "tags": ["monitoring", "metrics", "prometheus", "observability"],
+      "complexity": "simple",
+      "languageNotes": "Module-level prometheus_client Counter/Histogram instances rather than functions or classes."
+    },
+    {
+      "id": "file:segment_membership/models.py",
+      "type": "file",
+      "name": "models.py",
+      "filePath": "segment_membership/models.py",
+      "summary": "Django model storing per-segment, per-environment membership counts produced by the ClickHouse-backed refresh task.",
+      "tags": ["data-model", "django", "segment-membership"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:segment_membership/services.py",
+      "type": "file",
+      "name": "services.py",
+      "filePath": "segment_membership/services.py",
+      "summary": "Business logic for segment-membership counting: feature-flag gating, refresh enqueueing, ClickHouse cursor management, and computing per-segment membership counts via translated segment SQL.",
+      "tags": ["service", "business-logic", "clickhouse", "segment-membership"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:segment_membership/tasks.py",
+      "type": "file",
+      "name": "tasks.py",
+      "filePath": "segment_membership/tasks.py",
+      "summary": "Async tasks that backfill DynamoDB identities into ClickHouse and refresh per-project segment-membership counts, persisting results to SegmentMembershipCount.",
+      "tags": ["async-tasks", "data-pipeline", "clickhouse", "segment-membership"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:segments/admin.py",
+      "type": "file",
+      "name": "admin.py",
+      "filePath": "segments/admin.py",
+      "summary": "Django admin registrations and inline editors for Segment, SegmentRule, and Condition models.",
+      "tags": ["django-admin", "configuration", "segments"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:segments/models.py",
+      "type": "file",
+      "name": "models.py",
+      "filePath": "segments/models.py",
+      "summary": "Core segment data model defining Segment, SegmentRule, Condition, and WhitelistedSegment with versioning, cloning, custom managers, and audit-log integration.",
+      "tags": ["data-model", "django", "segments", "versioning", "audit"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:segments/permissions.py",
+      "type": "file",
+      "name": "permissions.py",
+      "filePath": "segments/permissions.py",
+      "summary": "DRF permission class enforcing project-scoped view and object permissions for segment endpoints.",
+      "tags": ["permissions", "security", "drf", "segments"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:segments/serializers.py",
+      "type": "file",
+      "name": "serializers.py",
+      "filePath": "segments/serializers.py",
+      "summary": "DRF serializers for segments, nested rules and conditions, with validation for project segment limits, rule/condition limits, metadata, and clone operations.",
+      "tags": ["serialization", "drf", "validation", "segments"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:segments/services.py",
+      "type": "file",
+      "name": "services.py",
+      "filePath": "segments/services.py",
+      "summary": "Business logic for soft-deleting segments with audit logging and deep-copying segment rules and conditions during clone operations.",
+      "tags": ["service", "business-logic", "segments", "audit"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:segments/urls.py",
+      "type": "file",
+      "name": "urls.py",
+      "filePath": "segments/urls.py",
+      "summary": "URL routing for the segments app, wiring the lookup-by-uuid view into the URL conf.",
+      "tags": ["routing", "django", "segments"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:segments/views.py",
+      "type": "file",
+      "name": "views.py",
+      "filePath": "segments/views.py",
+      "summary": "DRF viewset and view exposing segment CRUD, associated-features listing, clone, soft-delete, and identity-filtered segment lookup endpoints.",
+      "tags": ["api-handler", "drf", "viewset", "segments"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:segment_membership/mappers.py:map_identity_document_to_clickhouse_row",
+      "type": "function",
+      "name": "map_identity_document_to_clickhouse_row",
+      "filePath": "segment_membership/mappers.py",
+      "lineRange": [9, 24],
+      "summary": "Converts a DynamoDB identity document plus environment key into a ClickHouse row tuple with flattened traits.",
+      "tags": ["mapping", "serialization", "clickhouse"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:segment_membership/models.py:SegmentMembershipCount",
+      "type": "class",
+      "name": "SegmentMembershipCount",
+      "filePath": "segment_membership/models.py",
+      "lineRange": [7, 29],
+      "summary": "Model row holding the computed membership count for a segment within a specific environment.",
+      "tags": ["data-model", "django", "segment-membership"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:segment_membership/services.py:enqueue_membership_refresh",
+      "type": "function",
+      "name": "enqueue_membership_refresh",
+      "filePath": "segment_membership/services.py",
+      "lineRange": [32, 52],
+      "summary": "Enqueues a project segment-count refresh task when the feature is enabled, deduplicating against in-flight tasks.",
+      "tags": ["service", "async-tasks", "segment-membership"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:segment_membership/services.py:get_projects_to_process",
+      "type": "function",
+      "name": "get_projects_to_process",
+      "filePath": "segment_membership/services.py",
+      "lineRange": [70, 82],
+      "summary": "Yields projects with live segments whose organisation has membership counting enabled.",
+      "tags": ["service", "query", "segment-membership"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:segment_membership/services.py:compute_segment_counts_for_project",
+      "type": "function",
+      "name": "compute_segment_counts_for_project",
+      "filePath": "segment_membership/services.py",
+      "lineRange": [85, 152],
+      "summary": "Translates a project's live segments into ClickHouse SQL, executes a unioned count query, and returns per-segment per-environment membership counts.",
+      "tags": ["service", "business-logic", "clickhouse", "segment-membership"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:segment_membership/tasks.py:backfill_identities_to_clickhouse",
+      "type": "function",
+      "name": "backfill_identities_to_clickhouse",
+      "filePath": "segment_membership/tasks.py",
+      "lineRange": [60, 116],
+      "summary": "Recurring task mirroring DynamoDB identities into ClickHouse in batches per environment, then triggering segment-count refreshes.",
+      "tags": ["async-tasks", "data-pipeline", "clickhouse", "dynamodb"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:segment_membership/tasks.py:refresh_project_segment_counts",
+      "type": "function",
+      "name": "refresh_project_segment_counts",
+      "filePath": "segment_membership/tasks.py",
+      "lineRange": [124, 190],
+      "summary": "Task that recomputes segment-membership counts for a project, persisting fresh counts and pruning stale SegmentMembershipCount rows.",
+      "tags": ["async-tasks", "segment-membership", "clickhouse"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:segments/models.py:LiveSegmentManager",
+      "type": "class",
+      "name": "LiveSegmentManager",
+      "filePath": "segments/models.py",
+      "lineRange": [42, 48],
+      "summary": "Manager restricting queries to live (non-versioned, non-deleted) segments.",
+      "tags": ["data-model", "django", "manager", "segments"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:segments/models.py:ConfiguredOrderManager",
+      "type": "class",
+      "name": "ConfiguredOrderManager",
+      "filePath": "segments/models.py",
+      "lineRange": [51, 69],
+      "summary": "Manager applying a configurable default ordering driven by a settings-named option.",
+      "tags": ["data-model", "django", "manager", "segments"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:segments/models.py:Segment",
+      "type": "class",
+      "name": "Segment",
+      "filePath": "segments/models.py",
+      "lineRange": [80, 198],
+      "summary": "Primary segment model supporting versioning, cloning of rules and conditions, audit-log message generation, and self-referential version tracking.",
+      "tags": ["data-model", "django", "segments", "versioning", "audit"],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:segments/models.py:SegmentRule",
+      "type": "class",
+      "name": "SegmentRule",
+      "filePath": "segments/models.py",
+      "lineRange": [201, 248],
+      "summary": "Hierarchical rule model linking to a segment or a parent rule, validating it has exactly one parent.",
+      "tags": ["data-model", "django", "segments", "validation"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:segments/models.py:Condition",
+      "type": "class",
+      "name": "Condition",
+      "filePath": "segments/models.py",
+      "lineRange": [251, 320],
+      "summary": "Condition model representing a single targeting predicate within a segment rule, with audit-log integration.",
+      "tags": ["data-model", "django", "segments", "audit"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:segments/permissions.py:SegmentPermissions",
+      "type": "class",
+      "name": "SegmentPermissions",
+      "filePath": "segments/permissions.py",
+      "lineRange": [10, 41],
+      "summary": "DRF permission class checking project-level segment view and object permissions against the requesting user.",
+      "tags": ["permissions", "security", "drf", "segments"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:segments/serializers.py:ConditionSerializer",
+      "type": "class",
+      "name": "ConditionSerializer",
+      "filePath": "segments/serializers.py",
+      "lineRange": [31, 51],
+      "summary": "Serializer for segment conditions, coercing values to string during deserialization.",
+      "tags": ["serialization", "drf", "segments"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:segments/serializers.py:SegmentRuleSerializer",
+      "type": "class",
+      "name": "SegmentRuleSerializer",
+      "filePath": "segments/serializers.py",
+      "lineRange": [76, 90],
+      "summary": "Serializer for segment rules with nested rules and conditions.",
+      "tags": ["serialization", "drf", "segments"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:segments/serializers.py:SegmentSerializer",
+      "type": "class",
+      "name": "SegmentSerializer",
+      "filePath": "segments/serializers.py",
+      "lineRange": [93, 224],
+      "summary": "Main segment serializer handling nested rule/condition create and update, clone-on-update versioning, metadata, and project/rule limit validation.",
+      "tags": ["serialization", "drf", "validation", "segments"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:segments/services.py:delete_segment",
+      "type": "function",
+      "name": "delete_segment",
+      "filePath": "segments/services.py",
+      "lineRange": [13, 79],
+      "summary": "Soft-deletes a segment and its versions, cascading to rules, conditions, and feature segments within a transaction and emitting an audit-log task.",
+      "tags": ["service", "business-logic", "segments", "audit"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:segments/services.py:copy_segment_rules_and_conditions",
+      "type": "function",
+      "name": "copy_segment_rules_and_conditions",
+      "filePath": "segments/services.py",
+      "lineRange": [82, 160],
+      "summary": "Deep-copies a source segment's rules, nested rules, and conditions onto a target segment using bulk creates.",
+      "tags": ["service", "business-logic", "segments", "cloning"],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:segments/views.py:SegmentViewSet",
+      "type": "class",
+      "name": "SegmentViewSet",
+      "filePath": "segments/views.py",
+      "lineRange": [75, 185],
+      "summary": "DRF viewset exposing project-scoped segment CRUD plus associated-features, clone, and soft-delete actions with identity-based filtering.",
+      "tags": ["api-handler", "drf", "viewset", "segments"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:segments/views.py:get_segment_by_uuid",
+      "type": "function",
+      "name": "get_segment_by_uuid",
+      "filePath": "segments/views.py",
+      "lineRange": [190, 195],
+      "summary": "API view returning a single segment looked up by UUID, scoped to projects the user is permitted to access.",
+      "tags": ["api-handler", "drf", "segments"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {"source": "file:segment_membership/models.py", "target": "file:environments/models.py", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:segment_membership/models.py", "target": "file:segments/models.py", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:segment_membership/services.py", "target": "file:organisations/models.py", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:segment_membership/services.py", "target": "file:projects/models.py", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:segment_membership/services.py", "target": "file:segment_membership/models.py", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:segment_membership/services.py", "target": "file:segments/models.py", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:segment_membership/tasks.py", "target": "file:environments/dynamodb/wrappers/identity_wrapper.py", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:segment_membership/tasks.py", "target": "file:projects/models.py", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:segment_membership/tasks.py", "target": "file:segment_membership/mappers.py", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:segment_membership/tasks.py", "target": "file:segment_membership/metrics.py", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:segment_membership/tasks.py", "target": "file:segment_membership/models.py", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:segment_membership/tasks.py", "target": "file:segment_membership/services.py", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:segments/admin.py", "target": "file:segments/models.py", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:segments/models.py", "target": "file:audit/constants.py", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:segments/models.py", "target": "file:audit/related_object_type.py", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:segments/models.py", "target": "file:features/models.py", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:segments/models.py", "target": "file:metadata/models.py", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:segments/models.py", "target": "file:projects/models.py", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:segments/models.py", "target": "file:segments/services.py", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:segments/permissions.py", "target": "file:projects/models.py", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:segments/serializers.py", "target": "file:metadata/serializers.py", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:segments/serializers.py", "target": "file:projects/models.py", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:segments/serializers.py", "target": "file:segment_membership/models.py", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:segments/serializers.py", "target": "file:segment_membership/services.py", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:segments/serializers.py", "target": "file:segments/models.py", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:segments/urls.py", "target": "file:segments/views.py", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:segments/views.py", "target": "file:environments/identities/models.py", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:segments/views.py", "target": "file:environments/models.py", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:segments/views.py", "target": "file:features/models.py", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:segments/views.py", "target": "file:features/serializers.py", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:segments/views.py", "target": "file:features/versioning/models.py", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:segments/views.py", "target": "file:projects/models.py", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:segments/views.py", "target": "file:segment_membership/services.py", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:segments/views.py", "target": "file:segments/models.py", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:segments/views.py", "target": "file:segments/permissions.py", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:segments/views.py", "target": "file:segments/serializers.py", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:segments/views.py", "target": "file:segments/services.py", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:segment_membership/mappers.py", "target": "function:segment_membership/mappers.py:map_identity_document_to_clickhouse_row", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:segment_membership/mappers.py", "target": "function:segment_membership/mappers.py:map_identity_document_to_clickhouse_row", "type": "exports", "direction": "forward", "weight": 0.8},
+
+    {"source": "file:segment_membership/models.py", "target": "class:segment_membership/models.py:SegmentMembershipCount", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:segment_membership/models.py", "target": "class:segment_membership/models.py:SegmentMembershipCount", "type": "exports", "direction": "forward", "weight": 0.8},
+
+    {"source": "file:segment_membership/services.py", "target": "function:segment_membership/services.py:enqueue_membership_refresh", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:segment_membership/services.py", "target": "function:segment_membership/services.py:enqueue_membership_refresh", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:segment_membership/services.py", "target": "function:segment_membership/services.py:get_projects_to_process", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:segment_membership/services.py", "target": "function:segment_membership/services.py:get_projects_to_process", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:segment_membership/services.py", "target": "function:segment_membership/services.py:compute_segment_counts_for_project", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:segment_membership/services.py", "target": "function:segment_membership/services.py:compute_segment_counts_for_project", "type": "exports", "direction": "forward", "weight": 0.8},
+
+    {"source": "file:segment_membership/tasks.py", "target": "function:segment_membership/tasks.py:backfill_identities_to_clickhouse", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:segment_membership/tasks.py", "target": "function:segment_membership/tasks.py:backfill_identities_to_clickhouse", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:segment_membership/tasks.py", "target": "function:segment_membership/tasks.py:refresh_project_segment_counts", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:segment_membership/tasks.py", "target": "function:segment_membership/tasks.py:refresh_project_segment_counts", "type": "exports", "direction": "forward", "weight": 0.8},
+
+    {"source": "file:segments/models.py", "target": "class:segments/models.py:LiveSegmentManager", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:segments/models.py", "target": "class:segments/models.py:LiveSegmentManager", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:segments/models.py", "target": "class:segments/models.py:ConfiguredOrderManager", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:segments/models.py", "target": "class:segments/models.py:ConfiguredOrderManager", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:segments/models.py", "target": "class:segments/models.py:Segment", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:segments/models.py", "target": "class:segments/models.py:Segment", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:segments/models.py", "target": "class:segments/models.py:SegmentRule", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:segments/models.py", "target": "class:segments/models.py:SegmentRule", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:segments/models.py", "target": "class:segments/models.py:Condition", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:segments/models.py", "target": "class:segments/models.py:Condition", "type": "exports", "direction": "forward", "weight": 0.8},
+
+    {"source": "file:segments/permissions.py", "target": "class:segments/permissions.py:SegmentPermissions", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:segments/permissions.py", "target": "class:segments/permissions.py:SegmentPermissions", "type": "exports", "direction": "forward", "weight": 0.8},
+
+    {"source": "file:segments/serializers.py", "target": "class:segments/serializers.py:ConditionSerializer", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:segments/serializers.py", "target": "class:segments/serializers.py:ConditionSerializer", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:segments/serializers.py", "target": "class:segments/serializers.py:SegmentRuleSerializer", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:segments/serializers.py", "target": "class:segments/serializers.py:SegmentRuleSerializer", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:segments/serializers.py", "target": "class:segments/serializers.py:SegmentSerializer", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:segments/serializers.py", "target": "class:segments/serializers.py:SegmentSerializer", "type": "exports", "direction": "forward", "weight": 0.8},
+
+    {"source": "file:segments/services.py", "target": "function:segments/services.py:delete_segment", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:segments/services.py", "target": "function:segments/services.py:delete_segment", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:segments/services.py", "target": "function:segments/services.py:copy_segment_rules_and_conditions", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:segments/services.py", "target": "function:segments/services.py:copy_segment_rules_and_conditions", "type": "exports", "direction": "forward", "weight": 0.8},
+
+    {"source": "file:segments/views.py", "target": "class:segments/views.py:SegmentViewSet", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:segments/views.py", "target": "class:segments/views.py:SegmentViewSet", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:segments/views.py", "target": "function:segments/views.py:get_segment_by_uuid", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:segments/views.py", "target": "function:segments/views.py:get_segment_by_uuid", "type": "exports", "direction": "forward", "weight": 0.8},
+
+    {"source": "function:segment_membership/tasks.py:backfill_identities_to_clickhouse", "target": "function:segment_membership/mappers.py:map_identity_document_to_clickhouse_row", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "function:segment_membership/tasks.py:backfill_identities_to_clickhouse", "target": "function:segment_membership/services.py:get_projects_to_process", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "function:segment_membership/tasks.py:backfill_identities_to_clickhouse", "target": "function:segment_membership/tasks.py:refresh_project_segment_counts", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "function:segment_membership/tasks.py:refresh_project_segment_counts", "target": "function:segment_membership/services.py:compute_segment_counts_for_project", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "function:segment_membership/services.py:enqueue_membership_refresh", "target": "function:segment_membership/tasks.py:refresh_project_segment_counts", "type": "calls", "direction": "forward", "weight": 0.8},
+
+    {"source": "class:segments/serializers.py:SegmentSerializer", "target": "function:segment_membership/services.py:enqueue_membership_refresh", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "class:segments/views.py:SegmentViewSet", "target": "function:segment_membership/services.py:enqueue_membership_refresh", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "class:segments/views.py:SegmentViewSet", "target": "function:segments/services.py:delete_segment", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "class:segments/models.py:Segment", "target": "function:segments/services.py:copy_segment_rules_and_conditions", "type": "calls", "direction": "forward", "weight": 0.8}
+  ]
+}

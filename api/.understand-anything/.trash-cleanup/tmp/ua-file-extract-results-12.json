@@ -1,0 +1,2053 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 12,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "segment_membership/mappers.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 43,
+      "nonEmptyLines": 35,
+      "functions": [
+        {
+          "name": "map_identity_document_to_clickhouse_row",
+          "startLine": 9,
+          "endLine": 24,
+          "params": [
+            "env_key",
+            "identity_doc"
+          ]
+        },
+        {
+          "name": "_coerce_trait_value",
+          "startLine": 27,
+          "endLine": 34,
+          "params": [
+            "value"
+          ]
+        },
+        {
+          "name": "_flatten_traits",
+          "startLine": 37,
+          "endLine": 43,
+          "params": [
+            "identity_traits"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "map_identity_document_to_clickhouse_row",
+          "line": 9,
+          "isDefault": false
+        },
+        {
+          "name": "_coerce_trait_value",
+          "line": 27,
+          "isDefault": false
+        },
+        {
+          "name": "_flatten_traits",
+          "line": 37,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "map_identity_document_to_clickhouse_row",
+          "callee": "identity_doc.get",
+          "lineNumber": 17
+        },
+        {
+          "caller": "map_identity_document_to_clickhouse_row",
+          "callee": "_flatten_traits",
+          "lineNumber": 18
+        },
+        {
+          "caller": "_coerce_trait_value",
+          "callee": "isinstance",
+          "lineNumber": 30
+        },
+        {
+          "caller": "_coerce_trait_value",
+          "callee": "value.to_integral_value",
+          "lineNumber": 31
+        },
+        {
+          "caller": "_coerce_trait_value",
+          "callee": "int",
+          "lineNumber": 32
+        },
+        {
+          "caller": "_coerce_trait_value",
+          "callee": "float",
+          "lineNumber": 33
+        },
+        {
+          "caller": "_flatten_traits",
+          "callee": "_coerce_trait_value",
+          "lineNumber": 41
+        },
+        {
+          "caller": "_flatten_traits",
+          "callee": "t.get",
+          "lineNumber": 41
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 3,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "segment_membership/metrics.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 24,
+      "nonEmptyLines": 19,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "segment_membership/models.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 29,
+      "nonEmptyLines": 24,
+      "classes": [
+        {
+          "name": "SegmentMembershipCount",
+          "startLine": 7,
+          "endLine": 29,
+          "methods": [],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "SegmentMembershipCount",
+          "line": 7,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "segment_membership/services.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 152,
+      "nonEmptyLines": 130,
+      "functions": [
+        {
+          "name": "is_membership_enabled",
+          "startLine": 23,
+          "endLine": 29,
+          "params": [
+            "organisation"
+          ]
+        },
+        {
+          "name": "enqueue_membership_refresh",
+          "startLine": 32,
+          "endLine": 52,
+          "params": [
+            "project"
+          ]
+        },
+        {
+          "name": "open_clickhouse_cursor",
+          "startLine": 56,
+          "endLine": 67,
+          "params": [
+            "log_comment"
+          ]
+        },
+        {
+          "name": "get_projects_to_process",
+          "startLine": 70,
+          "endLine": 82,
+          "params": []
+        },
+        {
+          "name": "compute_segment_counts_for_project",
+          "startLine": 85,
+          "endLine": 152,
+          "params": [
+            "project",
+            "cursor"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "is_membership_enabled",
+          "line": 23,
+          "isDefault": false
+        },
+        {
+          "name": "enqueue_membership_refresh",
+          "line": 32,
+          "isDefault": false
+        },
+        {
+          "name": "open_clickhouse_cursor",
+          "line": 55,
+          "isDefault": false
+        },
+        {
+          "name": "get_projects_to_process",
+          "line": 70,
+          "isDefault": false
+        },
+        {
+          "name": "compute_segment_counts_for_project",
+          "line": 85,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "is_membership_enabled",
+          "callee": "get_openfeature_client().get_boolean_value",
+          "lineNumber": 25
+        },
+        {
+          "caller": "is_membership_enabled",
+          "callee": "get_openfeature_client",
+          "lineNumber": 25
+        },
+        {
+          "caller": "enqueue_membership_refresh",
+          "callee": "is_membership_enabled",
+          "lineNumber": 39
+        },
+        {
+          "caller": "enqueue_membership_refresh",
+          "callee": "Task.objects.filter(\n        task_identifier=refresh_project_segment_counts.task_identifier,\n        completed=False,\n        num_failures__lt=3,\n        serialized_args=Task.serialize_data((project.id,)),\n    ).exists",
+          "lineNumber": 44
+        },
+        {
+          "caller": "enqueue_membership_refresh",
+          "callee": "Task.objects.filter",
+          "lineNumber": 44
+        },
+        {
+          "caller": "enqueue_membership_refresh",
+          "callee": "Task.serialize_data",
+          "lineNumber": 48
+        },
+        {
+          "caller": "enqueue_membership_refresh",
+          "callee": "refresh_project_segment_counts.delay",
+          "lineNumber": 52
+        },
+        {
+          "caller": "open_clickhouse_cursor",
+          "callee": "connections[\"clickhouse\"].cursor",
+          "lineNumber": 64
+        },
+        {
+          "caller": "open_clickhouse_cursor",
+          "callee": "cursor.cursor.set_settings",
+          "lineNumber": 66
+        },
+        {
+          "caller": "get_projects_to_process",
+          "callee": "Segment.live_objects.values_list",
+          "lineNumber": 73
+        },
+        {
+          "caller": "get_projects_to_process",
+          "callee": "Project.objects.filter(id__in=project_ids)\n        .select_related(\"organisation\")\n        .iterator",
+          "lineNumber": 75
+        },
+        {
+          "caller": "get_projects_to_process",
+          "callee": "Project.objects.filter(id__in=project_ids)\n        .select_related",
+          "lineNumber": 75
+        },
+        {
+          "caller": "get_projects_to_process",
+          "callee": "Project.objects.filter",
+          "lineNumber": 75
+        },
+        {
+          "caller": "get_projects_to_process",
+          "callee": "is_membership_enabled",
+          "lineNumber": 80
+        },
+        {
+          "caller": "compute_segment_counts_for_project",
+          "callee": "list",
+          "lineNumber": 98
+        },
+        {
+          "caller": "compute_segment_counts_for_project",
+          "callee": "Segment.live_objects.filter",
+          "lineNumber": 98
+        },
+        {
+          "caller": "compute_segment_counts_for_project",
+          "callee": "dict",
+          "lineNumber": 99
+        },
+        {
+          "caller": "compute_segment_counts_for_project",
+          "callee": "project.environments.values_list",
+          "lineNumber": 100
+        },
+        {
+          "caller": "compute_segment_counts_for_project",
+          "callee": "ClickHouseDialect",
+          "lineNumber": 105
+        },
+        {
+          "caller": "compute_segment_counts_for_project",
+          "callee": "TranslateContext",
+          "lineNumber": 108
+        },
+        {
+          "caller": "compute_segment_counts_for_project",
+          "callee": "EvaluationContext",
+          "lineNumber": 109
+        },
+        {
+          "caller": "compute_segment_counts_for_project",
+          "callee": "translate_segment",
+          "lineNumber": 114
+        },
+        {
+          "caller": "compute_segment_counts_for_project",
+          "callee": "map_segment_to_segment_context",
+          "lineNumber": 115
+        },
+        {
+          "caller": "compute_segment_counts_for_project",
+          "callee": "map_segment_to_engine",
+          "lineNumber": 115
+        },
+        {
+          "caller": "compute_segment_counts_for_project",
+          "callee": "logger.error",
+          "lineNumber": 119
+        },
+        {
+          "caller": "compute_segment_counts_for_project",
+          "callee": "select_clauses.append",
+          "lineNumber": 126
+        },
+        {
+          "caller": "compute_segment_counts_for_project",
+          "callee": "\"\\nUNION ALL\\n\".join",
+          "lineNumber": 137
+        },
+        {
+          "caller": "compute_segment_counts_for_project",
+          "callee": "cursor.execute",
+          "lineNumber": 138
+        },
+        {
+          "caller": "compute_segment_counts_for_project",
+          "callee": "tuple",
+          "lineNumber": 138
+        },
+        {
+          "caller": "compute_segment_counts_for_project",
+          "callee": "cursor.fetchall",
+          "lineNumber": 139
+        },
+        {
+          "caller": "compute_segment_counts_for_project",
+          "callee": "env_id_by_key.get",
+          "lineNumber": 142
+        },
+        {
+          "caller": "compute_segment_counts_for_project",
+          "callee": "str",
+          "lineNumber": 142
+        },
+        {
+          "caller": "compute_segment_counts_for_project",
+          "callee": "membership_counts.append",
+          "lineNumber": 145
+        },
+        {
+          "caller": "compute_segment_counts_for_project",
+          "callee": "SegmentMembershipCount",
+          "lineNumber": 146
+        },
+        {
+          "caller": "compute_segment_counts_for_project",
+          "callee": "int",
+          "lineNumber": 147
+        },
+        {
+          "caller": "compute_segment_counts_for_project",
+          "callee": "int",
+          "lineNumber": 149
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 5,
+        "functionCount": 5,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "segment_membership/tasks.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 190,
+      "nonEmptyLines": 172,
+      "functions": [
+        {
+          "name": "backfill_identities_to_clickhouse",
+          "startLine": 60,
+          "endLine": 116,
+          "params": []
+        },
+        {
+          "name": "refresh_project_segment_counts",
+          "startLine": 124,
+          "endLine": 190,
+          "params": [
+            "project_id"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "backfill_identities_to_clickhouse",
+          "line": 55,
+          "isDefault": false
+        },
+        {
+          "name": "refresh_project_segment_counts",
+          "line": 119,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "backfill_identities_to_clickhouse",
+          "callee": "logger.info",
+          "lineNumber": 67
+        },
+        {
+          "caller": "backfill_identities_to_clickhouse",
+          "callee": "DynamoIdentityWrapper",
+          "lineNumber": 70
+        },
+        {
+          "caller": "backfill_identities_to_clickhouse",
+          "callee": "logger.info",
+          "lineNumber": 72
+        },
+        {
+          "caller": "backfill_identities_to_clickhouse",
+          "callee": "get_projects_to_process",
+          "lineNumber": 75
+        },
+        {
+          "caller": "backfill_identities_to_clickhouse",
+          "callee": "open_clickhouse_cursor",
+          "lineNumber": 81
+        },
+        {
+          "caller": "backfill_identities_to_clickhouse",
+          "callee": "project.environments.all",
+          "lineNumber": 82
+        },
+        {
+          "caller": "backfill_identities_to_clickhouse",
+          "callee": "flagsmith_segment_membership_backfill_duration_seconds.time",
+          "lineNumber": 86
+        },
+        {
+          "caller": "backfill_identities_to_clickhouse",
+          "callee": "batched",
+          "lineNumber": 87
+        },
+        {
+          "caller": "backfill_identities_to_clickhouse",
+          "callee": "wrapper.iter_all_items_paginated",
+          "lineNumber": 88
+        },
+        {
+          "caller": "backfill_identities_to_clickhouse",
+          "callee": "map_identity_document_to_clickhouse_row",
+          "lineNumber": 92
+        },
+        {
+          "caller": "backfill_identities_to_clickhouse",
+          "callee": "cast",
+          "lineNumber": 93
+        },
+        {
+          "caller": "backfill_identities_to_clickhouse",
+          "callee": "cursor.executemany",
+          "lineNumber": 100
+        },
+        {
+          "caller": "backfill_identities_to_clickhouse",
+          "callee": "len",
+          "lineNumber": 101
+        },
+        {
+          "caller": "backfill_identities_to_clickhouse",
+          "callee": "logger.exception",
+          "lineNumber": 103
+        },
+        {
+          "caller": "backfill_identities_to_clickhouse",
+          "callee": "flagsmith_segment_membership_backfill_identities_total.inc",
+          "lineNumber": 109
+        },
+        {
+          "caller": "backfill_identities_to_clickhouse",
+          "callee": "logger.info",
+          "lineNumber": 110
+        },
+        {
+          "caller": "backfill_identities_to_clickhouse",
+          "callee": "refresh_project_segment_counts.delay",
+          "lineNumber": 116
+        },
+        {
+          "caller": "refresh_project_segment_counts",
+          "callee": "logger.info",
+          "lineNumber": 129
+        },
+        {
+          "caller": "refresh_project_segment_counts",
+          "callee": "Project.objects.select_related(\"organisation\").get",
+          "lineNumber": 136
+        },
+        {
+          "caller": "refresh_project_segment_counts",
+          "callee": "Project.objects.select_related",
+          "lineNumber": 136
+        },
+        {
+          "caller": "refresh_project_segment_counts",
+          "callee": "is_membership_enabled",
+          "lineNumber": 137
+        },
+        {
+          "caller": "refresh_project_segment_counts",
+          "callee": "logger.info",
+          "lineNumber": 138
+        },
+        {
+          "caller": "refresh_project_segment_counts",
+          "callee": "flagsmith_segment_membership_refresh_duration_seconds.time",
+          "lineNumber": 151
+        },
+        {
+          "caller": "refresh_project_segment_counts",
+          "callee": "open_clickhouse_cursor",
+          "lineNumber": 152
+        },
+        {
+          "caller": "refresh_project_segment_counts",
+          "callee": "compute_segment_counts_for_project",
+          "lineNumber": 155
+        },
+        {
+          "caller": "refresh_project_segment_counts",
+          "callee": "flagsmith_segment_membership_refresh_failures_total.inc",
+          "lineNumber": 157
+        },
+        {
+          "caller": "refresh_project_segment_counts",
+          "callee": "logger.exception",
+          "lineNumber": 158
+        },
+        {
+          "caller": "refresh_project_segment_counts",
+          "callee": "timezone.now",
+          "lineNumber": 161
+        },
+        {
+          "caller": "refresh_project_segment_counts",
+          "callee": "SegmentMembershipCount.objects.filter(\n                    segment__project=project\n                ).values_list",
+          "lineNumber": 169
+        },
+        {
+          "caller": "refresh_project_segment_counts",
+          "callee": "SegmentMembershipCount.objects.filter",
+          "lineNumber": 169
+        },
+        {
+          "caller": "refresh_project_segment_counts",
+          "callee": "SegmentMembershipCount.objects.filter(\n            id__in=stale_ids,\n        ).delete",
+          "lineNumber": 175
+        },
+        {
+          "caller": "refresh_project_segment_counts",
+          "callee": "SegmentMembershipCount.objects.filter",
+          "lineNumber": 175
+        },
+        {
+          "caller": "refresh_project_segment_counts",
+          "callee": "SegmentMembershipCount.objects.bulk_create",
+          "lineNumber": 179
+        },
+        {
+          "caller": "refresh_project_segment_counts",
+          "callee": "logger.info",
+          "lineNumber": 185
+        },
+        {
+          "caller": "refresh_project_segment_counts",
+          "callee": "len",
+          "lineNumber": 188
+        }
+      ],
+      "metrics": {
+        "importCount": 6,
+        "exportCount": 2,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "segments/admin.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 29,
+      "nonEmptyLines": 18,
+      "classes": [
+        {
+          "name": "RulesInline",
+          "startLine": 7,
+          "endLine": 10,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "ConditionsInline",
+          "startLine": 13,
+          "endLine": 16,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "SegmentAdmin",
+          "startLine": 19,
+          "endLine": 20,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "SegmentRuleAdmin",
+          "startLine": 23,
+          "endLine": 24,
+          "methods": [],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "RulesInline",
+          "line": 7,
+          "isDefault": false
+        },
+        {
+          "name": "ConditionsInline",
+          "line": 13,
+          "isDefault": false
+        },
+        {
+          "name": "SegmentAdmin",
+          "line": 19,
+          "isDefault": false
+        },
+        {
+          "name": "SegmentRuleAdmin",
+          "line": 23,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 4,
+        "functionCount": 0,
+        "classCount": 4
+      }
+    },
+    {
+      "path": "segments/models.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 336,
+      "nonEmptyLines": 267,
+      "classes": [
+        {
+          "name": "SegmentManager",
+          "startLine": 38,
+          "endLine": 39,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "LiveSegmentManager",
+          "startLine": 42,
+          "endLine": 48,
+          "methods": [
+            "get_queryset"
+          ],
+          "properties": []
+        },
+        {
+          "name": "ConfiguredOrderManager",
+          "startLine": 51,
+          "endLine": 69,
+          "methods": [
+            "__init__",
+            "get_queryset"
+          ],
+          "properties": [
+            "setting_name"
+          ]
+        },
+        {
+          "name": "SegmentRuleManager",
+          "startLine": 72,
+          "endLine": 73,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "SegmentConditionManager",
+          "startLine": 76,
+          "endLine": 77,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "Segment",
+          "startLine": 80,
+          "endLine": 198,
+          "methods": [
+            "__str__",
+            "get_skip_create_audit_log",
+            "set_version_of_to_self_if_none",
+            "clone",
+            "copy_rules_and_conditions_from",
+            "get_create_log_message",
+            "get_update_log_message",
+            "get_delete_log_message",
+            "_get_project"
+          ],
+          "properties": []
+        },
+        {
+          "name": "SegmentRule",
+          "startLine": 201,
+          "endLine": 248,
+          "methods": [
+            "__str__",
+            "clean",
+            "_validate_one_parent",
+            "get_skip_create_audit_log"
+          ],
+          "properties": [
+            "objects"
+          ]
+        },
+        {
+          "name": "Condition",
+          "startLine": 251,
+          "endLine": 320,
+          "methods": [
+            "__str__",
+            "get_skip_create_audit_log",
+            "get_update_log_message",
+            "get_create_log_message",
+            "get_delete_log_message",
+            "get_audit_log_related_object_id"
+          ],
+          "properties": [
+            "objects"
+          ]
+        },
+        {
+          "name": "WhitelistedSegment",
+          "startLine": 323,
+          "endLine": 336,
+          "methods": [],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "SegmentManager",
+          "line": 38,
+          "isDefault": false
+        },
+        {
+          "name": "LiveSegmentManager",
+          "line": 42,
+          "isDefault": false
+        },
+        {
+          "name": "ConfiguredOrderManager",
+          "line": 51,
+          "isDefault": false
+        },
+        {
+          "name": "SegmentRuleManager",
+          "line": 72,
+          "isDefault": false
+        },
+        {
+          "name": "SegmentConditionManager",
+          "line": 76,
+          "isDefault": false
+        },
+        {
+          "name": "Segment",
+          "line": 80,
+          "isDefault": false
+        },
+        {
+          "name": "SegmentRule",
+          "line": 201,
+          "isDefault": false
+        },
+        {
+          "name": "Condition",
+          "line": 251,
+          "isDefault": false
+        },
+        {
+          "name": "WhitelistedSegment",
+          "line": 323,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "get_queryset",
+          "callee": "super().get_queryset().filter",
+          "lineNumber": 48
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "super().get_queryset",
+          "lineNumber": 48
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "super",
+          "lineNumber": 48
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "models.F",
+          "lineNumber": 48
+        },
+        {
+          "caller": "__init__",
+          "callee": "super().__init__",
+          "lineNumber": 55
+        },
+        {
+          "caller": "__init__",
+          "callee": "super",
+          "lineNumber": 55
+        },
+        {
+          "caller": "__init__",
+          "callee": "getattr",
+          "lineNumber": 56
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "super().get_queryset().order_by",
+          "lineNumber": 66
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "super().get_queryset",
+          "lineNumber": 66
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "super",
+          "lineNumber": 66
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "super().get_queryset",
+          "lineNumber": 68
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "super",
+          "lineNumber": 68
+        },
+        {
+          "caller": "get_skip_create_audit_log",
+          "callee": "bool",
+          "lineNumber": 139
+        },
+        {
+          "caller": "set_version_of_to_self_if_none",
+          "callee": "self.save_without_historical_record",
+          "lineNumber": 149
+        },
+        {
+          "caller": "clone",
+          "callee": "deepcopy",
+          "lineNumber": 156
+        },
+        {
+          "caller": "clone",
+          "callee": "uuid.uuid4",
+          "lineNumber": 158
+        },
+        {
+          "caller": "clone",
+          "callee": "extra_attrs.items",
+          "lineNumber": 161
+        },
+        {
+          "caller": "clone",
+          "callee": "setattr",
+          "lineNumber": 162
+        },
+        {
+          "caller": "clone",
+          "callee": "cloned_segment.save",
+          "lineNumber": 163
+        },
+        {
+          "caller": "clone",
+          "callee": "cloned_segment.copy_rules_and_conditions_from",
+          "lineNumber": 165
+        },
+        {
+          "caller": "clone",
+          "callee": "extra_attrs.get",
+          "lineNumber": 169
+        },
+        {
+          "caller": "clone",
+          "callee": "Segment.objects.filter(pk=cloned_segment.pk).update",
+          "lineNumber": 171
+        },
+        {
+          "caller": "clone",
+          "callee": "Segment.objects.filter",
+          "lineNumber": 171
+        },
+        {
+          "caller": "clone",
+          "callee": "Segment.objects.filter(pk=self.pk).update",
+          "lineNumber": 179
+        },
+        {
+          "caller": "clone",
+          "callee": "Segment.objects.filter",
+          "lineNumber": 179
+        },
+        {
+          "caller": "copy_rules_and_conditions_from",
+          "callee": "copy_segment_rules_and_conditions",
+          "lineNumber": 184
+        },
+        {
+          "caller": "__str__",
+          "callee": "str",
+          "lineNumber": 230
+        },
+        {
+          "caller": "__str__",
+          "callee": "str",
+          "lineNumber": 230
+        },
+        {
+          "caller": "clean",
+          "callee": "super().clean",
+          "lineNumber": 234
+        },
+        {
+          "caller": "clean",
+          "callee": "super",
+          "lineNumber": 234
+        },
+        {
+          "caller": "clean",
+          "callee": "self._validate_one_parent",
+          "lineNumber": 235
+        },
+        {
+          "caller": "_validate_one_parent",
+          "callee": "sum",
+          "lineNumber": 239
+        },
+        {
+          "caller": "_validate_one_parent",
+          "callee": "ValidationError",
+          "lineNumber": 240
+        },
+        {
+          "caller": "__str__",
+          "callee": "str",
+          "lineNumber": 298
+        },
+        {
+          "caller": "get_audit_log_related_object_id",
+          "callee": "NotImplementedError",
+          "lineNumber": 320
+        }
+      ],
+      "metrics": {
+        "importCount": 6,
+        "exportCount": 9,
+        "functionCount": 0,
+        "classCount": 9
+      }
+    },
+    {
+      "path": "segments/permissions.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 41,
+      "nonEmptyLines": 32,
+      "classes": [
+        {
+          "name": "SegmentPermissions",
+          "startLine": 10,
+          "endLine": 41,
+          "methods": [
+            "has_permission",
+            "has_object_permission"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "SegmentPermissions",
+          "line": 10,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "has_permission",
+          "callee": "super().has_permission",
+          "lineNumber": 12
+        },
+        {
+          "caller": "has_permission",
+          "callee": "super",
+          "lineNumber": 12
+        },
+        {
+          "caller": "has_permission",
+          "callee": "view.kwargs.get",
+          "lineNumber": 15
+        },
+        {
+          "caller": "has_permission",
+          "callee": "Project.objects.select_related",
+          "lineNumber": 19
+        },
+        {
+          "caller": "has_permission",
+          "callee": "projects.get",
+          "lineNumber": 21
+        },
+        {
+          "caller": "has_permission",
+          "callee": "request.user.has_project_permission",
+          "lineNumber": 25
+        },
+        {
+          "caller": "has_permission",
+          "callee": "request.user.has_project_permission",
+          "lineNumber": 28
+        },
+        {
+          "caller": "has_object_permission",
+          "callee": "request.user.has_project_permission",
+          "lineNumber": 38
+        },
+        {
+          "caller": "has_object_permission",
+          "callee": "request.user.has_project_permission",
+          "lineNumber": 40
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "segments/serializers.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 248,
+      "nonEmptyLines": 208,
+      "classes": [
+        {
+          "name": "SegmentMembershipCountSerializer",
+          "startLine": 22,
+          "endLine": 28,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "ConditionSerializer",
+          "startLine": 31,
+          "endLine": 51,
+          "methods": [
+            "to_internal_value"
+          ],
+          "properties": []
+        },
+        {
+          "name": "_BaseSegmentRuleSerializer",
+          "startLine": 54,
+          "endLine": 62,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "_NestedSegmentRuleSerializer",
+          "startLine": 65,
+          "endLine": 73,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "SegmentRuleSerializer",
+          "startLine": 76,
+          "endLine": 90,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "SegmentSerializer",
+          "startLine": 93,
+          "endLine": 224,
+          "methods": [
+            "__init__",
+            "validate",
+            "create",
+            "update",
+            "_get_rules_and_conditions_without_deleted",
+            "_validate_project_segment_limit",
+            "_validate_segment_rules_conditions_limit"
+          ],
+          "properties": []
+        },
+        {
+          "name": "SegmentSerializerBasic",
+          "startLine": 227,
+          "endLine": 230,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "SegmentListQuerySerializer",
+          "startLine": 233,
+          "endLine": 242,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "CloneSegmentSerializer",
+          "startLine": 245,
+          "endLine": 248,
+          "methods": [],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "SegmentMembershipCountSerializer",
+          "line": 22,
+          "isDefault": false
+        },
+        {
+          "name": "ConditionSerializer",
+          "line": 31,
+          "isDefault": false
+        },
+        {
+          "name": "_BaseSegmentRuleSerializer",
+          "line": 54,
+          "isDefault": false
+        },
+        {
+          "name": "_NestedSegmentRuleSerializer",
+          "line": 65,
+          "isDefault": false
+        },
+        {
+          "name": "SegmentRuleSerializer",
+          "line": 76,
+          "isDefault": false
+        },
+        {
+          "name": "SegmentSerializer",
+          "line": 93,
+          "isDefault": false
+        },
+        {
+          "name": "SegmentSerializerBasic",
+          "line": 227,
+          "isDefault": false
+        },
+        {
+          "name": "SegmentListQuerySerializer",
+          "line": 233,
+          "isDefault": false
+        },
+        {
+          "name": "CloneSegmentSerializer",
+          "line": 245,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "to_internal_value",
+          "callee": "str",
+          "lineNumber": 50
+        },
+        {
+          "caller": "to_internal_value",
+          "callee": "super().to_internal_value",
+          "lineNumber": 51
+        },
+        {
+          "caller": "to_internal_value",
+          "callee": "super",
+          "lineNumber": 51
+        },
+        {
+          "caller": "__init__",
+          "callee": "kwargs.get",
+          "lineNumber": 104
+        },
+        {
+          "caller": "__init__",
+          "callee": "self._get_rules_and_conditions_without_deleted",
+          "lineNumber": 106
+        },
+        {
+          "caller": "__init__",
+          "callee": "super().__init__",
+          "lineNumber": 111
+        },
+        {
+          "caller": "__init__",
+          "callee": "super",
+          "lineNumber": 111
+        },
+        {
+          "caller": "validate",
+          "callee": "super().validate",
+          "lineNumber": 132
+        },
+        {
+          "caller": "validate",
+          "callee": "super",
+          "lineNumber": 132
+        },
+        {
+          "caller": "validate",
+          "callee": "attrs.get",
+          "lineNumber": 133
+        },
+        {
+          "caller": "validate",
+          "callee": "Project.objects.get",
+          "lineNumber": 137
+        },
+        {
+          "caller": "validate",
+          "callee": "self._validate_required_metadata",
+          "lineNumber": 140
+        },
+        {
+          "caller": "validate",
+          "callee": "self._validate_segment_rules_conditions_limit",
+          "lineNumber": 141
+        },
+        {
+          "caller": "validate",
+          "callee": "self._validate_project_segment_limit",
+          "lineNumber": 142
+        },
+        {
+          "caller": "create",
+          "callee": "validated_data.pop",
+          "lineNumber": 146
+        },
+        {
+          "caller": "create",
+          "callee": "super().create",
+          "lineNumber": 147
+        },
+        {
+          "caller": "create",
+          "callee": "super",
+          "lineNumber": 147
+        },
+        {
+          "caller": "create",
+          "callee": "self._update_metadata",
+          "lineNumber": 148
+        },
+        {
+          "caller": "create",
+          "callee": "enqueue_membership_refresh",
+          "lineNumber": 149
+        },
+        {
+          "caller": "update",
+          "callee": "validated_data.pop",
+          "lineNumber": 153
+        },
+        {
+          "caller": "update",
+          "callee": "transaction.atomic",
+          "lineNumber": 154
+        },
+        {
+          "caller": "update",
+          "callee": "segment.clone",
+          "lineNumber": 156
+        },
+        {
+          "caller": "update",
+          "callee": "logger.info",
+          "lineNumber": 157
+        },
+        {
+          "caller": "update",
+          "callee": "super().update",
+          "lineNumber": 162
+        },
+        {
+          "caller": "update",
+          "callee": "super",
+          "lineNumber": 162
+        },
+        {
+          "caller": "update",
+          "callee": "self._update_metadata",
+          "lineNumber": 163
+        },
+        {
+          "caller": "update",
+          "callee": "enqueue_membership_refresh",
+          "lineNumber": 164
+        },
+        {
+          "caller": "_get_rules_and_conditions_without_deleted",
+          "callee": "rule_data.get",
+          "lineNumber": 185
+        },
+        {
+          "caller": "_get_rules_and_conditions_without_deleted",
+          "callee": "condition_data.get",
+          "lineNumber": 186
+        },
+        {
+          "caller": "_get_rules_and_conditions_without_deleted",
+          "callee": "self._get_rules_and_conditions_without_deleted",
+          "lineNumber": 188
+        },
+        {
+          "caller": "_get_rules_and_conditions_without_deleted",
+          "callee": "rule_data.get",
+          "lineNumber": 189
+        },
+        {
+          "caller": "_get_rules_and_conditions_without_deleted",
+          "callee": "rule_data.get",
+          "lineNumber": 193
+        },
+        {
+          "caller": "_validate_project_segment_limit",
+          "callee": "is_edge_enabled",
+          "lineNumber": 197
+        },
+        {
+          "caller": "_validate_project_segment_limit",
+          "callee": "Segment.live_objects.filter(project=project).count",
+          "lineNumber": 199
+        },
+        {
+          "caller": "_validate_project_segment_limit",
+          "callee": "Segment.live_objects.filter",
+          "lineNumber": 199
+        },
+        {
+          "caller": "_validate_project_segment_limit",
+          "callee": "ValidationError",
+          "lineNumber": 201
+        },
+        {
+          "caller": "_validate_segment_rules_conditions_limit",
+          "callee": "getattr",
+          "lineNumber": 208
+        },
+        {
+          "caller": "_count_conditions",
+          "callee": "sum",
+          "lineNumber": 212
+        },
+        {
+          "caller": "_count_conditions",
+          "callee": "len",
+          "lineNumber": 213
+        },
+        {
+          "caller": "_count_conditions",
+          "callee": "rule.get",
+          "lineNumber": 213
+        },
+        {
+          "caller": "_count_conditions",
+          "callee": "_count_conditions",
+          "lineNumber": 214
+        },
+        {
+          "caller": "_count_conditions",
+          "callee": "rule.get",
+          "lineNumber": 214
+        },
+        {
+          "caller": "_validate_segment_rules_conditions_limit",
+          "callee": "_count_conditions",
+          "lineNumber": 218
+        },
+        {
+          "caller": "_validate_segment_rules_conditions_limit",
+          "callee": "ValidationError",
+          "lineNumber": 220
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 9,
+        "functionCount": 0,
+        "classCount": 9
+      }
+    },
+    {
+      "path": "segments/services.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 160,
+      "nonEmptyLines": 129,
+      "functions": [
+        {
+          "name": "delete_segment",
+          "startLine": 13,
+          "endLine": 79,
+          "params": [
+            "segment",
+            "author"
+          ]
+        },
+        {
+          "name": "copy_segment_rules_and_conditions",
+          "startLine": 82,
+          "endLine": 160,
+          "params": [
+            "target_segment",
+            "source_segment"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "delete_segment",
+          "line": 13,
+          "isDefault": false
+        },
+        {
+          "name": "copy_segment_rules_and_conditions",
+          "line": 82,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "delete_segment",
+          "callee": "timezone.now",
+          "lineNumber": 30
+        },
+        {
+          "caller": "delete_segment",
+          "callee": "str",
+          "lineNumber": 33
+        },
+        {
+          "caller": "delete_segment",
+          "callee": "list",
+          "lineNumber": 37
+        },
+        {
+          "caller": "delete_segment",
+          "callee": "Segment.objects.filter(\n            models.Q(id=segment.id) | models.Q(version_of_id=segment.id)\n        ).values_list",
+          "lineNumber": 38
+        },
+        {
+          "caller": "delete_segment",
+          "callee": "Segment.objects.filter",
+          "lineNumber": 38
+        },
+        {
+          "caller": "delete_segment",
+          "callee": "models.Q",
+          "lineNumber": 39
+        },
+        {
+          "caller": "delete_segment",
+          "callee": "models.Q",
+          "lineNumber": 39
+        },
+        {
+          "caller": "delete_segment",
+          "callee": "list",
+          "lineNumber": 43
+        },
+        {
+          "caller": "delete_segment",
+          "callee": "SegmentRule.objects.filter(segment_id__in=segment_ids).values_list",
+          "lineNumber": 44
+        },
+        {
+          "caller": "delete_segment",
+          "callee": "SegmentRule.objects.filter",
+          "lineNumber": 44
+        },
+        {
+          "caller": "delete_segment",
+          "callee": "set",
+          "lineNumber": 49
+        },
+        {
+          "caller": "delete_segment",
+          "callee": "list",
+          "lineNumber": 53
+        },
+        {
+          "caller": "delete_segment",
+          "callee": "SegmentRule.objects.filter(rule_id__in=current_level_ids).values_list",
+          "lineNumber": 54
+        },
+        {
+          "caller": "delete_segment",
+          "callee": "SegmentRule.objects.filter",
+          "lineNumber": 54
+        },
+        {
+          "caller": "delete_segment",
+          "callee": "all_rule_ids.update",
+          "lineNumber": 58
+        },
+        {
+          "caller": "delete_segment",
+          "callee": "list",
+          "lineNumber": 61
+        },
+        {
+          "caller": "delete_segment",
+          "callee": "transaction.atomic",
+          "lineNumber": 63
+        },
+        {
+          "caller": "delete_segment",
+          "callee": "FeatureSegment.objects.filter(segment_id__in=segment_ids).delete",
+          "lineNumber": 64
+        },
+        {
+          "caller": "delete_segment",
+          "callee": "FeatureSegment.objects.filter",
+          "lineNumber": 64
+        },
+        {
+          "caller": "delete_segment",
+          "callee": "Condition.objects.filter(rule_id__in=all_rule_ids_list).update",
+          "lineNumber": 65
+        },
+        {
+          "caller": "delete_segment",
+          "callee": "Condition.objects.filter",
+          "lineNumber": 65
+        },
+        {
+          "caller": "delete_segment",
+          "callee": "SegmentRule.objects.filter(id__in=all_rule_ids_list).update",
+          "lineNumber": 66
+        },
+        {
+          "caller": "delete_segment",
+          "callee": "SegmentRule.objects.filter",
+          "lineNumber": 66
+        },
+        {
+          "caller": "delete_segment",
+          "callee": "Segment.objects.filter(id__in=segment_ids).update",
+          "lineNumber": 67
+        },
+        {
+          "caller": "delete_segment",
+          "callee": "Segment.objects.filter",
+          "lineNumber": 67
+        },
+        {
+          "caller": "delete_segment",
+          "callee": "create_segment_deleted_audit_log.delay",
+          "lineNumber": 69
+        },
+        {
+          "caller": "delete_segment",
+          "callee": "now.isoformat",
+          "lineNumber": 77
+        },
+        {
+          "caller": "copy_segment_rules_and_conditions",
+          "callee": "transaction.get_connection",
+          "lineNumber": 94
+        },
+        {
+          "caller": "copy_segment_rules_and_conditions",
+          "callee": "SegmentRule.objects.filter(segment=target_segment).delete",
+          "lineNumber": 96
+        },
+        {
+          "caller": "copy_segment_rules_and_conditions",
+          "callee": "SegmentRule.objects.filter",
+          "lineNumber": 96
+        },
+        {
+          "caller": "copy_segment_rules_and_conditions",
+          "callee": "list",
+          "lineNumber": 98
+        },
+        {
+          "caller": "copy_segment_rules_and_conditions",
+          "callee": "SegmentRule.objects.filter",
+          "lineNumber": 98
+        },
+        {
+          "caller": "copy_segment_rules_and_conditions",
+          "callee": "SegmentRule",
+          "lineNumber": 105
+        },
+        {
+          "caller": "copy_segment_rules_and_conditions",
+          "callee": "uuid.uuid4",
+          "lineNumber": 106
+        },
+        {
+          "caller": "copy_segment_rules_and_conditions",
+          "callee": "SegmentRule.objects.bulk_create",
+          "lineNumber": 113
+        },
+        {
+          "caller": "copy_segment_rules_and_conditions",
+          "callee": "zip",
+          "lineNumber": 115
+        },
+        {
+          "caller": "copy_segment_rules_and_conditions",
+          "callee": "list",
+          "lineNumber": 120
+        },
+        {
+          "caller": "copy_segment_rules_and_conditions",
+          "callee": "SegmentRule.objects.filter",
+          "lineNumber": 121
+        },
+        {
+          "caller": "copy_segment_rules_and_conditions",
+          "callee": "cloned_nested.append",
+          "lineNumber": 126
+        },
+        {
+          "caller": "copy_segment_rules_and_conditions",
+          "callee": "SegmentRule",
+          "lineNumber": 127
+        },
+        {
+          "caller": "copy_segment_rules_and_conditions",
+          "callee": "uuid.uuid4",
+          "lineNumber": 128
+        },
+        {
+          "caller": "copy_segment_rules_and_conditions",
+          "callee": "SegmentRule.objects.bulk_create",
+          "lineNumber": 136
+        },
+        {
+          "caller": "copy_segment_rules_and_conditions",
+          "callee": "zip",
+          "lineNumber": 138
+        },
+        {
+          "caller": "copy_segment_rules_and_conditions",
+          "callee": "list",
+          "lineNumber": 143
+        },
+        {
+          "caller": "copy_segment_rules_and_conditions",
+          "callee": "Condition.objects.filter",
+          "lineNumber": 144
+        },
+        {
+          "caller": "copy_segment_rules_and_conditions",
+          "callee": "rule_id_to_cloned_rule.keys",
+          "lineNumber": 144
+        },
+        {
+          "caller": "copy_segment_rules_and_conditions",
+          "callee": "Condition.objects.bulk_create",
+          "lineNumber": 147
+        },
+        {
+          "caller": "copy_segment_rules_and_conditions",
+          "callee": "Condition",
+          "lineNumber": 149
+        },
+        {
+          "caller": "copy_segment_rules_and_conditions",
+          "callee": "uuid.uuid4",
+          "lineNumber": 150
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "segments/urls.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 10,
+      "nonEmptyLines": 6,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "segments/views.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 195,
+      "nonEmptyLines": 169,
+      "functions": [
+        {
+          "name": "get_segment_by_uuid",
+          "startLine": 190,
+          "endLine": 195,
+          "params": [
+            "request",
+            "uuid"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "SegmentViewSet",
+          "startLine": 75,
+          "endLine": 185,
+          "methods": [
+            "get_project",
+            "get_queryset",
+            "associated_features",
+            "destroy",
+            "clone"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "SegmentViewSet",
+          "line": 42,
+          "isDefault": false
+        },
+        {
+          "name": "get_segment_by_uuid",
+          "line": 188,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "get_project",
+          "callee": "user.get_permitted_projects",
+          "lineNumber": 82
+        },
+        {
+          "caller": "get_project",
+          "callee": "get_object_or_404",
+          "lineNumber": 83
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "getattr",
+          "lineNumber": 86
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "Segment.objects.none",
+          "lineNumber": 87
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "self.get_project",
+          "lineNumber": 89
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "Segment.live_objects.filter",
+          "lineNumber": 90
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "queryset.prefetch_related",
+          "lineNumber": 95
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "SegmentListQuerySerializer",
+          "lineNumber": 105
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "query_serializer.is_valid",
+          "lineNumber": 106
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "query_serializer.validated_data.get",
+          "lineNumber": 108
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "identity_pk.isdigit",
+          "lineNumber": 110
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "Identity.objects.get",
+          "lineNumber": 111
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "identity.get_segments",
+          "lineNumber": 112
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "EdgeIdentity.dynamo_wrapper.get_segment_ids",
+          "lineNumber": 114
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "queryset.filter",
+          "lineNumber": 115
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "query_serializer.validated_data.get",
+          "lineNumber": 117
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "queryset.filter",
+          "lineNumber": 119
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "queryset.filter",
+          "lineNumber": 125
+        },
+        {
+          "caller": "associated_features",
+          "callee": "self.get_object",
+          "lineNumber": 137
+        },
+        {
+          "caller": "associated_features",
+          "callee": "AssociatedFeaturesQuerySerializer",
+          "lineNumber": 139
+        },
+        {
+          "caller": "associated_features",
+          "callee": "query_serializer.is_valid",
+          "lineNumber": 140
+        },
+        {
+          "caller": "associated_features",
+          "callee": "query_serializer.validated_data.get",
+          "lineNumber": 143
+        },
+        {
+          "caller": "associated_features",
+          "callee": "Environment.objects.get",
+          "lineNumber": 144
+        },
+        {
+          "caller": "associated_features",
+          "callee": "EnvironmentFeatureVersion.objects.get_latest_versions_by_environment_id",
+          "lineNumber": 148
+        },
+        {
+          "caller": "associated_features",
+          "callee": "FeatureState.objects.filter",
+          "lineNumber": 153
+        },
+        {
+          "caller": "associated_features",
+          "callee": "self.paginate_queryset",
+          "lineNumber": 155
+        },
+        {
+          "caller": "associated_features",
+          "callee": "self.get_serializer",
+          "lineNumber": 157
+        },
+        {
+          "caller": "associated_features",
+          "callee": "self.get_paginated_response",
+          "lineNumber": 158
+        },
+        {
+          "caller": "associated_features",
+          "callee": "self.get_serializer",
+          "lineNumber": 160
+        },
+        {
+          "caller": "associated_features",
+          "callee": "Response",
+          "lineNumber": 161
+        },
+        {
+          "caller": "destroy",
+          "callee": "self.get_object",
+          "lineNumber": 164
+        },
+        {
+          "caller": "destroy",
+          "callee": "AuthorData.from_request",
+          "lineNumber": 165
+        },
+        {
+          "caller": "destroy",
+          "callee": "delete_segment",
+          "lineNumber": 166
+        },
+        {
+          "caller": "destroy",
+          "callee": "Response",
+          "lineNumber": 167
+        },
+        {
+          "caller": "clone",
+          "callee": "self.get_object",
+          "lineNumber": 180
+        },
+        {
+          "caller": "clone",
+          "callee": "CloneSegmentSerializer",
+          "lineNumber": 181
+        },
+        {
+          "caller": "clone",
+          "callee": "serializer.is_valid",
+          "lineNumber": 182
+        },
+        {
+          "caller": "clone",
+          "callee": "source_segment.clone",
+          "lineNumber": 183
+        },
+        {
+          "caller": "clone",
+          "callee": "enqueue_membership_refresh",
+          "lineNumber": 184
+        },
+        {
+          "caller": "clone",
+          "callee": "Response",
+          "lineNumber": 185
+        },
+        {
+          "caller": "clone",
+          "callee": "SegmentSerializer",
+          "lineNumber": 185
+        },
+        {
+          "caller": "get_segment_by_uuid",
+          "callee": "request.user.get_permitted_projects",
+          "lineNumber": 191
+        },
+        {
+          "caller": "get_segment_by_uuid",
+          "callee": "Segment.live_objects.filter",
+          "lineNumber": 192
+        },
+        {
+          "caller": "get_segment_by_uuid",
+          "callee": "get_object_or_404",
+          "lineNumber": 193
+        },
+        {
+          "caller": "get_segment_by_uuid",
+          "callee": "SegmentSerializer",
+          "lineNumber": 194
+        },
+        {
+          "caller": "get_segment_by_uuid",
+          "callee": "Response",
+          "lineNumber": 195
+        }
+      ],
+      "metrics": {
+        "importCount": 11,
+        "exportCount": 2,
+        "functionCount": 1,
+        "classCount": 1
+      }
+    }
+  ]
+}

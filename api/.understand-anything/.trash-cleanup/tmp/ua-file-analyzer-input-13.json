@@ -1,0 +1,103 @@
+{
+  "projectRoot": "/Users/wadii/flagsmith-projects/flagsmith/api",
+  "batchFiles": [
+    {
+      "path": "features/import_export/constants.py",
+      "language": "python",
+      "sizeLines": 20,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/import_export/mappers.py",
+      "language": "python",
+      "sizeLines": 15,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/import_export/models.py",
+      "language": "python",
+      "sizeLines": 96,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/import_export/permissions.py",
+      "language": "python",
+      "sizeLines": 64,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/import_export/serializers.py",
+      "language": "python",
+      "sizeLines": 100,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/import_export/services.py",
+      "language": "python",
+      "sizeLines": 79,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/import_export/tasks.py",
+      "language": "python",
+      "sizeLines": 205,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/import_export/types.py",
+      "language": "python",
+      "sizeLines": 19,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/import_export/views.py",
+      "language": "python",
+      "sizeLines": 165,
+      "fileCategory": "code"
+    }
+  ],
+  "batchImportData": {
+    "features/import_export/constants.py": [],
+    "features/import_export/mappers.py": [
+      "features/import_export/types.py",
+      "features/models.py",
+      "projects/models.py"
+    ],
+    "features/import_export/models.py": [
+      "features/import_export/constants.py"
+    ],
+    "features/import_export/permissions.py": [
+      "environments/models.py",
+      "features/import_export/models.py",
+      "projects/models.py"
+    ],
+    "features/import_export/serializers.py": [
+      "features/import_export/constants.py",
+      "features/import_export/models.py",
+      "features/import_export/tasks.py"
+    ],
+    "features/import_export/services.py": [
+      "environments/models.py",
+      "features/import_export/types.py",
+      "features/models.py",
+      "features/multivariate/models.py"
+    ],
+    "features/import_export/tasks.py": [
+      "features/import_export/constants.py",
+      "features/import_export/mappers.py",
+      "features/import_export/models.py",
+      "features/import_export/services.py",
+      "features/import_export/types.py",
+      "features/models.py",
+      "features/versioning/versioning_service.py"
+    ],
+    "features/import_export/types.py": [],
+    "features/import_export/views.py": [
+      "environments/models.py",
+      "features/import_export/constants.py",
+      "features/import_export/models.py",
+      "features/import_export/permissions.py",
+      "features/import_export/serializers.py"
+    ]
+  }
+}

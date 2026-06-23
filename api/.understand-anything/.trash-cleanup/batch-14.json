@@ -1,0 +1,131 @@
+{
+  "nodes": [
+    {
+      "id": "config:.env-ci",
+      "type": "config",
+      "name": ".env-ci",
+      "filePath": ".env-ci",
+      "summary": "Environment variable defaults loaded during continuous-integration test runs for the Flagsmith API.",
+      "tags": ["configuration", "environment", "ci-cd", "testing"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:.env-local",
+      "type": "config",
+      "name": ".env-local",
+      "filePath": ".env-local",
+      "summary": "Environment variable defaults for local development of the Flagsmith API server and database.",
+      "tags": ["configuration", "environment", "development"],
+      "complexity": "simple"
+    },
+    {
+      "id": "pipeline:Makefile",
+      "type": "pipeline",
+      "name": "Makefile",
+      "filePath": "Makefile",
+      "summary": "Build and developer-workflow automation defining 28 targets for installing dependencies, linting, type-checking, running tests, managing Docker services, applying Django migrations, serving the app, and generating OpenAPI SDK and integration client types.",
+      "tags": ["build-system", "infrastructure", "automation", "ci-cd"],
+      "complexity": "moderate",
+      "languageNotes": "Uses .PHONY targets and per-target variable assignments (e.g. OPENAPI_SERVERS) to parameterise OpenAPI generation."
+    },
+    {
+      "id": "pipeline:Procfile",
+      "type": "pipeline",
+      "name": "Procfile",
+      "filePath": "Procfile",
+      "summary": "Process-type declaration defining the release migration step and the gunicorn-served web process for the Flagsmith WSGI application.",
+      "tags": ["deployment", "infrastructure", "process-management", "wsgi"],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "README.md",
+      "summary": "Developer guide for the Flagsmith API covering local setup, testing, metrics, structured logging, feature flags, migrations, typing, and the Django app architecture conventions.",
+      "tags": ["documentation", "entry-point", "development", "guidelines"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:openapi-filter-flagsmith-sdk.yml",
+      "type": "config",
+      "name": "openapi-filter-flagsmith-sdk.yml",
+      "filePath": "openapi-filter-flagsmith-sdk.yml",
+      "summary": "openapi-format filter rules used when generating the published Flagsmith SDK OpenAPI schema, controlling operationIds, inverse tags, and unused-component pruning.",
+      "tags": ["configuration", "api-schema", "openapi", "code-generation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:openapi-filter-grafana.yaml",
+      "type": "config",
+      "name": "openapi-filter-grafana.yaml",
+      "filePath": "openapi-filter-grafana.yaml",
+      "summary": "openapi-format filter rules for trimming the upstream Grafana OpenAPI spec down to the operations needed to generate the Grafana integration client types.",
+      "tags": ["configuration", "api-schema", "openapi", "code-generation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:openapi-filter-launchdarkly.yaml",
+      "type": "config",
+      "name": "openapi-filter-launchdarkly.yaml",
+      "filePath": "openapi-filter-launchdarkly.yaml",
+      "summary": "openapi-format filter rules for trimming the upstream LaunchDarkly OpenAPI spec down to the operations needed to generate the LaunchDarkly integration client types.",
+      "tags": ["configuration", "api-schema", "openapi", "code-generation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:pyproject.toml",
+      "type": "config",
+      "name": "pyproject.toml",
+      "filePath": "pyproject.toml",
+      "summary": "Central Python project manifest declaring dependencies and optional extras and configuring the build backend, uv package sources, Ruff linting/formatting, coverage, pytest, and Mypy strict type checking with Django/DRF stubs.",
+      "tags": ["configuration", "build-system", "dependencies", "tooling"],
+      "complexity": "complex",
+      "languageNotes": "Consolidates tool configuration (ruff, mypy, pytest, coverage, uv) into a single PEP 621 project file with multiple [[tool.mypy.overrides]] tables for per-module type strictness."
+    }
+  ],
+  "edges": [
+    {
+      "source": "pipeline:Makefile",
+      "target": "config:openapi-filter-flagsmith-sdk.yml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "pipeline:Makefile",
+      "target": "config:openapi-filter-grafana.yaml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "pipeline:Makefile",
+      "target": "config:openapi-filter-launchdarkly.yaml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "pipeline:Makefile",
+      "target": "config:pyproject.toml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "document:README.md",
+      "target": "pipeline:Makefile",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:README.md",
+      "target": "config:pyproject.toml",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

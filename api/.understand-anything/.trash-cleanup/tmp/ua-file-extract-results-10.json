@@ -1,0 +1,3467 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 17,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "experimentation/__init__.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 1,
+      "nonEmptyLines": 0,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "experimentation/constants.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 21,
+      "nonEmptyLines": 15,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "experimentation/dataclasses.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 69,
+      "nonEmptyLines": 49,
+      "classes": [
+        {
+          "name": "WarehouseEventStats",
+          "startLine": 9,
+          "endLine": 11,
+          "methods": [],
+          "properties": [
+            "total_events_received",
+            "unique_events_count"
+          ]
+        },
+        {
+          "name": "ExposureBucket",
+          "startLine": 15,
+          "endLine": 19,
+          "methods": [],
+          "properties": [
+            "variant",
+            "bucket",
+            "first_exposed_identities",
+            "quarantined"
+          ]
+        },
+        {
+          "name": "ExposuresTimeseriesPoint",
+          "startLine": 23,
+          "endLine": 25,
+          "methods": [],
+          "properties": [
+            "bucket",
+            "new_identities"
+          ]
+        },
+        {
+          "name": "ExposuresTimeseries",
+          "startLine": 29,
+          "endLine": 31,
+          "methods": [],
+          "properties": [
+            "granularity",
+            "points"
+          ]
+        },
+        {
+          "name": "ExposuresSummary",
+          "startLine": 35,
+          "endLine": 37,
+          "methods": [],
+          "properties": [
+            "excluded_identities",
+            "timeseries"
+          ]
+        },
+        {
+          "name": "MetricSpec",
+          "startLine": 41,
+          "endLine": 45,
+          "methods": [],
+          "properties": [
+            "metric_id",
+            "event",
+            "aggregation",
+            "lower_is_better"
+          ]
+        },
+        {
+          "name": "ResultsAggregates",
+          "startLine": 49,
+          "endLine": 56,
+          "methods": [],
+          "properties": [
+            "specs",
+            "exposure_counts",
+            "metric_stats"
+          ]
+        },
+        {
+          "name": "MetricResult",
+          "startLine": 60,
+          "endLine": 63,
+          "methods": [],
+          "properties": [
+            "metric_id",
+            "variants",
+            "inference"
+          ]
+        },
+        {
+          "name": "ResultsSummary",
+          "startLine": 67,
+          "endLine": 69,
+          "methods": [],
+          "properties": [
+            "srm_p_value",
+            "metrics"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "WarehouseEventStats",
+          "line": 8,
+          "isDefault": false
+        },
+        {
+          "name": "ExposureBucket",
+          "line": 14,
+          "isDefault": false
+        },
+        {
+          "name": "ExposuresTimeseriesPoint",
+          "line": 22,
+          "isDefault": false
+        },
+        {
+          "name": "ExposuresTimeseries",
+          "line": 28,
+          "isDefault": false
+        },
+        {
+          "name": "ExposuresSummary",
+          "line": 34,
+          "isDefault": false
+        },
+        {
+          "name": "MetricSpec",
+          "line": 40,
+          "isDefault": false
+        },
+        {
+          "name": "ResultsAggregates",
+          "line": 48,
+          "isDefault": false
+        },
+        {
+          "name": "MetricResult",
+          "line": 59,
+          "isDefault": false
+        },
+        {
+          "name": "ResultsSummary",
+          "line": 66,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 9,
+        "functionCount": 0,
+        "classCount": 9
+      }
+    },
+    {
+      "path": "experimentation/experiment_urls.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 15,
+      "nonEmptyLines": 10,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "experimentation/ingestion_sync_service.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 30,
+      "nonEmptyLines": 19,
+      "functions": [
+        {
+          "name": "_get_client",
+          "startLine": 15,
+          "endLine": 20,
+          "params": []
+        },
+        {
+          "name": "set_environment_key",
+          "startLine": 23,
+          "endLine": 25,
+          "params": [
+            "environment_api_key"
+          ]
+        },
+        {
+          "name": "delete_environment_key",
+          "startLine": 28,
+          "endLine": 30,
+          "params": [
+            "environment_api_key"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "_get_client",
+          "line": 14,
+          "isDefault": false
+        },
+        {
+          "name": "set_environment_key",
+          "line": 23,
+          "isDefault": false
+        },
+        {
+          "name": "delete_environment_key",
+          "line": 28,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "_get_client",
+          "callee": "RedisCluster.from_url",
+          "lineNumber": 16
+        },
+        {
+          "caller": "set_environment_key",
+          "callee": "_get_client().set",
+          "lineNumber": 25
+        },
+        {
+          "caller": "set_environment_key",
+          "callee": "_get_client",
+          "lineNumber": 25
+        },
+        {
+          "caller": "delete_environment_key",
+          "callee": "_get_client().delete",
+          "lineNumber": 30
+        },
+        {
+          "caller": "delete_environment_key",
+          "callee": "_get_client",
+          "lineNumber": 30
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 3,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "experimentation/metric_definitions.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 38,
+      "nonEmptyLines": 27,
+      "functions": [
+        {
+          "name": "_validate_v1",
+          "startLine": 14,
+          "endLine": 18,
+          "params": [
+            "definition"
+          ]
+        },
+        {
+          "name": "validate_metric_definition",
+          "startLine": 26,
+          "endLine": 38,
+          "params": [
+            "definition"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "_validate_v1",
+          "line": 14,
+          "isDefault": false
+        },
+        {
+          "name": "validate_metric_definition",
+          "line": 26,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "_validate_v1",
+          "callee": "definition.get",
+          "lineNumber": 15
+        },
+        {
+          "caller": "_validate_v1",
+          "callee": "isinstance",
+          "lineNumber": 16
+        },
+        {
+          "caller": "validate_metric_definition",
+          "callee": "isinstance",
+          "lineNumber": 28
+        },
+        {
+          "caller": "validate_metric_definition",
+          "callee": "definition.get",
+          "lineNumber": 31
+        },
+        {
+          "caller": "validate_metric_definition",
+          "callee": "METRIC_DEFINITION_VALIDATORS.get",
+          "lineNumber": 33
+        },
+        {
+          "caller": "validate_metric_definition",
+          "callee": "isinstance",
+          "lineNumber": 33
+        },
+        {
+          "caller": "validate_metric_definition",
+          "callee": "validator",
+          "lineNumber": 38
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "experimentation/metric_urls.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 10,
+      "nonEmptyLines": 6,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "experimentation/models.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 271,
+      "nonEmptyLines": 223,
+      "classes": [
+        {
+          "name": "WarehouseType",
+          "startLine": 29,
+          "endLine": 32,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "WarehouseConnectionStatus",
+          "startLine": 35,
+          "endLine": 39,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "WarehouseConnection",
+          "startLine": 42,
+          "endLine": 90,
+          "methods": [
+            "sync_to_ingestion_on_create",
+            "sync_to_ingestion_on_delete"
+          ],
+          "properties": [
+            "config",
+            "event_stats"
+          ]
+        },
+        {
+          "name": "ExperimentStatus",
+          "startLine": 93,
+          "endLine": 97,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "Experiment",
+          "startLine": 108,
+          "endLine": 138,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "ExperimentComputation",
+          "startLine": 141,
+          "endLine": 180,
+          "methods": [
+            "is_final",
+            "record_refresh",
+            "record_failure",
+            "record_refresh_request"
+          ],
+          "properties": [
+            "payload"
+          ]
+        },
+        {
+          "name": "ExperimentExposures",
+          "startLine": 183,
+          "endLine": 188,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "ExperimentResults",
+          "startLine": 191,
+          "endLine": 196,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "MetricAggregation",
+          "startLine": 199,
+          "endLine": 203,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "MetricDirection",
+          "startLine": 206,
+          "endLine": 211,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "ExpectedDirection",
+          "startLine": 214,
+          "endLine": 220,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "Metric",
+          "startLine": 223,
+          "endLine": 245,
+          "methods": [],
+          "properties": [
+            "definition"
+          ]
+        },
+        {
+          "name": "ExperimentMetric",
+          "startLine": 248,
+          "endLine": 271,
+          "methods": [],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "WarehouseType",
+          "line": 29,
+          "isDefault": false
+        },
+        {
+          "name": "WarehouseConnectionStatus",
+          "line": 35,
+          "isDefault": false
+        },
+        {
+          "name": "WarehouseConnection",
+          "line": 42,
+          "isDefault": false
+        },
+        {
+          "name": "ExperimentStatus",
+          "line": 93,
+          "isDefault": false
+        },
+        {
+          "name": "Experiment",
+          "line": 108,
+          "isDefault": false
+        },
+        {
+          "name": "ExperimentComputation",
+          "line": 141,
+          "isDefault": false
+        },
+        {
+          "name": "ExperimentExposures",
+          "line": 183,
+          "isDefault": false
+        },
+        {
+          "name": "ExperimentResults",
+          "line": 191,
+          "isDefault": false
+        },
+        {
+          "name": "MetricAggregation",
+          "line": 199,
+          "isDefault": false
+        },
+        {
+          "name": "MetricDirection",
+          "line": 206,
+          "isDefault": false
+        },
+        {
+          "name": "ExpectedDirection",
+          "line": 214,
+          "isDefault": false
+        },
+        {
+          "name": "Metric",
+          "line": 223,
+          "isDefault": false
+        },
+        {
+          "name": "ExperimentMetric",
+          "line": 248,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "sync_to_ingestion_on_create",
+          "callee": "add_environment_key_to_ingestion.delay",
+          "lineNumber": 80
+        },
+        {
+          "caller": "sync_to_ingestion_on_delete",
+          "callee": "delete_environment_key_from_ingestion.delay",
+          "lineNumber": 88
+        },
+        {
+          "caller": "record_refresh",
+          "callee": "asdict",
+          "lineNumber": 169
+        },
+        {
+          "caller": "record_refresh",
+          "callee": "self.save",
+          "lineNumber": 172
+        },
+        {
+          "caller": "record_failure",
+          "callee": "timezone.now",
+          "lineNumber": 175
+        },
+        {
+          "caller": "record_failure",
+          "callee": "self.save",
+          "lineNumber": 176
+        },
+        {
+          "caller": "record_refresh_request",
+          "callee": "timezone.now",
+          "lineNumber": 179
+        },
+        {
+          "caller": "record_refresh_request",
+          "callee": "self.save",
+          "lineNumber": 180
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 13,
+        "functionCount": 0,
+        "classCount": 13
+      }
+    },
+    {
+      "path": "experimentation/permissions.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 46,
+      "nonEmptyLines": 35,
+      "classes": [
+        {
+          "name": "WarehouseConnectionPermission",
+          "startLine": 13,
+          "endLine": 26,
+          "methods": [
+            "has_permission"
+          ],
+          "properties": []
+        },
+        {
+          "name": "ExperimentPermission",
+          "startLine": 29,
+          "endLine": 42,
+          "methods": [
+            "has_permission"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "WarehouseConnectionPermission",
+          "line": 13,
+          "isDefault": false
+        },
+        {
+          "name": "ExperimentPermission",
+          "line": 29,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "has_permission",
+          "callee": "Environment.objects.get",
+          "lineNumber": 16
+        },
+        {
+          "caller": "has_permission",
+          "callee": "view.kwargs.get",
+          "lineNumber": 17
+        },
+        {
+          "caller": "has_permission",
+          "callee": "is_warehouse_feature_enabled",
+          "lineNumber": 22
+        },
+        {
+          "caller": "has_permission",
+          "callee": "user.is_environment_admin",
+          "lineNumber": 26
+        },
+        {
+          "caller": "has_permission",
+          "callee": "Environment.objects.get",
+          "lineNumber": 32
+        },
+        {
+          "caller": "has_permission",
+          "callee": "view.kwargs.get",
+          "lineNumber": 33
+        },
+        {
+          "caller": "has_permission",
+          "callee": "is_experiment_feature_enabled",
+          "lineNumber": 38
+        },
+        {
+          "caller": "has_permission",
+          "callee": "user.is_environment_admin",
+          "lineNumber": 42
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 2,
+        "functionCount": 0,
+        "classCount": 2
+      }
+    },
+    {
+      "path": "experimentation/results_query.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 174,
+      "nonEmptyLines": 148,
+      "classes": [
+        {
+          "name": "_MetricSlot",
+          "startLine": 62,
+          "endLine": 113,
+          "methods": [
+            "_alias",
+            "_condition",
+            "unit_select",
+            "outer_select",
+            "decode"
+          ],
+          "properties": [
+            "spec",
+            "index"
+          ]
+        },
+        {
+          "name": "ResultsQueryBuilder",
+          "startLine": 116,
+          "endLine": 174,
+          "methods": [
+            "__init__",
+            "build_query",
+            "add_metric_params",
+            "decode_rows"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "_MetricSlot",
+          "line": 61,
+          "isDefault": false
+        },
+        {
+          "name": "ResultsQueryBuilder",
+          "line": 116,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "unit_select",
+          "callee": "self._condition",
+          "lineNumber": 87
+        },
+        {
+          "caller": "unit_select",
+          "callee": "ValueError",
+          "lineNumber": 100
+        },
+        {
+          "caller": "decode",
+          "callee": "VariantStats",
+          "lineNumber": 109
+        },
+        {
+          "caller": "decode",
+          "callee": "float",
+          "lineNumber": 111
+        },
+        {
+          "caller": "decode",
+          "callee": "float",
+          "lineNumber": 112
+        },
+        {
+          "caller": "__init__",
+          "callee": "_MetricSlot",
+          "lineNumber": 120
+        },
+        {
+          "caller": "__init__",
+          "callee": "enumerate",
+          "lineNumber": 120
+        },
+        {
+          "caller": "build_query",
+          "callee": "\",\\n        \".join",
+          "lineNumber": 126
+        },
+        {
+          "caller": "build_query",
+          "callee": "s.unit_select",
+          "lineNumber": 126
+        },
+        {
+          "caller": "build_query",
+          "callee": "\",\\n    \".join",
+          "lineNumber": 127
+        },
+        {
+          "caller": "build_query",
+          "callee": "s.outer_select",
+          "lineNumber": 127
+        },
+        {
+          "caller": "decode_rows",
+          "callee": "enumerate",
+          "lineNumber": 163
+        },
+        {
+          "caller": "decode_rows",
+          "callee": "str",
+          "lineNumber": 169
+        },
+        {
+          "caller": "decode_rows",
+          "callee": "int",
+          "lineNumber": 170
+        },
+        {
+          "caller": "decode_rows",
+          "callee": "slot.decode",
+          "lineNumber": 173
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 2,
+        "functionCount": 0,
+        "classCount": 2
+      }
+    },
+    {
+      "path": "experimentation/serializers.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 368,
+      "nonEmptyLines": 311,
+      "classes": [
+        {
+          "name": "WarehouseConnectionSerializer",
+          "startLine": 31,
+          "endLine": 109,
+          "methods": [
+            "validate",
+            "create",
+            "get_total_events_received",
+            "get_unique_events_count",
+            "_generate_name",
+            "_validate_snowflake_config"
+          ],
+          "properties": []
+        },
+        {
+          "name": "MetricSerializer",
+          "startLine": 112,
+          "endLine": 149,
+          "methods": [
+            "get_experiments",
+            "validate_definition"
+          ],
+          "properties": []
+        },
+        {
+          "name": "ExperimentMetricSerializer",
+          "startLine": 152,
+          "endLine": 194,
+          "methods": [
+            "validate"
+          ],
+          "properties": []
+        },
+        {
+          "name": "_EnvironmentScopedMetricField",
+          "startLine": 197,
+          "endLine": 202,
+          "methods": [
+            "get_queryset"
+          ],
+          "properties": []
+        },
+        {
+          "name": "ExperimentMetricInlineSerializer",
+          "startLine": 205,
+          "endLine": 207,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "ExperimentSerializer",
+          "startLine": 210,
+          "endLine": 285,
+          "methods": [
+            "validate_feature",
+            "validate",
+            "_validate_metrics",
+            "create"
+          ],
+          "properties": [
+            "metrics"
+          ]
+        },
+        {
+          "name": "ExperimentFeatureSerializer",
+          "startLine": 288,
+          "endLine": 331,
+          "methods": [
+            "get_multivariate_options"
+          ],
+          "properties": []
+        },
+        {
+          "name": "ExperimentListSerializer",
+          "startLine": 334,
+          "endLine": 340,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "ExperimentExposuresSerializer",
+          "startLine": 343,
+          "endLine": 354,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "ExperimentResultsSerializer",
+          "startLine": 357,
+          "endLine": 368,
+          "methods": [],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "WarehouseConnectionSerializer",
+          "line": 31,
+          "isDefault": false
+        },
+        {
+          "name": "MetricSerializer",
+          "line": 112,
+          "isDefault": false
+        },
+        {
+          "name": "ExperimentMetricSerializer",
+          "line": 152,
+          "isDefault": false
+        },
+        {
+          "name": "_EnvironmentScopedMetricField",
+          "line": 197,
+          "isDefault": false
+        },
+        {
+          "name": "ExperimentMetricInlineSerializer",
+          "line": 205,
+          "isDefault": false
+        },
+        {
+          "name": "ExperimentSerializer",
+          "line": 210,
+          "isDefault": false
+        },
+        {
+          "name": "ExperimentFeatureSerializer",
+          "line": 288,
+          "isDefault": false
+        },
+        {
+          "name": "ExperimentListSerializer",
+          "line": 334,
+          "isDefault": false
+        },
+        {
+          "name": "ExperimentExposuresSerializer",
+          "line": 343,
+          "isDefault": false
+        },
+        {
+          "name": "ExperimentResultsSerializer",
+          "line": 357,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "validate",
+          "callee": "attrs.get",
+          "lineNumber": 52
+        },
+        {
+          "caller": "validate",
+          "callee": "getattr",
+          "lineNumber": 54
+        },
+        {
+          "caller": "validate",
+          "callee": "attrs.get",
+          "lineNumber": 60
+        },
+        {
+          "caller": "validate",
+          "callee": "self._validate_snowflake_config",
+          "lineNumber": 63
+        },
+        {
+          "caller": "validate",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 66
+        },
+        {
+          "caller": "create",
+          "callee": "validated_data.get",
+          "lineNumber": 79
+        },
+        {
+          "caller": "create",
+          "callee": "self._generate_name",
+          "lineNumber": 80
+        },
+        {
+          "caller": "create",
+          "callee": "super().create",
+          "lineNumber": 82
+        },
+        {
+          "caller": "create",
+          "callee": "super",
+          "lineNumber": 82
+        },
+        {
+          "caller": "_generate_name",
+          "callee": "WarehouseType",
+          "lineNumber": 95
+        },
+        {
+          "caller": "_validate_snowflake_config",
+          "callee": "config.get",
+          "lineNumber": 100
+        },
+        {
+          "caller": "_validate_snowflake_config",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 102
+        },
+        {
+          "caller": "get_experiments",
+          "callee": "metric.experiment_metrics.all",
+          "lineNumber": 142
+        },
+        {
+          "caller": "validate_definition",
+          "callee": "validate_metric_definition",
+          "lineNumber": 146
+        },
+        {
+          "caller": "validate_definition",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 148
+        },
+        {
+          "caller": "validate",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 175
+        },
+        {
+          "caller": "validate",
+          "callee": "attrs.get",
+          "lineNumber": 179
+        },
+        {
+          "caller": "validate",
+          "callee": "getattr",
+          "lineNumber": 179
+        },
+        {
+          "caller": "validate",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 182
+        },
+        {
+          "caller": "validate",
+          "callee": "experiment.experiment_metrics.all",
+          "lineNumber": 186
+        },
+        {
+          "caller": "validate",
+          "callee": "isinstance",
+          "lineNumber": 187
+        },
+        {
+          "caller": "validate",
+          "callee": "attached.exclude",
+          "lineNumber": 188
+        },
+        {
+          "caller": "validate",
+          "callee": "attached.filter(metric=metric).exists",
+          "lineNumber": 190
+        },
+        {
+          "caller": "validate",
+          "callee": "attached.filter",
+          "lineNumber": 190
+        },
+        {
+          "caller": "validate",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 191
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "Metric.objects.filter",
+          "lineNumber": 199
+        },
+        {
+          "caller": "validate_feature",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 244
+        },
+        {
+          "caller": "validate_feature",
+          "callee": "self.context.get",
+          "lineNumber": 247
+        },
+        {
+          "caller": "validate_feature",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 249
+        },
+        {
+          "caller": "validate",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 256
+        },
+        {
+          "caller": "validate",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 260
+        },
+        {
+          "caller": "validate",
+          "callee": "self._validate_metrics",
+          "lineNumber": 263
+        },
+        {
+          "caller": "validate",
+          "callee": "attrs.get",
+          "lineNumber": 263
+        },
+        {
+          "caller": "_validate_metrics",
+          "callee": "len",
+          "lineNumber": 268
+        },
+        {
+          "caller": "_validate_metrics",
+          "callee": "len",
+          "lineNumber": 268
+        },
+        {
+          "caller": "_validate_metrics",
+          "callee": "set",
+          "lineNumber": 268
+        },
+        {
+          "caller": "_validate_metrics",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 269
+        },
+        {
+          "caller": "create",
+          "callee": "validated_data.pop",
+          "lineNumber": 274
+        },
+        {
+          "caller": "create",
+          "callee": "transaction.atomic",
+          "lineNumber": 275
+        },
+        {
+          "caller": "create",
+          "callee": "super().create",
+          "lineNumber": 276
+        },
+        {
+          "caller": "create",
+          "callee": "super",
+          "lineNumber": 276
+        },
+        {
+          "caller": "create",
+          "callee": "ExperimentMetric.objects.bulk_create",
+          "lineNumber": 277
+        },
+        {
+          "caller": "create",
+          "callee": "ExperimentMetric",
+          "lineNumber": 278
+        },
+        {
+          "caller": "get_multivariate_options",
+          "callee": "NestedMultivariateFeatureOptionSerializer",
+          "lineNumber": 297
+        },
+        {
+          "caller": "get_multivariate_options",
+          "callee": "feature.multivariate_options.all",
+          "lineNumber": 298
+        },
+        {
+          "caller": "get_multivariate_options",
+          "callee": "self.context.get",
+          "lineNumber": 301
+        },
+        {
+          "caller": "get_multivariate_options",
+          "callee": "ValueError",
+          "lineNumber": 303
+        },
+        {
+          "caller": "get_multivariate_options",
+          "callee": "feature.feature_states.filter(\n                environment=environment,\n                identity__isnull=True,\n                feature_segment__isnull=True,\n            )\n            .order_by(\"-live_from\", \"-version\")\n            .first",
+          "lineNumber": 308
+        },
+        {
+          "caller": "get_multivariate_options",
+          "callee": "feature.feature_states.filter(\n                environment=environment,\n                identity__isnull=True,\n                feature_segment__isnull=True,\n            )\n            .order_by",
+          "lineNumber": 308
+        },
+        {
+          "caller": "get_multivariate_options",
+          "callee": "feature.feature_states.filter",
+          "lineNumber": 308
+        },
+        {
+          "caller": "get_multivariate_options",
+          "callee": "ValueError",
+          "lineNumber": 317
+        },
+        {
+          "caller": "get_multivariate_options",
+          "callee": "dict",
+          "lineNumber": 322
+        },
+        {
+          "caller": "get_multivariate_options",
+          "callee": "env_state.multivariate_feature_state_values.values_list",
+          "lineNumber": 323
+        }
+      ],
+      "metrics": {
+        "importCount": 8,
+        "exportCount": 10,
+        "functionCount": 0,
+        "classCount": 10
+      }
+    },
+    {
+      "path": "experimentation/services.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 568,
+      "nonEmptyLines": 500,
+      "functions": [
+        {
+          "name": "is_warehouse_feature_enabled",
+          "startLine": 70,
+          "endLine": 75,
+          "params": [
+            "organisation"
+          ]
+        },
+        {
+          "name": "is_experiment_feature_enabled",
+          "startLine": 78,
+          "endLine": 83,
+          "params": [
+            "organisation"
+          ]
+        },
+        {
+          "name": "_get_clickhouse_client",
+          "startLine": 87,
+          "endLine": 97,
+          "params": []
+        },
+        {
+          "name": "get_unique_event_names",
+          "startLine": 100,
+          "endLine": 109,
+          "params": [
+            "environment_key"
+          ]
+        },
+        {
+          "name": "get_warehouse_event_stats",
+          "startLine": 112,
+          "endLine": 123,
+          "params": [
+            "environment_key"
+          ]
+        },
+        {
+          "name": "compute_exposures_summary",
+          "startLine": 146,
+          "endLine": 161,
+          "params": [
+            "environment_key",
+            "feature_name",
+            "window_start",
+            "window_end"
+          ]
+        },
+        {
+          "name": "build_exposures_summary",
+          "startLine": 164,
+          "endLine": 177,
+          "params": [
+            "buckets",
+            "granularity"
+          ]
+        },
+        {
+          "name": "_timeseries_points",
+          "startLine": 180,
+          "endLine": 194,
+          "params": [
+            "buckets"
+          ]
+        },
+        {
+          "name": "_select_exposure_granularity",
+          "startLine": 197,
+          "endLine": 203,
+          "params": [
+            "window_start",
+            "window_end"
+          ]
+        },
+        {
+          "name": "get_exposure_buckets",
+          "startLine": 206,
+          "endLine": 234,
+          "params": [
+            "environment_key",
+            "feature_name",
+            "window_start",
+            "window_end",
+            "granularity"
+          ]
+        },
+        {
+          "name": "get_metric_variant_stats",
+          "startLine": 237,
+          "endLine": 268,
+          "params": [
+            "environment_key",
+            "feature_name",
+            "window_start",
+            "window_end",
+            "specs"
+          ]
+        },
+        {
+          "name": "build_results_summary",
+          "startLine": 271,
+          "endLine": 297,
+          "params": [
+            "aggregates",
+            "expected_shares"
+          ]
+        },
+        {
+          "name": "compute_results_summary",
+          "startLine": 300,
+          "endLine": 319,
+          "params": [
+            "experiment",
+            "window_start",
+            "window_end"
+          ]
+        },
+        {
+          "name": "_experiment_metric_specs",
+          "startLine": 322,
+          "endLine": 333,
+          "params": [
+            "experiment"
+          ]
+        },
+        {
+          "name": "_expected_variant_shares",
+          "startLine": 336,
+          "endLine": 389,
+          "params": [
+            "experiment"
+          ]
+        },
+        {
+          "name": "_metric_inference",
+          "startLine": 392,
+          "endLine": 401,
+          "params": [
+            "spec",
+            "variants"
+          ]
+        },
+        {
+          "name": "_infer_treatment",
+          "startLine": 404,
+          "endLine": 427,
+          "params": [
+            "spec",
+            "control",
+            "treatment"
+          ]
+        },
+        {
+          "name": "_resolve_audit_log_author",
+          "startLine": 430,
+          "endLine": 435,
+          "params": [
+            "user"
+          ]
+        },
+        {
+          "name": "create_warehouse_audit_log",
+          "startLine": 438,
+          "endLine": 454,
+          "params": [
+            "connection",
+            "user",
+            "action"
+          ]
+        },
+        {
+          "name": "create_metric_audit_log",
+          "startLine": 457,
+          "endLine": 470,
+          "params": [
+            "metric",
+            "user",
+            "action"
+          ]
+        },
+        {
+          "name": "create_experiment_audit_log",
+          "startLine": 473,
+          "endLine": 489,
+          "params": [
+            "experiment",
+            "user",
+            "action"
+          ]
+        },
+        {
+          "name": "transition_experiment_status",
+          "startLine": 492,
+          "endLine": 512,
+          "params": [
+            "experiment",
+            "target_status",
+            "user"
+          ]
+        },
+        {
+          "name": "mark_warehouse_pending_connection",
+          "startLine": 515,
+          "endLine": 530,
+          "params": [
+            "connection"
+          ]
+        },
+        {
+          "name": "refresh_warehouse_connection_status",
+          "startLine": 533,
+          "endLine": 550,
+          "params": [
+            "connection",
+            "stats"
+          ]
+        },
+        {
+          "name": "annotate_warehouse_event_stats",
+          "startLine": 553,
+          "endLine": 568,
+          "params": [
+            "connection",
+            "environment_key"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "is_warehouse_feature_enabled",
+          "line": 70,
+          "isDefault": false
+        },
+        {
+          "name": "is_experiment_feature_enabled",
+          "line": 78,
+          "isDefault": false
+        },
+        {
+          "name": "_get_clickhouse_client",
+          "line": 86,
+          "isDefault": false
+        },
+        {
+          "name": "get_unique_event_names",
+          "line": 100,
+          "isDefault": false
+        },
+        {
+          "name": "get_warehouse_event_stats",
+          "line": 112,
+          "isDefault": false
+        },
+        {
+          "name": "compute_exposures_summary",
+          "line": 146,
+          "isDefault": false
+        },
+        {
+          "name": "build_exposures_summary",
+          "line": 164,
+          "isDefault": false
+        },
+        {
+          "name": "_timeseries_points",
+          "line": 180,
+          "isDefault": false
+        },
+        {
+          "name": "_select_exposure_granularity",
+          "line": 197,
+          "isDefault": false
+        },
+        {
+          "name": "get_exposure_buckets",
+          "line": 206,
+          "isDefault": false
+        },
+        {
+          "name": "get_metric_variant_stats",
+          "line": 237,
+          "isDefault": false
+        },
+        {
+          "name": "build_results_summary",
+          "line": 271,
+          "isDefault": false
+        },
+        {
+          "name": "compute_results_summary",
+          "line": 300,
+          "isDefault": false
+        },
+        {
+          "name": "_experiment_metric_specs",
+          "line": 322,
+          "isDefault": false
+        },
+        {
+          "name": "_expected_variant_shares",
+          "line": 336,
+          "isDefault": false
+        },
+        {
+          "name": "_metric_inference",
+          "line": 392,
+          "isDefault": false
+        },
+        {
+          "name": "_infer_treatment",
+          "line": 404,
+          "isDefault": false
+        },
+        {
+          "name": "_resolve_audit_log_author",
+          "line": 430,
+          "isDefault": false
+        },
+        {
+          "name": "create_warehouse_audit_log",
+          "line": 438,
+          "isDefault": false
+        },
+        {
+          "name": "create_metric_audit_log",
+          "line": 457,
+          "isDefault": false
+        },
+        {
+          "name": "create_experiment_audit_log",
+          "line": 473,
+          "isDefault": false
+        },
+        {
+          "name": "transition_experiment_status",
+          "line": 492,
+          "isDefault": false
+        },
+        {
+          "name": "mark_warehouse_pending_connection",
+          "line": 515,
+          "isDefault": false
+        },
+        {
+          "name": "refresh_warehouse_connection_status",
+          "line": 533,
+          "isDefault": false
+        },
+        {
+          "name": "annotate_warehouse_event_stats",
+          "line": 553,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "is_warehouse_feature_enabled",
+          "callee": "get_openfeature_client().get_boolean_value",
+          "lineNumber": 71
+        },
+        {
+          "caller": "is_warehouse_feature_enabled",
+          "callee": "get_openfeature_client",
+          "lineNumber": 71
+        },
+        {
+          "caller": "is_experiment_feature_enabled",
+          "callee": "get_openfeature_client().get_boolean_value",
+          "lineNumber": 79
+        },
+        {
+          "caller": "is_experiment_feature_enabled",
+          "callee": "get_openfeature_client",
+          "lineNumber": 79
+        },
+        {
+          "caller": "_get_clickhouse_client",
+          "callee": "parse_url",
+          "lineNumber": 94
+        },
+        {
+          "caller": "_get_clickhouse_client",
+          "callee": "kwargs.setdefault",
+          "lineNumber": 95
+        },
+        {
+          "caller": "_get_clickhouse_client",
+          "callee": "kwargs.setdefault",
+          "lineNumber": 96
+        },
+        {
+          "caller": "_get_clickhouse_client",
+          "callee": "Client",
+          "lineNumber": 97
+        },
+        {
+          "caller": "get_unique_event_names",
+          "callee": "_get_clickhouse_client().execute",
+          "lineNumber": 103
+        },
+        {
+          "caller": "get_unique_event_names",
+          "callee": "_get_clickhouse_client",
+          "lineNumber": 103
+        },
+        {
+          "caller": "get_warehouse_event_stats",
+          "callee": "_get_clickhouse_client().execute",
+          "lineNumber": 114
+        },
+        {
+          "caller": "get_warehouse_event_stats",
+          "callee": "_get_clickhouse_client",
+          "lineNumber": 114
+        },
+        {
+          "caller": "get_warehouse_event_stats",
+          "callee": "WarehouseEventStats",
+          "lineNumber": 120
+        },
+        {
+          "caller": "get_warehouse_event_stats",
+          "callee": "int",
+          "lineNumber": 121
+        },
+        {
+          "caller": "get_warehouse_event_stats",
+          "callee": "int",
+          "lineNumber": 122
+        },
+        {
+          "caller": "compute_exposures_summary",
+          "callee": "_select_exposure_granularity",
+          "lineNumber": 153
+        },
+        {
+          "caller": "compute_exposures_summary",
+          "callee": "get_exposure_buckets",
+          "lineNumber": 154
+        },
+        {
+          "caller": "compute_exposures_summary",
+          "callee": "build_exposures_summary",
+          "lineNumber": 161
+        },
+        {
+          "caller": "build_exposures_summary",
+          "callee": "ExposuresSummary",
+          "lineNumber": 169
+        },
+        {
+          "caller": "build_exposures_summary",
+          "callee": "sum",
+          "lineNumber": 170
+        },
+        {
+          "caller": "build_exposures_summary",
+          "callee": "ExposuresTimeseries",
+          "lineNumber": 173
+        },
+        {
+          "caller": "build_exposures_summary",
+          "callee": "_timeseries_points",
+          "lineNumber": 175
+        },
+        {
+          "caller": "_timeseries_points",
+          "callee": "new_identities_by_bucket.setdefault",
+          "lineNumber": 185
+        },
+        {
+          "caller": "_timeseries_points",
+          "callee": "ExposuresTimeseriesPoint",
+          "lineNumber": 189
+        },
+        {
+          "caller": "_timeseries_points",
+          "callee": "bucket_start.isoformat",
+          "lineNumber": 190
+        },
+        {
+          "caller": "_timeseries_points",
+          "callee": "sorted",
+          "lineNumber": 193
+        },
+        {
+          "caller": "get_exposure_buckets",
+          "callee": "_get_clickhouse_client().execute",
+          "lineNumber": 214
+        },
+        {
+          "caller": "get_exposure_buckets",
+          "callee": "_get_clickhouse_client",
+          "lineNumber": 214
+        },
+        {
+          "caller": "get_exposure_buckets",
+          "callee": "EXPOSURE_BUCKETS_QUERY.format",
+          "lineNumber": 215
+        },
+        {
+          "caller": "get_exposure_buckets",
+          "callee": "ExposureBucket",
+          "lineNumber": 227
+        },
+        {
+          "caller": "get_exposure_buckets",
+          "callee": "int",
+          "lineNumber": 230
+        },
+        {
+          "caller": "get_exposure_buckets",
+          "callee": "bool",
+          "lineNumber": 231
+        },
+        {
+          "caller": "get_metric_variant_stats",
+          "callee": "ResultsQueryBuilder",
+          "lineNumber": 247
+        },
+        {
+          "caller": "get_metric_variant_stats",
+          "callee": "builder.add_metric_params",
+          "lineNumber": 255
+        },
+        {
+          "caller": "get_metric_variant_stats",
+          "callee": "_get_clickhouse_client().execute",
+          "lineNumber": 257
+        },
+        {
+          "caller": "get_metric_variant_stats",
+          "callee": "_get_clickhouse_client",
+          "lineNumber": 257
+        },
+        {
+          "caller": "get_metric_variant_stats",
+          "callee": "builder.build_query",
+          "lineNumber": 258
+        },
+        {
+          "caller": "get_metric_variant_stats",
+          "callee": "builder.decode_rows",
+          "lineNumber": 260
+        },
+        {
+          "caller": "get_metric_variant_stats",
+          "callee": "ResultsAggregates",
+          "lineNumber": 264
+        },
+        {
+          "caller": "get_metric_variant_stats",
+          "callee": "list",
+          "lineNumber": 265
+        },
+        {
+          "caller": "build_results_summary",
+          "callee": "sum",
+          "lineNumber": 277
+        },
+        {
+          "caller": "build_results_summary",
+          "callee": "exposure_counts.values",
+          "lineNumber": 277
+        },
+        {
+          "caller": "build_results_summary",
+          "callee": "srm_p_value",
+          "lineNumber": 279
+        },
+        {
+          "caller": "build_results_summary",
+          "callee": "exposure_counts.get",
+          "lineNumber": 280
+        },
+        {
+          "caller": "build_results_summary",
+          "callee": "list",
+          "lineNumber": 281
+        },
+        {
+          "caller": "build_results_summary",
+          "callee": "expected_shares.values",
+          "lineNumber": 281
+        },
+        {
+          "caller": "build_results_summary",
+          "callee": "ResultsSummary",
+          "lineNumber": 285
+        },
+        {
+          "caller": "build_results_summary",
+          "callee": "MetricResult",
+          "lineNumber": 288
+        },
+        {
+          "caller": "build_results_summary",
+          "callee": "aggregates.metric_stats.get",
+          "lineNumber": 290
+        },
+        {
+          "caller": "build_results_summary",
+          "callee": "_metric_inference",
+          "lineNumber": 291
+        },
+        {
+          "caller": "build_results_summary",
+          "callee": "aggregates.metric_stats.get",
+          "lineNumber": 292
+        },
+        {
+          "caller": "compute_results_summary",
+          "callee": "_experiment_metric_specs",
+          "lineNumber": 308
+        },
+        {
+          "caller": "compute_results_summary",
+          "callee": "get_metric_variant_stats",
+          "lineNumber": 309
+        },
+        {
+          "caller": "compute_results_summary",
+          "callee": "build_results_summary",
+          "lineNumber": 316
+        },
+        {
+          "caller": "compute_results_summary",
+          "callee": "_expected_variant_shares",
+          "lineNumber": 318
+        },
+        {
+          "caller": "_experiment_metric_specs",
+          "callee": "MetricSpec",
+          "lineNumber": 324
+        },
+        {
+          "caller": "_experiment_metric_specs",
+          "callee": "experiment.experiment_metrics.select_related",
+          "lineNumber": 332
+        },
+        {
+          "caller": "_expected_variant_shares",
+          "callee": "FeatureState.objects.get_live_feature_states(\n            environment=experiment.environment,\n            additional_filters=Q(feature_segment__isnull=True, identity__isnull=True),\n            feature_id=experiment.feature_id,\n        )\n        .prefetch_related(\n            \"multivariate_feature_state_values__multivariate_feature_option\"\n        )\n        # Highest id is the current version, matching how Environment selects\n        # active feature states (Max(\"id\")); the default ordering is ascending.\n        .order_by(\"-id\")\n        .first",
+          "lineNumber": 343
+        },
+        {
+          "caller": "_expected_variant_shares",
+          "callee": "FeatureState.objects.get_live_feature_states(\n            environment=experiment.environment,\n            additional_filters=Q(feature_segment__isnull=True, identity__isnull=True),\n            feature_id=experiment.feature_id,\n        )\n        .prefetch_related(\n            \"multivariate_feature_state_values__multivariate_feature_option\"\n        )\n        # Highest id is the current version, matching how Environment selects\n        # active feature states (Max(\"id\")); the default ordering is ascending.\n        .order_by",
+          "lineNumber": 343
+        },
+        {
+          "caller": "_expected_variant_shares",
+          "callee": "FeatureState.objects.get_live_feature_states(\n            environment=experiment.environment,\n            additional_filters=Q(feature_segment__isnull=True, identity__isnull=True),\n            feature_id=experiment.feature_id,\n        )\n        .prefetch_related",
+          "lineNumber": 343
+        },
+        {
+          "caller": "_expected_variant_shares",
+          "callee": "FeatureState.objects.get_live_feature_states",
+          "lineNumber": 343
+        },
+        {
+          "caller": "_expected_variant_shares",
+          "callee": "Q",
+          "lineNumber": 345
+        },
+        {
+          "caller": "_expected_variant_shares",
+          "callee": "feature_state.multivariate_feature_state_values.all",
+          "lineNumber": 361
+        },
+        {
+          "caller": "_expected_variant_shares",
+          "callee": "logger.error",
+          "lineNumber": 367
+        },
+        {
+          "caller": "_expected_variant_shares",
+          "callee": "logger.error",
+          "lineNumber": 381
+        },
+        {
+          "caller": "_metric_inference",
+          "callee": "variants.get",
+          "lineNumber": 396
+        },
+        {
+          "caller": "_metric_inference",
+          "callee": "_infer_treatment",
+          "lineNumber": 398
+        },
+        {
+          "caller": "_metric_inference",
+          "callee": "variants.items",
+          "lineNumber": 399
+        },
+        {
+          "caller": "_infer_treatment",
+          "callee": "compare_to_control",
+          "lineNumber": 422
+        },
+        {
+          "caller": "_infer_treatment",
+          "callee": "replace",
+          "lineNumber": 426
+        },
+        {
+          "caller": "_resolve_audit_log_author",
+          "callee": "getattr",
+          "lineNumber": 433
+        },
+        {
+          "caller": "create_warehouse_audit_log",
+          "callee": "AuditLog.objects.create",
+          "lineNumber": 444
+        },
+        {
+          "caller": "create_warehouse_audit_log",
+          "callee": "_resolve_audit_log_author",
+          "lineNumber": 447
+        },
+        {
+          "caller": "create_metric_audit_log",
+          "callee": "AuditLog.objects.create",
+          "lineNumber": 463
+        },
+        {
+          "caller": "create_metric_audit_log",
+          "callee": "_resolve_audit_log_author",
+          "lineNumber": 466
+        },
+        {
+          "caller": "create_experiment_audit_log",
+          "callee": "AuditLog.objects.create",
+          "lineNumber": 479
+        },
+        {
+          "caller": "create_experiment_audit_log",
+          "callee": "_resolve_audit_log_author",
+          "lineNumber": 482
+        },
+        {
+          "caller": "transition_experiment_status",
+          "callee": "VALID_STATUS_TRANSITIONS.get",
+          "lineNumber": 497
+        },
+        {
+          "caller": "transition_experiment_status",
+          "callee": "set",
+          "lineNumber": 497
+        },
+        {
+          "caller": "transition_experiment_status",
+          "callee": "ValueError",
+          "lineNumber": 499
+        },
+        {
+          "caller": "transition_experiment_status",
+          "callee": "timezone.now",
+          "lineNumber": 506
+        },
+        {
+          "caller": "transition_experiment_status",
+          "callee": "timezone.now",
+          "lineNumber": 508
+        },
+        {
+          "caller": "transition_experiment_status",
+          "callee": "experiment.save",
+          "lineNumber": 510
+        },
+        {
+          "caller": "transition_experiment_status",
+          "callee": "create_experiment_audit_log",
+          "lineNumber": 511
+        },
+        {
+          "caller": "mark_warehouse_pending_connection",
+          "callee": "connection.save",
+          "lineNumber": 524
+        },
+        {
+          "caller": "mark_warehouse_pending_connection",
+          "callee": "logger.info",
+          "lineNumber": 525
+        },
+        {
+          "caller": "refresh_warehouse_connection_status",
+          "callee": "connection.save",
+          "lineNumber": 544
+        },
+        {
+          "caller": "refresh_warehouse_connection_status",
+          "callee": "logger.info",
+          "lineNumber": 545
+        },
+        {
+          "caller": "annotate_warehouse_event_stats",
+          "callee": "get_warehouse_event_stats",
+          "lineNumber": 566
+        }
+      ],
+      "metrics": {
+        "importCount": 8,
+        "exportCount": 25,
+        "functionCount": 25,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "experimentation/stats.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 130,
+      "nonEmptyLines": 109,
+      "functions": [
+        {
+          "name": "compare_to_control",
+          "startLine": 53,
+          "endLine": 84,
+          "params": [
+            "control",
+            "treatment"
+          ]
+        },
+        {
+          "name": "srm_p_value",
+          "startLine": 87,
+          "endLine": 108,
+          "params": [
+            "observed",
+            "expected_shares"
+          ]
+        },
+        {
+          "name": "_chi_squared_survival",
+          "startLine": 111,
+          "endLine": 130,
+          "params": [
+            "statistic",
+            "degrees_of_freedom"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "VariantStats",
+          "startLine": 21,
+          "endLine": 42,
+          "methods": [
+            "mean",
+            "variance"
+          ],
+          "properties": [
+            "n",
+            "sum",
+            "sum_squares"
+          ]
+        },
+        {
+          "name": "Inference",
+          "startLine": 46,
+          "endLine": 50,
+          "methods": [],
+          "properties": [
+            "lift",
+            "ci_low",
+            "ci_high",
+            "chance_to_win"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "VariantStats",
+          "line": 20,
+          "isDefault": false
+        },
+        {
+          "name": "Inference",
+          "line": 45,
+          "isDefault": false
+        },
+        {
+          "name": "compare_to_control",
+          "line": 53,
+          "isDefault": false
+        },
+        {
+          "name": "srm_p_value",
+          "line": 87,
+          "isDefault": false
+        },
+        {
+          "name": "_chi_squared_survival",
+          "line": 111,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "variance",
+          "callee": "max",
+          "lineNumber": 42
+        },
+        {
+          "caller": "compare_to_control",
+          "callee": "math.sqrt",
+          "lineNumber": 70
+        },
+        {
+          "caller": "compare_to_control",
+          "callee": "float",
+          "lineNumber": 73
+        },
+        {
+          "caller": "compare_to_control",
+          "callee": "Inference",
+          "lineNumber": 74
+        },
+        {
+          "caller": "compare_to_control",
+          "callee": "Inference",
+          "lineNumber": 79
+        },
+        {
+          "caller": "compare_to_control",
+          "callee": "_STANDARD_NORMAL.cdf",
+          "lineNumber": 83
+        },
+        {
+          "caller": "srm_p_value",
+          "callee": "sum",
+          "lineNumber": 98
+        },
+        {
+          "caller": "srm_p_value",
+          "callee": "len",
+          "lineNumber": 99
+        },
+        {
+          "caller": "srm_p_value",
+          "callee": "any",
+          "lineNumber": 99
+        },
+        {
+          "caller": "srm_p_value",
+          "callee": "sum",
+          "lineNumber": 104
+        },
+        {
+          "caller": "srm_p_value",
+          "callee": "zip",
+          "lineNumber": 106
+        },
+        {
+          "caller": "srm_p_value",
+          "callee": "_chi_squared_survival",
+          "lineNumber": 108
+        },
+        {
+          "caller": "srm_p_value",
+          "callee": "len",
+          "lineNumber": 108
+        },
+        {
+          "caller": "_chi_squared_survival",
+          "callee": "math.erfc",
+          "lineNumber": 123
+        },
+        {
+          "caller": "_chi_squared_survival",
+          "callee": "math.sqrt",
+          "lineNumber": 123
+        },
+        {
+          "caller": "_chi_squared_survival",
+          "callee": "math.exp",
+          "lineNumber": 126
+        },
+        {
+          "caller": "_chi_squared_survival",
+          "callee": "math.exp",
+          "lineNumber": 128
+        },
+        {
+          "caller": "_chi_squared_survival",
+          "callee": "math.log",
+          "lineNumber": 128
+        },
+        {
+          "caller": "_chi_squared_survival",
+          "callee": "math.lgamma",
+          "lineNumber": 128
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 5,
+        "functionCount": 3,
+        "classCount": 2
+      }
+    },
+    {
+      "path": "experimentation/tasks.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 90,
+      "nonEmptyLines": 74,
+      "functions": [
+        {
+          "name": "add_environment_key_to_ingestion",
+          "startLine": 13,
+          "endLine": 14,
+          "params": [
+            "environment_api_key"
+          ]
+        },
+        {
+          "name": "delete_environment_key_from_ingestion",
+          "startLine": 18,
+          "endLine": 19,
+          "params": [
+            "environment_api_key"
+          ]
+        },
+        {
+          "name": "compute_experiment_exposures",
+          "startLine": 23,
+          "endLine": 55,
+          "params": [
+            "experiment_id"
+          ]
+        },
+        {
+          "name": "compute_experiment_results",
+          "startLine": 59,
+          "endLine": 90,
+          "params": [
+            "experiment_id"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "add_environment_key_to_ingestion",
+          "line": 12,
+          "isDefault": false
+        },
+        {
+          "name": "delete_environment_key_from_ingestion",
+          "line": 17,
+          "isDefault": false
+        },
+        {
+          "name": "compute_experiment_exposures",
+          "line": 22,
+          "isDefault": false
+        },
+        {
+          "name": "compute_experiment_results",
+          "line": 58,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "add_environment_key_to_ingestion",
+          "callee": "ingestion_sync_service.set_environment_key",
+          "lineNumber": 14
+        },
+        {
+          "caller": "delete_environment_key_from_ingestion",
+          "callee": "ingestion_sync_service.delete_environment_key",
+          "lineNumber": 19
+        },
+        {
+          "caller": "compute_experiment_exposures",
+          "callee": "Experiment.objects.select_related(\"environment__project\", \"feature\")\n        .filter(id=experiment_id)\n        .first",
+          "lineNumber": 25
+        },
+        {
+          "caller": "compute_experiment_exposures",
+          "callee": "Experiment.objects.select_related(\"environment__project\", \"feature\")\n        .filter",
+          "lineNumber": 25
+        },
+        {
+          "caller": "compute_experiment_exposures",
+          "callee": "Experiment.objects.select_related",
+          "lineNumber": 25
+        },
+        {
+          "caller": "compute_experiment_exposures",
+          "callee": "ExperimentExposures.objects.get_or_create",
+          "lineNumber": 32
+        },
+        {
+          "caller": "compute_experiment_exposures",
+          "callee": "timezone.now",
+          "lineNumber": 36
+        },
+        {
+          "caller": "compute_experiment_exposures",
+          "callee": "compute_exposures_summary",
+          "lineNumber": 38
+        },
+        {
+          "caller": "compute_experiment_exposures",
+          "callee": "exposures.record_failure",
+          "lineNumber": 45
+        },
+        {
+          "caller": "compute_experiment_exposures",
+          "callee": "logger.error",
+          "lineNumber": 46
+        },
+        {
+          "caller": "compute_experiment_exposures",
+          "callee": "exposures.record_refresh",
+          "lineNumber": 55
+        },
+        {
+          "caller": "compute_experiment_results",
+          "callee": "Experiment.objects.select_related(\"environment__project\", \"feature\")\n        .filter(id=experiment_id)\n        .first",
+          "lineNumber": 61
+        },
+        {
+          "caller": "compute_experiment_results",
+          "callee": "Experiment.objects.select_related(\"environment__project\", \"feature\")\n        .filter",
+          "lineNumber": 61
+        },
+        {
+          "caller": "compute_experiment_results",
+          "callee": "Experiment.objects.select_related",
+          "lineNumber": 61
+        },
+        {
+          "caller": "compute_experiment_results",
+          "callee": "ExperimentResults.objects.get_or_create",
+          "lineNumber": 68
+        },
+        {
+          "caller": "compute_experiment_results",
+          "callee": "timezone.now",
+          "lineNumber": 72
+        },
+        {
+          "caller": "compute_experiment_results",
+          "callee": "compute_results_summary",
+          "lineNumber": 74
+        },
+        {
+          "caller": "compute_experiment_results",
+          "callee": "results.record_failure",
+          "lineNumber": 80
+        },
+        {
+          "caller": "compute_experiment_results",
+          "callee": "logger.error",
+          "lineNumber": 81
+        },
+        {
+          "caller": "compute_experiment_results",
+          "callee": "results.record_refresh",
+          "lineNumber": 90
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 4,
+        "functionCount": 4,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "experimentation/types.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 46,
+      "nonEmptyLines": 32,
+      "classes": [
+        {
+          "name": "MetricDefinitionV1",
+          "startLine": 6,
+          "endLine": 15,
+          "methods": [],
+          "properties": [
+            "version",
+            "event"
+          ]
+        },
+        {
+          "name": "MetricExperimentResult",
+          "startLine": 21,
+          "endLine": 27,
+          "methods": [],
+          "properties": [
+            "id",
+            "name",
+            "status"
+          ]
+        },
+        {
+          "name": "SnowflakeConfig",
+          "startLine": 30,
+          "endLine": 36,
+          "methods": [],
+          "properties": [
+            "account_identifier",
+            "warehouse",
+            "database",
+            "schema",
+            "role",
+            "user"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "MetricDefinitionV1",
+          "line": 6,
+          "isDefault": false
+        },
+        {
+          "name": "MetricExperimentResult",
+          "line": 21,
+          "isDefault": false
+        },
+        {
+          "name": "SnowflakeConfig",
+          "line": 30,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 3,
+        "functionCount": 0,
+        "classCount": 3
+      }
+    },
+    {
+      "path": "experimentation/urls.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 10,
+      "nonEmptyLines": 6,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "experimentation/views.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 527,
+      "nonEmptyLines": 473,
+      "classes": [
+        {
+          "name": "WarehouseConnectionViewSet",
+          "startLine": 67,
+          "endLine": 155,
+          "methods": [
+            "perform_create",
+            "perform_update",
+            "perform_destroy",
+            "list",
+            "retrieve",
+            "test_warehouse_connection",
+            "create",
+            "_get_user"
+          ],
+          "properties": []
+        },
+        {
+          "name": "ExperimentViewSet",
+          "startLine": 158,
+          "endLine": 399,
+          "methods": [
+            "get_serializer_context",
+            "get_serializer_class",
+            "get_queryset",
+            "list",
+            "create",
+            "perform_create",
+            "perform_update",
+            "perform_destroy",
+            "start",
+            "pause",
+            "complete",
+            "exposures",
+            "refresh_exposures",
+            "results",
+            "refresh_results",
+            "_validate_refresh_request",
+            "_transition_status",
+            "_get_user"
+          ],
+          "properties": []
+        },
+        {
+          "name": "ExperimentMetricViewSet",
+          "startLine": 402,
+          "endLine": 450,
+          "methods": [
+            "get_queryset",
+            "get_serializer_context",
+            "_get_experiment",
+            "perform_create",
+            "destroy"
+          ],
+          "properties": []
+        },
+        {
+          "name": "MetricViewSet",
+          "startLine": 453,
+          "endLine": 527,
+          "methods": [
+            "get_queryset",
+            "perform_create",
+            "perform_update",
+            "destroy",
+            "_get_user"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "WarehouseConnectionViewSet",
+          "line": 67,
+          "isDefault": false
+        },
+        {
+          "name": "ExperimentViewSet",
+          "line": 158,
+          "isDefault": false
+        },
+        {
+          "name": "ExperimentMetricViewSet",
+          "line": 402,
+          "isDefault": false
+        },
+        {
+          "name": "MetricViewSet",
+          "line": 453,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "perform_create",
+          "callee": "serializer.save",
+          "lineNumber": 83
+        },
+        {
+          "caller": "perform_create",
+          "callee": "self._get_environment",
+          "lineNumber": 84
+        },
+        {
+          "caller": "perform_create",
+          "callee": "create_warehouse_audit_log",
+          "lineNumber": 86
+        },
+        {
+          "caller": "perform_create",
+          "callee": "self._get_user",
+          "lineNumber": 87
+        },
+        {
+          "caller": "perform_update",
+          "callee": "serializer.save",
+          "lineNumber": 91
+        },
+        {
+          "caller": "perform_update",
+          "callee": "create_warehouse_audit_log",
+          "lineNumber": 92
+        },
+        {
+          "caller": "perform_update",
+          "callee": "self._get_user",
+          "lineNumber": 93
+        },
+        {
+          "caller": "perform_destroy",
+          "callee": "create_warehouse_audit_log",
+          "lineNumber": 97
+        },
+        {
+          "caller": "perform_destroy",
+          "callee": "self._get_user",
+          "lineNumber": 98
+        },
+        {
+          "caller": "perform_destroy",
+          "callee": "instance.delete",
+          "lineNumber": 100
+        },
+        {
+          "caller": "list",
+          "callee": "list",
+          "lineNumber": 104
+        },
+        {
+          "caller": "list",
+          "callee": "self.filter_queryset",
+          "lineNumber": 104
+        },
+        {
+          "caller": "list",
+          "callee": "self.get_queryset",
+          "lineNumber": 104
+        },
+        {
+          "caller": "list",
+          "callee": "request.query_params.get(\"exclude_event_stats\", \"\").lower",
+          "lineNumber": 106
+        },
+        {
+          "caller": "list",
+          "callee": "request.query_params.get",
+          "lineNumber": 106
+        },
+        {
+          "caller": "list",
+          "callee": "annotate_warehouse_event_stats",
+          "lineNumber": 110
+        },
+        {
+          "caller": "list",
+          "callee": "self.get_serializer",
+          "lineNumber": 111
+        },
+        {
+          "caller": "list",
+          "callee": "Response",
+          "lineNumber": 112
+        },
+        {
+          "caller": "retrieve",
+          "callee": "self.get_object",
+          "lineNumber": 115
+        },
+        {
+          "caller": "retrieve",
+          "callee": "annotate_warehouse_event_stats",
+          "lineNumber": 116
+        },
+        {
+          "caller": "retrieve",
+          "callee": "self.get_serializer",
+          "lineNumber": 117
+        },
+        {
+          "caller": "retrieve",
+          "callee": "Response",
+          "lineNumber": 118
+        },
+        {
+          "caller": "test_warehouse_connection",
+          "callee": "self.get_object",
+          "lineNumber": 122
+        },
+        {
+          "caller": "test_warehouse_connection",
+          "callee": "Response",
+          "lineNumber": 124
+        },
+        {
+          "caller": "test_warehouse_connection",
+          "callee": "mark_warehouse_pending_connection",
+          "lineNumber": 128
+        },
+        {
+          "caller": "test_warehouse_connection",
+          "callee": "annotate_warehouse_event_stats",
+          "lineNumber": 129
+        },
+        {
+          "caller": "test_warehouse_connection",
+          "callee": "refresh_warehouse_connection_status",
+          "lineNumber": 131
+        },
+        {
+          "caller": "test_warehouse_connection",
+          "callee": "self.get_serializer",
+          "lineNumber": 132
+        },
+        {
+          "caller": "test_warehouse_connection",
+          "callee": "Response",
+          "lineNumber": 133
+        },
+        {
+          "caller": "create",
+          "callee": "self._get_environment",
+          "lineNumber": 136
+        },
+        {
+          "caller": "create",
+          "callee": "self.get_serializer",
+          "lineNumber": 137
+        },
+        {
+          "caller": "create",
+          "callee": "serializer.is_valid",
+          "lineNumber": 138
+        },
+        {
+          "caller": "create",
+          "callee": "WarehouseConnection.objects.filter(\n            environment=environment,\n        ).exists",
+          "lineNumber": 140
+        },
+        {
+          "caller": "create",
+          "callee": "WarehouseConnection.objects.filter",
+          "lineNumber": 140
+        },
+        {
+          "caller": "create",
+          "callee": "Response",
+          "lineNumber": 143
+        },
+        {
+          "caller": "create",
+          "callee": "self.perform_create",
+          "lineNumber": 150
+        },
+        {
+          "caller": "create",
+          "callee": "Response",
+          "lineNumber": 151
+        },
+        {
+          "caller": "get_serializer_context",
+          "callee": "super().get_serializer_context",
+          "lineNumber": 174
+        },
+        {
+          "caller": "get_serializer_context",
+          "callee": "super",
+          "lineNumber": 174
+        },
+        {
+          "caller": "get_serializer_context",
+          "callee": "self._get_environment",
+          "lineNumber": 175
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "super().get_queryset",
+          "lineNumber": 184
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "super",
+          "lineNumber": 184
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "qs.select_related(\"feature\").prefetch_related",
+          "lineNumber": 186
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "qs.select_related",
+          "lineNumber": 186
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "self.request.query_params.get",
+          "lineNumber": 191
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 194
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "qs.filter",
+          "lineNumber": 197
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "self.request.query_params.get",
+          "lineNumber": 199
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "qs.filter",
+          "lineNumber": 201
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "Q",
+          "lineNumber": 201
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "Q",
+          "lineNumber": 201
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "qs.order_by",
+          "lineNumber": 203
+        },
+        {
+          "caller": "list",
+          "callee": "super().list",
+          "lineNumber": 206
+        },
+        {
+          "caller": "list",
+          "callee": "super",
+          "lineNumber": 206
+        },
+        {
+          "caller": "list",
+          "callee": "super().get_queryset",
+          "lineNumber": 207
+        },
+        {
+          "caller": "list",
+          "callee": "super",
+          "lineNumber": 207
+        },
+        {
+          "caller": "list",
+          "callee": "request.query_params.get",
+          "lineNumber": 208
+        },
+        {
+          "caller": "list",
+          "callee": "base_qs.filter",
+          "lineNumber": 210
+        },
+        {
+          "caller": "list",
+          "callee": "Q",
+          "lineNumber": 211
+        },
+        {
+          "caller": "list",
+          "callee": "Q",
+          "lineNumber": 211
+        },
+        {
+          "caller": "list",
+          "callee": "base_qs.aggregate",
+          "lineNumber": 213
+        },
+        {
+          "caller": "list",
+          "callee": "Count",
+          "lineNumber": 214
+        },
+        {
+          "caller": "list",
+          "callee": "Q",
+          "lineNumber": 214
+        },
+        {
+          "caller": "create",
+          "callee": "self.get_serializer",
+          "lineNumber": 220
+        },
+        {
+          "caller": "create",
+          "callee": "serializer.is_valid",
+          "lineNumber": 221
+        },
+        {
+          "caller": "create",
+          "callee": "self._get_environment",
+          "lineNumber": 224
+        },
+        {
+          "caller": "create",
+          "callee": "Experiment.objects.filter(\n                feature=feature,\n                environment=environment,\n            )\n            .exclude(status=ExperimentStatus.COMPLETED)\n            .exists",
+          "lineNumber": 226
+        },
+        {
+          "caller": "create",
+          "callee": "Experiment.objects.filter(\n                feature=feature,\n                environment=environment,\n            )\n            .exclude",
+          "lineNumber": 226
+        },
+        {
+          "caller": "create",
+          "callee": "Experiment.objects.filter",
+          "lineNumber": 226
+        },
+        {
+          "caller": "create",
+          "callee": "Response",
+          "lineNumber": 233
+        },
+        {
+          "caller": "create",
+          "callee": "self.perform_create",
+          "lineNumber": 239
+        },
+        {
+          "caller": "create",
+          "callee": "Response",
+          "lineNumber": 241
+        },
+        {
+          "caller": "create",
+          "callee": "Response",
+          "lineNumber": 245
+        },
+        {
+          "caller": "perform_create",
+          "callee": "serializer.save",
+          "lineNumber": 248
+        },
+        {
+          "caller": "perform_create",
+          "callee": "self._get_environment",
+          "lineNumber": 248
+        },
+        {
+          "caller": "perform_create",
+          "callee": "create_experiment_audit_log",
+          "lineNumber": 249
+        },
+        {
+          "caller": "perform_create",
+          "callee": "self._get_user",
+          "lineNumber": 250
+        },
+        {
+          "caller": "perform_update",
+          "callee": "serializer.validated_data.items",
+          "lineNumber": 256
+        },
+        {
+          "caller": "perform_update",
+          "callee": "getattr",
+          "lineNumber": 257
+        },
+        {
+          "caller": "perform_update",
+          "callee": "serializer.save",
+          "lineNumber": 261
+        },
+        {
+          "caller": "perform_update",
+          "callee": "create_experiment_audit_log",
+          "lineNumber": 262
+        },
+        {
+          "caller": "perform_update",
+          "callee": "self._get_user",
+          "lineNumber": 263
+        },
+        {
+          "caller": "perform_destroy",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 268
+        },
+        {
+          "caller": "perform_destroy",
+          "callee": "create_experiment_audit_log",
+          "lineNumber": 276
+        },
+        {
+          "caller": "perform_destroy",
+          "callee": "self._get_user",
+          "lineNumber": 277
+        },
+        {
+          "caller": "perform_destroy",
+          "callee": "instance.delete",
+          "lineNumber": 279
+        },
+        {
+          "caller": "start",
+          "callee": "self._transition_status",
+          "lineNumber": 283
+        },
+        {
+          "caller": "pause",
+          "callee": "self._transition_status",
+          "lineNumber": 287
+        },
+        {
+          "caller": "complete",
+          "callee": "self._transition_status",
+          "lineNumber": 291
+        },
+        {
+          "caller": "exposures",
+          "callee": "self.get_object",
+          "lineNumber": 295
+        },
+        {
+          "caller": "exposures",
+          "callee": "getattr",
+          "lineNumber": 296
+        },
+        {
+          "caller": "exposures",
+          "callee": "Response",
+          "lineNumber": 297
+        },
+        {
+          "caller": "exposures",
+          "callee": "ExperimentExposuresSerializer",
+          "lineNumber": 300
+        },
+        {
+          "caller": "refresh_exposures",
+          "callee": "self.get_object",
+          "lineNumber": 307
+        },
+        {
+          "caller": "refresh_exposures",
+          "callee": "ExperimentExposures.objects.filter(experiment=experiment).first",
+          "lineNumber": 308
+        },
+        {
+          "caller": "refresh_exposures",
+          "callee": "ExperimentExposures.objects.filter",
+          "lineNumber": 308
+        },
+        {
+          "caller": "refresh_exposures",
+          "callee": "self._validate_refresh_request",
+          "lineNumber": 309
+        },
+        {
+          "caller": "refresh_exposures",
+          "callee": "ExperimentExposures.objects.get_or_create",
+          "lineNumber": 317
+        },
+        {
+          "caller": "refresh_exposures",
+          "callee": "exposures.record_refresh_request",
+          "lineNumber": 320
+        },
+        {
+          "caller": "refresh_exposures",
+          "callee": "compute_experiment_exposures.delay",
+          "lineNumber": 321
+        },
+        {
+          "caller": "refresh_exposures",
+          "callee": "Response",
+          "lineNumber": 322
+        },
+        {
+          "caller": "results",
+          "callee": "self.get_object",
+          "lineNumber": 326
+        },
+        {
+          "caller": "results",
+          "callee": "getattr",
+          "lineNumber": 327
+        },
+        {
+          "caller": "results",
+          "callee": "Response",
+          "lineNumber": 328
+        },
+        {
+          "caller": "results",
+          "callee": "ExperimentResultsSerializer",
+          "lineNumber": 331
+        },
+        {
+          "caller": "refresh_results",
+          "callee": "self.get_object",
+          "lineNumber": 338
+        },
+        {
+          "caller": "refresh_results",
+          "callee": "ExperimentResults.objects.filter(experiment=experiment).first",
+          "lineNumber": 339
+        },
+        {
+          "caller": "refresh_results",
+          "callee": "ExperimentResults.objects.filter",
+          "lineNumber": 339
+        },
+        {
+          "caller": "refresh_results",
+          "callee": "self._validate_refresh_request",
+          "lineNumber": 340
+        },
+        {
+          "caller": "refresh_results",
+          "callee": "ExperimentResults.objects.get_or_create",
+          "lineNumber": 348
+        },
+        {
+          "caller": "refresh_results",
+          "callee": "results.record_refresh_request",
+          "lineNumber": 349
+        },
+        {
+          "caller": "refresh_results",
+          "callee": "compute_experiment_results.delay",
+          "lineNumber": 350
+        },
+        {
+          "caller": "refresh_results",
+          "callee": "Response",
+          "lineNumber": 351
+        },
+        {
+          "caller": "_validate_refresh_request",
+          "callee": "ValidationError",
+          "lineNumber": 363
+        },
+        {
+          "caller": "_validate_refresh_request",
+          "callee": "ValidationError",
+          "lineNumber": 365
+        },
+        {
+          "caller": "_validate_refresh_request",
+          "callee": "timezone.now",
+          "lineNumber": 368
+        },
+        {
+          "caller": "_validate_refresh_request",
+          "callee": "retry_after.total_seconds",
+          "lineNumber": 370
+        },
+        {
+          "caller": "_validate_refresh_request",
+          "callee": "Throttled",
+          "lineNumber": 371
+        },
+        {
+          "caller": "_validate_refresh_request",
+          "callee": "retry_after.total_seconds",
+          "lineNumber": 372
+        },
+        {
+          "caller": "_transition_status",
+          "callee": "self.get_object",
+          "lineNumber": 377
+        },
+        {
+          "caller": "_transition_status",
+          "callee": "transition_experiment_status",
+          "lineNumber": 379
+        },
+        {
+          "caller": "_transition_status",
+          "callee": "self._get_user",
+          "lineNumber": 380
+        },
+        {
+          "caller": "_transition_status",
+          "callee": "logger.warning",
+          "lineNumber": 383
+        },
+        {
+          "caller": "_transition_status",
+          "callee": "Response",
+          "lineNumber": 390
+        },
+        {
+          "caller": "_transition_status",
+          "callee": "self.get_serializer",
+          "lineNumber": 394
+        },
+        {
+          "caller": "_transition_status",
+          "callee": "Response",
+          "lineNumber": 395
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "ExperimentMetric.objects.filter(\n            experiment_id=self.kwargs[self.experiment_url_kwarg],\n            experiment__environment__api_key=self.kwargs[\"environment_api_key\"],\n        ).select_related",
+          "lineNumber": 421
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "ExperimentMetric.objects.filter",
+          "lineNumber": 421
+        },
+        {
+          "caller": "get_serializer_context",
+          "callee": "super().get_serializer_context",
+          "lineNumber": 427
+        },
+        {
+          "caller": "get_serializer_context",
+          "callee": "super",
+          "lineNumber": 427
+        },
+        {
+          "caller": "get_serializer_context",
+          "callee": "self._get_experiment",
+          "lineNumber": 428
+        },
+        {
+          "caller": "_get_experiment",
+          "callee": "hasattr",
+          "lineNumber": 432
+        },
+        {
+          "caller": "_get_experiment",
+          "callee": "get_object_or_404",
+          "lineNumber": 433
+        },
+        {
+          "caller": "perform_create",
+          "callee": "serializer.save",
+          "lineNumber": 442
+        },
+        {
+          "caller": "perform_create",
+          "callee": "self._get_experiment",
+          "lineNumber": 442
+        },
+        {
+          "caller": "destroy",
+          "callee": "self._get_experiment",
+          "lineNumber": 445
+        },
+        {
+          "caller": "destroy",
+          "callee": "Response",
+          "lineNumber": 446
+        },
+        {
+          "caller": "destroy",
+          "callee": "super().destroy",
+          "lineNumber": 450
+        },
+        {
+          "caller": "destroy",
+          "callee": "super",
+          "lineNumber": 450
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "getattr",
+          "lineNumber": 469
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "super().get_queryset().none",
+          "lineNumber": 470
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "super().get_queryset",
+          "lineNumber": 470
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "super",
+          "lineNumber": 470
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "super()\n            .get_queryset()\n            .prefetch_related",
+          "lineNumber": 472
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "super()\n            .get_queryset",
+          "lineNumber": 472
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "super",
+          "lineNumber": 472
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "Prefetch",
+          "lineNumber": 475
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "ExperimentMetric.objects.filter(\n                        experiment__deleted_at__isnull=True\n                    ).select_related",
+          "lineNumber": 477
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "ExperimentMetric.objects.filter",
+          "lineNumber": 477
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "self.request.query_params.get",
+          "lineNumber": 483
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "qs.filter",
+          "lineNumber": 484
+        },
+        {
+          "caller": "perform_create",
+          "callee": "serializer.save",
+          "lineNumber": 488
+        },
+        {
+          "caller": "perform_create",
+          "callee": "self._get_environment",
+          "lineNumber": 488
+        },
+        {
+          "caller": "perform_create",
+          "callee": "create_metric_audit_log",
+          "lineNumber": 489
+        },
+        {
+          "caller": "perform_create",
+          "callee": "self._get_user",
+          "lineNumber": 489
+        },
+        {
+          "caller": "perform_update",
+          "callee": "serializer.validated_data.items",
+          "lineNumber": 494
+        },
+        {
+          "caller": "perform_update",
+          "callee": "getattr",
+          "lineNumber": 495
+        },
+        {
+          "caller": "perform_update",
+          "callee": "serializer.save",
+          "lineNumber": 499
+        },
+        {
+          "caller": "perform_update",
+          "callee": "create_metric_audit_log",
+          "lineNumber": 500
+        },
+        {
+          "caller": "perform_update",
+          "callee": "self._get_user",
+          "lineNumber": 500
+        },
+        {
+          "caller": "destroy",
+          "callee": "self.get_object",
+          "lineNumber": 503
+        },
+        {
+          "caller": "destroy",
+          "callee": "ExperimentMetric.objects.filter(\n                metric=instance,\n                experiment__deleted_at__isnull=True,\n            )\n            .exclude(experiment__status=ExperimentStatus.COMPLETED)\n            .exists",
+          "lineNumber": 505
+        },
+        {
+          "caller": "destroy",
+          "callee": "ExperimentMetric.objects.filter(\n                metric=instance,\n                experiment__deleted_at__isnull=True,\n            )\n            .exclude",
+          "lineNumber": 505
+        },
+        {
+          "caller": "destroy",
+          "callee": "ExperimentMetric.objects.filter",
+          "lineNumber": 505
+        },
+        {
+          "caller": "destroy",
+          "callee": "Response",
+          "lineNumber": 512
+        },
+        {
+          "caller": "destroy",
+          "callee": "create_metric_audit_log",
+          "lineNumber": 521
+        },
+        {
+          "caller": "destroy",
+          "callee": "self._get_user",
+          "lineNumber": 521
+        },
+        {
+          "caller": "destroy",
+          "callee": "instance.delete",
+          "lineNumber": 522
+        },
+        {
+          "caller": "destroy",
+          "callee": "Response",
+          "lineNumber": 523
+        }
+      ],
+      "metrics": {
+        "importCount": 8,
+        "exportCount": 4,
+        "functionCount": 0,
+        "classCount": 4
+      }
+    }
+  ]
+}

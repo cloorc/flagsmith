@@ -1,0 +1,1755 @@
+{
+  "projectRoot": "/Users/wadii/flagsmith-projects/flagsmith/api",
+  "files": [
+    {
+      "path": ".ebextensions/00__packages.config",
+      "language": "config",
+      "fileCategory": "code"
+    },
+    {
+      "path": ".ebextensions/01__upgrade_pip.config",
+      "language": "config",
+      "fileCategory": "code"
+    },
+    {
+      "path": ".ebextensions/02__collectstatic.config",
+      "language": "config",
+      "fileCategory": "code"
+    },
+    {
+      "path": ".ebextensions/03__django.config",
+      "language": "config",
+      "fileCategory": "code"
+    },
+    {
+      "path": ".ebextensions/04__wsgi_custom.config",
+      "language": "config",
+      "fileCategory": "code"
+    },
+    {
+      "path": ".ebignore",
+      "language": "unknown",
+      "fileCategory": "code"
+    },
+    {
+      "path": ".env-ci",
+      "language": "config",
+      "fileCategory": "config"
+    },
+    {
+      "path": ".env-local",
+      "language": "config",
+      "fileCategory": "config"
+    },
+    {
+      "path": ".nvmrc",
+      "language": "unknown",
+      "fileCategory": "code"
+    },
+    {
+      "path": ".understand-anything/.understandignore",
+      "language": "unknown",
+      "fileCategory": "code"
+    },
+    {
+      "path": ".understand-anything/config.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "api_keys/__init__.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "api_keys/admin.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "api_keys/apps.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "api_keys/authentication.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "api_keys/models.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "api_keys/serializers.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "api_keys/user.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "api_keys/views.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "audit/__init__.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "audit/apps.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "audit/constants.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "audit/models.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "audit/permissions.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "audit/related_object_type.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "audit/serializers.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "audit/services.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "audit/signals.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "audit/tasks.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "audit/types.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "audit/urls.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "audit/views.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/__init__.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/admin.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/api_keys.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/apps.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/authentication.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/constants.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/dynamodb/__init__.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/dynamodb/constants.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/dynamodb/migrator.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/dynamodb/services.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/dynamodb/types.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/dynamodb/utils.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/dynamodb/wrappers/__init__.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/dynamodb/wrappers/base.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/dynamodb/wrappers/environment_api_key_wrapper.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/dynamodb/wrappers/environment_wrapper.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/dynamodb/wrappers/exceptions.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/dynamodb/wrappers/identity_wrapper.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/enums.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/exceptions.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/identities/__init__.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/identities/admin.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/identities/apps.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/identities/managers.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/identities/models.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/identities/serializers.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/identities/traits/__init__.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/identities/traits/admin.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/identities/traits/constants.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/identities/traits/exceptions.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/identities/traits/fields.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/identities/traits/models.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/identities/traits/openapi.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/identities/traits/serializers.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/identities/traits/views.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/identities/views.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/management/__init__.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/management/commands/__init__.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/management/commands/migrate_to_edge.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/management/serializers.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/managers.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/metrics.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/models.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/permissions/__init__.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/permissions/apps.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/permissions/managers.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/permissions/models.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/permissions/permissions.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/permissions/serializers.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/permissions/views.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/sdk/__init__.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/sdk/serializers_mixins.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/sdk/serializers.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/sdk/services.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/sdk/types.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/sdk/views.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/serializers.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/tasks.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/urls.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/views.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "experimentation/__init__.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "experimentation/apps.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "experimentation/constants.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "experimentation/dataclasses.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "experimentation/experiment_urls.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "experimentation/ingestion_sync_service.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "experimentation/metric_definitions.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "experimentation/metric_urls.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "experimentation/models.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "experimentation/permissions.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "experimentation/results_query.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "experimentation/serializers.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "experimentation/services.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "experimentation/stats.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "experimentation/tasks.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "experimentation/types.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "experimentation/urls.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "experimentation/views.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/__init__.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/admin.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/apps.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/audit_helpers.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/constants.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/custom_lifecycle.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/dataclasses.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/exceptions.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_external_resources/__init__.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_external_resources/apps.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_external_resources/models.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_external_resources/serializers.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_external_resources/views.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_health/__init__.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_health/admin.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_health/apps.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_health/constants.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_health/mappers.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_health/models.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_health/providers/__init__.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_health/providers/generic/mappers.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_health/providers/grafana/__init__.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_health/providers/grafana/constants.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_health/providers/grafana/mappers.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_health/providers/grafana/services.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_health/providers/grafana/types.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_health/providers/services.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_health/providers/webhook/__init__.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_health/providers/webhook/mappers.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_health/providers/webhook/services.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_health/providers/webhook/types.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_health/serializers.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_health/services.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_health/tasks.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_health/types.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_health/views.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_segments/__init__.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_segments/limits.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_segments/permissions.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_segments/serializers.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_segments/views.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_states/__init__.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_states/models.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_states/permissions.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_states/serializers.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_states/views.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_types.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/features_service.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/fields.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/helpers.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/import_export/apps.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/import_export/constants.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/import_export/mappers.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/import_export/models.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/import_export/permissions.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/import_export/serializers.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/import_export/services.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/import_export/tasks.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/import_export/types.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/import_export/views.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/managers.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/models.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/multivariate/__init__.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/multivariate/apps.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/multivariate/models.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/multivariate/serializers.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/multivariate/urls.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/multivariate/views.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/permissions.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/release_pipelines/core/__init__.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/release_pipelines/core/apps.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/release_pipelines/core/constants.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/release_pipelines/core/exceptions.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/release_pipelines/core/models.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/serializers.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/signals.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/tasks.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/urls.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/utils.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/value_types.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/versioning/__init__.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/versioning/apps.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/versioning/constants.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/versioning/dataclasses.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/versioning/exceptions.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/versioning/managers.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/versioning/models.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/versioning/permissions.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/versioning/receivers.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/versioning/schemas.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/versioning/serializers.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/versioning/signals.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/versioning/sql/get_latest_versions.sql",
+      "language": "sql",
+      "fileCategory": "data"
+    },
+    {
+      "path": "features/versioning/tasks.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/versioning/urls.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/versioning/versioning_service.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/versioning/views.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/views.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/workflows/__init__.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/workflows/core/__init__.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/workflows/core/apps.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/workflows/core/exceptions.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/workflows/core/models.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "Makefile",
+      "language": "makefile",
+      "fileCategory": "infra"
+    },
+    {
+      "path": "manage.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "metadata/__init__.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "metadata/apps.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "metadata/fields.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "metadata/models.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "metadata/permissions.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "metadata/serializers.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "metadata/urls.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "metadata/views.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "openapi-filter-flagsmith-sdk.yml",
+      "language": "yaml",
+      "fileCategory": "config"
+    },
+    {
+      "path": "openapi-filter-grafana.yaml",
+      "language": "yaml",
+      "fileCategory": "config"
+    },
+    {
+      "path": "openapi-filter-launchdarkly.yaml",
+      "language": "yaml",
+      "fileCategory": "config"
+    },
+    {
+      "path": "organisations/__init__.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/admin.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/apps.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/chargebee/__init__.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/chargebee/apps.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/chargebee/cache.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/chargebee/chargebee.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/chargebee/client.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/chargebee/constants.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/chargebee/metadata.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/chargebee/serializers.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/chargebee/tasks.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/chargebee/webhook_event_types.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/chargebee/webhook_handlers.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/constants.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/exceptions.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/invites/__init__.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/invites/admin.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/invites/apps.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/invites/exceptions.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/invites/models.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/invites/serializers.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/invites/views.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/management/commands/check_if_organisations_over_plan_limit.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/management/commands/createinitialorganisation.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/managers.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/models.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/permissions/__init__.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/permissions/apps.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/permissions/models.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/permissions/permissions.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/permissions/serializers.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/permissions/views.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/serializers.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/subscription_info_cache.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/subscriptions/__init__.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/subscriptions/constants.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/subscriptions/exceptions.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/subscriptions/metadata.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/subscriptions/permissions.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/subscriptions/serializers/__init__.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/subscriptions/serializers/mixins.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/subscriptions/xero/__init__.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/subscriptions/xero/metadata.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/task_helpers.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/tasks.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/urls.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/views.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "permissions/__init__.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "permissions/models.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "permissions/permission_service.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "permissions/permissions_calculator.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "permissions/rbac_wrapper.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "permissions/serializers.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "Procfile",
+      "language": "procfile",
+      "fileCategory": "infra"
+    },
+    {
+      "path": "projects/__init__.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "projects/admin.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "projects/apps.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "projects/code_references/__init__.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "projects/code_references/apps.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "projects/code_references/constants.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "projects/code_references/models.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "projects/code_references/permissions.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "projects/code_references/serializers.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "projects/code_references/services.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "projects/code_references/types.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "projects/code_references/urls.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "projects/code_references/views.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "projects/exceptions.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "projects/management/commands/createinitialproject.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "projects/managers.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "projects/models.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "projects/permissions.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "projects/serializers.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "projects/services.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "projects/tags/__init__.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "projects/tags/admin.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "projects/tags/apps.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "projects/tags/models.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "projects/tags/permissions.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "projects/tags/serializers.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "projects/tags/views.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "projects/tasks.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "projects/urls.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "projects/views.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "pyproject.toml",
+      "language": "toml",
+      "fileCategory": "config"
+    },
+    {
+      "path": "README.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "segment_membership/__init__.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "segment_membership/apps.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "segment_membership/mappers.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "segment_membership/metrics.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "segment_membership/models.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "segment_membership/services.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "segment_membership/tasks.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "segments/__init__.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "segments/admin.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "segments/apps.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "segments/models.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "segments/permissions.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "segments/serializers.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "segments/services.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "segments/tasks.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "segments/types.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "segments/urls.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "segments/views.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "users/__init__.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "users/abc.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "users/admin.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "users/apps.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "users/auth_type.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "users/constants.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "users/emails.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "users/exceptions.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "users/forms.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "users/management/__init__.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "users/management/commands/__init__.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "users/management/commands/createinitialadminuser.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "users/models.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "users/serializers.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "users/services.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "users/signals.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "users/tasks.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "users/urls.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "users/views.py",
+      "language": "python",
+      "fileCategory": "code"
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+[
+  {
+    "order": 1,
+    "title": "Project Overview",
+    "description": "Start with the README to understand what Flagsmith's API is and how it is built: a Django + DRF backend for feature flags and remote config, developed with uv, Make and Docker. It lays out the conventions you will see everywhere — the per-app layering of models, serializers, views and urls, plus the custom services/tasks/constants layers — along with the testing, metrics, structured-logging and migration practices the team follows. Read this first so the rest of the tour reads as a confirmation of the architecture, not a surprise.",
+    "nodeIds": ["document:README.md"]
+  },
+  {
+    "order": 2,
+    "title": "Entry Point & Process Model",
+    "description": "manage.py is the runtime entry point: it sets the Django settings module and dispatches administrative commands (runserver, migrate, custom management commands). The Procfile shows how the same app is run in production — a release phase that applies migrations, then a gunicorn web process serving the WSGI application. Together they answer 'how does this thing start and run?' before we dive into the domain it serves.",
+    "nodeIds": ["file:manage.py", "pipeline:Procfile"]
+  },
+  {
+    "order": 3,
+    "title": "The Account Hierarchy",
+    "description": "Everything in Flagsmith hangs off a three-level ownership chain, and these are the most depended-upon models in the codebase (fan-in 38/41). An Organisation owns billing, subscriptions and membership; a Project lives under an organisation and owns the Edge/DynamoDB migration state and segment caching; the FFAdminUser is the custom user model carrying organisation membership and permission helpers. Understanding this hierarchy is the prerequisite for every permission check, audit entry and API route that follows.",
+    "nodeIds": ["file:organisations/models.py", "file:projects/models.py", "file:users/models.py"]
+  },
+  {
+    "order": 4,
+    "title": "The Central Entity: Feature & FeatureState",
+    "description": "This is the heart of the product. Feature defines a flag at the project level, while FeatureState binds a flag to a specific Environment (or Identity, or segment override) with a concrete FeatureStateValue. The Environment model — the single most depended-upon node in the graph (fan-in 42) — is what an SDK actually evaluates against, and it carries caching, DynamoDB sync and versioning concerns. Read these together: Feature is the definition, FeatureState is the per-environment decision, Environment is where that decision is served.",
+    "nodeIds": ["file:features/models.py", "file:features/feature_states/models.py", "file:environments/models.py"],
+    "languageLesson": "Django models use custom Managers (see features/managers.py) to encapsulate queryset logic, and abstract base models (FeatureState's typed value mixin) to share get/set helpers across concrete subclasses without table inheritance."
+  },
+  {
+    "order": 5,
+    "title": "Request Lifecycle: URLs to Serializers",
+    "description": "Now follow an HTTP request inward. features/urls.py registers the feature, feature-state and feature-segment viewsets (plus import/export) onto DRF routers; features/views.py is the widest-scope view module in the project (fan-out 17), handling CRUD, owner management, analytics and the cached SDK flag-retrieval path. features/serializers.py (fan-out 14) validates input and shapes output, wiring in metadata, segment overrides and GitHub/GitLab hooks. This urls -> views -> serializers flow is the same pattern every Django app in the repo follows.",
+    "nodeIds": ["file:features/urls.py", "file:features/views.py", "file:features/serializers.py"],
+    "languageLesson": "DRF ViewSets bundle list/create/retrieve/update/destroy actions and are wired to URLs via routers, so a single registration produces a full REST resource. Serializers act as the validation-and-mapping boundary between JSON and ORM objects."
+  },
+  {
+    "order": 6,
+    "title": "Business Logic in the Service Layer",
+    "description": "Per the README, business logic lives in services.py-style modules to keep views, models and serializers lean. features_service.py is a clean example: it aggregates per-feature override counts for an environment and dispatches to either the relational core or the DynamoDB edge backend depending on the project's identity-overrides setting. This is where you look when behaviour spans multiple models or needs to branch on infrastructure, rather than belonging to any single model.",
+    "nodeIds": ["file:features/features_service.py"]
+  },
+  {
+    "order": 7,
+    "title": "Identities, Traits & Segments",
+    "description": "Feature evaluation is personalised through identities and segments. An Identity holds a single end-user's state within an environment and resolves their feature states, while Traits are the typed key/value attributes used to match them. Segments define rule trees (Segment -> SegmentRule -> Condition) that group identities, enabling segment overrides on feature states. This is the targeting engine that turns a flag from a global on/off switch into a rule-driven rollout.",
+    "nodeIds": ["file:environments/identities/models.py", "file:environments/identities/traits/models.py", "file:segments/models.py", "file:segments/views.py"]
+  },
+  {
+    "order": 8,
+    "title": "Authorization & RBAC",
+    "description": "Building on the account hierarchy from Step 3, the permission service computes whether a user or master API key is an admin of — or holds specific permissions on — an organisation, project or environment, and builds the permitted-object querysets that scope every list endpoint. The permissions_calculator aggregates user, group and role permissions, while rbac_wrapper is the open-source stub that the enterprise RBAC module replaces. features/permissions.py shows how DRF permission classes consume all this to gate the feature endpoints from Step 5, including tag-scoped checks.",
+    "nodeIds": ["file:permissions/permission_service.py", "file:permissions/permissions_calculator.py", "file:permissions/rbac_wrapper.py", "file:features/permissions.py"]
+  },
+  {
+    "order": 9,
+    "title": "Audit Logging & Event Fan-Out",
+    "description": "Every meaningful change is recorded as an AuditLog scoped to a project or environment, resolving back to the concrete historical record it describes. The real power is in audit/signals.py: a post-save signal on AuditLog fans the event out to integrations (Datadog, New Relic, Dynatrace, Grafana, Slack, Sentry), triggers webhooks, and emits the 'feature went live' signal. This is the backbone of Flagsmith's observability and integration story, and a model the README's structured-logging guidance complements.",
+    "nodeIds": ["file:audit/models.py", "file:audit/signals.py", "file:audit/services.py"],
+    "languageLesson": "Django signals (post_save) decouple side effects from the code that triggers them — a model save can fan out to many handlers without the saving code knowing about them. apps.py ready() hooks are where receivers get wired at startup."
+  },
+  {
+    "order": 10,
+    "title": "Feature Versioning & Workflows",
+    "description": "Production feature changes are governed, not ad-hoc. EnvironmentFeatureVersion captures immutable published versions of an environment's feature states, while VersionChangeSet holds deferred changes with conflict detection. The versioning_service branches between v1 (direct state) and v2 (versioned) semantics, and the change-request workflow adds an approval/commit lifecycle with notifications. Release pipelines then promote versions across environments through ordered stages — the controlled-rollout layer on top of the raw FeatureState model from Step 4.",
+    "nodeIds": ["file:features/versioning/models.py", "file:features/versioning/versioning_service.py", "file:features/workflows/core/models.py", "file:features/release_pipelines/core/models.py"]
+  },
+  {
+    "order": 11,
+    "title": "Asynchronous Tasks",
+    "description": "Work that should not block an API response is pushed onto Celery-style tasks. features/tasks.py builds and dispatches feature-state-change webhook payloads and handles feature deletion; versioning/tasks.py is one of the busiest task modules (fan-out 9), propagating version changes. This is the README's tasks.py layer in practice — and it pairs naturally with the audit signals from Step 9, which are a common trigger for enqueuing this work.",
+    "nodeIds": ["file:features/tasks.py", "file:features/versioning/tasks.py"]
+  },
+  {
+    "order": 12,
+    "title": "Experimentation & Statistics",
+    "description": "The experimentation app is a tightly coupled subsystem (its five core files form the densest cluster in the graph). Its models define warehouse connections, experiments, exposures and metric results; services.py runs ClickHouse queries for exposures and metric stats, summarises results with sample-ratio-mismatch detection and inference, and drives experiment status transitions. results_query.py builds the parameterised ClickHouse SQL, and stats.py implements two-sample lift inference and the SRM chi-squared test by hand, without scipy. This is A/B testing built directly on the feature flags from Step 4.",
+    "nodeIds": ["file:experimentation/models.py", "file:experimentation/services.py", "file:experimentation/results_query.py", "file:experimentation/stats.py"]
+  },
+  {
+    "order": 13,
+    "title": "Billing & Subscriptions",
+    "description": "Organisations from Step 3 are commercial entities, and the Chargebee integration is how that is enforced. The chargebee module (a self-contained cluster of client, cache, metadata and the chargebee.py wrapper) manages subscriptions, hosted checkout pages, seat and API-call upgrades, and extracts the plan metadata that drives the plan-limit logic embedded in the Organisation model. This shows how an external SaaS dependency is encapsulated behind a clean wrapper rather than leaking into the domain models.",
+    "nodeIds": ["file:organisations/chargebee/chargebee.py", "file:organisations/chargebee/client.py", "file:organisations/chargebee/cache.py"]
+  },
+  {
+    "order": 14,
+    "title": "Build, Tooling & Configuration",
+    "description": "Finish where a new engineer actually begins day-to-day. pyproject.toml is the single source of truth for dependencies, the uv package sources, and the Ruff/pytest/coverage/Mypy-strict configuration the README's guidelines depend on. The Makefile wraps all of it into 28 named targets — install, lint, typecheck, test, docker, migrations, serve, and OpenAPI SDK generation — so the contributor workflow is one command away. With the domain now mapped, these are the tools you will run against it every day.",
+    "nodeIds": ["config:pyproject.toml", "pipeline:Makefile"],
+    "languageLesson": "pyproject.toml centralises Python tooling config in one TOML file: [project] declares dependencies and optional extras, while tool tables ([tool.ruff], [tool.mypy], [tool.pytest]) configure linting, strict typing and tests. Makefile .PHONY targets give non-file commands a stable, discoverable interface."
+  }
+]

@@ -1,0 +1,249 @@
+{
+  "projectRoot": "/Users/wadii/flagsmith-projects/flagsmith/api",
+  "batchFiles": [
+    {
+      "path": "environments/admin.py",
+      "language": "python",
+      "sizeLines": 39,
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/api_keys.py",
+      "language": "python",
+      "sizeLines": 19,
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/authentication.py",
+      "language": "python",
+      "sizeLines": 49,
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/constants.py",
+      "language": "python",
+      "sizeLines": 8,
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/enums.py",
+      "language": "python",
+      "sizeLines": 6,
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/exceptions.py",
+      "language": "python",
+      "sizeLines": 2,
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/identities/admin.py",
+      "language": "python",
+      "sizeLines": 16,
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/identities/managers.py",
+      "language": "python",
+      "sizeLines": 52,
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/identities/models.py",
+      "language": "python",
+      "sizeLines": 305,
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/identities/serializers.py",
+      "language": "python",
+      "sizeLines": 135,
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/identities/traits/admin.py",
+      "language": "python",
+      "sizeLines": 35,
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/identities/traits/constants.py",
+      "language": "python",
+      "sizeLines": 4,
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/identities/traits/exceptions.py",
+      "language": "python",
+      "sizeLines": 2,
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/identities/traits/fields.py",
+      "language": "python",
+      "sizeLines": 39,
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/identities/traits/models.py",
+      "language": "python",
+      "sizeLines": 132,
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/identities/traits/serializers.py",
+      "language": "python",
+      "sizeLines": 106,
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/identities/traits/views.py",
+      "language": "python",
+      "sizeLines": 285,
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/identities/views.py",
+      "language": "python",
+      "sizeLines": 334,
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/models.py",
+      "language": "python",
+      "sizeLines": 735,
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/permissions/managers.py",
+      "language": "python",
+      "sizeLines": 12,
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/permissions/models.py",
+      "language": "python",
+      "sizeLines": 56,
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/permissions/permissions.py",
+      "language": "python",
+      "sizeLines": 160,
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/permissions/serializers.py",
+      "language": "python",
+      "sizeLines": 37,
+      "fileCategory": "code"
+    }
+  ],
+  "batchImportData": {
+    "environments/admin.py": [
+      "environments/models.py",
+      "environments/tasks.py"
+    ],
+    "environments/api_keys.py": [],
+    "environments/authentication.py": [
+      "environments/api_keys.py",
+      "environments/models.py"
+    ],
+    "environments/constants.py": [],
+    "environments/enums.py": [],
+    "environments/exceptions.py": [],
+    "environments/identities/admin.py": [
+      "environments/identities/models.py"
+    ],
+    "environments/identities/managers.py": [],
+    "environments/identities/models.py": [
+      "environments/identities/managers.py",
+      "environments/identities/traits/models.py",
+      "environments/models.py",
+      "environments/sdk/types.py",
+      "features/models.py",
+      "features/multivariate/models.py",
+      "features/versioning/versioning_service.py",
+      "segments/models.py"
+    ],
+    "environments/identities/serializers.py": [
+      "environments/identities/models.py",
+      "environments/models.py",
+      "environments/serializers.py",
+      "features/models.py",
+      "features/serializers.py"
+    ],
+    "environments/identities/traits/admin.py": [
+      "environments/identities/traits/models.py"
+    ],
+    "environments/identities/traits/constants.py": [
+      "features/value_types.py"
+    ],
+    "environments/identities/traits/exceptions.py": [],
+    "environments/identities/traits/fields.py": [
+      "environments/identities/traits/constants.py",
+      "environments/sdk/types.py",
+      "features/value_types.py"
+    ],
+    "environments/identities/traits/models.py": [
+      "environments/identities/traits/exceptions.py"
+    ],
+    "environments/identities/traits/serializers.py": [
+      "environments/identities/models.py",
+      "environments/identities/serializers.py",
+      "environments/identities/traits/fields.py",
+      "environments/identities/traits/models.py"
+    ],
+    "environments/identities/traits/views.py": [
+      "environments/authentication.py",
+      "environments/identities/models.py",
+      "environments/identities/traits/models.py",
+      "environments/identities/traits/serializers.py",
+      "environments/permissions/permissions.py",
+      "environments/sdk/serializers.py",
+      "environments/views.py"
+    ],
+    "environments/identities/views.py": [
+      "environments/identities/models.py",
+      "environments/identities/serializers.py",
+      "environments/models.py",
+      "environments/permissions/permissions.py",
+      "environments/sdk/serializers.py",
+      "features/serializers.py"
+    ],
+    "environments/models.py": [
+      "audit/constants.py",
+      "audit/related_object_type.py",
+      "environments/api_keys.py",
+      "environments/constants.py",
+      "environments/dynamodb/__init__.py",
+      "environments/enums.py",
+      "environments/exceptions.py",
+      "environments/managers.py",
+      "environments/metrics.py",
+      "features/models.py",
+      "features/multivariate/models.py",
+      "metadata/models.py",
+      "projects/models.py",
+      "segments/models.py"
+    ],
+    "environments/permissions/managers.py": [
+      "environments/permissions/models.py"
+    ],
+    "environments/permissions/models.py": [
+      "environments/models.py",
+      "environments/permissions/managers.py",
+      "environments/permissions/models.py"
+    ],
+    "environments/permissions/permissions.py": [
+      "environments/models.py",
+      "projects/models.py"
+    ],
+    "environments/permissions/serializers.py": [
+      "environments/permissions/models.py",
+      "environments/permissions/serializers.py",
+      "users/serializers.py"
+    ]
+  }
+}

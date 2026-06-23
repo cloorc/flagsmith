@@ -1,0 +1,1098 @@
+{
+  "nodes": [
+    {
+      "id": "file:environments/permissions/views.py",
+      "name": "views.py",
+      "filePath": "environments/permissions/views.py",
+      "summary": "DRF viewsets for managing per-user and per-group environment permissions, scoping querysets to a given environment and saving via the matching create/list serializer.",
+      "tags": [
+        "api-handler",
+        "permissions",
+        "viewset",
+        "environments"
+      ],
+      "complexity": "moderate",
+      "type": "file"
+    },
+    {
+      "id": "file:environments/sdk/serializers.py",
+      "name": "serializers.py",
+      "filePath": "environments/sdk/serializers.py",
+      "summary": "SDK-facing serializers for identifying users and creating/updating traits, including transient identity handling and integration dispatch on identify.",
+      "tags": [
+        "serialization",
+        "sdk",
+        "identity",
+        "traits"
+      ],
+      "complexity": "moderate",
+      "type": "file"
+    },
+    {
+      "id": "file:environments/sdk/serializers_mixins.py",
+      "name": "serializers_mixins.py",
+      "filePath": "environments/sdk/serializers_mixins.py",
+      "summary": "Serializer mixin that hides sensitive fields from the serialized representation when configured to do so.",
+      "tags": [
+        "serialization",
+        "mixin",
+        "security",
+        "sdk"
+      ],
+      "complexity": "simple",
+      "type": "file"
+    },
+    {
+      "id": "file:environments/sdk/services.py",
+      "name": "services.py",
+      "filePath": "environments/sdk/services.py",
+      "summary": "Business logic for resolving transient, identified-transient, and persisted identities from SDK trait payloads, deriving deterministic transient identifiers.",
+      "tags": [
+        "service",
+        "business-logic",
+        "identity",
+        "sdk"
+      ],
+      "complexity": "moderate",
+      "type": "file"
+    },
+    {
+      "id": "file:environments/sdk/types.py",
+      "name": "types.py",
+      "filePath": "environments/sdk/types.py",
+      "summary": "TypedDict definitions for SDK trait value and trait data payloads used across the SDK serialization layer.",
+      "tags": [
+        "type-definition",
+        "sdk",
+        "traits"
+      ],
+      "complexity": "simple",
+      "type": "file"
+    },
+    {
+      "id": "file:environments/sdk/views.py",
+      "name": "views.py",
+      "filePath": "environments/sdk/views.py",
+      "summary": "SDK environment document API view that authenticates with an environment key and returns the cached environment document with last-modified support.",
+      "tags": [
+        "api-handler",
+        "sdk",
+        "environments",
+        "caching"
+      ],
+      "complexity": "simple",
+      "type": "file"
+    },
+    {
+      "id": "file:environments/urls.py",
+      "name": "urls.py",
+      "filePath": "environments/urls.py",
+      "summary": "URL routing for the environments app, wiring nested routers for environments, traits, identities, permissions, webhooks, API keys and feature endpoints.",
+      "tags": [
+        "routing",
+        "urls",
+        "environments",
+        "entry-point"
+      ],
+      "complexity": "moderate",
+      "type": "file"
+    },
+    {
+      "id": "file:environments/views.py",
+      "name": "views.py",
+      "filePath": "environments/views.py",
+      "summary": "Core environment viewsets exposing CRUD, cloning, trait-key listing, permission inspection, v2 versioning toggles, webhooks, API keys and environment metrics.",
+      "tags": [
+        "api-handler",
+        "viewset",
+        "environments",
+        "permissions"
+      ],
+      "complexity": "complex",
+      "type": "file"
+    },
+    {
+      "id": "file:features/constants.py",
+      "name": "constants.py",
+      "filePath": "features/constants.py",
+      "summary": "App-wide constants for feature states: state types, statuses, reserved multivariate control variant key, tag filtering strategies and the 32-bit integer ceiling.",
+      "tags": [
+        "config",
+        "constants",
+        "features"
+      ],
+      "complexity": "simple",
+      "type": "file"
+    },
+    {
+      "id": "file:features/feature_segments/limits.py",
+      "name": "limits.py",
+      "filePath": "features/feature_segments/limits.py",
+      "summary": "Enforces the per-environment segment override limit, counting existing overrides across versioning modes before allowing new segment overrides to be created.",
+      "tags": [
+        "service",
+        "validation",
+        "limits",
+        "feature-segments"
+      ],
+      "complexity": "moderate",
+      "type": "file"
+    },
+    {
+      "id": "file:features/feature_segments/permissions.py",
+      "name": "permissions.py",
+      "filePath": "features/feature_segments/permissions.py",
+      "summary": "DRF permission class governing access to feature segment endpoints by checking the user's environment-level permissions for the targeted environment.",
+      "tags": [
+        "permissions",
+        "feature-segments",
+        "authorization"
+      ],
+      "complexity": "simple",
+      "type": "file"
+    },
+    {
+      "id": "file:features/feature_segments/serializers.py",
+      "name": "serializers.py",
+      "filePath": "features/feature_segments/serializers.py",
+      "summary": "Serializers for creating, listing, cloning and re-prioritising feature segment overrides, including segment override limit checks and priority-collision resolution.",
+      "tags": [
+        "serialization",
+        "feature-segments",
+        "validation"
+      ],
+      "complexity": "moderate",
+      "type": "file"
+    },
+    {
+      "id": "class:environments/permissions/views.py:UserEnvironmentPermissionsViewSet",
+      "type": "class",
+      "name": "UserEnvironmentPermissionsViewSet",
+      "filePath": "environments/permissions/views.py",
+      "lineRange": [
+        19,
+        50
+      ],
+      "summary": "Viewset managing a user's environment permissions, scoping the queryset to the environment in the URL and saving against the resolved environment.",
+      "tags": [
+        "api-handler",
+        "viewset",
+        "permissions"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:environments/permissions/views.py:UserPermissionGroupEnvironmentPermissionsViewSet",
+      "type": "class",
+      "name": "UserPermissionGroupEnvironmentPermissionsViewSet",
+      "filePath": "environments/permissions/views.py",
+      "lineRange": [
+        53,
+        84
+      ],
+      "summary": "Viewset managing a permission group's environment permissions, scoping the queryset to the environment and saving against the resolved environment.",
+      "tags": [
+        "api-handler",
+        "viewset",
+        "permissions"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:environments/sdk/serializers.py:SDKCreateUpdateTraitSerializer",
+      "type": "class",
+      "name": "SDKCreateUpdateTraitSerializer",
+      "filePath": "environments/sdk/serializers.py",
+      "lineRange": [
+        30,
+        72
+      ],
+      "summary": "Serializer that creates or updates a single trait for an identity, resolving or creating the identity and enforcing trait persistence rules.",
+      "tags": [
+        "serialization",
+        "traits",
+        "sdk"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:environments/sdk/serializers.py:SDKBulkCreateUpdateTraitSerializer",
+      "type": "class",
+      "name": "SDKBulkCreateUpdateTraitSerializer",
+      "filePath": "environments/sdk/serializers.py",
+      "lineRange": [
+        75,
+        115
+      ],
+      "summary": "Serializer for bulk trait create/update that groups incoming items by identifier and applies them per identity.",
+      "tags": [
+        "serialization",
+        "traits",
+        "sdk",
+        "bulk"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:environments/sdk/serializers.py:IdentifyWithTraitsSerializer",
+      "type": "class",
+      "name": "IdentifyWithTraitsSerializer",
+      "filePath": "environments/sdk/serializers.py",
+      "lineRange": [
+        130,
+        197
+      ],
+      "summary": "Serializer that identifies a user with traits, choosing transient/identified-transient/persisted identity resolution and dispatching integrations and feature states.",
+      "tags": [
+        "serialization",
+        "identity",
+        "sdk",
+        "integration"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:environments/sdk/services.py:get_transient_identity_and_traits",
+      "type": "function",
+      "name": "get_transient_identity_and_traits",
+      "filePath": "environments/sdk/services.py",
+      "lineRange": [
+        17,
+        33
+      ],
+      "summary": "Builds a transient (non-persisted) identity and its generated traits from SDK trait data, hashing traits into a deterministic identifier.",
+      "tags": [
+        "service",
+        "identity",
+        "sdk"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:environments/sdk/services.py:get_identified_transient_identity_and_traits",
+      "type": "function",
+      "name": "get_identified_transient_identity_and_traits",
+      "filePath": "environments/sdk/services.py",
+      "lineRange": [
+        36,
+        58
+      ],
+      "summary": "Resolves an identified-but-transient identity, reusing an existing persisted identity if present and otherwise generating a transient one.",
+      "tags": [
+        "service",
+        "identity",
+        "sdk"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:environments/sdk/services.py:get_persisted_identity_and_traits",
+      "type": "function",
+      "name": "get_persisted_identity_and_traits",
+      "filePath": "environments/sdk/services.py",
+      "lineRange": [
+        61,
+        91
+      ],
+      "summary": "Gets or creates a persisted identity and reconciles its stored and incoming traits, persisting non-transient trait values.",
+      "tags": [
+        "service",
+        "identity",
+        "sdk",
+        "persistence"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:environments/sdk/services.py:get_transient_identifier",
+      "type": "function",
+      "name": "get_transient_identifier",
+      "filePath": "environments/sdk/services.py",
+      "lineRange": [
+        94,
+        104
+      ],
+      "summary": "Derives a deterministic SHA-256 identifier from sorted trait values, or a random UUID when no usable traits are present.",
+      "tags": [
+        "service",
+        "identity",
+        "hashing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:environments/sdk/views.py:SDKEnvironmentAPIView",
+      "type": "class",
+      "name": "SDKEnvironmentAPIView",
+      "filePath": "environments/sdk/views.py",
+      "lineRange": [
+        26,
+        50
+      ],
+      "summary": "API view returning the cached environment document for the authenticated environment key, with conditional-request last-modified support.",
+      "tags": [
+        "api-handler",
+        "sdk",
+        "caching"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:environments/views.py:EnvironmentViewSet",
+      "type": "class",
+      "name": "EnvironmentViewSet",
+      "filePath": "environments/views.py",
+      "lineRange": [
+        87,
+        320
+      ],
+      "summary": "Main environment viewset providing CRUD, cloning, trait-key listing, permission inspection, environment document retrieval and v2 versioning enable/disable actions.",
+      "tags": [
+        "api-handler",
+        "viewset",
+        "environments",
+        "permissions"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:environments/views.py:NestedEnvironmentViewSet",
+      "type": "class",
+      "name": "NestedEnvironmentViewSet",
+      "filePath": "environments/views.py",
+      "lineRange": [
+        323,
+        342
+      ],
+      "summary": "Base viewset for resources nested under an environment, scoping querysets and saving against the resolved parent environment.",
+      "tags": [
+        "api-handler",
+        "viewset",
+        "environments"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:environments/views.py:EnvironmentMetricsViewSet",
+      "type": "class",
+      "name": "EnvironmentMetricsViewSet",
+      "filePath": "environments/views.py",
+      "lineRange": [
+        372,
+        388
+      ],
+      "summary": "Viewset exposing aggregated environment metrics computed by the environment metrics service.",
+      "tags": [
+        "api-handler",
+        "viewset",
+        "metrics",
+        "environments"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:features/feature_segments/limits.py:exceeds_segment_override_limit",
+      "type": "function",
+      "name": "exceeds_segment_override_limit",
+      "filePath": "features/feature_segments/limits.py",
+      "lineRange": [
+        12,
+        51
+      ],
+      "summary": "Determines whether creating the requested segment overrides would exceed the environment's configured override limit, accounting for deletions and versioning mode.",
+      "tags": [
+        "validation",
+        "limits",
+        "feature-segments"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:features/feature_segments/permissions.py:FeatureSegmentPermissions",
+      "type": "class",
+      "name": "FeatureSegmentPermissions",
+      "filePath": "features/feature_segments/permissions.py",
+      "lineRange": [
+        9,
+        43
+      ],
+      "summary": "Permission class authorising feature segment access by resolving the target environment and checking the user's environment permissions.",
+      "tags": [
+        "permissions",
+        "feature-segments",
+        "authorization"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:features/feature_segments/serializers.py:FeatureSegmentCreateSerializer",
+      "type": "class",
+      "name": "FeatureSegmentCreateSerializer",
+      "filePath": "features/feature_segments/serializers.py",
+      "lineRange": [
+        20,
+        42
+      ],
+      "summary": "Serializer for creating a feature segment override, validating against the environment's segment override limit.",
+      "tags": [
+        "serialization",
+        "feature-segments",
+        "validation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:features/feature_segments/serializers.py:CustomCreateSegmentOverrideFeatureSegmentSerializer",
+      "type": "class",
+      "name": "CustomCreateSegmentOverrideFeatureSegmentSerializer",
+      "filePath": "features/feature_segments/serializers.py",
+      "lineRange": [
+        45,
+        80
+      ],
+      "summary": "Serializer that creates a segment override feature segment, resolving priority collisions before saving.",
+      "tags": [
+        "serialization",
+        "feature-segments"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:features/feature_segments/serializers.py:FeatureSegmentListSerializer",
+      "type": "class",
+      "name": "FeatureSegmentListSerializer",
+      "filePath": "features/feature_segments/serializers.py",
+      "lineRange": [
+        88,
+        120
+      ],
+      "summary": "Read serializer for feature segments exposing computed value, segment name and feature-specific flags.",
+      "tags": [
+        "serialization",
+        "feature-segments"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:features/feature_segments/serializers.py:FeatureSegmentChangePrioritiesListSerializer",
+      "type": "class",
+      "name": "FeatureSegmentChangePrioritiesListSerializer",
+      "filePath": "features/feature_segments/serializers.py",
+      "lineRange": [
+        123,
+        184
+      ],
+      "summary": "List serializer that validates and applies bulk priority changes across feature segments within a single environment and feature.",
+      "tags": [
+        "serialization",
+        "feature-segments",
+        "validation"
+      ],
+      "complexity": "complex"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:environments/permissions/views.py",
+      "target": "class:environments/permissions/views.py:UserEnvironmentPermissionsViewSet",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:environments/permissions/views.py",
+      "target": "class:environments/permissions/views.py:UserEnvironmentPermissionsViewSet",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/permissions/views.py",
+      "target": "class:environments/permissions/views.py:UserPermissionGroupEnvironmentPermissionsViewSet",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:environments/permissions/views.py",
+      "target": "class:environments/permissions/views.py:UserPermissionGroupEnvironmentPermissionsViewSet",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/sdk/serializers.py",
+      "target": "class:environments/sdk/serializers.py:SDKCreateUpdateTraitSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:environments/sdk/serializers.py",
+      "target": "class:environments/sdk/serializers.py:SDKCreateUpdateTraitSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/sdk/serializers.py",
+      "target": "class:environments/sdk/serializers.py:SDKBulkCreateUpdateTraitSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:environments/sdk/serializers.py",
+      "target": "class:environments/sdk/serializers.py:SDKBulkCreateUpdateTraitSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/sdk/serializers.py",
+      "target": "class:environments/sdk/serializers.py:IdentifyWithTraitsSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:environments/sdk/serializers.py",
+      "target": "class:environments/sdk/serializers.py:IdentifyWithTraitsSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/sdk/services.py",
+      "target": "function:environments/sdk/services.py:get_transient_identity_and_traits",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:environments/sdk/services.py",
+      "target": "function:environments/sdk/services.py:get_transient_identity_and_traits",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/sdk/services.py",
+      "target": "function:environments/sdk/services.py:get_identified_transient_identity_and_traits",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:environments/sdk/services.py",
+      "target": "function:environments/sdk/services.py:get_identified_transient_identity_and_traits",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/sdk/services.py",
+      "target": "function:environments/sdk/services.py:get_persisted_identity_and_traits",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:environments/sdk/services.py",
+      "target": "function:environments/sdk/services.py:get_persisted_identity_and_traits",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/sdk/services.py",
+      "target": "function:environments/sdk/services.py:get_transient_identifier",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:environments/sdk/services.py",
+      "target": "function:environments/sdk/services.py:get_transient_identifier",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/sdk/views.py",
+      "target": "class:environments/sdk/views.py:SDKEnvironmentAPIView",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:environments/sdk/views.py",
+      "target": "class:environments/sdk/views.py:SDKEnvironmentAPIView",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/views.py",
+      "target": "class:environments/views.py:EnvironmentViewSet",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:environments/views.py",
+      "target": "class:environments/views.py:EnvironmentViewSet",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/views.py",
+      "target": "class:environments/views.py:NestedEnvironmentViewSet",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:environments/views.py",
+      "target": "class:environments/views.py:NestedEnvironmentViewSet",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/views.py",
+      "target": "class:environments/views.py:EnvironmentMetricsViewSet",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:environments/views.py",
+      "target": "class:environments/views.py:EnvironmentMetricsViewSet",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/feature_segments/limits.py",
+      "target": "function:features/feature_segments/limits.py:exceeds_segment_override_limit",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:features/feature_segments/limits.py",
+      "target": "function:features/feature_segments/limits.py:exceeds_segment_override_limit",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/feature_segments/permissions.py",
+      "target": "class:features/feature_segments/permissions.py:FeatureSegmentPermissions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:features/feature_segments/permissions.py",
+      "target": "class:features/feature_segments/permissions.py:FeatureSegmentPermissions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/feature_segments/serializers.py",
+      "target": "class:features/feature_segments/serializers.py:FeatureSegmentCreateSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:features/feature_segments/serializers.py",
+      "target": "class:features/feature_segments/serializers.py:FeatureSegmentCreateSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/feature_segments/serializers.py",
+      "target": "class:features/feature_segments/serializers.py:CustomCreateSegmentOverrideFeatureSegmentSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:features/feature_segments/serializers.py",
+      "target": "class:features/feature_segments/serializers.py:CustomCreateSegmentOverrideFeatureSegmentSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/feature_segments/serializers.py",
+      "target": "class:features/feature_segments/serializers.py:FeatureSegmentListSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:features/feature_segments/serializers.py",
+      "target": "class:features/feature_segments/serializers.py:FeatureSegmentListSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/feature_segments/serializers.py",
+      "target": "class:features/feature_segments/serializers.py:FeatureSegmentChangePrioritiesListSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:features/feature_segments/serializers.py",
+      "target": "class:features/feature_segments/serializers.py:FeatureSegmentChangePrioritiesListSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/permissions/views.py",
+      "target": "file:environments/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/permissions/views.py",
+      "target": "file:environments/permissions/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/permissions/views.py",
+      "target": "file:environments/permissions/permissions.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/permissions/views.py",
+      "target": "file:environments/permissions/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/sdk/serializers.py",
+      "target": "file:environments/identities/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/sdk/serializers.py",
+      "target": "file:environments/identities/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/sdk/serializers.py",
+      "target": "file:environments/identities/traits/fields.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/sdk/serializers.py",
+      "target": "file:environments/identities/traits/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/sdk/serializers.py",
+      "target": "file:environments/identities/traits/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/sdk/serializers.py",
+      "target": "file:environments/sdk/serializers_mixins.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/sdk/serializers.py",
+      "target": "file:environments/sdk/services.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/sdk/serializers.py",
+      "target": "file:environments/sdk/types.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/sdk/serializers.py",
+      "target": "file:features/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/sdk/serializers.py",
+      "target": "file:segments/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/sdk/services.py",
+      "target": "file:environments/identities/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/sdk/services.py",
+      "target": "file:environments/identities/traits/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/sdk/services.py",
+      "target": "file:environments/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/sdk/services.py",
+      "target": "file:environments/sdk/types.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/sdk/views.py",
+      "target": "file:environments/authentication.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/sdk/views.py",
+      "target": "file:environments/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/sdk/views.py",
+      "target": "file:environments/permissions/permissions.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/urls.py",
+      "target": "file:environments/identities/traits/views.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/urls.py",
+      "target": "file:environments/identities/views.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/urls.py",
+      "target": "file:environments/permissions/views.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/urls.py",
+      "target": "file:environments/views.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/urls.py",
+      "target": "file:features/views.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/views.py",
+      "target": "file:environments/identities/traits/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/views.py",
+      "target": "file:environments/identities/traits/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/views.py",
+      "target": "file:environments/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/views.py",
+      "target": "file:environments/permissions/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/views.py",
+      "target": "file:environments/permissions/permissions.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/views.py",
+      "target": "file:environments/permissions/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/views.py",
+      "target": "file:environments/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/views.py",
+      "target": "file:features/versioning/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/views.py",
+      "target": "file:features/versioning/tasks.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/views.py",
+      "target": "file:permissions/permissions_calculator.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/views.py",
+      "target": "file:projects/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/views.py",
+      "target": "file:users/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/feature_segments/limits.py",
+      "target": "file:environments/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/feature_segments/limits.py",
+      "target": "file:features/versioning/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/feature_segments/permissions.py",
+      "target": "file:environments/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/feature_segments/serializers.py",
+      "target": "file:features/feature_segments/limits.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/feature_segments/serializers.py",
+      "target": "file:features/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "class:features/feature_segments/serializers.py:FeatureSegmentCreateSerializer",
+      "target": "function:features/feature_segments/limits.py:exceeds_segment_override_limit",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:environments/sdk/serializers.py:IdentifyWithTraitsSerializer",
+      "target": "function:environments/sdk/services.py:get_transient_identity_and_traits",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:environments/sdk/serializers.py:IdentifyWithTraitsSerializer",
+      "target": "function:environments/sdk/services.py:get_identified_transient_identity_and_traits",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:environments/sdk/serializers.py:IdentifyWithTraitsSerializer",
+      "target": "function:environments/sdk/services.py:get_persisted_identity_and_traits",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:environments/sdk/services.py:get_transient_identity_and_traits",
+      "target": "function:environments/sdk/services.py:get_transient_identifier",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

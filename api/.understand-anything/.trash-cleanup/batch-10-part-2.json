@@ -1,0 +1,1465 @@
+{
+  "nodes": [
+    {
+      "id": "file:experimentation/results_query.py",
+      "type": "file",
+      "name": "results_query.py",
+      "filePath": "experimentation/results_query.py",
+      "summary": "Builds the parameterised ClickHouse SQL that computes per-variant metric aggregates (count/sum/sum-of-squares) and decodes result rows into VariantStats for statistical inference.",
+      "tags": [
+        "service",
+        "query-builder",
+        "clickhouse",
+        "serialization"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Assembles SQL via per-metric column slots to fan a single scan into multiple metric aggregations."
+    },
+    {
+      "id": "file:experimentation/serializers.py",
+      "type": "file",
+      "name": "serializers.py",
+      "filePath": "experimentation/serializers.py",
+      "summary": "DRF serializers for warehouse connections, metrics, experiments and their exposures/results, including validation of metric definitions, variant uniqueness, and feature compatibility.",
+      "tags": [
+        "serialization",
+        "drf-serializer",
+        "validation",
+        "api"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:experimentation/services.py",
+      "type": "file",
+      "name": "services.py",
+      "filePath": "experimentation/services.py",
+      "summary": "Core business-logic layer: feature-flag gating, ClickHouse client/queries for exposures and metric stats, results summarisation with SRM and inference, experiment status transitions, and audit-log creation.",
+      "tags": [
+        "service",
+        "business-logic",
+        "clickhouse",
+        "audit"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Centralises warehouse query execution and statistical summarisation so views, models and serializers stay lean."
+    },
+    {
+      "id": "file:experimentation/stats.py",
+      "type": "file",
+      "name": "stats.py",
+      "filePath": "experimentation/stats.py",
+      "summary": "Pure statistics helpers: two-sample lift inference with confidence interval and chance-to-win, plus a sample-ratio-mismatch (SRM) chi-squared p-value, implemented without scipy.",
+      "tags": [
+        "utility",
+        "statistics",
+        "inference"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Reimplements normal CDF and chi-squared survival via math primitives to avoid a scipy dependency."
+    },
+    {
+      "id": "file:experimentation/tasks.py",
+      "type": "file",
+      "name": "tasks.py",
+      "filePath": "experimentation/tasks.py",
+      "summary": "Asynchronous task-processor tasks that sync environment keys to ingestion and recompute experiment exposures and results, recording refresh/failure state on the computation models.",
+      "tags": [
+        "tasks",
+        "async",
+        "task-processor"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:experimentation/types.py",
+      "type": "file",
+      "name": "types.py",
+      "filePath": "experimentation/types.py",
+      "summary": "TypedDict definitions for metric-definition payloads, per-experiment metric results, and Snowflake warehouse configuration used across serializers and services.",
+      "tags": [
+        "type-definition",
+        "typeddict",
+        "schema"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:experimentation/urls.py",
+      "type": "file",
+      "name": "urls.py",
+      "filePath": "experimentation/urls.py",
+      "summary": "Top-level URL routing for the experimentation app, wiring the warehouse-connection viewset into the environment API.",
+      "tags": [
+        "routing",
+        "urls",
+        "api-routing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:experimentation/views.py",
+      "type": "file",
+      "name": "views.py",
+      "filePath": "experimentation/views.py",
+      "summary": "DRF viewsets for warehouse connections, experiments, experiment metrics, and metrics — handling CRUD, connection testing, status transitions, and exposures/results refresh endpoints.",
+      "tags": [
+        "api-handler",
+        "drf-viewset",
+        "rest-api",
+        "endpoint"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:experimentation/results_query.py:_MetricSlot",
+      "type": "class",
+      "name": "_MetricSlot",
+      "filePath": "experimentation/results_query.py",
+      "lineRange": [
+        62,
+        113
+      ],
+      "summary": "Represents one metric's columns in the aggregate query, emitting per-unit and outer SELECT fragments and decoding result columns into VariantStats.",
+      "tags": [
+        "query-builder",
+        "serialization",
+        "clickhouse"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:experimentation/results_query.py:ResultsQueryBuilder",
+      "type": "class",
+      "name": "ResultsQueryBuilder",
+      "filePath": "experimentation/results_query.py",
+      "lineRange": [
+        116,
+        174
+      ],
+      "summary": "Assembles the full parameterised ClickHouse results query across all metric slots, supplies query parameters, and decodes returned rows into per-variant, per-metric stats.",
+      "tags": [
+        "query-builder",
+        "clickhouse",
+        "service"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:experimentation/serializers.py:WarehouseConnectionSerializer",
+      "type": "class",
+      "name": "WarehouseConnectionSerializer",
+      "filePath": "experimentation/serializers.py",
+      "lineRange": [
+        31,
+        109
+      ],
+      "summary": "Serializes and validates warehouse connections, generating a default name, validating Snowflake config, and exposing event-stat counts.",
+      "tags": [
+        "serialization",
+        "drf-serializer",
+        "validation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:experimentation/serializers.py:MetricSerializer",
+      "type": "class",
+      "name": "MetricSerializer",
+      "filePath": "experimentation/serializers.py",
+      "lineRange": [
+        112,
+        149
+      ],
+      "summary": "Serializes metrics with their attached experiments and validates the versioned metric definition payload.",
+      "tags": [
+        "serialization",
+        "drf-serializer",
+        "validation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:experimentation/serializers.py:ExperimentMetricSerializer",
+      "type": "class",
+      "name": "ExperimentMetricSerializer",
+      "filePath": "experimentation/serializers.py",
+      "lineRange": [
+        152,
+        194
+      ],
+      "summary": "Serializes the experiment-metric link and validates that a metric is not attached twice to the same experiment.",
+      "tags": [
+        "serialization",
+        "drf-serializer",
+        "validation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:experimentation/serializers.py:ExperimentSerializer",
+      "type": "class",
+      "name": "ExperimentSerializer",
+      "filePath": "experimentation/serializers.py",
+      "lineRange": [
+        210,
+        285
+      ],
+      "summary": "Serializes experiments with nested metric creation, validating feature compatibility, metric uniqueness, and writing experiment-metric rows atomically on create.",
+      "tags": [
+        "serialization",
+        "drf-serializer",
+        "validation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:experimentation/serializers.py:ExperimentFeatureSerializer",
+      "type": "class",
+      "name": "ExperimentFeatureSerializer",
+      "filePath": "experimentation/serializers.py",
+      "lineRange": [
+        288,
+        331
+      ],
+      "summary": "Serializes an experiment's feature including its multivariate options resolved against the current environment feature state.",
+      "tags": [
+        "serialization",
+        "drf-serializer",
+        "validation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:experimentation/serializers.py:ExperimentExposuresSerializer",
+      "type": "class",
+      "name": "ExperimentExposuresSerializer",
+      "filePath": "experimentation/serializers.py",
+      "lineRange": [
+        343,
+        354
+      ],
+      "summary": "Serializes cached experiment exposure summaries for the exposures endpoint.",
+      "tags": [
+        "serialization",
+        "drf-serializer",
+        "validation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:experimentation/serializers.py:ExperimentResultsSerializer",
+      "type": "class",
+      "name": "ExperimentResultsSerializer",
+      "filePath": "experimentation/serializers.py",
+      "lineRange": [
+        357,
+        368
+      ],
+      "summary": "Serializes cached experiment results summaries for the results endpoint.",
+      "tags": [
+        "serialization",
+        "drf-serializer",
+        "validation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:experimentation/services.py:get_warehouse_event_stats",
+      "type": "function",
+      "name": "get_warehouse_event_stats",
+      "filePath": "experimentation/services.py",
+      "lineRange": [
+        112,
+        123
+      ],
+      "summary": "Queries ClickHouse for total and unique event counts for an environment and returns them as a WarehouseEventStats DTO.",
+      "tags": [
+        "clickhouse",
+        "warehouse",
+        "service"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:experimentation/services.py:compute_exposures_summary",
+      "type": "function",
+      "name": "compute_exposures_summary",
+      "filePath": "experimentation/services.py",
+      "lineRange": [
+        146,
+        161
+      ],
+      "summary": "Selects an appropriate bucket granularity, fetches exposure buckets from ClickHouse, and builds the exposures summary for a feature window.",
+      "tags": [
+        "clickhouse",
+        "exposures",
+        "service"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:experimentation/services.py:build_exposures_summary",
+      "type": "function",
+      "name": "build_exposures_summary",
+      "filePath": "experimentation/services.py",
+      "lineRange": [
+        164,
+        177
+      ],
+      "summary": "Aggregates exposure buckets into an excluded-identities count and a timeseries of new identities per bucket.",
+      "tags": [
+        "exposures",
+        "aggregation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:experimentation/services.py:_timeseries_points",
+      "type": "function",
+      "name": "_timeseries_points",
+      "filePath": "experimentation/services.py",
+      "lineRange": [
+        180,
+        194
+      ],
+      "summary": "Collapses raw exposure buckets into ordered timeseries points of new identities keyed by bucket start.",
+      "tags": [
+        "exposures",
+        "aggregation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:experimentation/services.py:get_exposure_buckets",
+      "type": "function",
+      "name": "get_exposure_buckets",
+      "filePath": "experimentation/services.py",
+      "lineRange": [
+        206,
+        234
+      ],
+      "summary": "Runs the exposure-bucket ClickHouse query for a feature window and granularity and maps rows into ExposureBucket DTOs.",
+      "tags": [
+        "clickhouse",
+        "exposures",
+        "service"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:experimentation/services.py:get_metric_variant_stats",
+      "type": "function",
+      "name": "get_metric_variant_stats",
+      "filePath": "experimentation/services.py",
+      "lineRange": [
+        237,
+        268
+      ],
+      "summary": "Builds and runs the per-variant metric aggregate query via ResultsQueryBuilder and returns ResultsAggregates with exposure counts and metric stats.",
+      "tags": [
+        "clickhouse",
+        "metrics",
+        "service"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:experimentation/services.py:build_results_summary",
+      "type": "function",
+      "name": "build_results_summary",
+      "filePath": "experimentation/services.py",
+      "lineRange": [
+        271,
+        297
+      ],
+      "summary": "Computes the SRM p-value and per-metric inference from aggregated variant stats and expected shares, producing a ResultsSummary.",
+      "tags": [
+        "statistics",
+        "inference",
+        "service"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:experimentation/services.py:compute_results_summary",
+      "type": "function",
+      "name": "compute_results_summary",
+      "filePath": "experimentation/services.py",
+      "lineRange": [
+        300,
+        319
+      ],
+      "summary": "Orchestrates results computation for an experiment window: resolves metric specs and expected shares, queries variant stats, and summarises results.",
+      "tags": [
+        "statistics",
+        "service",
+        "orchestration"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:experimentation/services.py:_expected_variant_shares",
+      "type": "function",
+      "name": "_expected_variant_shares",
+      "filePath": "experimentation/services.py",
+      "lineRange": [
+        336,
+        389
+      ],
+      "summary": "Derives the expected traffic share per variant from the feature's current multivariate feature-state values, logging anomalies.",
+      "tags": [
+        "service",
+        "feature-state"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:experimentation/services.py:_infer_treatment",
+      "type": "function",
+      "name": "_infer_treatment",
+      "filePath": "experimentation/services.py",
+      "lineRange": [
+        404,
+        427
+      ],
+      "summary": "Runs control-vs-treatment inference for a metric spec, flipping lift direction when lower-is-better.",
+      "tags": [
+        "statistics",
+        "inference"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:experimentation/services.py:create_warehouse_audit_log",
+      "type": "function",
+      "name": "create_warehouse_audit_log",
+      "filePath": "experimentation/services.py",
+      "lineRange": [
+        438,
+        454
+      ],
+      "summary": "Creates an audit-log entry for a warehouse-connection action, resolving the acting user.",
+      "tags": [
+        "audit",
+        "service"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:experimentation/services.py:create_metric_audit_log",
+      "type": "function",
+      "name": "create_metric_audit_log",
+      "filePath": "experimentation/services.py",
+      "lineRange": [
+        457,
+        470
+      ],
+      "summary": "Creates an audit-log entry for a metric action, resolving the acting user.",
+      "tags": [
+        "audit",
+        "service"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:experimentation/services.py:create_experiment_audit_log",
+      "type": "function",
+      "name": "create_experiment_audit_log",
+      "filePath": "experimentation/services.py",
+      "lineRange": [
+        473,
+        489
+      ],
+      "summary": "Creates an audit-log entry for an experiment action, resolving the acting user.",
+      "tags": [
+        "audit",
+        "service"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:experimentation/services.py:transition_experiment_status",
+      "type": "function",
+      "name": "transition_experiment_status",
+      "filePath": "experimentation/services.py",
+      "lineRange": [
+        492,
+        512
+      ],
+      "summary": "Transitions an experiment to a target status, validating the transition, stamping timestamps, persisting, and writing an audit log.",
+      "tags": [
+        "service",
+        "state-machine",
+        "audit"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:experimentation/services.py:mark_warehouse_pending_connection",
+      "type": "function",
+      "name": "mark_warehouse_pending_connection",
+      "filePath": "experimentation/services.py",
+      "lineRange": [
+        515,
+        530
+      ],
+      "summary": "Marks a warehouse connection as pending verification and logs the state change.",
+      "tags": [
+        "service",
+        "warehouse"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:experimentation/services.py:refresh_warehouse_connection_status",
+      "type": "function",
+      "name": "refresh_warehouse_connection_status",
+      "filePath": "experimentation/services.py",
+      "lineRange": [
+        533,
+        550
+      ],
+      "summary": "Updates a warehouse connection's status from fetched event stats and logs the refresh.",
+      "tags": [
+        "service",
+        "warehouse"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:experimentation/services.py:annotate_warehouse_event_stats",
+      "type": "function",
+      "name": "annotate_warehouse_event_stats",
+      "filePath": "experimentation/services.py",
+      "lineRange": [
+        553,
+        568
+      ],
+      "summary": "Annotates a warehouse connection with freshly fetched event stats from the warehouse.",
+      "tags": [
+        "service",
+        "warehouse"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:experimentation/stats.py:VariantStats",
+      "type": "class",
+      "name": "VariantStats",
+      "filePath": "experimentation/stats.py",
+      "lineRange": [
+        21,
+        42
+      ],
+      "summary": "Sufficient-statistics accumulator for a variant (count, sum, sum of squares) exposing derived mean and clamped variance.",
+      "tags": [
+        "statistics",
+        "data-model",
+        "dataclass"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:experimentation/stats.py:compare_to_control",
+      "type": "function",
+      "name": "compare_to_control",
+      "filePath": "experimentation/stats.py",
+      "lineRange": [
+        53,
+        84
+      ],
+      "summary": "Computes relative lift, a confidence interval, and chance-to-win for a treatment variant versus control using a normal approximation.",
+      "tags": [
+        "statistics",
+        "inference"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:experimentation/stats.py:srm_p_value",
+      "type": "function",
+      "name": "srm_p_value",
+      "filePath": "experimentation/stats.py",
+      "lineRange": [
+        87,
+        108
+      ],
+      "summary": "Computes the sample-ratio-mismatch chi-squared p-value comparing observed variant counts against expected shares.",
+      "tags": [
+        "statistics",
+        "inference"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:experimentation/stats.py:_chi_squared_survival",
+      "type": "function",
+      "name": "_chi_squared_survival",
+      "filePath": "experimentation/stats.py",
+      "lineRange": [
+        111,
+        130
+      ],
+      "summary": "Approximates the chi-squared survival function (upper-tail p-value) using math primitives for 1+ degrees of freedom.",
+      "tags": [
+        "statistics",
+        "utility"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:experimentation/tasks.py:compute_experiment_exposures",
+      "type": "function",
+      "name": "compute_experiment_exposures",
+      "filePath": "experimentation/tasks.py",
+      "lineRange": [
+        23,
+        55
+      ],
+      "summary": "Task-processor task that recomputes an experiment's exposure summary, persisting refresh or failure state on the exposures record.",
+      "tags": [
+        "tasks",
+        "async",
+        "exposures"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:experimentation/tasks.py:compute_experiment_results",
+      "type": "function",
+      "name": "compute_experiment_results",
+      "filePath": "experimentation/tasks.py",
+      "lineRange": [
+        59,
+        90
+      ],
+      "summary": "Task-processor task that recomputes an experiment's results summary, persisting refresh or failure state on the results record.",
+      "tags": [
+        "tasks",
+        "async",
+        "results"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:experimentation/views.py:WarehouseConnectionViewSet",
+      "type": "class",
+      "name": "WarehouseConnectionViewSet",
+      "filePath": "experimentation/views.py",
+      "lineRange": [
+        67,
+        155
+      ],
+      "summary": "Viewset managing an environment's warehouse connection: CRUD with audit logging, connection testing with status refresh, and single-connection enforcement.",
+      "tags": [
+        "api-handler",
+        "drf-viewset",
+        "warehouse"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:experimentation/views.py:ExperimentViewSet",
+      "type": "class",
+      "name": "ExperimentViewSet",
+      "filePath": "experimentation/views.py",
+      "lineRange": [
+        158,
+        399
+      ],
+      "summary": "Viewset for experiments: list/CRUD with audit logging, status-transition actions (start/pause/complete), and exposures/results retrieval and throttled refresh.",
+      "tags": [
+        "api-handler",
+        "drf-viewset",
+        "experiment"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:experimentation/views.py:ExperimentMetricViewSet",
+      "type": "class",
+      "name": "ExperimentMetricViewSet",
+      "filePath": "experimentation/views.py",
+      "lineRange": [
+        402,
+        450
+      ],
+      "summary": "Nested viewset managing metrics attached to a specific experiment, scoped by environment API key.",
+      "tags": [
+        "api-handler",
+        "drf-viewset",
+        "metrics"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:experimentation/views.py:MetricViewSet",
+      "type": "class",
+      "name": "MetricViewSet",
+      "filePath": "experimentation/views.py",
+      "lineRange": [
+        453,
+        527
+      ],
+      "summary": "Viewset for environment-scoped metrics with prefetch of attached experiments, audit logging, and deletion guarded against in-flight experiments.",
+      "tags": [
+        "api-handler",
+        "drf-viewset",
+        "metrics"
+      ],
+      "complexity": "complex"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:experimentation/results_query.py",
+      "target": "class:experimentation/results_query.py:_MetricSlot",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:experimentation/results_query.py",
+      "target": "class:experimentation/results_query.py:_MetricSlot",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:experimentation/results_query.py",
+      "target": "class:experimentation/results_query.py:ResultsQueryBuilder",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:experimentation/results_query.py",
+      "target": "class:experimentation/results_query.py:ResultsQueryBuilder",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:experimentation/serializers.py",
+      "target": "class:experimentation/serializers.py:WarehouseConnectionSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:experimentation/serializers.py",
+      "target": "class:experimentation/serializers.py:WarehouseConnectionSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:experimentation/serializers.py",
+      "target": "class:experimentation/serializers.py:MetricSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:experimentation/serializers.py",
+      "target": "class:experimentation/serializers.py:MetricSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:experimentation/serializers.py",
+      "target": "class:experimentation/serializers.py:ExperimentMetricSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:experimentation/serializers.py",
+      "target": "class:experimentation/serializers.py:ExperimentMetricSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:experimentation/serializers.py",
+      "target": "class:experimentation/serializers.py:ExperimentSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:experimentation/serializers.py",
+      "target": "class:experimentation/serializers.py:ExperimentSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:experimentation/serializers.py",
+      "target": "class:experimentation/serializers.py:ExperimentFeatureSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:experimentation/serializers.py",
+      "target": "class:experimentation/serializers.py:ExperimentFeatureSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:experimentation/serializers.py",
+      "target": "class:experimentation/serializers.py:ExperimentExposuresSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:experimentation/serializers.py",
+      "target": "class:experimentation/serializers.py:ExperimentExposuresSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:experimentation/serializers.py",
+      "target": "class:experimentation/serializers.py:ExperimentResultsSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:experimentation/serializers.py",
+      "target": "class:experimentation/serializers.py:ExperimentResultsSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:experimentation/services.py",
+      "target": "function:experimentation/services.py:get_warehouse_event_stats",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:experimentation/services.py",
+      "target": "function:experimentation/services.py:get_warehouse_event_stats",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:experimentation/services.py",
+      "target": "function:experimentation/services.py:compute_exposures_summary",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:experimentation/services.py",
+      "target": "function:experimentation/services.py:compute_exposures_summary",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:experimentation/services.py",
+      "target": "function:experimentation/services.py:build_exposures_summary",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:experimentation/services.py",
+      "target": "function:experimentation/services.py:build_exposures_summary",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:experimentation/services.py",
+      "target": "function:experimentation/services.py:_timeseries_points",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:experimentation/services.py",
+      "target": "function:experimentation/services.py:get_exposure_buckets",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:experimentation/services.py",
+      "target": "function:experimentation/services.py:get_exposure_buckets",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:experimentation/services.py",
+      "target": "function:experimentation/services.py:get_metric_variant_stats",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:experimentation/services.py",
+      "target": "function:experimentation/services.py:get_metric_variant_stats",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:experimentation/services.py",
+      "target": "function:experimentation/services.py:build_results_summary",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:experimentation/services.py",
+      "target": "function:experimentation/services.py:build_results_summary",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:experimentation/services.py",
+      "target": "function:experimentation/services.py:compute_results_summary",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:experimentation/services.py",
+      "target": "function:experimentation/services.py:compute_results_summary",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:experimentation/services.py",
+      "target": "function:experimentation/services.py:_expected_variant_shares",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:experimentation/services.py",
+      "target": "function:experimentation/services.py:_infer_treatment",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:experimentation/services.py",
+      "target": "function:experimentation/services.py:create_warehouse_audit_log",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:experimentation/services.py",
+      "target": "function:experimentation/services.py:create_warehouse_audit_log",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:experimentation/services.py",
+      "target": "function:experimentation/services.py:create_metric_audit_log",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:experimentation/services.py",
+      "target": "function:experimentation/services.py:create_metric_audit_log",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:experimentation/services.py",
+      "target": "function:experimentation/services.py:create_experiment_audit_log",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:experimentation/services.py",
+      "target": "function:experimentation/services.py:create_experiment_audit_log",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:experimentation/services.py",
+      "target": "function:experimentation/services.py:transition_experiment_status",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:experimentation/services.py",
+      "target": "function:experimentation/services.py:transition_experiment_status",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:experimentation/services.py",
+      "target": "function:experimentation/services.py:mark_warehouse_pending_connection",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:experimentation/services.py",
+      "target": "function:experimentation/services.py:mark_warehouse_pending_connection",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:experimentation/services.py",
+      "target": "function:experimentation/services.py:refresh_warehouse_connection_status",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:experimentation/services.py",
+      "target": "function:experimentation/services.py:refresh_warehouse_connection_status",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:experimentation/services.py",
+      "target": "function:experimentation/services.py:annotate_warehouse_event_stats",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:experimentation/services.py",
+      "target": "function:experimentation/services.py:annotate_warehouse_event_stats",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:experimentation/stats.py",
+      "target": "class:experimentation/stats.py:VariantStats",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:experimentation/stats.py",
+      "target": "class:experimentation/stats.py:VariantStats",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:experimentation/stats.py",
+      "target": "function:experimentation/stats.py:compare_to_control",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:experimentation/stats.py",
+      "target": "function:experimentation/stats.py:compare_to_control",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:experimentation/stats.py",
+      "target": "function:experimentation/stats.py:srm_p_value",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:experimentation/stats.py",
+      "target": "function:experimentation/stats.py:srm_p_value",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:experimentation/stats.py",
+      "target": "function:experimentation/stats.py:_chi_squared_survival",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:experimentation/tasks.py",
+      "target": "function:experimentation/tasks.py:compute_experiment_exposures",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:experimentation/tasks.py",
+      "target": "function:experimentation/tasks.py:compute_experiment_exposures",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:experimentation/tasks.py",
+      "target": "function:experimentation/tasks.py:compute_experiment_results",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:experimentation/tasks.py",
+      "target": "function:experimentation/tasks.py:compute_experiment_results",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:experimentation/views.py",
+      "target": "class:experimentation/views.py:WarehouseConnectionViewSet",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:experimentation/views.py",
+      "target": "class:experimentation/views.py:WarehouseConnectionViewSet",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:experimentation/views.py",
+      "target": "class:experimentation/views.py:ExperimentViewSet",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:experimentation/views.py",
+      "target": "class:experimentation/views.py:ExperimentViewSet",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:experimentation/views.py",
+      "target": "class:experimentation/views.py:ExperimentMetricViewSet",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:experimentation/views.py",
+      "target": "class:experimentation/views.py:ExperimentMetricViewSet",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:experimentation/views.py",
+      "target": "class:experimentation/views.py:MetricViewSet",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:experimentation/views.py",
+      "target": "class:experimentation/views.py:MetricViewSet",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:experimentation/results_query.py",
+      "target": "file:experimentation/dataclasses.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:experimentation/results_query.py",
+      "target": "file:experimentation/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:experimentation/results_query.py",
+      "target": "file:experimentation/stats.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:experimentation/serializers.py",
+      "target": "file:environments/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:experimentation/serializers.py",
+      "target": "file:experimentation/dataclasses.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:experimentation/serializers.py",
+      "target": "file:experimentation/metric_definitions.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:experimentation/serializers.py",
+      "target": "file:experimentation/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:experimentation/serializers.py",
+      "target": "file:experimentation/types.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:experimentation/serializers.py",
+      "target": "file:features/feature_types.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:experimentation/serializers.py",
+      "target": "file:features/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:experimentation/serializers.py",
+      "target": "file:features/multivariate/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:experimentation/services.py",
+      "target": "file:audit/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:experimentation/services.py",
+      "target": "file:audit/related_object_type.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:experimentation/services.py",
+      "target": "file:experimentation/constants.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:experimentation/services.py",
+      "target": "file:experimentation/dataclasses.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:experimentation/services.py",
+      "target": "file:experimentation/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:experimentation/services.py",
+      "target": "file:experimentation/results_query.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:experimentation/services.py",
+      "target": "file:experimentation/stats.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:experimentation/services.py",
+      "target": "file:features/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:experimentation/stats.py",
+      "target": "file:experimentation/dataclasses.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:experimentation/tasks.py",
+      "target": "file:experimentation/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:experimentation/tasks.py",
+      "target": "file:experimentation/ingestion_sync_service.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:experimentation/tasks.py",
+      "target": "file:experimentation/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:experimentation/tasks.py",
+      "target": "file:experimentation/services.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:experimentation/urls.py",
+      "target": "file:experimentation/views.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:experimentation/views.py",
+      "target": "file:environments/views.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:experimentation/views.py",
+      "target": "file:experimentation/constants.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:experimentation/views.py",
+      "target": "file:experimentation/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:experimentation/views.py",
+      "target": "file:experimentation/permissions.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:experimentation/views.py",
+      "target": "file:experimentation/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:experimentation/views.py",
+      "target": "file:experimentation/services.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:experimentation/views.py",
+      "target": "file:experimentation/tasks.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:experimentation/views.py",
+      "target": "file:users/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "function:experimentation/tasks.py:compute_experiment_exposures",
+      "target": "function:experimentation/services.py:compute_exposures_summary",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:experimentation/tasks.py:compute_experiment_results",
+      "target": "function:experimentation/services.py:compute_results_summary",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:experimentation/services.py:build_results_summary",
+      "target": "function:experimentation/stats.py:srm_p_value",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:experimentation/services.py:_infer_treatment",
+      "target": "function:experimentation/stats.py:compare_to_control",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:experimentation/services.py:get_metric_variant_stats",
+      "target": "class:experimentation/results_query.py:ResultsQueryBuilder",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:experimentation/serializers.py:MetricSerializer",
+      "target": "function:experimentation/metric_definitions.py:validate_metric_definition",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

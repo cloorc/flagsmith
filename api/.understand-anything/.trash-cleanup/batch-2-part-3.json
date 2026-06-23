@@ -1,0 +1,1420 @@
+{
+  "nodes": [
+    {
+      "id": "file:users/constants.py",
+      "type": "file",
+      "name": "constants.py",
+      "filePath": "users/constants.py",
+      "summary": "Module-level constants for the users app.",
+      "tags": [
+        "constants",
+        "config",
+        "users"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:users/exceptions.py",
+      "type": "file",
+      "name": "exceptions.py",
+      "filePath": "users/exceptions.py",
+      "summary": "Defines the InvalidInviteError exception raised when a user attempts to accept an invite that does not match their account.",
+      "tags": [
+        "exceptions",
+        "users",
+        "error-handling"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:users/forms.py",
+      "type": "file",
+      "name": "forms.py",
+      "filePath": "users/forms.py",
+      "summary": "Django forms for the custom user admin and for the first-run init configuration that creates the initial superuser and updates the site.",
+      "tags": [
+        "forms",
+        "users",
+        "admin",
+        "bootstrap"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:users/management/commands/createinitialadminuser.py",
+      "type": "file",
+      "name": "createinitialadminuser.py",
+      "filePath": "users/management/commands/createinitialadminuser.py",
+      "summary": "Django management command that creates the initial admin superuser if none exists.",
+      "tags": [
+        "management-command",
+        "bootstrap",
+        "users"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:users/models.py",
+      "type": "file",
+      "name": "models.py",
+      "filePath": "users/models.py",
+      "summary": "Core user models: the custom FFAdminUser with organisation/permission helpers, its manager, permission groups and memberships, and Hubspot lead/tracker models.",
+      "tags": [
+        "data-model",
+        "users",
+        "permissions",
+        "organisations"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:users/serializers.py",
+      "type": "file",
+      "name": "serializers.py",
+      "filePath": "users/serializers.py",
+      "summary": "Serializers for users, permission groups, group memberships, onboarding state and the current-user representation.",
+      "tags": [
+        "serialization",
+        "users",
+        "permissions",
+        "onboarding"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:users/services.py",
+      "type": "file",
+      "name": "services.py",
+      "filePath": "users/services.py",
+      "summary": "Service functions for bootstrapping the initial superuser and generating its password reset URL.",
+      "tags": [
+        "service",
+        "bootstrap",
+        "users"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:users/signals.py",
+      "type": "file",
+      "name": "signals.py",
+      "filePath": "users/signals.py",
+      "summary": "Signal handler that warns when the application is run with insecure default configuration on first user creation.",
+      "tags": [
+        "event-handler",
+        "signals",
+        "users"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:users/urls.py",
+      "type": "file",
+      "name": "urls.py",
+      "filePath": "users/urls.py",
+      "summary": "URL routing for user and permission-group endpoints including invite acceptance.",
+      "tags": [
+        "routing",
+        "users",
+        "entry-point"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:users/views.py",
+      "type": "file",
+      "name": "views.py",
+      "filePath": "users/views.py",
+      "summary": "User API: initial configuration/admin-init views, the user viewset with role updates, and the permission-group viewset with membership management.",
+      "tags": [
+        "api-handler",
+        "users",
+        "permissions",
+        "onboarding"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:users/exceptions.py:InvalidInviteError",
+      "type": "class",
+      "name": "InvalidInviteError",
+      "filePath": "users/exceptions.py",
+      "lineRange": [
+        1,
+        2
+      ],
+      "summary": "Exception raised when an invite does not match the accepting user's email.",
+      "tags": [
+        "exceptions",
+        "error-handling"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:users/forms.py:CustomUserAdminForm",
+      "type": "class",
+      "name": "CustomUserAdminForm",
+      "filePath": "users/forms.py",
+      "lineRange": [
+        14,
+        19
+      ],
+      "summary": "Admin form for editing the custom user model.",
+      "tags": [
+        "forms",
+        "admin"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:users/forms.py:InitConfigForm",
+      "type": "class",
+      "name": "InitConfigForm",
+      "filePath": "users/forms.py",
+      "lineRange": [
+        22,
+        41
+      ],
+      "summary": "First-run init form creating the initial superuser and updating the Django site.",
+      "tags": [
+        "forms",
+        "bootstrap"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:users/management/commands/createinitialadminuser.py:Command",
+      "type": "class",
+      "name": "Command",
+      "filePath": "users/management/commands/createinitialadminuser.py",
+      "lineRange": [
+        16,
+        51
+      ],
+      "summary": "Management command creating the initial admin superuser when none exists.",
+      "tags": [
+        "management-command",
+        "bootstrap"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:users/models.py:UTMDataModel",
+      "type": "class",
+      "name": "UTMDataModel",
+      "filePath": "users/models.py",
+      "lineRange": [
+        49,
+        54
+      ],
+      "summary": "Dataclass holding UTM marketing attribution fields.",
+      "tags": [
+        "data-model",
+        "users"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:users/models.py:SignUpType",
+      "type": "class",
+      "name": "SignUpType",
+      "filePath": "users/models.py",
+      "lineRange": [
+        68,
+        71
+      ],
+      "summary": "Enum of user sign-up types.",
+      "tags": [
+        "type-definition",
+        "enum",
+        "users"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:users/models.py:UserManager",
+      "type": "class",
+      "name": "UserManager",
+      "filePath": "users/models.py",
+      "lineRange": [
+        74,
+        116
+      ],
+      "summary": "Manager for FFAdminUser providing user/superuser creation and lookup helpers.",
+      "tags": [
+        "data-model",
+        "users",
+        "manager"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:users/models.py:FFAdminUser",
+      "type": "class",
+      "name": "FFAdminUser",
+      "filePath": "users/models.py",
+      "lineRange": [
+        119,
+        407
+      ],
+      "summary": "The custom Flagsmith user model with organisation membership, invite acceptance, and project/environment/organisation permission helpers.",
+      "tags": [
+        "data-model",
+        "users",
+        "permissions"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:users/models.py:UserPermissionGroupMembership",
+      "type": "class",
+      "name": "UserPermissionGroupMembership",
+      "filePath": "users/models.py",
+      "lineRange": [
+        416,
+        425
+      ],
+      "summary": "Through model linking users to permission groups with a group-admin flag.",
+      "tags": [
+        "data-model",
+        "users",
+        "permissions"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:users/models.py:UserPermissionGroup",
+      "type": "class",
+      "name": "UserPermissionGroup",
+      "filePath": "users/models.py",
+      "lineRange": [
+        428,
+        473
+      ],
+      "summary": "Model representing a named group of users sharing permissions within an organisation.",
+      "tags": [
+        "data-model",
+        "users",
+        "permissions"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:users/models.py:HubspotLead",
+      "type": "class",
+      "name": "HubspotLead",
+      "filePath": "users/models.py",
+      "lineRange": [
+        476,
+        484
+      ],
+      "summary": "Model tracking a user's Hubspot lead state.",
+      "tags": [
+        "data-model",
+        "users",
+        "integration"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:users/models.py:HubspotTrackerUTMData",
+      "type": "class",
+      "name": "HubspotTrackerUTMData",
+      "filePath": "users/models.py",
+      "lineRange": [
+        487,
+        492
+      ],
+      "summary": "Dataclass of UTM data associated with a Hubspot tracker.",
+      "tags": [
+        "data-model",
+        "users"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:users/models.py:HubspotTracker",
+      "type": "class",
+      "name": "HubspotTracker",
+      "filePath": "users/models.py",
+      "lineRange": [
+        495,
+        512
+      ],
+      "summary": "Model storing per-user Hubspot tracking cookie and UTM data.",
+      "tags": [
+        "data-model",
+        "users",
+        "integration"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:users/serializers.py:UserIdSerializer",
+      "type": "class",
+      "name": "UserIdSerializer",
+      "filePath": "users/serializers.py",
+      "lineRange": [
+        21,
+        49
+      ],
+      "summary": "Serializer removing a user from an organisation by ID, clearing their permissions.",
+      "tags": [
+        "serialization",
+        "users",
+        "permissions"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:users/serializers.py:UserListSerializer",
+      "type": "class",
+      "name": "UserListSerializer",
+      "filePath": "users/serializers.py",
+      "lineRange": [
+        66,
+        89
+      ],
+      "summary": "Serializer listing users with organisation role and join date context.",
+      "tags": [
+        "serialization",
+        "users"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:users/serializers.py:UserIdsSerializer",
+      "type": "class",
+      "name": "UserIdsSerializer",
+      "filePath": "users/serializers.py",
+      "lineRange": [
+        92,
+        101
+      ],
+      "summary": "Serializer validating a list of user IDs all exist.",
+      "tags": [
+        "serialization",
+        "users",
+        "validation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:users/serializers.py:ListUserPermissionGroupMembershipSerializer",
+      "type": "class",
+      "name": "ListUserPermissionGroupMembershipSerializer",
+      "filePath": "users/serializers.py",
+      "lineRange": [
+        118,
+        130
+      ],
+      "summary": "Serializer listing a permission group's memberships.",
+      "tags": [
+        "serialization",
+        "users",
+        "permissions"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:users/serializers.py:UserPermissionGroupMembershipSerializer",
+      "type": "class",
+      "name": "UserPermissionGroupMembershipSerializer",
+      "filePath": "users/serializers.py",
+      "lineRange": [
+        139,
+        147
+      ],
+      "summary": "Serializer exposing a group membership with its group-admin flag.",
+      "tags": [
+        "serialization",
+        "users",
+        "permissions"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:users/serializers.py:OnboardingToolsSerializer",
+      "type": "class",
+      "name": "OnboardingToolsSerializer",
+      "filePath": "users/serializers.py",
+      "lineRange": [
+        155,
+        164
+      ],
+      "summary": "Serializer validating onboarding tool selections.",
+      "tags": [
+        "serialization",
+        "onboarding",
+        "validation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:users/serializers.py:OnboardingTaskSerializer",
+      "type": "class",
+      "name": "OnboardingTaskSerializer",
+      "filePath": "users/serializers.py",
+      "lineRange": [
+        167,
+        176
+      ],
+      "summary": "Serializer validating onboarding task completion timestamps.",
+      "tags": [
+        "serialization",
+        "onboarding",
+        "validation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:users/serializers.py:PatchOnboardingSerializer",
+      "type": "class",
+      "name": "PatchOnboardingSerializer",
+      "filePath": "users/serializers.py",
+      "lineRange": [
+        179,
+        195
+      ],
+      "summary": "Serializer validating partial onboarding state updates.",
+      "tags": [
+        "serialization",
+        "onboarding",
+        "validation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:users/serializers.py:CustomCurrentUserSerializer",
+      "type": "class",
+      "name": "CustomCurrentUserSerializer",
+      "filePath": "users/serializers.py",
+      "lineRange": [
+        206,
+        234
+      ],
+      "summary": "Serializer for the authenticated user's profile including onboarding state.",
+      "tags": [
+        "serialization",
+        "users",
+        "onboarding"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:users/services.py:CreateInitialSuperuserResponse",
+      "type": "class",
+      "name": "CreateInitialSuperuserResponse",
+      "filePath": "users/services.py",
+      "lineRange": [
+        11,
+        13
+      ],
+      "summary": "Response dataclass carrying the created superuser and its password-reset URL.",
+      "tags": [
+        "data-model",
+        "bootstrap"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:users/services.py:should_skip_create_initial_superuser",
+      "type": "function",
+      "name": "should_skip_create_initial_superuser",
+      "filePath": "users/services.py",
+      "lineRange": [
+        16,
+        17
+      ],
+      "summary": "Returns whether superuser creation should be skipped because users already exist.",
+      "tags": [
+        "service",
+        "bootstrap"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:users/services.py:create_initial_superuser",
+      "type": "function",
+      "name": "create_initial_superuser",
+      "filePath": "users/services.py",
+      "lineRange": [
+        20,
+        31
+      ],
+      "summary": "Creates the initial admin superuser and returns it with a password-reset URL.",
+      "tags": [
+        "service",
+        "bootstrap"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:users/services.py:get_initial_superuser",
+      "type": "function",
+      "name": "get_initial_superuser",
+      "filePath": "users/services.py",
+      "lineRange": [
+        34,
+        37
+      ],
+      "summary": "Fetches the initial superuser by configured admin email.",
+      "tags": [
+        "service",
+        "bootstrap"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:users/services.py:_get_user_password_reset_url",
+      "type": "function",
+      "name": "_get_user_password_reset_url",
+      "filePath": "users/services.py",
+      "lineRange": [
+        40,
+        44
+      ],
+      "summary": "Builds a password-reset URL for a newly created user.",
+      "tags": [
+        "service",
+        "bootstrap",
+        "internal"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:users/signals.py:warn_insecure",
+      "type": "function",
+      "name": "warn_insecure",
+      "filePath": "users/signals.py",
+      "lineRange": [
+        11,
+        18
+      ],
+      "summary": "Signal handler warning when running with insecure defaults after the first user is created.",
+      "tags": [
+        "event-handler",
+        "signals"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:users/views.py:InitialConfigurationView",
+      "type": "class",
+      "name": "InitialConfigurationView",
+      "filePath": "users/views.py",
+      "lineRange": [
+        52,
+        73
+      ],
+      "summary": "First-run view rendering and processing the initial configuration form.",
+      "tags": [
+        "api-handler",
+        "bootstrap"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:users/views.py:AdminInitView",
+      "type": "class",
+      "name": "AdminInitView",
+      "filePath": "users/views.py",
+      "lineRange": [
+        76,
+        93
+      ],
+      "summary": "Endpoint that programmatically creates the initial superuser during setup.",
+      "tags": [
+        "api-handler",
+        "bootstrap"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:users/views.py:FFAdminUserViewSet",
+      "type": "class",
+      "name": "FFAdminUserViewSet",
+      "filePath": "users/views.py",
+      "lineRange": [
+        96,
+        151
+      ],
+      "summary": "Viewset listing organisation users and updating their organisation role.",
+      "tags": [
+        "api-handler",
+        "users",
+        "permissions"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:users/views.py:UserPermissionGroupViewSet",
+      "type": "class",
+      "name": "UserPermissionGroupViewSet",
+      "filePath": "users/views.py",
+      "lineRange": [
+        170,
+        293
+      ],
+      "summary": "Viewset managing permission groups and their memberships within an organisation.",
+      "tags": [
+        "api-handler",
+        "users",
+        "permissions"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:users/views.py:password_reset_redirect",
+      "type": "function",
+      "name": "password_reset_redirect",
+      "filePath": "users/views.py",
+      "lineRange": [
+        154,
+        160
+      ],
+      "summary": "View redirecting legacy password-reset links to the configured site URL.",
+      "tags": [
+        "api-handler",
+        "users"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:users/views.py:make_user_group_admin",
+      "type": "function",
+      "name": "make_user_group_admin",
+      "filePath": "users/views.py",
+      "lineRange": [
+        298,
+        308
+      ],
+      "summary": "Endpoint promoting a user to group admin of a permission group.",
+      "tags": [
+        "api-handler",
+        "users",
+        "permissions"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:users/views.py:remove_user_as_group_admin",
+      "type": "function",
+      "name": "remove_user_as_group_admin",
+      "filePath": "users/views.py",
+      "lineRange": [
+        313,
+        323
+      ],
+      "summary": "Endpoint demoting a user from group admin of a permission group.",
+      "tags": [
+        "api-handler",
+        "users",
+        "permissions"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:users/exceptions.py",
+      "target": "class:users/exceptions.py:InvalidInviteError",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:users/exceptions.py",
+      "target": "class:users/exceptions.py:InvalidInviteError",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:users/forms.py",
+      "target": "class:users/forms.py:CustomUserAdminForm",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:users/forms.py",
+      "target": "class:users/forms.py:CustomUserAdminForm",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:users/forms.py",
+      "target": "class:users/forms.py:InitConfigForm",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:users/forms.py",
+      "target": "class:users/forms.py:InitConfigForm",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:users/management/commands/createinitialadminuser.py",
+      "target": "class:users/management/commands/createinitialadminuser.py:Command",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:users/management/commands/createinitialadminuser.py",
+      "target": "class:users/management/commands/createinitialadminuser.py:Command",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:users/models.py",
+      "target": "class:users/models.py:UTMDataModel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:users/models.py",
+      "target": "class:users/models.py:UTMDataModel",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:users/models.py",
+      "target": "class:users/models.py:SignUpType",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:users/models.py",
+      "target": "class:users/models.py:SignUpType",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:users/models.py",
+      "target": "class:users/models.py:UserManager",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:users/models.py",
+      "target": "class:users/models.py:UserManager",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:users/models.py",
+      "target": "class:users/models.py:FFAdminUser",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:users/models.py",
+      "target": "class:users/models.py:FFAdminUser",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:users/models.py",
+      "target": "class:users/models.py:UserPermissionGroupMembership",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:users/models.py",
+      "target": "class:users/models.py:UserPermissionGroupMembership",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:users/models.py",
+      "target": "class:users/models.py:UserPermissionGroup",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:users/models.py",
+      "target": "class:users/models.py:UserPermissionGroup",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:users/models.py",
+      "target": "class:users/models.py:HubspotLead",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:users/models.py",
+      "target": "class:users/models.py:HubspotLead",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:users/models.py",
+      "target": "class:users/models.py:HubspotTrackerUTMData",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:users/models.py",
+      "target": "class:users/models.py:HubspotTrackerUTMData",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:users/models.py",
+      "target": "class:users/models.py:HubspotTracker",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:users/models.py",
+      "target": "class:users/models.py:HubspotTracker",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:users/serializers.py",
+      "target": "class:users/serializers.py:UserIdSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:users/serializers.py",
+      "target": "class:users/serializers.py:UserIdSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:users/serializers.py",
+      "target": "class:users/serializers.py:UserListSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:users/serializers.py",
+      "target": "class:users/serializers.py:UserListSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:users/serializers.py",
+      "target": "class:users/serializers.py:UserIdsSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:users/serializers.py",
+      "target": "class:users/serializers.py:UserIdsSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:users/serializers.py",
+      "target": "class:users/serializers.py:ListUserPermissionGroupMembershipSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:users/serializers.py",
+      "target": "class:users/serializers.py:ListUserPermissionGroupMembershipSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:users/serializers.py",
+      "target": "class:users/serializers.py:UserPermissionGroupMembershipSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:users/serializers.py",
+      "target": "class:users/serializers.py:UserPermissionGroupMembershipSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:users/serializers.py",
+      "target": "class:users/serializers.py:OnboardingToolsSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:users/serializers.py",
+      "target": "class:users/serializers.py:OnboardingToolsSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:users/serializers.py",
+      "target": "class:users/serializers.py:OnboardingTaskSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:users/serializers.py",
+      "target": "class:users/serializers.py:OnboardingTaskSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:users/serializers.py",
+      "target": "class:users/serializers.py:PatchOnboardingSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:users/serializers.py",
+      "target": "class:users/serializers.py:PatchOnboardingSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:users/serializers.py",
+      "target": "class:users/serializers.py:CustomCurrentUserSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:users/serializers.py",
+      "target": "class:users/serializers.py:CustomCurrentUserSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:users/services.py",
+      "target": "class:users/services.py:CreateInitialSuperuserResponse",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:users/services.py",
+      "target": "class:users/services.py:CreateInitialSuperuserResponse",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:users/services.py",
+      "target": "function:users/services.py:should_skip_create_initial_superuser",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:users/services.py",
+      "target": "function:users/services.py:should_skip_create_initial_superuser",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:users/services.py",
+      "target": "function:users/services.py:create_initial_superuser",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:users/services.py",
+      "target": "function:users/services.py:create_initial_superuser",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:users/services.py",
+      "target": "function:users/services.py:get_initial_superuser",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:users/services.py",
+      "target": "function:users/services.py:get_initial_superuser",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:users/services.py",
+      "target": "function:users/services.py:_get_user_password_reset_url",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:users/services.py",
+      "target": "function:users/services.py:_get_user_password_reset_url",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:users/signals.py",
+      "target": "function:users/signals.py:warn_insecure",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:users/signals.py",
+      "target": "function:users/signals.py:warn_insecure",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:users/views.py",
+      "target": "class:users/views.py:InitialConfigurationView",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:users/views.py",
+      "target": "class:users/views.py:InitialConfigurationView",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:users/views.py",
+      "target": "class:users/views.py:AdminInitView",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:users/views.py",
+      "target": "class:users/views.py:AdminInitView",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:users/views.py",
+      "target": "class:users/views.py:FFAdminUserViewSet",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:users/views.py",
+      "target": "class:users/views.py:FFAdminUserViewSet",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:users/views.py",
+      "target": "class:users/views.py:UserPermissionGroupViewSet",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:users/views.py",
+      "target": "class:users/views.py:UserPermissionGroupViewSet",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:users/views.py",
+      "target": "function:users/views.py:password_reset_redirect",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:users/views.py",
+      "target": "function:users/views.py:password_reset_redirect",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:users/views.py",
+      "target": "function:users/views.py:make_user_group_admin",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:users/views.py",
+      "target": "function:users/views.py:make_user_group_admin",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:users/views.py",
+      "target": "function:users/views.py:remove_user_as_group_admin",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:users/views.py",
+      "target": "function:users/views.py:remove_user_as_group_admin",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:users/forms.py",
+      "target": "file:users/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:users/forms.py",
+      "target": "file:users/services.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:users/management/commands/createinitialadminuser.py",
+      "target": "file:users/services.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:users/models.py",
+      "target": "file:organisations/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:users/models.py",
+      "target": "file:organisations/subscriptions/exceptions.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:users/models.py",
+      "target": "file:permissions/permission_service.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:users/models.py",
+      "target": "file:projects/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:users/models.py",
+      "target": "file:users/abc.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:users/models.py",
+      "target": "file:users/auth_type.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:users/models.py",
+      "target": "file:users/constants.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:users/models.py",
+      "target": "file:users/exceptions.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:users/serializers.py",
+      "target": "file:organisations/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:users/serializers.py",
+      "target": "file:organisations/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:users/serializers.py",
+      "target": "file:users/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:users/services.py",
+      "target": "file:users/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:users/signals.py",
+      "target": "file:users/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:users/urls.py",
+      "target": "file:organisations/invites/views.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:users/urls.py",
+      "target": "file:users/views.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:users/views.py",
+      "target": "file:organisations/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:users/views.py",
+      "target": "file:organisations/permissions/permissions.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:users/views.py",
+      "target": "file:organisations/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:users/views.py",
+      "target": "file:users/forms.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:users/views.py",
+      "target": "file:users/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:users/views.py",
+      "target": "file:users/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:users/views.py",
+      "target": "file:users/services.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "class:users/models.py:FFAdminUser",
+      "target": "function:permissions/permission_service.py:is_user_organisation_admin",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:users/models.py:FFAdminUser",
+      "target": "function:permissions/permission_service.py:user_has_organisation_permission",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:users/models.py:FFAdminUser",
+      "target": "function:permissions/permission_service.py:get_permitted_projects_for_user",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:users/models.py:FFAdminUser",
+      "target": "function:permissions/permission_service.py:get_permitted_environments_for_user",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:users/services.py:create_initial_superuser",
+      "target": "function:users/services.py:_get_user_password_reset_url",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

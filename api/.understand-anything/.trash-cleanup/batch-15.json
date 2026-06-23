@@ -1,0 +1,376 @@
+{
+  "nodes": [
+    {
+      "id": "config:.ebextensions/00__packages.config",
+      "type": "config",
+      "name": "00__packages.config",
+      "filePath": ".ebextensions/00__packages.config",
+      "summary": "Elastic Beanstalk extension installing OS-level yum packages (git, xmlsec1, xmlsec1-openssl) required for SAML/XML signing support on the deployment host.",
+      "tags": ["infrastructure", "configuration", "deployment", "elastic-beanstalk"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:.ebextensions/01__upgrade_pip.config",
+      "type": "config",
+      "name": "01__upgrade_pip.config",
+      "filePath": ".ebextensions/01__upgrade_pip.config",
+      "summary": "Elastic Beanstalk extension that upgrades pip in the application virtualenv before dependency installation during deployment.",
+      "tags": ["infrastructure", "configuration", "deployment", "elastic-beanstalk"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:.ebextensions/02__collectstatic.config",
+      "type": "config",
+      "name": "02__collectstatic.config",
+      "filePath": ".ebextensions/02__collectstatic.config",
+      "summary": "Elastic Beanstalk container command running Django collectstatic to gather static assets during deployment.",
+      "tags": ["infrastructure", "configuration", "deployment", "elastic-beanstalk"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:.ebextensions/03__django.config",
+      "type": "config",
+      "name": "03__django.config",
+      "filePath": ".ebextensions/03__django.config",
+      "summary": "Elastic Beanstalk option settings defining the WSGI entry path (app/wsgi.py) and static file mapping for the Django Python container.",
+      "tags": ["infrastructure", "configuration", "deployment", "elastic-beanstalk", "wsgi"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:.ebextensions/04__wsgi_custom.config",
+      "type": "config",
+      "name": "04__wsgi_custom.config",
+      "filePath": ".ebextensions/04__wsgi_custom.config",
+      "summary": "Elastic Beanstalk extension that injects a custom Apache/httpd config enabling WSGIPassAuthorization and gzip (mod_deflate) compression for text and JSON responses.",
+      "tags": ["infrastructure", "configuration", "deployment", "elastic-beanstalk", "wsgi"],
+      "complexity": "moderate",
+      "languageNotes": "Embeds a heredoc Apache config; WSGIPassAuthorization is required to forward Authorization headers to the Django app behind mod_wsgi."
+    },
+    {
+      "id": "config:.ebignore",
+      "type": "config",
+      "name": ".ebignore",
+      "filePath": ".ebignore",
+      "summary": "Empty Elastic Beanstalk ignore file controlling which files are excluded from the deployment bundle uploaded by the EB CLI.",
+      "tags": ["infrastructure", "configuration", "deployment", "elastic-beanstalk"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:.nvmrc",
+      "type": "config",
+      "name": ".nvmrc",
+      "filePath": ".nvmrc",
+      "summary": "Node Version Manager pin specifying the Node.js version used by tooling in the API directory.",
+      "tags": ["configuration", "build-system", "tooling"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:.understand-anything/.understandignore",
+      "type": "config",
+      "name": ".understandignore",
+      "filePath": ".understand-anything/.understandignore",
+      "summary": "Ignore patterns for the Understand-Anything codebase analysis tool, excluding generated, vendored, and irrelevant paths from knowledge-graph scanning.",
+      "tags": ["configuration", "tooling", "documentation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:.understand-anything/config.json",
+      "type": "config",
+      "name": "config.json",
+      "filePath": ".understand-anything/config.json",
+      "summary": "Configuration for the Understand-Anything analysis tool, setting the output language for generated knowledge-graph content.",
+      "tags": ["configuration", "tooling", "documentation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:api_keys/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "api_keys/__init__.py",
+      "summary": "Empty package marker for the api_keys Django app.",
+      "tags": ["entry-point", "package-marker", "django-app"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:api_keys/apps.py",
+      "type": "file",
+      "name": "apps.py",
+      "filePath": "api_keys/apps.py",
+      "summary": "Django AppConfig for the api_keys app, which manages master API key issuance and validation.",
+      "tags": ["django-app", "config", "app-config"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:api_keys/apps.py:ApiKeysConfig",
+      "type": "class",
+      "name": "ApiKeysConfig",
+      "filePath": "api_keys/apps.py",
+      "lineRange": [4, 6],
+      "summary": "Django AppConfig declaring the api_keys application for app registry and autodiscovery.",
+      "tags": ["django-app", "app-config", "configuration"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:audit/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "audit/__init__.py",
+      "summary": "Empty package marker for the audit Django app.",
+      "tags": ["entry-point", "package-marker", "django-app"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:audit/apps.py",
+      "type": "file",
+      "name": "apps.py",
+      "filePath": "audit/apps.py",
+      "summary": "Django AppConfig for the audit app that wires up audit-log signal handlers when the application is ready.",
+      "tags": ["django-app", "config", "app-config", "event-handler"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:audit/apps.py:AuditConfig",
+      "type": "class",
+      "name": "AuditConfig",
+      "filePath": "audit/apps.py",
+      "lineRange": [6, 10],
+      "summary": "Django AppConfig for the audit app; its ready() hook imports the signals module to register audit-log signal receivers at startup.",
+      "tags": ["django-app", "app-config", "event-handler", "signals"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:environments/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "environments/__init__.py",
+      "summary": "Empty package marker for the environments Django app.",
+      "tags": ["entry-point", "package-marker", "django-app"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:environments/apps.py",
+      "type": "file",
+      "name": "apps.py",
+      "filePath": "environments/apps.py",
+      "summary": "Django AppConfig for the environments app, which models per-project deployment environments and their feature states.",
+      "tags": ["django-app", "config", "app-config"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:environments/apps.py:EnvironmentsConfig",
+      "type": "class",
+      "name": "EnvironmentsConfig",
+      "filePath": "environments/apps.py",
+      "lineRange": [7, 9],
+      "summary": "Django AppConfig declaring the environments application for app registry and autodiscovery.",
+      "tags": ["django-app", "app-config", "configuration"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:environments/identities/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "environments/identities/__init__.py",
+      "summary": "Empty package marker for the environments.identities Django app.",
+      "tags": ["entry-point", "package-marker", "django-app"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:environments/identities/apps.py",
+      "type": "file",
+      "name": "apps.py",
+      "filePath": "environments/identities/apps.py",
+      "summary": "Django AppConfig for the identities app that registers identity-related signal handlers at startup.",
+      "tags": ["django-app", "config", "app-config", "event-handler"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:environments/identities/apps.py:IdentitiesConfig",
+      "type": "class",
+      "name": "IdentitiesConfig",
+      "filePath": "environments/identities/apps.py",
+      "lineRange": [4, 9],
+      "summary": "Django AppConfig for the identities app; its ready() hook imports the signals module to register identity signal receivers at startup.",
+      "tags": ["django-app", "app-config", "event-handler", "signals"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:environments/identities/traits/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "environments/identities/traits/__init__.py",
+      "summary": "Empty package marker for the environments.identities.traits package.",
+      "tags": ["entry-point", "package-marker", "django-app"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:environments/identities/traits/openapi.py",
+      "type": "file",
+      "name": "openapi.py",
+      "filePath": "environments/identities/traits/openapi.py",
+      "summary": "drf-spectacular OpenAPI schema extension that documents the polymorphic trait value field as accepting string, integer, number, or boolean.",
+      "tags": ["api-schema", "serialization", "type-definition", "openapi"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:environments/identities/traits/openapi.py:TraitValueFieldExtension",
+      "type": "class",
+      "name": "TraitValueFieldExtension",
+      "filePath": "environments/identities/traits/openapi.py",
+      "lineRange": [7, 21],
+      "summary": "OpenApiSerializerFieldExtension that maps the TraitValueField to an OpenAPI schema allowing string, integer, number, or boolean values.",
+      "tags": ["api-schema", "serialization", "openapi", "type-definition"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:environments/management/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "environments/management/__init__.py",
+      "summary": "Empty package marker for the environments management package.",
+      "tags": ["entry-point", "package-marker", "django-app"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:environments/management/commands/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "environments/management/commands/__init__.py",
+      "summary": "Empty package marker for the environments management commands package.",
+      "tags": ["entry-point", "package-marker", "django-app"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:environments/management/serializers.py",
+      "type": "file",
+      "name": "serializers.py",
+      "filePath": "environments/management/serializers.py",
+      "summary": "Empty placeholder module for environments management command serializers.",
+      "tags": ["serialization", "placeholder", "django-app"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:environments/permissions/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "environments/permissions/__init__.py",
+      "summary": "Empty package marker for the environments.permissions Django app.",
+      "tags": ["entry-point", "package-marker", "django-app"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:environments/permissions/apps.py",
+      "type": "file",
+      "name": "apps.py",
+      "filePath": "environments/permissions/apps.py",
+      "summary": "Django AppConfig for the environment-permissions app, which manages user and group access control scoped to environments.",
+      "tags": ["django-app", "config", "app-config", "security"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:environments/permissions/apps.py:EnvironmentPermissionsConfig",
+      "type": "class",
+      "name": "EnvironmentPermissionsConfig",
+      "filePath": "environments/permissions/apps.py",
+      "lineRange": [4, 6],
+      "summary": "Django AppConfig declaring the environment-permissions application for app registry and autodiscovery.",
+      "tags": ["django-app", "app-config", "security", "configuration"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:environments/sdk/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "environments/sdk/__init__.py",
+      "summary": "Empty package marker for the environments.sdk package.",
+      "tags": ["entry-point", "package-marker", "django-app"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:api_keys/apps.py",
+      "target": "class:api_keys/apps.py:ApiKeysConfig",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:api_keys/apps.py",
+      "target": "class:api_keys/apps.py:ApiKeysConfig",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:audit/apps.py",
+      "target": "class:audit/apps.py:AuditConfig",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:audit/apps.py",
+      "target": "class:audit/apps.py:AuditConfig",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/apps.py",
+      "target": "class:environments/apps.py:EnvironmentsConfig",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:environments/apps.py",
+      "target": "class:environments/apps.py:EnvironmentsConfig",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/identities/apps.py",
+      "target": "class:environments/identities/apps.py:IdentitiesConfig",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:environments/identities/apps.py",
+      "target": "class:environments/identities/apps.py:IdentitiesConfig",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/identities/traits/openapi.py",
+      "target": "class:environments/identities/traits/openapi.py:TraitValueFieldExtension",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:environments/identities/traits/openapi.py",
+      "target": "class:environments/identities/traits/openapi.py:TraitValueFieldExtension",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/permissions/apps.py",
+      "target": "class:environments/permissions/apps.py:EnvironmentPermissionsConfig",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:environments/permissions/apps.py",
+      "target": "class:environments/permissions/apps.py:EnvironmentPermissionsConfig",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

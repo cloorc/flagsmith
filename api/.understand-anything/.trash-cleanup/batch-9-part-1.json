@@ -1,0 +1,866 @@
+{
+  "nodes": [
+    {
+      "id": "file:features/release_pipelines/core/models.py",
+      "type": "file",
+      "name": "models.py",
+      "filePath": "features/release_pipelines/core/models.py",
+      "summary": "Defines the release pipeline data model \u2014 pipelines composed of ordered stages with triggers and actions (including phased rollouts) that progressively promote feature versions across environments.",
+      "tags": [
+        "data-model",
+        "release-pipeline",
+        "feature-flags",
+        "phased-rollout",
+        "django-orm"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Uses Django TextChoices enums (StageTriggerType, StageActionType) and queryset Q-object composition to compute feature versions in flight per stage."
+    },
+    {
+      "id": "class:features/release_pipelines/core/models.py:ReleasePipeline",
+      "type": "class",
+      "name": "ReleasePipeline",
+      "filePath": "features/release_pipelines/core/models.py",
+      "lineRange": [
+        53,
+        141
+      ],
+      "summary": "A named ordered collection of pipeline stages scoped to a project; supports publish/unpublish lifecycle and querying feature versions currently in flight.",
+      "tags": [
+        "data-model",
+        "release-pipeline",
+        "lifecycle",
+        "django-orm"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:features/release_pipelines/core/models.py:PipelineStage",
+      "type": "class",
+      "name": "PipelineStage",
+      "filePath": "features/release_pipelines/core/models.py",
+      "lineRange": [
+        144,
+        206
+      ],
+      "summary": "A single ordered stage within a release pipeline; resolves the next stage, its phased rollout action, and feature versions in or completed for the stage.",
+      "tags": [
+        "data-model",
+        "release-pipeline",
+        "stage",
+        "django-orm"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:features/release_pipelines/core/models.py:PhasedRolloutState",
+      "type": "class",
+      "name": "PhasedRolloutState",
+      "filePath": "features/release_pipelines/core/models.py",
+      "lineRange": [
+        238,
+        288
+      ],
+      "summary": "Tracks the percentage split of a phased rollout backed by a rollout segment, incrementing the split over time and cleaning up when the rollout completes.",
+      "tags": [
+        "data-model",
+        "phased-rollout",
+        "segment",
+        "django-orm"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:features/release_pipelines/core/models.py:PipelineStageTrigger",
+      "type": "class",
+      "name": "PipelineStageTrigger",
+      "filePath": "features/release_pipelines/core/models.py",
+      "lineRange": [
+        209,
+        221
+      ],
+      "summary": "Defines the trigger condition (e.g. wait-for / on-enter) that advances a feature version into a pipeline stage.",
+      "tags": [
+        "data-model",
+        "release-pipeline",
+        "trigger",
+        "django-orm"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:features/release_pipelines/core/models.py:PipelineStageAction",
+      "type": "class",
+      "name": "PipelineStageAction",
+      "filePath": "features/release_pipelines/core/models.py",
+      "lineRange": [
+        224,
+        235
+      ],
+      "summary": "Defines an action (e.g. toggle flag, phased rollout) executed when a feature version reaches a pipeline stage.",
+      "tags": [
+        "data-model",
+        "release-pipeline",
+        "action",
+        "django-orm"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:features/signals.py",
+      "type": "file",
+      "name": "signals.py",
+      "filePath": "features/signals.py",
+      "summary": "Declares the Django dispatch signals used across the features app, such as the feature-flag-went-live event.",
+      "tags": [
+        "signals",
+        "event-handler",
+        "feature-flags"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:features/tasks.py",
+      "type": "file",
+      "name": "tasks.py",
+      "filePath": "features/tasks.py",
+      "summary": "Asynchronous tasks for the features app, primarily building and dispatching feature-state-change webhook payloads and deleting features.",
+      "tags": [
+        "async-task",
+        "webhook",
+        "feature-flags",
+        "serialization"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:features/tasks.py:trigger_feature_state_change_webhooks",
+      "type": "function",
+      "name": "trigger_feature_state_change_webhooks",
+      "filePath": "features/tasks.py",
+      "lineRange": [
+        23,
+        64
+      ],
+      "summary": "Builds the webhook payload for a changed feature state, including its previous state, and enqueues environment and organisation webhook deliveries.",
+      "tags": [
+        "async-task",
+        "webhook",
+        "feature-flags",
+        "event-handler"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:features/tasks.py:_get_previous_state",
+      "type": "function",
+      "name": "_get_previous_state",
+      "filePath": "features/tasks.py",
+      "lineRange": [
+        67,
+        86
+      ],
+      "summary": "Resolves the prior feature-state webhook representation from history or a change request to populate the 'previous' field of a webhook payload.",
+      "tags": [
+        "webhook",
+        "feature-flags",
+        "helper"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:features/tasks.py:_get_previous_feature_state_for_change_request",
+      "type": "function",
+      "name": "_get_previous_feature_state_for_change_request",
+      "filePath": "features/tasks.py",
+      "lineRange": [
+        89,
+        115
+      ],
+      "summary": "Queries the most recent live feature state preceding a change-request-driven update for the same feature/segment/identity scope.",
+      "tags": [
+        "feature-flags",
+        "change-request",
+        "django-orm",
+        "helper"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:features/tasks.py:_get_feature_state_webhook_data",
+      "type": "function",
+      "name": "_get_feature_state_webhook_data",
+      "filePath": "features/tasks.py",
+      "lineRange": [
+        118,
+        143
+      ],
+      "summary": "Serialises a feature state (with its multivariate values) into the dictionary structure expected by webhook consumers.",
+      "tags": [
+        "webhook",
+        "serialization",
+        "feature-flags",
+        "helper"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:features/tasks.py:_get_previous_multivariate_values",
+      "type": "function",
+      "name": "_get_previous_multivariate_values",
+      "filePath": "features/tasks.py",
+      "lineRange": [
+        146,
+        157
+      ],
+      "summary": "Collects the historical multivariate feature-state values for inclusion in a previous-state webhook payload.",
+      "tags": [
+        "webhook",
+        "feature-flags",
+        "multivariate",
+        "helper"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:features/versioning/dataclasses.py",
+      "type": "file",
+      "name": "dataclasses.py",
+      "filePath": "features/versioning/dataclasses.py",
+      "summary": "Internal data-transfer objects for feature versioning \u2014 change sets and conflict descriptors used when publishing flag and segment-override changes.",
+      "tags": [
+        "dataclass",
+        "type-definition",
+        "versioning",
+        "feature-flags"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Plain Python dataclasses acting as DTOs (FlagChangeSet, SegmentOverrideChangeSet, FlagChangeSetV2, Conflict)."
+    },
+    {
+      "id": "class:features/versioning/dataclasses.py:Conflict",
+      "type": "class",
+      "name": "Conflict",
+      "filePath": "features/versioning/dataclasses.py",
+      "lineRange": [
+        12,
+        20
+      ],
+      "summary": "DTO describing a publish conflict between concurrent version change sets, optionally scoped to a segment, with the originating change request id.",
+      "tags": [
+        "dataclass",
+        "versioning",
+        "conflict",
+        "dto"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:features/versioning/exceptions.py",
+      "type": "file",
+      "name": "exceptions.py",
+      "filePath": "features/versioning/exceptions.py",
+      "summary": "Exception hierarchy for feature versioning errors, including disallowed direct feature-state writes and attempts to modify a live version.",
+      "tags": [
+        "exceptions",
+        "versioning",
+        "feature-flags",
+        "error-handling"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:features/versioning/managers.py",
+      "type": "file",
+      "name": "managers.py",
+      "filePath": "features/versioning/managers.py",
+      "summary": "Custom Django manager for EnvironmentFeatureVersion that resolves the latest published versions per environment via a raw SQL query.",
+      "tags": [
+        "django-orm",
+        "manager",
+        "versioning",
+        "feature-flags"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Uses self.raw(...) for a window-function-style latest-version query that is awkward to express in the Django ORM."
+    },
+    {
+      "id": "class:features/versioning/managers.py:EnvironmentFeatureVersionManager",
+      "type": "class",
+      "name": "EnvironmentFeatureVersionManager",
+      "filePath": "features/versioning/managers.py",
+      "lineRange": [
+        16,
+        69
+      ],
+      "summary": "Manager exposing helpers to fetch the latest feature versions by environment id or API key, returning lists or querysets backed by a shared raw query.",
+      "tags": [
+        "django-orm",
+        "manager",
+        "versioning",
+        "feature-flags"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:features/versioning/models.py",
+      "type": "file",
+      "name": "models.py",
+      "filePath": "features/versioning/models.py",
+      "summary": "Core feature versioning models \u2014 EnvironmentFeatureVersion (immutable published versions of an environment's feature states) and VersionChangeSet (deferred change sets with conflict detection).",
+      "tags": [
+        "data-model",
+        "versioning",
+        "feature-flags",
+        "conflict-detection",
+        "django-orm"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Stores feature-state changes as JSON blobs parsed on demand; conflict detection compares change sets published since creation."
+    },
+    {
+      "id": "class:features/versioning/models.py:EnvironmentFeatureVersion",
+      "type": "class",
+      "name": "EnvironmentFeatureVersion",
+      "filePath": "features/versioning/models.py",
+      "lineRange": [
+        33,
+        182
+      ],
+      "summary": "Represents an immutable, publishable version of a feature's state in an environment; manages the initial version, previous-version lookup, and publish lifecycle that fires the published signal.",
+      "tags": [
+        "data-model",
+        "versioning",
+        "lifecycle",
+        "feature-flags",
+        "django-orm"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:features/versioning/models.py:VersionChangeSet",
+      "type": "class",
+      "name": "VersionChangeSet",
+      "filePath": "features/versioning/models.py",
+      "lineRange": [
+        185,
+        389
+      ],
+      "summary": "A deferred, schedulable set of flag and segment-override changes that can be published asynchronously, with conflict detection against other change sets published in the interim.",
+      "tags": [
+        "data-model",
+        "versioning",
+        "change-request",
+        "conflict-detection",
+        "django-orm"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:features/versioning/permissions.py",
+      "type": "file",
+      "name": "permissions.py",
+      "filePath": "features/versioning/permissions.py",
+      "summary": "DRF permission classes gating access to environment feature versions and their feature states based on environment and tag-scoped permissions.",
+      "tags": [
+        "permissions",
+        "authorization",
+        "versioning",
+        "feature-flags"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:features/versioning/permissions.py:EnvironmentFeatureVersionPermissions",
+      "type": "class",
+      "name": "EnvironmentFeatureVersionPermissions",
+      "filePath": "features/versioning/permissions.py",
+      "lineRange": [
+        17,
+        60
+      ],
+      "summary": "Permission class checking environment-level and tag-scoped feature permissions for listing, creating and acting on environment feature versions.",
+      "tags": [
+        "permissions",
+        "authorization",
+        "versioning"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:features/versioning/permissions.py:EnvironmentFeatureVersionFeatureStatePermissions",
+      "type": "class",
+      "name": "EnvironmentFeatureVersionFeatureStatePermissions",
+      "filePath": "features/versioning/permissions.py",
+      "lineRange": [
+        70,
+        99
+      ],
+      "summary": "Permission class authorising read and write access to the feature states nested under an environment feature version.",
+      "tags": [
+        "permissions",
+        "authorization",
+        "versioning"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:features/versioning/receivers.py",
+      "type": "file",
+      "name": "receivers.py",
+      "filePath": "features/versioning/receivers.py",
+      "summary": "Signal receivers wiring feature-version lifecycle events to side effects \u2014 cloning prior states, rebuilding environment documents, triggering webhooks, and writing audit logs.",
+      "tags": [
+        "signals",
+        "event-handler",
+        "versioning",
+        "feature-flags"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:features/versioning/receivers.py:add_existing_feature_states",
+      "type": "function",
+      "name": "add_existing_feature_states",
+      "filePath": "features/versioning/receivers.py",
+      "lineRange": [
+        19,
+        32
+      ],
+      "summary": "On creation of a new feature version, clones the feature states from the previous version so the new version starts as a copy.",
+      "tags": [
+        "signals",
+        "event-handler",
+        "versioning",
+        "feature-flags"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:features/versioning/receivers.py:trigger_feature_state_change_went_live_signal",
+      "type": "function",
+      "name": "trigger_feature_state_change_went_live_signal",
+      "filePath": "features/versioning/receivers.py",
+      "lineRange": [
+        72,
+        83
+      ],
+      "summary": "Computes the feature states changed by a published version and dispatches the feature-state-change-went-live signal for each.",
+      "tags": [
+        "signals",
+        "event-handler",
+        "versioning",
+        "feature-flags"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:features/release_pipelines/core/models.py",
+      "target": "class:features/release_pipelines/core/models.py:ReleasePipeline",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/release_pipelines/core/models.py",
+      "target": "class:features/release_pipelines/core/models.py:PipelineStage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/release_pipelines/core/models.py",
+      "target": "class:features/release_pipelines/core/models.py:PhasedRolloutState",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/release_pipelines/core/models.py",
+      "target": "class:features/release_pipelines/core/models.py:PipelineStageTrigger",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/release_pipelines/core/models.py",
+      "target": "class:features/release_pipelines/core/models.py:PipelineStageAction",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/release_pipelines/core/models.py",
+      "target": "class:features/release_pipelines/core/models.py:ReleasePipeline",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/release_pipelines/core/models.py",
+      "target": "class:features/release_pipelines/core/models.py:PipelineStage",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/release_pipelines/core/models.py",
+      "target": "class:features/release_pipelines/core/models.py:PhasedRolloutState",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/release_pipelines/core/models.py",
+      "target": "class:features/release_pipelines/core/models.py:PipelineStageTrigger",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/release_pipelines/core/models.py",
+      "target": "class:features/release_pipelines/core/models.py:PipelineStageAction",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/release_pipelines/core/models.py",
+      "target": "file:audit/constants.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/release_pipelines/core/models.py",
+      "target": "file:audit/related_object_type.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/release_pipelines/core/models.py",
+      "target": "file:features/release_pipelines/core/constants.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/release_pipelines/core/models.py",
+      "target": "file:features/release_pipelines/core/exceptions.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/release_pipelines/core/models.py",
+      "target": "file:features/versioning/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/release_pipelines/core/models.py",
+      "target": "file:projects/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/release_pipelines/core/models.py",
+      "target": "file:users/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/tasks.py",
+      "target": "function:features/tasks.py:trigger_feature_state_change_webhooks",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/tasks.py",
+      "target": "function:features/tasks.py:_get_previous_state",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/tasks.py",
+      "target": "function:features/tasks.py:_get_previous_feature_state_for_change_request",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/tasks.py",
+      "target": "function:features/tasks.py:_get_feature_state_webhook_data",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/tasks.py",
+      "target": "function:features/tasks.py:_get_previous_multivariate_values",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/tasks.py",
+      "target": "function:features/tasks.py:trigger_feature_state_change_webhooks",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/tasks.py",
+      "target": "file:environments/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/tasks.py",
+      "target": "file:features/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/tasks.py",
+      "target": "file:features/multivariate/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/versioning/dataclasses.py",
+      "target": "class:features/versioning/dataclasses.py:Conflict",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/versioning/dataclasses.py",
+      "target": "class:features/versioning/dataclasses.py:Conflict",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/versioning/dataclasses.py",
+      "target": "file:features/feature_states/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/versioning/managers.py",
+      "target": "class:features/versioning/managers.py:EnvironmentFeatureVersionManager",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/versioning/managers.py",
+      "target": "class:features/versioning/managers.py:EnvironmentFeatureVersionManager",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/versioning/models.py",
+      "target": "class:features/versioning/models.py:EnvironmentFeatureVersion",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/versioning/models.py",
+      "target": "class:features/versioning/models.py:VersionChangeSet",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/versioning/models.py",
+      "target": "class:features/versioning/models.py:EnvironmentFeatureVersion",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/versioning/models.py",
+      "target": "class:features/versioning/models.py:VersionChangeSet",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/versioning/models.py",
+      "target": "file:api_keys/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/versioning/models.py",
+      "target": "file:features/versioning/dataclasses.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/versioning/models.py",
+      "target": "file:features/versioning/exceptions.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/versioning/models.py",
+      "target": "file:features/versioning/managers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/versioning/models.py",
+      "target": "file:features/versioning/signals.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "class:features/versioning/models.py:EnvironmentFeatureVersion",
+      "target": "class:features/versioning/managers.py:EnvironmentFeatureVersionManager",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "class:features/versioning/models.py:VersionChangeSet",
+      "target": "class:features/versioning/dataclasses.py:Conflict",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:features/versioning/permissions.py",
+      "target": "class:features/versioning/permissions.py:EnvironmentFeatureVersionPermissions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/versioning/permissions.py",
+      "target": "class:features/versioning/permissions.py:EnvironmentFeatureVersionFeatureStatePermissions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/versioning/permissions.py",
+      "target": "class:features/versioning/permissions.py:EnvironmentFeatureVersionPermissions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/versioning/permissions.py",
+      "target": "class:features/versioning/permissions.py:EnvironmentFeatureVersionFeatureStatePermissions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/versioning/permissions.py",
+      "target": "file:environments/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/versioning/permissions.py",
+      "target": "file:features/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/versioning/permissions.py",
+      "target": "file:features/versioning/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/versioning/receivers.py",
+      "target": "function:features/versioning/receivers.py:add_existing_feature_states",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/versioning/receivers.py",
+      "target": "function:features/versioning/receivers.py:trigger_feature_state_change_went_live_signal",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/versioning/receivers.py",
+      "target": "file:environments/tasks.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/versioning/receivers.py",
+      "target": "file:features/signals.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/versioning/receivers.py",
+      "target": "file:features/versioning/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/versioning/receivers.py",
+      "target": "file:features/versioning/signals.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/versioning/receivers.py",
+      "target": "file:features/versioning/tasks.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/versioning/receivers.py",
+      "target": "file:features/versioning/versioning_service.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "function:features/versioning/receivers.py:trigger_feature_state_change_went_live_signal",
+      "target": "function:features/versioning/versioning_service.py:get_updated_feature_states_for_version",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

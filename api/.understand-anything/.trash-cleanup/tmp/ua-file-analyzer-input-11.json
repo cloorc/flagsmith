@@ -1,0 +1,138 @@
+{
+  "projectRoot": "/Users/wadii/flagsmith-projects/flagsmith/api",
+  "batchFiles": [
+    {
+      "path": "environments/dynamodb/__init__.py",
+      "language": "python",
+      "sizeLines": 17,
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/dynamodb/constants.py",
+      "language": "python",
+      "sizeLines": 37,
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/dynamodb/services.py",
+      "language": "python",
+      "sizeLines": 105,
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/dynamodb/types.py",
+      "language": "python",
+      "sizeLines": 105,
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/dynamodb/utils.py",
+      "language": "python",
+      "sizeLines": 47,
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/dynamodb/wrappers/__init__.py",
+      "language": "python",
+      "sizeLines": 13,
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/dynamodb/wrappers/base.py",
+      "language": "python",
+      "sizeLines": 90,
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/dynamodb/wrappers/environment_api_key_wrapper.py",
+      "language": "python",
+      "sizeLines": 31,
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/dynamodb/wrappers/environment_wrapper.py",
+      "language": "python",
+      "sizeLines": 234,
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/dynamodb/wrappers/exceptions.py",
+      "language": "python",
+      "sizeLines": 11,
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/dynamodb/wrappers/identity_wrapper.py",
+      "language": "python",
+      "sizeLines": 210,
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/metrics.py",
+      "language": "python",
+      "sizeLines": 29,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/dataclasses.py",
+      "language": "python",
+      "sizeLines": 27,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/features_service.py",
+      "language": "python",
+      "sizeLines": 114,
+      "fileCategory": "code"
+    }
+  ],
+  "batchImportData": {
+    "environments/dynamodb/__init__.py": [
+      "environments/dynamodb/types.py",
+      "environments/dynamodb/wrappers/__init__.py",
+      "environments/dynamodb/wrappers/exceptions.py"
+    ],
+    "environments/dynamodb/constants.py": [],
+    "environments/dynamodb/services.py": [
+      "environments/dynamodb/__init__.py",
+      "environments/dynamodb/types.py",
+      "environments/models.py",
+      "projects/models.py"
+    ],
+    "environments/dynamodb/types.py": [],
+    "environments/dynamodb/utils.py": [],
+    "environments/dynamodb/wrappers/__init__.py": [
+      "environments/dynamodb/wrappers/environment_api_key_wrapper.py",
+      "environments/dynamodb/wrappers/environment_wrapper.py",
+      "environments/dynamodb/wrappers/identity_wrapper.py"
+    ],
+    "environments/dynamodb/wrappers/base.py": [],
+    "environments/dynamodb/wrappers/environment_api_key_wrapper.py": [
+      "environments/dynamodb/wrappers/base.py"
+    ],
+    "environments/dynamodb/wrappers/environment_wrapper.py": [
+      "environments/dynamodb/constants.py",
+      "environments/dynamodb/types.py",
+      "environments/dynamodb/utils.py",
+      "environments/dynamodb/wrappers/base.py",
+      "environments/metrics.py"
+    ],
+    "environments/dynamodb/wrappers/exceptions.py": [],
+    "environments/dynamodb/wrappers/identity_wrapper.py": [
+      "environments/dynamodb/constants.py",
+      "environments/dynamodb/wrappers/base.py",
+      "environments/dynamodb/wrappers/exceptions.py"
+    ],
+    "environments/metrics.py": [
+      "environments/dynamodb/constants.py"
+    ],
+    "features/dataclasses.py": [
+      "features/dataclasses.py"
+    ],
+    "features/features_service.py": [
+      "environments/dynamodb/utils.py",
+      "features/dataclasses.py",
+      "features/versioning/versioning_service.py"
+    ]
+  }
+}

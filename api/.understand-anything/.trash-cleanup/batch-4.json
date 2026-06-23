@@ -1,0 +1,1559 @@
+{
+  "nodes": [
+    {
+      "id": "file:environments/admin.py",
+      "type": "file",
+      "name": "admin.py",
+      "filePath": "environments/admin.py",
+      "summary": "Django admin registration for the Environment model, exposing webhook inlines and a bulk action to rebuild environment documents.",
+      "tags": [
+        "django-admin",
+        "configuration",
+        "environment"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:environments/api_keys.py",
+      "type": "file",
+      "name": "api_keys.py",
+      "filePath": "environments/api_keys.py",
+      "summary": "Helper functions that generate hashed client- and server-side environment API keys with the appropriate prefixes.",
+      "tags": [
+        "utility",
+        "api-key",
+        "security",
+        "factory"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:environments/authentication.py",
+      "type": "file",
+      "name": "authentication.py",
+      "filePath": "environments/authentication.py",
+      "summary": "DRF authentication class that resolves the X-Environment-Key header to an Environment, used by SDK endpoints.",
+      "tags": [
+        "authentication",
+        "middleware",
+        "security",
+        "environment",
+        "sdk"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:environments/constants.py",
+      "type": "file",
+      "name": "constants.py",
+      "filePath": "environments/constants.py",
+      "summary": "App-wide constant definitions for the environments app, such as cache keys and configuration flags.",
+      "tags": [
+        "constants",
+        "configuration",
+        "environment"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:environments/enums.py",
+      "type": "file",
+      "name": "enums.py",
+      "filePath": "environments/enums.py",
+      "summary": "Enumerations for the environments app, including the environment document cache mode.",
+      "tags": [
+        "enum",
+        "type-definition",
+        "environment"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:environments/exceptions.py",
+      "type": "file",
+      "name": "exceptions.py",
+      "filePath": "environments/exceptions.py",
+      "summary": "Custom exception types for the environments app, including the missing environment header error.",
+      "tags": [
+        "exception",
+        "error-handling",
+        "environment"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:environments/identities/admin.py",
+      "type": "file",
+      "name": "admin.py",
+      "filePath": "environments/identities/admin.py",
+      "summary": "Django admin registration for the Identity model with display and search configuration.",
+      "tags": [
+        "django-admin",
+        "configuration",
+        "identity"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:environments/identities/managers.py",
+      "type": "file",
+      "name": "managers.py",
+      "filePath": "environments/identities/managers.py",
+      "summary": "Custom Django manager for Identity providing SDK get-or-create and context-prefetching query helpers.",
+      "tags": [
+        "manager",
+        "data-model",
+        "identity",
+        "query-optimisation"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Uses select_related/prefetch_related to assemble identity evaluation context in a single query."
+    },
+    {
+      "id": "file:environments/identities/models.py",
+      "type": "file",
+      "name": "models.py",
+      "filePath": "environments/identities/models.py",
+      "summary": "Identity model holding per-user state in an environment, with feature-state resolution, segment matching and trait generation/update logic.",
+      "tags": [
+        "data-model",
+        "identity",
+        "feature-flags",
+        "segments",
+        "core"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Heavy use of Django Prefetch and Q objects to compute overridden feature states and segment membership."
+    },
+    {
+      "id": "file:environments/identities/serializers.py",
+      "type": "file",
+      "name": "serializers.py",
+      "filePath": "environments/identities/serializers.py",
+      "summary": "DRF serializers for identities, including the all-feature-states response shape with multivariate and segment override details.",
+      "tags": [
+        "serialization",
+        "identity",
+        "feature-flags",
+        "api"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:environments/identities/traits/admin.py",
+      "type": "file",
+      "name": "admin.py",
+      "filePath": "environments/identities/traits/admin.py",
+      "summary": "Django admin registration for the Trait model with display and filtering configuration.",
+      "tags": [
+        "django-admin",
+        "configuration",
+        "trait"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:environments/identities/traits/constants.py",
+      "type": "file",
+      "name": "constants.py",
+      "filePath": "environments/identities/traits/constants.py",
+      "summary": "Constants for identity traits, mapping trait value types to feature value type identifiers.",
+      "tags": [
+        "constants",
+        "configuration",
+        "trait"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:environments/identities/traits/exceptions.py",
+      "type": "file",
+      "name": "exceptions.py",
+      "filePath": "environments/identities/traits/exceptions.py",
+      "summary": "Custom exception types for trait persistence failures.",
+      "tags": [
+        "exception",
+        "error-handling",
+        "trait"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:environments/identities/traits/fields.py",
+      "type": "file",
+      "name": "fields.py",
+      "filePath": "environments/identities/traits/fields.py",
+      "summary": "Custom DRF serializer field that serialises and deserialises polymorphic trait values with length validation.",
+      "tags": [
+        "serialization",
+        "validation",
+        "trait",
+        "field"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:environments/identities/traits/models.py",
+      "type": "file",
+      "name": "models.py",
+      "filePath": "environments/identities/traits/models.py",
+      "summary": "Trait model storing typed key/value user attributes, with type coercion helpers and transient-trait support.",
+      "tags": [
+        "data-model",
+        "trait",
+        "identity",
+        "serialization"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Maps Python value types onto distinct typed columns (integer/boolean/string/float) via a type lookup."
+    },
+    {
+      "id": "file:environments/identities/traits/serializers.py",
+      "type": "file",
+      "name": "serializers.py",
+      "filePath": "environments/identities/traits/serializers.py",
+      "summary": "DRF serializers for traits, including increment-value, bulk-delete and full/basic representations.",
+      "tags": [
+        "serialization",
+        "trait",
+        "api",
+        "validation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:environments/identities/traits/views.py",
+      "type": "file",
+      "name": "views.py",
+      "filePath": "environments/identities/traits/views.py",
+      "summary": "DRF viewsets and SDK endpoints for managing identity traits: nested CRUD, single/bulk SDK upserts and increment operations.",
+      "tags": [
+        "api-handler",
+        "trait",
+        "sdk",
+        "viewset"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:environments/identities/views.py",
+      "type": "file",
+      "name": "views.py",
+      "filePath": "environments/identities/views.py",
+      "summary": "DRF viewsets and SDK endpoints for identities, including dashboard CRUD and SDK identify/get-flags responses.",
+      "tags": [
+        "api-handler",
+        "identity",
+        "sdk",
+        "feature-flags",
+        "viewset"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:environments/models.py",
+      "type": "file",
+      "name": "models.py",
+      "filePath": "environments/models.py",
+      "summary": "Core Environment model plus Webhook and EnvironmentAPIKey, covering caching, DynamoDB sync, versioning, cloning and metrics querysets.",
+      "tags": [
+        "data-model",
+        "environment",
+        "core",
+        "caching",
+        "feature-flags"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Central aggregate of the environments app; orchestrates cache invalidation, DynamoDB document writes and v2 versioning."
+    },
+    {
+      "id": "file:environments/permissions/managers.py",
+      "type": "file",
+      "name": "managers.py",
+      "filePath": "environments/permissions/managers.py",
+      "summary": "Custom manager filtering environment permission models by the relevant permission scope.",
+      "tags": [
+        "manager",
+        "permissions",
+        "data-model"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:environments/permissions/models.py",
+      "type": "file",
+      "name": "models.py",
+      "filePath": "environments/permissions/models.py",
+      "summary": "Permission models for environments: the base permission model and per-user and per-group environment permission assignments.",
+      "tags": [
+        "data-model",
+        "permissions",
+        "rbac",
+        "environment"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:environments/permissions/permissions.py",
+      "type": "file",
+      "name": "permissions.py",
+      "filePath": "environments/permissions/permissions.py",
+      "summary": "DRF permission classes governing access to environments, identities, traits and nested environment resources.",
+      "tags": [
+        "permissions",
+        "authorization",
+        "rbac",
+        "api-handler"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:environments/permissions/serializers.py",
+      "type": "file",
+      "name": "serializers.py",
+      "filePath": "environments/permissions/serializers.py",
+      "summary": "DRF serializers for creating, updating and listing user and group environment permissions.",
+      "tags": [
+        "serialization",
+        "permissions",
+        "rbac",
+        "api"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:environments/admin.py:EnvironmentAdmin",
+      "type": "class",
+      "name": "EnvironmentAdmin",
+      "filePath": "environments/admin.py",
+      "lineRange": [
+        18,
+        39
+      ],
+      "summary": "Admin configuration for Environment with a bulk action to trigger document rebuilds.",
+      "tags": [
+        "django-admin",
+        "environment"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:environments/api_keys.py:generate_api_key",
+      "type": "function",
+      "name": "generate_api_key",
+      "filePath": "environments/api_keys.py",
+      "lineRange": [
+        14,
+        19
+      ],
+      "summary": "Generates a prefixed API key and its hash used for environment authentication.",
+      "tags": [
+        "utility",
+        "api-key",
+        "security"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:environments/authentication.py:EnvironmentKeyAuthentication",
+      "type": "class",
+      "name": "EnvironmentKeyAuthentication",
+      "filePath": "environments/authentication.py",
+      "lineRange": [
+        14,
+        49
+      ],
+      "summary": "DRF authenticator that maps the environment key header to a cached Environment, raising on missing/invalid keys.",
+      "tags": [
+        "authentication",
+        "security",
+        "environment",
+        "sdk"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:environments/identities/managers.py:IdentityManager",
+      "type": "class",
+      "name": "IdentityManager",
+      "filePath": "environments/identities/managers.py",
+      "lineRange": [
+        15,
+        52
+      ],
+      "summary": "Manager exposing get_or_create_for_sdk and a context-prefetching with_context query helper for identities.",
+      "tags": [
+        "manager",
+        "identity",
+        "query-optimisation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:environments/identities/models.py:Identity",
+      "type": "class",
+      "name": "Identity",
+      "filePath": "environments/identities/models.py",
+      "lineRange": [
+        18,
+        305
+      ],
+      "summary": "Identity aggregate resolving feature states, segment membership and trait persistence for a user within an environment.",
+      "tags": [
+        "data-model",
+        "identity",
+        "feature-flags",
+        "segments",
+        "core"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:environments/identities/serializers.py:IdentitySerializer",
+      "type": "class",
+      "name": "IdentitySerializer",
+      "filePath": "environments/identities/serializers.py",
+      "lineRange": [
+        30,
+        49
+      ],
+      "summary": "Identity serializer enforcing uniqueness of identifier within an environment on save.",
+      "tags": [
+        "serialization",
+        "identity",
+        "validation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:environments/identities/serializers.py:IdentityAllFeatureStatesSerializer",
+      "type": "class",
+      "name": "IdentityAllFeatureStatesSerializer",
+      "filePath": "environments/identities/serializers.py",
+      "lineRange": [
+        82,
+        128
+      ],
+      "summary": "Serializer shaping the all-feature-states response with computed values, overrides and segment context.",
+      "tags": [
+        "serialization",
+        "identity",
+        "feature-flags"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:environments/identities/traits/fields.py:TraitValueField",
+      "type": "class",
+      "name": "TraitValueField",
+      "filePath": "environments/identities/traits/fields.py",
+      "lineRange": [
+        16,
+        39
+      ],
+      "summary": "Serializer field coercing trait values to/from their typed representation with max-length validation.",
+      "tags": [
+        "serialization",
+        "validation",
+        "trait",
+        "field"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:environments/identities/traits/models.py:Trait",
+      "type": "class",
+      "name": "Trait",
+      "filePath": "environments/identities/traits/models.py",
+      "lineRange": [
+        10,
+        132
+      ],
+      "summary": "Trait model storing typed user attributes across distinct columns, with value coercion and transient handling.",
+      "tags": [
+        "data-model",
+        "trait",
+        "serialization"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:environments/identities/traits/serializers.py:IncrementTraitValueSerializer",
+      "type": "class",
+      "name": "IncrementTraitValueSerializer",
+      "filePath": "environments/identities/traits/serializers.py",
+      "lineRange": [
+        33,
+        77
+      ],
+      "summary": "Serializer that atomically increments an integer trait value, creating the trait if absent.",
+      "tags": [
+        "serialization",
+        "trait",
+        "validation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:environments/identities/traits/serializers.py:DeleteAllTraitKeysSerializer",
+      "type": "class",
+      "name": "DeleteAllTraitKeysSerializer",
+      "filePath": "environments/identities/traits/serializers.py",
+      "lineRange": [
+        84,
+        91
+      ],
+      "summary": "Serializer that deletes all traits with a given key across an environment.",
+      "tags": [
+        "serialization",
+        "trait"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:environments/identities/traits/views.py:TraitViewSet",
+      "type": "class",
+      "name": "TraitViewSet",
+      "filePath": "environments/identities/traits/views.py",
+      "lineRange": [
+        40,
+        108
+      ],
+      "summary": "Nested viewset for trait CRUD scoped to an identity, with custom queryset, permissions and bulk-key deletion.",
+      "tags": [
+        "api-handler",
+        "trait",
+        "viewset"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:environments/identities/traits/views.py:SDKTraitsDeprecated",
+      "type": "class",
+      "name": "SDKTraitsDeprecated",
+      "filePath": "environments/identities/traits/views.py",
+      "lineRange": [
+        111,
+        178
+      ],
+      "summary": "Deprecated SDK endpoint for setting a single trait via get-or-create on identity and trait.",
+      "tags": [
+        "api-handler",
+        "trait",
+        "sdk",
+        "deprecated"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:environments/identities/traits/views.py:SDKTraits",
+      "type": "class",
+      "name": "SDKTraits",
+      "filePath": "environments/identities/traits/views.py",
+      "lineRange": [
+        181,
+        285
+      ],
+      "summary": "SDK trait endpoint supporting single create, increment and bulk upsert with request forwarding to edge.",
+      "tags": [
+        "api-handler",
+        "trait",
+        "sdk"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:environments/identities/views.py:IdentityViewSet",
+      "type": "class",
+      "name": "IdentityViewSet",
+      "filePath": "environments/identities/views.py",
+      "lineRange": [
+        41,
+        96
+      ],
+      "summary": "Dashboard viewset for listing and managing identities within an environment, with search and pagination.",
+      "tags": [
+        "api-handler",
+        "identity",
+        "viewset"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:environments/identities/views.py:SDKIdentitiesDeprecated",
+      "type": "class",
+      "name": "SDKIdentitiesDeprecated",
+      "filePath": "environments/identities/views.py",
+      "lineRange": [
+        99,
+        144
+      ],
+      "summary": "Deprecated SDK endpoint returning an identity's flags, traits and segments.",
+      "tags": [
+        "api-handler",
+        "identity",
+        "sdk",
+        "deprecated"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:environments/identities/views.py:SDKIdentities",
+      "type": "class",
+      "name": "SDKIdentities",
+      "filePath": "environments/identities/views.py",
+      "lineRange": [
+        148,
+        334
+      ],
+      "summary": "Primary SDK identify endpoint returning flags for an identity, supporting transient identities and single/all feature-state responses.",
+      "tags": [
+        "api-handler",
+        "identity",
+        "sdk",
+        "feature-flags"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:environments/models.py:Environment",
+      "type": "class",
+      "name": "Environment",
+      "filePath": "environments/models.py",
+      "lineRange": [
+        80,
+        620
+      ],
+      "summary": "Core environment aggregate managing caching, DynamoDB document sync, v2 versioning, cloning and metrics querysets.",
+      "tags": [
+        "data-model",
+        "environment",
+        "core",
+        "caching"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:environments/models.py:Webhook",
+      "type": "class",
+      "name": "Webhook",
+      "filePath": "environments/models.py",
+      "lineRange": [
+        623,
+        698
+      ],
+      "summary": "Environment webhook model with helpers to build feature-state payloads for outbound webhook calls.",
+      "tags": [
+        "data-model",
+        "environment",
+        "webhook",
+        "event-handler"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:environments/models.py:EnvironmentAPIKey",
+      "type": "class",
+      "name": "EnvironmentAPIKey",
+      "filePath": "environments/models.py",
+      "lineRange": [
+        701,
+        735
+      ],
+      "summary": "Scoped, expirable environment API key with DynamoDB synchronisation and validity checks.",
+      "tags": [
+        "data-model",
+        "environment",
+        "api-key",
+        "security"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:environments/permissions/models.py:UserEnvironmentPermission",
+      "type": "class",
+      "name": "UserEnvironmentPermission",
+      "filePath": "environments/permissions/models.py",
+      "lineRange": [
+        15,
+        36
+      ],
+      "summary": "Per-user permission assignment scoped to a single environment.",
+      "tags": [
+        "data-model",
+        "permissions",
+        "rbac"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:environments/permissions/models.py:UserPermissionGroupEnvironmentPermission",
+      "type": "class",
+      "name": "UserPermissionGroupEnvironmentPermission",
+      "filePath": "environments/permissions/models.py",
+      "lineRange": [
+        39,
+        56
+      ],
+      "summary": "Per-group permission assignment scoped to a single environment.",
+      "tags": [
+        "data-model",
+        "permissions",
+        "rbac"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:environments/permissions/permissions.py:EnvironmentPermissions",
+      "type": "class",
+      "name": "EnvironmentPermissions",
+      "filePath": "environments/permissions/permissions.py",
+      "lineRange": [
+        32,
+        61
+      ],
+      "summary": "Permission class controlling create/list/object access to environments based on project and environment roles.",
+      "tags": [
+        "permissions",
+        "authorization",
+        "rbac"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:environments/permissions/permissions.py:IdentityPermissions",
+      "type": "class",
+      "name": "IdentityPermissions",
+      "filePath": "environments/permissions/permissions.py",
+      "lineRange": [
+        64,
+        86
+      ],
+      "summary": "Permission class gating identity access by organisation- or environment-admin status.",
+      "tags": [
+        "permissions",
+        "authorization",
+        "rbac",
+        "identity"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:environments/permissions/permissions.py:NestedEnvironmentPermissions",
+      "type": "class",
+      "name": "NestedEnvironmentPermissions",
+      "filePath": "environments/permissions/permissions.py",
+      "lineRange": [
+        89,
+        133
+      ],
+      "summary": "Permission class for nested environment resources, resolving the parent environment and mapping actions to required permissions.",
+      "tags": [
+        "permissions",
+        "authorization",
+        "rbac"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:environments/admin.py",
+      "target": "class:environments/admin.py:EnvironmentAdmin",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:environments/admin.py",
+      "target": "class:environments/admin.py:EnvironmentAdmin",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/api_keys.py",
+      "target": "function:environments/api_keys.py:generate_api_key",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:environments/api_keys.py",
+      "target": "function:environments/api_keys.py:generate_api_key",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/authentication.py",
+      "target": "class:environments/authentication.py:EnvironmentKeyAuthentication",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:environments/authentication.py",
+      "target": "class:environments/authentication.py:EnvironmentKeyAuthentication",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/identities/managers.py",
+      "target": "class:environments/identities/managers.py:IdentityManager",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:environments/identities/managers.py",
+      "target": "class:environments/identities/managers.py:IdentityManager",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/identities/models.py",
+      "target": "class:environments/identities/models.py:Identity",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:environments/identities/models.py",
+      "target": "class:environments/identities/models.py:Identity",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/identities/serializers.py",
+      "target": "class:environments/identities/serializers.py:IdentitySerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:environments/identities/serializers.py",
+      "target": "class:environments/identities/serializers.py:IdentitySerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/identities/serializers.py",
+      "target": "class:environments/identities/serializers.py:IdentityAllFeatureStatesSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:environments/identities/serializers.py",
+      "target": "class:environments/identities/serializers.py:IdentityAllFeatureStatesSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/identities/traits/fields.py",
+      "target": "class:environments/identities/traits/fields.py:TraitValueField",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:environments/identities/traits/fields.py",
+      "target": "class:environments/identities/traits/fields.py:TraitValueField",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/identities/traits/models.py",
+      "target": "class:environments/identities/traits/models.py:Trait",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:environments/identities/traits/models.py",
+      "target": "class:environments/identities/traits/models.py:Trait",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/identities/traits/serializers.py",
+      "target": "class:environments/identities/traits/serializers.py:IncrementTraitValueSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:environments/identities/traits/serializers.py",
+      "target": "class:environments/identities/traits/serializers.py:IncrementTraitValueSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/identities/traits/serializers.py",
+      "target": "class:environments/identities/traits/serializers.py:DeleteAllTraitKeysSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:environments/identities/traits/serializers.py",
+      "target": "class:environments/identities/traits/serializers.py:DeleteAllTraitKeysSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/identities/traits/views.py",
+      "target": "class:environments/identities/traits/views.py:TraitViewSet",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:environments/identities/traits/views.py",
+      "target": "class:environments/identities/traits/views.py:TraitViewSet",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/identities/traits/views.py",
+      "target": "class:environments/identities/traits/views.py:SDKTraitsDeprecated",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:environments/identities/traits/views.py",
+      "target": "class:environments/identities/traits/views.py:SDKTraitsDeprecated",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/identities/traits/views.py",
+      "target": "class:environments/identities/traits/views.py:SDKTraits",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:environments/identities/traits/views.py",
+      "target": "class:environments/identities/traits/views.py:SDKTraits",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/identities/views.py",
+      "target": "class:environments/identities/views.py:IdentityViewSet",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:environments/identities/views.py",
+      "target": "class:environments/identities/views.py:IdentityViewSet",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/identities/views.py",
+      "target": "class:environments/identities/views.py:SDKIdentitiesDeprecated",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:environments/identities/views.py",
+      "target": "class:environments/identities/views.py:SDKIdentitiesDeprecated",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/identities/views.py",
+      "target": "class:environments/identities/views.py:SDKIdentities",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:environments/identities/views.py",
+      "target": "class:environments/identities/views.py:SDKIdentities",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/models.py",
+      "target": "class:environments/models.py:Environment",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:environments/models.py",
+      "target": "class:environments/models.py:Environment",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/models.py",
+      "target": "class:environments/models.py:Webhook",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:environments/models.py",
+      "target": "class:environments/models.py:Webhook",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/models.py",
+      "target": "class:environments/models.py:EnvironmentAPIKey",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:environments/models.py",
+      "target": "class:environments/models.py:EnvironmentAPIKey",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/permissions/models.py",
+      "target": "class:environments/permissions/models.py:UserEnvironmentPermission",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:environments/permissions/models.py",
+      "target": "class:environments/permissions/models.py:UserEnvironmentPermission",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/permissions/models.py",
+      "target": "class:environments/permissions/models.py:UserPermissionGroupEnvironmentPermission",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:environments/permissions/models.py",
+      "target": "class:environments/permissions/models.py:UserPermissionGroupEnvironmentPermission",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/permissions/permissions.py",
+      "target": "class:environments/permissions/permissions.py:EnvironmentPermissions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:environments/permissions/permissions.py",
+      "target": "class:environments/permissions/permissions.py:EnvironmentPermissions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/permissions/permissions.py",
+      "target": "class:environments/permissions/permissions.py:IdentityPermissions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:environments/permissions/permissions.py",
+      "target": "class:environments/permissions/permissions.py:IdentityPermissions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/permissions/permissions.py",
+      "target": "class:environments/permissions/permissions.py:NestedEnvironmentPermissions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:environments/permissions/permissions.py",
+      "target": "class:environments/permissions/permissions.py:NestedEnvironmentPermissions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/admin.py",
+      "target": "file:environments/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/admin.py",
+      "target": "file:environments/tasks.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/authentication.py",
+      "target": "file:environments/api_keys.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/authentication.py",
+      "target": "file:environments/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/identities/admin.py",
+      "target": "file:environments/identities/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/identities/models.py",
+      "target": "file:environments/identities/managers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/identities/models.py",
+      "target": "file:environments/identities/traits/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/identities/models.py",
+      "target": "file:environments/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/identities/models.py",
+      "target": "file:environments/sdk/types.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/identities/models.py",
+      "target": "file:features/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/identities/models.py",
+      "target": "file:features/multivariate/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/identities/models.py",
+      "target": "file:features/versioning/versioning_service.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/identities/models.py",
+      "target": "file:segments/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/identities/serializers.py",
+      "target": "file:environments/identities/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/identities/serializers.py",
+      "target": "file:environments/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/identities/serializers.py",
+      "target": "file:environments/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/identities/serializers.py",
+      "target": "file:features/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/identities/serializers.py",
+      "target": "file:features/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/identities/traits/admin.py",
+      "target": "file:environments/identities/traits/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/identities/traits/constants.py",
+      "target": "file:features/value_types.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/identities/traits/fields.py",
+      "target": "file:environments/identities/traits/constants.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/identities/traits/fields.py",
+      "target": "file:environments/sdk/types.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/identities/traits/fields.py",
+      "target": "file:features/value_types.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/identities/traits/models.py",
+      "target": "file:environments/identities/traits/exceptions.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/identities/traits/serializers.py",
+      "target": "file:environments/identities/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/identities/traits/serializers.py",
+      "target": "file:environments/identities/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/identities/traits/serializers.py",
+      "target": "file:environments/identities/traits/fields.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/identities/traits/serializers.py",
+      "target": "file:environments/identities/traits/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/identities/traits/views.py",
+      "target": "file:environments/authentication.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/identities/traits/views.py",
+      "target": "file:environments/identities/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/identities/traits/views.py",
+      "target": "file:environments/identities/traits/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/identities/traits/views.py",
+      "target": "file:environments/identities/traits/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/identities/traits/views.py",
+      "target": "file:environments/permissions/permissions.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/identities/traits/views.py",
+      "target": "file:environments/sdk/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/identities/traits/views.py",
+      "target": "file:environments/views.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/identities/views.py",
+      "target": "file:environments/identities/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/identities/views.py",
+      "target": "file:environments/identities/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/identities/views.py",
+      "target": "file:environments/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/identities/views.py",
+      "target": "file:environments/permissions/permissions.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/identities/views.py",
+      "target": "file:environments/sdk/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/identities/views.py",
+      "target": "file:features/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/models.py",
+      "target": "file:audit/constants.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/models.py",
+      "target": "file:audit/related_object_type.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/models.py",
+      "target": "file:environments/api_keys.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/models.py",
+      "target": "file:environments/constants.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/models.py",
+      "target": "file:environments/dynamodb/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/models.py",
+      "target": "file:environments/enums.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/models.py",
+      "target": "file:environments/exceptions.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/models.py",
+      "target": "file:environments/managers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/models.py",
+      "target": "file:environments/metrics.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/models.py",
+      "target": "file:features/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/models.py",
+      "target": "file:features/multivariate/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/models.py",
+      "target": "file:metadata/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/models.py",
+      "target": "file:projects/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/models.py",
+      "target": "file:segments/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/permissions/managers.py",
+      "target": "file:environments/permissions/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/permissions/models.py",
+      "target": "file:environments/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/permissions/models.py",
+      "target": "file:environments/permissions/managers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/permissions/permissions.py",
+      "target": "file:environments/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/permissions/permissions.py",
+      "target": "file:projects/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/permissions/serializers.py",
+      "target": "file:environments/permissions/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/permissions/serializers.py",
+      "target": "file:users/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/admin.py",
+      "target": "function:environments/tasks.py:rebuild_environment_document",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/authentication.py",
+      "target": "class:environments/models.py:Environment",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

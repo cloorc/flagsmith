@@ -1,0 +1,482 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 9,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": ".env-ci",
+      "language": "config",
+      "fileCategory": "config",
+      "totalLines": 4,
+      "nonEmptyLines": 4,
+      "metrics": {}
+    },
+    {
+      "path": ".env-local",
+      "language": "config",
+      "fileCategory": "config",
+      "totalLines": 4,
+      "nonEmptyLines": 4,
+      "metrics": {}
+    },
+    {
+      "path": "Makefile",
+      "language": "makefile",
+      "fileCategory": "infra",
+      "totalLines": 183,
+      "nonEmptyLines": 150,
+      "steps": [
+        {
+          "name": "codeartifact-login",
+          "startLine": 19,
+          "endLine": 25
+        },
+        {
+          "name": "install-packages",
+          "startLine": 27,
+          "endLine": 29
+        },
+        {
+          "name": "install",
+          "startLine": 31,
+          "endLine": 32
+        },
+        {
+          "name": "lint",
+          "startLine": 34,
+          "endLine": 36
+        },
+        {
+          "name": "typecheck",
+          "startLine": 38,
+          "endLine": 40
+        },
+        {
+          "name": "docker-up",
+          "startLine": 42,
+          "endLine": 45
+        },
+        {
+          "name": "docker-down",
+          "startLine": 47,
+          "endLine": 49
+        },
+        {
+          "name": "docker-logs",
+          "startLine": 51,
+          "endLine": 53
+        },
+        {
+          "name": "docker-build",
+          "startLine": 55,
+          "endLine": 61
+        },
+        {
+          "name": "wait-for-db",
+          "startLine": 63,
+          "endLine": 66
+        },
+        {
+          "name": "test",
+          "startLine": 68,
+          "endLine": 70
+        },
+        {
+          "name": "django-make-migrations",
+          "startLine": 72,
+          "endLine": 75
+        },
+        {
+          "name": "django-squash-migrations",
+          "startLine": 77,
+          "endLine": 80
+        },
+        {
+          "name": "django-migrate",
+          "startLine": 82,
+          "endLine": 86
+        },
+        {
+          "name": "django-shell",
+          "startLine": 88,
+          "endLine": 90
+        },
+        {
+          "name": "django-collect-static",
+          "startLine": 92,
+          "endLine": 94
+        },
+        {
+          "name": "serve",
+          "startLine": 96,
+          "endLine": 98
+        },
+        {
+          "name": "run-task-processor",
+          "startLine": 100,
+          "endLine": 102
+        },
+        {
+          "name": "serve-with-task-processor",
+          "startLine": 104,
+          "endLine": 104
+        },
+        {
+          "name": "serve-with-task-processor",
+          "startLine": 105,
+          "endLine": 107
+        },
+        {
+          "name": "generate-flagsmith-sdk-openapi",
+          "startLine": 109,
+          "endLine": 109
+        },
+        {
+          "name": "generate-flagsmith-sdk-openapi",
+          "startLine": 110,
+          "endLine": 115
+        },
+        {
+          "name": "generate-ld-client-types",
+          "startLine": 117,
+          "endLine": 129
+        },
+        {
+          "name": "generate-grafana-client-types",
+          "startLine": 131,
+          "endLine": 143
+        },
+        {
+          "name": "clean-private-tests",
+          "startLine": 147,
+          "endLine": 149
+        },
+        {
+          "name": "integrate-private-tests",
+          "startLine": 157,
+          "endLine": 174
+        },
+        {
+          "name": "generate-docs",
+          "startLine": 176,
+          "endLine": 180
+        },
+        {
+          "name": "add-known-sdk-version",
+          "startLine": 182,
+          "endLine": 184
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "stepCount": 28
+      }
+    },
+    {
+      "path": "Procfile",
+      "language": "procfile",
+      "fileCategory": "infra",
+      "totalLines": 2,
+      "nonEmptyLines": 2,
+      "metrics": {}
+    },
+    {
+      "path": "README.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 147,
+      "nonEmptyLines": 101,
+      "sections": [
+        {
+          "heading": "Flagsmith API",
+          "level": 2,
+          "line": 1
+        },
+        {
+          "heading": "Local development",
+          "level": 3,
+          "line": 3
+        },
+        {
+          "heading": "Code guidelines: testing",
+          "level": 3,
+          "line": 22
+        },
+        {
+          "heading": "Code guidelines: metrics",
+          "level": 3,
+          "line": 36
+        },
+        {
+          "heading": "Code guidelines: logs",
+          "level": 3,
+          "line": 42
+        },
+        {
+          "heading": "Code guidelines: feature flags (Flagsmith on Flagsmith)",
+          "level": 3,
+          "line": 98
+        },
+        {
+          "heading": "Code guidelines: migrations",
+          "level": 3,
+          "line": 117
+        },
+        {
+          "heading": "Code guidelines: typing",
+          "level": 3,
+          "line": 125
+        },
+        {
+          "heading": "Code guidelines: design and architecture",
+          "level": 3,
+          "line": 131
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 9
+      }
+    },
+    {
+      "path": "openapi-filter-flagsmith-sdk.yml",
+      "language": "yaml",
+      "fileCategory": "config",
+      "totalLines": 11,
+      "nonEmptyLines": 11,
+      "sections": [
+        {
+          "heading": "operationIds",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "inverseTags",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "unusedComponents",
+          "level": 1,
+          "line": 5
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 3
+      }
+    },
+    {
+      "path": "openapi-filter-grafana.yaml",
+      "language": "yaml",
+      "fileCategory": "config",
+      "totalLines": 10,
+      "nonEmptyLines": 10,
+      "sections": [
+        {
+          "heading": "inverseOperationIds",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "unusedComponents",
+          "level": 1,
+          "line": 5
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 2
+      }
+    },
+    {
+      "path": "openapi-filter-launchdarkly.yaml",
+      "language": "yaml",
+      "fileCategory": "config",
+      "totalLines": 14,
+      "nonEmptyLines": 14,
+      "sections": [
+        {
+          "heading": "inverseOperationIds",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "unusedComponents",
+          "level": 1,
+          "line": 8
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 2
+      }
+    },
+    {
+      "path": "pyproject.toml",
+      "language": "toml",
+      "fileCategory": "config",
+      "totalLines": 536,
+      "nonEmptyLines": 503,
+      "sections": [
+        {
+          "heading": "project",
+          "level": 1,
+          "line": 6
+        },
+        {
+          "heading": "project.optional-dependencies",
+          "level": 2,
+          "line": 87
+        },
+        {
+          "heading": "build-system",
+          "level": 1,
+          "line": 139
+        },
+        {
+          "heading": "tool.setuptools.packages.find",
+          "level": 4,
+          "line": 143
+        },
+        {
+          "heading": "tool.setuptools.package-data",
+          "level": 3,
+          "line": 148
+        },
+        {
+          "heading": "[[tool.uv.index]]",
+          "level": 3,
+          "line": 151
+        },
+        {
+          "heading": "tool.uv.sources",
+          "level": 3,
+          "line": 156
+        },
+        {
+          "heading": "tool.uv",
+          "level": 2,
+          "line": 160
+        },
+        {
+          "heading": "tool.ruff",
+          "level": 2,
+          "line": 420
+        },
+        {
+          "heading": "tool.ruff.format",
+          "level": 3,
+          "line": 426
+        },
+        {
+          "heading": "tool.ruff.lint",
+          "level": 3,
+          "line": 447
+        },
+        {
+          "heading": "tool.ruff.lint.per-file-ignores",
+          "level": 4,
+          "line": 452
+        },
+        {
+          "heading": "tool.coverage.report",
+          "level": 3,
+          "line": 462
+        },
+        {
+          "heading": "tool.coverage.run",
+          "level": 3,
+          "line": 466
+        },
+        {
+          "heading": "tool.pytest.ini_options",
+          "level": 3,
+          "line": 475
+        },
+        {
+          "heading": "tool.mypy",
+          "level": 2,
+          "line": 488
+        },
+        {
+          "heading": "[[tool.mypy.overrides]]",
+          "level": 3,
+          "line": 493
+        },
+        {
+          "heading": "[[tool.mypy.overrides]]",
+          "level": 3,
+          "line": 497
+        },
+        {
+          "heading": "[[tool.mypy.overrides]]",
+          "level": 3,
+          "line": 501
+        },
+        {
+          "heading": "[[tool.mypy.overrides]]",
+          "level": 3,
+          "line": 505
+        },
+        {
+          "heading": "[[tool.mypy.overrides]]",
+          "level": 3,
+          "line": 509
+        },
+        {
+          "heading": "[[tool.mypy.overrides]]",
+          "level": 3,
+          "line": 513
+        },
+        {
+          "heading": "[[tool.mypy.overrides]]",
+          "level": 3,
+          "line": 517
+        },
+        {
+          "heading": "[[tool.mypy.overrides]]",
+          "level": 3,
+          "line": 521
+        },
+        {
+          "heading": "[[tool.mypy.overrides]]",
+          "level": 3,
+          "line": 525
+        },
+        {
+          "heading": "tool.django-stubs",
+          "level": 2,
+          "line": 532
+        },
+        {
+          "heading": "tool.drf-stubs",
+          "level": 2,
+          "line": 535
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 27
+      }
+    }
+  ]
+}

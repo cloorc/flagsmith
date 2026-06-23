@@ -1,0 +1,1499 @@
+{
+  "nodes": [
+    {
+      "id": "file:features/feature_segments/views.py",
+      "name": "views.py",
+      "filePath": "features/feature_segments/views.py",
+      "summary": "Viewset for feature segment overrides supporting listing scoped to permitted projects/environments, priority updates, and lookup by UUID.",
+      "tags": [
+        "api-handler",
+        "viewset",
+        "feature-segments"
+      ],
+      "complexity": "moderate",
+      "type": "file"
+    },
+    {
+      "id": "file:features/feature_states/permissions.py",
+      "name": "permissions.py",
+      "filePath": "features/feature_states/permissions.py",
+      "summary": "DRF permission class authorising direct environment feature-state updates by verifying the user's update permission on the environment.",
+      "tags": [
+        "permissions",
+        "feature-states",
+        "authorization"
+      ],
+      "complexity": "simple",
+      "type": "file"
+    },
+    {
+      "id": "file:features/feature_states/views.py",
+      "name": "views.py",
+      "filePath": "features/feature_states/views.py",
+      "summary": "Function-based SDK endpoints for updating flags (v1/v2) and deleting segment overrides, guarded against use when change-request workflows are enabled.",
+      "tags": [
+        "api-handler",
+        "feature-states",
+        "sdk"
+      ],
+      "complexity": "moderate",
+      "type": "file"
+    },
+    {
+      "id": "file:features/helpers.py",
+      "name": "helpers.py",
+      "filePath": "features/helpers.py",
+      "summary": "Helper to coerce a stored string feature value into its correctly typed Python value based on the feature state value type.",
+      "tags": [
+        "utility",
+        "features",
+        "serialization"
+      ],
+      "complexity": "simple",
+      "type": "file"
+    },
+    {
+      "id": "file:features/multivariate/serializers.py",
+      "name": "serializers.py",
+      "filePath": "features/multivariate/serializers.py",
+      "summary": "Serializers for multivariate feature options and their values, validating unique keys and that weighted percentage allocations do not exceed 100%.",
+      "tags": [
+        "serialization",
+        "multivariate",
+        "validation",
+        "features"
+      ],
+      "complexity": "moderate",
+      "type": "file"
+    },
+    {
+      "id": "file:features/serializers.py",
+      "name": "serializers.py",
+      "filePath": "features/serializers.py",
+      "summary": "Central feature serialization module defining feature, feature-state and owner serializers used across admin and SDK APIs, with metadata, segment override and GitHub/GitLab integration hooks.",
+      "tags": [
+        "serialization",
+        "features",
+        "feature-states",
+        "api-handler"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Large module with 30 serializer classes spanning admin CRUD, SDK responses, and query parameter validation.",
+      "type": "file"
+    },
+    {
+      "id": "file:features/urls.py",
+      "name": "urls.py",
+      "filePath": "features/urls.py",
+      "summary": "URL routing for the features app, registering feature, feature-state and feature-segment viewsets plus import/export endpoints.",
+      "tags": [
+        "routing",
+        "urls",
+        "features",
+        "entry-point"
+      ],
+      "complexity": "simple",
+      "type": "file"
+    },
+    {
+      "id": "file:features/utils.py",
+      "name": "utils.py",
+      "filePath": "features/utils.py",
+      "summary": "Type-detection and coercion helpers determining whether a feature value is an integer, 32-bit integer or boolean and converting string values accordingly.",
+      "tags": [
+        "utility",
+        "features",
+        "type-detection",
+        "validation"
+      ],
+      "complexity": "simple",
+      "type": "file"
+    },
+    {
+      "id": "file:features/value_types.py",
+      "name": "value_types.py",
+      "filePath": "features/value_types.py",
+      "summary": "Constant definitions for feature state value types (integer, string, boolean, float) and the choices tuple used by feature value models.",
+      "tags": [
+        "config",
+        "constants",
+        "type-definition",
+        "features"
+      ],
+      "complexity": "simple",
+      "type": "file"
+    },
+    {
+      "id": "file:features/versioning/serializers.py",
+      "name": "serializers.py",
+      "filePath": "features/versioning/serializers.py",
+      "summary": "Serializers for environment feature versions, handling creation/update/deletion of feature states within a version, segment override limits and publishing.",
+      "tags": [
+        "serialization",
+        "versioning",
+        "feature-states",
+        "validation"
+      ],
+      "complexity": "complex",
+      "type": "file"
+    },
+    {
+      "id": "file:features/views.py",
+      "name": "views.py",
+      "filePath": "features/views.py",
+      "summary": "Primary feature API surface: feature CRUD with owner management and analytics, feature-state viewsets (environment, identity, simple), and SDK flag retrieval with caching.",
+      "tags": [
+        "api-handler",
+        "viewset",
+        "features",
+        "feature-states",
+        "sdk"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Very large viewset module combining heavy ORM annotation queries with SDK response shaping and caching.",
+      "type": "file"
+    },
+    {
+      "id": "class:features/feature_segments/views.py:FeatureSegmentViewSet",
+      "type": "class",
+      "name": "FeatureSegmentViewSet",
+      "filePath": "features/feature_segments/views.py",
+      "lineRange": [
+        45,
+        113
+      ],
+      "summary": "Viewset for feature segment overrides supporting permitted-project scoping, environment/feature filtering, bulk priority updates and UUID lookup.",
+      "tags": [
+        "api-handler",
+        "viewset",
+        "feature-segments"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:features/feature_states/permissions.py:EnvironmentUpdateFeatureStatePermission",
+      "type": "class",
+      "name": "EnvironmentUpdateFeatureStatePermission",
+      "filePath": "features/feature_states/permissions.py",
+      "lineRange": [
+        9,
+        19
+      ],
+      "summary": "Permission class allowing direct feature-state updates only when the user has update permission on the resolved environment.",
+      "tags": [
+        "permissions",
+        "feature-states",
+        "authorization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:features/feature_states/views.py:update_flag_v1",
+      "type": "function",
+      "name": "update_flag_v1",
+      "filePath": "features/feature_states/views.py",
+      "lineRange": [
+        67,
+        78
+      ],
+      "summary": "SDK endpoint that updates a flag's value/state for an environment using the v1 update serializer, blocking use when workflows are enabled.",
+      "tags": [
+        "api-handler",
+        "feature-states",
+        "sdk"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:features/feature_states/views.py:update_flag_v2",
+      "type": "function",
+      "name": "update_flag_v2",
+      "filePath": "features/feature_states/views.py",
+      "lineRange": [
+        129,
+        140
+      ],
+      "summary": "SDK endpoint that updates a flag using the v2 update serializer, blocking use when change-request workflows are enabled.",
+      "tags": [
+        "api-handler",
+        "feature-states",
+        "sdk"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:features/feature_states/views.py:delete_segment_override",
+      "type": "function",
+      "name": "delete_segment_override",
+      "filePath": "features/feature_states/views.py",
+      "lineRange": [
+        175,
+        186
+      ],
+      "summary": "SDK endpoint that deletes a segment override for an environment, blocking use when change-request workflows are enabled.",
+      "tags": [
+        "api-handler",
+        "feature-states",
+        "sdk"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:features/helpers.py:get_correctly_typed_value",
+      "type": "function",
+      "name": "get_correctly_typed_value",
+      "filePath": "features/helpers.py",
+      "lineRange": [
+        6,
+        12
+      ],
+      "summary": "Coerces a stored string feature value to int, bool or string based on the supplied feature state value type.",
+      "tags": [
+        "utility",
+        "features",
+        "type-coercion"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:features/multivariate/serializers.py:MultivariateFeatureOptionSerializer",
+      "type": "class",
+      "name": "MultivariateFeatureOptionSerializer",
+      "filePath": "features/multivariate/serializers.py",
+      "lineRange": [
+        60,
+        117
+      ],
+      "summary": "Serializer for multivariate feature options enforcing unique keys and that sibling percentage allocations do not exceed 100%.",
+      "tags": [
+        "serialization",
+        "multivariate",
+        "validation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:features/serializers.py:FeatureQuerySerializer",
+      "type": "class",
+      "name": "FeatureQuerySerializer",
+      "filePath": "features/serializers.py",
+      "lineRange": [
+        81,
+        175
+      ],
+      "summary": "Query-parameter serializer validating feature list filters such as identity, owners, group owners and tags, resolving the project from view context.",
+      "tags": [
+        "serialization",
+        "validation",
+        "query-params"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:features/serializers.py:CreateFeatureSerializer",
+      "type": "class",
+      "name": "CreateFeatureSerializer",
+      "filePath": "features/serializers.py",
+      "lineRange": [
+        194,
+        447
+      ],
+      "summary": "Serializer for creating features with owners, group owners, multivariate options and metadata, enforcing project feature limits and name validity.",
+      "tags": [
+        "serialization",
+        "features",
+        "validation"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:features/serializers.py:FeatureSerializerWithMetadata",
+      "type": "class",
+      "name": "FeatureSerializerWithMetadata",
+      "filePath": "features/serializers.py",
+      "lineRange": [
+        450,
+        484
+      ],
+      "summary": "Feature serializer that additionally validates and persists required metadata on create and update.",
+      "tags": [
+        "serialization",
+        "features",
+        "metadata"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:features/serializers.py:FeatureStateSerializerFull",
+      "type": "class",
+      "name": "FeatureStateSerializerFull",
+      "filePath": "features/serializers.py",
+      "lineRange": [
+        545,
+        573
+      ],
+      "summary": "Full feature-state serializer exposing the typed feature state value for admin API responses.",
+      "tags": [
+        "serialization",
+        "feature-states"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:features/serializers.py:SDKIdentityFeatureStateSerializer",
+      "type": "class",
+      "name": "SDKIdentityFeatureStateSerializer",
+      "filePath": "features/serializers.py",
+      "lineRange": [
+        631,
+        649
+      ],
+      "summary": "SDK serializer returning an identity's feature state including the resolved multivariate variant value.",
+      "tags": [
+        "serialization",
+        "feature-states",
+        "sdk",
+        "multivariate"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:features/serializers.py:FeatureStateSerializerBasic",
+      "type": "class",
+      "name": "FeatureStateSerializerBasic",
+      "filePath": "features/serializers.py",
+      "lineRange": [
+        652,
+        756
+      ],
+      "summary": "Feature-state serializer handling save with GitHub/GitLab integration side effects and validation of feature, environment and multivariate values.",
+      "tags": [
+        "serialization",
+        "feature-states",
+        "integration",
+        "validation"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:features/serializers.py:CustomCreateSegmentOverrideFeatureStateSerializer",
+      "type": "class",
+      "name": "CustomCreateSegmentOverrideFeatureStateSerializer",
+      "filePath": "features/serializers.py",
+      "lineRange": [
+        830,
+        855
+      ],
+      "summary": "Feature-state serializer for creating segment overrides, enforcing the segment override limit during creation.",
+      "tags": [
+        "serialization",
+        "feature-states",
+        "feature-segments",
+        "validation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:features/utils.py:get_value_type",
+      "type": "function",
+      "name": "get_value_type",
+      "filePath": "features/utils.py",
+      "lineRange": [
+        8,
+        19
+      ],
+      "summary": "Infers the feature value type (integer, boolean or string) from a raw string value.",
+      "tags": [
+        "utility",
+        "type-detection",
+        "features"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:features/utils.py:is_integer",
+      "type": "function",
+      "name": "is_integer",
+      "filePath": "features/utils.py",
+      "lineRange": [
+        26,
+        31
+      ],
+      "summary": "Returns whether a string value parses as an integer within an optional absolute-value bound.",
+      "tags": [
+        "utility",
+        "type-detection",
+        "validation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:features/versioning/serializers.py:CustomEnvironmentFeatureVersionFeatureStateSerializer",
+      "type": "class",
+      "name": "CustomEnvironmentFeatureVersionFeatureStateSerializer",
+      "filePath": "features/versioning/serializers.py",
+      "lineRange": [
+        29,
+        62
+      ],
+      "summary": "Feature-state serializer for a versioned environment, triggering GitHub/GitLab integration side effects on save.",
+      "tags": [
+        "serialization",
+        "versioning",
+        "feature-states",
+        "integration"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:features/versioning/serializers.py:EnvironmentFeatureVersionRetrieveSerializer",
+      "type": "class",
+      "name": "EnvironmentFeatureVersionRetrieveSerializer",
+      "filePath": "features/versioning/serializers.py",
+      "lineRange": [
+        92,
+        110
+      ],
+      "summary": "Retrieve serializer for an environment feature version, exposing the previous version's UUID.",
+      "tags": [
+        "serialization",
+        "versioning"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:features/versioning/serializers.py:EnvironmentFeatureVersionCreateSerializer",
+      "type": "class",
+      "name": "EnvironmentFeatureVersionCreateSerializer",
+      "filePath": "features/versioning/serializers.py",
+      "lineRange": [
+        113,
+        337
+      ],
+      "summary": "Serializer that creates an environment feature version, applying create/update/delete of feature states and segment overrides with limit and v2-versioning validation.",
+      "tags": [
+        "serialization",
+        "versioning",
+        "feature-states",
+        "validation"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:features/versioning/serializers.py:EnvironmentFeatureVersionPublishSerializer",
+      "type": "class",
+      "name": "EnvironmentFeatureVersionPublishSerializer",
+      "filePath": "features/versioning/serializers.py",
+      "lineRange": [
+        340,
+        361
+      ],
+      "summary": "Serializer that publishes an environment feature version at the requested live-from time.",
+      "tags": [
+        "serialization",
+        "versioning"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:features/views.py:get_feature_by_uuid",
+      "type": "function",
+      "name": "get_feature_by_uuid",
+      "filePath": "features/views.py",
+      "lineRange": [
+        119,
+        126
+      ],
+      "summary": "Function view returning a single feature looked up by UUID, scoped to the requesting user's permitted projects.",
+      "tags": [
+        "api-handler",
+        "features"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:features/views.py:get_multivariate_options",
+      "type": "function",
+      "name": "get_multivariate_options",
+      "filePath": "features/views.py",
+      "lineRange": [
+        1112,
+        1134
+      ],
+      "summary": "Function view returning the multivariate options for a feature.",
+      "tags": [
+        "api-handler",
+        "features",
+        "multivariate"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:features/views.py:organisation_has_got_feature",
+      "type": "function",
+      "name": "organisation_has_got_feature",
+      "filePath": "features/views.py",
+      "lineRange": [
+        1137,
+        1154
+      ],
+      "summary": "Function view reporting whether an organisation has created any feature, used for onboarding state.",
+      "tags": [
+        "api-handler",
+        "features",
+        "onboarding"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:features/views.py:create_segment_override",
+      "type": "function",
+      "name": "create_segment_override",
+      "filePath": "features/views.py",
+      "lineRange": [
+        1166,
+        1179
+      ],
+      "summary": "SDK function view that creates a segment override for a feature in the authenticated environment.",
+      "tags": [
+        "api-handler",
+        "features",
+        "feature-segments",
+        "sdk"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:features/views.py:FeatureViewSet",
+      "type": "class",
+      "name": "FeatureViewSet",
+      "filePath": "features/views.py",
+      "lineRange": [
+        162,
+        600
+      ],
+      "summary": "Primary feature viewset providing CRUD, owner/group-owner management, state filtering, code-reference annotation, and Influx/usage analytics endpoints.",
+      "tags": [
+        "api-handler",
+        "viewset",
+        "features"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:features/views.py:BaseFeatureStateViewSet",
+      "type": "class",
+      "name": "BaseFeatureStateViewSet",
+      "filePath": "features/views.py",
+      "lineRange": [
+        632,
+        803
+      ],
+      "summary": "Base feature-state viewset handling serializer selection, environment resolution, query filtering and CRUD with feature-state value updates.",
+      "tags": [
+        "api-handler",
+        "viewset",
+        "feature-states"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:features/views.py:EnvironmentFeatureStateViewSet",
+      "type": "class",
+      "name": "EnvironmentFeatureStateViewSet",
+      "filePath": "features/views.py",
+      "lineRange": [
+        814,
+        828
+      ],
+      "summary": "Feature-state viewset scoped to environment-level (non-identity) feature states.",
+      "tags": [
+        "api-handler",
+        "viewset",
+        "feature-states"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:features/views.py:IdentityFeatureStateViewSet",
+      "type": "class",
+      "name": "IdentityFeatureStateViewSet",
+      "filePath": "features/views.py",
+      "lineRange": [
+        831,
+        883
+      ],
+      "summary": "Feature-state viewset for identity overrides, including listing all states and cloning states from another identity.",
+      "tags": [
+        "api-handler",
+        "viewset",
+        "feature-states",
+        "identity"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:features/views.py:SimpleFeatureStateViewSet",
+      "type": "class",
+      "name": "SimpleFeatureStateViewSet",
+      "filePath": "features/views.py",
+      "lineRange": [
+        908,
+        950
+      ],
+      "summary": "Lightweight feature-state viewset for simple create/update operations against a feature state.",
+      "tags": [
+        "api-handler",
+        "viewset",
+        "feature-states"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:features/views.py:SDKFeatureStates",
+      "type": "class",
+      "name": "SDKFeatureStates",
+      "filePath": "features/views.py",
+      "lineRange": [
+        966,
+        1099
+      ],
+      "summary": "SDK endpoint returning evaluated flags for an environment or identity, with caching and additional query-param filtering.",
+      "tags": [
+        "api-handler",
+        "sdk",
+        "feature-states",
+        "caching"
+      ],
+      "complexity": "complex"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:features/feature_segments/views.py",
+      "target": "class:features/feature_segments/views.py:FeatureSegmentViewSet",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:features/feature_segments/views.py",
+      "target": "class:features/feature_segments/views.py:FeatureSegmentViewSet",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/feature_states/permissions.py",
+      "target": "class:features/feature_states/permissions.py:EnvironmentUpdateFeatureStatePermission",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:features/feature_states/permissions.py",
+      "target": "class:features/feature_states/permissions.py:EnvironmentUpdateFeatureStatePermission",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/feature_states/views.py",
+      "target": "function:features/feature_states/views.py:update_flag_v1",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:features/feature_states/views.py",
+      "target": "function:features/feature_states/views.py:update_flag_v1",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/feature_states/views.py",
+      "target": "function:features/feature_states/views.py:update_flag_v2",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:features/feature_states/views.py",
+      "target": "function:features/feature_states/views.py:update_flag_v2",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/feature_states/views.py",
+      "target": "function:features/feature_states/views.py:delete_segment_override",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:features/feature_states/views.py",
+      "target": "function:features/feature_states/views.py:delete_segment_override",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/helpers.py",
+      "target": "function:features/helpers.py:get_correctly_typed_value",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:features/helpers.py",
+      "target": "function:features/helpers.py:get_correctly_typed_value",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/multivariate/serializers.py",
+      "target": "class:features/multivariate/serializers.py:MultivariateFeatureOptionSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:features/multivariate/serializers.py",
+      "target": "class:features/multivariate/serializers.py:MultivariateFeatureOptionSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/serializers.py",
+      "target": "class:features/serializers.py:FeatureQuerySerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:features/serializers.py",
+      "target": "class:features/serializers.py:FeatureQuerySerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/serializers.py",
+      "target": "class:features/serializers.py:CreateFeatureSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:features/serializers.py",
+      "target": "class:features/serializers.py:CreateFeatureSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/serializers.py",
+      "target": "class:features/serializers.py:FeatureSerializerWithMetadata",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:features/serializers.py",
+      "target": "class:features/serializers.py:FeatureSerializerWithMetadata",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/serializers.py",
+      "target": "class:features/serializers.py:FeatureStateSerializerFull",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:features/serializers.py",
+      "target": "class:features/serializers.py:FeatureStateSerializerFull",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/serializers.py",
+      "target": "class:features/serializers.py:SDKIdentityFeatureStateSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:features/serializers.py",
+      "target": "class:features/serializers.py:SDKIdentityFeatureStateSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/serializers.py",
+      "target": "class:features/serializers.py:FeatureStateSerializerBasic",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:features/serializers.py",
+      "target": "class:features/serializers.py:FeatureStateSerializerBasic",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/serializers.py",
+      "target": "class:features/serializers.py:CustomCreateSegmentOverrideFeatureStateSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:features/serializers.py",
+      "target": "class:features/serializers.py:CustomCreateSegmentOverrideFeatureStateSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/utils.py",
+      "target": "function:features/utils.py:get_value_type",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:features/utils.py",
+      "target": "function:features/utils.py:get_value_type",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/utils.py",
+      "target": "function:features/utils.py:is_integer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:features/utils.py",
+      "target": "function:features/utils.py:is_integer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/versioning/serializers.py",
+      "target": "class:features/versioning/serializers.py:CustomEnvironmentFeatureVersionFeatureStateSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:features/versioning/serializers.py",
+      "target": "class:features/versioning/serializers.py:CustomEnvironmentFeatureVersionFeatureStateSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/versioning/serializers.py",
+      "target": "class:features/versioning/serializers.py:EnvironmentFeatureVersionRetrieveSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:features/versioning/serializers.py",
+      "target": "class:features/versioning/serializers.py:EnvironmentFeatureVersionRetrieveSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/versioning/serializers.py",
+      "target": "class:features/versioning/serializers.py:EnvironmentFeatureVersionCreateSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:features/versioning/serializers.py",
+      "target": "class:features/versioning/serializers.py:EnvironmentFeatureVersionCreateSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/versioning/serializers.py",
+      "target": "class:features/versioning/serializers.py:EnvironmentFeatureVersionPublishSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:features/versioning/serializers.py",
+      "target": "class:features/versioning/serializers.py:EnvironmentFeatureVersionPublishSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/views.py",
+      "target": "function:features/views.py:get_feature_by_uuid",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:features/views.py",
+      "target": "function:features/views.py:get_feature_by_uuid",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/views.py",
+      "target": "function:features/views.py:get_multivariate_options",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:features/views.py",
+      "target": "function:features/views.py:get_multivariate_options",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/views.py",
+      "target": "function:features/views.py:organisation_has_got_feature",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:features/views.py",
+      "target": "function:features/views.py:organisation_has_got_feature",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/views.py",
+      "target": "function:features/views.py:create_segment_override",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:features/views.py",
+      "target": "function:features/views.py:create_segment_override",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/views.py",
+      "target": "class:features/views.py:FeatureViewSet",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:features/views.py",
+      "target": "class:features/views.py:FeatureViewSet",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/views.py",
+      "target": "class:features/views.py:BaseFeatureStateViewSet",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:features/views.py",
+      "target": "class:features/views.py:BaseFeatureStateViewSet",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/views.py",
+      "target": "class:features/views.py:EnvironmentFeatureStateViewSet",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:features/views.py",
+      "target": "class:features/views.py:EnvironmentFeatureStateViewSet",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/views.py",
+      "target": "class:features/views.py:IdentityFeatureStateViewSet",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:features/views.py",
+      "target": "class:features/views.py:IdentityFeatureStateViewSet",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/views.py",
+      "target": "class:features/views.py:SimpleFeatureStateViewSet",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:features/views.py",
+      "target": "class:features/views.py:SimpleFeatureStateViewSet",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/views.py",
+      "target": "class:features/views.py:SDKFeatureStates",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:features/views.py",
+      "target": "class:features/views.py:SDKFeatureStates",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/feature_segments/views.py",
+      "target": "file:environments/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/feature_segments/views.py",
+      "target": "file:features/feature_segments/permissions.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/feature_segments/views.py",
+      "target": "file:features/feature_segments/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/feature_segments/views.py",
+      "target": "file:features/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/feature_segments/views.py",
+      "target": "file:features/versioning/versioning_service.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/feature_states/permissions.py",
+      "target": "file:environments/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/feature_states/views.py",
+      "target": "file:environments/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/feature_states/views.py",
+      "target": "file:features/feature_states/permissions.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/feature_states/views.py",
+      "target": "file:features/feature_states/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/helpers.py",
+      "target": "file:features/value_types.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/multivariate/serializers.py",
+      "target": "file:features/constants.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/multivariate/serializers.py",
+      "target": "file:features/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/multivariate/serializers.py",
+      "target": "file:features/multivariate/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/serializers.py",
+      "target": "file:environments/identities/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/serializers.py",
+      "target": "file:environments/sdk/serializers_mixins.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/serializers.py",
+      "target": "file:features/constants.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/serializers.py",
+      "target": "file:features/feature_segments/limits.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/serializers.py",
+      "target": "file:features/feature_segments/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/serializers.py",
+      "target": "file:features/feature_types.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/serializers.py",
+      "target": "file:features/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/serializers.py",
+      "target": "file:features/multivariate/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/serializers.py",
+      "target": "file:features/multivariate/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/serializers.py",
+      "target": "file:metadata/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/serializers.py",
+      "target": "file:projects/code_references/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/serializers.py",
+      "target": "file:projects/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/serializers.py",
+      "target": "file:users/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/serializers.py",
+      "target": "file:users/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/urls.py",
+      "target": "file:features/feature_segments/views.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/urls.py",
+      "target": "file:features/import_export/views.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/urls.py",
+      "target": "file:features/views.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/utils.py",
+      "target": "file:features/constants.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/utils.py",
+      "target": "file:features/value_types.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/versioning/serializers.py",
+      "target": "file:api_keys/user.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/versioning/serializers.py",
+      "target": "file:environments/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/versioning/serializers.py",
+      "target": "file:features/feature_segments/limits.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/versioning/serializers.py",
+      "target": "file:features/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/versioning/serializers.py",
+      "target": "file:features/versioning/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/versioning/serializers.py",
+      "target": "file:segments/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/versioning/serializers.py",
+      "target": "file:users/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/views.py",
+      "target": "file:environments/authentication.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/views.py",
+      "target": "file:environments/identities/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/views.py",
+      "target": "file:environments/identities/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/views.py",
+      "target": "file:environments/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/views.py",
+      "target": "file:environments/permissions/permissions.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/views.py",
+      "target": "file:features/constants.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/views.py",
+      "target": "file:features/features_service.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/views.py",
+      "target": "file:features/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/views.py",
+      "target": "file:features/multivariate/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/views.py",
+      "target": "file:features/permissions.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/views.py",
+      "target": "file:features/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/views.py",
+      "target": "file:features/tasks.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/views.py",
+      "target": "file:features/value_types.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/views.py",
+      "target": "file:features/versioning/versioning_service.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/views.py",
+      "target": "file:projects/code_references/services.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/views.py",
+      "target": "file:projects/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/views.py",
+      "target": "file:users/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "class:features/serializers.py:CustomCreateSegmentOverrideFeatureStateSerializer",
+      "target": "function:features/feature_segments/limits.py:exceeds_segment_override_limit",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:features/versioning/serializers.py:EnvironmentFeatureVersionCreateSerializer",
+      "target": "function:features/feature_segments/limits.py:exceeds_segment_override_limit",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

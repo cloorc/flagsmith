@@ -1,0 +1,104 @@
+# .understandignore — patterns for files/dirs to exclude from analysis
+# Syntax: same as .gitignore (globs, # comments, ! negation, trailing / for dirs)
+# Lines below are suggestions — uncomment to activate.
+# Use ! prefix to force-include something excluded by defaults.
+#
+# Built-in defaults (always excluded unless negated):
+#   node_modules/, .git/, dist/, build/, obj/, *.lock, *.min.js, etc.
+#
+
+# =====================================================================
+# ACTIVE EXCLUSIONS — CORE DOMAIN APPS map of api/
+# Scope = the 12 core business apps (~330 .py files):
+#   features, environments, projects, organisations, segments, users,
+#   permissions, api_keys, segment_membership, audit, metadata,
+#   experimentation
+# Everything else (migrations, tests, integrations, infra/support
+# apps) is excluded below.
+# =====================================================================
+
+# Django migrations — auto-generated, low architectural value
+migrations/
+
+# Test suites — integration + unit; excluded for a first-pass map
+tests/
+test_*.py
+conftest.py
+
+# Enterprise / private / SAML modules (from .gitignore)
+saml/
+/flagsmith-private/
+
+# Static assets / generated
+static/
+templates/
+/htmlcov/
+/flagsmith_api.egg-info/
+/__pycache__/
+
+# --- Non-core / support apps (anchored to api/ root) ---
+/api/
+/app/
+/app_analytics/
+/clickhouse/
+/core/
+/custom_auth/
+/e2etests/
+/edge_api/
+/import_export/
+/integrations/
+/jmeter-tests/
+/metrics/
+/oauth2_metadata/
+/onboarding/
+/platform_hub/
+/sales_dashboard/
+/scripts/
+/sse/
+/telemetry/
+/util/
+/webhooks/
+
+# =====================================================================
+
+# --- From .gitignore (uncomment to exclude) ---
+
+# static/*
+# !static/.gitkeep
+# **/staticfiles/*
+# *.egg-info/
+# saml/
+# features/workflows/logic/
+# /flagsmith-private/
+# /tests/rbac_tests/
+# /tests/workflow_tests/
+# /tests/auth_controller_tests/
+# /tests/saml_integration_tests/
+# /tests/licensing_integration_tests/
+# /tests/ldap_integration_tests/
+# /tests/saml_unit_tests/
+# .coverage
+
+# --- Detected directories (uncomment to exclude) ---
+
+# scripts/
+# tests/
+
+# --- Test file patterns (uncomment to exclude) ---
+
+# JS / TS
+# *.test.*
+# *.spec.*
+# *.snap
+# C# / .NET
+# **/*Tests.cs
+# **/*Test.cs
+# **/*Fixture.cs
+# **/*.Tests.csproj
+# Java / Kotlin
+# **/src/test/**
+# **/*Test.java
+# **/*IT.java
+# **/*Spec.kt
+# Go
+# **/*_test.go

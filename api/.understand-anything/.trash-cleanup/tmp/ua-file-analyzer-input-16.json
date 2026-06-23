@@ -1,0 +1,186 @@
+{
+  "projectRoot": "/Users/wadii/flagsmith-projects/flagsmith/api",
+  "batchFiles": [
+    {
+      "path": "experimentation/apps.py",
+      "language": "python",
+      "sizeLines": 5,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/apps.py",
+      "language": "python",
+      "sizeLines": 15,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/exceptions.py",
+      "language": "python",
+      "sizeLines": 15,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_external_resources/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_external_resources/apps.py",
+      "language": "python",
+      "sizeLines": 5,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_health/apps.py",
+      "language": "python",
+      "sizeLines": 6,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_segments/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_states/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/fields.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/import_export/apps.py",
+      "language": "python",
+      "sizeLines": 6,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/multivariate/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/multivariate/apps.py",
+      "language": "python",
+      "sizeLines": 6,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/release_pipelines/core/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/release_pipelines/core/apps.py",
+      "language": "python",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/versioning/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/versioning/apps.py",
+      "language": "python",
+      "sizeLines": 10,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/versioning/sql/get_latest_versions.sql",
+      "language": "sql",
+      "sizeLines": 28,
+      "fileCategory": "data"
+    },
+    {
+      "path": "features/workflows/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/workflows/core/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/workflows/core/apps.py",
+      "language": "python",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    },
+    {
+      "path": "manage.py",
+      "language": "python",
+      "sizeLines": 9,
+      "fileCategory": "code"
+    },
+    {
+      "path": "metadata/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "metadata/apps.py",
+      "language": "python",
+      "sizeLines": 6,
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/apps.py",
+      "language": "python",
+      "sizeLines": 8,
+      "fileCategory": "code"
+    }
+  ],
+  "batchImportData": {
+    "experimentation/apps.py": [],
+    "features/__init__.py": [],
+    "features/apps.py": [],
+    "features/exceptions.py": [],
+    "features/feature_external_resources/__init__.py": [],
+    "features/feature_external_resources/apps.py": [],
+    "features/feature_health/apps.py": [],
+    "features/feature_segments/__init__.py": [],
+    "features/feature_states/__init__.py": [],
+    "features/fields.py": [],
+    "features/import_export/apps.py": [],
+    "features/multivariate/__init__.py": [],
+    "features/multivariate/apps.py": [],
+    "features/release_pipelines/core/__init__.py": [],
+    "features/release_pipelines/core/apps.py": [
+      "features/release_pipelines/core/apps.py"
+    ],
+    "features/versioning/__init__.py": [],
+    "features/versioning/apps.py": [],
+    "features/versioning/sql/get_latest_versions.sql": [],
+    "features/workflows/__init__.py": [],
+    "features/workflows/core/__init__.py": [],
+    "features/workflows/core/apps.py": [
+      "features/workflows/core/apps.py"
+    ],
+    "manage.py": [],
+    "metadata/__init__.py": [],
+    "metadata/apps.py": [],
+    "organisations/apps.py": []
+  }
+}

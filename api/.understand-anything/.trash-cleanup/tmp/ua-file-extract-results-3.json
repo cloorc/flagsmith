@@ -1,0 +1,3161 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 23,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "audit/serializers.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 105,
+      "nonEmptyLines": 90,
+      "classes": [
+        {
+          "name": "AuditLogListSerializer",
+          "startLine": 11,
+          "endLine": 29,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "AuditLogChangeDetailsSerializer",
+          "startLine": 32,
+          "endLine": 35,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "AuditLogRetrieveSerializer",
+          "startLine": 38,
+          "endLine": 94,
+          "methods": [
+            "get_change_details",
+            "get_change_type"
+          ],
+          "properties": []
+        },
+        {
+          "name": "AuditLogsQueryParamSerializer",
+          "startLine": 97,
+          "endLine": 105,
+          "methods": [],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "AuditLogListSerializer",
+          "line": 11,
+          "isDefault": false
+        },
+        {
+          "name": "AuditLogChangeDetailsSerializer",
+          "line": 32,
+          "isDefault": false
+        },
+        {
+          "name": "AuditLogRetrieveSerializer",
+          "line": 38,
+          "isDefault": false
+        },
+        {
+          "name": "AuditLogsQueryParamSerializer",
+          "line": 97,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "get_change_details",
+          "callee": "AuditLogChangeDetailsSerializer",
+          "lineNumber": 77
+        },
+        {
+          "caller": "get_change_details",
+          "callee": "history_record.get_change_details",
+          "lineNumber": 78
+        },
+        {
+          "caller": "get_change_type",
+          "callee": "{  # type: ignore[return-value]\n            \"+\": \"CREATE\",\n            \"-\": \"DELETE\",\n            \"~\": \"UPDATE\",\n        }.get",
+          "lineNumber": 88
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 4,
+        "functionCount": 0,
+        "classCount": 4
+      }
+    },
+    {
+      "path": "audit/types.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 9,
+      "nonEmptyLines": 6,
+      "classes": [
+        {
+          "name": "AuditLogChangeDetail",
+          "startLine": 6,
+          "endLine": 9,
+          "methods": [],
+          "properties": [
+            "field",
+            "old",
+            "new"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "AuditLogChangeDetail",
+          "line": 6,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "environments/dynamodb/migrator.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 113,
+      "nonEmptyLines": 95,
+      "classes": [
+        {
+          "name": "IdentityMigrator",
+          "startLine": 20,
+          "endLine": 113,
+          "methods": [
+            "iter_identities_in_chunks",
+            "__init__",
+            "migration_status",
+            "is_migration_done",
+            "can_migrate",
+            "trigger_migration",
+            "migrate"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "IdentityMigrator",
+          "line": 20,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "iter_identities_in_chunks",
+          "callee": "Identity.objects.filter(environment__project__id=project_id)\n            .select_related(\"environment\")\n            .prefetch_related",
+          "lineNumber": 37
+        },
+        {
+          "caller": "iter_identities_in_chunks",
+          "callee": "Identity.objects.filter(environment__project__id=project_id)\n            .select_related",
+          "lineNumber": 37
+        },
+        {
+          "caller": "iter_identities_in_chunks",
+          "callee": "Identity.objects.filter",
+          "lineNumber": 37
+        },
+        {
+          "caller": "iter_identities_in_chunks",
+          "callee": "Prefetch",
+          "lineNumber": 41
+        },
+        {
+          "caller": "iter_identities_in_chunks",
+          "callee": "FeatureState.objects.select_related",
+          "lineNumber": 43
+        },
+        {
+          "caller": "iter_identities_in_chunks",
+          "callee": "Prefetch",
+          "lineNumber": 47
+        },
+        {
+          "caller": "iter_identities_in_chunks",
+          "callee": "MultivariateFeatureStateValue.objects.select_related",
+          "lineNumber": 49
+        },
+        {
+          "caller": "iter_identities_in_chunks",
+          "callee": "identities_qs.order_by",
+          "lineNumber": 55
+        },
+        {
+          "caller": "iter_identities_in_chunks",
+          "callee": "queryset.filter",
+          "lineNumber": 60
+        },
+        {
+          "caller": "iter_identities_in_chunks",
+          "callee": "list",
+          "lineNumber": 62
+        },
+        {
+          "caller": "__init__",
+          "callee": "DynamoProjectMetadata.get_or_new",
+          "lineNumber": 69
+        },
+        {
+          "caller": "trigger_migration",
+          "callee": "send_migration_event",
+          "lineNumber": 92
+        },
+        {
+          "caller": "trigger_migration",
+          "callee": "self.project_metadata.trigger_identity_migration",
+          "lineNumber": 93
+        },
+        {
+          "caller": "migrate",
+          "callee": "self.project_metadata.start_identity_migration",
+          "lineNumber": 96
+        },
+        {
+          "caller": "migrate",
+          "callee": "Project.objects.filter(id=project_id).update",
+          "lineNumber": 100
+        },
+        {
+          "caller": "migrate",
+          "callee": "Project.objects.filter",
+          "lineNumber": 100
+        },
+        {
+          "caller": "migrate",
+          "callee": "DynamoEnvironmentWrapper",
+          "lineNumber": 101
+        },
+        {
+          "caller": "migrate",
+          "callee": "Environment.objects.filter_for_document_builder",
+          "lineNumber": 102
+        },
+        {
+          "caller": "migrate",
+          "callee": "environment_wrapper.write_environments",
+          "lineNumber": 105
+        },
+        {
+          "caller": "migrate",
+          "callee": "DynamoEnvironmentAPIKeyWrapper",
+          "lineNumber": 107
+        },
+        {
+          "caller": "migrate",
+          "callee": "EnvironmentAPIKey.objects.filter",
+          "lineNumber": 108
+        },
+        {
+          "caller": "migrate",
+          "callee": "api_key_wrapper.write_api_keys",
+          "lineNumber": 109
+        },
+        {
+          "caller": "migrate",
+          "callee": "DynamoIdentityWrapper",
+          "lineNumber": 111
+        },
+        {
+          "caller": "migrate",
+          "callee": "identity_wrapper.write_identities",
+          "lineNumber": 112
+        },
+        {
+          "caller": "migrate",
+          "callee": "self.iter_identities_in_chunks",
+          "lineNumber": 112
+        },
+        {
+          "caller": "migrate",
+          "callee": "self.project_metadata.finish_identity_migration",
+          "lineNumber": 113
+        }
+      ],
+      "metrics": {
+        "importCount": 7,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "environments/management/commands/migrate_to_edge.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 21,
+      "nonEmptyLines": 16,
+      "classes": [
+        {
+          "name": "Command",
+          "startLine": 6,
+          "endLine": 21,
+          "methods": [
+            "add_arguments",
+            "handle"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "Command",
+          "line": 6,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "add_arguments",
+          "callee": "parser.add_argument",
+          "lineNumber": 10
+        },
+        {
+          "caller": "handle",
+          "callee": "IdentityMigrator",
+          "lineNumber": 16
+        },
+        {
+          "caller": "handle",
+          "callee": "CommandError",
+          "lineNumber": 18
+        },
+        {
+          "caller": "handle",
+          "callee": "identity_migrator.migrate",
+          "lineNumber": 21
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "environments/serializers.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 201,
+      "nonEmptyLines": 163,
+      "classes": [
+        {
+          "name": "EnvironmentSerializerFull",
+          "startLine": 20,
+          "endLine": 35,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "EnvironmentSerializerLight",
+          "startLine": 38,
+          "endLine": 75,
+          "methods": [
+            "get_use_mv_v2_evaluation"
+          ],
+          "properties": []
+        },
+        {
+          "name": "EnvironmentSerializerWithMetadata",
+          "startLine": 78,
+          "endLine": 109,
+          "methods": [
+            "validate",
+            "create",
+            "update"
+          ],
+          "properties": []
+        },
+        {
+          "name": "EnvironmentRetrieveSerializerWithMetadata",
+          "startLine": 112,
+          "endLine": 118,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "_BaseCreateUpdateEnvironmentSerializer",
+          "startLine": 121,
+          "endLine": 134,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "CreateEnvironmentSerializer",
+          "startLine": 137,
+          "endLine": 148,
+          "methods": [
+            "get_subscription"
+          ],
+          "properties": []
+        },
+        {
+          "name": "UpdateEnvironmentSerializer",
+          "startLine": 151,
+          "endLine": 161,
+          "methods": [
+            "get_subscription"
+          ],
+          "properties": []
+        },
+        {
+          "name": "CloneEnvironmentSerializer",
+          "startLine": 164,
+          "endLine": 185,
+          "methods": [
+            "create"
+          ],
+          "properties": []
+        },
+        {
+          "name": "WebhookSerializer",
+          "startLine": 188,
+          "endLine": 194,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "EnvironmentAPIKeySerializer",
+          "startLine": 197,
+          "endLine": 201,
+          "methods": [],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "EnvironmentSerializerFull",
+          "line": 20,
+          "isDefault": false
+        },
+        {
+          "name": "EnvironmentSerializerLight",
+          "line": 38,
+          "isDefault": false
+        },
+        {
+          "name": "EnvironmentSerializerWithMetadata",
+          "line": 78,
+          "isDefault": false
+        },
+        {
+          "name": "EnvironmentRetrieveSerializerWithMetadata",
+          "line": 112,
+          "isDefault": false
+        },
+        {
+          "name": "_BaseCreateUpdateEnvironmentSerializer",
+          "line": 121,
+          "isDefault": false
+        },
+        {
+          "name": "CreateEnvironmentSerializer",
+          "line": 137,
+          "isDefault": false
+        },
+        {
+          "name": "UpdateEnvironmentSerializer",
+          "line": 151,
+          "isDefault": false
+        },
+        {
+          "name": "CloneEnvironmentSerializer",
+          "line": 164,
+          "isDefault": false
+        },
+        {
+          "name": "WebhookSerializer",
+          "line": 188,
+          "isDefault": false
+        },
+        {
+          "name": "EnvironmentAPIKeySerializer",
+          "line": 197,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "validate",
+          "callee": "super().validate",
+          "lineNumber": 89
+        },
+        {
+          "caller": "validate",
+          "callee": "super",
+          "lineNumber": 89
+        },
+        {
+          "caller": "validate",
+          "callee": "self._validate_required_metadata",
+          "lineNumber": 92
+        },
+        {
+          "caller": "validate",
+          "callee": "attrs.get",
+          "lineNumber": 93
+        },
+        {
+          "caller": "create",
+          "callee": "validated_data.pop",
+          "lineNumber": 98
+        },
+        {
+          "caller": "create",
+          "callee": "super().create",
+          "lineNumber": 99
+        },
+        {
+          "caller": "create",
+          "callee": "super",
+          "lineNumber": 99
+        },
+        {
+          "caller": "create",
+          "callee": "self._update_metadata",
+          "lineNumber": 100
+        },
+        {
+          "caller": "update",
+          "callee": "validated_data.pop",
+          "lineNumber": 106
+        },
+        {
+          "caller": "update",
+          "callee": "super().update",
+          "lineNumber": 107
+        },
+        {
+          "caller": "update",
+          "callee": "super",
+          "lineNumber": 107
+        },
+        {
+          "caller": "update",
+          "callee": "self._update_metadata",
+          "lineNumber": 108
+        },
+        {
+          "caller": "get_subscription",
+          "callee": "getattr",
+          "lineNumber": 140
+        },
+        {
+          "caller": "get_subscription",
+          "callee": "Project.objects.select_related(\n            \"organisation\", \"organisation__subscription\"\n        ).get",
+          "lineNumber": 144
+        },
+        {
+          "caller": "get_subscription",
+          "callee": "Project.objects.select_related",
+          "lineNumber": 144
+        },
+        {
+          "caller": "get_subscription",
+          "callee": "getattr",
+          "lineNumber": 148
+        },
+        {
+          "caller": "get_subscription",
+          "callee": "getattr",
+          "lineNumber": 159
+        },
+        {
+          "caller": "get_subscription",
+          "callee": "getattr",
+          "lineNumber": 161
+        },
+        {
+          "caller": "create",
+          "callee": "validated_data.get",
+          "lineNumber": 179
+        },
+        {
+          "caller": "create",
+          "callee": "validated_data.get",
+          "lineNumber": 180
+        },
+        {
+          "caller": "create",
+          "callee": "validated_data.get",
+          "lineNumber": 181
+        },
+        {
+          "caller": "create",
+          "callee": "source_env.clone",
+          "lineNumber": 182
+        }
+      ],
+      "metrics": {
+        "importCount": 7,
+        "exportCount": 10,
+        "functionCount": 0,
+        "classCount": 10
+      }
+    },
+    {
+      "path": "features/feature_external_resources/models.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 160,
+      "nonEmptyLines": 137,
+      "classes": [
+        {
+          "name": "ResourceType",
+          "startLine": 25,
+          "endLine": 32,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "FeatureExternalResource",
+          "startLine": 55,
+          "endLine": 160,
+          "methods": [
+            "notify_github_on_link",
+            "notify_github_on_unlink"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "ResourceType",
+          "line": 25,
+          "isDefault": false
+        },
+        {
+          "name": "FeatureExternalResource",
+          "line": 55,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "notify_github_on_link",
+          "callee": "json.loads",
+          "lineNumber": 82
+        },
+        {
+          "caller": "notify_github_on_link",
+          "callee": "metadata.get",
+          "lineNumber": 83
+        },
+        {
+          "caller": "notify_github_on_link",
+          "callee": "Organisation.objects.prefetch_related(\n                \"github_config\"\n            )\n            .get(id=self.feature.project.organisation_id)\n            .github_config.first",
+          "lineNumber": 88
+        },
+        {
+          "caller": "notify_github_on_link",
+          "callee": "Organisation.objects.prefetch_related(\n                \"github_config\"\n            )\n            .get",
+          "lineNumber": 88
+        },
+        {
+          "caller": "notify_github_on_link",
+          "callee": "Organisation.objects.prefetch_related",
+          "lineNumber": 88
+        },
+        {
+          "caller": "notify_github_on_link",
+          "callee": "re.search",
+          "lineNumber": 99
+        },
+        {
+          "caller": "notify_github_on_link",
+          "callee": "url_match.groups",
+          "lineNumber": 100
+        },
+        {
+          "caller": "notify_github_on_link",
+          "callee": "GitHubRepository.objects.get",
+          "lineNumber": 102
+        },
+        {
+          "caller": "notify_github_on_link",
+          "callee": "Tag.objects.get_or_create",
+          "lineNumber": 109
+        },
+        {
+          "caller": "notify_github_on_link",
+          "callee": "self.feature.tags.add",
+          "lineNumber": 115
+        },
+        {
+          "caller": "notify_github_on_link",
+          "callee": "self.feature.save",
+          "lineNumber": 116
+        },
+        {
+          "caller": "notify_github_on_link",
+          "callee": "Environment.objects.filter",
+          "lineNumber": 120
+        },
+        {
+          "caller": "notify_github_on_link",
+          "callee": "Q",
+          "lineNumber": 125
+        },
+        {
+          "caller": "notify_github_on_link",
+          "callee": "feature_states.extend",
+          "lineNumber": 129
+        },
+        {
+          "caller": "notify_github_on_link",
+          "callee": "FeatureState.objects.get_live_feature_states",
+          "lineNumber": 130
+        },
+        {
+          "caller": "notify_github_on_link",
+          "callee": "call_github_task",
+          "lineNumber": 135
+        },
+        {
+          "caller": "notify_github_on_unlink",
+          "callee": "Organisation.objects.prefetch_related(\"github_config\")\n            .get(id=self.feature.project.organisation_id)\n            .github_config.first",
+          "lineNumber": 149
+        },
+        {
+          "caller": "notify_github_on_unlink",
+          "callee": "Organisation.objects.prefetch_related(\"github_config\")\n            .get",
+          "lineNumber": 149
+        },
+        {
+          "caller": "notify_github_on_unlink",
+          "callee": "Organisation.objects.prefetch_related",
+          "lineNumber": 149
+        },
+        {
+          "caller": "notify_github_on_unlink",
+          "callee": "call_github_task",
+          "lineNumber": 153
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 2,
+        "functionCount": 0,
+        "classCount": 2
+      }
+    },
+    {
+      "path": "features/feature_external_resources/serializers.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 32,
+      "nonEmptyLines": 25,
+      "classes": [
+        {
+          "name": "FeatureExternalResourceSerializer",
+          "startLine": 8,
+          "endLine": 32,
+          "methods": [
+            "validate_metadata",
+            "to_representation"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "FeatureExternalResourceSerializer",
+          "line": 8,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "validate_metadata",
+          "callee": "json.dumps",
+          "lineNumber": 22
+        },
+        {
+          "caller": "to_representation",
+          "callee": "super().to_representation",
+          "lineNumber": 26
+        },
+        {
+          "caller": "to_representation",
+          "callee": "super",
+          "lineNumber": 26
+        },
+        {
+          "caller": "to_representation",
+          "callee": "isinstance",
+          "lineNumber": 27
+        },
+        {
+          "caller": "to_representation",
+          "callee": "representation.pop",
+          "lineNumber": 28
+        },
+        {
+          "caller": "to_representation",
+          "callee": "json.loads",
+          "lineNumber": 30
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "features/feature_external_resources/views.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 155,
+      "nonEmptyLines": 133,
+      "classes": [
+        {
+          "name": "FeatureExternalResourceViewSet",
+          "startLine": 34,
+          "endLine": 155,
+          "methods": [
+            "get_queryset",
+            "list",
+            "create",
+            "perform_create",
+            "perform_destroy",
+            "perform_update"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "FeatureExternalResourceViewSet",
+          "line": 26,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "get_queryset",
+          "callee": "getattr",
+          "lineNumber": 39
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "FeatureExternalResource.objects.none",
+          "lineNumber": 40
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "FeatureExternalResource.objects.filter",
+          "lineNumber": 43
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "FeatureExternalResource.objects.filter",
+          "lineNumber": 46
+        },
+        {
+          "caller": "list",
+          "callee": "self.get_queryset",
+          "lineNumber": 49
+        },
+        {
+          "caller": "list",
+          "callee": "self.get_serializer",
+          "lineNumber": 50
+        },
+        {
+          "caller": "list",
+          "callee": "get_object_or_404",
+          "lineNumber": 54
+        },
+        {
+          "caller": "list",
+          "callee": "Feature.objects.filter",
+          "lineNumber": 55
+        },
+        {
+          "caller": "list",
+          "callee": "isinstance",
+          "lineNumber": 59
+        },
+        {
+          "caller": "list",
+          "callee": "ResourceType",
+          "lineNumber": 60
+        },
+        {
+          "caller": "list",
+          "callee": "resource.get",
+          "lineNumber": 66
+        },
+        {
+          "caller": "list",
+          "callee": "get_github_issue_pr_title_and_state",
+          "lineNumber": 67
+        },
+        {
+          "caller": "list",
+          "callee": "Response",
+          "lineNumber": 71
+        },
+        {
+          "caller": "create",
+          "callee": "request.data.get",
+          "lineNumber": 74
+        },
+        {
+          "caller": "create",
+          "callee": "super().create",
+          "lineNumber": 83
+        },
+        {
+          "caller": "create",
+          "callee": "super",
+          "lineNumber": 83
+        },
+        {
+          "caller": "create",
+          "callee": "get_object_or_404",
+          "lineNumber": 85
+        },
+        {
+          "caller": "create",
+          "callee": "Feature.objects.filter",
+          "lineNumber": 86
+        },
+        {
+          "caller": "create",
+          "callee": "Organisation.objects.prefetch_related(\"github_config\")\n            .get(id=feature.project.organisation_id)\n            .github_config.first",
+          "lineNumber": 92
+        },
+        {
+          "caller": "create",
+          "callee": "Organisation.objects.prefetch_related(\"github_config\")\n            .get",
+          "lineNumber": 92
+        },
+        {
+          "caller": "create",
+          "callee": "Organisation.objects.prefetch_related",
+          "lineNumber": 92
+        },
+        {
+          "caller": "create",
+          "callee": "hasattr",
+          "lineNumber": 97
+        },
+        {
+          "caller": "create",
+          "callee": "Response",
+          "lineNumber": 98
+        },
+        {
+          "caller": "create",
+          "callee": "request.data.get",
+          "lineNumber": 107
+        },
+        {
+          "caller": "create",
+          "callee": "request.data.get",
+          "lineNumber": 108
+        },
+        {
+          "caller": "create",
+          "callee": "request.data.get",
+          "lineNumber": 110
+        },
+        {
+          "caller": "create",
+          "callee": "Response",
+          "lineNumber": 113
+        },
+        {
+          "caller": "create",
+          "callee": "re.search",
+          "lineNumber": 119
+        },
+        {
+          "caller": "create",
+          "callee": "url_match.groups",
+          "lineNumber": 121
+        },
+        {
+          "caller": "create",
+          "callee": "GitHubRepository.objects.get",
+          "lineNumber": 122
+        },
+        {
+          "caller": "create",
+          "callee": "label_github_issue_pr",
+          "lineNumber": 127
+        },
+        {
+          "caller": "create",
+          "callee": "super().create",
+          "lineNumber": 133
+        },
+        {
+          "caller": "create",
+          "callee": "super",
+          "lineNumber": 133
+        },
+        {
+          "caller": "create",
+          "callee": "Response",
+          "lineNumber": 136
+        },
+        {
+          "caller": "perform_create",
+          "callee": "serializer.save",
+          "lineNumber": 143
+        },
+        {
+          "caller": "perform_create",
+          "callee": "dispatch_vcs_on_resource_create",
+          "lineNumber": 144
+        },
+        {
+          "caller": "perform_create",
+          "callee": "self.request.build_absolute_uri",
+          "lineNumber": 146
+        },
+        {
+          "caller": "perform_destroy",
+          "callee": "super().perform_destroy",
+          "lineNumber": 150
+        },
+        {
+          "caller": "perform_destroy",
+          "callee": "super",
+          "lineNumber": 150
+        },
+        {
+          "caller": "perform_destroy",
+          "callee": "dispatch_vcs_on_resource_destroy",
+          "lineNumber": 151
+        },
+        {
+          "caller": "perform_update",
+          "callee": "int",
+          "lineNumber": 154
+        },
+        {
+          "caller": "perform_update",
+          "callee": "serializer.save",
+          "lineNumber": 155
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "features/multivariate/urls.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 13,
+      "nonEmptyLines": 10,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "features/multivariate/views.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 92,
+      "nonEmptyLines": 82,
+      "functions": [
+        {
+          "name": "get_mv_feature_option_by_uuid",
+          "startLine": 85,
+          "endLine": 92,
+          "params": [
+            "request",
+            "uuid"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "MultivariateFeatureOptionViewSet",
+          "startLine": 51,
+          "endLine": 80,
+          "methods": [
+            "get_permissions",
+            "create",
+            "get_queryset"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "MultivariateFeatureOptionViewSet",
+          "line": 19,
+          "isDefault": false
+        },
+        {
+          "name": "get_mv_feature_option_by_uuid",
+          "line": 83,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "get_permissions",
+          "callee": "NestedProjectPermissions",
+          "lineNumber": 56
+        },
+        {
+          "caller": "create",
+          "callee": "self.kwargs.get",
+          "lineNumber": 70
+        },
+        {
+          "caller": "create",
+          "callee": "self.kwargs.get",
+          "lineNumber": 71
+        },
+        {
+          "caller": "create",
+          "callee": "get_object_or_404",
+          "lineNumber": 72
+        },
+        {
+          "caller": "create",
+          "callee": "Feature.objects.filter",
+          "lineNumber": 72
+        },
+        {
+          "caller": "create",
+          "callee": "super().create",
+          "lineNumber": 73
+        },
+        {
+          "caller": "create",
+          "callee": "super",
+          "lineNumber": 73
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "getattr",
+          "lineNumber": 76
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "MultivariateFeatureOption.objects.none",
+          "lineNumber": 77
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "get_object_or_404",
+          "lineNumber": 79
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "feature.multivariate_options.all",
+          "lineNumber": 80
+        },
+        {
+          "caller": "get_mv_feature_option_by_uuid",
+          "callee": "request.user.get_permitted_projects",
+          "lineNumber": 86
+        },
+        {
+          "caller": "get_mv_feature_option_by_uuid",
+          "callee": "MultivariateFeatureOption.objects.filter",
+          "lineNumber": 87
+        },
+        {
+          "caller": "get_mv_feature_option_by_uuid",
+          "callee": "get_object_or_404",
+          "lineNumber": 90
+        },
+        {
+          "caller": "get_mv_feature_option_by_uuid",
+          "callee": "MultivariateFeatureOptionSerializer",
+          "lineNumber": 91
+        },
+        {
+          "caller": "get_mv_feature_option_by_uuid",
+          "callee": "Response",
+          "lineNumber": 92
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 2,
+        "functionCount": 1,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "features/permissions.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 229,
+      "nonEmptyLines": 180,
+      "classes": [
+        {
+          "name": "FeaturePermissions",
+          "startLine": 42,
+          "endLine": 85,
+          "methods": [
+            "has_permission",
+            "has_object_permission"
+          ],
+          "properties": []
+        },
+        {
+          "name": "FeatureStatePermissions",
+          "startLine": 88,
+          "endLine": 151,
+          "methods": [
+            "has_permission",
+            "has_object_permission"
+          ],
+          "properties": []
+        },
+        {
+          "name": "EnvironmentFeatureStatePermissions",
+          "startLine": 154,
+          "endLine": 198,
+          "methods": [
+            "has_permission",
+            "has_object_permission"
+          ],
+          "properties": []
+        },
+        {
+          "name": "IdentityFeatureStatePermissions",
+          "startLine": 201,
+          "endLine": 202,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "CreateSegmentOverridePermissions",
+          "startLine": 205,
+          "endLine": 217,
+          "methods": [
+            "has_permission"
+          ],
+          "properties": []
+        },
+        {
+          "name": "FeatureExternalResourcePermissions",
+          "startLine": 220,
+          "endLine": 229,
+          "methods": [
+            "has_object_permission"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "FeaturePermissions",
+          "line": 42,
+          "isDefault": false
+        },
+        {
+          "name": "FeatureStatePermissions",
+          "line": 88,
+          "isDefault": false
+        },
+        {
+          "name": "EnvironmentFeatureStatePermissions",
+          "line": 154,
+          "isDefault": false
+        },
+        {
+          "name": "IdentityFeatureStatePermissions",
+          "line": 201,
+          "isDefault": false
+        },
+        {
+          "name": "CreateSegmentOverridePermissions",
+          "line": 205,
+          "isDefault": false
+        },
+        {
+          "name": "FeatureExternalResourcePermissions",
+          "line": 220,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "has_permission",
+          "callee": "super().has_permission",
+          "lineNumber": 44
+        },
+        {
+          "caller": "has_permission",
+          "callee": "super",
+          "lineNumber": 44
+        },
+        {
+          "caller": "has_permission",
+          "callee": "view.kwargs.get",
+          "lineNumber": 56
+        },
+        {
+          "caller": "has_permission",
+          "callee": "request.data.get",
+          "lineNumber": 56
+        },
+        {
+          "caller": "has_permission",
+          "callee": "Project.objects.get",
+          "lineNumber": 57
+        },
+        {
+          "caller": "has_permission",
+          "callee": "request.user.has_project_permission",
+          "lineNumber": 60
+        },
+        {
+          "caller": "has_permission",
+          "callee": "ACTION_PERMISSIONS_MAP.get",
+          "lineNumber": 61
+        },
+        {
+          "caller": "has_object_permission",
+          "callee": "ACTION_PERMISSIONS_MAP.get",
+          "lineNumber": 74
+        },
+        {
+          "caller": "has_object_permission",
+          "callee": "list",
+          "lineNumber": 76
+        },
+        {
+          "caller": "has_object_permission",
+          "callee": "obj.tags.values_list",
+          "lineNumber": 76
+        },
+        {
+          "caller": "has_object_permission",
+          "callee": "request.user.has_project_permission",
+          "lineNumber": 78
+        },
+        {
+          "caller": "has_object_permission",
+          "callee": "request.user.is_project_admin",
+          "lineNumber": 83
+        },
+        {
+          "caller": "has_permission",
+          "callee": "super().has_permission",
+          "lineNumber": 90
+        },
+        {
+          "caller": "has_permission",
+          "callee": "super",
+          "lineNumber": 90
+        },
+        {
+          "caller": "has_permission",
+          "callee": "request.data.get",
+          "lineNumber": 98
+        },
+        {
+          "caller": "has_permission",
+          "callee": "request.query_params.get",
+          "lineNumber": 98
+        },
+        {
+          "caller": "has_permission",
+          "callee": "isinstance",
+          "lineNumber": 102
+        },
+        {
+          "caller": "has_permission",
+          "callee": "environment.isdigit",
+          "lineNumber": 102
+        },
+        {
+          "caller": "has_permission",
+          "callee": "Environment.objects.get",
+          "lineNumber": 103
+        },
+        {
+          "caller": "has_permission",
+          "callee": "int",
+          "lineNumber": 103
+        },
+        {
+          "caller": "has_permission",
+          "callee": "request.data.get",
+          "lineNumber": 111
+        },
+        {
+          "caller": "has_permission",
+          "callee": "request.data.get",
+          "lineNumber": 118
+        },
+        {
+          "caller": "has_permission",
+          "callee": "Feature.objects.get",
+          "lineNumber": 119
+        },
+        {
+          "caller": "has_permission",
+          "callee": "list",
+          "lineNumber": 121
+        },
+        {
+          "caller": "has_permission",
+          "callee": "feature.tags.values_list",
+          "lineNumber": 121
+        },
+        {
+          "caller": "has_permission",
+          "callee": "request.user.has_environment_permission",
+          "lineNumber": 123
+        },
+        {
+          "caller": "has_object_permission",
+          "callee": "list",
+          "lineNumber": 145
+        },
+        {
+          "caller": "has_object_permission",
+          "callee": "obj.feature.tags.values_list",
+          "lineNumber": 145
+        },
+        {
+          "caller": "has_object_permission",
+          "callee": "request.user.has_environment_permission",
+          "lineNumber": 147
+        },
+        {
+          "caller": "has_permission",
+          "callee": "super().has_permission",
+          "lineNumber": 161
+        },
+        {
+          "caller": "has_permission",
+          "callee": "super",
+          "lineNumber": 161
+        },
+        {
+          "caller": "has_permission",
+          "callee": "view.kwargs.get",
+          "lineNumber": 168
+        },
+        {
+          "caller": "has_permission",
+          "callee": "suppress",
+          "lineNumber": 169
+        },
+        {
+          "caller": "has_permission",
+          "callee": "Environment.objects.get",
+          "lineNumber": 170
+        },
+        {
+          "caller": "has_permission",
+          "callee": "action_permission_map.get",
+          "lineNumber": 173
+        },
+        {
+          "caller": "has_permission",
+          "callee": "request.data.get",
+          "lineNumber": 176
+        },
+        {
+          "caller": "has_permission",
+          "callee": "Feature.objects.get",
+          "lineNumber": 177
+        },
+        {
+          "caller": "has_permission",
+          "callee": "list",
+          "lineNumber": 180
+        },
+        {
+          "caller": "has_permission",
+          "callee": "feature.tags.values_list",
+          "lineNumber": 180
+        },
+        {
+          "caller": "has_permission",
+          "callee": "request.user.has_environment_permission",
+          "lineNumber": 182
+        },
+        {
+          "caller": "has_object_permission",
+          "callee": "action_permission_map.get",
+          "lineNumber": 190
+        },
+        {
+          "caller": "has_object_permission",
+          "callee": "list",
+          "lineNumber": 194
+        },
+        {
+          "caller": "has_object_permission",
+          "callee": "obj.feature.tags.values_list",
+          "lineNumber": 194
+        },
+        {
+          "caller": "has_object_permission",
+          "callee": "request.user.has_environment_permission",
+          "lineNumber": 196
+        },
+        {
+          "caller": "has_permission",
+          "callee": "super().has_permission",
+          "lineNumber": 207
+        },
+        {
+          "caller": "has_permission",
+          "callee": "super",
+          "lineNumber": 207
+        },
+        {
+          "caller": "has_permission",
+          "callee": "get_object_or_404",
+          "lineNumber": 210
+        },
+        {
+          "caller": "has_permission",
+          "callee": "request.user.has_environment_permission",
+          "lineNumber": 214
+        },
+        {
+          "caller": "has_object_permission",
+          "callee": "request.user.has_project_permission",
+          "lineNumber": 223
+        },
+        {
+          "caller": "has_object_permission",
+          "callee": "request.user.has_project_permission",
+          "lineNumber": 227
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 6,
+        "functionCount": 0,
+        "classCount": 6
+      }
+    },
+    {
+      "path": "metadata/fields.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 29,
+      "nonEmptyLines": 26,
+      "classes": [
+        {
+          "name": "GenericObjectID",
+          "startLine": 5,
+          "endLine": 29,
+          "methods": [
+            "value_from_object",
+            "to_python"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "GenericObjectID",
+          "line": 5,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "value_from_object",
+          "callee": "obj.content_object.natural_key",
+          "lineNumber": 11
+        },
+        {
+          "caller": "to_python",
+          "callee": "isinstance",
+          "lineNumber": 20
+        },
+        {
+          "caller": "to_python",
+          "callee": "int",
+          "lineNumber": 23
+        },
+        {
+          "caller": "to_python",
+          "callee": "exceptions.ValidationError",
+          "lineNumber": 25
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "metadata/models.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 140,
+      "nonEmptyLines": 109,
+      "classes": [
+        {
+          "name": "FieldType",
+          "startLine": 22,
+          "endLine": 27,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "MetadataField",
+          "startLine": 30,
+          "endLine": 85,
+          "methods": [
+            "is_field_value_valid",
+            "validate_int",
+            "validate_bool",
+            "validate_url",
+            "validate_str",
+            "validate_multiline_str"
+          ],
+          "properties": []
+        },
+        {
+          "name": "MetadataModelField",
+          "startLine": 88,
+          "endLine": 97,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "MetadataModelFieldRequirement",
+          "startLine": 100,
+          "endLine": 114,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "Metadata",
+          "startLine": 117,
+          "endLine": 140,
+          "methods": [
+            "deep_clone_for_new_entity"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "FieldType",
+          "line": 22,
+          "isDefault": false
+        },
+        {
+          "name": "MetadataField",
+          "line": 30,
+          "isDefault": false
+        },
+        {
+          "name": "MetadataModelField",
+          "line": 88,
+          "isDefault": false
+        },
+        {
+          "name": "MetadataModelFieldRequirement",
+          "line": 100,
+          "isDefault": false
+        },
+        {
+          "name": "Metadata",
+          "line": 117,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "is_field_value_valid",
+          "callee": "len",
+          "lineNumber": 44
+        },
+        {
+          "caller": "is_field_value_valid",
+          "callee": "self.__getattribute__",
+          "lineNumber": 46
+        },
+        {
+          "caller": "validate_int",
+          "callee": "int",
+          "lineNumber": 50
+        },
+        {
+          "caller": "validate_bool",
+          "callee": "field_value.lower",
+          "lineNumber": 56
+        },
+        {
+          "caller": "validate_url",
+          "callee": "urlparse",
+          "lineNumber": 62
+        },
+        {
+          "caller": "validate_url",
+          "callee": "all",
+          "lineNumber": 63
+        },
+        {
+          "caller": "deep_clone_for_new_entity",
+          "callee": "ContentType.objects.get_for_model",
+          "lineNumber": 133
+        },
+        {
+          "caller": "deep_clone_for_new_entity",
+          "callee": "Metadata.objects.create",
+          "lineNumber": 134
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 5,
+        "functionCount": 0,
+        "classCount": 5
+      }
+    },
+    {
+      "path": "metadata/permissions.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 96,
+      "nonEmptyLines": 73,
+      "classes": [
+        {
+          "name": "MetadataFieldPermissions",
+          "startLine": 10,
+          "endLine": 51,
+          "methods": [
+            "has_permission",
+            "has_object_permission"
+          ],
+          "properties": []
+        },
+        {
+          "name": "MetadataModelFieldPermissions",
+          "startLine": 54,
+          "endLine": 96,
+          "methods": [
+            "has_permission",
+            "has_object_permission"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "MetadataFieldPermissions",
+          "line": 10,
+          "isDefault": false
+        },
+        {
+          "name": "MetadataModelFieldPermissions",
+          "line": 54,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "has_permission",
+          "callee": "super().has_permission",
+          "lineNumber": 12
+        },
+        {
+          "caller": "has_permission",
+          "callee": "super",
+          "lineNumber": 12
+        },
+        {
+          "caller": "has_permission",
+          "callee": "suppress",
+          "lineNumber": 20
+        },
+        {
+          "caller": "has_permission",
+          "callee": "request.data.get",
+          "lineNumber": 21
+        },
+        {
+          "caller": "has_permission",
+          "callee": "Organisation.objects.get",
+          "lineNumber": 22
+        },
+        {
+          "caller": "has_permission",
+          "callee": "request.user.is_organisation_admin",
+          "lineNumber": 24
+        },
+        {
+          "caller": "has_permission",
+          "callee": "request.data.get",
+          "lineNumber": 27
+        },
+        {
+          "caller": "has_permission",
+          "callee": "suppress",
+          "lineNumber": 29
+        },
+        {
+          "caller": "has_permission",
+          "callee": "Project.objects.get",
+          "lineNumber": 30
+        },
+        {
+          "caller": "has_permission",
+          "callee": "request.user.is_project_admin",
+          "lineNumber": 32
+        },
+        {
+          "caller": "has_object_permission",
+          "callee": "request.user.belongs_to",
+          "lineNumber": 38
+        },
+        {
+          "caller": "has_object_permission",
+          "callee": "request.user.is_organisation_admin",
+          "lineNumber": 45
+        },
+        {
+          "caller": "has_object_permission",
+          "callee": "request.user.is_project_admin",
+          "lineNumber": 49
+        },
+        {
+          "caller": "has_permission",
+          "callee": "super().has_permission",
+          "lineNumber": 56
+        },
+        {
+          "caller": "has_permission",
+          "callee": "super",
+          "lineNumber": 56
+        },
+        {
+          "caller": "has_permission",
+          "callee": "suppress",
+          "lineNumber": 59
+        },
+        {
+          "caller": "has_permission",
+          "callee": "int",
+          "lineNumber": 60
+        },
+        {
+          "caller": "has_permission",
+          "callee": "view.kwargs.get",
+          "lineNumber": 60
+        },
+        {
+          "caller": "has_permission",
+          "callee": "request.user.belongs_to",
+          "lineNumber": 62
+        },
+        {
+          "caller": "has_permission",
+          "callee": "MetadataField.objects.get",
+          "lineNumber": 75
+        },
+        {
+          "caller": "has_permission",
+          "callee": "request.data.get",
+          "lineNumber": 75
+        },
+        {
+          "caller": "has_permission",
+          "callee": "request.user.is_organisation_admin",
+          "lineNumber": 78
+        },
+        {
+          "caller": "has_permission",
+          "callee": "request.user.is_project_admin",
+          "lineNumber": 80
+        },
+        {
+          "caller": "has_object_permission",
+          "callee": "request.user.belongs_to",
+          "lineNumber": 87
+        },
+        {
+          "caller": "has_object_permission",
+          "callee": "request.user.is_organisation_admin",
+          "lineNumber": 91
+        },
+        {
+          "caller": "has_object_permission",
+          "callee": "request.user.is_project_admin",
+          "lineNumber": 93
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 2,
+        "functionCount": 0,
+        "classCount": 2
+      }
+    },
+    {
+      "path": "metadata/serializers.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 256,
+      "nonEmptyLines": 215,
+      "classes": [
+        {
+          "name": "MetadataFieldQuerySerializer",
+          "startLine": 22,
+          "endLine": 25,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "ProjectMetadataFieldQuerySerializer",
+          "startLine": 28,
+          "endLine": 39,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "SupportedRequiredForModelQuerySerializer",
+          "startLine": 42,
+          "endLine": 43,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "MetadataModelFieldQuerySerializer",
+          "startLine": 46,
+          "endLine": 49,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "MetadataModelFieldRequirementSerializer",
+          "startLine": 52,
+          "endLine": 55,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "MetadataModelFieldNestedSerializer",
+          "startLine": 58,
+          "endLine": 63,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "MetadataFieldSerializer",
+          "startLine": 66,
+          "endLine": 120,
+          "methods": [
+            "validate"
+          ],
+          "properties": []
+        },
+        {
+          "name": "MetaDataModelFieldSerializer",
+          "startLine": 123,
+          "endLine": 156,
+          "methods": [
+            "validate"
+          ],
+          "properties": []
+        },
+        {
+          "name": "ContentTypeSerializer",
+          "startLine": 159,
+          "endLine": 162,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "MetadataSerializer",
+          "startLine": 165,
+          "endLine": 177,
+          "methods": [
+            "validate"
+          ],
+          "properties": []
+        },
+        {
+          "name": "MetadataSerializerMixin",
+          "startLine": 180,
+          "endLine": 256,
+          "methods": [
+            "_validate_required_metadata",
+            "_update_metadata"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "MetadataFieldQuerySerializer",
+          "line": 22,
+          "isDefault": false
+        },
+        {
+          "name": "ProjectMetadataFieldQuerySerializer",
+          "line": 28,
+          "isDefault": false
+        },
+        {
+          "name": "SupportedRequiredForModelQuerySerializer",
+          "line": 42,
+          "isDefault": false
+        },
+        {
+          "name": "MetadataModelFieldQuerySerializer",
+          "line": 46,
+          "isDefault": false
+        },
+        {
+          "name": "MetadataModelFieldRequirementSerializer",
+          "line": 52,
+          "isDefault": false
+        },
+        {
+          "name": "MetadataModelFieldNestedSerializer",
+          "line": 58,
+          "isDefault": false
+        },
+        {
+          "name": "MetadataFieldSerializer",
+          "line": 66,
+          "isDefault": false
+        },
+        {
+          "name": "MetaDataModelFieldSerializer",
+          "line": 123,
+          "isDefault": false
+        },
+        {
+          "name": "ContentTypeSerializer",
+          "line": 159,
+          "isDefault": false
+        },
+        {
+          "name": "MetadataSerializer",
+          "line": 165,
+          "isDefault": false
+        },
+        {
+          "name": "MetadataSerializerMixin",
+          "line": 180,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "validate",
+          "callee": "super().validate",
+          "lineNumber": 91
+        },
+        {
+          "caller": "validate",
+          "callee": "super",
+          "lineNumber": 91
+        },
+        {
+          "caller": "validate",
+          "callee": "data.get",
+          "lineNumber": 92
+        },
+        {
+          "caller": "validate",
+          "callee": "data.get",
+          "lineNumber": 93
+        },
+        {
+          "caller": "validate",
+          "callee": "Project.objects.filter(\n                id=project_id, organisation=organisation\n            ).exists",
+          "lineNumber": 97
+        },
+        {
+          "caller": "validate",
+          "callee": "Project.objects.filter",
+          "lineNumber": 97
+        },
+        {
+          "caller": "validate",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 101
+        },
+        {
+          "caller": "validate",
+          "callee": "MetadataField.objects.filter",
+          "lineNumber": 107
+        },
+        {
+          "caller": "validate",
+          "callee": "data.get",
+          "lineNumber": 108
+        },
+        {
+          "caller": "validate",
+          "callee": "isinstance",
+          "lineNumber": 113
+        },
+        {
+          "caller": "validate",
+          "callee": "qs.exclude",
+          "lineNumber": 114
+        },
+        {
+          "caller": "validate",
+          "callee": "qs.exists",
+          "lineNumber": 115
+        },
+        {
+          "caller": "validate",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 116
+        },
+        {
+          "caller": "validate",
+          "callee": "super().validate",
+          "lineNumber": 131
+        },
+        {
+          "caller": "validate",
+          "callee": "super",
+          "lineNumber": 131
+        },
+        {
+          "caller": "validate",
+          "callee": "data.get",
+          "lineNumber": 132
+        },
+        {
+          "caller": "validate",
+          "callee": "requirement[\"content_type\"]\n                        .model_class()\n                        .objects.get",
+          "lineNumber": 139
+        },
+        {
+          "caller": "validate",
+          "callee": "requirement[\"content_type\"]\n                        .model_class",
+          "lineNumber": 139
+        },
+        {
+          "caller": "validate",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 145
+        },
+        {
+          "caller": "validate",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 149
+        },
+        {
+          "caller": "validate",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 153
+        },
+        {
+          "caller": "validate",
+          "callee": "super().validate",
+          "lineNumber": 171
+        },
+        {
+          "caller": "validate",
+          "callee": "super",
+          "lineNumber": 171
+        },
+        {
+          "caller": "validate",
+          "callee": "model_field.is_field_value_valid",
+          "lineNumber": 173
+        },
+        {
+          "caller": "validate",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 174
+        },
+        {
+          "caller": "_validate_required_metadata",
+          "callee": "ContentType.objects.get_for_model",
+          "lineNumber": 191
+        },
+        {
+          "caller": "_validate_required_metadata",
+          "callee": "ContentType.objects.get_for_model",
+          "lineNumber": 192
+        },
+        {
+          "caller": "_validate_required_metadata",
+          "callee": "Q",
+          "lineNumber": 195
+        },
+        {
+          "caller": "_validate_required_metadata",
+          "callee": "Q",
+          "lineNumber": 201
+        },
+        {
+          "caller": "_validate_required_metadata",
+          "callee": "set",
+          "lineNumber": 203
+        },
+        {
+          "caller": "_validate_required_metadata",
+          "callee": "Q",
+          "lineNumber": 205
+        },
+        {
+          "caller": "_validate_required_metadata",
+          "callee": "ContentType.objects.get_for_model",
+          "lineNumber": 210
+        },
+        {
+          "caller": "_validate_required_metadata",
+          "callee": "Q",
+          "lineNumber": 211
+        },
+        {
+          "caller": "_validate_required_metadata",
+          "callee": "set",
+          "lineNumber": 212
+        },
+        {
+          "caller": "_validate_required_metadata",
+          "callee": "MetadataField.objects.filter(\n                    organisation=organisation, project=project\n                ).values_list",
+          "lineNumber": 213
+        },
+        {
+          "caller": "_validate_required_metadata",
+          "callee": "MetadataField.objects.filter",
+          "lineNumber": 213
+        },
+        {
+          "caller": "_validate_required_metadata",
+          "callee": "MetadataModelFieldRequirement.objects.filter(\n            field_scope & req_scope,\n        ).select_related",
+          "lineNumber": 218
+        },
+        {
+          "caller": "_validate_required_metadata",
+          "callee": "MetadataModelFieldRequirement.objects.filter",
+          "lineNumber": 218
+        },
+        {
+          "caller": "_validate_required_metadata",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 228
+        },
+        {
+          "caller": "_update_metadata",
+          "callee": "ContentType.objects.get_for_model",
+          "lineNumber": 237
+        },
+        {
+          "caller": "_update_metadata",
+          "callee": "type",
+          "lineNumber": 237
+        },
+        {
+          "caller": "_update_metadata",
+          "callee": "Metadata.objects.filter",
+          "lineNumber": 238
+        },
+        {
+          "caller": "_update_metadata",
+          "callee": "Metadata",
+          "lineNumber": 244
+        },
+        {
+          "caller": "_update_metadata",
+          "callee": "transaction.atomic",
+          "lineNumber": 254
+        },
+        {
+          "caller": "_update_metadata",
+          "callee": "existing_metadata.delete",
+          "lineNumber": 255
+        },
+        {
+          "caller": "_update_metadata",
+          "callee": "Metadata.objects.bulk_create",
+          "lineNumber": 256
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 11,
+        "functionCount": 0,
+        "classCount": 11
+      }
+    },
+    {
+      "path": "metadata/urls.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 16,
+      "nonEmptyLines": 10,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "metadata/views.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 166,
+      "nonEmptyLines": 136,
+      "classes": [
+        {
+          "name": "MetadataFieldViewSet",
+          "startLine": 39,
+          "endLine": 59,
+          "methods": [
+            "get_queryset"
+          ],
+          "properties": []
+        },
+        {
+          "name": "MetaDataModelFieldViewSet",
+          "startLine": 62,
+          "endLine": 122,
+          "methods": [
+            "get_queryset",
+            "supported_content_types",
+            "supported_required_for_models"
+          ],
+          "properties": []
+        },
+        {
+          "name": "ProjectMetadataFieldViewSet",
+          "startLine": 129,
+          "endLine": 166,
+          "methods": [
+            "get_queryset"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "MetadataFieldViewSet",
+          "line": 35,
+          "isDefault": false
+        },
+        {
+          "name": "MetaDataModelFieldViewSet",
+          "line": 62,
+          "isDefault": false
+        },
+        {
+          "name": "ProjectMetadataFieldViewSet",
+          "line": 125,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "get_queryset",
+          "callee": "getattr",
+          "lineNumber": 45
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "MetadataField.objects.none",
+          "lineNumber": 46
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "MetadataField.objects.filter",
+          "lineNumber": 48
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "MetadataFieldQuerySerializer",
+          "lineNumber": 50
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "serializer.is_valid",
+          "lineNumber": 51
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "queryset.filter",
+          "lineNumber": 54
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "queryset.prefetch_related",
+          "lineNumber": 59
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "MetadataModelField.objects.filter",
+          "lineNumber": 67
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "self.kwargs.get",
+          "lineNumber": 68
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "MetadataModelFieldQuerySerializer",
+          "lineNumber": 70
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "serializer.is_valid",
+          "lineNumber": 71
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "serializer.validated_data.get",
+          "lineNumber": 72
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "queryset.filter",
+          "lineNumber": 75
+        },
+        {
+          "caller": "supported_content_types",
+          "callee": "list",
+          "lineNumber": 86
+        },
+        {
+          "caller": "supported_content_types",
+          "callee": "chain.from_iterable",
+          "lineNumber": 87
+        },
+        {
+          "caller": "supported_content_types",
+          "callee": "SUPPORTED_REQUIREMENTS_MAPPING.items",
+          "lineNumber": 88
+        },
+        {
+          "caller": "supported_content_types",
+          "callee": "ContentType.objects.filter",
+          "lineNumber": 92
+        },
+        {
+          "caller": "supported_content_types",
+          "callee": "ContentTypeSerializer",
+          "lineNumber": 93
+        },
+        {
+          "caller": "supported_content_types",
+          "callee": "Response",
+          "lineNumber": 95
+        },
+        {
+          "caller": "supported_required_for_models",
+          "callee": "SupportedRequiredForModelQuerySerializer",
+          "lineNumber": 107
+        },
+        {
+          "caller": "supported_required_for_models",
+          "callee": "serializer.is_valid",
+          "lineNumber": 108
+        },
+        {
+          "caller": "supported_required_for_models",
+          "callee": "SUPPORTED_REQUIREMENTS_MAPPING.get",
+          "lineNumber": 110
+        },
+        {
+          "caller": "supported_required_for_models",
+          "callee": "Response",
+          "lineNumber": 114
+        },
+        {
+          "caller": "supported_required_for_models",
+          "callee": "ContentType.objects.filter",
+          "lineNumber": 119
+        },
+        {
+          "caller": "supported_required_for_models",
+          "callee": "ContentTypeSerializer",
+          "lineNumber": 120
+        },
+        {
+          "caller": "supported_required_for_models",
+          "callee": "Response",
+          "lineNumber": 122
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "getattr",
+          "lineNumber": 135
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "MetadataField.objects.none",
+          "lineNumber": 136
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "get_object_or_404",
+          "lineNumber": 138
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "self.request.user.get_permitted_projects",
+          "lineNumber": 139
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "MetadataField.objects.filter",
+          "lineNumber": 143
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "ProjectMetadataFieldQuerySerializer",
+          "lineNumber": 148
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "serializer.is_valid",
+          "lineNumber": 149
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "serializer.validated_data.get",
+          "lineNumber": 151
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "queryset.values_list",
+          "lineNumber": 152
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "MetadataField.objects.filter(\n                organisation=project.organisation,\n                project__isnull=True,\n            ).exclude",
+          "lineNumber": 153
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "MetadataField.objects.filter",
+          "lineNumber": 153
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "serializer.validated_data.get",
+          "lineNumber": 159
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "get_object_or_404",
+          "lineNumber": 161
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "queryset.filter",
+          "lineNumber": 162
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "queryset.prefetch_related",
+          "lineNumber": 166
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 3,
+        "functionCount": 0,
+        "classCount": 3
+      }
+    },
+    {
+      "path": "organisations/admin.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 150,
+      "nonEmptyLines": 130,
+      "classes": [
+        {
+          "name": "ProjectInline",
+          "startLine": 16,
+          "endLine": 21,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "SubscriptionInline",
+          "startLine": 24,
+          "endLine": 28,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "UserOrganisationInline",
+          "startLine": 31,
+          "endLine": 36,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "OrganisationSubscriptionInformationCacheInline",
+          "startLine": 39,
+          "endLine": 96,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "OrganisationAdmin",
+          "startLine": 100,
+          "endLine": 150,
+          "methods": [
+            "get_queryset",
+            "num_users",
+            "num_projects",
+            "subscription_id",
+            "subscription_plan"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "ProjectInline",
+          "line": 16,
+          "isDefault": false
+        },
+        {
+          "name": "SubscriptionInline",
+          "line": 24,
+          "isDefault": false
+        },
+        {
+          "name": "UserOrganisationInline",
+          "line": 31,
+          "isDefault": false
+        },
+        {
+          "name": "OrganisationSubscriptionInformationCacheInline",
+          "line": 39,
+          "isDefault": false
+        },
+        {
+          "name": "OrganisationAdmin",
+          "line": 99,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "get_queryset",
+          "callee": "Organisation.objects.select_related(\"subscription\")\n            .annotate(\n                num_users=Count(\n                    \"users\", distinct=True, filter=Q(users__is_active=True)\n                ),\n                num_projects=Count(\n                    \"projects\",\n                    distinct=True,\n                    filter=Q(projects__deleted_at__isnull=True),\n                ),\n            )\n            .all",
+          "lineNumber": 122
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "Organisation.objects.select_related(\"subscription\")\n            .annotate",
+          "lineNumber": 122
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "Organisation.objects.select_related",
+          "lineNumber": 122
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "Count",
+          "lineNumber": 124
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "Q",
+          "lineNumber": 125
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "Count",
+          "lineNumber": 127
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "Q",
+          "lineNumber": 130
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 5,
+        "functionCount": 0,
+        "classCount": 5
+      }
+    },
+    {
+      "path": "organisations/subscriptions/serializers/mixins.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 61,
+      "nonEmptyLines": 46,
+      "classes": [
+        {
+          "name": "ReadOnlyIfNotValidPlanMixin",
+          "startLine": 7,
+          "endLine": 61,
+          "methods": [
+            "__init__",
+            "get_fields",
+            "get_subscription"
+          ],
+          "properties": [
+            "invalid_plans",
+            "field_names",
+            "invalid_plans_regex"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "ReadOnlyIfNotValidPlanMixin",
+          "line": 7,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "__init__",
+          "callee": "super().__init__",
+          "lineNumber": 31
+        },
+        {
+          "caller": "__init__",
+          "callee": "super",
+          "lineNumber": 31
+        },
+        {
+          "caller": "__init__",
+          "callee": "re.compile",
+          "lineNumber": 33
+        },
+        {
+          "caller": "get_fields",
+          "callee": "super().get_fields",
+          "lineNumber": 37
+        },
+        {
+          "caller": "get_fields",
+          "callee": "super",
+          "lineNumber": 37
+        },
+        {
+          "caller": "get_fields",
+          "callee": "self.get_subscription",
+          "lineNumber": 44
+        },
+        {
+          "caller": "get_fields",
+          "callee": "re.match",
+          "lineNumber": 53
+        },
+        {
+          "caller": "get_subscription",
+          "callee": "NotImplementedError",
+          "lineNumber": 61
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "permissions/models.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 34,
+      "nonEmptyLines": 25,
+      "classes": [
+        {
+          "name": "PermissionModel",
+          "startLine": 14,
+          "endLine": 17,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "AbstractBasePermissionModel",
+          "startLine": 20,
+          "endLine": 34,
+          "methods": [
+            "add_permission",
+            "set_permissions"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "PermissionModel",
+          "line": 14,
+          "isDefault": false
+        },
+        {
+          "name": "AbstractBasePermissionModel",
+          "line": 20,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "add_permission",
+          "callee": "PermissionModel.objects.get",
+          "lineNumber": 27
+        },
+        {
+          "caller": "add_permission",
+          "callee": "self.permissions.add",
+          "lineNumber": 28
+        },
+        {
+          "caller": "set_permissions",
+          "callee": "permissions.append",
+          "lineNumber": 33
+        },
+        {
+          "caller": "set_permissions",
+          "callee": "PermissionModel.objects.get",
+          "lineNumber": 33
+        },
+        {
+          "caller": "set_permissions",
+          "callee": "self.permissions.set",
+          "lineNumber": 34
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 0,
+        "classCount": 2
+      }
+    },
+    {
+      "path": "permissions/serializers.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 82,
+      "nonEmptyLines": 57,
+      "classes": [
+        {
+          "name": "PermissionModelSerializer",
+          "startLine": 6,
+          "endLine": 14,
+          "methods": [
+            "get_supports_tag"
+          ],
+          "properties": []
+        },
+        {
+          "name": "CreateUpdateUserPermissionSerializerABC",
+          "startLine": 17,
+          "endLine": 37,
+          "methods": [
+            "create",
+            "update"
+          ],
+          "properties": []
+        },
+        {
+          "name": "TagBasedPermissionSerializer",
+          "startLine": 40,
+          "endLine": 42,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "UserObjectPermissionsSerializer",
+          "startLine": 45,
+          "endLine": 48,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "GroupSerializer",
+          "startLine": 51,
+          "endLine": 53,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "PermissionRoleSerializer",
+          "startLine": 56,
+          "endLine": 59,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "DerivedFromSerializer",
+          "startLine": 62,
+          "endLine": 64,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "BaseDetailedPermissionsSerializer",
+          "startLine": 67,
+          "endLine": 69,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "DetailedPermissionsSerializer",
+          "startLine": 72,
+          "endLine": 75,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "UserDetailedPermissionsSerializer",
+          "startLine": 78,
+          "endLine": 82,
+          "methods": [],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "PermissionModelSerializer",
+          "line": 6,
+          "isDefault": false
+        },
+        {
+          "name": "CreateUpdateUserPermissionSerializerABC",
+          "line": 17,
+          "isDefault": false
+        },
+        {
+          "name": "TagBasedPermissionSerializer",
+          "line": 40,
+          "isDefault": false
+        },
+        {
+          "name": "UserObjectPermissionsSerializer",
+          "line": 45,
+          "isDefault": false
+        },
+        {
+          "name": "GroupSerializer",
+          "line": 51,
+          "isDefault": false
+        },
+        {
+          "name": "PermissionRoleSerializer",
+          "line": 56,
+          "isDefault": false
+        },
+        {
+          "name": "DerivedFromSerializer",
+          "line": 62,
+          "isDefault": false
+        },
+        {
+          "name": "BaseDetailedPermissionsSerializer",
+          "line": 67,
+          "isDefault": false
+        },
+        {
+          "name": "DetailedPermissionsSerializer",
+          "line": 72,
+          "isDefault": false
+        },
+        {
+          "name": "UserDetailedPermissionsSerializer",
+          "line": 78,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "get_supports_tag",
+          "callee": "self.context.get",
+          "lineNumber": 14
+        },
+        {
+          "caller": "create",
+          "callee": "validated_data.pop",
+          "lineNumber": 24
+        },
+        {
+          "caller": "create",
+          "callee": "super(CreateUpdateUserPermissionSerializerABC, self).create",
+          "lineNumber": 25
+        },
+        {
+          "caller": "create",
+          "callee": "super",
+          "lineNumber": 25
+        },
+        {
+          "caller": "create",
+          "callee": "instance.permissions.set",
+          "lineNumber": 28
+        },
+        {
+          "caller": "update",
+          "callee": "validated_data.pop",
+          "lineNumber": 32
+        },
+        {
+          "caller": "update",
+          "callee": "super(CreateUpdateUserPermissionSerializerABC, self).update",
+          "lineNumber": 33
+        },
+        {
+          "caller": "update",
+          "callee": "super",
+          "lineNumber": 33
+        },
+        {
+          "caller": "update",
+          "callee": "instance.permissions.set",
+          "lineNumber": 36
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 10,
+        "functionCount": 0,
+        "classCount": 10
+      }
+    },
+    {
+      "path": "projects/admin.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 88,
+      "nonEmptyLines": 74,
+      "classes": [
+        {
+          "name": "EnvironmentInline",
+          "startLine": 15,
+          "endLine": 19,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "FeatureInline",
+          "startLine": 22,
+          "endLine": 33,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "SegmentInline",
+          "startLine": 36,
+          "endLine": 40,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "TagInline",
+          "startLine": 43,
+          "endLine": 47,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "ProjectAdmin",
+          "startLine": 51,
+          "endLine": 88,
+          "methods": [
+            "delete_all_segments",
+            "has_delete_all_segments_permission"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "EnvironmentInline",
+          "line": 15,
+          "isDefault": false
+        },
+        {
+          "name": "FeatureInline",
+          "line": 22,
+          "isDefault": false
+        },
+        {
+          "name": "SegmentInline",
+          "line": 36,
+          "isDefault": false
+        },
+        {
+          "name": "TagInline",
+          "line": 43,
+          "isDefault": false
+        },
+        {
+          "name": "ProjectAdmin",
+          "line": 50,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "delete_all_segments",
+          "callee": "Segment.objects.filter(project__in=queryset).delete",
+          "lineNumber": 81
+        },
+        {
+          "caller": "delete_all_segments",
+          "callee": "Segment.objects.filter",
+          "lineNumber": 81
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 5,
+        "functionCount": 0,
+        "classCount": 5
+      }
+    },
+    {
+      "path": "projects/code_references/__init__.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 1,
+      "nonEmptyLines": 0,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    }
+  ]
+}

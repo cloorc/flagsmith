@@ -1,0 +1,137 @@
+{
+  "projectRoot": "/Users/wadii/flagsmith-projects/flagsmith/api",
+  "batchFiles": [
+    {
+      "path": "segment_membership/mappers.py",
+      "language": "python",
+      "sizeLines": 43,
+      "fileCategory": "code"
+    },
+    {
+      "path": "segment_membership/metrics.py",
+      "language": "python",
+      "sizeLines": 24,
+      "fileCategory": "code"
+    },
+    {
+      "path": "segment_membership/models.py",
+      "language": "python",
+      "sizeLines": 29,
+      "fileCategory": "code"
+    },
+    {
+      "path": "segment_membership/services.py",
+      "language": "python",
+      "sizeLines": 153,
+      "fileCategory": "code"
+    },
+    {
+      "path": "segment_membership/tasks.py",
+      "language": "python",
+      "sizeLines": 190,
+      "fileCategory": "code"
+    },
+    {
+      "path": "segments/admin.py",
+      "language": "python",
+      "sizeLines": 29,
+      "fileCategory": "code"
+    },
+    {
+      "path": "segments/models.py",
+      "language": "python",
+      "sizeLines": 336,
+      "fileCategory": "code"
+    },
+    {
+      "path": "segments/permissions.py",
+      "language": "python",
+      "sizeLines": 41,
+      "fileCategory": "code"
+    },
+    {
+      "path": "segments/serializers.py",
+      "language": "python",
+      "sizeLines": 248,
+      "fileCategory": "code"
+    },
+    {
+      "path": "segments/services.py",
+      "language": "python",
+      "sizeLines": 160,
+      "fileCategory": "code"
+    },
+    {
+      "path": "segments/urls.py",
+      "language": "python",
+      "sizeLines": 10,
+      "fileCategory": "code"
+    },
+    {
+      "path": "segments/views.py",
+      "language": "python",
+      "sizeLines": 195,
+      "fileCategory": "code"
+    }
+  ],
+  "batchImportData": {
+    "segment_membership/mappers.py": [],
+    "segment_membership/metrics.py": [],
+    "segment_membership/models.py": [
+      "environments/models.py",
+      "segments/models.py"
+    ],
+    "segment_membership/services.py": [
+      "organisations/models.py",
+      "projects/models.py",
+      "segment_membership/models.py",
+      "segments/models.py"
+    ],
+    "segment_membership/tasks.py": [
+      "environments/dynamodb/wrappers/identity_wrapper.py",
+      "projects/models.py",
+      "segment_membership/mappers.py",
+      "segment_membership/metrics.py",
+      "segment_membership/models.py",
+      "segment_membership/services.py"
+    ],
+    "segments/admin.py": [
+      "segments/models.py"
+    ],
+    "segments/models.py": [
+      "audit/constants.py",
+      "audit/related_object_type.py",
+      "features/models.py",
+      "metadata/models.py",
+      "projects/models.py",
+      "segments/services.py"
+    ],
+    "segments/permissions.py": [
+      "projects/models.py"
+    ],
+    "segments/serializers.py": [
+      "metadata/serializers.py",
+      "projects/models.py",
+      "segment_membership/models.py",
+      "segment_membership/services.py",
+      "segments/models.py"
+    ],
+    "segments/services.py": [],
+    "segments/urls.py": [
+      "segments/views.py"
+    ],
+    "segments/views.py": [
+      "environments/identities/models.py",
+      "environments/models.py",
+      "features/models.py",
+      "features/serializers.py",
+      "features/versioning/models.py",
+      "projects/models.py",
+      "segment_membership/services.py",
+      "segments/models.py",
+      "segments/permissions.py",
+      "segments/serializers.py",
+      "segments/services.py"
+    ]
+  }
+}

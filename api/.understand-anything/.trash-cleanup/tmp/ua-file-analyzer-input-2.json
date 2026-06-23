@@ -1,0 +1,361 @@
+{
+  "projectRoot": "/Users/wadii/flagsmith-projects/flagsmith/api",
+  "batchFiles": [
+    {
+      "path": "organisations/permissions/models.py",
+      "language": "python",
+      "sizeLines": 48,
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/permissions/permissions.py",
+      "language": "python",
+      "sizeLines": 233,
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/permissions/serializers.py",
+      "language": "python",
+      "sizeLines": 33,
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/permissions/views.py",
+      "language": "python",
+      "sizeLines": 62,
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/serializers.py",
+      "language": "python",
+      "sizeLines": 281,
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/subscription_info_cache.py",
+      "language": "python",
+      "sizeLines": 147,
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/subscriptions/constants.py",
+      "language": "python",
+      "sizeLines": 76,
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/subscriptions/exceptions.py",
+      "language": "python",
+      "sizeLines": 39,
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/subscriptions/metadata.py",
+      "language": "python",
+      "sizeLines": 95,
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/subscriptions/permissions.py",
+      "language": "python",
+      "sizeLines": 60,
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/subscriptions/xero/metadata.py",
+      "language": "python",
+      "sizeLines": 6,
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/task_helpers.py",
+      "language": "python",
+      "sizeLines": 186,
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/tasks.py",
+      "language": "python",
+      "sizeLines": 463,
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/urls.py",
+      "language": "python",
+      "sizeLines": 254,
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/views.py",
+      "language": "python",
+      "sizeLines": 404,
+      "fileCategory": "code"
+    },
+    {
+      "path": "permissions/permission_service.py",
+      "language": "python",
+      "sizeLines": 360,
+      "fileCategory": "code"
+    },
+    {
+      "path": "permissions/permissions_calculator.py",
+      "language": "python",
+      "sizeLines": 420,
+      "fileCategory": "code"
+    },
+    {
+      "path": "permissions/rbac_wrapper.py",
+      "language": "python",
+      "sizeLines": 89,
+      "fileCategory": "code"
+    },
+    {
+      "path": "projects/management/commands/createinitialproject.py",
+      "language": "python",
+      "sizeLines": 52,
+      "fileCategory": "code"
+    },
+    {
+      "path": "users/abc.py",
+      "language": "python",
+      "sizeLines": 68,
+      "fileCategory": "code"
+    },
+    {
+      "path": "users/admin.py",
+      "language": "python",
+      "sizeLines": 64,
+      "fileCategory": "code"
+    },
+    {
+      "path": "users/auth_type.py",
+      "language": "python",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    },
+    {
+      "path": "users/constants.py",
+      "language": "python",
+      "sizeLines": 1,
+      "fileCategory": "code"
+    },
+    {
+      "path": "users/exceptions.py",
+      "language": "python",
+      "sizeLines": 2,
+      "fileCategory": "code"
+    },
+    {
+      "path": "users/forms.py",
+      "language": "python",
+      "sizeLines": 41,
+      "fileCategory": "code"
+    },
+    {
+      "path": "users/management/commands/createinitialadminuser.py",
+      "language": "python",
+      "sizeLines": 51,
+      "fileCategory": "code"
+    },
+    {
+      "path": "users/models.py",
+      "language": "python",
+      "sizeLines": 512,
+      "fileCategory": "code"
+    },
+    {
+      "path": "users/serializers.py",
+      "language": "python",
+      "sizeLines": 246,
+      "fileCategory": "code"
+    },
+    {
+      "path": "users/services.py",
+      "language": "python",
+      "sizeLines": 44,
+      "fileCategory": "code"
+    },
+    {
+      "path": "users/signals.py",
+      "language": "python",
+      "sizeLines": 18,
+      "fileCategory": "code"
+    },
+    {
+      "path": "users/urls.py",
+      "language": "python",
+      "sizeLines": 26,
+      "fileCategory": "code"
+    },
+    {
+      "path": "users/views.py",
+      "language": "python",
+      "sizeLines": 323,
+      "fileCategory": "code"
+    }
+  ],
+  "batchImportData": {
+    "organisations/permissions/models.py": [
+      "organisations/managers.py",
+      "organisations/models.py",
+      "organisations/permissions/models.py"
+    ],
+    "organisations/permissions/permissions.py": [
+      "organisations/models.py",
+      "users/models.py"
+    ],
+    "organisations/permissions/serializers.py": [
+      "organisations/permissions/models.py",
+      "users/serializers.py"
+    ],
+    "organisations/permissions/views.py": [
+      "organisations/permissions/models.py",
+      "organisations/permissions/permissions.py",
+      "organisations/permissions/serializers.py"
+    ],
+    "organisations/serializers.py": [
+      "organisations/chargebee/__init__.py",
+      "organisations/invites/models.py",
+      "organisations/models.py",
+      "organisations/subscriptions/constants.py",
+      "users/models.py"
+    ],
+    "organisations/subscription_info_cache.py": [
+      "organisations/chargebee/__init__.py",
+      "organisations/models.py",
+      "organisations/subscriptions/constants.py"
+    ],
+    "organisations/subscriptions/constants.py": [
+      "organisations/subscriptions/metadata.py"
+    ],
+    "organisations/subscriptions/exceptions.py": [],
+    "organisations/subscriptions/metadata.py": [
+      "features/versioning/constants.py"
+    ],
+    "organisations/subscriptions/permissions.py": [
+      "organisations/models.py",
+      "organisations/subscriptions/constants.py"
+    ],
+    "organisations/subscriptions/xero/metadata.py": [
+      "organisations/subscriptions/constants.py",
+      "organisations/subscriptions/metadata.py"
+    ],
+    "organisations/task_helpers.py": [
+      "organisations/constants.py",
+      "organisations/models.py",
+      "organisations/subscriptions/constants.py",
+      "users/models.py"
+    ],
+    "organisations/tasks.py": [
+      "organisations/__init__.py",
+      "organisations/chargebee/__init__.py",
+      "organisations/constants.py",
+      "organisations/models.py",
+      "organisations/subscription_info_cache.py",
+      "organisations/subscriptions/constants.py",
+      "organisations/task_helpers.py",
+      "users/models.py"
+    ],
+    "organisations/urls.py": [
+      "api_keys/views.py",
+      "audit/views.py",
+      "metadata/views.py",
+      "organisations/invites/views.py",
+      "organisations/permissions/views.py",
+      "organisations/views.py",
+      "users/views.py"
+    ],
+    "organisations/views.py": [
+      "organisations/chargebee/__init__.py",
+      "organisations/chargebee/webhook_event_types.py",
+      "organisations/chargebee/webhook_handlers.py",
+      "organisations/exceptions.py",
+      "organisations/models.py",
+      "organisations/permissions/models.py",
+      "organisations/permissions/permissions.py",
+      "organisations/permissions/serializers.py",
+      "organisations/serializers.py",
+      "permissions/permissions_calculator.py",
+      "projects/serializers.py",
+      "users/models.py",
+      "users/serializers.py"
+    ],
+    "permissions/permission_service.py": [
+      "environments/models.py",
+      "organisations/models.py",
+      "permissions/rbac_wrapper.py",
+      "projects/models.py"
+    ],
+    "permissions/permissions_calculator.py": [
+      "environments/permissions/models.py",
+      "organisations/permissions/models.py",
+      "permissions/rbac_wrapper.py",
+      "projects/models.py"
+    ],
+    "permissions/rbac_wrapper.py": [
+      "api_keys/models.py",
+      "environments/models.py",
+      "organisations/models.py",
+      "projects/models.py"
+    ],
+    "projects/management/commands/createinitialproject.py": [
+      "organisations/models.py",
+      "projects/models.py"
+    ],
+    "users/abc.py": [
+      "environments/models.py",
+      "organisations/models.py",
+      "projects/models.py",
+      "users/abc.py"
+    ],
+    "users/admin.py": [
+      "organisations/models.py",
+      "users/forms.py",
+      "users/models.py"
+    ],
+    "users/auth_type.py": [],
+    "users/constants.py": [],
+    "users/exceptions.py": [],
+    "users/forms.py": [
+      "users/models.py",
+      "users/services.py"
+    ],
+    "users/management/commands/createinitialadminuser.py": [
+      "users/services.py"
+    ],
+    "users/models.py": [
+      "organisations/models.py",
+      "organisations/subscriptions/exceptions.py",
+      "permissions/permission_service.py",
+      "projects/models.py",
+      "users/abc.py",
+      "users/auth_type.py",
+      "users/constants.py",
+      "users/exceptions.py"
+    ],
+    "users/serializers.py": [
+      "organisations/models.py",
+      "organisations/serializers.py",
+      "users/models.py"
+    ],
+    "users/services.py": [
+      "users/models.py"
+    ],
+    "users/signals.py": [
+      "users/models.py"
+    ],
+    "users/urls.py": [
+      "organisations/invites/views.py",
+      "users/views.py"
+    ],
+    "users/views.py": [
+      "organisations/models.py",
+      "organisations/permissions/permissions.py",
+      "organisations/serializers.py",
+      "users/forms.py",
+      "users/models.py",
+      "users/serializers.py",
+      "users/services.py"
+    ]
+  }
+}

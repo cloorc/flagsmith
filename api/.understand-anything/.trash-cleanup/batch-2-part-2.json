@@ -1,0 +1,1988 @@
+{
+  "nodes": [
+    {
+      "id": "file:organisations/task_helpers.py",
+      "type": "file",
+      "name": "task_helpers.py",
+      "filePath": "organisations/task_helpers.py",
+      "summary": "Helpers for API usage notification emails: building and sending blocked-flag and threshold-breach notifications for an organisation.",
+      "tags": [
+        "service",
+        "notifications",
+        "subscription",
+        "organisations"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:organisations/tasks.py",
+      "type": "file",
+      "name": "tasks.py",
+      "filePath": "organisations/tasks.py",
+      "summary": "Asynchronous and recurring tasks for organisation billing lifecycle: subscription cache updates, API usage notifications, overage charging, and grace-period access restriction.",
+      "tags": [
+        "tasks",
+        "subscription",
+        "billing",
+        "organisations"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:organisations/urls.py",
+      "type": "file",
+      "name": "urls.py",
+      "filePath": "organisations/urls.py",
+      "summary": "URL routing for organisation endpoints, wiring nested routers for projects, invites, webhooks, audit logs, metadata and permission viewsets.",
+      "tags": [
+        "routing",
+        "organisations",
+        "entry-point"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:organisations/views.py",
+      "type": "file",
+      "name": "views.py",
+      "filePath": "organisations/views.py",
+      "summary": "Core organisation API: OrganisationViewSet with subscription, invite, usage and permission actions, the Chargebee webhook endpoint, and webhook/notification viewsets.",
+      "tags": [
+        "api-handler",
+        "organisations",
+        "subscription",
+        "webhook"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:permissions/permission_service.py",
+      "type": "file",
+      "name": "permission_service.py",
+      "filePath": "permissions/permission_service.py",
+      "summary": "Central permission service computing whether users and master API keys are admins of, or hold permissions on, organisations, projects and environments, and building permitted-object querysets.",
+      "tags": [
+        "service",
+        "permissions",
+        "access-control",
+        "business-logic"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:permissions/permissions_calculator.py",
+      "type": "file",
+      "name": "permissions_calculator.py",
+      "filePath": "permissions/permissions_calculator.py",
+      "summary": "Dataclasses and services that aggregate user, group and role permissions into detailed permission data for organisations, projects and environments.",
+      "tags": [
+        "service",
+        "permissions",
+        "data-model",
+        "access-control"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:permissions/rbac_wrapper.py",
+      "type": "file",
+      "name": "rbac_wrapper.py",
+      "filePath": "permissions/rbac_wrapper.py",
+      "summary": "Open-source stub wrapper for RBAC role-based permission helpers, returning empty results where the enterprise RBAC module is absent.",
+      "tags": [
+        "permissions",
+        "rbac",
+        "access-control",
+        "stub"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Open-source fallback module: enterprise RBAC functions are imported when available, otherwise no-op stubs return empty querysets."
+    },
+    {
+      "id": "file:projects/management/commands/createinitialproject.py",
+      "type": "file",
+      "name": "createinitialproject.py",
+      "filePath": "projects/management/commands/createinitialproject.py",
+      "summary": "Django management command that creates an initial project under an organisation during first-time setup.",
+      "tags": [
+        "management-command",
+        "bootstrap",
+        "projects"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:users/abc.py",
+      "type": "file",
+      "name": "abc.py",
+      "filePath": "users/abc.py",
+      "summary": "Abstract base class defining the user interface (permission and membership checks) implemented by both FFAdminUser and APIKeyUser.",
+      "tags": [
+        "type-definition",
+        "abstract-base",
+        "users",
+        "permissions"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Uses abc.ABCMeta with __subclasshook__ for structural (duck-typed) subclass checks across user implementations."
+    },
+    {
+      "id": "file:users/admin.py",
+      "type": "file",
+      "name": "admin.py",
+      "filePath": "users/admin.py",
+      "summary": "Django admin configuration for the custom user model, including an inline for organisation membership.",
+      "tags": [
+        "admin",
+        "configuration",
+        "users"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:users/auth_type.py",
+      "type": "file",
+      "name": "auth_type.py",
+      "filePath": "users/auth_type.py",
+      "summary": "Enum of supported user authentication types (e.g. email, Google, GitHub, SAML).",
+      "tags": [
+        "type-definition",
+        "enum",
+        "users",
+        "auth"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:organisations/task_helpers.py:send_api_flags_blocked_notification",
+      "type": "function",
+      "name": "send_api_flags_blocked_notification",
+      "filePath": "organisations/task_helpers.py",
+      "lineRange": [
+        27,
+        49
+      ],
+      "summary": "Emails organisation admins that flag serving has been blocked due to API limit breach.",
+      "tags": [
+        "notifications",
+        "subscription"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:organisations/task_helpers.py:_send_api_usage_notification",
+      "type": "function",
+      "name": "_send_api_usage_notification",
+      "filePath": "organisations/task_helpers.py",
+      "lineRange": [
+        52,
+        99
+      ],
+      "summary": "Sends an API usage threshold notification email and records the notification.",
+      "tags": [
+        "notifications",
+        "subscription"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:organisations/task_helpers.py:handle_api_usage_notification_for_organisation",
+      "type": "function",
+      "name": "handle_api_usage_notification_for_organisation",
+      "filePath": "organisations/task_helpers.py",
+      "lineRange": [
+        102,
+        182
+      ],
+      "summary": "Computes current API usage versus allowance and dispatches the appropriate threshold notification, avoiding duplicates.",
+      "tags": [
+        "notifications",
+        "subscription",
+        "business-logic"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:organisations/tasks.py:send_org_over_limit_alert",
+      "type": "function",
+      "name": "send_org_over_limit_alert",
+      "filePath": "organisations/tasks.py",
+      "lineRange": [
+        53,
+        66
+      ],
+      "summary": "Task alerting admins when an organisation exceeds its plan limits.",
+      "tags": [
+        "tasks",
+        "notifications",
+        "subscription"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:organisations/tasks.py:send_org_subscription_cancelled_alert",
+      "type": "function",
+      "name": "send_org_subscription_cancelled_alert",
+      "filePath": "organisations/tasks.py",
+      "lineRange": [
+        70,
+        82
+      ],
+      "summary": "Task emailing notification that an organisation's subscription was cancelled.",
+      "tags": [
+        "tasks",
+        "notifications",
+        "subscription"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:organisations/tasks.py:finish_subscription_cancellation",
+      "type": "function",
+      "name": "finish_subscription_cancellation",
+      "filePath": "organisations/tasks.py",
+      "lineRange": [
+        103,
+        111
+      ],
+      "summary": "Recurring task finalising due subscription cancellations by downgrading to free and cancelling users.",
+      "tags": [
+        "tasks",
+        "subscription",
+        "billing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:organisations/tasks.py:handle_api_usage_notifications",
+      "type": "function",
+      "name": "handle_api_usage_notifications",
+      "filePath": "organisations/tasks.py",
+      "lineRange": [
+        115,
+        149
+      ],
+      "summary": "Recurring task iterating organisations near their API allowance to trigger usage notifications.",
+      "tags": [
+        "tasks",
+        "notifications",
+        "subscription"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:organisations/tasks.py:charge_for_api_call_count_overages",
+      "type": "function",
+      "name": "charge_for_api_call_count_overages",
+      "filePath": "organisations/tasks.py",
+      "lineRange": [
+        153,
+        285
+      ],
+      "summary": "Recurring task charging eligible organisations for API call overages via Chargebee add-ons.",
+      "tags": [
+        "tasks",
+        "billing",
+        "subscription",
+        "integration"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:organisations/tasks.py:restrict_use_due_to_api_limit_grace_period_over",
+      "type": "function",
+      "name": "restrict_use_due_to_api_limit_grace_period_over",
+      "filePath": "organisations/tasks.py",
+      "lineRange": [
+        289,
+        392
+      ],
+      "summary": "Recurring task blocking flag serving for free-plan organisations whose API limit grace period has elapsed.",
+      "tags": [
+        "tasks",
+        "subscription",
+        "access-control"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:organisations/tasks.py:unrestrict_after_api_limit_grace_period_is_stale",
+      "type": "function",
+      "name": "unrestrict_after_api_limit_grace_period_is_stale",
+      "filePath": "organisations/tasks.py",
+      "lineRange": [
+        396,
+        436
+      ],
+      "summary": "Recurring task lifting API limit access blocks once usage notifications are stale.",
+      "tags": [
+        "tasks",
+        "subscription",
+        "access-control"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:organisations/tasks.py:register_recurring_tasks",
+      "type": "function",
+      "name": "register_recurring_tasks",
+      "filePath": "organisations/tasks.py",
+      "lineRange": [
+        439,
+        459
+      ],
+      "summary": "Registers the organisation billing recurring tasks with their schedules.",
+      "tags": [
+        "tasks",
+        "bootstrap"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:organisations/views.py:OrganisationViewSet",
+      "type": "class",
+      "name": "OrganisationViewSet",
+      "filePath": "organisations/views.py",
+      "lineRange": [
+        74,
+        318
+      ],
+      "summary": "Primary organisation viewset exposing CRUD plus actions for projects, invites, usage, subscription management, portal/hosted-page URLs and permissions.",
+      "tags": [
+        "api-handler",
+        "organisations",
+        "subscription"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:organisations/views.py:OrganisationWebhookViewSet",
+      "type": "class",
+      "name": "OrganisationWebhookViewSet",
+      "filePath": "organisations/views.py",
+      "lineRange": [
+        351,
+        374
+      ],
+      "summary": "Viewset managing an organisation's outbound webhook configurations.",
+      "tags": [
+        "api-handler",
+        "webhook",
+        "organisations"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:organisations/views.py:OrganisationAPIUsageNotificationView",
+      "type": "class",
+      "name": "OrganisationAPIUsageNotificationView",
+      "filePath": "organisations/views.py",
+      "lineRange": [
+        377,
+        404
+      ],
+      "summary": "Read-only view listing an organisation's API usage notifications for the current billing period.",
+      "tags": [
+        "api-handler",
+        "organisations",
+        "usage"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:organisations/views.py:chargebee_webhook",
+      "type": "function",
+      "name": "chargebee_webhook",
+      "filePath": "organisations/views.py",
+      "lineRange": [
+        323,
+        348
+      ],
+      "summary": "Webhook endpoint dispatching Chargebee events to payment/subscription handlers.",
+      "tags": [
+        "api-handler",
+        "webhook",
+        "subscription",
+        "integration"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:permissions/permission_service.py:is_user_organisation_admin",
+      "type": "function",
+      "name": "is_user_organisation_admin",
+      "filePath": "permissions/permission_service.py",
+      "lineRange": [
+        24,
+        31
+      ],
+      "summary": "Returns whether a user is an admin of the given organisation.",
+      "tags": [
+        "permissions",
+        "access-control"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:permissions/permission_service.py:get_permitted_projects_for_user",
+      "type": "function",
+      "name": "get_permitted_projects_for_user",
+      "filePath": "permissions/permission_service.py",
+      "lineRange": [
+        64,
+        109
+      ],
+      "summary": "Builds the queryset of projects a user may access for a given permission key, including admin shortcuts and tag filtering.",
+      "tags": [
+        "permissions",
+        "access-control",
+        "query"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:permissions/permission_service.py:get_permitted_projects_for_master_api_key",
+      "type": "function",
+      "name": "get_permitted_projects_for_master_api_key",
+      "filePath": "permissions/permission_service.py",
+      "lineRange": [
+        112,
+        122
+      ],
+      "summary": "Builds the permitted-projects queryset for a master API key using RBAC roles.",
+      "tags": [
+        "permissions",
+        "access-control",
+        "query"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:permissions/permission_service.py:get_permitted_environments_for_user",
+      "type": "function",
+      "name": "get_permitted_environments_for_user",
+      "filePath": "permissions/permission_service.py",
+      "lineRange": [
+        125,
+        176
+      ],
+      "summary": "Builds the queryset of environments a user may access for a permission key within a project.",
+      "tags": [
+        "permissions",
+        "access-control",
+        "query"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:permissions/permission_service.py:get_permitted_environments_for_master_api_key",
+      "type": "function",
+      "name": "get_permitted_environments_for_master_api_key",
+      "filePath": "permissions/permission_service.py",
+      "lineRange": [
+        179,
+        196
+      ],
+      "summary": "Builds the permitted-environments queryset for a master API key using RBAC roles.",
+      "tags": [
+        "permissions",
+        "access-control",
+        "query"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:permissions/permission_service.py:user_has_organisation_permission",
+      "type": "function",
+      "name": "user_has_organisation_permission",
+      "filePath": "permissions/permission_service.py",
+      "lineRange": [
+        199,
+        221
+      ],
+      "summary": "Determines whether a user holds a given organisation permission directly, via group, or role.",
+      "tags": [
+        "permissions",
+        "access-control"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:permissions/permission_service.py:_is_user_object_admin",
+      "type": "function",
+      "name": "_is_user_object_admin",
+      "filePath": "permissions/permission_service.py",
+      "lineRange": [
+        235,
+        284
+      ],
+      "summary": "Internal helper checking user admin status against a project or environment object via user/group/role filters.",
+      "tags": [
+        "permissions",
+        "access-control",
+        "internal"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:permissions/permission_service.py:get_base_permission_filter",
+      "type": "function",
+      "name": "get_base_permission_filter",
+      "filePath": "permissions/permission_service.py",
+      "lineRange": [
+        287,
+        301
+      ],
+      "summary": "Builds a combined ORM Q filter for a user's direct, group and role permissions on a model.",
+      "tags": [
+        "permissions",
+        "access-control",
+        "query"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:permissions/permission_service.py:get_object_id_from_base_permission_filter",
+      "type": "function",
+      "name": "get_object_id_from_base_permission_filter",
+      "filePath": "permissions/permission_service.py",
+      "lineRange": [
+        304,
+        329
+      ],
+      "summary": "Collects the set of object IDs a user may access by unioning user/group/role permission filters.",
+      "tags": [
+        "permissions",
+        "access-control",
+        "query"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:permissions/permission_service.py:get_user_permission_filter",
+      "type": "function",
+      "name": "get_user_permission_filter",
+      "filePath": "permissions/permission_service.py",
+      "lineRange": [
+        332,
+        345
+      ],
+      "summary": "Builds the ORM Q filter for a user's directly-assigned permissions.",
+      "tags": [
+        "permissions",
+        "query"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:permissions/permission_service.py:get_group_permission_filter",
+      "type": "function",
+      "name": "get_group_permission_filter",
+      "filePath": "permissions/permission_service.py",
+      "lineRange": [
+        348,
+        360
+      ],
+      "summary": "Builds the ORM Q filter for permissions granted via a user's groups.",
+      "tags": [
+        "permissions",
+        "query"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:permissions/permissions_calculator.py:PermissionData",
+      "type": "class",
+      "name": "PermissionData",
+      "filePath": "permissions/permissions_calculator.py",
+      "lineRange": [
+        107,
+        168
+      ],
+      "summary": "Aggregate dataclass combining user, group and role permissions and computing effective admin status and permission set.",
+      "tags": [
+        "data-model",
+        "permissions"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:permissions/permissions_calculator.py:_UserDetailedPermissionBuilder",
+      "type": "class",
+      "name": "_UserDetailedPermissionBuilder",
+      "filePath": "permissions/permissions_calculator.py",
+      "lineRange": [
+        171,
+        237
+      ],
+      "summary": "Builder assembling detailed per-permission provenance (direct/group/role) for a user.",
+      "tags": [
+        "permissions",
+        "builder",
+        "internal"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:permissions/permissions_calculator.py:_OrganisationPermissionService",
+      "type": "class",
+      "name": "_OrganisationPermissionService",
+      "filePath": "permissions/permissions_calculator.py",
+      "lineRange": [
+        332,
+        355
+      ],
+      "summary": "Service resolving a user's organisation-level user/group/role permission querysets.",
+      "tags": [
+        "permissions",
+        "service",
+        "internal"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:permissions/permissions_calculator.py:_ProjectPermissionService",
+      "type": "class",
+      "name": "_ProjectPermissionService",
+      "filePath": "permissions/permissions_calculator.py",
+      "lineRange": [
+        359,
+        380
+      ],
+      "summary": "Service resolving a user's project-level user/group/role permission querysets.",
+      "tags": [
+        "permissions",
+        "service",
+        "internal"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:permissions/permissions_calculator.py:_EnvironmentPermissionService",
+      "type": "class",
+      "name": "_EnvironmentPermissionService",
+      "filePath": "permissions/permissions_calculator.py",
+      "lineRange": [
+        384,
+        420
+      ],
+      "summary": "Service resolving environment-level permissions, including admin inheritance from the parent project.",
+      "tags": [
+        "permissions",
+        "service",
+        "internal"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:permissions/permissions_calculator.py:get_organisation_permission_data",
+      "type": "function",
+      "name": "get_organisation_permission_data",
+      "filePath": "permissions/permissions_calculator.py",
+      "lineRange": [
+        240,
+        249
+      ],
+      "summary": "Assembles aggregate PermissionData for a user within an organisation.",
+      "tags": [
+        "permissions",
+        "business-logic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:permissions/permissions_calculator.py:get_project_permission_data",
+      "type": "function",
+      "name": "get_project_permission_data",
+      "filePath": "permissions/permissions_calculator.py",
+      "lineRange": [
+        252,
+        261
+      ],
+      "summary": "Assembles aggregate PermissionData for a user within a project.",
+      "tags": [
+        "permissions",
+        "business-logic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:permissions/permissions_calculator.py:get_environment_permission_data",
+      "type": "function",
+      "name": "get_environment_permission_data",
+      "filePath": "permissions/permissions_calculator.py",
+      "lineRange": [
+        264,
+        284
+      ],
+      "summary": "Assembles aggregate PermissionData for a user within an environment.",
+      "tags": [
+        "permissions",
+        "business-logic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:permissions/permissions_calculator.py:get_user_permission_data",
+      "type": "function",
+      "name": "get_user_permission_data",
+      "filePath": "permissions/permissions_calculator.py",
+      "lineRange": [
+        287,
+        301
+      ],
+      "summary": "Maps a user permission row into a UserPermissionData object.",
+      "tags": [
+        "permissions",
+        "mapping"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:permissions/permissions_calculator.py:get_groups_permission_data",
+      "type": "function",
+      "name": "get_groups_permission_data",
+      "filePath": "permissions/permissions_calculator.py",
+      "lineRange": [
+        304,
+        328
+      ],
+      "summary": "Maps a group permission queryset into GroupPermissionData objects.",
+      "tags": [
+        "permissions",
+        "mapping"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:permissions/rbac_wrapper.py:is_master_api_key_object_admin",
+      "type": "function",
+      "name": "is_master_api_key_object_admin",
+      "filePath": "permissions/rbac_wrapper.py",
+      "lineRange": [
+        35,
+        45
+      ],
+      "summary": "Stub checking master-API-key admin status on an object via RBAC roles (no-op without enterprise RBAC).",
+      "tags": [
+        "permissions",
+        "rbac",
+        "stub"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:permissions/rbac_wrapper.py:get_permitted_projects_for_master_api_key_using_roles",
+      "type": "function",
+      "name": "get_permitted_projects_for_master_api_key_using_roles",
+      "filePath": "permissions/rbac_wrapper.py",
+      "lineRange": [
+        48,
+        57
+      ],
+      "summary": "Stub returning RBAC-role-permitted projects for a master API key.",
+      "tags": [
+        "permissions",
+        "rbac",
+        "stub"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:permissions/rbac_wrapper.py:get_permitted_environments_for_master_api_key_using_roles",
+      "type": "function",
+      "name": "get_permitted_environments_for_master_api_key_using_roles",
+      "filePath": "permissions/rbac_wrapper.py",
+      "lineRange": [
+        60,
+        75
+      ],
+      "summary": "Stub returning RBAC-role-permitted environments for a master API key.",
+      "tags": [
+        "permissions",
+        "rbac",
+        "stub"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:permissions/rbac_wrapper.py:master_api_key_has_organisation_permission_using_roles",
+      "type": "function",
+      "name": "master_api_key_has_organisation_permission_using_roles",
+      "filePath": "permissions/rbac_wrapper.py",
+      "lineRange": [
+        78,
+        89
+      ],
+      "summary": "Stub checking master-API-key organisation permission via RBAC roles.",
+      "tags": [
+        "permissions",
+        "rbac",
+        "stub"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:projects/management/commands/createinitialproject.py:Command",
+      "type": "class",
+      "name": "Command",
+      "filePath": "projects/management/commands/createinitialproject.py",
+      "lineRange": [
+        14,
+        52
+      ],
+      "summary": "Management command creating an initial project under a named organisation.",
+      "tags": [
+        "management-command",
+        "bootstrap"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:users/abc.py:UserABC",
+      "type": "class",
+      "name": "UserABC",
+      "filePath": "users/abc.py",
+      "lineRange": [
+        10,
+        68
+      ],
+      "summary": "Abstract base defining the user contract: authentication, membership and permission-checking methods.",
+      "tags": [
+        "type-definition",
+        "abstract-base",
+        "permissions"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:users/admin.py:UserOrganisationInline",
+      "type": "class",
+      "name": "UserOrganisationInline",
+      "filePath": "users/admin.py",
+      "lineRange": [
+        10,
+        15
+      ],
+      "summary": "Admin inline displaying a user's organisation memberships.",
+      "tags": [
+        "admin",
+        "configuration"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:users/admin.py:CustomUserAdmin",
+      "type": "class",
+      "name": "CustomUserAdmin",
+      "filePath": "users/admin.py",
+      "lineRange": [
+        19,
+        64
+      ],
+      "summary": "Django admin for the custom user model with organisation inline and fieldset configuration.",
+      "tags": [
+        "admin",
+        "configuration"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:users/auth_type.py:AuthType",
+      "type": "class",
+      "name": "AuthType",
+      "filePath": "users/auth_type.py",
+      "lineRange": [
+        4,
+        7
+      ],
+      "summary": "Enum of supported user authentication mechanisms.",
+      "tags": [
+        "type-definition",
+        "enum",
+        "auth"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:organisations/task_helpers.py",
+      "target": "function:organisations/task_helpers.py:send_api_flags_blocked_notification",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:organisations/task_helpers.py",
+      "target": "function:organisations/task_helpers.py:send_api_flags_blocked_notification",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/task_helpers.py",
+      "target": "function:organisations/task_helpers.py:_send_api_usage_notification",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:organisations/task_helpers.py",
+      "target": "function:organisations/task_helpers.py:_send_api_usage_notification",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/task_helpers.py",
+      "target": "function:organisations/task_helpers.py:handle_api_usage_notification_for_organisation",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:organisations/task_helpers.py",
+      "target": "function:organisations/task_helpers.py:handle_api_usage_notification_for_organisation",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/tasks.py",
+      "target": "function:organisations/tasks.py:send_org_over_limit_alert",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:organisations/tasks.py",
+      "target": "function:organisations/tasks.py:send_org_over_limit_alert",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/tasks.py",
+      "target": "function:organisations/tasks.py:send_org_subscription_cancelled_alert",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:organisations/tasks.py",
+      "target": "function:organisations/tasks.py:send_org_subscription_cancelled_alert",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/tasks.py",
+      "target": "function:organisations/tasks.py:finish_subscription_cancellation",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:organisations/tasks.py",
+      "target": "function:organisations/tasks.py:finish_subscription_cancellation",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/tasks.py",
+      "target": "function:organisations/tasks.py:handle_api_usage_notifications",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:organisations/tasks.py",
+      "target": "function:organisations/tasks.py:handle_api_usage_notifications",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/tasks.py",
+      "target": "function:organisations/tasks.py:charge_for_api_call_count_overages",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:organisations/tasks.py",
+      "target": "function:organisations/tasks.py:charge_for_api_call_count_overages",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/tasks.py",
+      "target": "function:organisations/tasks.py:restrict_use_due_to_api_limit_grace_period_over",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:organisations/tasks.py",
+      "target": "function:organisations/tasks.py:restrict_use_due_to_api_limit_grace_period_over",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/tasks.py",
+      "target": "function:organisations/tasks.py:unrestrict_after_api_limit_grace_period_is_stale",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:organisations/tasks.py",
+      "target": "function:organisations/tasks.py:unrestrict_after_api_limit_grace_period_is_stale",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/tasks.py",
+      "target": "function:organisations/tasks.py:register_recurring_tasks",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:organisations/tasks.py",
+      "target": "function:organisations/tasks.py:register_recurring_tasks",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/views.py",
+      "target": "class:organisations/views.py:OrganisationViewSet",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:organisations/views.py",
+      "target": "class:organisations/views.py:OrganisationViewSet",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/views.py",
+      "target": "class:organisations/views.py:OrganisationWebhookViewSet",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:organisations/views.py",
+      "target": "class:organisations/views.py:OrganisationWebhookViewSet",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/views.py",
+      "target": "class:organisations/views.py:OrganisationAPIUsageNotificationView",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:organisations/views.py",
+      "target": "class:organisations/views.py:OrganisationAPIUsageNotificationView",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/views.py",
+      "target": "function:organisations/views.py:chargebee_webhook",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:organisations/views.py",
+      "target": "function:organisations/views.py:chargebee_webhook",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:permissions/permission_service.py",
+      "target": "function:permissions/permission_service.py:is_user_organisation_admin",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:permissions/permission_service.py",
+      "target": "function:permissions/permission_service.py:is_user_organisation_admin",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:permissions/permission_service.py",
+      "target": "function:permissions/permission_service.py:get_permitted_projects_for_user",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:permissions/permission_service.py",
+      "target": "function:permissions/permission_service.py:get_permitted_projects_for_user",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:permissions/permission_service.py",
+      "target": "function:permissions/permission_service.py:get_permitted_projects_for_master_api_key",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:permissions/permission_service.py",
+      "target": "function:permissions/permission_service.py:get_permitted_projects_for_master_api_key",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:permissions/permission_service.py",
+      "target": "function:permissions/permission_service.py:get_permitted_environments_for_user",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:permissions/permission_service.py",
+      "target": "function:permissions/permission_service.py:get_permitted_environments_for_user",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:permissions/permission_service.py",
+      "target": "function:permissions/permission_service.py:get_permitted_environments_for_master_api_key",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:permissions/permission_service.py",
+      "target": "function:permissions/permission_service.py:get_permitted_environments_for_master_api_key",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:permissions/permission_service.py",
+      "target": "function:permissions/permission_service.py:user_has_organisation_permission",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:permissions/permission_service.py",
+      "target": "function:permissions/permission_service.py:user_has_organisation_permission",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:permissions/permission_service.py",
+      "target": "function:permissions/permission_service.py:_is_user_object_admin",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:permissions/permission_service.py",
+      "target": "function:permissions/permission_service.py:_is_user_object_admin",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:permissions/permission_service.py",
+      "target": "function:permissions/permission_service.py:get_base_permission_filter",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:permissions/permission_service.py",
+      "target": "function:permissions/permission_service.py:get_base_permission_filter",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:permissions/permission_service.py",
+      "target": "function:permissions/permission_service.py:get_object_id_from_base_permission_filter",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:permissions/permission_service.py",
+      "target": "function:permissions/permission_service.py:get_object_id_from_base_permission_filter",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:permissions/permission_service.py",
+      "target": "function:permissions/permission_service.py:get_user_permission_filter",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:permissions/permission_service.py",
+      "target": "function:permissions/permission_service.py:get_user_permission_filter",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:permissions/permission_service.py",
+      "target": "function:permissions/permission_service.py:get_group_permission_filter",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:permissions/permission_service.py",
+      "target": "function:permissions/permission_service.py:get_group_permission_filter",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:permissions/permissions_calculator.py",
+      "target": "class:permissions/permissions_calculator.py:PermissionData",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:permissions/permissions_calculator.py",
+      "target": "class:permissions/permissions_calculator.py:PermissionData",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:permissions/permissions_calculator.py",
+      "target": "class:permissions/permissions_calculator.py:_UserDetailedPermissionBuilder",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:permissions/permissions_calculator.py",
+      "target": "class:permissions/permissions_calculator.py:_UserDetailedPermissionBuilder",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:permissions/permissions_calculator.py",
+      "target": "class:permissions/permissions_calculator.py:_OrganisationPermissionService",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:permissions/permissions_calculator.py",
+      "target": "class:permissions/permissions_calculator.py:_OrganisationPermissionService",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:permissions/permissions_calculator.py",
+      "target": "class:permissions/permissions_calculator.py:_ProjectPermissionService",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:permissions/permissions_calculator.py",
+      "target": "class:permissions/permissions_calculator.py:_ProjectPermissionService",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:permissions/permissions_calculator.py",
+      "target": "class:permissions/permissions_calculator.py:_EnvironmentPermissionService",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:permissions/permissions_calculator.py",
+      "target": "class:permissions/permissions_calculator.py:_EnvironmentPermissionService",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:permissions/permissions_calculator.py",
+      "target": "function:permissions/permissions_calculator.py:get_organisation_permission_data",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:permissions/permissions_calculator.py",
+      "target": "function:permissions/permissions_calculator.py:get_organisation_permission_data",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:permissions/permissions_calculator.py",
+      "target": "function:permissions/permissions_calculator.py:get_project_permission_data",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:permissions/permissions_calculator.py",
+      "target": "function:permissions/permissions_calculator.py:get_project_permission_data",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:permissions/permissions_calculator.py",
+      "target": "function:permissions/permissions_calculator.py:get_environment_permission_data",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:permissions/permissions_calculator.py",
+      "target": "function:permissions/permissions_calculator.py:get_environment_permission_data",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:permissions/permissions_calculator.py",
+      "target": "function:permissions/permissions_calculator.py:get_user_permission_data",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:permissions/permissions_calculator.py",
+      "target": "function:permissions/permissions_calculator.py:get_user_permission_data",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:permissions/permissions_calculator.py",
+      "target": "function:permissions/permissions_calculator.py:get_groups_permission_data",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:permissions/permissions_calculator.py",
+      "target": "function:permissions/permissions_calculator.py:get_groups_permission_data",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:permissions/rbac_wrapper.py",
+      "target": "function:permissions/rbac_wrapper.py:is_master_api_key_object_admin",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:permissions/rbac_wrapper.py",
+      "target": "function:permissions/rbac_wrapper.py:is_master_api_key_object_admin",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:permissions/rbac_wrapper.py",
+      "target": "function:permissions/rbac_wrapper.py:get_permitted_projects_for_master_api_key_using_roles",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:permissions/rbac_wrapper.py",
+      "target": "function:permissions/rbac_wrapper.py:get_permitted_projects_for_master_api_key_using_roles",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:permissions/rbac_wrapper.py",
+      "target": "function:permissions/rbac_wrapper.py:get_permitted_environments_for_master_api_key_using_roles",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:permissions/rbac_wrapper.py",
+      "target": "function:permissions/rbac_wrapper.py:get_permitted_environments_for_master_api_key_using_roles",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:permissions/rbac_wrapper.py",
+      "target": "function:permissions/rbac_wrapper.py:master_api_key_has_organisation_permission_using_roles",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:permissions/rbac_wrapper.py",
+      "target": "function:permissions/rbac_wrapper.py:master_api_key_has_organisation_permission_using_roles",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:projects/management/commands/createinitialproject.py",
+      "target": "class:projects/management/commands/createinitialproject.py:Command",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:projects/management/commands/createinitialproject.py",
+      "target": "class:projects/management/commands/createinitialproject.py:Command",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:users/abc.py",
+      "target": "class:users/abc.py:UserABC",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:users/abc.py",
+      "target": "class:users/abc.py:UserABC",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:users/admin.py",
+      "target": "class:users/admin.py:UserOrganisationInline",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:users/admin.py",
+      "target": "class:users/admin.py:UserOrganisationInline",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:users/admin.py",
+      "target": "class:users/admin.py:CustomUserAdmin",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:users/admin.py",
+      "target": "class:users/admin.py:CustomUserAdmin",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:users/auth_type.py",
+      "target": "class:users/auth_type.py:AuthType",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:users/auth_type.py",
+      "target": "class:users/auth_type.py:AuthType",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/task_helpers.py",
+      "target": "file:organisations/constants.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/task_helpers.py",
+      "target": "file:organisations/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/task_helpers.py",
+      "target": "file:organisations/subscriptions/constants.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/task_helpers.py",
+      "target": "file:users/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/tasks.py",
+      "target": "file:organisations/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/tasks.py",
+      "target": "file:organisations/chargebee/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/tasks.py",
+      "target": "file:organisations/constants.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/tasks.py",
+      "target": "file:organisations/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/tasks.py",
+      "target": "file:organisations/subscription_info_cache.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/tasks.py",
+      "target": "file:organisations/subscriptions/constants.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/tasks.py",
+      "target": "file:organisations/task_helpers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/tasks.py",
+      "target": "file:users/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/urls.py",
+      "target": "file:api_keys/views.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/urls.py",
+      "target": "file:audit/views.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/urls.py",
+      "target": "file:metadata/views.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/urls.py",
+      "target": "file:organisations/invites/views.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/urls.py",
+      "target": "file:organisations/permissions/views.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/urls.py",
+      "target": "file:organisations/views.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/urls.py",
+      "target": "file:users/views.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/views.py",
+      "target": "file:organisations/chargebee/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/views.py",
+      "target": "file:organisations/chargebee/webhook_event_types.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/views.py",
+      "target": "file:organisations/chargebee/webhook_handlers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/views.py",
+      "target": "file:organisations/exceptions.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/views.py",
+      "target": "file:organisations/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/views.py",
+      "target": "file:organisations/permissions/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/views.py",
+      "target": "file:organisations/permissions/permissions.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/views.py",
+      "target": "file:organisations/permissions/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/views.py",
+      "target": "file:organisations/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/views.py",
+      "target": "file:permissions/permissions_calculator.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/views.py",
+      "target": "file:projects/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/views.py",
+      "target": "file:users/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/views.py",
+      "target": "file:users/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:permissions/permission_service.py",
+      "target": "file:environments/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:permissions/permission_service.py",
+      "target": "file:organisations/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:permissions/permission_service.py",
+      "target": "file:permissions/rbac_wrapper.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:permissions/permission_service.py",
+      "target": "file:projects/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:permissions/permissions_calculator.py",
+      "target": "file:environments/permissions/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:permissions/permissions_calculator.py",
+      "target": "file:organisations/permissions/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:permissions/permissions_calculator.py",
+      "target": "file:permissions/rbac_wrapper.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:permissions/permissions_calculator.py",
+      "target": "file:projects/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:permissions/rbac_wrapper.py",
+      "target": "file:api_keys/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:permissions/rbac_wrapper.py",
+      "target": "file:environments/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:permissions/rbac_wrapper.py",
+      "target": "file:organisations/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:permissions/rbac_wrapper.py",
+      "target": "file:projects/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/management/commands/createinitialproject.py",
+      "target": "file:organisations/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/management/commands/createinitialproject.py",
+      "target": "file:projects/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:users/abc.py",
+      "target": "file:environments/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:users/abc.py",
+      "target": "file:organisations/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:users/abc.py",
+      "target": "file:projects/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:users/admin.py",
+      "target": "file:organisations/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:users/admin.py",
+      "target": "file:users/forms.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:users/admin.py",
+      "target": "file:users/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "function:permissions/permission_service.py:get_permitted_projects_for_master_api_key",
+      "target": "function:permissions/rbac_wrapper.py:get_permitted_projects_for_master_api_key_using_roles",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:permissions/permission_service.py:get_permitted_environments_for_master_api_key",
+      "target": "function:permissions/rbac_wrapper.py:get_permitted_environments_for_master_api_key_using_roles",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:organisations/tasks.py:handle_api_usage_notifications",
+      "target": "function:organisations/task_helpers.py:handle_api_usage_notification_for_organisation",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:organisations/tasks.py:restrict_use_due_to_api_limit_grace_period_over",
+      "target": "function:organisations/task_helpers.py:send_api_flags_blocked_notification",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:organisations/task_helpers.py:handle_api_usage_notification_for_organisation",
+      "target": "function:organisations/task_helpers.py:_send_api_usage_notification",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:permissions/permissions_calculator.py:get_organisation_permission_data",
+      "target": "function:permissions/permissions_calculator.py:get_groups_permission_data",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:permissions/permissions_calculator.py:get_organisation_permission_data",
+      "target": "function:permissions/permissions_calculator.py:get_user_permission_data",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:permissions/permissions_calculator.py:get_project_permission_data",
+      "target": "function:permissions/permissions_calculator.py:get_groups_permission_data",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:permissions/permissions_calculator.py:get_project_permission_data",
+      "target": "function:permissions/permissions_calculator.py:get_user_permission_data",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:permissions/permissions_calculator.py:get_environment_permission_data",
+      "target": "function:permissions/permissions_calculator.py:get_groups_permission_data",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:permissions/permissions_calculator.py:get_environment_permission_data",
+      "target": "function:permissions/permissions_calculator.py:get_user_permission_data",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:organisations/views.py:OrganisationViewSet",
+      "target": "function:permissions/permissions_calculator.py:get_organisation_permission_data",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

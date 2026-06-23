@@ -1,0 +1,182 @@
+{
+  "projectRoot": "/Users/wadii/flagsmith-projects/flagsmith/api",
+  "batchFiles": [
+    {
+      "path": "experimentation/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "experimentation/constants.py",
+      "language": "python",
+      "sizeLines": 21,
+      "fileCategory": "code"
+    },
+    {
+      "path": "experimentation/dataclasses.py",
+      "language": "python",
+      "sizeLines": 69,
+      "fileCategory": "code"
+    },
+    {
+      "path": "experimentation/experiment_urls.py",
+      "language": "python",
+      "sizeLines": 15,
+      "fileCategory": "code"
+    },
+    {
+      "path": "experimentation/ingestion_sync_service.py",
+      "language": "python",
+      "sizeLines": 30,
+      "fileCategory": "code"
+    },
+    {
+      "path": "experimentation/metric_definitions.py",
+      "language": "python",
+      "sizeLines": 38,
+      "fileCategory": "code"
+    },
+    {
+      "path": "experimentation/metric_urls.py",
+      "language": "python",
+      "sizeLines": 10,
+      "fileCategory": "code"
+    },
+    {
+      "path": "experimentation/models.py",
+      "language": "python",
+      "sizeLines": 271,
+      "fileCategory": "code"
+    },
+    {
+      "path": "experimentation/permissions.py",
+      "language": "python",
+      "sizeLines": 46,
+      "fileCategory": "code"
+    },
+    {
+      "path": "experimentation/results_query.py",
+      "language": "python",
+      "sizeLines": 174,
+      "fileCategory": "code"
+    },
+    {
+      "path": "experimentation/serializers.py",
+      "language": "python",
+      "sizeLines": 368,
+      "fileCategory": "code"
+    },
+    {
+      "path": "experimentation/services.py",
+      "language": "python",
+      "sizeLines": 568,
+      "fileCategory": "code"
+    },
+    {
+      "path": "experimentation/stats.py",
+      "language": "python",
+      "sizeLines": 130,
+      "fileCategory": "code"
+    },
+    {
+      "path": "experimentation/tasks.py",
+      "language": "python",
+      "sizeLines": 90,
+      "fileCategory": "code"
+    },
+    {
+      "path": "experimentation/types.py",
+      "language": "python",
+      "sizeLines": 46,
+      "fileCategory": "code"
+    },
+    {
+      "path": "experimentation/urls.py",
+      "language": "python",
+      "sizeLines": 10,
+      "fileCategory": "code"
+    },
+    {
+      "path": "experimentation/views.py",
+      "language": "python",
+      "sizeLines": 527,
+      "fileCategory": "code"
+    }
+  ],
+  "batchImportData": {
+    "experimentation/__init__.py": [],
+    "experimentation/constants.py": [],
+    "experimentation/dataclasses.py": [
+      "experimentation/dataclasses.py",
+      "experimentation/stats.py",
+      "experimentation/types.py"
+    ],
+    "experimentation/experiment_urls.py": [
+      "experimentation/views.py"
+    ],
+    "experimentation/ingestion_sync_service.py": [],
+    "experimentation/metric_definitions.py": [],
+    "experimentation/metric_urls.py": [
+      "experimentation/views.py"
+    ],
+    "experimentation/models.py": [
+      "environments/models.py",
+      "experimentation/dataclasses.py",
+      "experimentation/types.py"
+    ],
+    "experimentation/permissions.py": [
+      "environments/models.py",
+      "experimentation/services.py",
+      "users/models.py"
+    ],
+    "experimentation/results_query.py": [
+      "experimentation/dataclasses.py",
+      "experimentation/models.py",
+      "experimentation/stats.py"
+    ],
+    "experimentation/serializers.py": [
+      "environments/models.py",
+      "experimentation/dataclasses.py",
+      "experimentation/metric_definitions.py",
+      "experimentation/models.py",
+      "experimentation/types.py",
+      "features/feature_types.py",
+      "features/models.py",
+      "features/multivariate/serializers.py"
+    ],
+    "experimentation/services.py": [
+      "audit/models.py",
+      "audit/related_object_type.py",
+      "experimentation/constants.py",
+      "experimentation/dataclasses.py",
+      "experimentation/models.py",
+      "experimentation/results_query.py",
+      "experimentation/stats.py",
+      "features/models.py"
+    ],
+    "experimentation/stats.py": [
+      "experimentation/dataclasses.py"
+    ],
+    "experimentation/tasks.py": [
+      "experimentation/__init__.py",
+      "experimentation/ingestion_sync_service.py",
+      "experimentation/models.py",
+      "experimentation/services.py"
+    ],
+    "experimentation/types.py": [],
+    "experimentation/urls.py": [
+      "experimentation/views.py"
+    ],
+    "experimentation/views.py": [
+      "environments/views.py",
+      "experimentation/constants.py",
+      "experimentation/models.py",
+      "experimentation/permissions.py",
+      "experimentation/serializers.py",
+      "experimentation/services.py",
+      "experimentation/tasks.py",
+      "users/models.py"
+    ]
+  }
+}

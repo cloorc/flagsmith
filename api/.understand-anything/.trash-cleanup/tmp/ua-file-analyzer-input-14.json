@@ -1,0 +1,25 @@
+{
+  "projectRoot": "/Users/wadii/flagsmith-projects/flagsmith/api",
+  "batchFiles": [
+    {"path": ".env-ci", "language": "config", "sizeLines": 4, "fileCategory": "config"},
+    {"path": ".env-local", "language": "config", "sizeLines": 4, "fileCategory": "config"},
+    {"path": "Makefile", "language": "makefile", "sizeLines": 183, "fileCategory": "infra"},
+    {"path": "Procfile", "language": "procfile", "sizeLines": 1, "fileCategory": "infra"},
+    {"path": "README.md", "language": "markdown", "sizeLines": 147, "fileCategory": "docs"},
+    {"path": "openapi-filter-flagsmith-sdk.yml", "language": "yaml", "sizeLines": 11, "fileCategory": "config"},
+    {"path": "openapi-filter-grafana.yaml", "language": "yaml", "sizeLines": 10, "fileCategory": "config"},
+    {"path": "openapi-filter-launchdarkly.yaml", "language": "yaml", "sizeLines": 14, "fileCategory": "config"},
+    {"path": "pyproject.toml", "language": "toml", "sizeLines": 536, "fileCategory": "config"}
+  ],
+  "batchImportData": {
+    ".env-ci": [],
+    ".env-local": [],
+    "Makefile": [],
+    "Procfile": [],
+    "README.md": [],
+    "openapi-filter-flagsmith-sdk.yml": [],
+    "openapi-filter-grafana.yaml": [],
+    "openapi-filter-launchdarkly.yaml": [],
+    "pyproject.toml": []
+  }
+}

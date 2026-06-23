@@ -1,0 +1,1320 @@
+{
+  "nodes": [
+    {
+      "id": "file:organisations/chargebee/metadata.py",
+      "type": "file",
+      "name": "metadata.py",
+      "filePath": "organisations/chargebee/metadata.py",
+      "summary": "Dataclasses describing Chargebee object metadata and items used to compute subscription limits.",
+      "tags": [
+        "data-model",
+        "billing",
+        "type-definition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:organisations/chargebee/serializers.py",
+      "type": "file",
+      "name": "serializers.py",
+      "filePath": "organisations/chargebee/serializers.py",
+      "summary": "Serialisers validating Chargebee webhook payloads for payment and subscription events.",
+      "tags": [
+        "serialization",
+        "billing",
+        "validation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:organisations/chargebee/tasks.py",
+      "type": "file",
+      "name": "tasks.py",
+      "filePath": "organisations/chargebee/tasks.py",
+      "summary": "Async task refreshing the Chargebee plan and addon metadata cache.",
+      "tags": [
+        "service",
+        "async-task",
+        "billing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:organisations/chargebee/webhook_event_types.py",
+      "type": "file",
+      "name": "webhook_event_types.py",
+      "filePath": "organisations/chargebee/webhook_event_types.py",
+      "summary": "Enumeration of Chargebee webhook event type identifiers.",
+      "tags": [
+        "constants",
+        "billing",
+        "webhook"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:organisations/chargebee/webhook_handlers.py",
+      "type": "file",
+      "name": "webhook_handlers.py",
+      "filePath": "organisations/chargebee/webhook_handlers.py",
+      "summary": "Handlers for incoming Chargebee webhooks driving cache rebuilds and subscription state changes on payment events.",
+      "tags": [
+        "api-handler",
+        "billing",
+        "webhook",
+        "event-handler"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:organisations/constants.py",
+      "type": "file",
+      "name": "constants.py",
+      "filePath": "organisations/constants.py",
+      "summary": "App-wide constants for the organisations app such as alert thresholds.",
+      "tags": [
+        "constants",
+        "configuration",
+        "organisations"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:organisations/exceptions.py",
+      "type": "file",
+      "name": "exceptions.py",
+      "filePath": "organisations/exceptions.py",
+      "summary": "Domain exceptions for the organisations app, such as missing paid subscription.",
+      "tags": [
+        "exceptions",
+        "error-handling",
+        "organisations"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:organisations/invites/admin.py",
+      "type": "file",
+      "name": "admin.py",
+      "filePath": "organisations/invites/admin.py",
+      "summary": "Registers the Invite model in the Django admin with custom display fields.",
+      "tags": [
+        "admin",
+        "django",
+        "configuration"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:organisations/invites/exceptions.py",
+      "type": "file",
+      "name": "exceptions.py",
+      "filePath": "organisations/invites/exceptions.py",
+      "summary": "Domain exceptions for invites covering expired invites and disabled invite links.",
+      "tags": [
+        "exceptions",
+        "error-handling",
+        "invites"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:organisations/invites/models.py",
+      "type": "file",
+      "name": "models.py",
+      "filePath": "organisations/invites/models.py",
+      "summary": "Models for organisation invites and invite links, including expiry checks and invitation email delivery.",
+      "tags": [
+        "data-model",
+        "django",
+        "invites",
+        "email"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:organisations/invites/serializers.py",
+      "type": "file",
+      "name": "serializers.py",
+      "filePath": "organisations/invites/serializers.py",
+      "summary": "Serialisers for representing invite links and listing organisation invites.",
+      "tags": [
+        "serialization",
+        "invites"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:organisations/invites/views.py",
+      "type": "file",
+      "name": "views.py",
+      "filePath": "organisations/invites/views.py",
+      "summary": "Viewsets and function views for managing invites and invite links, including join-by-email/link flows and seat-limit enforcement.",
+      "tags": [
+        "api-handler",
+        "invites",
+        "viewset"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:organisations/management/commands/check_if_organisations_over_plan_limit.py",
+      "type": "file",
+      "name": "check_if_organisations_over_plan_limit.py",
+      "filePath": "organisations/management/commands/check_if_organisations_over_plan_limit.py",
+      "summary": "Management command that flags organisations exceeding their plan seat limit and dispatches alert tasks.",
+      "tags": [
+        "management-command",
+        "organisations",
+        "script"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:organisations/management/commands/createinitialorganisation.py",
+      "type": "file",
+      "name": "createinitialorganisation.py",
+      "filePath": "organisations/management/commands/createinitialorganisation.py",
+      "summary": "Management command bootstrapping an initial organisation and attaching the initial superuser.",
+      "tags": [
+        "management-command",
+        "organisations",
+        "bootstrap",
+        "script"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:organisations/managers.py",
+      "type": "file",
+      "name": "managers.py",
+      "filePath": "organisations/managers.py",
+      "summary": "Custom model manager scoping organisation permission querysets.",
+      "tags": [
+        "data-model",
+        "manager",
+        "organisations"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:organisations/models.py",
+      "type": "file",
+      "name": "models.py",
+      "filePath": "organisations/models.py",
+      "summary": "Core organisations domain models: Organisation, Subscription, user membership, subscription caches, billing, and API-usage tracking with extensive billing and plan-limit logic.",
+      "tags": [
+        "data-model",
+        "django",
+        "organisations",
+        "billing",
+        "subscription"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Heavy use of Django @property accessors and cached_property; multiple subscription-metadata strategy methods dispatch on SaaS vs self-hosted deployment."
+    },
+    {
+      "id": "class:organisations/chargebee/metadata.py:ChargebeeObjMetadata",
+      "type": "class",
+      "name": "ChargebeeObjMetadata",
+      "filePath": "organisations/chargebee/metadata.py",
+      "lineRange": [
+        7,
+        16
+      ],
+      "summary": "Dataclass aggregating Chargebee object limits with scalar multiplication for quantity-based scaling.",
+      "tags": [
+        "data-model",
+        "billing",
+        "type-definition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:organisations/chargebee/serializers.py:PaymentFailedSerializer",
+      "type": "class",
+      "name": "PaymentFailedSerializer",
+      "filePath": "organisations/chargebee/serializers.py",
+      "lineRange": [
+        64,
+        65
+      ],
+      "summary": "Top-level serialiser validating Chargebee payment-failed webhook payloads.",
+      "tags": [
+        "serialization",
+        "billing",
+        "webhook"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:organisations/chargebee/serializers.py:PaymentSucceededSerializer",
+      "type": "class",
+      "name": "PaymentSucceededSerializer",
+      "filePath": "organisations/chargebee/serializers.py",
+      "lineRange": [
+        68,
+        69
+      ],
+      "summary": "Top-level serialiser validating Chargebee payment-succeeded webhook payloads.",
+      "tags": [
+        "serialization",
+        "billing",
+        "webhook"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:organisations/chargebee/serializers.py:ProcessSubscriptionSerializer",
+      "type": "class",
+      "name": "ProcessSubscriptionSerializer",
+      "filePath": "organisations/chargebee/serializers.py",
+      "lineRange": [
+        48,
+        49
+      ],
+      "summary": "Top-level serialiser validating Chargebee subscription-change webhook payloads.",
+      "tags": [
+        "serialization",
+        "billing",
+        "webhook"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:organisations/chargebee/tasks.py:update_chargebee_cache",
+      "type": "function",
+      "name": "update_chargebee_cache",
+      "filePath": "organisations/chargebee/tasks.py",
+      "lineRange": [
+        9,
+        11
+      ],
+      "summary": "Registered async task that refreshes the Chargebee plan and addon metadata cache.",
+      "tags": [
+        "async-task",
+        "billing",
+        "caching"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:organisations/chargebee/webhook_handlers.py:payment_failed",
+      "type": "function",
+      "name": "payment_failed",
+      "filePath": "organisations/chargebee/webhook_handlers.py",
+      "lineRange": [
+        37,
+        69
+      ],
+      "summary": "Webhook handler marking a subscription's payment status as failed when dunning begins.",
+      "tags": [
+        "api-handler",
+        "billing",
+        "webhook",
+        "event-handler"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:organisations/chargebee/webhook_handlers.py:payment_succeeded",
+      "type": "function",
+      "name": "payment_succeeded",
+      "filePath": "organisations/chargebee/webhook_handlers.py",
+      "lineRange": [
+        72,
+        104
+      ],
+      "summary": "Webhook handler restoring a subscription's payment status to active on successful payment.",
+      "tags": [
+        "api-handler",
+        "billing",
+        "webhook",
+        "event-handler"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:organisations/chargebee/webhook_handlers.py:process_subscription",
+      "type": "function",
+      "name": "process_subscription",
+      "filePath": "organisations/chargebee/webhook_handlers.py",
+      "lineRange": [
+        107,
+        187
+      ],
+      "summary": "Webhook handler reconciling subscription state \u2014 cancellation, plan changes, and refreshing the subscription information cache.",
+      "tags": [
+        "api-handler",
+        "billing",
+        "webhook",
+        "event-handler"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:organisations/invites/admin.py:InviteAdmin",
+      "type": "class",
+      "name": "InviteAdmin",
+      "filePath": "organisations/invites/admin.py",
+      "lineRange": [
+        7,
+        28
+      ],
+      "summary": "Django admin configuration for the Invite model with custom list display.",
+      "tags": [
+        "admin",
+        "django",
+        "invites"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:organisations/invites/models.py:InviteLink",
+      "type": "class",
+      "name": "InviteLink",
+      "filePath": "organisations/invites/models.py",
+      "lineRange": [
+        35,
+        54
+      ],
+      "summary": "Reusable invite-link model with expiry checks and invite-links-enabled validation.",
+      "tags": [
+        "data-model",
+        "invites",
+        "django"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:organisations/invites/models.py:Invite",
+      "type": "class",
+      "name": "Invite",
+      "filePath": "organisations/invites/models.py",
+      "lineRange": [
+        57,
+        111
+      ],
+      "summary": "Single-recipient organisation invite model that renders and sends the invitation email.",
+      "tags": [
+        "data-model",
+        "invites",
+        "email",
+        "django"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:organisations/invites/serializers.py:InviteListSerializer",
+      "type": "class",
+      "name": "InviteListSerializer",
+      "filePath": "organisations/invites/serializers.py",
+      "lineRange": [
+        14,
+        19
+      ],
+      "summary": "Serialiser listing organisation invites with inviter details.",
+      "tags": [
+        "serialization",
+        "invites"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:organisations/invites/views.py:join_organisation_from_email",
+      "type": "function",
+      "name": "join_organisation_from_email",
+      "filePath": "organisations/invites/views.py",
+      "lineRange": [
+        41,
+        55
+      ],
+      "summary": "Function view letting an authenticated user accept an email invite and join the organisation.",
+      "tags": [
+        "api-handler",
+        "invites",
+        "event-handler"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:organisations/invites/views.py:join_organisation_from_link",
+      "type": "function",
+      "name": "join_organisation_from_link",
+      "filePath": "organisations/invites/views.py",
+      "lineRange": [
+        59,
+        75
+      ],
+      "summary": "Function view letting an authenticated user join an organisation via an invite link, enforcing expiry.",
+      "tags": [
+        "api-handler",
+        "invites",
+        "event-handler"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:organisations/invites/views.py:InviteLinkViewSet",
+      "type": "class",
+      "name": "InviteLinkViewSet",
+      "filePath": "organisations/invites/views.py",
+      "lineRange": [
+        78,
+        108
+      ],
+      "summary": "Viewset managing organisation invite links with seat-limit enforcement on access.",
+      "tags": [
+        "api-handler",
+        "invites",
+        "viewset"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:organisations/invites/views.py:InviteViewSet",
+      "type": "class",
+      "name": "InviteViewSet",
+      "filePath": "organisations/invites/views.py",
+      "lineRange": [
+        123,
+        178
+      ],
+      "summary": "Viewset managing organisation invites, including resend action and seat-upgrade checks on creation.",
+      "tags": [
+        "api-handler",
+        "invites",
+        "viewset"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:organisations/management/commands/check_if_organisations_over_plan_limit.py:Command",
+      "type": "class",
+      "name": "Command",
+      "filePath": "organisations/management/commands/check_if_organisations_over_plan_limit.py",
+      "lineRange": [
+        7,
+        13
+      ],
+      "summary": "Management command iterating organisations and dispatching over-limit alerts for those exceeding seat limits.",
+      "tags": [
+        "management-command",
+        "organisations",
+        "script"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:organisations/management/commands/createinitialorganisation.py:Command",
+      "type": "class",
+      "name": "Command",
+      "filePath": "organisations/management/commands/createinitialorganisation.py",
+      "lineRange": [
+        14,
+        48
+      ],
+      "summary": "Management command that creates an initial organisation and attaches the initial superuser if none exists.",
+      "tags": [
+        "management-command",
+        "organisations",
+        "bootstrap",
+        "script"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:organisations/managers.py:OrganisationPermissionManager",
+      "type": "class",
+      "name": "OrganisationPermissionManager",
+      "filePath": "organisations/managers.py",
+      "lineRange": [
+        6,
+        8
+      ],
+      "summary": "Manager that scopes queries to organisation-permission rows.",
+      "tags": [
+        "data-model",
+        "manager",
+        "organisations"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:organisations/models.py:Organisation",
+      "type": "class",
+      "name": "Organisation",
+      "filePath": "organisations/models.py",
+      "lineRange": [
+        67,
+        204
+      ],
+      "summary": "Central organisation model owning subscriptions, seats, and environments, with plan-limit, billing, and cache-management logic.",
+      "tags": [
+        "data-model",
+        "organisations",
+        "django",
+        "billing"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:organisations/models.py:UserOrganisation",
+      "type": "class",
+      "name": "UserOrganisation",
+      "filePath": "organisations/models.py",
+      "lineRange": [
+        207,
+        228
+      ],
+      "summary": "Through model linking users to organisations with a role, triggering Hubspot lead tracking.",
+      "tags": [
+        "data-model",
+        "organisations",
+        "django"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:organisations/models.py:Subscription",
+      "type": "class",
+      "name": "Subscription",
+      "filePath": "organisations/models.py",
+      "lineRange": [
+        231,
+        468
+      ],
+      "summary": "Organisation subscription model encapsulating plan management, seat upgrades, cancellation, and deployment-specific subscription metadata resolution.",
+      "tags": [
+        "data-model",
+        "organisations",
+        "subscription",
+        "billing"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:organisations/models.py:OrganisationSubscriptionInformationCache",
+      "type": "class",
+      "name": "OrganisationSubscriptionInformationCache",
+      "filePath": "organisations/models.py",
+      "lineRange": [
+        484,
+        580
+      ],
+      "summary": "Cache model storing subscription limits and usage, exposing helpers to materialise base/Chargebee subscription metadata.",
+      "tags": [
+        "data-model",
+        "organisations",
+        "subscription",
+        "caching"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:organisations/models.py:OrganisationAPIBilling",
+      "type": "class",
+      "name": "OrganisationAPIBilling",
+      "filePath": "organisations/models.py",
+      "lineRange": [
+        625,
+        651
+      ],
+      "summary": "Model recording organisation API-overage billing line items.",
+      "tags": [
+        "data-model",
+        "organisations",
+        "billing"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:organisations/chargebee/metadata.py",
+      "target": "file:organisations/subscriptions/constants.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/chargebee/metadata.py",
+      "target": "file:organisations/subscriptions/metadata.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/chargebee/tasks.py",
+      "target": "file:organisations/chargebee/cache.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/chargebee/webhook_handlers.py",
+      "target": "file:organisations/chargebee/chargebee.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/chargebee/webhook_handlers.py",
+      "target": "file:organisations/chargebee/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/chargebee/webhook_handlers.py",
+      "target": "file:organisations/chargebee/tasks.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/chargebee/webhook_handlers.py",
+      "target": "file:organisations/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/chargebee/webhook_handlers.py",
+      "target": "file:organisations/subscriptions/constants.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/invites/admin.py",
+      "target": "file:organisations/invites/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/invites/models.py",
+      "target": "file:organisations/invites/exceptions.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/invites/models.py",
+      "target": "file:organisations/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/invites/models.py",
+      "target": "file:users/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/invites/serializers.py",
+      "target": "file:organisations/invites/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/invites/serializers.py",
+      "target": "file:users/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/invites/views.py",
+      "target": "file:organisations/invites/exceptions.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/invites/views.py",
+      "target": "file:organisations/invites/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/invites/views.py",
+      "target": "file:organisations/invites/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/invites/views.py",
+      "target": "file:organisations/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/invites/views.py",
+      "target": "file:organisations/permissions/permissions.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/invites/views.py",
+      "target": "file:organisations/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/invites/views.py",
+      "target": "file:organisations/subscriptions/exceptions.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/invites/views.py",
+      "target": "file:users/exceptions.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/management/commands/check_if_organisations_over_plan_limit.py",
+      "target": "file:organisations/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/management/commands/check_if_organisations_over_plan_limit.py",
+      "target": "file:organisations/tasks.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/management/commands/createinitialorganisation.py",
+      "target": "file:organisations/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/management/commands/createinitialorganisation.py",
+      "target": "file:users/services.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/managers.py",
+      "target": "file:organisations/permissions/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/models.py",
+      "target": "file:features/versioning/constants.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/models.py",
+      "target": "file:organisations/chargebee/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/models.py",
+      "target": "file:organisations/chargebee/chargebee.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/models.py",
+      "target": "file:organisations/chargebee/metadata.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/models.py",
+      "target": "file:organisations/subscriptions/constants.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/models.py",
+      "target": "file:organisations/subscriptions/exceptions.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/models.py",
+      "target": "file:organisations/subscriptions/metadata.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/models.py",
+      "target": "file:organisations/subscriptions/xero/metadata.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/chargebee/metadata.py",
+      "target": "class:organisations/chargebee/metadata.py:ChargebeeObjMetadata",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:organisations/chargebee/metadata.py",
+      "target": "class:organisations/chargebee/metadata.py:ChargebeeObjMetadata",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/chargebee/serializers.py",
+      "target": "class:organisations/chargebee/serializers.py:PaymentFailedSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:organisations/chargebee/serializers.py",
+      "target": "class:organisations/chargebee/serializers.py:PaymentFailedSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/chargebee/serializers.py",
+      "target": "class:organisations/chargebee/serializers.py:PaymentSucceededSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:organisations/chargebee/serializers.py",
+      "target": "class:organisations/chargebee/serializers.py:PaymentSucceededSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/chargebee/serializers.py",
+      "target": "class:organisations/chargebee/serializers.py:ProcessSubscriptionSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:organisations/chargebee/serializers.py",
+      "target": "class:organisations/chargebee/serializers.py:ProcessSubscriptionSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/chargebee/tasks.py",
+      "target": "function:organisations/chargebee/tasks.py:update_chargebee_cache",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:organisations/chargebee/tasks.py",
+      "target": "function:organisations/chargebee/tasks.py:update_chargebee_cache",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/chargebee/webhook_handlers.py",
+      "target": "function:organisations/chargebee/webhook_handlers.py:payment_failed",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:organisations/chargebee/webhook_handlers.py",
+      "target": "function:organisations/chargebee/webhook_handlers.py:payment_failed",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/chargebee/webhook_handlers.py",
+      "target": "function:organisations/chargebee/webhook_handlers.py:payment_succeeded",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:organisations/chargebee/webhook_handlers.py",
+      "target": "function:organisations/chargebee/webhook_handlers.py:payment_succeeded",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/chargebee/webhook_handlers.py",
+      "target": "function:organisations/chargebee/webhook_handlers.py:process_subscription",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:organisations/chargebee/webhook_handlers.py",
+      "target": "function:organisations/chargebee/webhook_handlers.py:process_subscription",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/invites/admin.py",
+      "target": "class:organisations/invites/admin.py:InviteAdmin",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:organisations/invites/admin.py",
+      "target": "class:organisations/invites/admin.py:InviteAdmin",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/invites/models.py",
+      "target": "class:organisations/invites/models.py:InviteLink",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:organisations/invites/models.py",
+      "target": "class:organisations/invites/models.py:InviteLink",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/invites/models.py",
+      "target": "class:organisations/invites/models.py:Invite",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:organisations/invites/models.py",
+      "target": "class:organisations/invites/models.py:Invite",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/invites/serializers.py",
+      "target": "class:organisations/invites/serializers.py:InviteListSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:organisations/invites/serializers.py",
+      "target": "class:organisations/invites/serializers.py:InviteListSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/invites/views.py",
+      "target": "function:organisations/invites/views.py:join_organisation_from_email",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:organisations/invites/views.py",
+      "target": "function:organisations/invites/views.py:join_organisation_from_email",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/invites/views.py",
+      "target": "function:organisations/invites/views.py:join_organisation_from_link",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:organisations/invites/views.py",
+      "target": "function:organisations/invites/views.py:join_organisation_from_link",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/invites/views.py",
+      "target": "class:organisations/invites/views.py:InviteLinkViewSet",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:organisations/invites/views.py",
+      "target": "class:organisations/invites/views.py:InviteLinkViewSet",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/invites/views.py",
+      "target": "class:organisations/invites/views.py:InviteViewSet",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:organisations/invites/views.py",
+      "target": "class:organisations/invites/views.py:InviteViewSet",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/management/commands/check_if_organisations_over_plan_limit.py",
+      "target": "class:organisations/management/commands/check_if_organisations_over_plan_limit.py:Command",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:organisations/management/commands/check_if_organisations_over_plan_limit.py",
+      "target": "class:organisations/management/commands/check_if_organisations_over_plan_limit.py:Command",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/management/commands/createinitialorganisation.py",
+      "target": "class:organisations/management/commands/createinitialorganisation.py:Command",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:organisations/management/commands/createinitialorganisation.py",
+      "target": "class:organisations/management/commands/createinitialorganisation.py:Command",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/managers.py",
+      "target": "class:organisations/managers.py:OrganisationPermissionManager",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:organisations/managers.py",
+      "target": "class:organisations/managers.py:OrganisationPermissionManager",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/models.py",
+      "target": "class:organisations/models.py:Organisation",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:organisations/models.py",
+      "target": "class:organisations/models.py:Organisation",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/models.py",
+      "target": "class:organisations/models.py:UserOrganisation",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:organisations/models.py",
+      "target": "class:organisations/models.py:UserOrganisation",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/models.py",
+      "target": "class:organisations/models.py:Subscription",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:organisations/models.py",
+      "target": "class:organisations/models.py:Subscription",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/models.py",
+      "target": "class:organisations/models.py:OrganisationSubscriptionInformationCache",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:organisations/models.py",
+      "target": "class:organisations/models.py:OrganisationSubscriptionInformationCache",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/models.py",
+      "target": "class:organisations/models.py:OrganisationAPIBilling",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:organisations/models.py",
+      "target": "class:organisations/models.py:OrganisationAPIBilling",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:organisations/chargebee/tasks.py:update_chargebee_cache",
+      "target": "class:organisations/chargebee/cache.py:ChargebeeCache",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:organisations/chargebee/webhook_handlers.py:process_subscription",
+      "target": "function:organisations/chargebee/chargebee.py:extract_subscription_metadata",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:organisations/chargebee/webhook_handlers.py:payment_failed",
+      "target": "class:organisations/chargebee/serializers.py:PaymentFailedSerializer",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:organisations/chargebee/webhook_handlers.py:payment_succeeded",
+      "target": "class:organisations/chargebee/serializers.py:PaymentSucceededSerializer",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:organisations/chargebee/webhook_handlers.py:process_subscription",
+      "target": "class:organisations/chargebee/serializers.py:ProcessSubscriptionSerializer",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:organisations/chargebee/webhook_handlers.py:process_subscription",
+      "target": "class:organisations/models.py:OrganisationSubscriptionInformationCache",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:organisations/models.py:Subscription",
+      "target": "function:organisations/chargebee/chargebee.py:get_subscription_metadata_from_id",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:organisations/models.py:Subscription",
+      "target": "function:organisations/chargebee/chargebee.py:get_portal_url",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:organisations/models.py:Subscription",
+      "target": "function:organisations/chargebee/chargebee.py:add_single_seat",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:organisations/models.py:OrganisationSubscriptionInformationCache",
+      "target": "class:organisations/chargebee/metadata.py:ChargebeeObjMetadata",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:organisations/invites/models.py:Invite",
+      "target": "class:organisations/invites/exceptions.py:InviteLinksDisabledError",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "class:organisations/invites/views.py:InviteViewSet",
+      "target": "class:organisations/invites/models.py:Invite",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "class:organisations/invites/views.py:InviteLinkViewSet",
+      "target": "class:organisations/invites/models.py:InviteLink",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "class:organisations/management/commands/check_if_organisations_over_plan_limit.py:Command",
+      "target": "class:organisations/models.py:Organisation",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:organisations/management/commands/createinitialorganisation.py:Command",
+      "target": "class:organisations/models.py:Organisation",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

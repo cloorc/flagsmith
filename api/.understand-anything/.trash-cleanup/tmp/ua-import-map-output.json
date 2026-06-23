@@ -1,0 +1,1317 @@
+{
+  "scriptCompleted": true,
+  "stats": {
+    "filesScanned": 350,
+    "filesWithImports": 206,
+    "totalEdges": 751
+  },
+  "importMap": {
+    ".ebextensions/00__packages.config": [],
+    ".ebextensions/01__upgrade_pip.config": [],
+    ".ebextensions/02__collectstatic.config": [],
+    ".ebextensions/03__django.config": [],
+    ".ebextensions/04__wsgi_custom.config": [],
+    ".ebignore": [],
+    ".env-ci": [],
+    ".env-local": [],
+    ".nvmrc": [],
+    ".understand-anything/.understandignore": [],
+    ".understand-anything/config.json": [],
+    "api_keys/__init__.py": [],
+    "api_keys/admin.py": [
+      "api_keys/models.py"
+    ],
+    "api_keys/apps.py": [],
+    "api_keys/authentication.py": [
+      "api_keys/models.py",
+      "api_keys/user.py"
+    ],
+    "api_keys/models.py": [
+      "organisations/models.py"
+    ],
+    "api_keys/serializers.py": [
+      "api_keys/models.py"
+    ],
+    "api_keys/user.py": [
+      "api_keys/models.py",
+      "organisations/models.py",
+      "permissions/permission_service.py",
+      "users/abc.py"
+    ],
+    "api_keys/views.py": [
+      "api_keys/authentication.py",
+      "api_keys/models.py",
+      "api_keys/serializers.py",
+      "organisations/permissions/permissions.py"
+    ],
+    "audit/__init__.py": [],
+    "audit/apps.py": [],
+    "audit/constants.py": [],
+    "audit/models.py": [
+      "api_keys/models.py",
+      "audit/related_object_type.py",
+      "projects/models.py"
+    ],
+    "audit/permissions.py": [
+      "organisations/models.py",
+      "projects/models.py"
+    ],
+    "audit/related_object_type.py": [],
+    "audit/serializers.py": [
+      "audit/models.py",
+      "audit/types.py",
+      "environments/serializers.py",
+      "projects/serializers.py",
+      "users/serializers.py"
+    ],
+    "audit/services.py": [
+      "audit/models.py",
+      "audit/related_object_type.py",
+      "features/models.py",
+      "features/versioning/models.py"
+    ],
+    "audit/signals.py": [
+      "audit/models.py",
+      "audit/related_object_type.py",
+      "audit/serializers.py",
+      "audit/services.py",
+      "features/models.py",
+      "features/multivariate/models.py",
+      "features/signals.py",
+      "organisations/models.py"
+    ],
+    "audit/tasks.py": [
+      "audit/constants.py",
+      "audit/models.py"
+    ],
+    "audit/types.py": [],
+    "audit/urls.py": [
+      "audit/views.py"
+    ],
+    "audit/views.py": [
+      "audit/models.py",
+      "audit/permissions.py",
+      "audit/serializers.py",
+      "organisations/models.py"
+    ],
+    "environments/__init__.py": [],
+    "environments/admin.py": [
+      "environments/models.py",
+      "environments/tasks.py"
+    ],
+    "environments/api_keys.py": [],
+    "environments/apps.py": [],
+    "environments/authentication.py": [
+      "environments/api_keys.py",
+      "environments/models.py"
+    ],
+    "environments/constants.py": [],
+    "environments/dynamodb/__init__.py": [
+      "environments/dynamodb/types.py",
+      "environments/dynamodb/wrappers/__init__.py",
+      "environments/dynamodb/wrappers/exceptions.py"
+    ],
+    "environments/dynamodb/constants.py": [],
+    "environments/dynamodb/migrator.py": [
+      "environments/dynamodb/types.py",
+      "environments/dynamodb/wrappers/__init__.py",
+      "environments/identities/models.py",
+      "environments/models.py",
+      "features/models.py",
+      "features/multivariate/models.py",
+      "projects/models.py"
+    ],
+    "environments/dynamodb/services.py": [
+      "environments/dynamodb/__init__.py",
+      "environments/dynamodb/types.py",
+      "environments/models.py",
+      "projects/models.py"
+    ],
+    "environments/dynamodb/types.py": [],
+    "environments/dynamodb/utils.py": [],
+    "environments/dynamodb/wrappers/__init__.py": [
+      "environments/dynamodb/wrappers/environment_api_key_wrapper.py",
+      "environments/dynamodb/wrappers/environment_wrapper.py",
+      "environments/dynamodb/wrappers/identity_wrapper.py"
+    ],
+    "environments/dynamodb/wrappers/base.py": [],
+    "environments/dynamodb/wrappers/environment_api_key_wrapper.py": [
+      "environments/dynamodb/wrappers/base.py"
+    ],
+    "environments/dynamodb/wrappers/environment_wrapper.py": [
+      "environments/dynamodb/constants.py",
+      "environments/dynamodb/types.py",
+      "environments/dynamodb/utils.py",
+      "environments/dynamodb/wrappers/base.py",
+      "environments/metrics.py"
+    ],
+    "environments/dynamodb/wrappers/exceptions.py": [],
+    "environments/dynamodb/wrappers/identity_wrapper.py": [
+      "environments/dynamodb/constants.py",
+      "environments/dynamodb/wrappers/base.py",
+      "environments/dynamodb/wrappers/exceptions.py"
+    ],
+    "environments/enums.py": [],
+    "environments/exceptions.py": [],
+    "environments/identities/__init__.py": [],
+    "environments/identities/admin.py": [
+      "environments/identities/models.py"
+    ],
+    "environments/identities/apps.py": [],
+    "environments/identities/managers.py": [],
+    "environments/identities/models.py": [
+      "environments/identities/managers.py",
+      "environments/identities/traits/models.py",
+      "environments/models.py",
+      "environments/sdk/types.py",
+      "features/models.py",
+      "features/multivariate/models.py",
+      "features/versioning/versioning_service.py",
+      "segments/models.py"
+    ],
+    "environments/identities/serializers.py": [
+      "environments/identities/models.py",
+      "environments/models.py",
+      "environments/serializers.py",
+      "features/models.py",
+      "features/serializers.py"
+    ],
+    "environments/identities/traits/__init__.py": [],
+    "environments/identities/traits/admin.py": [
+      "environments/identities/traits/models.py"
+    ],
+    "environments/identities/traits/constants.py": [
+      "features/value_types.py"
+    ],
+    "environments/identities/traits/exceptions.py": [],
+    "environments/identities/traits/fields.py": [
+      "environments/identities/traits/constants.py",
+      "environments/sdk/types.py",
+      "features/value_types.py"
+    ],
+    "environments/identities/traits/models.py": [
+      "environments/identities/traits/exceptions.py"
+    ],
+    "environments/identities/traits/openapi.py": [],
+    "environments/identities/traits/serializers.py": [
+      "environments/identities/models.py",
+      "environments/identities/serializers.py",
+      "environments/identities/traits/fields.py",
+      "environments/identities/traits/models.py"
+    ],
+    "environments/identities/traits/views.py": [
+      "environments/authentication.py",
+      "environments/identities/models.py",
+      "environments/identities/traits/models.py",
+      "environments/identities/traits/serializers.py",
+      "environments/permissions/permissions.py",
+      "environments/sdk/serializers.py",
+      "environments/views.py"
+    ],
+    "environments/identities/views.py": [
+      "environments/identities/models.py",
+      "environments/identities/serializers.py",
+      "environments/models.py",
+      "environments/permissions/permissions.py",
+      "environments/sdk/serializers.py",
+      "features/serializers.py"
+    ],
+    "environments/management/__init__.py": [],
+    "environments/management/commands/__init__.py": [],
+    "environments/management/commands/migrate_to_edge.py": [
+      "environments/dynamodb/migrator.py"
+    ],
+    "environments/management/serializers.py": [],
+    "environments/managers.py": [
+      "features/models.py",
+      "features/multivariate/models.py",
+      "segments/models.py"
+    ],
+    "environments/metrics.py": [
+      "environments/dynamodb/constants.py"
+    ],
+    "environments/models.py": [
+      "audit/constants.py",
+      "audit/related_object_type.py",
+      "environments/api_keys.py",
+      "environments/constants.py",
+      "environments/dynamodb/__init__.py",
+      "environments/enums.py",
+      "environments/exceptions.py",
+      "environments/managers.py",
+      "environments/metrics.py",
+      "features/models.py",
+      "features/multivariate/models.py",
+      "metadata/models.py",
+      "projects/models.py",
+      "segments/models.py"
+    ],
+    "environments/permissions/__init__.py": [],
+    "environments/permissions/apps.py": [],
+    "environments/permissions/managers.py": [
+      "environments/permissions/models.py"
+    ],
+    "environments/permissions/models.py": [
+      "environments/models.py",
+      "environments/permissions/managers.py",
+      "environments/permissions/models.py"
+    ],
+    "environments/permissions/permissions.py": [
+      "environments/models.py",
+      "projects/models.py"
+    ],
+    "environments/permissions/serializers.py": [
+      "environments/permissions/models.py",
+      "environments/permissions/serializers.py",
+      "users/serializers.py"
+    ],
+    "environments/permissions/views.py": [
+      "environments/models.py",
+      "environments/permissions/models.py",
+      "environments/permissions/permissions.py",
+      "environments/permissions/serializers.py"
+    ],
+    "environments/sdk/__init__.py": [],
+    "environments/sdk/serializers_mixins.py": [],
+    "environments/sdk/serializers.py": [
+      "environments/identities/models.py",
+      "environments/identities/serializers.py",
+      "environments/identities/traits/fields.py",
+      "environments/identities/traits/models.py",
+      "environments/identities/traits/serializers.py",
+      "environments/sdk/serializers_mixins.py",
+      "environments/sdk/services.py",
+      "environments/sdk/types.py",
+      "features/serializers.py",
+      "segments/serializers.py"
+    ],
+    "environments/sdk/services.py": [
+      "environments/identities/models.py",
+      "environments/identities/traits/models.py",
+      "environments/models.py",
+      "environments/sdk/types.py"
+    ],
+    "environments/sdk/types.py": [],
+    "environments/sdk/views.py": [
+      "environments/authentication.py",
+      "environments/models.py",
+      "environments/permissions/permissions.py"
+    ],
+    "environments/serializers.py": [
+      "environments/models.py",
+      "features/serializers.py",
+      "metadata/serializers.py",
+      "organisations/models.py",
+      "organisations/subscriptions/serializers/mixins.py",
+      "projects/models.py",
+      "projects/serializers.py"
+    ],
+    "environments/tasks.py": [
+      "audit/models.py",
+      "environments/dynamodb/__init__.py",
+      "environments/models.py",
+      "features/multivariate/models.py",
+      "features/versioning/models.py",
+      "features/versioning/versioning_service.py"
+    ],
+    "environments/urls.py": [
+      "environments/identities/traits/views.py",
+      "environments/identities/views.py",
+      "environments/permissions/views.py",
+      "environments/views.py",
+      "features/views.py"
+    ],
+    "environments/views.py": [
+      "environments/identities/traits/models.py",
+      "environments/identities/traits/serializers.py",
+      "environments/models.py",
+      "environments/permissions/models.py",
+      "environments/permissions/permissions.py",
+      "environments/permissions/serializers.py",
+      "environments/serializers.py",
+      "features/versioning/models.py",
+      "features/versioning/tasks.py",
+      "permissions/permissions_calculator.py",
+      "projects/models.py",
+      "users/models.py"
+    ],
+    "experimentation/__init__.py": [],
+    "experimentation/apps.py": [],
+    "experimentation/constants.py": [],
+    "experimentation/dataclasses.py": [
+      "experimentation/dataclasses.py",
+      "experimentation/stats.py",
+      "experimentation/types.py"
+    ],
+    "experimentation/experiment_urls.py": [
+      "experimentation/views.py"
+    ],
+    "experimentation/ingestion_sync_service.py": [],
+    "experimentation/metric_definitions.py": [],
+    "experimentation/metric_urls.py": [
+      "experimentation/views.py"
+    ],
+    "experimentation/models.py": [
+      "environments/models.py",
+      "experimentation/dataclasses.py",
+      "experimentation/types.py"
+    ],
+    "experimentation/permissions.py": [
+      "environments/models.py",
+      "experimentation/services.py",
+      "users/models.py"
+    ],
+    "experimentation/results_query.py": [
+      "experimentation/dataclasses.py",
+      "experimentation/models.py",
+      "experimentation/stats.py"
+    ],
+    "experimentation/serializers.py": [
+      "environments/models.py",
+      "experimentation/dataclasses.py",
+      "experimentation/metric_definitions.py",
+      "experimentation/models.py",
+      "experimentation/types.py",
+      "features/feature_types.py",
+      "features/models.py",
+      "features/multivariate/serializers.py"
+    ],
+    "experimentation/services.py": [
+      "audit/models.py",
+      "audit/related_object_type.py",
+      "experimentation/constants.py",
+      "experimentation/dataclasses.py",
+      "experimentation/models.py",
+      "experimentation/results_query.py",
+      "experimentation/stats.py",
+      "features/models.py"
+    ],
+    "experimentation/stats.py": [
+      "experimentation/dataclasses.py"
+    ],
+    "experimentation/tasks.py": [
+      "experimentation/__init__.py",
+      "experimentation/ingestion_sync_service.py",
+      "experimentation/models.py",
+      "experimentation/services.py"
+    ],
+    "experimentation/types.py": [],
+    "experimentation/urls.py": [
+      "experimentation/views.py"
+    ],
+    "experimentation/views.py": [
+      "environments/views.py",
+      "experimentation/constants.py",
+      "experimentation/models.py",
+      "experimentation/permissions.py",
+      "experimentation/serializers.py",
+      "experimentation/services.py",
+      "experimentation/tasks.py",
+      "users/models.py"
+    ],
+    "features/__init__.py": [],
+    "features/admin.py": [
+      "features/models.py"
+    ],
+    "features/apps.py": [],
+    "features/audit_helpers.py": [
+      "audit/constants.py"
+    ],
+    "features/constants.py": [],
+    "features/custom_lifecycle.py": [],
+    "features/dataclasses.py": [
+      "features/dataclasses.py"
+    ],
+    "features/exceptions.py": [],
+    "features/feature_external_resources/__init__.py": [],
+    "features/feature_external_resources/apps.py": [],
+    "features/feature_external_resources/models.py": [
+      "environments/models.py",
+      "features/models.py",
+      "organisations/models.py",
+      "projects/tags/models.py"
+    ],
+    "features/feature_external_resources/serializers.py": [
+      "features/feature_external_resources/models.py"
+    ],
+    "features/feature_external_resources/views.py": [
+      "features/feature_external_resources/models.py",
+      "features/feature_external_resources/serializers.py",
+      "features/models.py",
+      "features/permissions.py",
+      "organisations/models.py"
+    ],
+    "features/feature_health/__init__.py": [],
+    "features/feature_health/admin.py": [
+      "features/feature_health/models.py",
+      "features/feature_health/providers/services.py"
+    ],
+    "features/feature_health/apps.py": [],
+    "features/feature_health/constants.py": [],
+    "features/feature_health/mappers.py": [
+      "features/feature_health/models.py",
+      "features/feature_health/types.py"
+    ],
+    "features/feature_health/models.py": [
+      "audit/related_object_type.py",
+      "features/feature_health/constants.py"
+    ],
+    "features/feature_health/providers/__init__.py": [],
+    "features/feature_health/providers/generic/mappers.py": [
+      "features/feature_health/models.py",
+      "features/feature_health/providers/webhook/types.py",
+      "features/feature_health/types.py"
+    ],
+    "features/feature_health/providers/grafana/__init__.py": [
+      "features/feature_health/providers/grafana/services.py"
+    ],
+    "features/feature_health/providers/grafana/constants.py": [],
+    "features/feature_health/providers/grafana/mappers.py": [
+      "features/feature_health/models.py",
+      "features/feature_health/providers/grafana/constants.py",
+      "features/feature_health/providers/grafana/types.py",
+      "features/feature_health/types.py"
+    ],
+    "features/feature_health/providers/grafana/services.py": [
+      "features/feature_health/providers/grafana/mappers.py",
+      "features/feature_health/types.py"
+    ],
+    "features/feature_health/providers/grafana/types.py": [],
+    "features/feature_health/providers/services.py": [
+      "features/feature_health/models.py"
+    ],
+    "features/feature_health/providers/webhook/__init__.py": [
+      "features/feature_health/providers/webhook/services.py"
+    ],
+    "features/feature_health/providers/webhook/mappers.py": [
+      "features/feature_health/models.py",
+      "features/feature_health/providers/webhook/types.py",
+      "features/feature_health/types.py"
+    ],
+    "features/feature_health/providers/webhook/services.py": [
+      "features/feature_health/providers/webhook/mappers.py",
+      "features/feature_health/types.py"
+    ],
+    "features/feature_health/providers/webhook/types.py": [
+      "features/feature_health/types.py"
+    ],
+    "features/feature_health/serializers.py": [
+      "features/feature_health/models.py",
+      "features/feature_health/providers/services.py",
+      "features/feature_health/types.py"
+    ],
+    "features/feature_health/services.py": [
+      "api_keys/user.py",
+      "environments/models.py",
+      "features/feature_health/constants.py",
+      "features/feature_health/mappers.py",
+      "features/feature_health/models.py",
+      "features/feature_health/providers/__init__.py",
+      "features/feature_health/providers/grafana/__init__.py",
+      "features/feature_health/providers/webhook/__init__.py",
+      "features/feature_health/types.py",
+      "features/models.py",
+      "projects/tags/models.py",
+      "users/models.py"
+    ],
+    "features/feature_health/tasks.py": [
+      "features/feature_health/__init__.py",
+      "features/feature_health/services.py",
+      "features/models.py"
+    ],
+    "features/feature_health/types.py": [
+      "features/dataclasses.py"
+    ],
+    "features/feature_health/views.py": [
+      "features/feature_health/models.py",
+      "features/feature_health/providers/services.py",
+      "features/feature_health/serializers.py",
+      "features/feature_health/services.py",
+      "projects/models.py",
+      "projects/permissions.py",
+      "users/models.py"
+    ],
+    "features/feature_segments/__init__.py": [],
+    "features/feature_segments/limits.py": [
+      "environments/models.py",
+      "features/versioning/models.py"
+    ],
+    "features/feature_segments/permissions.py": [
+      "environments/models.py"
+    ],
+    "features/feature_segments/serializers.py": [
+      "features/feature_segments/limits.py",
+      "features/models.py"
+    ],
+    "features/feature_segments/views.py": [
+      "environments/models.py",
+      "features/feature_segments/permissions.py",
+      "features/feature_segments/serializers.py",
+      "features/models.py",
+      "features/versioning/versioning_service.py"
+    ],
+    "features/feature_states/__init__.py": [],
+    "features/feature_states/models.py": [
+      "features/value_types.py"
+    ],
+    "features/feature_states/permissions.py": [
+      "environments/models.py"
+    ],
+    "features/feature_states/serializers.py": [
+      "environments/models.py",
+      "features/models.py",
+      "features/versioning/dataclasses.py",
+      "features/versioning/versioning_service.py",
+      "segments/models.py"
+    ],
+    "features/feature_states/views.py": [
+      "environments/models.py",
+      "features/feature_states/permissions.py",
+      "features/feature_states/serializers.py"
+    ],
+    "features/feature_types.py": [],
+    "features/features_service.py": [
+      "environments/dynamodb/utils.py",
+      "features/dataclasses.py",
+      "features/versioning/versioning_service.py"
+    ],
+    "features/fields.py": [],
+    "features/helpers.py": [
+      "features/value_types.py"
+    ],
+    "features/import_export/apps.py": [],
+    "features/import_export/constants.py": [],
+    "features/import_export/mappers.py": [
+      "features/import_export/types.py",
+      "features/models.py",
+      "projects/models.py"
+    ],
+    "features/import_export/models.py": [
+      "features/import_export/constants.py"
+    ],
+    "features/import_export/permissions.py": [
+      "environments/models.py",
+      "features/import_export/models.py",
+      "projects/models.py"
+    ],
+    "features/import_export/serializers.py": [
+      "features/import_export/constants.py",
+      "features/import_export/models.py",
+      "features/import_export/tasks.py"
+    ],
+    "features/import_export/services.py": [
+      "environments/models.py",
+      "features/import_export/types.py",
+      "features/models.py",
+      "features/multivariate/models.py"
+    ],
+    "features/import_export/tasks.py": [
+      "features/import_export/constants.py",
+      "features/import_export/mappers.py",
+      "features/import_export/models.py",
+      "features/import_export/services.py",
+      "features/import_export/types.py",
+      "features/models.py",
+      "features/versioning/versioning_service.py"
+    ],
+    "features/import_export/types.py": [],
+    "features/import_export/views.py": [
+      "environments/models.py",
+      "features/import_export/constants.py",
+      "features/import_export/models.py",
+      "features/import_export/permissions.py",
+      "features/import_export/serializers.py"
+    ],
+    "features/managers.py": [
+      "features/versioning/models.py"
+    ],
+    "features/models.py": [
+      "audit/constants.py",
+      "audit/related_object_type.py",
+      "audit/tasks.py",
+      "features/audit_helpers.py",
+      "features/constants.py",
+      "features/custom_lifecycle.py",
+      "features/feature_states/models.py",
+      "features/feature_types.py",
+      "features/helpers.py",
+      "features/managers.py",
+      "features/multivariate/models.py",
+      "features/signals.py",
+      "features/utils.py",
+      "features/value_types.py",
+      "features/versioning/models.py",
+      "metadata/models.py",
+      "projects/models.py",
+      "projects/tags/models.py"
+    ],
+    "features/multivariate/__init__.py": [],
+    "features/multivariate/apps.py": [],
+    "features/multivariate/models.py": [
+      "audit/related_object_type.py",
+      "features/feature_states/models.py",
+      "features/feature_types.py"
+    ],
+    "features/multivariate/serializers.py": [
+      "features/constants.py",
+      "features/models.py",
+      "features/multivariate/models.py"
+    ],
+    "features/multivariate/urls.py": [
+      "features/multivariate/views.py"
+    ],
+    "features/multivariate/views.py": [
+      "features/models.py",
+      "features/multivariate/models.py",
+      "features/multivariate/serializers.py",
+      "projects/permissions.py"
+    ],
+    "features/permissions.py": [
+      "environments/models.py",
+      "features/models.py",
+      "projects/models.py"
+    ],
+    "features/release_pipelines/core/__init__.py": [],
+    "features/release_pipelines/core/apps.py": [
+      "features/release_pipelines/core/apps.py"
+    ],
+    "features/release_pipelines/core/constants.py": [],
+    "features/release_pipelines/core/exceptions.py": [],
+    "features/release_pipelines/core/models.py": [
+      "audit/constants.py",
+      "audit/related_object_type.py",
+      "features/release_pipelines/core/constants.py",
+      "features/release_pipelines/core/exceptions.py",
+      "features/release_pipelines/core/models.py",
+      "features/versioning/models.py",
+      "projects/models.py",
+      "users/models.py"
+    ],
+    "features/serializers.py": [
+      "environments/identities/models.py",
+      "environments/sdk/serializers_mixins.py",
+      "features/constants.py",
+      "features/feature_segments/limits.py",
+      "features/feature_segments/serializers.py",
+      "features/feature_types.py",
+      "features/models.py",
+      "features/multivariate/models.py",
+      "features/multivariate/serializers.py",
+      "metadata/serializers.py",
+      "projects/code_references/serializers.py",
+      "projects/models.py",
+      "users/models.py",
+      "users/serializers.py"
+    ],
+    "features/signals.py": [],
+    "features/tasks.py": [
+      "environments/models.py",
+      "features/models.py",
+      "features/multivariate/models.py"
+    ],
+    "features/urls.py": [
+      "features/feature_segments/views.py",
+      "features/import_export/views.py",
+      "features/views.py"
+    ],
+    "features/utils.py": [
+      "features/constants.py",
+      "features/value_types.py"
+    ],
+    "features/value_types.py": [],
+    "features/versioning/__init__.py": [],
+    "features/versioning/apps.py": [],
+    "features/versioning/constants.py": [],
+    "features/versioning/dataclasses.py": [
+      "features/feature_states/models.py",
+      "features/versioning/dataclasses.py"
+    ],
+    "features/versioning/exceptions.py": [],
+    "features/versioning/managers.py": [],
+    "features/versioning/models.py": [
+      "api_keys/models.py",
+      "features/versioning/dataclasses.py",
+      "features/versioning/exceptions.py",
+      "features/versioning/managers.py",
+      "features/versioning/signals.py"
+    ],
+    "features/versioning/permissions.py": [
+      "environments/models.py",
+      "features/models.py",
+      "features/versioning/models.py"
+    ],
+    "features/versioning/receivers.py": [
+      "environments/tasks.py",
+      "features/signals.py",
+      "features/versioning/models.py",
+      "features/versioning/signals.py",
+      "features/versioning/tasks.py",
+      "features/versioning/versioning_service.py"
+    ],
+    "features/versioning/schemas.py": [
+      "features/models.py",
+      "features/versioning/models.py"
+    ],
+    "features/versioning/serializers.py": [
+      "api_keys/user.py",
+      "environments/models.py",
+      "features/feature_segments/limits.py",
+      "features/serializers.py",
+      "features/versioning/models.py",
+      "segments/models.py",
+      "users/models.py"
+    ],
+    "features/versioning/signals.py": [],
+    "features/versioning/sql/get_latest_versions.sql": [],
+    "features/versioning/tasks.py": [
+      "audit/constants.py",
+      "audit/models.py",
+      "audit/related_object_type.py",
+      "features/models.py",
+      "features/versioning/exceptions.py",
+      "features/versioning/models.py",
+      "features/versioning/schemas.py",
+      "features/versioning/versioning_service.py",
+      "users/models.py"
+    ],
+    "features/versioning/urls.py": [
+      "features/versioning/views.py"
+    ],
+    "features/versioning/versioning_service.py": [
+      "environments/models.py",
+      "features/feature_states/models.py",
+      "features/models.py",
+      "features/versioning/dataclasses.py",
+      "features/versioning/exceptions.py",
+      "features/versioning/models.py"
+    ],
+    "features/versioning/views.py": [
+      "environments/models.py",
+      "features/models.py",
+      "features/serializers.py",
+      "features/versioning/exceptions.py",
+      "features/versioning/models.py",
+      "features/versioning/permissions.py",
+      "features/versioning/serializers.py",
+      "users/models.py"
+    ],
+    "features/views.py": [
+      "environments/authentication.py",
+      "environments/identities/models.py",
+      "environments/identities/serializers.py",
+      "environments/models.py",
+      "environments/permissions/permissions.py",
+      "features/constants.py",
+      "features/features_service.py",
+      "features/models.py",
+      "features/multivariate/serializers.py",
+      "features/permissions.py",
+      "features/serializers.py",
+      "features/tasks.py",
+      "features/value_types.py",
+      "features/versioning/versioning_service.py",
+      "projects/code_references/services.py",
+      "projects/models.py",
+      "users/models.py"
+    ],
+    "features/workflows/__init__.py": [],
+    "features/workflows/core/__init__.py": [],
+    "features/workflows/core/apps.py": [
+      "features/workflows/core/apps.py"
+    ],
+    "features/workflows/core/exceptions.py": [],
+    "features/workflows/core/models.py": [
+      "audit/constants.py",
+      "audit/related_object_type.py",
+      "audit/tasks.py",
+      "features/workflows/core/exceptions.py",
+      "features/workflows/core/models.py"
+    ],
+    "Makefile": [],
+    "manage.py": [],
+    "metadata/__init__.py": [],
+    "metadata/apps.py": [],
+    "metadata/fields.py": [],
+    "metadata/models.py": [
+      "metadata/fields.py",
+      "organisations/models.py"
+    ],
+    "metadata/permissions.py": [
+      "metadata/models.py",
+      "organisations/models.py",
+      "projects/models.py"
+    ],
+    "metadata/serializers.py": [
+      "metadata/models.py",
+      "organisations/models.py",
+      "projects/models.py"
+    ],
+    "metadata/urls.py": [
+      "metadata/views.py"
+    ],
+    "metadata/views.py": [
+      "metadata/models.py",
+      "metadata/permissions.py",
+      "metadata/serializers.py",
+      "projects/permissions.py"
+    ],
+    "openapi-filter-flagsmith-sdk.yml": [],
+    "openapi-filter-grafana.yaml": [],
+    "openapi-filter-launchdarkly.yaml": [],
+    "organisations/__init__.py": [],
+    "organisations/admin.py": [
+      "organisations/models.py",
+      "projects/models.py"
+    ],
+    "organisations/apps.py": [],
+    "organisations/chargebee/__init__.py": [
+      "organisations/chargebee/chargebee.py"
+    ],
+    "organisations/chargebee/apps.py": [],
+    "organisations/chargebee/cache.py": [
+      "organisations/chargebee/client.py",
+      "organisations/chargebee/metadata.py"
+    ],
+    "organisations/chargebee/chargebee.py": [
+      "organisations/chargebee/cache.py",
+      "organisations/chargebee/client.py",
+      "organisations/chargebee/constants.py",
+      "organisations/chargebee/metadata.py",
+      "organisations/subscriptions/constants.py",
+      "organisations/subscriptions/exceptions.py"
+    ],
+    "organisations/chargebee/client.py": [
+      "organisations/chargebee/chargebee.py"
+    ],
+    "organisations/chargebee/constants.py": [],
+    "organisations/chargebee/metadata.py": [
+      "organisations/subscriptions/constants.py",
+      "organisations/subscriptions/metadata.py"
+    ],
+    "organisations/chargebee/serializers.py": [],
+    "organisations/chargebee/tasks.py": [
+      "organisations/chargebee/cache.py"
+    ],
+    "organisations/chargebee/webhook_event_types.py": [],
+    "organisations/chargebee/webhook_handlers.py": [
+      "organisations/chargebee/chargebee.py",
+      "organisations/chargebee/serializers.py",
+      "organisations/chargebee/tasks.py",
+      "organisations/models.py",
+      "organisations/subscriptions/constants.py"
+    ],
+    "organisations/constants.py": [],
+    "organisations/exceptions.py": [],
+    "organisations/invites/__init__.py": [],
+    "organisations/invites/admin.py": [
+      "organisations/invites/models.py"
+    ],
+    "organisations/invites/apps.py": [],
+    "organisations/invites/exceptions.py": [],
+    "organisations/invites/models.py": [
+      "organisations/invites/exceptions.py",
+      "organisations/models.py",
+      "users/models.py"
+    ],
+    "organisations/invites/serializers.py": [
+      "organisations/invites/models.py",
+      "users/serializers.py"
+    ],
+    "organisations/invites/views.py": [
+      "organisations/invites/exceptions.py",
+      "organisations/invites/models.py",
+      "organisations/invites/serializers.py",
+      "organisations/models.py",
+      "organisations/permissions/permissions.py",
+      "organisations/serializers.py",
+      "organisations/subscriptions/exceptions.py",
+      "users/exceptions.py"
+    ],
+    "organisations/management/commands/check_if_organisations_over_plan_limit.py": [
+      "organisations/models.py",
+      "organisations/tasks.py"
+    ],
+    "organisations/management/commands/createinitialorganisation.py": [
+      "organisations/models.py",
+      "users/services.py"
+    ],
+    "organisations/managers.py": [
+      "organisations/permissions/models.py"
+    ],
+    "organisations/models.py": [
+      "features/versioning/constants.py",
+      "organisations/chargebee/__init__.py",
+      "organisations/chargebee/chargebee.py",
+      "organisations/chargebee/metadata.py",
+      "organisations/subscriptions/constants.py",
+      "organisations/subscriptions/exceptions.py",
+      "organisations/subscriptions/metadata.py",
+      "organisations/subscriptions/xero/metadata.py"
+    ],
+    "organisations/permissions/__init__.py": [],
+    "organisations/permissions/apps.py": [],
+    "organisations/permissions/models.py": [
+      "organisations/managers.py",
+      "organisations/models.py",
+      "organisations/permissions/models.py"
+    ],
+    "organisations/permissions/permissions.py": [
+      "organisations/models.py",
+      "users/models.py"
+    ],
+    "organisations/permissions/serializers.py": [
+      "organisations/permissions/models.py",
+      "users/serializers.py"
+    ],
+    "organisations/permissions/views.py": [
+      "organisations/permissions/models.py",
+      "organisations/permissions/permissions.py",
+      "organisations/permissions/serializers.py"
+    ],
+    "organisations/serializers.py": [
+      "organisations/chargebee/__init__.py",
+      "organisations/invites/models.py",
+      "organisations/models.py",
+      "organisations/subscriptions/constants.py",
+      "users/models.py"
+    ],
+    "organisations/subscription_info_cache.py": [
+      "organisations/chargebee/__init__.py",
+      "organisations/models.py",
+      "organisations/subscriptions/constants.py"
+    ],
+    "organisations/subscriptions/__init__.py": [],
+    "organisations/subscriptions/constants.py": [
+      "organisations/subscriptions/metadata.py"
+    ],
+    "organisations/subscriptions/exceptions.py": [],
+    "organisations/subscriptions/metadata.py": [
+      "features/versioning/constants.py"
+    ],
+    "organisations/subscriptions/permissions.py": [
+      "organisations/models.py",
+      "organisations/subscriptions/constants.py"
+    ],
+    "organisations/subscriptions/serializers/__init__.py": [],
+    "organisations/subscriptions/serializers/mixins.py": [
+      "organisations/models.py"
+    ],
+    "organisations/subscriptions/xero/__init__.py": [],
+    "organisations/subscriptions/xero/metadata.py": [
+      "organisations/subscriptions/constants.py",
+      "organisations/subscriptions/metadata.py"
+    ],
+    "organisations/task_helpers.py": [
+      "organisations/constants.py",
+      "organisations/models.py",
+      "organisations/subscriptions/constants.py",
+      "users/models.py"
+    ],
+    "organisations/tasks.py": [
+      "organisations/__init__.py",
+      "organisations/chargebee/__init__.py",
+      "organisations/constants.py",
+      "organisations/models.py",
+      "organisations/subscription_info_cache.py",
+      "organisations/subscriptions/constants.py",
+      "organisations/task_helpers.py",
+      "users/models.py"
+    ],
+    "organisations/urls.py": [
+      "api_keys/views.py",
+      "audit/views.py",
+      "metadata/views.py",
+      "organisations/invites/views.py",
+      "organisations/permissions/views.py",
+      "organisations/views.py",
+      "users/views.py"
+    ],
+    "organisations/views.py": [
+      "organisations/chargebee/__init__.py",
+      "organisations/chargebee/webhook_event_types.py",
+      "organisations/chargebee/webhook_handlers.py",
+      "organisations/exceptions.py",
+      "organisations/models.py",
+      "organisations/permissions/models.py",
+      "organisations/permissions/permissions.py",
+      "organisations/permissions/serializers.py",
+      "organisations/serializers.py",
+      "permissions/permissions_calculator.py",
+      "projects/serializers.py",
+      "users/models.py",
+      "users/serializers.py"
+    ],
+    "permissions/__init__.py": [],
+    "permissions/models.py": [],
+    "permissions/permission_service.py": [
+      "environments/models.py",
+      "organisations/models.py",
+      "permissions/rbac_wrapper.py",
+      "projects/models.py"
+    ],
+    "permissions/permissions_calculator.py": [
+      "environments/permissions/models.py",
+      "organisations/permissions/models.py",
+      "permissions/rbac_wrapper.py",
+      "projects/models.py"
+    ],
+    "permissions/rbac_wrapper.py": [
+      "api_keys/models.py",
+      "environments/models.py",
+      "organisations/models.py",
+      "projects/models.py"
+    ],
+    "permissions/serializers.py": [
+      "permissions/models.py"
+    ],
+    "Procfile": [],
+    "projects/__init__.py": [],
+    "projects/admin.py": [
+      "environments/models.py",
+      "features/models.py",
+      "projects/models.py",
+      "projects/tags/models.py",
+      "segments/models.py"
+    ],
+    "projects/apps.py": [],
+    "projects/code_references/__init__.py": [],
+    "projects/code_references/apps.py": [],
+    "projects/code_references/constants.py": [],
+    "projects/code_references/models.py": [
+      "projects/code_references/types.py"
+    ],
+    "projects/code_references/permissions.py": [
+      "projects/models.py"
+    ],
+    "projects/code_references/serializers.py": [
+      "projects/code_references/constants.py",
+      "projects/code_references/types.py"
+    ],
+    "projects/code_references/services.py": [
+      "features/models.py",
+      "projects/code_references/models.py",
+      "projects/code_references/types.py",
+      "projects/models.py"
+    ],
+    "projects/code_references/types.py": [
+      "projects/models.py"
+    ],
+    "projects/code_references/urls.py": [
+      "projects/code_references/__init__.py",
+      "projects/code_references/views.py"
+    ],
+    "projects/code_references/views.py": [
+      "features/models.py",
+      "projects/code_references/permissions.py",
+      "projects/code_references/serializers.py",
+      "projects/code_references/services.py",
+      "projects/code_references/types.py",
+      "projects/models.py"
+    ],
+    "projects/exceptions.py": [],
+    "projects/management/commands/createinitialproject.py": [
+      "organisations/models.py",
+      "projects/models.py"
+    ],
+    "projects/managers.py": [],
+    "projects/models.py": [
+      "environments/dynamodb/__init__.py",
+      "organisations/models.py",
+      "permissions/models.py",
+      "projects/managers.py",
+      "projects/services.py",
+      "projects/tasks.py"
+    ],
+    "projects/permissions.py": [
+      "organisations/models.py",
+      "organisations/permissions/permissions.py",
+      "projects/models.py"
+    ],
+    "projects/serializers.py": [
+      "environments/dynamodb/migrator.py",
+      "environments/dynamodb/types.py",
+      "organisations/models.py",
+      "organisations/subscriptions/serializers/mixins.py",
+      "permissions/serializers.py",
+      "projects/models.py",
+      "users/serializers.py"
+    ],
+    "projects/services.py": [],
+    "projects/tags/__init__.py": [],
+    "projects/tags/admin.py": [
+      "projects/tags/models.py"
+    ],
+    "projects/tags/apps.py": [],
+    "projects/tags/models.py": [
+      "projects/models.py"
+    ],
+    "projects/tags/permissions.py": [
+      "projects/models.py"
+    ],
+    "projects/tags/serializers.py": [
+      "projects/tags/models.py"
+    ],
+    "projects/tags/views.py": [
+      "projects/tags/models.py",
+      "projects/tags/permissions.py",
+      "projects/tags/serializers.py"
+    ],
+    "projects/tasks.py": [],
+    "projects/urls.py": [
+      "audit/views.py",
+      "features/feature_external_resources/views.py",
+      "features/feature_health/views.py",
+      "features/import_export/views.py",
+      "features/multivariate/views.py",
+      "features/views.py",
+      "metadata/views.py",
+      "projects/tags/views.py",
+      "projects/views.py",
+      "segments/views.py"
+    ],
+    "projects/views.py": [
+      "environments/dynamodb/migrator.py",
+      "environments/identities/models.py",
+      "environments/serializers.py",
+      "permissions/permissions_calculator.py",
+      "permissions/serializers.py",
+      "projects/exceptions.py",
+      "projects/models.py",
+      "projects/permissions.py",
+      "projects/serializers.py",
+      "users/models.py"
+    ],
+    "pyproject.toml": [],
+    "README.md": [],
+    "segment_membership/__init__.py": [],
+    "segment_membership/apps.py": [],
+    "segment_membership/mappers.py": [],
+    "segment_membership/metrics.py": [],
+    "segment_membership/models.py": [
+      "environments/models.py",
+      "segments/models.py"
+    ],
+    "segment_membership/services.py": [
+      "organisations/models.py",
+      "projects/models.py",
+      "segment_membership/models.py",
+      "segments/models.py"
+    ],
+    "segment_membership/tasks.py": [
+      "environments/dynamodb/wrappers/identity_wrapper.py",
+      "projects/models.py",
+      "segment_membership/mappers.py",
+      "segment_membership/metrics.py",
+      "segment_membership/models.py",
+      "segment_membership/services.py"
+    ],
+    "segments/__init__.py": [],
+    "segments/admin.py": [
+      "segments/models.py"
+    ],
+    "segments/apps.py": [],
+    "segments/models.py": [
+      "audit/constants.py",
+      "audit/related_object_type.py",
+      "features/models.py",
+      "metadata/models.py",
+      "projects/models.py",
+      "segments/services.py"
+    ],
+    "segments/permissions.py": [
+      "projects/models.py"
+    ],
+    "segments/serializers.py": [
+      "metadata/serializers.py",
+      "projects/models.py",
+      "segment_membership/models.py",
+      "segment_membership/services.py",
+      "segments/models.py"
+    ],
+    "segments/services.py": [],
+    "segments/tasks.py": [
+      "audit/constants.py",
+      "audit/models.py",
+      "audit/related_object_type.py",
+      "segments/models.py"
+    ],
+    "segments/types.py": [],
+    "segments/urls.py": [
+      "segments/views.py"
+    ],
+    "segments/views.py": [
+      "environments/identities/models.py",
+      "environments/models.py",
+      "features/models.py",
+      "features/serializers.py",
+      "features/versioning/models.py",
+      "projects/models.py",
+      "segment_membership/services.py",
+      "segments/models.py",
+      "segments/permissions.py",
+      "segments/serializers.py",
+      "segments/services.py"
+    ],
+    "users/__init__.py": [],
+    "users/abc.py": [
+      "environments/models.py",
+      "organisations/models.py",
+      "projects/models.py",
+      "users/abc.py"
+    ],
+    "users/admin.py": [
+      "organisations/models.py",
+      "users/forms.py",
+      "users/models.py"
+    ],
+    "users/apps.py": [],
+    "users/auth_type.py": [],
+    "users/constants.py": [],
+    "users/emails.py": [],
+    "users/exceptions.py": [],
+    "users/forms.py": [
+      "users/models.py",
+      "users/services.py"
+    ],
+    "users/management/__init__.py": [],
+    "users/management/commands/__init__.py": [],
+    "users/management/commands/createinitialadminuser.py": [
+      "users/services.py"
+    ],
+    "users/models.py": [
+      "organisations/models.py",
+      "organisations/subscriptions/exceptions.py",
+      "permissions/permission_service.py",
+      "projects/models.py",
+      "users/abc.py",
+      "users/auth_type.py",
+      "users/constants.py",
+      "users/exceptions.py"
+    ],
+    "users/serializers.py": [
+      "organisations/models.py",
+      "organisations/serializers.py",
+      "users/models.py"
+    ],
+    "users/services.py": [
+      "users/models.py"
+    ],
+    "users/signals.py": [
+      "users/models.py"
+    ],
+    "users/tasks.py": [],
+    "users/urls.py": [
+      "organisations/invites/views.py",
+      "users/views.py"
+    ],
+    "users/views.py": [
+      "organisations/models.py",
+      "organisations/permissions/permissions.py",
+      "organisations/serializers.py",
+      "users/forms.py",
+      "users/models.py",
+      "users/serializers.py",
+      "users/services.py"
+    ]
+  }
+}

@@ -1,0 +1,233 @@
+{
+  "nodes": [
+    {
+      "id": "file:experimentation/apps.py",
+      "type": "file",
+      "name": "apps.py",
+      "filePath": "experimentation/apps.py",
+      "summary": "Django AppConfig for the experimentation app, declaring its application name for the framework's app registry.",
+      "tags": ["django-app", "config", "experimentation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:features/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "features/__init__.py",
+      "summary": "Empty package initialiser marking the features directory as a Python package.",
+      "tags": ["entry-point", "package-init", "features"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:features/apps.py",
+      "type": "file",
+      "name": "apps.py",
+      "filePath": "features/apps.py",
+      "summary": "Django AppConfig for the core features app whose ready() hook wires up signal receivers when the app loads.",
+      "tags": ["django-app", "config", "signals", "features"],
+      "complexity": "simple",
+      "languageNotes": "Uses AppConfig.ready() to register Django signal handlers at startup, a common Django app-bootstrapping pattern."
+    },
+    {
+      "id": "file:features/exceptions.py",
+      "type": "file",
+      "name": "exceptions.py",
+      "filePath": "features/exceptions.py",
+      "summary": "Defines domain exception types for feature-state versioning errors, including an already-exists error carrying contextual detail.",
+      "tags": ["exceptions", "error-handling", "features", "versioning"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:features/feature_external_resources/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "features/feature_external_resources/__init__.py",
+      "summary": "Empty package initialiser marking the feature_external_resources directory as a Python package.",
+      "tags": ["entry-point", "package-init", "features"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:features/feature_external_resources/apps.py",
+      "type": "file",
+      "name": "apps.py",
+      "filePath": "features/feature_external_resources/apps.py",
+      "summary": "Django AppConfig for the feature_external_resources app, declaring its application name for the framework's app registry.",
+      "tags": ["django-app", "config", "features"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:features/feature_health/apps.py",
+      "type": "file",
+      "name": "apps.py",
+      "filePath": "features/feature_health/apps.py",
+      "summary": "Django AppConfig for the feature_health app, declaring its application name and default auto field.",
+      "tags": ["django-app", "config", "feature-health"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:features/feature_segments/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "features/feature_segments/__init__.py",
+      "summary": "Empty package initialiser marking the feature_segments directory as a Python package.",
+      "tags": ["entry-point", "package-init", "features"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:features/feature_states/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "features/feature_states/__init__.py",
+      "summary": "Empty package initialiser marking the feature_states directory as a Python package.",
+      "tags": ["entry-point", "package-init", "features"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:features/fields.py",
+      "type": "file",
+      "name": "fields.py",
+      "filePath": "features/fields.py",
+      "summary": "Empty module placeholder reserved for custom Django model or serializer field definitions in the features app.",
+      "tags": ["placeholder", "fields", "features"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:features/import_export/apps.py",
+      "type": "file",
+      "name": "apps.py",
+      "filePath": "features/import_export/apps.py",
+      "summary": "Django AppConfig for the features import/export app, declaring its application name for the framework's app registry.",
+      "tags": ["django-app", "config", "import-export"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:features/multivariate/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "features/multivariate/__init__.py",
+      "summary": "Empty package initialiser marking the multivariate features directory as a Python package.",
+      "tags": ["entry-point", "package-init", "multivariate"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:features/multivariate/apps.py",
+      "type": "file",
+      "name": "apps.py",
+      "filePath": "features/multivariate/apps.py",
+      "summary": "Django AppConfig for the multivariate features app, declaring its application name and default auto field.",
+      "tags": ["django-app", "config", "multivariate"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:features/release_pipelines/core/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "features/release_pipelines/core/__init__.py",
+      "summary": "Empty package initialiser marking the release_pipelines core directory as a Python package.",
+      "tags": ["entry-point", "package-init", "release-pipelines"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:features/release_pipelines/core/apps.py",
+      "type": "file",
+      "name": "apps.py",
+      "filePath": "features/release_pipelines/core/apps.py",
+      "summary": "Django AppConfig for the release_pipelines core app, declaring its dotted application path and label.",
+      "tags": ["django-app", "config", "release-pipelines"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:features/versioning/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "features/versioning/__init__.py",
+      "summary": "Empty package initialiser marking the feature versioning directory as a Python package.",
+      "tags": ["entry-point", "package-init", "versioning"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:features/versioning/apps.py",
+      "type": "file",
+      "name": "apps.py",
+      "filePath": "features/versioning/apps.py",
+      "summary": "Django AppConfig for the feature versioning app whose ready() hook wires up versioning signal receivers at startup.",
+      "tags": ["django-app", "config", "signals", "versioning"],
+      "complexity": "simple",
+      "languageNotes": "Uses AppConfig.ready() to register signal handlers, deferring imports until the app registry is populated."
+    },
+    {
+      "id": "file:features/versioning/sql/get_latest_versions.sql",
+      "type": "file",
+      "name": "get_latest_versions.sql",
+      "filePath": "features/versioning/sql/get_latest_versions.sql",
+      "summary": "Parameterised SQL query that returns the latest published environment feature version per feature/environment as of a given time, filtered by environment id or API key.",
+      "tags": ["database", "sql-query", "versioning", "feature-states"],
+      "complexity": "moderate",
+      "languageNotes": "Self-joins the environmentfeatureversion table against a MAX(live_from) subquery to select the most recent published version per (feature, environment) pair, with named bind parameters."
+    },
+    {
+      "id": "file:features/workflows/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "features/workflows/__init__.py",
+      "summary": "Empty package initialiser marking the workflows directory as a Python package.",
+      "tags": ["entry-point", "package-init", "workflows"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:features/workflows/core/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "features/workflows/core/__init__.py",
+      "summary": "Empty package initialiser marking the workflows core directory as a Python package.",
+      "tags": ["entry-point", "package-init", "workflows"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:features/workflows/core/apps.py",
+      "type": "file",
+      "name": "apps.py",
+      "filePath": "features/workflows/core/apps.py",
+      "summary": "Django AppConfig for the workflows core app, declaring its dotted application path and label.",
+      "tags": ["django-app", "config", "workflows"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:manage.py",
+      "type": "file",
+      "name": "manage.py",
+      "filePath": "manage.py",
+      "summary": "Django management command-line entry point that sets the default settings module and dispatches administrative commands.",
+      "tags": ["entry-point", "django", "cli", "management"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:metadata/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "metadata/__init__.py",
+      "summary": "Empty package initialiser marking the metadata directory as a Python package.",
+      "tags": ["entry-point", "package-init", "metadata"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:metadata/apps.py",
+      "type": "file",
+      "name": "apps.py",
+      "filePath": "metadata/apps.py",
+      "summary": "Django AppConfig for the metadata app, declaring its application name and default auto field.",
+      "tags": ["django-app", "config", "metadata"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:organisations/apps.py",
+      "type": "file",
+      "name": "apps.py",
+      "filePath": "organisations/apps.py",
+      "summary": "Django AppConfig for the organisations app, declaring its application name for the framework's app registry.",
+      "tags": ["django-app", "config", "organisations"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": []
+}

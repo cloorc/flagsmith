@@ -1,0 +1,942 @@
+{
+  "nodes": [
+    {
+      "id": "file:features/import_export/constants.py",
+      "type": "file",
+      "name": "constants.py",
+      "filePath": "features/import_export/constants.py",
+      "summary": "Defines app-wide constant values for the feature import/export module, such as status flags (processing, success, failed) and the maximum upload file size.",
+      "tags": ["config", "constants", "import-export"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:features/import_export/mappers.py",
+      "type": "file",
+      "name": "mappers.py",
+      "filePath": "features/import_export/mappers.py",
+      "summary": "Maps exported feature data dictionaries back into Feature model instances scoped to a project during the import process.",
+      "tags": ["utility", "mapper", "data-model", "import-export"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:features/import_export/models.py",
+      "type": "file",
+      "name": "models.py",
+      "filePath": "features/import_export/models.py",
+      "summary": "Django models persisting feature export jobs, feature import jobs, and the Flagsmith-on-Flagsmith feature export, including their status and serialized JSON payloads.",
+      "tags": ["data-model", "import-export", "django-model"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:features/import_export/permissions.py",
+      "type": "file",
+      "name": "permissions.py",
+      "filePath": "features/import_export/permissions.py",
+      "summary": "DRF permission classes governing who may create exports, download exports, upload imports, and list import/export jobs based on environment, project, and organisation admin rights.",
+      "tags": ["permissions", "security", "import-export", "api-handler"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:features/import_export/serializers.py",
+      "type": "file",
+      "name": "serializers.py",
+      "filePath": "features/import_export/serializers.py",
+      "summary": "DRF serializers that validate and create feature export/import jobs, enforce upload file-size limits, and dispatch the async Celery tasks that perform the work.",
+      "tags": ["serialization", "validation", "import-export", "api-handler"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:features/import_export/services.py",
+      "type": "file",
+      "name": "services.py",
+      "filePath": "features/import_export/services.py",
+      "summary": "Business-logic service that overwrites an existing feature's states and multivariate options for a given environment when importing feature data.",
+      "tags": ["service", "business-logic", "import-export", "data-model"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:features/import_export/tasks.py",
+      "type": "file",
+      "name": "tasks.py",
+      "filePath": "features/import_export/tasks.py",
+      "summary": "Celery/recurring tasks that perform feature exports and imports for an environment, retire stalled jobs, clear stale records, and generate the Flagsmith-on-Flagsmith export.",
+      "tags": ["async-tasks", "service", "import-export", "data-pipeline"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:features/import_export/types.py",
+      "type": "file",
+      "name": "types.py",
+      "filePath": "features/import_export/types.py",
+      "summary": "TypedDict definitions describing the JSON shape of exported feature data and its multivariate option entries, used as DTOs across the import/export flow.",
+      "tags": ["type-definition", "import-export", "serialization"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:features/import_export/views.py",
+      "type": "file",
+      "name": "views.py",
+      "filePath": "features/import_export/views.py",
+      "summary": "DRF API views and endpoints for creating feature exports, uploading imports, downloading export payloads, fetching the Flagsmith-on-Flagsmith export, and listing import/export jobs.",
+      "tags": ["api-handler", "import-export", "endpoint", "view"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:features/import_export/mappers.py:map_feature_export_data_to_feature",
+      "type": "function",
+      "name": "map_feature_export_data_to_feature",
+      "filePath": "features/import_export/mappers.py",
+      "lineRange": [6, 15],
+      "summary": "Constructs a Feature instance for a project from a feature export data dictionary, copying over name and configuration attributes.",
+      "tags": ["mapper", "utility", "data-model"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:features/import_export/models.py:FeatureExport",
+      "type": "class",
+      "name": "FeatureExport",
+      "filePath": "features/import_export/models.py",
+      "lineRange": [13, 44],
+      "summary": "Model representing a feature export job, storing the target environment, status, and the serialized JSON payload of exported features.",
+      "tags": ["data-model", "django-model", "import-export"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:features/import_export/models.py:FeatureImport",
+      "type": "class",
+      "name": "FeatureImport",
+      "filePath": "features/import_export/models.py",
+      "lineRange": [47, 78],
+      "summary": "Model representing a feature import job, storing the target environment, processing status, strategy, and the uploaded feature data.",
+      "tags": ["data-model", "django-model", "import-export"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:features/import_export/models.py:FlagsmithOnFlagsmithFeatureExport",
+      "type": "class",
+      "name": "FlagsmithOnFlagsmithFeatureExport",
+      "filePath": "features/import_export/models.py",
+      "lineRange": [81, 96],
+      "summary": "Model holding the latest Flagsmith-on-Flagsmith feature export snapshot used to seed local feature evaluation.",
+      "tags": ["data-model", "django-model", "import-export"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:features/import_export/permissions.py:FeatureImportPermissions",
+      "type": "class",
+      "name": "FeatureImportPermissions",
+      "filePath": "features/import_export/permissions.py",
+      "lineRange": [12, 23],
+      "summary": "Permission class allowing feature imports only for organisation admins of the target environment's organisation.",
+      "tags": ["permissions", "security", "import-export"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:features/import_export/permissions.py:CreateFeatureExportPermissions",
+      "type": "class",
+      "name": "CreateFeatureExportPermissions",
+      "filePath": "features/import_export/permissions.py",
+      "lineRange": [26, 32],
+      "summary": "Permission class restricting feature export creation to environment admins of the target environment.",
+      "tags": ["permissions", "security", "import-export"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:features/import_export/permissions.py:DownloadFeatureExportPermissions",
+      "type": "class",
+      "name": "DownloadFeatureExportPermissions",
+      "filePath": "features/import_export/permissions.py",
+      "lineRange": [35, 42],
+      "summary": "Permission class allowing download of a feature export only by environment admins of the export's environment.",
+      "tags": ["permissions", "security", "import-export"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:features/import_export/permissions.py:FeatureExportListPermissions",
+      "type": "class",
+      "name": "FeatureExportListPermissions",
+      "filePath": "features/import_export/permissions.py",
+      "lineRange": [45, 53],
+      "summary": "Permission class granting access to list feature exports when the user holds the relevant project permission.",
+      "tags": ["permissions", "security", "import-export"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:features/import_export/permissions.py:FeatureImportListPermissions",
+      "type": "class",
+      "name": "FeatureImportListPermissions",
+      "filePath": "features/import_export/permissions.py",
+      "lineRange": [56, 64],
+      "summary": "Permission class granting access to list feature imports when the user holds the relevant project permission.",
+      "tags": ["permissions", "security", "import-export"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:features/import_export/serializers.py:CreateFeatureExportSerializer",
+      "type": "class",
+      "name": "CreateFeatureExportSerializer",
+      "filePath": "features/import_export/serializers.py",
+      "lineRange": [18, 35],
+      "summary": "Serializer that creates a FeatureExport record and dispatches the export Celery task with the optional tag filter.",
+      "tags": ["serialization", "import-export", "validation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:features/import_export/serializers.py:FeatureExportSerializer",
+      "type": "class",
+      "name": "FeatureExportSerializer",
+      "filePath": "features/import_export/serializers.py",
+      "lineRange": [38, 54],
+      "summary": "Read serializer for FeatureExport records that derives a human-readable export name from the creation timestamp.",
+      "tags": ["serialization", "import-export"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:features/import_export/serializers.py:FeatureImportUploadSerializer",
+      "type": "class",
+      "name": "FeatureImportUploadSerializer",
+      "filePath": "features/import_export/serializers.py",
+      "lineRange": [62, 88],
+      "summary": "Serializer that validates an uploaded import file, guards against concurrent imports, creates a FeatureImport record, and dispatches the import task.",
+      "tags": ["serialization", "validation", "import-export"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:features/import_export/serializers.py:FeatureImportSerializer",
+      "type": "class",
+      "name": "FeatureImportSerializer",
+      "filePath": "features/import_export/serializers.py",
+      "lineRange": [91, 100],
+      "summary": "Read serializer exposing the FeatureImport record's environment, status, and strategy fields.",
+      "tags": ["serialization", "import-export"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:features/import_export/services.py:overwrite_feature_for_environment",
+      "type": "function",
+      "name": "overwrite_feature_for_environment",
+      "filePath": "features/import_export/services.py",
+      "lineRange": [9, 79],
+      "summary": "Overwrites an existing feature's live feature state, segment overrides, and multivariate options for an environment using imported feature data, reconciling additions and removals.",
+      "tags": ["service", "business-logic", "import-export", "data-model"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:features/import_export/tasks.py:retire_stalled_feature_imports_and_exports",
+      "type": "function",
+      "name": "retire_stalled_feature_imports_and_exports",
+      "filePath": "features/import_export/tasks.py",
+      "lineRange": [43, 62],
+      "summary": "Recurring task that marks long-running feature import and export jobs as failed once they exceed the stall threshold.",
+      "tags": ["async-tasks", "import-export", "cleanup"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:features/import_export/tasks.py:_export_features_for_environment",
+      "type": "function",
+      "name": "_export_features_for_environment",
+      "filePath": "features/import_export/tasks.py",
+      "lineRange": [65, 116],
+      "summary": "Builds the serialized export payload by collecting live feature states (and multivariate values) for an environment, optionally filtered by tags, and saves it to the FeatureExport record.",
+      "tags": ["async-tasks", "import-export", "serialization", "data-pipeline"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:features/import_export/tasks.py:export_features_for_environment",
+      "type": "function",
+      "name": "export_features_for_environment",
+      "filePath": "features/import_export/tasks.py",
+      "lineRange": [120, 130],
+      "summary": "Celery task entry point that loads a FeatureExport, runs the export, and updates its status to success or failed.",
+      "tags": ["async-tasks", "import-export"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:features/import_export/tasks.py:import_features_for_environment",
+      "type": "function",
+      "name": "import_features_for_environment",
+      "filePath": "features/import_export/tasks.py",
+      "lineRange": [134, 142],
+      "summary": "Celery task entry point that loads a FeatureImport, runs the import, and updates its status to success or failed.",
+      "tags": ["async-tasks", "import-export"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:features/import_export/tasks.py:_import_features_for_environment",
+      "type": "function",
+      "name": "_import_features_for_environment",
+      "filePath": "features/import_export/tasks.py",
+      "lineRange": [145, 166],
+      "summary": "Parses uploaded feature data and, for each feature, creates or updates the project Feature and overwrites its environment state via the import service.",
+      "tags": ["async-tasks", "import-export", "business-logic"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:features/import_export/tasks.py:_create_flagsmith_on_flagsmith_feature_export",
+      "type": "function",
+      "name": "_create_flagsmith_on_flagsmith_feature_export",
+      "filePath": "features/import_export/tasks.py",
+      "lineRange": [183, 205],
+      "summary": "Generates a fresh Flagsmith-on-Flagsmith feature export by exporting the configured environment and storing the resulting payload.",
+      "tags": ["async-tasks", "import-export"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:features/import_export/types.py:FeatureExportData",
+      "type": "class",
+      "name": "FeatureExportData",
+      "filePath": "features/import_export/types.py",
+      "lineRange": [11, 19],
+      "summary": "TypedDict describing the JSON shape of a single exported feature, including its config, value, enabled state, and multivariate options.",
+      "tags": ["type-definition", "import-export", "serialization"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:features/import_export/views.py:create_feature_export",
+      "type": "function",
+      "name": "create_feature_export",
+      "filePath": "features/import_export/views.py",
+      "lineRange": [42, 48],
+      "summary": "API endpoint that validates the create-export request, persists the FeatureExport job, and returns the serialized export.",
+      "tags": ["api-handler", "endpoint", "import-export"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:features/import_export/views.py:download_feature_export",
+      "type": "function",
+      "name": "download_feature_export",
+      "filePath": "features/import_export/views.py",
+      "lineRange": [71, 88],
+      "summary": "API endpoint that returns the JSON payload of a completed feature export, rejecting exports that have not finished successfully.",
+      "tags": ["api-handler", "endpoint", "import-export"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:features/import_export/views.py:download_flagsmith_on_flagsmith",
+      "type": "function",
+      "name": "download_flagsmith_on_flagsmith",
+      "filePath": "features/import_export/views.py",
+      "lineRange": [97, 117],
+      "summary": "API endpoint that returns the most recent Flagsmith-on-Flagsmith feature export payload, raising 404 when none exists or the feature is disabled.",
+      "tags": ["api-handler", "endpoint", "import-export"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:features/import_export/views.py:FeatureExportListView",
+      "type": "class",
+      "name": "FeatureExportListView",
+      "filePath": "features/import_export/views.py",
+      "lineRange": [120, 141],
+      "summary": "List API view returning feature exports for environments the requesting user administers within the project.",
+      "tags": ["api-handler", "view", "import-export"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:features/import_export/views.py:FeatureImportListView",
+      "type": "class",
+      "name": "FeatureImportListView",
+      "filePath": "features/import_export/views.py",
+      "lineRange": [144, 165],
+      "summary": "List API view returning feature imports for environments the requesting user administers within the project.",
+      "tags": ["api-handler", "view", "import-export"],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:features/import_export/mappers.py",
+      "target": "file:features/import_export/types.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/import_export/mappers.py",
+      "target": "file:features/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/import_export/mappers.py",
+      "target": "file:projects/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/import_export/models.py",
+      "target": "file:features/import_export/constants.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/import_export/permissions.py",
+      "target": "file:environments/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/import_export/permissions.py",
+      "target": "file:features/import_export/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/import_export/permissions.py",
+      "target": "file:projects/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/import_export/serializers.py",
+      "target": "file:features/import_export/constants.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/import_export/serializers.py",
+      "target": "file:features/import_export/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/import_export/serializers.py",
+      "target": "file:features/import_export/tasks.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/import_export/services.py",
+      "target": "file:environments/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/import_export/services.py",
+      "target": "file:features/import_export/types.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/import_export/services.py",
+      "target": "file:features/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/import_export/services.py",
+      "target": "file:features/multivariate/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/import_export/tasks.py",
+      "target": "file:features/import_export/constants.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/import_export/tasks.py",
+      "target": "file:features/import_export/mappers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/import_export/tasks.py",
+      "target": "file:features/import_export/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/import_export/tasks.py",
+      "target": "file:features/import_export/services.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/import_export/tasks.py",
+      "target": "file:features/import_export/types.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/import_export/tasks.py",
+      "target": "file:features/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/import_export/tasks.py",
+      "target": "file:features/versioning/versioning_service.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/import_export/views.py",
+      "target": "file:environments/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/import_export/views.py",
+      "target": "file:features/import_export/constants.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/import_export/views.py",
+      "target": "file:features/import_export/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/import_export/views.py",
+      "target": "file:features/import_export/permissions.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/import_export/views.py",
+      "target": "file:features/import_export/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/import_export/mappers.py",
+      "target": "function:features/import_export/mappers.py:map_feature_export_data_to_feature",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/import_export/mappers.py",
+      "target": "function:features/import_export/mappers.py:map_feature_export_data_to_feature",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/import_export/models.py",
+      "target": "class:features/import_export/models.py:FeatureExport",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/import_export/models.py",
+      "target": "class:features/import_export/models.py:FeatureExport",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/import_export/models.py",
+      "target": "class:features/import_export/models.py:FeatureImport",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/import_export/models.py",
+      "target": "class:features/import_export/models.py:FeatureImport",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/import_export/models.py",
+      "target": "class:features/import_export/models.py:FlagsmithOnFlagsmithFeatureExport",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/import_export/models.py",
+      "target": "class:features/import_export/models.py:FlagsmithOnFlagsmithFeatureExport",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/import_export/permissions.py",
+      "target": "class:features/import_export/permissions.py:FeatureImportPermissions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/import_export/permissions.py",
+      "target": "class:features/import_export/permissions.py:FeatureImportPermissions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/import_export/permissions.py",
+      "target": "class:features/import_export/permissions.py:CreateFeatureExportPermissions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/import_export/permissions.py",
+      "target": "class:features/import_export/permissions.py:CreateFeatureExportPermissions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/import_export/permissions.py",
+      "target": "class:features/import_export/permissions.py:DownloadFeatureExportPermissions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/import_export/permissions.py",
+      "target": "class:features/import_export/permissions.py:DownloadFeatureExportPermissions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/import_export/permissions.py",
+      "target": "class:features/import_export/permissions.py:FeatureExportListPermissions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/import_export/permissions.py",
+      "target": "class:features/import_export/permissions.py:FeatureExportListPermissions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/import_export/permissions.py",
+      "target": "class:features/import_export/permissions.py:FeatureImportListPermissions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/import_export/permissions.py",
+      "target": "class:features/import_export/permissions.py:FeatureImportListPermissions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/import_export/serializers.py",
+      "target": "class:features/import_export/serializers.py:CreateFeatureExportSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/import_export/serializers.py",
+      "target": "class:features/import_export/serializers.py:CreateFeatureExportSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/import_export/serializers.py",
+      "target": "class:features/import_export/serializers.py:FeatureExportSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/import_export/serializers.py",
+      "target": "class:features/import_export/serializers.py:FeatureExportSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/import_export/serializers.py",
+      "target": "class:features/import_export/serializers.py:FeatureImportUploadSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/import_export/serializers.py",
+      "target": "class:features/import_export/serializers.py:FeatureImportUploadSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/import_export/serializers.py",
+      "target": "class:features/import_export/serializers.py:FeatureImportSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/import_export/serializers.py",
+      "target": "class:features/import_export/serializers.py:FeatureImportSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/import_export/services.py",
+      "target": "function:features/import_export/services.py:overwrite_feature_for_environment",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/import_export/services.py",
+      "target": "function:features/import_export/services.py:overwrite_feature_for_environment",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/import_export/tasks.py",
+      "target": "function:features/import_export/tasks.py:retire_stalled_feature_imports_and_exports",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/import_export/tasks.py",
+      "target": "function:features/import_export/tasks.py:retire_stalled_feature_imports_and_exports",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/import_export/tasks.py",
+      "target": "function:features/import_export/tasks.py:_export_features_for_environment",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/import_export/tasks.py",
+      "target": "function:features/import_export/tasks.py:export_features_for_environment",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/import_export/tasks.py",
+      "target": "function:features/import_export/tasks.py:export_features_for_environment",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/import_export/tasks.py",
+      "target": "function:features/import_export/tasks.py:import_features_for_environment",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/import_export/tasks.py",
+      "target": "function:features/import_export/tasks.py:import_features_for_environment",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/import_export/tasks.py",
+      "target": "function:features/import_export/tasks.py:_import_features_for_environment",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/import_export/tasks.py",
+      "target": "function:features/import_export/tasks.py:_create_flagsmith_on_flagsmith_feature_export",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/import_export/types.py",
+      "target": "class:features/import_export/types.py:FeatureExportData",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/import_export/types.py",
+      "target": "class:features/import_export/types.py:FeatureExportData",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/import_export/views.py",
+      "target": "function:features/import_export/views.py:create_feature_export",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/import_export/views.py",
+      "target": "function:features/import_export/views.py:create_feature_export",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/import_export/views.py",
+      "target": "function:features/import_export/views.py:download_feature_export",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/import_export/views.py",
+      "target": "function:features/import_export/views.py:download_feature_export",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/import_export/views.py",
+      "target": "function:features/import_export/views.py:download_flagsmith_on_flagsmith",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/import_export/views.py",
+      "target": "function:features/import_export/views.py:download_flagsmith_on_flagsmith",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/import_export/views.py",
+      "target": "class:features/import_export/views.py:FeatureExportListView",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/import_export/views.py",
+      "target": "class:features/import_export/views.py:FeatureExportListView",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/import_export/views.py",
+      "target": "class:features/import_export/views.py:FeatureImportListView",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/import_export/views.py",
+      "target": "class:features/import_export/views.py:FeatureImportListView",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:features/import_export/tasks.py:_import_features_for_environment",
+      "target": "function:features/import_export/mappers.py:map_feature_export_data_to_feature",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:features/import_export/tasks.py:_import_features_for_environment",
+      "target": "function:features/import_export/services.py:overwrite_feature_for_environment",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:features/import_export/tasks.py:export_features_for_environment",
+      "target": "function:features/import_export/tasks.py:_export_features_for_environment",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:features/import_export/tasks.py:import_features_for_environment",
+      "target": "function:features/import_export/tasks.py:_import_features_for_environment",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:features/import_export/tasks.py:_create_flagsmith_on_flagsmith_feature_export",
+      "target": "function:features/import_export/tasks.py:export_features_for_environment",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:features/import_export/services.py:overwrite_feature_for_environment",
+      "target": "file:features/versioning/versioning_service.py",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "class:features/import_export/serializers.py:CreateFeatureExportSerializer",
+      "target": "function:features/import_export/tasks.py:export_features_for_environment",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:features/import_export/serializers.py:FeatureImportUploadSerializer",
+      "target": "function:features/import_export/tasks.py:import_features_for_environment",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:features/import_export/views.py:create_feature_export",
+      "target": "class:features/import_export/serializers.py:CreateFeatureExportSerializer",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:features/import_export/views.py:download_flagsmith_on_flagsmith",
+      "target": "class:features/import_export/models.py:FlagsmithOnFlagsmithFeatureExport",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ]
+}

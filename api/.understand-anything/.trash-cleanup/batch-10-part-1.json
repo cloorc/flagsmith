@@ -1,0 +1,443 @@
+{
+  "nodes": [
+    {
+      "id": "file:experimentation/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "experimentation/__init__.py",
+      "summary": "Empty package marker for the experimentation Django app, which houses A/B experiment, metric, and data-warehouse connection features.",
+      "tags": [
+        "entry-point",
+        "barrel",
+        "package-init"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:experimentation/constants.py",
+      "type": "file",
+      "name": "constants.py",
+      "filePath": "experimentation/constants.py",
+      "summary": "App-wide constants for the experimentation feature: feature-flag keys, the SDK exposure event name, refresh intervals, and statistical sample-size floors used in results inference.",
+      "tags": [
+        "config",
+        "constants",
+        "feature-flags"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:experimentation/dataclasses.py",
+      "type": "file",
+      "name": "dataclasses.py",
+      "filePath": "experimentation/dataclasses.py",
+      "summary": "Internal data-transfer dataclasses for warehouse stats, exposure buckets/timeseries, and metric result aggregates passed between the services and query layers.",
+      "tags": [
+        "data-model",
+        "dataclass",
+        "type-definition",
+        "dto"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Frozen dataclasses used as DTOs to decouple ClickHouse query rows from serializer output."
+    },
+    {
+      "id": "file:experimentation/experiment_urls.py",
+      "type": "file",
+      "name": "experiment_urls.py",
+      "filePath": "experimentation/experiment_urls.py",
+      "summary": "URL routing that registers the experiment and nested experiment-metric viewsets under the environment-scoped API.",
+      "tags": [
+        "routing",
+        "urls",
+        "api-routing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:experimentation/ingestion_sync_service.py",
+      "type": "file",
+      "name": "ingestion_sync_service.py",
+      "filePath": "experimentation/ingestion_sync_service.py",
+      "summary": "Thin Redis-cluster client wrapper that pushes environment API keys to (and removes them from) the events-ingestion service so warehouse ingestion knows which environments to accept.",
+      "tags": [
+        "service",
+        "redis",
+        "integration"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:experimentation/metric_definitions.py",
+      "type": "file",
+      "name": "metric_definitions.py",
+      "filePath": "experimentation/metric_definitions.py",
+      "summary": "Versioned validator registry for metric definition payloads, dispatching to per-version validators (currently v1) to enforce the event/aggregation schema.",
+      "tags": [
+        "validation",
+        "factory",
+        "metrics"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:experimentation/metric_urls.py",
+      "type": "file",
+      "name": "metric_urls.py",
+      "filePath": "experimentation/metric_urls.py",
+      "summary": "URL routing registering the environment-scoped metric viewset for the experimentation API.",
+      "tags": [
+        "routing",
+        "urls",
+        "api-routing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:experimentation/models.py",
+      "type": "file",
+      "name": "models.py",
+      "filePath": "experimentation/models.py",
+      "summary": "Django ORM models for the experimentation domain: warehouse connections, experiments and their computations, exposures, results, and metrics with their aggregation/direction enums.",
+      "tags": [
+        "data-model",
+        "django-model",
+        "orm",
+        "domain"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Uses Django TextChoices enums and soft-delete/audit mixins; warehouse-connection model triggers ingestion-sync tasks on create/delete."
+    },
+    {
+      "id": "file:experimentation/permissions.py",
+      "type": "file",
+      "name": "permissions.py",
+      "filePath": "experimentation/permissions.py",
+      "summary": "DRF permission classes gating warehouse-connection and experiment endpoints on the relevant feature flag and environment-admin rights.",
+      "tags": [
+        "permissions",
+        "authorization",
+        "middleware"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:experimentation/metric_definitions.py:validate_metric_definition",
+      "type": "function",
+      "name": "validate_metric_definition",
+      "filePath": "experimentation/metric_definitions.py",
+      "lineRange": [
+        26,
+        38
+      ],
+      "summary": "Validates a metric definition payload by reading its version and dispatching to the matching versioned validator, raising on unknown or malformed definitions.",
+      "tags": [
+        "validation",
+        "factory",
+        "metrics"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:experimentation/models.py:WarehouseConnection",
+      "type": "class",
+      "name": "WarehouseConnection",
+      "filePath": "experimentation/models.py",
+      "lineRange": [
+        42,
+        90
+      ],
+      "summary": "Model representing an environment's data-warehouse connection, with connection status, typed config, and signal-like hooks that sync the environment key to ingestion on create/delete.",
+      "tags": [
+        "data-model",
+        "django-model",
+        "warehouse"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:experimentation/models.py:Experiment",
+      "type": "class",
+      "name": "Experiment",
+      "filePath": "experimentation/models.py",
+      "lineRange": [
+        108,
+        138
+      ],
+      "summary": "Core experiment model linking a feature and environment with status, schedule, and lifecycle timestamps.",
+      "tags": [
+        "data-model",
+        "django-model",
+        "domain"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:experimentation/models.py:ExperimentComputation",
+      "type": "class",
+      "name": "ExperimentComputation",
+      "filePath": "experimentation/models.py",
+      "lineRange": [
+        141,
+        180
+      ],
+      "summary": "Abstract base for cached experiment computations (exposures/results) tracking refresh and failure state, with helpers to record successful refreshes, failures, and refresh requests.",
+      "tags": [
+        "data-model",
+        "django-model",
+        "abstract-base"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:experimentation/models.py:Metric",
+      "type": "class",
+      "name": "Metric",
+      "filePath": "experimentation/models.py",
+      "lineRange": [
+        223,
+        245
+      ],
+      "summary": "Environment-scoped metric model holding a versioned definition payload, aggregation type, and expected/measured direction for experiment evaluation.",
+      "tags": [
+        "data-model",
+        "django-model",
+        "metrics"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:experimentation/models.py:ExperimentMetric",
+      "type": "class",
+      "name": "ExperimentMetric",
+      "filePath": "experimentation/models.py",
+      "lineRange": [
+        248,
+        271
+      ],
+      "summary": "Through model attaching a metric to an experiment, capturing per-experiment metric configuration.",
+      "tags": [
+        "data-model",
+        "django-model",
+        "join-table"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:experimentation/permissions.py:WarehouseConnectionPermission",
+      "type": "class",
+      "name": "WarehouseConnectionPermission",
+      "filePath": "experimentation/permissions.py",
+      "lineRange": [
+        13,
+        26
+      ],
+      "summary": "DRF permission requiring the warehouse feature flag to be enabled for the environment's organisation and the requesting user to be an environment admin.",
+      "tags": [
+        "permissions",
+        "authorization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:experimentation/permissions.py:ExperimentPermission",
+      "type": "class",
+      "name": "ExperimentPermission",
+      "filePath": "experimentation/permissions.py",
+      "lineRange": [
+        29,
+        42
+      ],
+      "summary": "DRF permission requiring the experiment feature flag to be enabled and the requesting user to be an environment admin.",
+      "tags": [
+        "permissions",
+        "authorization"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:experimentation/metric_definitions.py",
+      "target": "function:experimentation/metric_definitions.py:validate_metric_definition",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:experimentation/metric_definitions.py",
+      "target": "function:experimentation/metric_definitions.py:validate_metric_definition",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:experimentation/models.py",
+      "target": "class:experimentation/models.py:WarehouseConnection",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:experimentation/models.py",
+      "target": "class:experimentation/models.py:WarehouseConnection",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:experimentation/models.py",
+      "target": "class:experimentation/models.py:Experiment",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:experimentation/models.py",
+      "target": "class:experimentation/models.py:Experiment",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:experimentation/models.py",
+      "target": "class:experimentation/models.py:ExperimentComputation",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:experimentation/models.py",
+      "target": "class:experimentation/models.py:ExperimentComputation",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:experimentation/models.py",
+      "target": "class:experimentation/models.py:Metric",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:experimentation/models.py",
+      "target": "class:experimentation/models.py:Metric",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:experimentation/models.py",
+      "target": "class:experimentation/models.py:ExperimentMetric",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:experimentation/models.py",
+      "target": "class:experimentation/models.py:ExperimentMetric",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:experimentation/permissions.py",
+      "target": "class:experimentation/permissions.py:WarehouseConnectionPermission",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:experimentation/permissions.py",
+      "target": "class:experimentation/permissions.py:WarehouseConnectionPermission",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:experimentation/permissions.py",
+      "target": "class:experimentation/permissions.py:ExperimentPermission",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:experimentation/permissions.py",
+      "target": "class:experimentation/permissions.py:ExperimentPermission",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:experimentation/dataclasses.py",
+      "target": "file:experimentation/stats.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:experimentation/dataclasses.py",
+      "target": "file:experimentation/types.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:experimentation/experiment_urls.py",
+      "target": "file:experimentation/views.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:experimentation/metric_urls.py",
+      "target": "file:experimentation/views.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:experimentation/models.py",
+      "target": "file:environments/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:experimentation/models.py",
+      "target": "file:experimentation/dataclasses.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:experimentation/models.py",
+      "target": "file:experimentation/types.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:experimentation/permissions.py",
+      "target": "file:environments/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:experimentation/permissions.py",
+      "target": "file:experimentation/services.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:experimentation/permissions.py",
+      "target": "file:users/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

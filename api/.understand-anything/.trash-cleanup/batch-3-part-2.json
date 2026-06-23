@@ -1,0 +1,765 @@
+{
+  "nodes": [
+    {
+      "id": "file:metadata/models.py",
+      "type": "file",
+      "name": "models.py",
+      "filePath": "metadata/models.py",
+      "summary": "Defines the metadata domain models: MetadataField (with typed value validation), MetadataModelField, requirement rules, and the polymorphic Metadata record attached to entities.",
+      "tags": [
+        "data-model",
+        "metadata",
+        "validation",
+        "django"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:metadata/models.py:MetadataField",
+      "type": "class",
+      "name": "MetadataField",
+      "filePath": "metadata/models.py",
+      "lineRange": [
+        30,
+        85
+      ],
+      "summary": "Model representing an organisation-scoped metadata field with per-type value validation (int, bool, url, str, multiline) used to enforce metadata correctness.",
+      "tags": [
+        "data-model",
+        "metadata",
+        "validation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:metadata/models.py:Metadata",
+      "type": "class",
+      "name": "Metadata",
+      "filePath": "metadata/models.py",
+      "lineRange": [
+        117,
+        140
+      ],
+      "summary": "Polymorphic metadata record linking a metadata model field value to an arbitrary content object, with deep-clone support for new entities.",
+      "tags": [
+        "data-model",
+        "metadata",
+        "generic-relation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:metadata/permissions.py",
+      "type": "file",
+      "name": "permissions.py",
+      "filePath": "metadata/permissions.py",
+      "summary": "DRF permission classes for metadata fields and model fields, enforcing organisation-admin and project-admin access on create and object operations.",
+      "tags": [
+        "permissions",
+        "security",
+        "metadata",
+        "drf"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:metadata/permissions.py:MetadataFieldPermissions",
+      "type": "class",
+      "name": "MetadataFieldPermissions",
+      "filePath": "metadata/permissions.py",
+      "lineRange": [
+        10,
+        51
+      ],
+      "summary": "Permission class for metadata field endpoints, resolving organisation or project from the request and requiring admin membership for write access.",
+      "tags": [
+        "permissions",
+        "security",
+        "metadata"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:metadata/permissions.py:MetadataModelFieldPermissions",
+      "type": "class",
+      "name": "MetadataModelFieldPermissions",
+      "filePath": "metadata/permissions.py",
+      "lineRange": [
+        54,
+        96
+      ],
+      "summary": "Permission class for metadata model field endpoints, deriving the organisation via the related metadata field and enforcing admin-level access.",
+      "tags": [
+        "permissions",
+        "security",
+        "metadata"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:metadata/serializers.py",
+      "type": "file",
+      "name": "serializers.py",
+      "filePath": "metadata/serializers.py",
+      "summary": "DRF serializers for the metadata domain, including field/model-field serialisers, query-param serialisers, and a MetadataSerializerMixin that validates and persists required metadata for owning entities.",
+      "tags": [
+        "serialization",
+        "metadata",
+        "validation",
+        "drf"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:metadata/serializers.py:MetadataFieldSerializer",
+      "type": "class",
+      "name": "MetadataFieldSerializer",
+      "filePath": "metadata/serializers.py",
+      "lineRange": [
+        66,
+        120
+      ],
+      "summary": "Serializer for metadata fields enforcing organisation/project consistency and uniqueness of field names within scope.",
+      "tags": [
+        "serialization",
+        "metadata",
+        "validation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:metadata/serializers.py:MetaDataModelFieldSerializer",
+      "type": "class",
+      "name": "MetaDataModelFieldSerializer",
+      "filePath": "metadata/serializers.py",
+      "lineRange": [
+        123,
+        156
+      ],
+      "summary": "Serializer for metadata model fields validating requirement entries against the referenced content type and target objects.",
+      "tags": [
+        "serialization",
+        "metadata",
+        "validation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:metadata/serializers.py:MetadataSerializerMixin",
+      "type": "class",
+      "name": "MetadataSerializerMixin",
+      "filePath": "metadata/serializers.py",
+      "lineRange": [
+        180,
+        256
+      ],
+      "summary": "Reusable mixin that validates an entity has all required metadata fields and atomically replaces its metadata records on save.",
+      "tags": [
+        "serialization",
+        "metadata",
+        "validation",
+        "mixin"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:metadata/urls.py",
+      "type": "file",
+      "name": "urls.py",
+      "filePath": "metadata/urls.py",
+      "summary": "URL routing for the metadata API, registering the metadata field and model-field viewsets with the router.",
+      "tags": [
+        "routing",
+        "urls",
+        "metadata",
+        "django"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:metadata/views.py",
+      "type": "file",
+      "name": "views.py",
+      "filePath": "metadata/views.py",
+      "summary": "ViewSets for metadata fields and model fields, scoping querysets by organisation/project and exposing supported content types and requirement targets.",
+      "tags": [
+        "api-handler",
+        "metadata",
+        "drf"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:metadata/views.py:MetaDataModelFieldViewSet",
+      "type": "class",
+      "name": "MetaDataModelFieldViewSet",
+      "filePath": "metadata/views.py",
+      "lineRange": [
+        62,
+        122
+      ],
+      "summary": "ViewSet for metadata model fields with extra actions exposing supported content types and the models a field can be required for.",
+      "tags": [
+        "api-handler",
+        "metadata",
+        "drf"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:metadata/views.py:ProjectMetadataFieldViewSet",
+      "type": "class",
+      "name": "ProjectMetadataFieldViewSet",
+      "filePath": "metadata/views.py",
+      "lineRange": [
+        129,
+        166
+      ],
+      "summary": "ViewSet returning metadata fields available to a project, combining project-scoped and organisation-wide fields filtered by the user's permitted projects.",
+      "tags": [
+        "api-handler",
+        "metadata",
+        "drf"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:organisations/admin.py",
+      "type": "file",
+      "name": "admin.py",
+      "filePath": "organisations/admin.py",
+      "summary": "Django admin configuration for organisations, registering inlines for projects, subscriptions, members, and subscription cache plus annotated user/project counts.",
+      "tags": [
+        "admin",
+        "django",
+        "organisations"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:organisations/admin.py:OrganisationAdmin",
+      "type": "class",
+      "name": "OrganisationAdmin",
+      "filePath": "organisations/admin.py",
+      "lineRange": [
+        100,
+        150
+      ],
+      "summary": "Admin model for organisations exposing annotated active-user and project counts and subscription plan details with optimised querysets.",
+      "tags": [
+        "admin",
+        "django",
+        "organisations"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:organisations/subscriptions/serializers/mixins.py",
+      "type": "file",
+      "name": "mixins.py",
+      "filePath": "organisations/subscriptions/serializers/mixins.py",
+      "summary": "Serializer mixin that makes configured fields read-only when an organisation's subscription plan is invalid, matched against a regex of disallowed plans.",
+      "tags": [
+        "serialization",
+        "subscriptions",
+        "mixin",
+        "drf"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:organisations/subscriptions/serializers/mixins.py:ReadOnlyIfNotValidPlanMixin",
+      "type": "class",
+      "name": "ReadOnlyIfNotValidPlanMixin",
+      "filePath": "organisations/subscriptions/serializers/mixins.py",
+      "lineRange": [
+        7,
+        61
+      ],
+      "summary": "Abstract serializer mixin that marks declared fields read-only for organisations whose subscription plan matches the invalid-plans regex; subclasses supply get_subscription.",
+      "tags": [
+        "serialization",
+        "subscriptions",
+        "mixin"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:permissions/models.py",
+      "type": "file",
+      "name": "models.py",
+      "filePath": "permissions/models.py",
+      "summary": "Defines the PermissionModel record and AbstractBasePermissionModel mixin providing add_permission/set_permissions helpers for permission-bearing entities.",
+      "tags": [
+        "data-model",
+        "permissions",
+        "django",
+        "abstract-base"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:permissions/models.py:AbstractBasePermissionModel",
+      "type": "class",
+      "name": "AbstractBasePermissionModel",
+      "filePath": "permissions/models.py",
+      "lineRange": [
+        20,
+        34
+      ],
+      "summary": "Abstract base model providing reusable helpers to add and set the permissions associated with an entity.",
+      "tags": [
+        "data-model",
+        "permissions",
+        "abstract-base"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:permissions/serializers.py",
+      "type": "file",
+      "name": "serializers.py",
+      "filePath": "permissions/serializers.py",
+      "summary": "DRF serializers for the permission domain, including an abstract create/update user-permission serializer and detailed/derived permission representations.",
+      "tags": [
+        "serialization",
+        "permissions",
+        "drf"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:permissions/serializers.py:CreateUpdateUserPermissionSerializerABC",
+      "type": "class",
+      "name": "CreateUpdateUserPermissionSerializerABC",
+      "filePath": "permissions/serializers.py",
+      "lineRange": [
+        17,
+        37
+      ],
+      "summary": "Abstract base serializer that pops permission keys from validated data and sets them on the instance during create and update.",
+      "tags": [
+        "serialization",
+        "permissions",
+        "abstract-base"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:projects/admin.py",
+      "type": "file",
+      "name": "admin.py",
+      "filePath": "projects/admin.py",
+      "summary": "Django admin configuration for projects, registering environment/feature/segment/tag inlines and a bulk action to delete all segments for selected projects.",
+      "tags": [
+        "admin",
+        "django",
+        "projects"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:projects/admin.py:ProjectAdmin",
+      "type": "class",
+      "name": "ProjectAdmin",
+      "filePath": "projects/admin.py",
+      "lineRange": [
+        51,
+        88
+      ],
+      "summary": "Admin model for projects exposing related inlines and a permission-gated bulk action that deletes all segments for the selected projects.",
+      "tags": [
+        "admin",
+        "django",
+        "projects"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:projects/code_references/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "projects/code_references/__init__.py",
+      "summary": "Empty package initialiser marking projects/code_references as a Python package.",
+      "tags": [
+        "entry-point",
+        "package-init",
+        "django"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:metadata/models.py",
+      "target": "class:metadata/models.py:MetadataField",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:metadata/models.py",
+      "target": "class:metadata/models.py:MetadataField",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:metadata/models.py",
+      "target": "class:metadata/models.py:Metadata",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:metadata/models.py",
+      "target": "class:metadata/models.py:Metadata",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:metadata/models.py",
+      "target": "file:metadata/fields.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:metadata/models.py",
+      "target": "file:organisations/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:metadata/permissions.py",
+      "target": "class:metadata/permissions.py:MetadataFieldPermissions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:metadata/permissions.py",
+      "target": "class:metadata/permissions.py:MetadataFieldPermissions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:metadata/permissions.py",
+      "target": "class:metadata/permissions.py:MetadataModelFieldPermissions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:metadata/permissions.py",
+      "target": "class:metadata/permissions.py:MetadataModelFieldPermissions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:metadata/permissions.py",
+      "target": "file:metadata/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:metadata/permissions.py",
+      "target": "file:organisations/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:metadata/permissions.py",
+      "target": "file:projects/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:metadata/serializers.py",
+      "target": "class:metadata/serializers.py:MetadataFieldSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:metadata/serializers.py",
+      "target": "class:metadata/serializers.py:MetadataFieldSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:metadata/serializers.py",
+      "target": "class:metadata/serializers.py:MetaDataModelFieldSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:metadata/serializers.py",
+      "target": "class:metadata/serializers.py:MetaDataModelFieldSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:metadata/serializers.py",
+      "target": "class:metadata/serializers.py:MetadataSerializerMixin",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:metadata/serializers.py",
+      "target": "class:metadata/serializers.py:MetadataSerializerMixin",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:metadata/serializers.py",
+      "target": "file:metadata/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:metadata/serializers.py",
+      "target": "file:organisations/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:metadata/serializers.py",
+      "target": "file:projects/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "class:metadata/serializers.py:MetadataFieldSerializer",
+      "target": "class:metadata/models.py:MetadataField",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:metadata/urls.py",
+      "target": "file:metadata/views.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:metadata/views.py",
+      "target": "class:metadata/views.py:MetaDataModelFieldViewSet",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:metadata/views.py",
+      "target": "class:metadata/views.py:MetaDataModelFieldViewSet",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:metadata/views.py",
+      "target": "class:metadata/views.py:ProjectMetadataFieldViewSet",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:metadata/views.py",
+      "target": "class:metadata/views.py:ProjectMetadataFieldViewSet",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:metadata/views.py",
+      "target": "file:metadata/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:metadata/views.py",
+      "target": "file:metadata/permissions.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:metadata/views.py",
+      "target": "file:metadata/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:metadata/views.py",
+      "target": "file:projects/permissions.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/admin.py",
+      "target": "class:organisations/admin.py:OrganisationAdmin",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:organisations/admin.py",
+      "target": "class:organisations/admin.py:OrganisationAdmin",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/admin.py",
+      "target": "file:organisations/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/admin.py",
+      "target": "file:projects/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "class:organisations/admin.py:OrganisationAdmin",
+      "target": "class:organisations/models.py:Organisation",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/subscriptions/serializers/mixins.py",
+      "target": "class:organisations/subscriptions/serializers/mixins.py:ReadOnlyIfNotValidPlanMixin",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:organisations/subscriptions/serializers/mixins.py",
+      "target": "class:organisations/subscriptions/serializers/mixins.py:ReadOnlyIfNotValidPlanMixin",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/subscriptions/serializers/mixins.py",
+      "target": "file:organisations/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:permissions/models.py",
+      "target": "class:permissions/models.py:AbstractBasePermissionModel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:permissions/models.py",
+      "target": "class:permissions/models.py:AbstractBasePermissionModel",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:permissions/serializers.py",
+      "target": "class:permissions/serializers.py:CreateUpdateUserPermissionSerializerABC",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:permissions/serializers.py",
+      "target": "class:permissions/serializers.py:CreateUpdateUserPermissionSerializerABC",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:permissions/serializers.py",
+      "target": "file:permissions/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/admin.py",
+      "target": "class:projects/admin.py:ProjectAdmin",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:projects/admin.py",
+      "target": "class:projects/admin.py:ProjectAdmin",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:projects/admin.py",
+      "target": "file:environments/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/admin.py",
+      "target": "file:features/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/admin.py",
+      "target": "file:projects/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/admin.py",
+      "target": "file:projects/tags/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/admin.py",
+      "target": "file:segments/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "class:projects/admin.py:ProjectAdmin",
+      "target": "class:segments/models.py:Segment",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

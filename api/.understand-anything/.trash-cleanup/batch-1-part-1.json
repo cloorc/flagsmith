@@ -1,0 +1,1144 @@
+{
+  "nodes": [
+    {
+      "id": "file:api_keys/admin.py",
+      "type": "file",
+      "name": "admin.py",
+      "filePath": "api_keys/admin.py",
+      "summary": "Registers the MasterAPIKey model in the Django admin site.",
+      "tags": [
+        "admin",
+        "django",
+        "configuration"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:api_keys/authentication.py",
+      "type": "file",
+      "name": "authentication.py",
+      "filePath": "api_keys/authentication.py",
+      "summary": "DRF authentication backend that resolves a master API key from the request and yields an APIKeyUser.",
+      "tags": [
+        "authentication",
+        "api-handler",
+        "security"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:api_keys/models.py",
+      "type": "file",
+      "name": "models.py",
+      "filePath": "api_keys/models.py",
+      "summary": "Defines the MasterAPIKey model and manager for organisation-scoped master API keys, including role cleanup on delete.",
+      "tags": [
+        "data-model",
+        "django",
+        "api-keys"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:api_keys/serializers.py",
+      "type": "file",
+      "name": "serializers.py",
+      "filePath": "api_keys/serializers.py",
+      "summary": "Serialiser for creating and representing master API keys, returning the plaintext key once on creation.",
+      "tags": [
+        "serialization",
+        "api-keys",
+        "validation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:api_keys/user.py",
+      "type": "file",
+      "name": "user.py",
+      "filePath": "api_keys/user.py",
+      "summary": "Pseudo-user object representing a master API key, exposing permission-check methods mirroring the authenticated user interface.",
+      "tags": [
+        "authentication",
+        "permissions",
+        "api-keys",
+        "security"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:api_keys/views.py",
+      "type": "file",
+      "name": "views.py",
+      "filePath": "api_keys/views.py",
+      "summary": "DRF viewset for listing and creating organisation-scoped master API keys.",
+      "tags": [
+        "api-handler",
+        "api-keys",
+        "viewset"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:audit/permissions.py",
+      "type": "file",
+      "name": "permissions.py",
+      "filePath": "audit/permissions.py",
+      "summary": "DRF permission classes gating access to organisation- and project-scoped audit logs.",
+      "tags": [
+        "permissions",
+        "security",
+        "audit"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:audit/urls.py",
+      "type": "file",
+      "name": "urls.py",
+      "filePath": "audit/urls.py",
+      "summary": "URL routing for the global audit log endpoint.",
+      "tags": [
+        "routing",
+        "urls",
+        "audit"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:audit/views.py",
+      "type": "file",
+      "name": "views.py",
+      "filePath": "audit/views.py",
+      "summary": "Audit-log viewsets providing organisation, project, and global scopes with subscription-based visibility limits.",
+      "tags": [
+        "api-handler",
+        "audit",
+        "viewset"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:features/versioning/constants.py",
+      "type": "file",
+      "name": "constants.py",
+      "filePath": "features/versioning/constants.py",
+      "summary": "Constant definitions for the feature versioning subsystem.",
+      "tags": [
+        "constants",
+        "feature-versioning",
+        "configuration"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:organisations/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "organisations/__init__.py",
+      "summary": "Package marker for the organisations Django app.",
+      "tags": [
+        "entry-point",
+        "package",
+        "django"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:organisations/chargebee/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "organisations/chargebee/__init__.py",
+      "summary": "Chargebee package barrel re-exporting billing helper functions from the chargebee module.",
+      "tags": [
+        "entry-point",
+        "barrel",
+        "billing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:organisations/chargebee/cache.py",
+      "type": "file",
+      "name": "cache.py",
+      "filePath": "organisations/chargebee/cache.py",
+      "summary": "Caches Chargebee plan and addon metadata in Django cache, refreshing from the Chargebee API on miss.",
+      "tags": [
+        "service",
+        "caching",
+        "billing"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:organisations/chargebee/chargebee.py",
+      "type": "file",
+      "name": "chargebee.py",
+      "filePath": "organisations/chargebee/chargebee.py",
+      "summary": "Chargebee integration layer wrapping the Chargebee client for subscriptions, hosted pages, seat and API-call upgrades, and metadata extraction.",
+      "tags": [
+        "service",
+        "billing",
+        "integration",
+        "third-party"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Module-level functional API wrapping the Chargebee SDK; uses contextlib.suppress and explicit exception translation to domain errors."
+    },
+    {
+      "id": "file:organisations/chargebee/client.py",
+      "type": "file",
+      "name": "client.py",
+      "filePath": "organisations/chargebee/client.py",
+      "summary": "Initialises and configures the global Chargebee SDK client from settings.",
+      "tags": [
+        "configuration",
+        "billing",
+        "third-party"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:organisations/chargebee/constants.py",
+      "type": "file",
+      "name": "constants.py",
+      "filePath": "organisations/chargebee/constants.py",
+      "summary": "Constants for the Chargebee integration such as cache keys and timeouts.",
+      "tags": [
+        "constants",
+        "billing",
+        "configuration"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:api_keys/authentication.py:MasterAPIKeyAuthentication",
+      "type": "class",
+      "name": "MasterAPIKeyAuthentication",
+      "filePath": "api_keys/authentication.py",
+      "lineRange": [
+        12,
+        23
+      ],
+      "summary": "DRF authentication class that parses a master API key and returns an APIKeyUser, raising AuthenticationFailed when invalid.",
+      "tags": [
+        "authentication",
+        "security",
+        "api-keys"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:api_keys/models.py:MasterAPIKey",
+      "type": "class",
+      "name": "MasterAPIKey",
+      "filePath": "api_keys/models.py",
+      "lineRange": [
+        21,
+        44
+      ],
+      "summary": "Organisation-scoped master API key model that cascades deletion of associated role links.",
+      "tags": [
+        "data-model",
+        "api-keys",
+        "django"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:api_keys/serializers.py:MasterAPIKeySerializer",
+      "type": "class",
+      "name": "MasterAPIKeySerializer",
+      "filePath": "api_keys/serializers.py",
+      "lineRange": [
+        7,
+        41
+      ],
+      "summary": "Serialiser that creates master API keys via the manager and validates the is_admin flag.",
+      "tags": [
+        "serialization",
+        "api-keys",
+        "validation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:api_keys/user.py:APIKeyUser",
+      "type": "class",
+      "name": "APIKeyUser",
+      "filePath": "api_keys/user.py",
+      "lineRange": [
+        22,
+        118
+      ],
+      "summary": "Authenticated-user stand-in for a master API key, delegating organisation/project/environment permission checks to the permission service.",
+      "tags": [
+        "authentication",
+        "permissions",
+        "api-keys",
+        "security"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:api_keys/views.py:MasterAPIKeyViewSet",
+      "type": "class",
+      "name": "MasterAPIKeyViewSet",
+      "filePath": "api_keys/views.py",
+      "lineRange": [
+        14,
+        37
+      ],
+      "summary": "Viewset that filters master API keys to the current organisation and assigns ownership on creation.",
+      "tags": [
+        "api-handler",
+        "api-keys",
+        "viewset"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:audit/permissions.py:OrganisationAuditLogPermissions",
+      "type": "class",
+      "name": "OrganisationAuditLogPermissions",
+      "filePath": "audit/permissions.py",
+      "lineRange": [
+        10,
+        18
+      ],
+      "summary": "Permission class allowing organisation admins to read the organisation audit log.",
+      "tags": [
+        "permissions",
+        "security",
+        "audit"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:audit/permissions.py:ProjectAuditLogPermissions",
+      "type": "class",
+      "name": "ProjectAuditLogPermissions",
+      "filePath": "audit/permissions.py",
+      "lineRange": [
+        21,
+        29
+      ],
+      "summary": "Permission class gating project audit log access on project-level permission.",
+      "tags": [
+        "permissions",
+        "security",
+        "audit"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:audit/views.py:_BaseAuditLogViewSet",
+      "type": "class",
+      "name": "_BaseAuditLogViewSet",
+      "filePath": "audit/views.py",
+      "lineRange": [
+        29,
+        90
+      ],
+      "summary": "Base audit-log viewset building filters, choosing serialisers, and applying subscription-tier visibility limits.",
+      "tags": [
+        "api-handler",
+        "audit",
+        "viewset",
+        "abstract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:audit/views.py:AllAuditLogViewSet",
+      "type": "class",
+      "name": "AllAuditLogViewSet",
+      "filePath": "audit/views.py",
+      "lineRange": [
+        93,
+        117
+      ],
+      "summary": "Audit-log viewset returning entries across all organisations the requesting admin belongs to.",
+      "tags": [
+        "api-handler",
+        "audit",
+        "viewset"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:audit/views.py:OrganisationAuditLogViewSet",
+      "type": "class",
+      "name": "OrganisationAuditLogViewSet",
+      "filePath": "audit/views.py",
+      "lineRange": [
+        120,
+        133
+      ],
+      "summary": "Audit-log viewset scoped to a single organisation.",
+      "tags": [
+        "api-handler",
+        "audit",
+        "viewset"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:audit/views.py:ProjectAuditLogViewSet",
+      "type": "class",
+      "name": "ProjectAuditLogViewSet",
+      "filePath": "audit/views.py",
+      "lineRange": [
+        136,
+        149
+      ],
+      "summary": "Audit-log viewset scoped to a single project.",
+      "tags": [
+        "api-handler",
+        "audit",
+        "viewset"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:organisations/chargebee/cache.py:ChargebeeCache",
+      "type": "class",
+      "name": "ChargebeeCache",
+      "filePath": "organisations/chargebee/cache.py",
+      "lineRange": [
+        12,
+        49
+      ],
+      "summary": "Lazy cache of Chargebee plan and addon metadata backed by Django cache, refreshing from the API on miss.",
+      "tags": [
+        "service",
+        "caching",
+        "billing"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:organisations/chargebee/cache.py:get_item_generator",
+      "type": "function",
+      "name": "get_item_generator",
+      "filePath": "organisations/chargebee/cache.py",
+      "lineRange": [
+        52,
+        65
+      ],
+      "summary": "Generator yielding paginated Chargebee items for a given resource type from the Chargebee API.",
+      "tags": [
+        "billing",
+        "third-party",
+        "generator"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:organisations/chargebee/chargebee.py:get_subscription_data_from_hosted_page",
+      "type": "function",
+      "name": "get_subscription_data_from_hosted_page",
+      "filePath": "organisations/chargebee/chargebee.py",
+      "lineRange": [
+        60,
+        76
+      ],
+      "summary": "Builds a subscription-data dict from a Chargebee hosted page, combining plan metadata, seats, and API-call limits.",
+      "tags": [
+        "billing",
+        "third-party",
+        "subscription"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:organisations/chargebee/chargebee.py:get_portal_url",
+      "type": "function",
+      "name": "get_portal_url",
+      "filePath": "organisations/chargebee/chargebee.py",
+      "lineRange": [
+        123,
+        134
+      ],
+      "summary": "Creates a Chargebee customer portal session and returns its access URL.",
+      "tags": [
+        "billing",
+        "third-party"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:organisations/chargebee/chargebee.py:get_hosted_page_url_for_subscription_upgrade",
+      "type": "function",
+      "name": "get_hosted_page_url_for_subscription_upgrade",
+      "filePath": "organisations/chargebee/chargebee.py",
+      "lineRange": [
+        144,
+        155
+      ],
+      "summary": "Generates a Chargebee checkout hosted-page URL for upgrading an existing subscription's plan.",
+      "tags": [
+        "billing",
+        "third-party",
+        "subscription"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:organisations/chargebee/chargebee.py:extract_subscription_metadata",
+      "type": "function",
+      "name": "extract_subscription_metadata",
+      "filePath": "organisations/chargebee/chargebee.py",
+      "lineRange": [
+        158,
+        176
+      ],
+      "summary": "Computes aggregated subscription metadata (seats, API calls, projects) from a Chargebee subscription and its addons.",
+      "tags": [
+        "billing",
+        "subscription",
+        "serialization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:organisations/chargebee/chargebee.py:get_subscription_metadata_from_id",
+      "type": "function",
+      "name": "get_subscription_metadata_from_id",
+      "filePath": "organisations/chargebee/chargebee.py",
+      "lineRange": [
+        179,
+        197
+      ],
+      "summary": "Retrieves a Chargebee subscription by id and extracts its subscription metadata, tolerating errors.",
+      "tags": [
+        "billing",
+        "subscription",
+        "third-party"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:organisations/chargebee/chargebee.py:cancel_subscription",
+      "type": "function",
+      "name": "cancel_subscription",
+      "filePath": "organisations/chargebee/chargebee.py",
+      "lineRange": [
+        200,
+        209
+      ],
+      "summary": "Cancels a Chargebee subscription, raising a domain error on failure.",
+      "tags": [
+        "billing",
+        "subscription",
+        "third-party"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:organisations/chargebee/chargebee.py:add_single_seat",
+      "type": "function",
+      "name": "add_single_seat",
+      "filePath": "organisations/chargebee/chargebee.py",
+      "lineRange": [
+        212,
+        263
+      ],
+      "summary": "Adds one seat to a Chargebee subscription via addon update, translating payment failures into domain errors.",
+      "tags": [
+        "billing",
+        "subscription",
+        "third-party",
+        "error-handling"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:organisations/chargebee/chargebee.py:add_100k_api_calls",
+      "type": "function",
+      "name": "add_100k_api_calls",
+      "filePath": "organisations/chargebee/chargebee.py",
+      "lineRange": [
+        291,
+        329
+      ],
+      "summary": "Adds API-call capacity to a Chargebee subscription via an addon, handling payment failure and error cases.",
+      "tags": [
+        "billing",
+        "subscription",
+        "third-party",
+        "error-handling"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:api_keys/admin.py",
+      "target": "file:api_keys/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:api_keys/authentication.py",
+      "target": "file:api_keys/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:api_keys/authentication.py",
+      "target": "file:api_keys/user.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:api_keys/models.py",
+      "target": "file:organisations/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:api_keys/serializers.py",
+      "target": "file:api_keys/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:api_keys/user.py",
+      "target": "file:api_keys/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:api_keys/user.py",
+      "target": "file:organisations/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:api_keys/user.py",
+      "target": "file:permissions/permission_service.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:api_keys/user.py",
+      "target": "file:users/abc.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:api_keys/views.py",
+      "target": "file:api_keys/authentication.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:api_keys/views.py",
+      "target": "file:api_keys/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:api_keys/views.py",
+      "target": "file:api_keys/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:api_keys/views.py",
+      "target": "file:organisations/permissions/permissions.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:audit/permissions.py",
+      "target": "file:organisations/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:audit/permissions.py",
+      "target": "file:projects/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:audit/urls.py",
+      "target": "file:audit/views.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:audit/views.py",
+      "target": "file:audit/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:audit/views.py",
+      "target": "file:audit/permissions.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:audit/views.py",
+      "target": "file:audit/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:audit/views.py",
+      "target": "file:organisations/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/chargebee/__init__.py",
+      "target": "file:organisations/chargebee/chargebee.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/chargebee/cache.py",
+      "target": "file:organisations/chargebee/client.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/chargebee/cache.py",
+      "target": "file:organisations/chargebee/metadata.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/chargebee/chargebee.py",
+      "target": "file:organisations/chargebee/cache.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/chargebee/chargebee.py",
+      "target": "file:organisations/chargebee/client.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/chargebee/chargebee.py",
+      "target": "file:organisations/chargebee/constants.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/chargebee/chargebee.py",
+      "target": "file:organisations/chargebee/metadata.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/chargebee/chargebee.py",
+      "target": "file:organisations/subscriptions/constants.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/chargebee/chargebee.py",
+      "target": "file:organisations/subscriptions/exceptions.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/chargebee/client.py",
+      "target": "file:organisations/chargebee/chargebee.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:api_keys/authentication.py",
+      "target": "class:api_keys/authentication.py:MasterAPIKeyAuthentication",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:api_keys/authentication.py",
+      "target": "class:api_keys/authentication.py:MasterAPIKeyAuthentication",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:api_keys/models.py",
+      "target": "class:api_keys/models.py:MasterAPIKey",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:api_keys/models.py",
+      "target": "class:api_keys/models.py:MasterAPIKey",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:api_keys/serializers.py",
+      "target": "class:api_keys/serializers.py:MasterAPIKeySerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:api_keys/serializers.py",
+      "target": "class:api_keys/serializers.py:MasterAPIKeySerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:api_keys/user.py",
+      "target": "class:api_keys/user.py:APIKeyUser",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:api_keys/user.py",
+      "target": "class:api_keys/user.py:APIKeyUser",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:api_keys/views.py",
+      "target": "class:api_keys/views.py:MasterAPIKeyViewSet",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:api_keys/views.py",
+      "target": "class:api_keys/views.py:MasterAPIKeyViewSet",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:audit/permissions.py",
+      "target": "class:audit/permissions.py:OrganisationAuditLogPermissions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:audit/permissions.py",
+      "target": "class:audit/permissions.py:OrganisationAuditLogPermissions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:audit/permissions.py",
+      "target": "class:audit/permissions.py:ProjectAuditLogPermissions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:audit/permissions.py",
+      "target": "class:audit/permissions.py:ProjectAuditLogPermissions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:audit/views.py",
+      "target": "class:audit/views.py:_BaseAuditLogViewSet",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:audit/views.py",
+      "target": "class:audit/views.py:_BaseAuditLogViewSet",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:audit/views.py",
+      "target": "class:audit/views.py:AllAuditLogViewSet",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:audit/views.py",
+      "target": "class:audit/views.py:AllAuditLogViewSet",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:audit/views.py",
+      "target": "class:audit/views.py:OrganisationAuditLogViewSet",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:audit/views.py",
+      "target": "class:audit/views.py:OrganisationAuditLogViewSet",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:audit/views.py",
+      "target": "class:audit/views.py:ProjectAuditLogViewSet",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:audit/views.py",
+      "target": "class:audit/views.py:ProjectAuditLogViewSet",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/chargebee/cache.py",
+      "target": "class:organisations/chargebee/cache.py:ChargebeeCache",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:organisations/chargebee/cache.py",
+      "target": "class:organisations/chargebee/cache.py:ChargebeeCache",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/chargebee/cache.py",
+      "target": "function:organisations/chargebee/cache.py:get_item_generator",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:organisations/chargebee/cache.py",
+      "target": "function:organisations/chargebee/cache.py:get_item_generator",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/chargebee/chargebee.py",
+      "target": "function:organisations/chargebee/chargebee.py:get_subscription_data_from_hosted_page",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:organisations/chargebee/chargebee.py",
+      "target": "function:organisations/chargebee/chargebee.py:get_subscription_data_from_hosted_page",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/chargebee/chargebee.py",
+      "target": "function:organisations/chargebee/chargebee.py:get_portal_url",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:organisations/chargebee/chargebee.py",
+      "target": "function:organisations/chargebee/chargebee.py:get_portal_url",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/chargebee/chargebee.py",
+      "target": "function:organisations/chargebee/chargebee.py:get_hosted_page_url_for_subscription_upgrade",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:organisations/chargebee/chargebee.py",
+      "target": "function:organisations/chargebee/chargebee.py:get_hosted_page_url_for_subscription_upgrade",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/chargebee/chargebee.py",
+      "target": "function:organisations/chargebee/chargebee.py:extract_subscription_metadata",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:organisations/chargebee/chargebee.py",
+      "target": "function:organisations/chargebee/chargebee.py:extract_subscription_metadata",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/chargebee/chargebee.py",
+      "target": "function:organisations/chargebee/chargebee.py:get_subscription_metadata_from_id",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:organisations/chargebee/chargebee.py",
+      "target": "function:organisations/chargebee/chargebee.py:get_subscription_metadata_from_id",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/chargebee/chargebee.py",
+      "target": "function:organisations/chargebee/chargebee.py:cancel_subscription",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:organisations/chargebee/chargebee.py",
+      "target": "function:organisations/chargebee/chargebee.py:cancel_subscription",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/chargebee/chargebee.py",
+      "target": "function:organisations/chargebee/chargebee.py:add_single_seat",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:organisations/chargebee/chargebee.py",
+      "target": "function:organisations/chargebee/chargebee.py:add_single_seat",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/chargebee/chargebee.py",
+      "target": "function:organisations/chargebee/chargebee.py:add_100k_api_calls",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:organisations/chargebee/chargebee.py",
+      "target": "function:organisations/chargebee/chargebee.py:add_100k_api_calls",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:api_keys/authentication.py",
+      "target": "class:api_keys/user.py:APIKeyUser",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:api_keys/serializers.py",
+      "target": "class:api_keys/models.py:MasterAPIKey",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:organisations/chargebee/cache.py:get_item_generator",
+      "target": "class:organisations/chargebee/metadata.py:ChargebeeObjMetadata",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:organisations/chargebee/cache.py:ChargebeeCache",
+      "target": "function:organisations/chargebee/cache.py:get_item_generator",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:organisations/chargebee/chargebee.py:extract_subscription_metadata",
+      "target": "class:organisations/chargebee/cache.py:ChargebeeCache",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:organisations/chargebee/chargebee.py:extract_subscription_metadata",
+      "target": "class:organisations/chargebee/metadata.py:ChargebeeObjMetadata",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:organisations/chargebee/chargebee.py:get_subscription_metadata_from_id",
+      "target": "function:organisations/chargebee/chargebee.py:extract_subscription_metadata",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:audit/views.py:OrganisationAuditLogViewSet",
+      "target": "class:audit/permissions.py:OrganisationAuditLogPermissions",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "class:audit/views.py:ProjectAuditLogViewSet",
+      "target": "class:audit/permissions.py:ProjectAuditLogPermissions",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ]
+}

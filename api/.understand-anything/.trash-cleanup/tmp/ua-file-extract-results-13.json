@@ -1,0 +1,1241 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 9,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "features/import_export/constants.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 20,
+      "nonEmptyLines": 16,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "features/import_export/mappers.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 15,
+      "nonEmptyLines": 13,
+      "functions": [
+        {
+          "name": "map_feature_export_data_to_feature",
+          "startLine": 6,
+          "endLine": 15,
+          "params": [
+            "feature_data",
+            "project"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "map_feature_export_data_to_feature",
+          "line": 6,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "map_feature_export_data_to_feature",
+          "callee": "Feature",
+          "lineNumber": 9
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "features/import_export/models.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 96,
+      "nonEmptyLines": 82,
+      "classes": [
+        {
+          "name": "FeatureExport",
+          "startLine": 13,
+          "endLine": 44,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "FeatureImport",
+          "startLine": 47,
+          "endLine": 78,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "FlagsmithOnFlagsmithFeatureExport",
+          "startLine": 81,
+          "endLine": 96,
+          "methods": [],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "FeatureExport",
+          "line": 13,
+          "isDefault": false
+        },
+        {
+          "name": "FeatureImport",
+          "line": 47,
+          "isDefault": false
+        },
+        {
+          "name": "FlagsmithOnFlagsmithFeatureExport",
+          "line": 81,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 3,
+        "functionCount": 0,
+        "classCount": 3
+      }
+    },
+    {
+      "path": "features/import_export/permissions.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 64,
+      "nonEmptyLines": 46,
+      "classes": [
+        {
+          "name": "FeatureImportPermissions",
+          "startLine": 12,
+          "endLine": 23,
+          "methods": [
+            "has_permission"
+          ],
+          "properties": []
+        },
+        {
+          "name": "CreateFeatureExportPermissions",
+          "startLine": 26,
+          "endLine": 32,
+          "methods": [
+            "has_permission"
+          ],
+          "properties": []
+        },
+        {
+          "name": "DownloadFeatureExportPermissions",
+          "startLine": 35,
+          "endLine": 42,
+          "methods": [
+            "has_permission"
+          ],
+          "properties": []
+        },
+        {
+          "name": "FeatureExportListPermissions",
+          "startLine": 45,
+          "endLine": 53,
+          "methods": [
+            "has_permission"
+          ],
+          "properties": []
+        },
+        {
+          "name": "FeatureImportListPermissions",
+          "startLine": 56,
+          "endLine": 64,
+          "methods": [
+            "has_permission"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "FeatureImportPermissions",
+          "line": 12,
+          "isDefault": false
+        },
+        {
+          "name": "CreateFeatureExportPermissions",
+          "line": 26,
+          "isDefault": false
+        },
+        {
+          "name": "DownloadFeatureExportPermissions",
+          "line": 35,
+          "isDefault": false
+        },
+        {
+          "name": "FeatureExportListPermissions",
+          "line": 45,
+          "isDefault": false
+        },
+        {
+          "name": "FeatureImportListPermissions",
+          "line": 56,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "has_permission",
+          "callee": "super().has_permission",
+          "lineNumber": 14
+        },
+        {
+          "caller": "has_permission",
+          "callee": "super",
+          "lineNumber": 14
+        },
+        {
+          "caller": "has_permission",
+          "callee": "Environment.objects.select_related(\n            \"project__organisation\",\n        ).get",
+          "lineNumber": 17
+        },
+        {
+          "caller": "has_permission",
+          "callee": "Environment.objects.select_related",
+          "lineNumber": 17
+        },
+        {
+          "caller": "has_permission",
+          "callee": "request.user.is_organisation_admin",
+          "lineNumber": 23
+        },
+        {
+          "caller": "has_permission",
+          "callee": "super().has_permission",
+          "lineNumber": 28
+        },
+        {
+          "caller": "has_permission",
+          "callee": "super",
+          "lineNumber": 28
+        },
+        {
+          "caller": "has_permission",
+          "callee": "Environment.objects.get",
+          "lineNumber": 31
+        },
+        {
+          "caller": "has_permission",
+          "callee": "request.user.is_environment_admin",
+          "lineNumber": 32
+        },
+        {
+          "caller": "has_permission",
+          "callee": "super().has_permission",
+          "lineNumber": 37
+        },
+        {
+          "caller": "has_permission",
+          "callee": "super",
+          "lineNumber": 37
+        },
+        {
+          "caller": "has_permission",
+          "callee": "FeatureExport.objects.get",
+          "lineNumber": 40
+        },
+        {
+          "caller": "has_permission",
+          "callee": "request.user.is_environment_admin",
+          "lineNumber": 42
+        },
+        {
+          "caller": "has_permission",
+          "callee": "super().has_permission",
+          "lineNumber": 47
+        },
+        {
+          "caller": "has_permission",
+          "callee": "super",
+          "lineNumber": 47
+        },
+        {
+          "caller": "has_permission",
+          "callee": "Project.objects.get",
+          "lineNumber": 50
+        },
+        {
+          "caller": "has_permission",
+          "callee": "request.user.has_project_permission",
+          "lineNumber": 53
+        },
+        {
+          "caller": "has_permission",
+          "callee": "super().has_permission",
+          "lineNumber": 58
+        },
+        {
+          "caller": "has_permission",
+          "callee": "super",
+          "lineNumber": 58
+        },
+        {
+          "caller": "has_permission",
+          "callee": "Project.objects.get",
+          "lineNumber": 61
+        },
+        {
+          "caller": "has_permission",
+          "callee": "request.user.has_project_permission",
+          "lineNumber": 64
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 5,
+        "functionCount": 0,
+        "classCount": 5
+      }
+    },
+    {
+      "path": "features/import_export/serializers.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 100,
+      "nonEmptyLines": 82,
+      "functions": [
+        {
+          "name": "validate_feature_import_file_size",
+          "startLine": 57,
+          "endLine": 59,
+          "params": [
+            "upload_file"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "CreateFeatureExportSerializer",
+          "startLine": 18,
+          "endLine": 35,
+          "methods": [
+            "save"
+          ],
+          "properties": []
+        },
+        {
+          "name": "FeatureExportSerializer",
+          "startLine": 38,
+          "endLine": 54,
+          "methods": [
+            "get_name"
+          ],
+          "properties": []
+        },
+        {
+          "name": "FeatureImportUploadSerializer",
+          "startLine": 62,
+          "endLine": 88,
+          "methods": [
+            "save"
+          ],
+          "properties": []
+        },
+        {
+          "name": "FeatureImportSerializer",
+          "startLine": 91,
+          "endLine": 100,
+          "methods": [],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "CreateFeatureExportSerializer",
+          "line": 18,
+          "isDefault": false
+        },
+        {
+          "name": "FeatureExportSerializer",
+          "line": 38,
+          "isDefault": false
+        },
+        {
+          "name": "validate_feature_import_file_size",
+          "line": 57,
+          "isDefault": false
+        },
+        {
+          "name": "FeatureImportUploadSerializer",
+          "line": 62,
+          "isDefault": false
+        },
+        {
+          "name": "FeatureImportSerializer",
+          "line": 91,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "save",
+          "callee": "FeatureExport.objects.create",
+          "lineNumber": 23
+        },
+        {
+          "caller": "save",
+          "callee": "export_features_for_environment.delay",
+          "lineNumber": 28
+        },
+        {
+          "caller": "get_name",
+          "callee": "obj.created_at.strftime",
+          "lineNumber": 53
+        },
+        {
+          "caller": "validate_feature_import_file_size",
+          "callee": "ValidationError",
+          "lineNumber": 59
+        },
+        {
+          "caller": "save",
+          "callee": "FeatureImport.objects.filter(\n            environment_id=environment_id,\n            status=PROCESSING,\n        ).exists",
+          "lineNumber": 69
+        },
+        {
+          "caller": "save",
+          "callee": "FeatureImport.objects.filter",
+          "lineNumber": 69
+        },
+        {
+          "caller": "save",
+          "callee": "ValidationError",
+          "lineNumber": 73
+        },
+        {
+          "caller": "save",
+          "callee": "uploaded_file.read().decode",
+          "lineNumber": 79
+        },
+        {
+          "caller": "save",
+          "callee": "uploaded_file.read",
+          "lineNumber": 79
+        },
+        {
+          "caller": "save",
+          "callee": "FeatureImport.objects.create",
+          "lineNumber": 80
+        },
+        {
+          "caller": "save",
+          "callee": "import_features_for_environment.delay",
+          "lineNumber": 85
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 5,
+        "functionCount": 1,
+        "classCount": 4
+      }
+    },
+    {
+      "path": "features/import_export/services.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 79,
+      "nonEmptyLines": 72,
+      "functions": [
+        {
+          "name": "overwrite_feature_for_environment",
+          "startLine": 9,
+          "endLine": 79,
+          "params": [
+            "feature_data",
+            "existing_feature",
+            "environment"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "overwrite_feature_for_environment",
+          "line": 9,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "overwrite_feature_for_environment",
+          "callee": "FeatureSegment.objects.filter(\n        feature=existing_feature, environment=environment\n    ).delete",
+          "lineNumber": 18
+        },
+        {
+          "caller": "overwrite_feature_for_environment",
+          "callee": "FeatureSegment.objects.filter",
+          "lineNumber": 18
+        },
+        {
+          "caller": "overwrite_feature_for_environment",
+          "callee": "existing_feature.feature_states.filter(\n        environment=environment, identity__isnull=False\n    ).delete",
+          "lineNumber": 21
+        },
+        {
+          "caller": "overwrite_feature_for_environment",
+          "callee": "existing_feature.feature_states.filter",
+          "lineNumber": 21
+        },
+        {
+          "caller": "overwrite_feature_for_environment",
+          "callee": "FeatureState.objects.get_live_feature_states(\n        environment=environment,\n        additional_filters=Q(\n            feature=existing_feature,\n            identity__isnull=True,\n            feature_segment__isnull=True,\n        ),\n    ).get",
+          "lineNumber": 25
+        },
+        {
+          "caller": "overwrite_feature_for_environment",
+          "callee": "FeatureState.objects.get_live_feature_states",
+          "lineNumber": 25
+        },
+        {
+          "caller": "overwrite_feature_for_environment",
+          "callee": "Q",
+          "lineNumber": 27
+        },
+        {
+          "caller": "overwrite_feature_for_environment",
+          "callee": "existing_feature.multivariate_options.all",
+          "lineNumber": 38
+        },
+        {
+          "caller": "overwrite_feature_for_environment",
+          "callee": "set",
+          "lineNumber": 40
+        },
+        {
+          "caller": "overwrite_feature_for_environment",
+          "callee": "existing_options_by_value.get",
+          "lineNumber": 43
+        },
+        {
+          "caller": "overwrite_feature_for_environment",
+          "callee": "MultivariateFeatureOption",
+          "lineNumber": 45
+        },
+        {
+          "caller": "overwrite_feature_for_environment",
+          "callee": "setattr",
+          "lineNumber": 50
+        },
+        {
+          "caller": "overwrite_feature_for_environment",
+          "callee": "FeatureState.get_feature_state_key_name",
+          "lineNumber": 52
+        },
+        {
+          "caller": "overwrite_feature_for_environment",
+          "callee": "mv_option.save",
+          "lineNumber": 55
+        },
+        {
+          "caller": "overwrite_feature_for_environment",
+          "callee": "imported_option_ids.add",
+          "lineNumber": 56
+        },
+        {
+          "caller": "overwrite_feature_for_environment",
+          "callee": "feature_state.multivariate_feature_state_values.get",
+          "lineNumber": 57
+        },
+        {
+          "caller": "overwrite_feature_for_environment",
+          "callee": "mv_state_value.save",
+          "lineNumber": 61
+        },
+        {
+          "caller": "overwrite_feature_for_environment",
+          "callee": "feature_state.multivariate_feature_state_values.exclude",
+          "lineNumber": 63
+        },
+        {
+          "caller": "overwrite_feature_for_environment",
+          "callee": "mv_state_value.save",
+          "lineNumber": 68
+        },
+        {
+          "caller": "overwrite_feature_for_environment",
+          "callee": "setattr",
+          "lineNumber": 72
+        },
+        {
+          "caller": "overwrite_feature_for_environment",
+          "callee": "FeatureState.get_feature_state_key_name",
+          "lineNumber": 74
+        },
+        {
+          "caller": "overwrite_feature_for_environment",
+          "callee": "feature_state_value.save",
+          "lineNumber": 77
+        },
+        {
+          "caller": "overwrite_feature_for_environment",
+          "callee": "feature_state.save",
+          "lineNumber": 79
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "features/import_export/tasks.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 205,
+      "nonEmptyLines": 169,
+      "functions": [
+        {
+          "name": "clear_stale_feature_imports_and_exports",
+          "startLine": 34,
+          "endLine": 37,
+          "params": []
+        },
+        {
+          "name": "retire_stalled_feature_imports_and_exports",
+          "startLine": 43,
+          "endLine": 62,
+          "params": []
+        },
+        {
+          "name": "_export_features_for_environment",
+          "startLine": 65,
+          "endLine": 116,
+          "params": [
+            "feature_export",
+            "tag_ids"
+          ]
+        },
+        {
+          "name": "export_features_for_environment",
+          "startLine": 120,
+          "endLine": 130,
+          "params": [
+            "feature_export_id",
+            "tag_ids"
+          ]
+        },
+        {
+          "name": "import_features_for_environment",
+          "startLine": 134,
+          "endLine": 142,
+          "params": [
+            "feature_import_id"
+          ]
+        },
+        {
+          "name": "_import_features_for_environment",
+          "startLine": 145,
+          "endLine": 166,
+          "params": [
+            "feature_import"
+          ]
+        },
+        {
+          "name": "_create_flagsmith_on_flagsmith_feature_export",
+          "startLine": 183,
+          "endLine": 205,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "clear_stale_feature_imports_and_exports",
+          "line": 31,
+          "isDefault": false
+        },
+        {
+          "name": "retire_stalled_feature_imports_and_exports",
+          "line": 40,
+          "isDefault": false
+        },
+        {
+          "name": "_export_features_for_environment",
+          "line": 65,
+          "isDefault": false
+        },
+        {
+          "name": "export_features_for_environment",
+          "line": 119,
+          "isDefault": false
+        },
+        {
+          "name": "import_features_for_environment",
+          "line": 133,
+          "isDefault": false
+        },
+        {
+          "name": "_import_features_for_environment",
+          "line": 145,
+          "isDefault": false
+        },
+        {
+          "name": "_create_flagsmith_on_flagsmith_feature_export",
+          "line": 183,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "clear_stale_feature_imports_and_exports",
+          "callee": "timezone.now",
+          "lineNumber": 35
+        },
+        {
+          "caller": "clear_stale_feature_imports_and_exports",
+          "callee": "timedelta",
+          "lineNumber": 35
+        },
+        {
+          "caller": "clear_stale_feature_imports_and_exports",
+          "callee": "FeatureExport.objects.filter(created_at__lt=two_weeks_ago).delete",
+          "lineNumber": 36
+        },
+        {
+          "caller": "clear_stale_feature_imports_and_exports",
+          "callee": "FeatureExport.objects.filter",
+          "lineNumber": 36
+        },
+        {
+          "caller": "clear_stale_feature_imports_and_exports",
+          "callee": "FeatureImport.objects.filter(created_at__lt=two_weeks_ago).delete",
+          "lineNumber": 37
+        },
+        {
+          "caller": "clear_stale_feature_imports_and_exports",
+          "callee": "FeatureImport.objects.filter",
+          "lineNumber": 37
+        },
+        {
+          "caller": "retire_stalled_feature_imports_and_exports",
+          "callee": "timezone.now",
+          "lineNumber": 44
+        },
+        {
+          "caller": "retire_stalled_feature_imports_and_exports",
+          "callee": "timedelta",
+          "lineNumber": 44
+        },
+        {
+          "caller": "retire_stalled_feature_imports_and_exports",
+          "callee": "FeatureExport.objects.filter",
+          "lineNumber": 47
+        },
+        {
+          "caller": "retire_stalled_feature_imports_and_exports",
+          "callee": "feature_exports.append",
+          "lineNumber": 52
+        },
+        {
+          "caller": "retire_stalled_feature_imports_and_exports",
+          "callee": "FeatureExport.objects.bulk_update",
+          "lineNumber": 53
+        },
+        {
+          "caller": "retire_stalled_feature_imports_and_exports",
+          "callee": "FeatureImport.objects.filter",
+          "lineNumber": 56
+        },
+        {
+          "caller": "retire_stalled_feature_imports_and_exports",
+          "callee": "feature_imports.append",
+          "lineNumber": 61
+        },
+        {
+          "caller": "retire_stalled_feature_imports_and_exports",
+          "callee": "FeatureImport.objects.bulk_update",
+          "lineNumber": 62
+        },
+        {
+          "caller": "_export_features_for_environment",
+          "callee": "Q",
+          "lineNumber": 71
+        },
+        {
+          "caller": "_export_features_for_environment",
+          "callee": "Q",
+          "lineNumber": 79
+        },
+        {
+          "caller": "_export_features_for_environment",
+          "callee": "get_environment_flags_list",
+          "lineNumber": 82
+        },
+        {
+          "caller": "_export_features_for_environment",
+          "callee": "feature_state.multivariate_feature_state_values.select_related(\n                \"multivariate_feature_option\"\n            ).all",
+          "lineNumber": 96
+        },
+        {
+          "caller": "_export_features_for_environment",
+          "callee": "feature_state.multivariate_feature_state_values.select_related",
+          "lineNumber": 96
+        },
+        {
+          "caller": "_export_features_for_environment",
+          "callee": "payload.append",
+          "lineNumber": 101
+        },
+        {
+          "caller": "_export_features_for_environment",
+          "callee": "json.dumps",
+          "lineNumber": 115
+        },
+        {
+          "caller": "_export_features_for_environment",
+          "callee": "feature_export.save",
+          "lineNumber": 116
+        },
+        {
+          "caller": "export_features_for_environment",
+          "callee": "FeatureExport.objects.get",
+          "lineNumber": 123
+        },
+        {
+          "caller": "export_features_for_environment",
+          "callee": "_export_features_for_environment",
+          "lineNumber": 125
+        },
+        {
+          "caller": "export_features_for_environment",
+          "callee": "feature_export.save",
+          "lineNumber": 129
+        },
+        {
+          "caller": "import_features_for_environment",
+          "callee": "FeatureImport.objects.get",
+          "lineNumber": 135
+        },
+        {
+          "caller": "import_features_for_environment",
+          "callee": "_import_features_for_environment",
+          "lineNumber": 137
+        },
+        {
+          "caller": "import_features_for_environment",
+          "callee": "feature_import.save",
+          "lineNumber": 141
+        },
+        {
+          "caller": "_import_features_for_environment",
+          "callee": "json.loads",
+          "lineNumber": 147
+        },
+        {
+          "caller": "_import_features_for_environment",
+          "callee": "Feature.objects.filter(\n            name=feature_data[\"name\"],\n            project=project,\n        ).first",
+          "lineNumber": 151
+        },
+        {
+          "caller": "_import_features_for_environment",
+          "callee": "Feature.objects.filter",
+          "lineNumber": 151
+        },
+        {
+          "caller": "_import_features_for_environment",
+          "callee": "map_feature_export_data_to_feature",
+          "lineNumber": 160
+        },
+        {
+          "caller": "_import_features_for_environment",
+          "callee": "existing_feature.save",
+          "lineNumber": 161
+        },
+        {
+          "caller": "_import_features_for_environment",
+          "callee": "overwrite_feature_for_environment",
+          "lineNumber": 163
+        },
+        {
+          "caller": "_import_features_for_environment",
+          "callee": "feature_import.save",
+          "lineNumber": 166
+        },
+        {
+          "caller": "create_flagsmith_on_flagsmith_feature_export_task",
+          "callee": "_create_flagsmith_on_flagsmith_feature_export",
+          "lineNumber": 180
+        },
+        {
+          "caller": "_create_flagsmith_on_flagsmith_feature_export",
+          "callee": "FeatureExport.objects.create",
+          "lineNumber": 191
+        },
+        {
+          "caller": "_create_flagsmith_on_flagsmith_feature_export",
+          "callee": "export_features_for_environment",
+          "lineNumber": 196
+        },
+        {
+          "caller": "_create_flagsmith_on_flagsmith_feature_export",
+          "callee": "feature_export.refresh_from_db",
+          "lineNumber": 201
+        },
+        {
+          "caller": "_create_flagsmith_on_flagsmith_feature_export",
+          "callee": "FlagsmithOnFlagsmithFeatureExport.objects.create",
+          "lineNumber": 205
+        }
+      ],
+      "metrics": {
+        "importCount": 7,
+        "exportCount": 7,
+        "functionCount": 7,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "features/import_export/types.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 19,
+      "nonEmptyLines": 15,
+      "classes": [
+        {
+          "name": "FeatureExportMultivariateData",
+          "startLine": 4,
+          "endLine": 8,
+          "methods": [],
+          "properties": [
+            "percentage_allocation",
+            "default_percentage_allocation",
+            "value",
+            "type"
+          ]
+        },
+        {
+          "name": "FeatureExportData",
+          "startLine": 11,
+          "endLine": 19,
+          "methods": [],
+          "properties": [
+            "name",
+            "default_enabled",
+            "is_server_key_only",
+            "initial_value",
+            "value",
+            "type",
+            "enabled",
+            "multivariate"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "FeatureExportMultivariateData",
+          "line": 4,
+          "isDefault": false
+        },
+        {
+          "name": "FeatureExportData",
+          "line": 11,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 0,
+        "classCount": 2
+      }
+    },
+    {
+      "path": "features/import_export/views.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 165,
+      "nonEmptyLines": 136,
+      "functions": [
+        {
+          "name": "create_feature_export",
+          "startLine": 42,
+          "endLine": 48,
+          "params": [
+            "request"
+          ]
+        },
+        {
+          "name": "feature_import",
+          "startLine": 57,
+          "endLine": 62,
+          "params": [
+            "request",
+            "environment_id"
+          ]
+        },
+        {
+          "name": "download_feature_export",
+          "startLine": 71,
+          "endLine": 88,
+          "params": [
+            "request",
+            "feature_export_id"
+          ]
+        },
+        {
+          "name": "download_flagsmith_on_flagsmith",
+          "startLine": 97,
+          "endLine": 117,
+          "params": [
+            "request"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "FeatureExportListView",
+          "startLine": 120,
+          "endLine": 141,
+          "methods": [
+            "get_queryset"
+          ],
+          "properties": []
+        },
+        {
+          "name": "FeatureImportListView",
+          "startLine": 144,
+          "endLine": 165,
+          "methods": [
+            "get_queryset"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "create_feature_export",
+          "line": 36,
+          "isDefault": false
+        },
+        {
+          "name": "feature_import",
+          "line": 51,
+          "isDefault": false
+        },
+        {
+          "name": "download_feature_export",
+          "line": 65,
+          "isDefault": false
+        },
+        {
+          "name": "download_flagsmith_on_flagsmith",
+          "line": 91,
+          "isDefault": false
+        },
+        {
+          "name": "FeatureExportListView",
+          "line": 120,
+          "isDefault": false
+        },
+        {
+          "name": "FeatureImportListView",
+          "line": 144,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "create_feature_export",
+          "callee": "CreateFeatureExportSerializer",
+          "lineNumber": 43
+        },
+        {
+          "caller": "create_feature_export",
+          "callee": "serializer.is_valid",
+          "lineNumber": 44
+        },
+        {
+          "caller": "create_feature_export",
+          "callee": "serializer.save",
+          "lineNumber": 45
+        },
+        {
+          "caller": "create_feature_export",
+          "callee": "FeatureExportSerializer",
+          "lineNumber": 46
+        },
+        {
+          "caller": "create_feature_export",
+          "callee": "Response",
+          "lineNumber": 48
+        },
+        {
+          "caller": "feature_import",
+          "callee": "FeatureImportUploadSerializer",
+          "lineNumber": 58
+        },
+        {
+          "caller": "feature_import",
+          "callee": "upload_serializer.is_valid",
+          "lineNumber": 59
+        },
+        {
+          "caller": "feature_import",
+          "callee": "upload_serializer.save",
+          "lineNumber": 60
+        },
+        {
+          "caller": "feature_import",
+          "callee": "FeatureImportSerializer",
+          "lineNumber": 61
+        },
+        {
+          "caller": "feature_import",
+          "callee": "Response",
+          "lineNumber": 62
+        },
+        {
+          "caller": "download_feature_export",
+          "callee": "get_object_or_404",
+          "lineNumber": 72
+        },
+        {
+          "caller": "download_feature_export",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 75
+        },
+        {
+          "caller": "download_feature_export",
+          "callee": "Response",
+          "lineNumber": 81
+        },
+        {
+          "caller": "download_feature_export",
+          "callee": "json.loads",
+          "lineNumber": 82
+        },
+        {
+          "caller": "download_flagsmith_on_flagsmith",
+          "callee": "Http404",
+          "lineNumber": 103
+        },
+        {
+          "caller": "download_flagsmith_on_flagsmith",
+          "callee": "FlagsmithOnFlagsmithFeatureExport.objects.order_by(\"-created_at\").first",
+          "lineNumber": 105
+        },
+        {
+          "caller": "download_flagsmith_on_flagsmith",
+          "callee": "FlagsmithOnFlagsmithFeatureExport.objects.order_by",
+          "lineNumber": 105
+        },
+        {
+          "caller": "download_flagsmith_on_flagsmith",
+          "callee": "Http404",
+          "lineNumber": 108
+        },
+        {
+          "caller": "download_flagsmith_on_flagsmith",
+          "callee": "Response",
+          "lineNumber": 110
+        },
+        {
+          "caller": "download_flagsmith_on_flagsmith",
+          "callee": "json.loads",
+          "lineNumber": 111
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "getattr",
+          "lineNumber": 125
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "FeatureExport.objects.none",
+          "lineNumber": 126
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "Environment.objects.filter",
+          "lineNumber": 131
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "user.is_environment_admin",
+          "lineNumber": 134
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "environment_ids.append",
+          "lineNumber": 135
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "FeatureExport.objects.filter(environment__in=environment_ids)\n            .defer(\"data\")\n            .order_by",
+          "lineNumber": 138
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "FeatureExport.objects.filter(environment__in=environment_ids)\n            .defer",
+          "lineNumber": 138
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "FeatureExport.objects.filter",
+          "lineNumber": 138
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "getattr",
+          "lineNumber": 149
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "FeatureImport.objects.none",
+          "lineNumber": 150
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "Environment.objects.filter",
+          "lineNumber": 155
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "user.is_environment_admin",
+          "lineNumber": 158
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "environment_ids.append",
+          "lineNumber": 159
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "FeatureImport.objects.filter(environment__in=environment_ids)\n            .defer(\"data\")\n            .order_by",
+          "lineNumber": 162
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "FeatureImport.objects.filter(environment__in=environment_ids)\n            .defer",
+          "lineNumber": 162
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "FeatureImport.objects.filter",
+          "lineNumber": 162
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 6,
+        "functionCount": 4,
+        "classCount": 2
+      }
+    }
+  ]
+}

@@ -1,0 +1,247 @@
+{
+  "projectRoot": "/Users/wadii/flagsmith-projects/flagsmith/api",
+  "batchFiles": [
+    {
+      "path": "audit/serializers.py",
+      "language": "python",
+      "sizeLines": 105,
+      "fileCategory": "code"
+    },
+    {
+      "path": "audit/types.py",
+      "language": "python",
+      "sizeLines": 9,
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/dynamodb/migrator.py",
+      "language": "python",
+      "sizeLines": 113,
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/management/commands/migrate_to_edge.py",
+      "language": "python",
+      "sizeLines": 21,
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/serializers.py",
+      "language": "python",
+      "sizeLines": 201,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_external_resources/models.py",
+      "language": "python",
+      "sizeLines": 160,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_external_resources/serializers.py",
+      "language": "python",
+      "sizeLines": 32,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_external_resources/views.py",
+      "language": "python",
+      "sizeLines": 155,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/multivariate/urls.py",
+      "language": "python",
+      "sizeLines": 13,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/multivariate/views.py",
+      "language": "python",
+      "sizeLines": 92,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/permissions.py",
+      "language": "python",
+      "sizeLines": 229,
+      "fileCategory": "code"
+    },
+    {
+      "path": "metadata/fields.py",
+      "language": "python",
+      "sizeLines": 29,
+      "fileCategory": "code"
+    },
+    {
+      "path": "metadata/models.py",
+      "language": "python",
+      "sizeLines": 140,
+      "fileCategory": "code"
+    },
+    {
+      "path": "metadata/permissions.py",
+      "language": "python",
+      "sizeLines": 96,
+      "fileCategory": "code"
+    },
+    {
+      "path": "metadata/serializers.py",
+      "language": "python",
+      "sizeLines": 256,
+      "fileCategory": "code"
+    },
+    {
+      "path": "metadata/urls.py",
+      "language": "python",
+      "sizeLines": 16,
+      "fileCategory": "code"
+    },
+    {
+      "path": "metadata/views.py",
+      "language": "python",
+      "sizeLines": 166,
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/admin.py",
+      "language": "python",
+      "sizeLines": 150,
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/subscriptions/serializers/mixins.py",
+      "language": "python",
+      "sizeLines": 61,
+      "fileCategory": "code"
+    },
+    {
+      "path": "permissions/models.py",
+      "language": "python",
+      "sizeLines": 34,
+      "fileCategory": "code"
+    },
+    {
+      "path": "permissions/serializers.py",
+      "language": "python",
+      "sizeLines": 82,
+      "fileCategory": "code"
+    },
+    {
+      "path": "projects/admin.py",
+      "language": "python",
+      "sizeLines": 88,
+      "fileCategory": "code"
+    },
+    {
+      "path": "projects/code_references/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    }
+  ],
+  "batchImportData": {
+    "audit/serializers.py": [
+      "audit/models.py",
+      "audit/types.py",
+      "environments/serializers.py",
+      "projects/serializers.py",
+      "users/serializers.py"
+    ],
+    "audit/types.py": [],
+    "environments/dynamodb/migrator.py": [
+      "environments/dynamodb/types.py",
+      "environments/dynamodb/wrappers/__init__.py",
+      "environments/identities/models.py",
+      "environments/models.py",
+      "features/models.py",
+      "features/multivariate/models.py",
+      "projects/models.py"
+    ],
+    "environments/management/commands/migrate_to_edge.py": [
+      "environments/dynamodb/migrator.py"
+    ],
+    "environments/serializers.py": [
+      "environments/models.py",
+      "features/serializers.py",
+      "metadata/serializers.py",
+      "organisations/models.py",
+      "organisations/subscriptions/serializers/mixins.py",
+      "projects/models.py",
+      "projects/serializers.py"
+    ],
+    "features/feature_external_resources/models.py": [
+      "environments/models.py",
+      "features/models.py",
+      "organisations/models.py",
+      "projects/tags/models.py"
+    ],
+    "features/feature_external_resources/serializers.py": [
+      "features/feature_external_resources/models.py"
+    ],
+    "features/feature_external_resources/views.py": [
+      "features/feature_external_resources/models.py",
+      "features/feature_external_resources/serializers.py",
+      "features/models.py",
+      "features/permissions.py",
+      "organisations/models.py"
+    ],
+    "features/multivariate/urls.py": [
+      "features/multivariate/views.py"
+    ],
+    "features/multivariate/views.py": [
+      "features/models.py",
+      "features/multivariate/models.py",
+      "features/multivariate/serializers.py",
+      "projects/permissions.py"
+    ],
+    "features/permissions.py": [
+      "environments/models.py",
+      "features/models.py",
+      "projects/models.py"
+    ],
+    "metadata/fields.py": [],
+    "metadata/models.py": [
+      "metadata/fields.py",
+      "organisations/models.py"
+    ],
+    "metadata/permissions.py": [
+      "metadata/models.py",
+      "organisations/models.py",
+      "projects/models.py"
+    ],
+    "metadata/serializers.py": [
+      "metadata/models.py",
+      "organisations/models.py",
+      "projects/models.py"
+    ],
+    "metadata/urls.py": [
+      "metadata/views.py"
+    ],
+    "metadata/views.py": [
+      "metadata/models.py",
+      "metadata/permissions.py",
+      "metadata/serializers.py",
+      "projects/permissions.py"
+    ],
+    "organisations/admin.py": [
+      "organisations/models.py",
+      "projects/models.py"
+    ],
+    "organisations/subscriptions/serializers/mixins.py": [
+      "organisations/models.py"
+    ],
+    "permissions/models.py": [],
+    "permissions/serializers.py": [
+      "permissions/models.py"
+    ],
+    "projects/admin.py": [
+      "environments/models.py",
+      "features/models.py",
+      "projects/models.py",
+      "projects/tags/models.py",
+      "segments/models.py"
+    ],
+    "projects/code_references/__init__.py": []
+  }
+}

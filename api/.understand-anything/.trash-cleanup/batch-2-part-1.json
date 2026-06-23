@@ -1,0 +1,1288 @@
+{
+  "nodes": [
+    {
+      "id": "file:organisations/permissions/models.py",
+      "type": "file",
+      "name": "models.py",
+      "filePath": "organisations/permissions/models.py",
+      "summary": "Defines the organisation-level permission models: per-user and per-group organisation permission tables plus the catalogue of available organisation permissions.",
+      "tags": [
+        "data-model",
+        "permissions",
+        "organisations"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:organisations/permissions/permissions.py",
+      "type": "file",
+      "name": "permissions.py",
+      "filePath": "organisations/permissions/permissions.py",
+      "summary": "DRF permission classes enforcing organisation-scoped access control, including admin checks, nested-entity permissions, and GitHub integration admin gating.",
+      "tags": [
+        "permissions",
+        "middleware",
+        "organisations",
+        "access-control"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:organisations/permissions/serializers.py",
+      "type": "file",
+      "name": "serializers.py",
+      "filePath": "organisations/permissions/serializers.py",
+      "summary": "Serializers for reading and writing user and group organisation permission assignments.",
+      "tags": [
+        "serialization",
+        "permissions",
+        "organisations"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:organisations/permissions/views.py",
+      "type": "file",
+      "name": "views.py",
+      "filePath": "organisations/permissions/views.py",
+      "summary": "ViewSets exposing CRUD endpoints for managing user and group organisation permission assignments.",
+      "tags": [
+        "api-handler",
+        "permissions",
+        "organisations"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:organisations/serializers.py",
+      "type": "file",
+      "name": "serializers.py",
+      "filePath": "organisations/serializers.py",
+      "summary": "Serializers for organisations, subscriptions, invites, webhooks and Influx usage data, including multi-invite creation and Chargebee subscription updates.",
+      "tags": [
+        "serialization",
+        "organisations",
+        "subscription",
+        "validation"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:organisations/subscription_info_cache.py",
+      "type": "file",
+      "name": "subscription_info_cache.py",
+      "filePath": "organisations/subscription_info_cache.py",
+      "summary": "Rebuilds the per-organisation subscription information cache by merging API usage data and Chargebee subscription metadata.",
+      "tags": [
+        "service",
+        "subscription",
+        "cache",
+        "organisations"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:organisations/subscriptions/constants.py",
+      "type": "file",
+      "name": "constants.py",
+      "filePath": "organisations/subscriptions/constants.py",
+      "summary": "Constants and helpers describing subscription plans, plan families, cache entities, and Chargebee/Xero payment sources.",
+      "tags": [
+        "config",
+        "subscription",
+        "constants"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:organisations/subscriptions/exceptions.py",
+      "type": "file",
+      "name": "exceptions.py",
+      "filePath": "organisations/subscriptions/exceptions.py",
+      "summary": "Exception hierarchy for subscription operations such as invalid plans, cancellation failures, and seat/API-usage upgrade payment failures.",
+      "tags": [
+        "exceptions",
+        "subscription",
+        "error-handling"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:organisations/subscriptions/metadata.py",
+      "type": "file",
+      "name": "metadata.py",
+      "filePath": "organisations/subscriptions/metadata.py",
+      "summary": "BaseSubscriptionMetadata value object aggregating plan limits (seats, API calls, projects) with additive composition for combining allowances.",
+      "tags": [
+        "data-model",
+        "subscription",
+        "metadata"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Implements Python operator overloading (__add__, __eq__, __repr__) to compose subscription allowances as a value object."
+    },
+    {
+      "id": "file:organisations/subscriptions/permissions.py",
+      "type": "file",
+      "name": "permissions.py",
+      "filePath": "organisations/subscriptions/permissions.py",
+      "summary": "require_minimum_plan permission factory gating SaaS endpoints behind a minimum subscription plan family rank.",
+      "tags": [
+        "permissions",
+        "subscription",
+        "access-control",
+        "factory"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:organisations/subscriptions/xero/metadata.py",
+      "type": "file",
+      "name": "metadata.py",
+      "filePath": "organisations/subscriptions/xero/metadata.py",
+      "summary": "Xero-specific subscription metadata subclass fixing the payment source to Xero.",
+      "tags": [
+        "subscription",
+        "metadata",
+        "integration"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:organisations/permissions/models.py:UserOrganisationPermission",
+      "type": "class",
+      "name": "UserOrganisationPermission",
+      "filePath": "organisations/permissions/models.py",
+      "lineRange": [
+        10,
+        24
+      ],
+      "summary": "Through model linking a user to an organisation with a set of granted permissions and admin flag.",
+      "tags": [
+        "data-model",
+        "permissions"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:organisations/permissions/models.py:UserPermissionGroupOrganisationPermission",
+      "type": "class",
+      "name": "UserPermissionGroupOrganisationPermission",
+      "filePath": "organisations/permissions/models.py",
+      "lineRange": [
+        27,
+        41
+      ],
+      "summary": "Through model granting organisation permissions to a permission group.",
+      "tags": [
+        "data-model",
+        "permissions"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:organisations/permissions/models.py:OrganisationPermissionModel",
+      "type": "class",
+      "name": "OrganisationPermissionModel",
+      "filePath": "organisations/permissions/models.py",
+      "lineRange": [
+        44,
+        48
+      ],
+      "summary": "Catalogue model enumerating the available organisation-level permissions.",
+      "tags": [
+        "data-model",
+        "permissions"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:organisations/permissions/permissions.py:NestedOrganisationEntityPermission",
+      "type": "class",
+      "name": "NestedOrganisationEntityPermission",
+      "filePath": "organisations/permissions/permissions.py",
+      "lineRange": [
+        28,
+        43
+      ],
+      "summary": "Permission class for nested organisation entities, allowing only organisation admins.",
+      "tags": [
+        "permissions",
+        "access-control"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:organisations/permissions/permissions.py:HasOrganisationPermission",
+      "type": "class",
+      "name": "HasOrganisationPermission",
+      "filePath": "organisations/permissions/permissions.py",
+      "lineRange": [
+        46,
+        86
+      ],
+      "summary": "Configurable permission class checking a specific organisation permission via callables that resolve the organisation from the view or object.",
+      "tags": [
+        "permissions",
+        "access-control",
+        "factory"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:organisations/permissions/permissions.py:OrganisationPermission",
+      "type": "class",
+      "name": "OrganisationPermission",
+      "filePath": "organisations/permissions/permissions.py",
+      "lineRange": [
+        89,
+        115
+      ],
+      "summary": "Permission class gating organisation management actions on admin status and membership.",
+      "tags": [
+        "permissions",
+        "access-control"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:organisations/permissions/permissions.py:OrganisationUsersPermission",
+      "type": "class",
+      "name": "OrganisationUsersPermission",
+      "filePath": "organisations/permissions/permissions.py",
+      "lineRange": [
+        118,
+        138
+      ],
+      "summary": "Permission class controlling who may view and manage users within an organisation.",
+      "tags": [
+        "permissions",
+        "access-control"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:organisations/permissions/permissions.py:UserPermissionGroupPermission",
+      "type": "class",
+      "name": "UserPermissionGroupPermission",
+      "filePath": "organisations/permissions/permissions.py",
+      "lineRange": [
+        141,
+        166
+      ],
+      "summary": "Permission class governing access to permission-group management within an organisation.",
+      "tags": [
+        "permissions",
+        "access-control"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:organisations/permissions/permissions.py:NestedIsOrganisationAdminPermission",
+      "type": "class",
+      "name": "NestedIsOrganisationAdminPermission",
+      "filePath": "organisations/permissions/permissions.py",
+      "lineRange": [
+        169,
+        195
+      ],
+      "summary": "Permission class requiring organisation admin for nested resources, resolving the organisation from the parent object.",
+      "tags": [
+        "permissions",
+        "access-control"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:organisations/permissions/permissions.py:GithubIsAdminOrganisation",
+      "type": "class",
+      "name": "GithubIsAdminOrganisation",
+      "filePath": "organisations/permissions/permissions.py",
+      "lineRange": [
+        198,
+        224
+      ],
+      "summary": "Permission class requiring organisation admin for GitHub integration endpoints.",
+      "tags": [
+        "permissions",
+        "access-control",
+        "integration"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:organisations/permissions/permissions.py:OrganisationAPIUsageNotificationPermission",
+      "type": "class",
+      "name": "OrganisationAPIUsageNotificationPermission",
+      "filePath": "organisations/permissions/permissions.py",
+      "lineRange": [
+        227,
+        233
+      ],
+      "summary": "Permission class restricting API usage notification access to organisation members.",
+      "tags": [
+        "permissions",
+        "access-control"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:organisations/permissions/serializers.py:UserOrganisationPermissionUpdateCreateSerializer",
+      "type": "class",
+      "name": "UserOrganisationPermissionUpdateCreateSerializer",
+      "filePath": "organisations/permissions/serializers.py",
+      "lineRange": [
+        10,
+        13
+      ],
+      "summary": "Write serializer for creating/updating a user's organisation permissions.",
+      "tags": [
+        "serialization",
+        "permissions"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:organisations/permissions/serializers.py:UserOrganisationPermissionListSerializer",
+      "type": "class",
+      "name": "UserOrganisationPermissionListSerializer",
+      "filePath": "organisations/permissions/serializers.py",
+      "lineRange": [
+        16,
+        19
+      ],
+      "summary": "Read serializer listing a user's organisation permissions.",
+      "tags": [
+        "serialization",
+        "permissions"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:organisations/permissions/serializers.py:UserPermissionGroupOrganisationPermissionUpdateCreateSerializer",
+      "type": "class",
+      "name": "UserPermissionGroupOrganisationPermissionUpdateCreateSerializer",
+      "filePath": "organisations/permissions/serializers.py",
+      "lineRange": [
+        22,
+        27
+      ],
+      "summary": "Write serializer for group organisation permissions.",
+      "tags": [
+        "serialization",
+        "permissions"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:organisations/permissions/serializers.py:UserPermissionGroupOrganisationPermissionListSerializer",
+      "type": "class",
+      "name": "UserPermissionGroupOrganisationPermissionListSerializer",
+      "filePath": "organisations/permissions/serializers.py",
+      "lineRange": [
+        30,
+        33
+      ],
+      "summary": "Read serializer listing group organisation permissions.",
+      "tags": [
+        "serialization",
+        "permissions"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:organisations/permissions/views.py:BaseOrganisationPermissionViewSet",
+      "type": "class",
+      "name": "BaseOrganisationPermissionViewSet",
+      "filePath": "organisations/permissions/views.py",
+      "lineRange": [
+        21,
+        32
+      ],
+      "summary": "Base viewset wiring organisation-scoped permission assignment endpoints with create handling.",
+      "tags": [
+        "api-handler",
+        "permissions"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:organisations/permissions/views.py:UserOrganisationPermissionViewSet",
+      "type": "class",
+      "name": "UserOrganisationPermissionViewSet",
+      "filePath": "organisations/permissions/views.py",
+      "lineRange": [
+        35,
+        46
+      ],
+      "summary": "Viewset for managing per-user organisation permission assignments.",
+      "tags": [
+        "api-handler",
+        "permissions"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:organisations/permissions/views.py:UserPermissionGroupOrganisationPermissionViewSet",
+      "type": "class",
+      "name": "UserPermissionGroupOrganisationPermissionViewSet",
+      "filePath": "organisations/permissions/views.py",
+      "lineRange": [
+        49,
+        62
+      ],
+      "summary": "Viewset for managing per-group organisation permission assignments.",
+      "tags": [
+        "api-handler",
+        "permissions"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:organisations/serializers.py:SubscriptionSerializer",
+      "type": "class",
+      "name": "SubscriptionSerializer",
+      "filePath": "organisations/serializers.py",
+      "lineRange": [
+        28,
+        37
+      ],
+      "summary": "Serializes subscription details including computed active billing period flag.",
+      "tags": [
+        "serialization",
+        "subscription"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:organisations/serializers.py:OrganisationSerializerFull",
+      "type": "class",
+      "name": "OrganisationSerializerFull",
+      "filePath": "organisations/serializers.py",
+      "lineRange": [
+        40,
+        73
+      ],
+      "summary": "Full organisation serializer exposing subscription, role and feature settings.",
+      "tags": [
+        "serialization",
+        "organisations"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:organisations/serializers.py:InviteSerializer",
+      "type": "class",
+      "name": "InviteSerializer",
+      "filePath": "organisations/serializers.py",
+      "lineRange": [
+        119,
+        136
+      ],
+      "summary": "Serializer validating individual organisation invites against existing pending invites.",
+      "tags": [
+        "serialization",
+        "validation",
+        "organisations"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:organisations/serializers.py:MultiInvitesSerializer",
+      "type": "class",
+      "name": "MultiInvitesSerializer",
+      "filePath": "organisations/serializers.py",
+      "lineRange": [
+        139,
+        190
+      ],
+      "summary": "Serializer that validates and bulk-creates multiple organisation invites with permission groups.",
+      "tags": [
+        "serialization",
+        "validation",
+        "organisations"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:organisations/serializers.py:UpdateSubscriptionSerializer",
+      "type": "class",
+      "name": "UpdateSubscriptionSerializer",
+      "filePath": "organisations/serializers.py",
+      "lineRange": [
+        193,
+        229
+      ],
+      "summary": "Serializer that updates an organisation's subscription from a Chargebee hosted page.",
+      "tags": [
+        "serialization",
+        "subscription",
+        "integration"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:organisations/serializers.py:GetHostedPageForSubscriptionUpgradeSerializer",
+      "type": "class",
+      "name": "GetHostedPageForSubscriptionUpgradeSerializer",
+      "filePath": "organisations/serializers.py",
+      "lineRange": [
+        253,
+        262
+      ],
+      "summary": "Serializer producing a Chargebee hosted-page URL for a subscription seat upgrade.",
+      "tags": [
+        "serialization",
+        "subscription",
+        "integration"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:organisations/subscription_info_cache.py:update_caches",
+      "type": "function",
+      "name": "update_caches",
+      "filePath": "organisations/subscription_info_cache.py",
+      "lineRange": [
+        19,
+        71
+      ],
+      "summary": "Rebuilds all organisation subscription information caches, bulk creating/updating cache rows from usage and Chargebee data.",
+      "tags": [
+        "service",
+        "cache",
+        "subscription"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:organisations/subscription_info_cache.py:_update_caches_with_api_usage_data",
+      "type": "function",
+      "name": "_update_caches_with_api_usage_data",
+      "filePath": "organisations/subscription_info_cache.py",
+      "lineRange": [
+        74,
+        117
+      ],
+      "summary": "Populates cache entries with recent API call usage figures from the analytics store.",
+      "tags": [
+        "service",
+        "cache",
+        "usage"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:organisations/subscription_info_cache.py:_update_caches_with_chargebee_data",
+      "type": "function",
+      "name": "_update_caches_with_chargebee_data",
+      "filePath": "organisations/subscription_info_cache.py",
+      "lineRange": [
+        120,
+        147
+      ],
+      "summary": "Enriches cache entries with subscription metadata fetched from Chargebee.",
+      "tags": [
+        "service",
+        "cache",
+        "subscription",
+        "integration"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:organisations/subscriptions/constants.py:SubscriptionCacheEntity",
+      "type": "class",
+      "name": "SubscriptionCacheEntity",
+      "filePath": "organisations/subscriptions/constants.py",
+      "lineRange": [
+        50,
+        53
+      ],
+      "summary": "Enum of subscription cache entity sources (Chargebee, InfluxDB).",
+      "tags": [
+        "constants",
+        "subscription"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:organisations/subscriptions/constants.py:SubscriptionPlanFamily",
+      "type": "class",
+      "name": "SubscriptionPlanFamily",
+      "filePath": "organisations/subscriptions/constants.py",
+      "lineRange": [
+        56,
+        76
+      ],
+      "summary": "Enum classifying plan IDs into free/startup/scale-up/enterprise families with normalisation helpers.",
+      "tags": [
+        "constants",
+        "subscription"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:organisations/subscriptions/metadata.py:BaseSubscriptionMetadata",
+      "type": "class",
+      "name": "BaseSubscriptionMetadata",
+      "filePath": "organisations/subscriptions/metadata.py",
+      "lineRange": [
+        6,
+        81
+      ],
+      "summary": "Value object holding subscription allowance limits with additive composition and equality.",
+      "tags": [
+        "data-model",
+        "subscription",
+        "metadata"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:organisations/subscriptions/permissions.py:require_minimum_plan",
+      "type": "function",
+      "name": "require_minimum_plan",
+      "filePath": "organisations/subscriptions/permissions.py",
+      "lineRange": [
+        17,
+        60
+      ],
+      "summary": "Factory returning a DRF permission class that requires the organisation to meet a minimum plan family rank on SaaS.",
+      "tags": [
+        "permissions",
+        "subscription",
+        "factory"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:organisations/subscriptions/xero/metadata.py:XeroSubscriptionMetadata",
+      "type": "class",
+      "name": "XeroSubscriptionMetadata",
+      "filePath": "organisations/subscriptions/xero/metadata.py",
+      "lineRange": [
+        5,
+        6
+      ],
+      "summary": "Xero subscription metadata subclass with Xero payment source.",
+      "tags": [
+        "subscription",
+        "metadata",
+        "integration"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:organisations/permissions/models.py",
+      "target": "class:organisations/permissions/models.py:UserOrganisationPermission",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:organisations/permissions/models.py",
+      "target": "class:organisations/permissions/models.py:UserOrganisationPermission",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/permissions/models.py",
+      "target": "class:organisations/permissions/models.py:UserPermissionGroupOrganisationPermission",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:organisations/permissions/models.py",
+      "target": "class:organisations/permissions/models.py:UserPermissionGroupOrganisationPermission",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/permissions/models.py",
+      "target": "class:organisations/permissions/models.py:OrganisationPermissionModel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:organisations/permissions/models.py",
+      "target": "class:organisations/permissions/models.py:OrganisationPermissionModel",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/permissions/permissions.py",
+      "target": "class:organisations/permissions/permissions.py:NestedOrganisationEntityPermission",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:organisations/permissions/permissions.py",
+      "target": "class:organisations/permissions/permissions.py:NestedOrganisationEntityPermission",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/permissions/permissions.py",
+      "target": "class:organisations/permissions/permissions.py:HasOrganisationPermission",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:organisations/permissions/permissions.py",
+      "target": "class:organisations/permissions/permissions.py:HasOrganisationPermission",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/permissions/permissions.py",
+      "target": "class:organisations/permissions/permissions.py:OrganisationPermission",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:organisations/permissions/permissions.py",
+      "target": "class:organisations/permissions/permissions.py:OrganisationPermission",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/permissions/permissions.py",
+      "target": "class:organisations/permissions/permissions.py:OrganisationUsersPermission",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:organisations/permissions/permissions.py",
+      "target": "class:organisations/permissions/permissions.py:OrganisationUsersPermission",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/permissions/permissions.py",
+      "target": "class:organisations/permissions/permissions.py:UserPermissionGroupPermission",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:organisations/permissions/permissions.py",
+      "target": "class:organisations/permissions/permissions.py:UserPermissionGroupPermission",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/permissions/permissions.py",
+      "target": "class:organisations/permissions/permissions.py:NestedIsOrganisationAdminPermission",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:organisations/permissions/permissions.py",
+      "target": "class:organisations/permissions/permissions.py:NestedIsOrganisationAdminPermission",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/permissions/permissions.py",
+      "target": "class:organisations/permissions/permissions.py:GithubIsAdminOrganisation",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:organisations/permissions/permissions.py",
+      "target": "class:organisations/permissions/permissions.py:GithubIsAdminOrganisation",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/permissions/permissions.py",
+      "target": "class:organisations/permissions/permissions.py:OrganisationAPIUsageNotificationPermission",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:organisations/permissions/permissions.py",
+      "target": "class:organisations/permissions/permissions.py:OrganisationAPIUsageNotificationPermission",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/permissions/serializers.py",
+      "target": "class:organisations/permissions/serializers.py:UserOrganisationPermissionUpdateCreateSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:organisations/permissions/serializers.py",
+      "target": "class:organisations/permissions/serializers.py:UserOrganisationPermissionUpdateCreateSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/permissions/serializers.py",
+      "target": "class:organisations/permissions/serializers.py:UserOrganisationPermissionListSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:organisations/permissions/serializers.py",
+      "target": "class:organisations/permissions/serializers.py:UserOrganisationPermissionListSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/permissions/serializers.py",
+      "target": "class:organisations/permissions/serializers.py:UserPermissionGroupOrganisationPermissionUpdateCreateSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:organisations/permissions/serializers.py",
+      "target": "class:organisations/permissions/serializers.py:UserPermissionGroupOrganisationPermissionUpdateCreateSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/permissions/serializers.py",
+      "target": "class:organisations/permissions/serializers.py:UserPermissionGroupOrganisationPermissionListSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:organisations/permissions/serializers.py",
+      "target": "class:organisations/permissions/serializers.py:UserPermissionGroupOrganisationPermissionListSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/permissions/views.py",
+      "target": "class:organisations/permissions/views.py:BaseOrganisationPermissionViewSet",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:organisations/permissions/views.py",
+      "target": "class:organisations/permissions/views.py:BaseOrganisationPermissionViewSet",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/permissions/views.py",
+      "target": "class:organisations/permissions/views.py:UserOrganisationPermissionViewSet",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:organisations/permissions/views.py",
+      "target": "class:organisations/permissions/views.py:UserOrganisationPermissionViewSet",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/permissions/views.py",
+      "target": "class:organisations/permissions/views.py:UserPermissionGroupOrganisationPermissionViewSet",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:organisations/permissions/views.py",
+      "target": "class:organisations/permissions/views.py:UserPermissionGroupOrganisationPermissionViewSet",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/serializers.py",
+      "target": "class:organisations/serializers.py:SubscriptionSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:organisations/serializers.py",
+      "target": "class:organisations/serializers.py:SubscriptionSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/serializers.py",
+      "target": "class:organisations/serializers.py:OrganisationSerializerFull",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:organisations/serializers.py",
+      "target": "class:organisations/serializers.py:OrganisationSerializerFull",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/serializers.py",
+      "target": "class:organisations/serializers.py:InviteSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:organisations/serializers.py",
+      "target": "class:organisations/serializers.py:InviteSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/serializers.py",
+      "target": "class:organisations/serializers.py:MultiInvitesSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:organisations/serializers.py",
+      "target": "class:organisations/serializers.py:MultiInvitesSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/serializers.py",
+      "target": "class:organisations/serializers.py:UpdateSubscriptionSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:organisations/serializers.py",
+      "target": "class:organisations/serializers.py:UpdateSubscriptionSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/serializers.py",
+      "target": "class:organisations/serializers.py:GetHostedPageForSubscriptionUpgradeSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:organisations/serializers.py",
+      "target": "class:organisations/serializers.py:GetHostedPageForSubscriptionUpgradeSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/subscription_info_cache.py",
+      "target": "function:organisations/subscription_info_cache.py:update_caches",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:organisations/subscription_info_cache.py",
+      "target": "function:organisations/subscription_info_cache.py:update_caches",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/subscription_info_cache.py",
+      "target": "function:organisations/subscription_info_cache.py:_update_caches_with_api_usage_data",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:organisations/subscription_info_cache.py",
+      "target": "function:organisations/subscription_info_cache.py:_update_caches_with_api_usage_data",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/subscription_info_cache.py",
+      "target": "function:organisations/subscription_info_cache.py:_update_caches_with_chargebee_data",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:organisations/subscription_info_cache.py",
+      "target": "function:organisations/subscription_info_cache.py:_update_caches_with_chargebee_data",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/subscriptions/constants.py",
+      "target": "class:organisations/subscriptions/constants.py:SubscriptionCacheEntity",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:organisations/subscriptions/constants.py",
+      "target": "class:organisations/subscriptions/constants.py:SubscriptionCacheEntity",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/subscriptions/constants.py",
+      "target": "class:organisations/subscriptions/constants.py:SubscriptionPlanFamily",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:organisations/subscriptions/constants.py",
+      "target": "class:organisations/subscriptions/constants.py:SubscriptionPlanFamily",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/subscriptions/metadata.py",
+      "target": "class:organisations/subscriptions/metadata.py:BaseSubscriptionMetadata",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:organisations/subscriptions/metadata.py",
+      "target": "class:organisations/subscriptions/metadata.py:BaseSubscriptionMetadata",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/subscriptions/permissions.py",
+      "target": "function:organisations/subscriptions/permissions.py:require_minimum_plan",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:organisations/subscriptions/permissions.py",
+      "target": "function:organisations/subscriptions/permissions.py:require_minimum_plan",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/subscriptions/xero/metadata.py",
+      "target": "class:organisations/subscriptions/xero/metadata.py:XeroSubscriptionMetadata",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:organisations/subscriptions/xero/metadata.py",
+      "target": "class:organisations/subscriptions/xero/metadata.py:XeroSubscriptionMetadata",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:organisations/permissions/models.py",
+      "target": "file:organisations/managers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/permissions/models.py",
+      "target": "file:organisations/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/permissions/permissions.py",
+      "target": "file:organisations/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/permissions/permissions.py",
+      "target": "file:users/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/permissions/serializers.py",
+      "target": "file:organisations/permissions/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/permissions/serializers.py",
+      "target": "file:users/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/permissions/views.py",
+      "target": "file:organisations/permissions/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/permissions/views.py",
+      "target": "file:organisations/permissions/permissions.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/permissions/views.py",
+      "target": "file:organisations/permissions/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/serializers.py",
+      "target": "file:organisations/chargebee/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/serializers.py",
+      "target": "file:organisations/invites/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/serializers.py",
+      "target": "file:organisations/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/serializers.py",
+      "target": "file:organisations/subscriptions/constants.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/serializers.py",
+      "target": "file:users/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/subscription_info_cache.py",
+      "target": "file:organisations/chargebee/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/subscription_info_cache.py",
+      "target": "file:organisations/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/subscription_info_cache.py",
+      "target": "file:organisations/subscriptions/constants.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/subscriptions/constants.py",
+      "target": "file:organisations/subscriptions/metadata.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/subscriptions/metadata.py",
+      "target": "file:features/versioning/constants.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/subscriptions/permissions.py",
+      "target": "file:organisations/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/subscriptions/permissions.py",
+      "target": "file:organisations/subscriptions/constants.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/subscriptions/xero/metadata.py",
+      "target": "file:organisations/subscriptions/constants.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:organisations/subscriptions/xero/metadata.py",
+      "target": "file:organisations/subscriptions/metadata.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

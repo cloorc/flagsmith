@@ -1,0 +1,918 @@
+{
+  "api_keys/models.py": [
+    {
+      "path": "audit/models.py",
+      "batchIndex": 8,
+      "symbols": [
+        "AuditLog"
+      ]
+    },
+    {
+      "path": "features/versioning/models.py",
+      "batchIndex": 9,
+      "symbols": [
+        "EnvironmentFeatureVersion",
+        "VersionChangeSet"
+      ]
+    },
+    {
+      "path": "permissions/rbac_wrapper.py",
+      "batchIndex": 2,
+      "symbols": [
+        "is_master_api_key_object_admin",
+        "get_permitted_projects_for_master_api_key_using_roles",
+        "get_permitted_environments_for_master_api_key_using_roles",
+        "master_api_key_has_organisation_permission_using_roles"
+      ]
+    }
+  ],
+  "api_keys/user.py": [
+    {
+      "path": "permissions/permission_service.py",
+      "batchIndex": 2,
+      "symbols": [
+        "is_user_organisation_admin",
+        "is_user_project_admin",
+        "is_user_environment_admin",
+        "is_master_api_key_project_admin",
+        "is_master_api_key_environment_admin",
+        "get_permitted_projects_for_user",
+        "get_permitted_projects_for_master_api_key",
+        "get_permitted_environments_for_user",
+        "get_permitted_environments_for_master_api_key",
+        "user_has_organisation_permission",
+        "master_api_key_has_organisation_permission",
+        "_is_user_object_admin",
+        "get_base_permission_filter",
+        "get_object_id_from_base_permission_filter",
+        "get_user_permission_filter",
+        "get_group_permission_filter"
+      ]
+    },
+    {
+      "path": "users/abc.py",
+      "batchIndex": 2,
+      "symbols": [
+        "UserABC"
+      ]
+    },
+    {
+      "path": "features/feature_health/services.py",
+      "batchIndex": 6,
+      "symbols": [
+        "get_provider_response",
+        "create_feature_health_events_from_provider",
+        "update_feature_unhealthy_tag",
+        "dismiss_feature_health_event"
+      ]
+    },
+    {
+      "path": "features/versioning/serializers.py",
+      "batchIndex": 5,
+      "symbols": [
+        "CustomEnvironmentFeatureVersionFeatureStateSerializer",
+        "EnvironmentFeatureVersionSerializer",
+        "EnvironmentFeatureVersionRetrieveSerializer",
+        "EnvironmentFeatureVersionCreateSerializer",
+        "EnvironmentFeatureVersionPublishSerializer",
+        "EnvironmentFeatureVersionQuerySerializer"
+      ]
+    }
+  ],
+  "api_keys/views.py": [
+    {
+      "path": "organisations/permissions/permissions.py",
+      "batchIndex": 2,
+      "symbols": [
+        "NestedOrganisationEntityPermission",
+        "HasOrganisationPermission",
+        "OrganisationPermission",
+        "OrganisationUsersPermission",
+        "UserPermissionGroupPermission",
+        "NestedIsOrganisationAdminPermission",
+        "GithubIsAdminOrganisation",
+        "OrganisationAPIUsageNotificationPermission"
+      ]
+    },
+    {
+      "path": "organisations/urls.py",
+      "batchIndex": 2,
+      "symbols": []
+    }
+  ],
+  "audit/permissions.py": [
+    {
+      "path": "projects/models.py",
+      "batchIndex": 7,
+      "symbols": [
+        "EdgeV2MigrationStatus",
+        "Project",
+        "ProjectPermissionManager",
+        "ProjectPermissionModel",
+        "UserPermissionGroupProjectPermission",
+        "UserProjectPermission"
+      ]
+    }
+  ],
+  "audit/views.py": [
+    {
+      "path": "audit/models.py",
+      "batchIndex": 8,
+      "symbols": [
+        "AuditLog"
+      ]
+    },
+    {
+      "path": "audit/serializers.py",
+      "batchIndex": 3,
+      "symbols": [
+        "AuditLogListSerializer",
+        "AuditLogChangeDetailsSerializer",
+        "AuditLogRetrieveSerializer",
+        "AuditLogsQueryParamSerializer"
+      ]
+    },
+    {
+      "path": "organisations/urls.py",
+      "batchIndex": 2,
+      "symbols": []
+    },
+    {
+      "path": "projects/urls.py",
+      "batchIndex": 7,
+      "symbols": []
+    }
+  ],
+  "features/versioning/constants.py": [
+    {
+      "path": "organisations/subscriptions/metadata.py",
+      "batchIndex": 2,
+      "symbols": [
+        "BaseSubscriptionMetadata",
+        "_add_nullable_limit_attributes"
+      ]
+    }
+  ],
+  "organisations/__init__.py": [
+    {
+      "path": "organisations/tasks.py",
+      "batchIndex": 2,
+      "symbols": [
+        "send_org_over_limit_alert",
+        "send_org_subscription_cancelled_alert",
+        "update_organisation_subscription_information_cache_recurring",
+        "update_organisation_subscription_information_api_usage_cache",
+        "update_organisation_subscription_information_cache",
+        "finish_subscription_cancellation",
+        "handle_api_usage_notifications",
+        "charge_for_api_call_count_overages",
+        "restrict_use_due_to_api_limit_grace_period_over",
+        "unrestrict_after_api_limit_grace_period_is_stale",
+        "register_recurring_tasks"
+      ]
+    }
+  ],
+  "organisations/chargebee/__init__.py": [
+    {
+      "path": "organisations/serializers.py",
+      "batchIndex": 2,
+      "symbols": [
+        "SubscriptionSerializer",
+        "OrganisationSerializerFull",
+        "OrganisationSerializerBasic",
+        "UserOrganisationSerializer",
+        "InviteSerializerFull",
+        "_PermissionGroupPKRelatedField",
+        "InviteSerializer",
+        "MultiInvitesSerializer",
+        "UpdateSubscriptionSerializer",
+        "PortalUrlSerializer",
+        "OrganisationWebhookSerializer",
+        "InfluxDataSerializer",
+        "InfluxDataQuerySerializer",
+        "GetHostedPageForSubscriptionUpgradeSerializer",
+        "SubscriptionDetailsSerializer",
+        "OrganisationAPIUsageNotificationSerializer"
+      ]
+    },
+    {
+      "path": "organisations/subscription_info_cache.py",
+      "batchIndex": 2,
+      "symbols": [
+        "update_caches",
+        "_update_caches_with_api_usage_data",
+        "_update_caches_with_chargebee_data"
+      ]
+    },
+    {
+      "path": "organisations/tasks.py",
+      "batchIndex": 2,
+      "symbols": [
+        "send_org_over_limit_alert",
+        "send_org_subscription_cancelled_alert",
+        "update_organisation_subscription_information_cache_recurring",
+        "update_organisation_subscription_information_api_usage_cache",
+        "update_organisation_subscription_information_cache",
+        "finish_subscription_cancellation",
+        "handle_api_usage_notifications",
+        "charge_for_api_call_count_overages",
+        "restrict_use_due_to_api_limit_grace_period_over",
+        "unrestrict_after_api_limit_grace_period_is_stale",
+        "register_recurring_tasks"
+      ]
+    },
+    {
+      "path": "organisations/views.py",
+      "batchIndex": 2,
+      "symbols": [
+        "OrganisationViewSet",
+        "chargebee_webhook",
+        "OrganisationWebhookViewSet",
+        "OrganisationAPIUsageNotificationView"
+      ]
+    }
+  ],
+  "organisations/chargebee/chargebee.py": [
+    {
+      "path": "organisations/subscriptions/constants.py",
+      "batchIndex": 2,
+      "symbols": [
+        "SubscriptionCacheEntity",
+        "SubscriptionPlanFamily"
+      ]
+    },
+    {
+      "path": "organisations/subscriptions/exceptions.py",
+      "batchIndex": 2,
+      "symbols": [
+        "InvalidSubscriptionPlanError",
+        "CannotCancelChargebeeSubscription",
+        "UpgradeSeatsError",
+        "UpgradeSeatsPaymentFailure",
+        "UpgradeAPIUsageError",
+        "UpgradeAPIUsagePaymentFailure",
+        "SubscriptionDoesNotSupportSeatUpgrade"
+      ]
+    }
+  ],
+  "organisations/chargebee/metadata.py": [
+    {
+      "path": "organisations/subscriptions/constants.py",
+      "batchIndex": 2,
+      "symbols": [
+        "SubscriptionCacheEntity",
+        "SubscriptionPlanFamily"
+      ]
+    },
+    {
+      "path": "organisations/subscriptions/metadata.py",
+      "batchIndex": 2,
+      "symbols": [
+        "BaseSubscriptionMetadata",
+        "_add_nullable_limit_attributes"
+      ]
+    }
+  ],
+  "organisations/chargebee/webhook_event_types.py": [
+    {
+      "path": "organisations/views.py",
+      "batchIndex": 2,
+      "symbols": [
+        "OrganisationViewSet",
+        "chargebee_webhook",
+        "OrganisationWebhookViewSet",
+        "OrganisationAPIUsageNotificationView"
+      ]
+    }
+  ],
+  "organisations/chargebee/webhook_handlers.py": [
+    {
+      "path": "organisations/subscriptions/constants.py",
+      "batchIndex": 2,
+      "symbols": [
+        "SubscriptionCacheEntity",
+        "SubscriptionPlanFamily"
+      ]
+    },
+    {
+      "path": "organisations/views.py",
+      "batchIndex": 2,
+      "symbols": [
+        "OrganisationViewSet",
+        "chargebee_webhook",
+        "OrganisationWebhookViewSet",
+        "OrganisationAPIUsageNotificationView"
+      ]
+    }
+  ],
+  "organisations/constants.py": [
+    {
+      "path": "organisations/task_helpers.py",
+      "batchIndex": 2,
+      "symbols": [
+        "send_api_flags_blocked_notification",
+        "_send_api_usage_notification",
+        "handle_api_usage_notification_for_organisation",
+        "_get_total_months"
+      ]
+    },
+    {
+      "path": "organisations/tasks.py",
+      "batchIndex": 2,
+      "symbols": [
+        "send_org_over_limit_alert",
+        "send_org_subscription_cancelled_alert",
+        "update_organisation_subscription_information_cache_recurring",
+        "update_organisation_subscription_information_api_usage_cache",
+        "update_organisation_subscription_information_cache",
+        "finish_subscription_cancellation",
+        "handle_api_usage_notifications",
+        "charge_for_api_call_count_overages",
+        "restrict_use_due_to_api_limit_grace_period_over",
+        "unrestrict_after_api_limit_grace_period_is_stale",
+        "register_recurring_tasks"
+      ]
+    }
+  ],
+  "organisations/exceptions.py": [
+    {
+      "path": "organisations/views.py",
+      "batchIndex": 2,
+      "symbols": [
+        "OrganisationViewSet",
+        "chargebee_webhook",
+        "OrganisationWebhookViewSet",
+        "OrganisationAPIUsageNotificationView"
+      ]
+    }
+  ],
+  "organisations/invites/models.py": [
+    {
+      "path": "users/models.py",
+      "batchIndex": 2,
+      "symbols": [
+        "UTMDataModel",
+        "SignUpType",
+        "UserManager",
+        "FFAdminUser",
+        "UserPermissionGroupMembership",
+        "UserPermissionGroup",
+        "HubspotLead",
+        "HubspotTrackerUTMData",
+        "HubspotTracker"
+      ]
+    },
+    {
+      "path": "organisations/serializers.py",
+      "batchIndex": 2,
+      "symbols": [
+        "SubscriptionSerializer",
+        "OrganisationSerializerFull",
+        "OrganisationSerializerBasic",
+        "UserOrganisationSerializer",
+        "InviteSerializerFull",
+        "_PermissionGroupPKRelatedField",
+        "InviteSerializer",
+        "MultiInvitesSerializer",
+        "UpdateSubscriptionSerializer",
+        "PortalUrlSerializer",
+        "OrganisationWebhookSerializer",
+        "InfluxDataSerializer",
+        "InfluxDataQuerySerializer",
+        "GetHostedPageForSubscriptionUpgradeSerializer",
+        "SubscriptionDetailsSerializer",
+        "OrganisationAPIUsageNotificationSerializer"
+      ]
+    }
+  ],
+  "organisations/invites/serializers.py": [
+    {
+      "path": "users/serializers.py",
+      "batchIndex": 2,
+      "symbols": [
+        "UserIdSerializer",
+        "UserFullSerializer",
+        "UserLoginSerializer",
+        "UserListSerializer",
+        "UserIdsSerializer",
+        "UserPermissionGroupSerializer",
+        "UserPermissionGroupSummarySerializer",
+        "ListUserPermissionGroupMembershipSerializer",
+        "ListUserPermissionGroupSerializer",
+        "UserPermissionGroupMembershipSerializer",
+        "UserPermissionGroupSerializerDetail",
+        "OnboardingToolsSerializer",
+        "OnboardingTaskSerializer",
+        "PatchOnboardingSerializer",
+        "OnboardingResponseTypeSerializer",
+        "CustomCurrentUserSerializer",
+        "ListUsersQuerySerializer",
+        "UTMDataSerializer"
+      ]
+    }
+  ],
+  "organisations/invites/views.py": [
+    {
+      "path": "organisations/permissions/permissions.py",
+      "batchIndex": 2,
+      "symbols": [
+        "NestedOrganisationEntityPermission",
+        "HasOrganisationPermission",
+        "OrganisationPermission",
+        "OrganisationUsersPermission",
+        "UserPermissionGroupPermission",
+        "NestedIsOrganisationAdminPermission",
+        "GithubIsAdminOrganisation",
+        "OrganisationAPIUsageNotificationPermission"
+      ]
+    },
+    {
+      "path": "organisations/serializers.py",
+      "batchIndex": 2,
+      "symbols": [
+        "SubscriptionSerializer",
+        "OrganisationSerializerFull",
+        "OrganisationSerializerBasic",
+        "UserOrganisationSerializer",
+        "InviteSerializerFull",
+        "_PermissionGroupPKRelatedField",
+        "InviteSerializer",
+        "MultiInvitesSerializer",
+        "UpdateSubscriptionSerializer",
+        "PortalUrlSerializer",
+        "OrganisationWebhookSerializer",
+        "InfluxDataSerializer",
+        "InfluxDataQuerySerializer",
+        "GetHostedPageForSubscriptionUpgradeSerializer",
+        "SubscriptionDetailsSerializer",
+        "OrganisationAPIUsageNotificationSerializer"
+      ]
+    },
+    {
+      "path": "organisations/subscriptions/exceptions.py",
+      "batchIndex": 2,
+      "symbols": [
+        "InvalidSubscriptionPlanError",
+        "CannotCancelChargebeeSubscription",
+        "UpgradeSeatsError",
+        "UpgradeSeatsPaymentFailure",
+        "UpgradeAPIUsageError",
+        "UpgradeAPIUsagePaymentFailure",
+        "SubscriptionDoesNotSupportSeatUpgrade"
+      ]
+    },
+    {
+      "path": "users/exceptions.py",
+      "batchIndex": 2,
+      "symbols": [
+        "InvalidInviteError"
+      ]
+    },
+    {
+      "path": "organisations/urls.py",
+      "batchIndex": 2,
+      "symbols": []
+    },
+    {
+      "path": "users/urls.py",
+      "batchIndex": 2,
+      "symbols": []
+    }
+  ],
+  "organisations/management/commands/check_if_organisations_over_plan_limit.py": [
+    {
+      "path": "organisations/tasks.py",
+      "batchIndex": 2,
+      "symbols": [
+        "send_org_over_limit_alert",
+        "send_org_subscription_cancelled_alert",
+        "update_organisation_subscription_information_cache_recurring",
+        "update_organisation_subscription_information_api_usage_cache",
+        "update_organisation_subscription_information_cache",
+        "finish_subscription_cancellation",
+        "handle_api_usage_notifications",
+        "charge_for_api_call_count_overages",
+        "restrict_use_due_to_api_limit_grace_period_over",
+        "unrestrict_after_api_limit_grace_period_is_stale",
+        "register_recurring_tasks"
+      ]
+    }
+  ],
+  "organisations/management/commands/createinitialorganisation.py": [
+    {
+      "path": "users/services.py",
+      "batchIndex": 2,
+      "symbols": [
+        "CreateInitialSuperuserResponse",
+        "should_skip_create_initial_superuser",
+        "create_initial_superuser",
+        "get_initial_superuser",
+        "_get_user_password_reset_url"
+      ]
+    }
+  ],
+  "organisations/managers.py": [
+    {
+      "path": "organisations/permissions/models.py",
+      "batchIndex": 2,
+      "symbols": [
+        "UserOrganisationPermission",
+        "UserPermissionGroupOrganisationPermission",
+        "OrganisationPermissionModel"
+      ]
+    }
+  ],
+  "organisations/models.py": [
+    {
+      "path": "organisations/subscriptions/constants.py",
+      "batchIndex": 2,
+      "symbols": [
+        "SubscriptionCacheEntity",
+        "SubscriptionPlanFamily"
+      ]
+    },
+    {
+      "path": "organisations/subscriptions/exceptions.py",
+      "batchIndex": 2,
+      "symbols": [
+        "InvalidSubscriptionPlanError",
+        "CannotCancelChargebeeSubscription",
+        "UpgradeSeatsError",
+        "UpgradeSeatsPaymentFailure",
+        "UpgradeAPIUsageError",
+        "UpgradeAPIUsagePaymentFailure",
+        "SubscriptionDoesNotSupportSeatUpgrade"
+      ]
+    },
+    {
+      "path": "organisations/subscriptions/metadata.py",
+      "batchIndex": 2,
+      "symbols": [
+        "BaseSubscriptionMetadata",
+        "_add_nullable_limit_attributes"
+      ]
+    },
+    {
+      "path": "organisations/subscriptions/xero/metadata.py",
+      "batchIndex": 2,
+      "symbols": [
+        "XeroSubscriptionMetadata"
+      ]
+    },
+    {
+      "path": "audit/signals.py",
+      "batchIndex": 8,
+      "symbols": [
+        "_AuditLogSignalHandler",
+        "_get_integration_config",
+        "call_webhooks",
+        "track_only",
+        "track_only_feature_related_events",
+        "_track_event_async",
+        "send_audit_log_event_to_datadog",
+        "send_audit_log_event_to_new_relic",
+        "send_audit_log_event_to_dynatrace",
+        "send_audit_log_event_to_grafana",
+        "send_audit_log_event_to_slack",
+        "send_feature_flag_went_live_signal",
+        "send_audit_log_event_to_sentry",
+        "trigger_feature_state_change_webhooks"
+      ]
+    },
+    {
+      "path": "environments/serializers.py",
+      "batchIndex": 3,
+      "symbols": [
+        "EnvironmentSerializerFull",
+        "EnvironmentSerializerLight",
+        "EnvironmentSerializerWithMetadata",
+        "EnvironmentRetrieveSerializerWithMetadata",
+        "_BaseCreateUpdateEnvironmentSerializer",
+        "CreateEnvironmentSerializer",
+        "UpdateEnvironmentSerializer",
+        "CloneEnvironmentSerializer",
+        "WebhookSerializer",
+        "EnvironmentAPIKeySerializer"
+      ]
+    },
+    {
+      "path": "features/feature_external_resources/models.py",
+      "batchIndex": 3,
+      "symbols": [
+        "ResourceType",
+        "FeatureExternalResource"
+      ]
+    },
+    {
+      "path": "features/feature_external_resources/views.py",
+      "batchIndex": 3,
+      "symbols": [
+        "FeatureExternalResourceViewSet"
+      ]
+    },
+    {
+      "path": "metadata/models.py",
+      "batchIndex": 3,
+      "symbols": [
+        "FieldType",
+        "MetadataField",
+        "MetadataModelField",
+        "MetadataModelFieldRequirement",
+        "Metadata"
+      ]
+    },
+    {
+      "path": "metadata/permissions.py",
+      "batchIndex": 3,
+      "symbols": [
+        "MetadataFieldPermissions",
+        "MetadataModelFieldPermissions"
+      ]
+    },
+    {
+      "path": "metadata/serializers.py",
+      "batchIndex": 3,
+      "symbols": [
+        "MetadataFieldQuerySerializer",
+        "ProjectMetadataFieldQuerySerializer",
+        "SupportedRequiredForModelQuerySerializer",
+        "MetadataModelFieldQuerySerializer",
+        "MetadataModelFieldRequirementSerializer",
+        "MetadataModelFieldNestedSerializer",
+        "MetadataFieldSerializer",
+        "MetaDataModelFieldSerializer",
+        "ContentTypeSerializer",
+        "MetadataSerializer",
+        "MetadataSerializerMixin"
+      ]
+    },
+    {
+      "path": "organisations/admin.py",
+      "batchIndex": 3,
+      "symbols": [
+        "ProjectInline",
+        "SubscriptionInline",
+        "UserOrganisationInline",
+        "OrganisationSubscriptionInformationCacheInline",
+        "OrganisationAdmin"
+      ]
+    },
+    {
+      "path": "organisations/permissions/models.py",
+      "batchIndex": 2,
+      "symbols": [
+        "UserOrganisationPermission",
+        "UserPermissionGroupOrganisationPermission",
+        "OrganisationPermissionModel"
+      ]
+    },
+    {
+      "path": "organisations/permissions/permissions.py",
+      "batchIndex": 2,
+      "symbols": [
+        "NestedOrganisationEntityPermission",
+        "HasOrganisationPermission",
+        "OrganisationPermission",
+        "OrganisationUsersPermission",
+        "UserPermissionGroupPermission",
+        "NestedIsOrganisationAdminPermission",
+        "GithubIsAdminOrganisation",
+        "OrganisationAPIUsageNotificationPermission"
+      ]
+    },
+    {
+      "path": "organisations/serializers.py",
+      "batchIndex": 2,
+      "symbols": [
+        "SubscriptionSerializer",
+        "OrganisationSerializerFull",
+        "OrganisationSerializerBasic",
+        "UserOrganisationSerializer",
+        "InviteSerializerFull",
+        "_PermissionGroupPKRelatedField",
+        "InviteSerializer",
+        "MultiInvitesSerializer",
+        "UpdateSubscriptionSerializer",
+        "PortalUrlSerializer",
+        "OrganisationWebhookSerializer",
+        "InfluxDataSerializer",
+        "InfluxDataQuerySerializer",
+        "GetHostedPageForSubscriptionUpgradeSerializer",
+        "SubscriptionDetailsSerializer",
+        "OrganisationAPIUsageNotificationSerializer"
+      ]
+    },
+    {
+      "path": "organisations/subscription_info_cache.py",
+      "batchIndex": 2,
+      "symbols": [
+        "update_caches",
+        "_update_caches_with_api_usage_data",
+        "_update_caches_with_chargebee_data"
+      ]
+    },
+    {
+      "path": "organisations/subscriptions/permissions.py",
+      "batchIndex": 2,
+      "symbols": [
+        "require_minimum_plan"
+      ]
+    },
+    {
+      "path": "organisations/subscriptions/serializers/mixins.py",
+      "batchIndex": 3,
+      "symbols": [
+        "ReadOnlyIfNotValidPlanMixin"
+      ]
+    },
+    {
+      "path": "organisations/task_helpers.py",
+      "batchIndex": 2,
+      "symbols": [
+        "send_api_flags_blocked_notification",
+        "_send_api_usage_notification",
+        "handle_api_usage_notification_for_organisation",
+        "_get_total_months"
+      ]
+    },
+    {
+      "path": "organisations/tasks.py",
+      "batchIndex": 2,
+      "symbols": [
+        "send_org_over_limit_alert",
+        "send_org_subscription_cancelled_alert",
+        "update_organisation_subscription_information_cache_recurring",
+        "update_organisation_subscription_information_api_usage_cache",
+        "update_organisation_subscription_information_cache",
+        "finish_subscription_cancellation",
+        "handle_api_usage_notifications",
+        "charge_for_api_call_count_overages",
+        "restrict_use_due_to_api_limit_grace_period_over",
+        "unrestrict_after_api_limit_grace_period_is_stale",
+        "register_recurring_tasks"
+      ]
+    },
+    {
+      "path": "organisations/views.py",
+      "batchIndex": 2,
+      "symbols": [
+        "OrganisationViewSet",
+        "chargebee_webhook",
+        "OrganisationWebhookViewSet",
+        "OrganisationAPIUsageNotificationView"
+      ]
+    },
+    {
+      "path": "permissions/permission_service.py",
+      "batchIndex": 2,
+      "symbols": [
+        "is_user_organisation_admin",
+        "is_user_project_admin",
+        "is_user_environment_admin",
+        "is_master_api_key_project_admin",
+        "is_master_api_key_environment_admin",
+        "get_permitted_projects_for_user",
+        "get_permitted_projects_for_master_api_key",
+        "get_permitted_environments_for_user",
+        "get_permitted_environments_for_master_api_key",
+        "user_has_organisation_permission",
+        "master_api_key_has_organisation_permission",
+        "_is_user_object_admin",
+        "get_base_permission_filter",
+        "get_object_id_from_base_permission_filter",
+        "get_user_permission_filter",
+        "get_group_permission_filter"
+      ]
+    },
+    {
+      "path": "permissions/rbac_wrapper.py",
+      "batchIndex": 2,
+      "symbols": [
+        "is_master_api_key_object_admin",
+        "get_permitted_projects_for_master_api_key_using_roles",
+        "get_permitted_environments_for_master_api_key_using_roles",
+        "master_api_key_has_organisation_permission_using_roles"
+      ]
+    },
+    {
+      "path": "projects/management/commands/createinitialproject.py",
+      "batchIndex": 2,
+      "symbols": [
+        "Command"
+      ]
+    },
+    {
+      "path": "projects/models.py",
+      "batchIndex": 7,
+      "symbols": [
+        "EdgeV2MigrationStatus",
+        "Project",
+        "ProjectPermissionManager",
+        "ProjectPermissionModel",
+        "UserPermissionGroupProjectPermission",
+        "UserProjectPermission"
+      ]
+    },
+    {
+      "path": "projects/permissions.py",
+      "batchIndex": 7,
+      "symbols": [
+        "ProjectPermissions",
+        "IsProjectAdmin",
+        "NestedProjectPermissions"
+      ]
+    },
+    {
+      "path": "projects/serializers.py",
+      "batchIndex": 7,
+      "symbols": [
+        "ProjectListSerializer",
+        "ProjectCreateSerializer",
+        "ProjectUpdateSerializer",
+        "ProjectRetrieveSerializer",
+        "CreateUpdateUserProjectPermissionSerializer",
+        "ListUserProjectPermissionSerializer",
+        "CreateUpdateUserPermissionGroupProjectPermissionSerializer",
+        "ListUserPermissionGroupProjectPermissionSerializer"
+      ]
+    },
+    {
+      "path": "segment_membership/services.py",
+      "batchIndex": 12,
+      "symbols": [
+        "is_membership_enabled",
+        "enqueue_membership_refresh",
+        "open_clickhouse_cursor",
+        "get_projects_to_process",
+        "compute_segment_counts_for_project"
+      ]
+    },
+    {
+      "path": "users/abc.py",
+      "batchIndex": 2,
+      "symbols": [
+        "UserABC"
+      ]
+    },
+    {
+      "path": "users/admin.py",
+      "batchIndex": 2,
+      "symbols": [
+        "UserOrganisationInline",
+        "CustomUserAdmin"
+      ]
+    },
+    {
+      "path": "users/models.py",
+      "batchIndex": 2,
+      "symbols": [
+        "UTMDataModel",
+        "SignUpType",
+        "UserManager",
+        "FFAdminUser",
+        "UserPermissionGroupMembership",
+        "UserPermissionGroup",
+        "HubspotLead",
+        "HubspotTrackerUTMData",
+        "HubspotTracker"
+      ]
+    },
+    {
+      "path": "users/serializers.py",
+      "batchIndex": 2,
+      "symbols": [
+        "UserIdSerializer",
+        "UserFullSerializer",
+        "UserLoginSerializer",
+        "UserListSerializer",
+        "UserIdsSerializer",
+        "UserPermissionGroupSerializer",
+        "UserPermissionGroupSummarySerializer",
+        "ListUserPermissionGroupMembershipSerializer",
+        "ListUserPermissionGroupSerializer",
+        "UserPermissionGroupMembershipSerializer",
+        "UserPermissionGroupSerializerDetail",
+        "OnboardingToolsSerializer",
+        "OnboardingTaskSerializer",
+        "PatchOnboardingSerializer",
+        "OnboardingResponseTypeSerializer",
+        "CustomCurrentUserSerializer",
+        "ListUsersQuerySerializer",
+        "UTMDataSerializer"
+      ]
+    },
+    {
+      "path": "users/views.py",
+      "batchIndex": 2,
+      "symbols": [
+        "InitialConfigurationView",
+        "AdminInitView",
+        "FFAdminUserViewSet",
+        "password_reset_redirect",
+        "UserPermissionGroupViewSet",
+        "make_user_group_admin",
+        "remove_user_as_group_admin"
+      ]
+    }
+  ]
+}

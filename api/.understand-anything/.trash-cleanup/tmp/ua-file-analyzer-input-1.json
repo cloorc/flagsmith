@@ -1,0 +1,320 @@
+{
+  "projectRoot": "/Users/wadii/flagsmith-projects/flagsmith/api",
+  "batchFiles": [
+    {
+      "path": "api_keys/admin.py",
+      "language": "python",
+      "sizeLines": 5,
+      "fileCategory": "code"
+    },
+    {
+      "path": "api_keys/authentication.py",
+      "language": "python",
+      "sizeLines": 23,
+      "fileCategory": "code"
+    },
+    {
+      "path": "api_keys/models.py",
+      "language": "python",
+      "sizeLines": 44,
+      "fileCategory": "code"
+    },
+    {
+      "path": "api_keys/serializers.py",
+      "language": "python",
+      "sizeLines": 41,
+      "fileCategory": "code"
+    },
+    {
+      "path": "api_keys/user.py",
+      "language": "python",
+      "sizeLines": 118,
+      "fileCategory": "code"
+    },
+    {
+      "path": "api_keys/views.py",
+      "language": "python",
+      "sizeLines": 37,
+      "fileCategory": "code"
+    },
+    {
+      "path": "audit/permissions.py",
+      "language": "python",
+      "sizeLines": 29,
+      "fileCategory": "code"
+    },
+    {
+      "path": "audit/urls.py",
+      "language": "python",
+      "sizeLines": 10,
+      "fileCategory": "code"
+    },
+    {
+      "path": "audit/views.py",
+      "language": "python",
+      "sizeLines": 149,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/versioning/constants.py",
+      "language": "python",
+      "sizeLines": 3,
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/chargebee/__init__.py",
+      "language": "python",
+      "sizeLines": 15,
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/chargebee/cache.py",
+      "language": "python",
+      "sizeLines": 65,
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/chargebee/chargebee.py",
+      "language": "python",
+      "sizeLines": 339,
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/chargebee/client.py",
+      "language": "python",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/chargebee/constants.py",
+      "language": "python",
+      "sizeLines": 8,
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/chargebee/metadata.py",
+      "language": "python",
+      "sizeLines": 21,
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/chargebee/serializers.py",
+      "language": "python",
+      "sizeLines": 69,
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/chargebee/tasks.py",
+      "language": "python",
+      "sizeLines": 11,
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/chargebee/webhook_event_types.py",
+      "language": "python",
+      "sizeLines": 17,
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/chargebee/webhook_handlers.py",
+      "language": "python",
+      "sizeLines": 187,
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/constants.py",
+      "language": "python",
+      "sizeLines": 6,
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/exceptions.py",
+      "language": "python",
+      "sizeLines": 6,
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/invites/admin.py",
+      "language": "python",
+      "sizeLines": 28,
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/invites/exceptions.py",
+      "language": "python",
+      "sizeLines": 11,
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/invites/models.py",
+      "language": "python",
+      "sizeLines": 111,
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/invites/serializers.py",
+      "language": "python",
+      "sizeLines": 19,
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/invites/views.py",
+      "language": "python",
+      "sizeLines": 178,
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/management/commands/check_if_organisations_over_plan_limit.py",
+      "language": "python",
+      "sizeLines": 13,
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/management/commands/createinitialorganisation.py",
+      "language": "python",
+      "sizeLines": 48,
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/managers.py",
+      "language": "python",
+      "sizeLines": 8,
+      "fileCategory": "code"
+    },
+    {
+      "path": "organisations/models.py",
+      "language": "python",
+      "sizeLines": 651,
+      "fileCategory": "code"
+    }
+  ],
+  "batchImportData": {
+    "api_keys/admin.py": [
+      "api_keys/models.py"
+    ],
+    "api_keys/authentication.py": [
+      "api_keys/models.py",
+      "api_keys/user.py"
+    ],
+    "api_keys/models.py": [
+      "organisations/models.py"
+    ],
+    "api_keys/serializers.py": [
+      "api_keys/models.py"
+    ],
+    "api_keys/user.py": [
+      "api_keys/models.py",
+      "organisations/models.py",
+      "permissions/permission_service.py",
+      "users/abc.py"
+    ],
+    "api_keys/views.py": [
+      "api_keys/authentication.py",
+      "api_keys/models.py",
+      "api_keys/serializers.py",
+      "organisations/permissions/permissions.py"
+    ],
+    "audit/permissions.py": [
+      "organisations/models.py",
+      "projects/models.py"
+    ],
+    "audit/urls.py": [
+      "audit/views.py"
+    ],
+    "audit/views.py": [
+      "audit/models.py",
+      "audit/permissions.py",
+      "audit/serializers.py",
+      "organisations/models.py"
+    ],
+    "features/versioning/constants.py": [],
+    "organisations/__init__.py": [],
+    "organisations/chargebee/__init__.py": [
+      "organisations/chargebee/chargebee.py"
+    ],
+    "organisations/chargebee/cache.py": [
+      "organisations/chargebee/client.py",
+      "organisations/chargebee/metadata.py"
+    ],
+    "organisations/chargebee/chargebee.py": [
+      "organisations/chargebee/cache.py",
+      "organisations/chargebee/client.py",
+      "organisations/chargebee/constants.py",
+      "organisations/chargebee/metadata.py",
+      "organisations/subscriptions/constants.py",
+      "organisations/subscriptions/exceptions.py"
+    ],
+    "organisations/chargebee/client.py": [
+      "organisations/chargebee/chargebee.py"
+    ],
+    "organisations/chargebee/constants.py": [],
+    "organisations/chargebee/metadata.py": [
+      "organisations/subscriptions/constants.py",
+      "organisations/subscriptions/metadata.py"
+    ],
+    "organisations/chargebee/serializers.py": [],
+    "organisations/chargebee/tasks.py": [
+      "organisations/chargebee/cache.py"
+    ],
+    "organisations/chargebee/webhook_event_types.py": [],
+    "organisations/chargebee/webhook_handlers.py": [
+      "organisations/chargebee/chargebee.py",
+      "organisations/chargebee/serializers.py",
+      "organisations/chargebee/tasks.py",
+      "organisations/models.py",
+      "organisations/subscriptions/constants.py"
+    ],
+    "organisations/constants.py": [],
+    "organisations/exceptions.py": [],
+    "organisations/invites/admin.py": [
+      "organisations/invites/models.py"
+    ],
+    "organisations/invites/exceptions.py": [],
+    "organisations/invites/models.py": [
+      "organisations/invites/exceptions.py",
+      "organisations/models.py",
+      "users/models.py"
+    ],
+    "organisations/invites/serializers.py": [
+      "organisations/invites/models.py",
+      "users/serializers.py"
+    ],
+    "organisations/invites/views.py": [
+      "organisations/invites/exceptions.py",
+      "organisations/invites/models.py",
+      "organisations/invites/serializers.py",
+      "organisations/models.py",
+      "organisations/permissions/permissions.py",
+      "organisations/serializers.py",
+      "organisations/subscriptions/exceptions.py",
+      "users/exceptions.py"
+    ],
+    "organisations/management/commands/check_if_organisations_over_plan_limit.py": [
+      "organisations/models.py",
+      "organisations/tasks.py"
+    ],
+    "organisations/management/commands/createinitialorganisation.py": [
+      "organisations/models.py",
+      "users/services.py"
+    ],
+    "organisations/managers.py": [
+      "organisations/permissions/models.py"
+    ],
+    "organisations/models.py": [
+      "features/versioning/constants.py",
+      "organisations/chargebee/__init__.py",
+      "organisations/chargebee/chargebee.py",
+      "organisations/chargebee/metadata.py",
+      "organisations/subscriptions/constants.py",
+      "organisations/subscriptions/exceptions.py",
+      "organisations/subscriptions/metadata.py",
+      "organisations/subscriptions/xero/metadata.py"
+    ]
+  }
+}

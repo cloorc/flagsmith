@@ -1,0 +1,1230 @@
+{
+  "nodes": [
+    {
+      "id": "file:features/versioning/schemas.py",
+      "type": "file",
+      "name": "schemas.py",
+      "filePath": "features/versioning/schemas.py",
+      "summary": "Marshmallow schemas serialising environment feature versions and their feature states into webhook payload data.",
+      "tags": [
+        "serialization",
+        "schema-definition",
+        "webhook",
+        "versioning"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Uses Marshmallow (not DRF) serializers with method fields for webhook payload shaping."
+    },
+    {
+      "id": "class:features/versioning/schemas.py:_FeatureStateSchema",
+      "type": "class",
+      "name": "_FeatureStateSchema",
+      "filePath": "features/versioning/schemas.py",
+      "lineRange": [
+        19,
+        44
+      ],
+      "summary": "Marshmallow schema serialising a feature state's value and multivariate values for inclusion in webhook payloads.",
+      "tags": [
+        "serialization",
+        "schema-definition",
+        "feature-flags"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:features/versioning/schemas.py:EnvironmentFeatureVersionWebhookDataSerializer",
+      "type": "class",
+      "name": "EnvironmentFeatureVersionWebhookDataSerializer",
+      "filePath": "features/versioning/schemas.py",
+      "lineRange": [
+        47,
+        55
+      ],
+      "summary": "Top-level Marshmallow schema producing the environment-feature-version webhook payload, embedding its serialised feature states.",
+      "tags": [
+        "serialization",
+        "schema-definition",
+        "webhook"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:features/versioning/signals.py",
+      "type": "file",
+      "name": "signals.py",
+      "filePath": "features/versioning/signals.py",
+      "summary": "Declares the Django dispatch signal fired when an environment feature version is published.",
+      "tags": [
+        "signals",
+        "event-handler",
+        "versioning"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:features/versioning/tasks.py",
+      "type": "file",
+      "name": "tasks.py",
+      "filePath": "features/versioning/tasks.py",
+      "summary": "Asynchronous tasks driving feature versioning \u2014 enabling/disabling v2 versioning, creating initial versions, dispatching version webhooks, publishing scheduled change sets, and emitting audit logs.",
+      "tags": [
+        "async-task",
+        "versioning",
+        "feature-flags",
+        "webhook",
+        "audit-log"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:features/versioning/tasks.py:enable_v2_versioning",
+      "type": "function",
+      "name": "enable_v2_versioning",
+      "filePath": "features/versioning/tasks.py",
+      "lineRange": [
+        45,
+        53
+      ],
+      "summary": "Enables v2 feature versioning for an environment by creating initial feature versions and flagging the environment accordingly.",
+      "tags": [
+        "async-task",
+        "versioning",
+        "feature-flags"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:features/versioning/tasks.py:disable_v2_versioning",
+      "type": "function",
+      "name": "disable_v2_versioning",
+      "filePath": "features/versioning/tasks.py",
+      "lineRange": [
+        57,
+        87
+      ],
+      "summary": "Disables v2 versioning for an environment, collapsing versioned feature states back to a single latest set and deleting the feature versions and stale feature segments.",
+      "tags": [
+        "async-task",
+        "versioning",
+        "feature-flags",
+        "django-orm"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:features/versioning/tasks.py:_create_initial_feature_versions",
+      "type": "function",
+      "name": "_create_initial_feature_versions",
+      "filePath": "features/versioning/tasks.py",
+      "lineRange": [
+        90,
+        136
+      ],
+      "summary": "Creates the initial EnvironmentFeatureVersion for every feature in an environment, migrating existing live and scheduled feature states into versions.",
+      "tags": [
+        "versioning",
+        "feature-flags",
+        "migration",
+        "django-orm"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:features/versioning/tasks.py:_trigger_feature_state_webhooks_for_version",
+      "type": "function",
+      "name": "_trigger_feature_state_webhooks_for_version",
+      "filePath": "features/versioning/tasks.py",
+      "lineRange": [
+        149,
+        240
+      ],
+      "summary": "Builds the new-vs-previous feature-state diff payload for a published version and dispatches environment and organisation webhooks.",
+      "tags": [
+        "async-task",
+        "webhook",
+        "versioning",
+        "feature-flags"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:features/versioning/tasks.py:trigger_update_version_webhooks",
+      "type": "function",
+      "name": "trigger_update_version_webhooks",
+      "filePath": "features/versioning/tasks.py",
+      "lineRange": [
+        244,
+        261
+      ],
+      "summary": "Task entry point that loads a feature version by uuid and triggers its feature-state-change webhooks.",
+      "tags": [
+        "async-task",
+        "webhook",
+        "versioning"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:features/versioning/tasks.py:create_environment_feature_version_published_audit_log_task",
+      "type": "function",
+      "name": "create_environment_feature_version_published_audit_log_task",
+      "filePath": "features/versioning/tasks.py",
+      "lineRange": [
+        265,
+        280
+      ],
+      "summary": "Creates an audit log record recording that an environment feature version was published.",
+      "tags": [
+        "async-task",
+        "audit-log",
+        "versioning"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:features/versioning/tasks.py:publish_version_change_set",
+      "type": "function",
+      "name": "publish_version_change_set",
+      "filePath": "features/versioning/tasks.py",
+      "lineRange": [
+        284,
+        358
+      ],
+      "summary": "Publishes a deferred version change set \u2014 detecting conflicts, validating and persisting the resulting feature version, and alerting the change-request author on conflict.",
+      "tags": [
+        "async-task",
+        "versioning",
+        "change-request",
+        "conflict-detection"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:features/versioning/tasks.py:_send_failed_due_to_conflict_alert_to_change_request_author",
+      "type": "function",
+      "name": "_send_failed_due_to_conflict_alert_to_change_request_author",
+      "filePath": "features/versioning/tasks.py",
+      "lineRange": [
+        361,
+        376
+      ],
+      "summary": "Emails the change-request author when a scheduled version change set fails to publish because of a conflict.",
+      "tags": [
+        "versioning",
+        "change-request",
+        "email",
+        "helper"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:features/versioning/urls.py",
+      "type": "file",
+      "name": "urls.py",
+      "filePath": "features/versioning/urls.py",
+      "summary": "URL routing for the feature versioning API, wiring environment feature version and feature-state viewsets to nested routes.",
+      "tags": [
+        "routing",
+        "urls",
+        "versioning",
+        "api-handler"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:features/versioning/versioning_service.py",
+      "type": "file",
+      "name": "versioning_service.py",
+      "filePath": "features/versioning/versioning_service.py",
+      "summary": "Business-logic layer for feature versioning \u2014 resolving live feature states/versions and applying flag and segment-override updates, branching between v1 (direct state) and v2 (versioned) semantics.",
+      "tags": [
+        "service",
+        "business-logic",
+        "versioning",
+        "feature-flags",
+        "segment-override"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Central service module; nearly every write path forks into _..._for_versioning_v1 and _..._for_versioning_v2 variants to support both flag models."
+    },
+    {
+      "id": "function:features/versioning/versioning_service.py:get_environment_flags_list",
+      "type": "function",
+      "name": "get_environment_flags_list",
+      "filePath": "features/versioning/versioning_service.py",
+      "lineRange": [
+        51,
+        79
+      ],
+      "summary": "Returns the list of live feature states for an environment, deduplicated to the latest version per feature/segment, with configurable filters and prefetching.",
+      "tags": [
+        "service",
+        "feature-flags",
+        "django-orm",
+        "versioning"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:features/versioning/versioning_service.py:get_environment_flags_dict",
+      "type": "function",
+      "name": "get_environment_flags_dict",
+      "filePath": "features/versioning/versioning_service.py",
+      "lineRange": [
+        82,
+        114
+      ],
+      "summary": "Builds a dict of live feature states keyed by a caller-supplied function, deduplicating to the most recent feature state per key.",
+      "tags": [
+        "service",
+        "feature-flags",
+        "django-orm",
+        "versioning"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:features/versioning/versioning_service.py:get_current_live_environment_feature_version",
+      "type": "function",
+      "name": "get_current_live_environment_feature_version",
+      "filePath": "features/versioning/versioning_service.py",
+      "lineRange": [
+        117,
+        129
+      ],
+      "summary": "Resolves the currently live, published EnvironmentFeatureVersion for a given environment and feature.",
+      "tags": [
+        "service",
+        "versioning",
+        "feature-flags",
+        "django-orm"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:features/versioning/versioning_service.py:_update_flag_for_versioning_v2",
+      "type": "function",
+      "name": "_update_flag_for_versioning_v2",
+      "filePath": "features/versioning/versioning_service.py",
+      "lineRange": [
+        141,
+        198
+      ],
+      "summary": "Applies a single flag change under v2 versioning by creating a new feature version, mutating its cloned feature state, and publishing it.",
+      "tags": [
+        "service",
+        "versioning",
+        "feature-flags",
+        "segment-override"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:features/versioning/versioning_service.py:_update_flag_for_versioning_v1",
+      "type": "function",
+      "name": "_update_flag_for_versioning_v1",
+      "filePath": "features/versioning/versioning_service.py",
+      "lineRange": [
+        201,
+        245
+      ],
+      "summary": "Applies a single flag change under v1 (direct-write) semantics by mutating the live feature state and any segment override in place.",
+      "tags": [
+        "service",
+        "versioning",
+        "feature-flags",
+        "segment-override"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:features/versioning/versioning_service.py:_create_segment_override",
+      "type": "function",
+      "name": "_create_segment_override",
+      "filePath": "features/versioning/versioning_service.py",
+      "lineRange": [
+        255,
+        283
+      ],
+      "summary": "Creates a feature segment and its associated feature state to establish a new segment override for a feature in an environment.",
+      "tags": [
+        "service",
+        "segment-override",
+        "feature-flags",
+        "django-orm"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:features/versioning/versioning_service.py:_update_flag_v2_for_versioning_v2",
+      "type": "function",
+      "name": "_update_flag_v2_for_versioning_v2",
+      "filePath": "features/versioning/versioning_service.py",
+      "lineRange": [
+        301,
+        358
+      ],
+      "summary": "Applies a v2-format change set (environment default plus segment overrides) under v2 versioning by creating and publishing a new feature version.",
+      "tags": [
+        "service",
+        "versioning",
+        "feature-flags",
+        "segment-override"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:features/versioning/versioning_service.py:_update_flag_v2_for_versioning_v1",
+      "type": "function",
+      "name": "_update_flag_v2_for_versioning_v1",
+      "filePath": "features/versioning/versioning_service.py",
+      "lineRange": [
+        361,
+        418
+      ],
+      "summary": "Applies a v2-format change set under v1 (direct-write) semantics, mutating environment-default and segment-override feature states in place.",
+      "tags": [
+        "service",
+        "versioning",
+        "feature-flags",
+        "segment-override"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:features/versioning/versioning_service.py:_delete_segment_override_v2",
+      "type": "function",
+      "name": "_delete_segment_override_v2",
+      "filePath": "features/versioning/versioning_service.py",
+      "lineRange": [
+        447,
+        476
+      ],
+      "summary": "Deletes a segment override under v2 versioning by creating a new feature version that drops the override and publishing it.",
+      "tags": [
+        "service",
+        "versioning",
+        "segment-override",
+        "feature-flags"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:features/versioning/versioning_service.py:get_updated_feature_states_for_version",
+      "type": "function",
+      "name": "get_updated_feature_states_for_version",
+      "filePath": "features/versioning/versioning_service.py",
+      "lineRange": [
+        479,
+        522
+      ],
+      "summary": "Diffs a version's feature states against its previous version to return only the feature states that materially changed.",
+      "tags": [
+        "service",
+        "versioning",
+        "feature-flags",
+        "diff"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:features/versioning/versioning_service.py:_get_feature_states_queryset",
+      "type": "function",
+      "name": "_get_feature_states_queryset",
+      "filePath": "features/versioning/versioning_service.py",
+      "lineRange": [
+        525,
+        561
+      ],
+      "summary": "Builds the base live-feature-states queryset with select/prefetch related options and optional read-replica routing.",
+      "tags": [
+        "service",
+        "feature-flags",
+        "django-orm",
+        "helper"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:features/versioning/views.py",
+      "type": "file",
+      "name": "views.py",
+      "filePath": "features/versioning/views.py",
+      "summary": "DRF viewsets exposing the feature versioning API \u2014 listing/creating/publishing environment feature versions and managing the feature states nested under a version.",
+      "tags": [
+        "api-handler",
+        "viewset",
+        "versioning",
+        "feature-flags",
+        "rest"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:features/versioning/views.py:EnvironmentFeatureVersionViewSet",
+      "type": "class",
+      "name": "EnvironmentFeatureVersionViewSet",
+      "filePath": "features/versioning/views.py",
+      "lineRange": [
+        66,
+        191
+      ],
+      "summary": "Viewset for listing, creating, deleting and publishing environment feature versions, applying subscription-based visibility limits to the version history.",
+      "tags": [
+        "api-handler",
+        "viewset",
+        "versioning",
+        "feature-flags"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:features/versioning/views.py:EnvironmentFeatureVersionFeatureStatesViewSet",
+      "type": "class",
+      "name": "EnvironmentFeatureVersionFeatureStatesViewSet",
+      "filePath": "features/versioning/views.py",
+      "lineRange": [
+        234,
+        316
+      ],
+      "summary": "Nested viewset managing the feature states belonging to a single (unpublished) environment feature version, blocking edits to live versions.",
+      "tags": [
+        "api-handler",
+        "viewset",
+        "versioning",
+        "feature-flags"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:features/versioning/views.py:EnvironmentFeatureVersionRetrieveAPIView",
+      "type": "class",
+      "name": "EnvironmentFeatureVersionRetrieveAPIView",
+      "filePath": "features/versioning/views.py",
+      "lineRange": [
+        194,
+        207
+      ],
+      "summary": "Read-only API view retrieving a single environment feature version by identifier.",
+      "tags": [
+        "api-handler",
+        "versioning",
+        "rest"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:features/workflows/core/exceptions.py",
+      "type": "file",
+      "name": "exceptions.py",
+      "filePath": "features/workflows/core/exceptions.py",
+      "summary": "Exception hierarchy for the change-request workflow, covering unapproved commits, self-approval, and deletion of committed change requests.",
+      "tags": [
+        "exceptions",
+        "workflow",
+        "change-request",
+        "error-handling"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:features/workflows/core/models.py",
+      "type": "file",
+      "name": "models.py",
+      "filePath": "features/workflows/core/models.py",
+      "summary": "Change-request workflow models \u2014 ChangeRequest with approval/commit lifecycle, ChangeRequestApproval, and group assignment, including audit logging and email notifications.",
+      "tags": [
+        "data-model",
+        "workflow",
+        "change-request",
+        "approval",
+        "django-orm"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:features/workflows/core/models.py:ChangeRequest",
+      "type": "class",
+      "name": "ChangeRequest",
+      "filePath": "features/workflows/core/models.py",
+      "lineRange": [
+        57,
+        257
+      ],
+      "summary": "Models a change request batching feature-state, change-set and feature-version edits with approval gating, commit-via-service logic, audit logging and live-from resolution.",
+      "tags": [
+        "data-model",
+        "workflow",
+        "change-request",
+        "approval",
+        "django-orm"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:features/workflows/core/models.py:ChangeRequestApproval",
+      "type": "class",
+      "name": "ChangeRequestApproval",
+      "filePath": "features/workflows/core/models.py",
+      "lineRange": [
+        260,
+        342
+      ],
+      "summary": "Records a user's approval of a change request and sends email notifications to assignees and authors.",
+      "tags": [
+        "data-model",
+        "workflow",
+        "approval",
+        "email",
+        "django-orm"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:features/workflows/core/models.py:ChangeRequestGroupAssignment",
+      "type": "class",
+      "name": "ChangeRequestGroupAssignment",
+      "filePath": "features/workflows/core/models.py",
+      "lineRange": [
+        345,
+        357
+      ],
+      "summary": "Assigns a change request to a user group and notifies the group via an async task.",
+      "tags": [
+        "data-model",
+        "workflow",
+        "change-request",
+        "django-orm"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:segments/tasks.py",
+      "type": "file",
+      "name": "tasks.py",
+      "filePath": "segments/tasks.py",
+      "summary": "Asynchronous tasks for the segments app \u2014 deleting a segment and recording a segment-deleted audit log entry.",
+      "tags": [
+        "async-task",
+        "segment",
+        "audit-log"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:segments/tasks.py:create_segment_deleted_audit_log",
+      "type": "function",
+      "name": "create_segment_deleted_audit_log",
+      "filePath": "segments/tasks.py",
+      "lineRange": [
+        18,
+        37
+      ],
+      "summary": "Creates an audit log record capturing the deletion of a segment, including the actor and timestamp.",
+      "tags": [
+        "async-task",
+        "audit-log",
+        "segment"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:features/versioning/schemas.py",
+      "target": "class:features/versioning/schemas.py:_FeatureStateSchema",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/versioning/schemas.py",
+      "target": "class:features/versioning/schemas.py:EnvironmentFeatureVersionWebhookDataSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/versioning/schemas.py",
+      "target": "class:features/versioning/schemas.py:EnvironmentFeatureVersionWebhookDataSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/versioning/schemas.py",
+      "target": "file:features/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/versioning/schemas.py",
+      "target": "file:features/versioning/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/versioning/tasks.py",
+      "target": "function:features/versioning/tasks.py:enable_v2_versioning",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/versioning/tasks.py",
+      "target": "function:features/versioning/tasks.py:disable_v2_versioning",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/versioning/tasks.py",
+      "target": "function:features/versioning/tasks.py:_create_initial_feature_versions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/versioning/tasks.py",
+      "target": "function:features/versioning/tasks.py:_trigger_feature_state_webhooks_for_version",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/versioning/tasks.py",
+      "target": "function:features/versioning/tasks.py:trigger_update_version_webhooks",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/versioning/tasks.py",
+      "target": "function:features/versioning/tasks.py:create_environment_feature_version_published_audit_log_task",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/versioning/tasks.py",
+      "target": "function:features/versioning/tasks.py:publish_version_change_set",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/versioning/tasks.py",
+      "target": "function:features/versioning/tasks.py:_send_failed_due_to_conflict_alert_to_change_request_author",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/versioning/tasks.py",
+      "target": "function:features/versioning/tasks.py:enable_v2_versioning",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/versioning/tasks.py",
+      "target": "function:features/versioning/tasks.py:disable_v2_versioning",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/versioning/tasks.py",
+      "target": "function:features/versioning/tasks.py:publish_version_change_set",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/versioning/tasks.py",
+      "target": "file:audit/constants.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/versioning/tasks.py",
+      "target": "file:audit/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/versioning/tasks.py",
+      "target": "file:audit/related_object_type.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/versioning/tasks.py",
+      "target": "file:features/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/versioning/tasks.py",
+      "target": "file:features/versioning/exceptions.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/versioning/tasks.py",
+      "target": "file:features/versioning/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/versioning/tasks.py",
+      "target": "file:features/versioning/schemas.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/versioning/tasks.py",
+      "target": "file:features/versioning/versioning_service.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/versioning/tasks.py",
+      "target": "file:users/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "function:features/versioning/tasks.py:enable_v2_versioning",
+      "target": "function:features/versioning/tasks.py:_create_initial_feature_versions",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:features/versioning/tasks.py:publish_version_change_set",
+      "target": "function:features/versioning/tasks.py:_send_failed_due_to_conflict_alert_to_change_request_author",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:features/versioning/tasks.py:_trigger_feature_state_webhooks_for_version",
+      "target": "function:features/versioning/versioning_service.py:get_updated_feature_states_for_version",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/versioning/urls.py",
+      "target": "file:features/versioning/views.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/versioning/versioning_service.py",
+      "target": "function:features/versioning/versioning_service.py:get_environment_flags_list",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/versioning/versioning_service.py",
+      "target": "function:features/versioning/versioning_service.py:get_environment_flags_dict",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/versioning/versioning_service.py",
+      "target": "function:features/versioning/versioning_service.py:get_current_live_environment_feature_version",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/versioning/versioning_service.py",
+      "target": "function:features/versioning/versioning_service.py:_update_flag_for_versioning_v2",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/versioning/versioning_service.py",
+      "target": "function:features/versioning/versioning_service.py:_update_flag_for_versioning_v1",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/versioning/versioning_service.py",
+      "target": "function:features/versioning/versioning_service.py:_create_segment_override",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/versioning/versioning_service.py",
+      "target": "function:features/versioning/versioning_service.py:_update_flag_v2_for_versioning_v2",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/versioning/versioning_service.py",
+      "target": "function:features/versioning/versioning_service.py:_update_flag_v2_for_versioning_v1",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/versioning/versioning_service.py",
+      "target": "function:features/versioning/versioning_service.py:_delete_segment_override_v2",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/versioning/versioning_service.py",
+      "target": "function:features/versioning/versioning_service.py:get_updated_feature_states_for_version",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/versioning/versioning_service.py",
+      "target": "function:features/versioning/versioning_service.py:_get_feature_states_queryset",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/versioning/versioning_service.py",
+      "target": "function:features/versioning/versioning_service.py:get_environment_flags_list",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/versioning/versioning_service.py",
+      "target": "function:features/versioning/versioning_service.py:get_environment_flags_dict",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/versioning/versioning_service.py",
+      "target": "function:features/versioning/versioning_service.py:get_current_live_environment_feature_version",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/versioning/versioning_service.py",
+      "target": "function:features/versioning/versioning_service.py:get_updated_feature_states_for_version",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/versioning/versioning_service.py",
+      "target": "file:environments/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/versioning/versioning_service.py",
+      "target": "file:features/feature_states/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/versioning/versioning_service.py",
+      "target": "file:features/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/versioning/versioning_service.py",
+      "target": "file:features/versioning/dataclasses.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/versioning/versioning_service.py",
+      "target": "file:features/versioning/exceptions.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/versioning/versioning_service.py",
+      "target": "file:features/versioning/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "function:features/versioning/versioning_service.py:get_environment_flags_list",
+      "target": "function:features/versioning/versioning_service.py:get_environment_flags_dict",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:features/versioning/versioning_service.py:get_environment_flags_dict",
+      "target": "function:features/versioning/versioning_service.py:_get_feature_states_queryset",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:features/versioning/versioning_service.py:_update_flag_v2_for_versioning_v2",
+      "target": "function:features/versioning/versioning_service.py:_create_segment_override",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:features/versioning/versioning_service.py:_update_flag_v2_for_versioning_v1",
+      "target": "function:features/versioning/versioning_service.py:_create_segment_override",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:features/versioning/versioning_service.py:_delete_segment_override_v2",
+      "target": "function:features/versioning/versioning_service.py:get_current_live_environment_feature_version",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/versioning/views.py",
+      "target": "class:features/versioning/views.py:EnvironmentFeatureVersionViewSet",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/versioning/views.py",
+      "target": "class:features/versioning/views.py:EnvironmentFeatureVersionFeatureStatesViewSet",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/versioning/views.py",
+      "target": "class:features/versioning/views.py:EnvironmentFeatureVersionRetrieveAPIView",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/versioning/views.py",
+      "target": "class:features/versioning/views.py:EnvironmentFeatureVersionViewSet",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/versioning/views.py",
+      "target": "class:features/versioning/views.py:EnvironmentFeatureVersionFeatureStatesViewSet",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/versioning/views.py",
+      "target": "class:features/versioning/views.py:EnvironmentFeatureVersionRetrieveAPIView",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/versioning/views.py",
+      "target": "file:environments/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/versioning/views.py",
+      "target": "file:features/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/versioning/views.py",
+      "target": "file:features/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/versioning/views.py",
+      "target": "file:features/versioning/exceptions.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/versioning/views.py",
+      "target": "file:features/versioning/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/versioning/views.py",
+      "target": "file:features/versioning/permissions.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/versioning/views.py",
+      "target": "file:features/versioning/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/versioning/views.py",
+      "target": "file:users/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/workflows/core/models.py",
+      "target": "class:features/workflows/core/models.py:ChangeRequest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/workflows/core/models.py",
+      "target": "class:features/workflows/core/models.py:ChangeRequestApproval",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/workflows/core/models.py",
+      "target": "class:features/workflows/core/models.py:ChangeRequestGroupAssignment",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:features/workflows/core/models.py",
+      "target": "class:features/workflows/core/models.py:ChangeRequest",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/workflows/core/models.py",
+      "target": "class:features/workflows/core/models.py:ChangeRequestApproval",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/workflows/core/models.py",
+      "target": "class:features/workflows/core/models.py:ChangeRequestGroupAssignment",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/workflows/core/models.py",
+      "target": "file:audit/constants.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/workflows/core/models.py",
+      "target": "file:audit/related_object_type.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/workflows/core/models.py",
+      "target": "file:audit/tasks.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/workflows/core/models.py",
+      "target": "file:features/workflows/core/exceptions.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:segments/tasks.py",
+      "target": "function:segments/tasks.py:create_segment_deleted_audit_log",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:segments/tasks.py",
+      "target": "function:segments/tasks.py:create_segment_deleted_audit_log",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:segments/tasks.py",
+      "target": "file:audit/constants.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:segments/tasks.py",
+      "target": "file:audit/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:segments/tasks.py",
+      "target": "file:audit/related_object_type.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:segments/tasks.py",
+      "target": "file:segments/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

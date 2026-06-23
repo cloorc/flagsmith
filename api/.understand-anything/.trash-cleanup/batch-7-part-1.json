@@ -1,0 +1,718 @@
+{
+  "nodes": [
+    {
+      "id": "file:projects/code_references/constants.py",
+      "type": "file",
+      "name": "constants.py",
+      "filePath": "projects/code_references/constants.py",
+      "summary": "Holds app-wide constant values for the code references feature within the projects app.",
+      "tags": [
+        "config",
+        "constants",
+        "code-references"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:projects/code_references/models.py",
+      "type": "file",
+      "name": "models.py",
+      "filePath": "projects/code_references/models.py",
+      "summary": "Defines the VCSRepository and ScannedCodeReferences Django models that persist feature-flag code references discovered by repository scans.",
+      "tags": [
+        "data-model",
+        "code-references",
+        "django-model"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:projects/code_references/permissions.py",
+      "type": "file",
+      "name": "permissions.py",
+      "filePath": "projects/code_references/permissions.py",
+      "summary": "DRF permission classes gating submission and viewing of feature-flag code references against the user's project permissions.",
+      "tags": [
+        "permissions",
+        "code-references",
+        "authorization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:projects/code_references/serializers.py",
+      "type": "file",
+      "name": "serializers.py",
+      "filePath": "projects/code_references/serializers.py",
+      "summary": "DRF serializers for submitting, summarising, and counting feature-flag code references discovered during repository scans.",
+      "tags": [
+        "serialization",
+        "code-references",
+        "drf-serializer"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:projects/code_references/services.py",
+      "type": "file",
+      "name": "services.py",
+      "filePath": "projects/code_references/services.py",
+      "summary": "Business logic for recording repository scans and annotating/querying feature querysets with code-reference summaries, including permalink construction.",
+      "tags": [
+        "service",
+        "code-references",
+        "business-logic",
+        "orm"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Uses advanced Django ORM features: Subquery, OuterRef, ArraySubquery, JSONObject, and distinct-on for per-repository aggregation."
+    },
+    {
+      "id": "file:projects/code_references/types.py",
+      "type": "file",
+      "name": "types.py",
+      "filePath": "projects/code_references/types.py",
+      "summary": "TypedDict and enum definitions describing code-reference data transfer objects (submitted, stored, summarised) exchanged within the feature.",
+      "tags": [
+        "type-definition",
+        "code-references",
+        "dataclasses"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:projects/code_references/urls.py",
+      "type": "file",
+      "name": "urls.py",
+      "filePath": "projects/code_references/urls.py",
+      "summary": "URL routing for the code references API, wiring scan-create and reference-detail views into the projects app.",
+      "tags": [
+        "routing",
+        "code-references",
+        "urls"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:projects/code_references/views.py",
+      "type": "file",
+      "name": "views.py",
+      "filePath": "projects/code_references/views.py",
+      "summary": "DRF API views for creating feature-flag code reference scans and retrieving code references for a given feature flag.",
+      "tags": [
+        "api-handler",
+        "code-references",
+        "drf-view"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:projects/exceptions.py",
+      "type": "file",
+      "name": "exceptions.py",
+      "filePath": "projects/exceptions.py",
+      "summary": "Custom exception classes for project-level error conditions such as Dynamo migration failures and oversized projects.",
+      "tags": [
+        "exceptions",
+        "error-handling",
+        "projects"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:projects/managers.py",
+      "type": "file",
+      "name": "managers.py",
+      "filePath": "projects/managers.py",
+      "summary": "Custom Django model manager that eager-loads related fields for the Project queryset.",
+      "tags": [
+        "data-model",
+        "manager",
+        "orm"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:projects/models.py",
+      "type": "file",
+      "name": "models.py",
+      "filePath": "projects/models.py",
+      "summary": "Core Project model plus project-scoped permission models, covering Dynamo/Edge V2 migration, segment caching, dynamo writes, and cascade deletion.",
+      "tags": [
+        "data-model",
+        "django-model",
+        "projects",
+        "edge-migration"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Project mixes feature-flag config, dynamodb migration state machine (EdgeV2MigrationStatus), and cache invalidation behaviour into a single rich model."
+    },
+    {
+      "id": "class:projects/code_references/models.py:VCSRepository",
+      "type": "class",
+      "name": "VCSRepository",
+      "filePath": "projects/code_references/models.py",
+      "lineRange": [
+        6,
+        35
+      ],
+      "summary": "Django model representing a version-control repository scanned for feature-flag code references, tracking provider, URL, and last-scanned timestamp.",
+      "tags": [
+        "data-model",
+        "code-references",
+        "django-model"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:projects/code_references/models.py:ScannedCodeReferences",
+      "type": "class",
+      "name": "ScannedCodeReferences",
+      "filePath": "projects/code_references/models.py",
+      "lineRange": [
+        38,
+        75
+      ],
+      "summary": "Django model storing the set of code references found for a feature in a repository at a particular scan revision.",
+      "tags": [
+        "data-model",
+        "code-references",
+        "django-model"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:projects/code_references/permissions.py:_BaseCodeReferencePermission",
+      "type": "class",
+      "name": "_BaseCodeReferencePermission",
+      "filePath": "projects/code_references/permissions.py",
+      "lineRange": [
+        10,
+        17
+      ],
+      "summary": "Base permission class checking a user's project permission for code-reference operations resolved from the request's project.",
+      "tags": [
+        "permissions",
+        "code-references",
+        "authorization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:projects/code_references/services.py:annotate_feature_queryset_with_code_references_summary",
+      "type": "function",
+      "name": "annotate_feature_queryset_with_code_references_summary",
+      "filePath": "projects/code_references/services.py",
+      "lineRange": [
+        24,
+        61
+      ],
+      "summary": "Annotates a feature queryset with a per-repository code-references summary using nested Subquery/ArraySubquery ORM expressions.",
+      "tags": [
+        "service",
+        "code-references",
+        "orm",
+        "query-annotation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:projects/code_references/services.py:get_code_references_for_feature_flag",
+      "type": "function",
+      "name": "get_code_references_for_feature_flag",
+      "filePath": "projects/code_references/services.py",
+      "lineRange": [
+        64,
+        102
+      ],
+      "summary": "Builds the list of repository summaries and resolved permalinks for all current code references of a given feature flag.",
+      "tags": [
+        "service",
+        "code-references",
+        "orm"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:projects/code_references/services.py:record_scan",
+      "type": "function",
+      "name": "record_scan",
+      "filePath": "projects/code_references/services.py",
+      "lineRange": [
+        105,
+        161
+      ],
+      "summary": "Records a repository scan: upserts the VCSRepository, groups submitted references by feature, and bulk-creates ScannedCodeReferences rows.",
+      "tags": [
+        "service",
+        "code-references",
+        "orm",
+        "bulk-create"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:projects/code_references/services.py:_get_permalink",
+      "type": "function",
+      "name": "_get_permalink",
+      "filePath": "projects/code_references/services.py",
+      "lineRange": [
+        171,
+        187
+      ],
+      "summary": "Constructs a provider-specific permalink to a referenced source line, raising NotImplementedError for unsupported VCS providers.",
+      "tags": [
+        "utility",
+        "code-references",
+        "url-builder"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:projects/code_references/views.py:FeatureFlagCodeReferencesScanCreateAPIView",
+      "type": "class",
+      "name": "FeatureFlagCodeReferencesScanCreateAPIView",
+      "filePath": "projects/code_references/views.py",
+      "lineRange": [
+        32,
+        71
+      ],
+      "summary": "API view that validates a submitted code-reference scan, records it via the service layer, and logs scan results.",
+      "tags": [
+        "api-handler",
+        "code-references",
+        "drf-view"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:projects/code_references/views.py:FeatureFlagCodeReferenceDetailAPIView",
+      "type": "class",
+      "name": "FeatureFlagCodeReferenceDetailAPIView",
+      "filePath": "projects/code_references/views.py",
+      "lineRange": [
+        74,
+        95
+      ],
+      "summary": "API view returning the current code references for a single feature flag resolved from the URL.",
+      "tags": [
+        "api-handler",
+        "code-references",
+        "drf-view"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:projects/models.py:Project",
+      "type": "class",
+      "name": "Project",
+      "filePath": "projects/models.py",
+      "lineRange": [
+        45,
+        215
+      ],
+      "summary": "Central Project model owning feature-flag configuration, environment/segment relationships, Edge V2 migration state, dynamo writes, segment caching, and cascade deletion.",
+      "tags": [
+        "data-model",
+        "django-model",
+        "projects",
+        "edge-migration"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Combines persistence with operational behaviour (migration triggers, cache invalidation, dynamo lifecycle) in one model."
+    },
+    {
+      "id": "class:projects/models.py:UserPermissionGroupProjectPermission",
+      "type": "class",
+      "name": "UserPermissionGroupProjectPermission",
+      "filePath": "projects/models.py",
+      "lineRange": [
+        234,
+        246
+      ],
+      "summary": "Join model granting a permission group a set of permissions on a project.",
+      "tags": [
+        "data-model",
+        "permissions",
+        "django-model"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:projects/models.py:UserProjectPermission",
+      "type": "class",
+      "name": "UserProjectPermission",
+      "filePath": "projects/models.py",
+      "lineRange": [
+        249,
+        265
+      ],
+      "summary": "Join model granting an individual user a set of permissions on a project.",
+      "tags": [
+        "data-model",
+        "permissions",
+        "django-model"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:projects/code_references/models.py",
+      "target": "file:projects/code_references/types.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/code_references/permissions.py",
+      "target": "file:projects/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/code_references/serializers.py",
+      "target": "file:projects/code_references/constants.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/code_references/serializers.py",
+      "target": "file:projects/code_references/types.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/code_references/services.py",
+      "target": "file:features/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/code_references/services.py",
+      "target": "file:projects/code_references/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/code_references/services.py",
+      "target": "file:projects/code_references/types.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/code_references/services.py",
+      "target": "file:projects/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/code_references/types.py",
+      "target": "file:projects/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/code_references/urls.py",
+      "target": "file:projects/code_references/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/code_references/urls.py",
+      "target": "file:projects/code_references/views.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/code_references/views.py",
+      "target": "file:features/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/code_references/views.py",
+      "target": "file:projects/code_references/permissions.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/code_references/views.py",
+      "target": "file:projects/code_references/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/code_references/views.py",
+      "target": "file:projects/code_references/services.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/code_references/views.py",
+      "target": "file:projects/code_references/types.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/code_references/views.py",
+      "target": "file:projects/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/models.py",
+      "target": "file:environments/dynamodb/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/models.py",
+      "target": "file:organisations/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/models.py",
+      "target": "file:permissions/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/models.py",
+      "target": "file:projects/managers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/models.py",
+      "target": "file:projects/services.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/models.py",
+      "target": "file:projects/tasks.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/code_references/models.py",
+      "target": "class:projects/code_references/models.py:VCSRepository",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:projects/code_references/models.py",
+      "target": "class:projects/code_references/models.py:ScannedCodeReferences",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:projects/code_references/models.py",
+      "target": "class:projects/code_references/models.py:VCSRepository",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:projects/code_references/models.py",
+      "target": "class:projects/code_references/models.py:ScannedCodeReferences",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:projects/code_references/permissions.py",
+      "target": "class:projects/code_references/permissions.py:_BaseCodeReferencePermission",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:projects/code_references/services.py",
+      "target": "function:projects/code_references/services.py:annotate_feature_queryset_with_code_references_summary",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:projects/code_references/services.py",
+      "target": "function:projects/code_references/services.py:get_code_references_for_feature_flag",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:projects/code_references/services.py",
+      "target": "function:projects/code_references/services.py:record_scan",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:projects/code_references/services.py",
+      "target": "function:projects/code_references/services.py:_get_permalink",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:projects/code_references/services.py",
+      "target": "function:projects/code_references/services.py:annotate_feature_queryset_with_code_references_summary",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:projects/code_references/services.py",
+      "target": "function:projects/code_references/services.py:get_code_references_for_feature_flag",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:projects/code_references/services.py",
+      "target": "function:projects/code_references/services.py:record_scan",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:projects/code_references/services.py:get_code_references_for_feature_flag",
+      "target": "function:projects/code_references/services.py:_get_permalink",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:projects/code_references/views.py",
+      "target": "class:projects/code_references/views.py:FeatureFlagCodeReferencesScanCreateAPIView",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:projects/code_references/views.py",
+      "target": "class:projects/code_references/views.py:FeatureFlagCodeReferenceDetailAPIView",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:projects/code_references/views.py",
+      "target": "class:projects/code_references/views.py:FeatureFlagCodeReferencesScanCreateAPIView",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:projects/code_references/views.py",
+      "target": "class:projects/code_references/views.py:FeatureFlagCodeReferenceDetailAPIView",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:projects/code_references/views.py:FeatureFlagCodeReferencesScanCreateAPIView",
+      "target": "function:projects/code_references/services.py:record_scan",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:projects/code_references/views.py:FeatureFlagCodeReferenceDetailAPIView",
+      "target": "function:projects/code_references/services.py:get_code_references_for_feature_flag",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:projects/models.py",
+      "target": "class:projects/models.py:Project",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:projects/models.py",
+      "target": "class:projects/models.py:UserPermissionGroupProjectPermission",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:projects/models.py",
+      "target": "class:projects/models.py:UserProjectPermission",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:projects/models.py",
+      "target": "class:projects/models.py:Project",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:projects/models.py",
+      "target": "class:projects/models.py:UserPermissionGroupProjectPermission",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:projects/models.py",
+      "target": "class:projects/models.py:UserProjectPermission",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:projects/models.py:Project",
+      "target": "function:projects/services.py:get_project_segments_from_cache",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:projects/models.py:Project",
+      "target": "function:projects/tasks.py:migrate_project_environments_to_v2",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:projects/models.py:Project",
+      "target": "function:projects/tasks.py:handle_cascade_delete",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

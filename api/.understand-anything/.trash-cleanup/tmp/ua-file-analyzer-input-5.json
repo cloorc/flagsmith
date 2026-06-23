@@ -1,0 +1,286 @@
+{
+  "projectRoot": "/Users/wadii/flagsmith-projects/flagsmith/api",
+  "batchFiles": [
+    {
+      "path": "environments/permissions/views.py",
+      "language": "python",
+      "sizeLines": 84,
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/sdk/serializers.py",
+      "language": "python",
+      "sizeLines": 197,
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/sdk/serializers_mixins.py",
+      "language": "python",
+      "sizeLines": 8,
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/sdk/services.py",
+      "language": "python",
+      "sizeLines": 121,
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/sdk/types.py",
+      "language": "python",
+      "sizeLines": 14,
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/sdk/views.py",
+      "language": "python",
+      "sizeLines": 50,
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/urls.py",
+      "language": "python",
+      "sizeLines": 188,
+      "fileCategory": "code"
+    },
+    {
+      "path": "environments/views.py",
+      "language": "python",
+      "sizeLines": 388,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/constants.py",
+      "language": "python",
+      "sizeLines": 18,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_segments/limits.py",
+      "language": "python",
+      "sizeLines": 51,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_segments/permissions.py",
+      "language": "python",
+      "sizeLines": 43,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_segments/serializers.py",
+      "language": "python",
+      "sizeLines": 196,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_segments/views.py",
+      "language": "python",
+      "sizeLines": 113,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_states/permissions.py",
+      "language": "python",
+      "sizeLines": 19,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_states/views.py",
+      "language": "python",
+      "sizeLines": 186,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/helpers.py",
+      "language": "python",
+      "sizeLines": 12,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/multivariate/serializers.py",
+      "language": "python",
+      "sizeLines": 117,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/serializers.py",
+      "language": "python",
+      "sizeLines": 855,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/urls.py",
+      "language": "python",
+      "sizeLines": 57,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/utils.py",
+      "language": "python",
+      "sizeLines": 49,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/value_types.py",
+      "language": "python",
+      "sizeLines": 9,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/versioning/serializers.py",
+      "language": "python",
+      "sizeLines": 365,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/views.py",
+      "language": "python",
+      "sizeLines": 1179,
+      "fileCategory": "code"
+    }
+  ],
+  "batchImportData": {
+    "environments/permissions/views.py": [
+      "environments/models.py",
+      "environments/permissions/models.py",
+      "environments/permissions/permissions.py",
+      "environments/permissions/serializers.py"
+    ],
+    "environments/sdk/serializers.py": [
+      "environments/identities/models.py",
+      "environments/identities/serializers.py",
+      "environments/identities/traits/fields.py",
+      "environments/identities/traits/models.py",
+      "environments/identities/traits/serializers.py",
+      "environments/sdk/serializers_mixins.py",
+      "environments/sdk/services.py",
+      "environments/sdk/types.py",
+      "features/serializers.py",
+      "segments/serializers.py"
+    ],
+    "environments/sdk/serializers_mixins.py": [],
+    "environments/sdk/services.py": [
+      "environments/identities/models.py",
+      "environments/identities/traits/models.py",
+      "environments/models.py",
+      "environments/sdk/types.py"
+    ],
+    "environments/sdk/types.py": [],
+    "environments/sdk/views.py": [
+      "environments/authentication.py",
+      "environments/models.py",
+      "environments/permissions/permissions.py"
+    ],
+    "environments/urls.py": [
+      "environments/identities/traits/views.py",
+      "environments/identities/views.py",
+      "environments/permissions/views.py",
+      "environments/views.py",
+      "features/views.py"
+    ],
+    "environments/views.py": [
+      "environments/identities/traits/models.py",
+      "environments/identities/traits/serializers.py",
+      "environments/models.py",
+      "environments/permissions/models.py",
+      "environments/permissions/permissions.py",
+      "environments/permissions/serializers.py",
+      "environments/serializers.py",
+      "features/versioning/models.py",
+      "features/versioning/tasks.py",
+      "permissions/permissions_calculator.py",
+      "projects/models.py",
+      "users/models.py"
+    ],
+    "features/constants.py": [],
+    "features/feature_segments/limits.py": [
+      "environments/models.py",
+      "features/versioning/models.py"
+    ],
+    "features/feature_segments/permissions.py": [
+      "environments/models.py"
+    ],
+    "features/feature_segments/serializers.py": [
+      "features/feature_segments/limits.py",
+      "features/models.py"
+    ],
+    "features/feature_segments/views.py": [
+      "environments/models.py",
+      "features/feature_segments/permissions.py",
+      "features/feature_segments/serializers.py",
+      "features/models.py",
+      "features/versioning/versioning_service.py"
+    ],
+    "features/feature_states/permissions.py": [
+      "environments/models.py"
+    ],
+    "features/feature_states/views.py": [
+      "environments/models.py",
+      "features/feature_states/permissions.py",
+      "features/feature_states/serializers.py"
+    ],
+    "features/helpers.py": [
+      "features/value_types.py"
+    ],
+    "features/multivariate/serializers.py": [
+      "features/constants.py",
+      "features/models.py",
+      "features/multivariate/models.py"
+    ],
+    "features/serializers.py": [
+      "environments/identities/models.py",
+      "environments/sdk/serializers_mixins.py",
+      "features/constants.py",
+      "features/feature_segments/limits.py",
+      "features/feature_segments/serializers.py",
+      "features/feature_types.py",
+      "features/models.py",
+      "features/multivariate/models.py",
+      "features/multivariate/serializers.py",
+      "metadata/serializers.py",
+      "projects/code_references/serializers.py",
+      "projects/models.py",
+      "users/models.py",
+      "users/serializers.py"
+    ],
+    "features/urls.py": [
+      "features/feature_segments/views.py",
+      "features/import_export/views.py",
+      "features/views.py"
+    ],
+    "features/utils.py": [
+      "features/constants.py",
+      "features/value_types.py"
+    ],
+    "features/value_types.py": [],
+    "features/versioning/serializers.py": [
+      "api_keys/user.py",
+      "environments/models.py",
+      "features/feature_segments/limits.py",
+      "features/serializers.py",
+      "features/versioning/models.py",
+      "segments/models.py",
+      "users/models.py"
+    ],
+    "features/views.py": [
+      "environments/authentication.py",
+      "environments/identities/models.py",
+      "environments/identities/serializers.py",
+      "environments/models.py",
+      "environments/permissions/permissions.py",
+      "features/constants.py",
+      "features/features_service.py",
+      "features/models.py",
+      "features/multivariate/serializers.py",
+      "features/permissions.py",
+      "features/serializers.py",
+      "features/tasks.py",
+      "features/value_types.py",
+      "features/versioning/versioning_service.py",
+      "projects/code_references/services.py",
+      "projects/models.py",
+      "users/models.py"
+    ]
+  }
+}

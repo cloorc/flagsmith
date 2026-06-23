@@ -1,0 +1,2205 @@
+{
+  "scriptCompleted": true,
+  "entryPointCandidates": [
+    {
+      "id": "document:README.md",
+      "score": 5,
+      "name": "README.md",
+      "summary": "Developer guide for the Flagsmith API covering local setup, testing, metrics, structured logging, feature flags, migrations, typing, and the Django app architecture conventions."
+    },
+    {
+      "id": "file:manage.py",
+      "score": 5,
+      "name": "manage.py",
+      "summary": "Django management command-line entry point that sets the default settings module and dispatches administrative commands."
+    },
+    {
+      "id": "file:organisations/urls.py",
+      "score": 3,
+      "name": "urls.py",
+      "summary": "URL routing for organisation endpoints, wiring nested routers for projects, invites, webhooks, audit logs, metadata and permission viewsets."
+    },
+    {
+      "id": "file:projects/urls.py",
+      "score": 3,
+      "name": "urls.py",
+      "summary": "Top-level URL routing for the projects app, mounting nested routers for features, segments, environments, metadata, audit logs, tags, and permissions."
+    },
+    {
+      "id": "file:audit/signals.py",
+      "score": 3,
+      "name": "signals.py",
+      "summary": "Wires Django post-save signals on AuditLog to fan out events to integrations (Datadog, New Relic, Dynatrace, Grafana, Slack, Sentry), trigger webhooks, and emit feature-went-live signals."
+    }
+  ],
+  "fanInRanking": [
+    {
+      "id": "file:environments/models.py",
+      "fanIn": 42,
+      "name": "models.py"
+    },
+    {
+      "id": "file:projects/models.py",
+      "fanIn": 41,
+      "name": "models.py"
+    },
+    {
+      "id": "file:organisations/models.py",
+      "fanIn": 38,
+      "name": "models.py"
+    },
+    {
+      "id": "file:features/models.py",
+      "fanIn": 36,
+      "name": "models.py"
+    },
+    {
+      "id": "file:users/models.py",
+      "fanIn": 24,
+      "name": "models.py"
+    },
+    {
+      "id": "file:features/versioning/models.py",
+      "fanIn": 15,
+      "name": "models.py"
+    },
+    {
+      "id": "file:audit/related_object_type.py",
+      "fanIn": 13,
+      "name": "related_object_type.py"
+    },
+    {
+      "id": "file:environments/identities/models.py",
+      "fanIn": 12,
+      "name": "models.py"
+    },
+    {
+      "id": "file:features/multivariate/models.py",
+      "fanIn": 12,
+      "name": "models.py"
+    },
+    {
+      "id": "file:segments/models.py",
+      "fanIn": 12,
+      "name": "models.py"
+    },
+    {
+      "id": "file:organisations/subscriptions/constants.py",
+      "fanIn": 10,
+      "name": "constants.py"
+    },
+    {
+      "id": "file:features/feature_health/models.py",
+      "fanIn": 9,
+      "name": "models.py"
+    },
+    {
+      "id": "file:features/feature_health/types.py",
+      "fanIn": 9,
+      "name": "types.py"
+    },
+    {
+      "id": "file:audit/constants.py",
+      "fanIn": 9,
+      "name": "constants.py"
+    },
+    {
+      "id": "file:audit/models.py",
+      "fanIn": 9,
+      "name": "models.py"
+    },
+    {
+      "id": "file:features/versioning/versioning_service.py",
+      "fanIn": 9,
+      "name": "versioning_service.py"
+    },
+    {
+      "id": "file:api_keys/models.py",
+      "fanIn": 8,
+      "name": "models.py"
+    },
+    {
+      "id": "file:users/serializers.py",
+      "fanIn": 8,
+      "name": "serializers.py"
+    },
+    {
+      "id": "file:features/serializers.py",
+      "fanIn": 8,
+      "name": "serializers.py"
+    },
+    {
+      "id": "file:environments/identities/traits/models.py",
+      "fanIn": 7,
+      "name": "models.py"
+    }
+  ],
+  "fanOutRanking": [
+    {
+      "id": "file:features/models.py",
+      "fanOut": 18,
+      "name": "models.py"
+    },
+    {
+      "id": "file:features/views.py",
+      "fanOut": 17,
+      "name": "views.py"
+    },
+    {
+      "id": "file:environments/models.py",
+      "fanOut": 14,
+      "name": "models.py"
+    },
+    {
+      "id": "file:features/serializers.py",
+      "fanOut": 14,
+      "name": "serializers.py"
+    },
+    {
+      "id": "file:organisations/views.py",
+      "fanOut": 13,
+      "name": "views.py"
+    },
+    {
+      "id": "file:environments/views.py",
+      "fanOut": 12,
+      "name": "views.py"
+    },
+    {
+      "id": "file:features/feature_health/services.py",
+      "fanOut": 12,
+      "name": "services.py"
+    },
+    {
+      "id": "file:segments/views.py",
+      "fanOut": 11,
+      "name": "views.py"
+    },
+    {
+      "id": "file:environments/sdk/serializers.py",
+      "fanOut": 10,
+      "name": "serializers.py"
+    },
+    {
+      "id": "file:projects/urls.py",
+      "fanOut": 10,
+      "name": "urls.py"
+    },
+    {
+      "id": "file:projects/views.py",
+      "fanOut": 10,
+      "name": "views.py"
+    },
+    {
+      "id": "file:features/versioning/tasks.py",
+      "fanOut": 9,
+      "name": "tasks.py"
+    },
+    {
+      "id": "file:organisations/invites/views.py",
+      "fanOut": 8,
+      "name": "views.py"
+    },
+    {
+      "id": "file:organisations/models.py",
+      "fanOut": 8,
+      "name": "models.py"
+    },
+    {
+      "id": "file:users/models.py",
+      "fanOut": 8,
+      "name": "models.py"
+    },
+    {
+      "id": "file:organisations/tasks.py",
+      "fanOut": 8,
+      "name": "tasks.py"
+    },
+    {
+      "id": "file:environments/identities/models.py",
+      "fanOut": 8,
+      "name": "models.py"
+    },
+    {
+      "id": "file:audit/signals.py",
+      "fanOut": 8,
+      "name": "signals.py"
+    },
+    {
+      "id": "file:features/versioning/views.py",
+      "fanOut": 8,
+      "name": "views.py"
+    },
+    {
+      "id": "file:experimentation/serializers.py",
+      "fanOut": 8,
+      "name": "serializers.py"
+    }
+  ],
+  "bfsTraversal": {
+    "startNode": "file:manage.py",
+    "order": [
+      "file:manage.py"
+    ],
+    "depthMap": {
+      "file:manage.py": 0
+    },
+    "byDepth": {
+      "0": [
+        "file:manage.py"
+      ]
+    }
+  },
+  "nonCodeFiles": {
+    "documentation": [
+      {
+        "id": "document:README.md",
+        "name": "README.md",
+        "type": "document",
+        "summary": "Developer guide for the Flagsmith API covering local setup, testing, metrics, structured logging, feature flags, migrations, typing, and the Django app architecture conventions."
+      }
+    ],
+    "infrastructure": [
+      {
+        "id": "pipeline:Makefile",
+        "name": "Makefile",
+        "type": "pipeline",
+        "summary": "Build and developer-workflow automation defining 28 targets for installing dependencies, linting, type-checking, running tests, managing Docker services, applying Django migrations, serving the app, and generating OpenAPI SDK and integration client types."
+      },
+      {
+        "id": "pipeline:Procfile",
+        "name": "Procfile",
+        "type": "pipeline",
+        "summary": "Process-type declaration defining the release migration step and the gunicorn-served web process for the Flagsmith WSGI application."
+      }
+    ],
+    "data": [],
+    "config": [
+      {
+        "id": "config:.env-ci",
+        "name": ".env-ci",
+        "type": "config",
+        "summary": "Environment variable defaults loaded during continuous-integration test runs for the Flagsmith API."
+      },
+      {
+        "id": "config:.env-local",
+        "name": ".env-local",
+        "type": "config",
+        "summary": "Environment variable defaults for local development of the Flagsmith API server and database."
+      },
+      {
+        "id": "config:openapi-filter-flagsmith-sdk.yml",
+        "name": "openapi-filter-flagsmith-sdk.yml",
+        "type": "config",
+        "summary": "openapi-format filter rules used when generating the published Flagsmith SDK OpenAPI schema, controlling operationIds, inverse tags, and unused-component pruning."
+      },
+      {
+        "id": "config:openapi-filter-grafana.yaml",
+        "name": "openapi-filter-grafana.yaml",
+        "type": "config",
+        "summary": "openapi-format filter rules for trimming the upstream Grafana OpenAPI spec down to the operations needed to generate the Grafana integration client types."
+      },
+      {
+        "id": "config:openapi-filter-launchdarkly.yaml",
+        "name": "openapi-filter-launchdarkly.yaml",
+        "type": "config",
+        "summary": "openapi-format filter rules for trimming the upstream LaunchDarkly OpenAPI spec down to the operations needed to generate the LaunchDarkly integration client types."
+      },
+      {
+        "id": "config:pyproject.toml",
+        "name": "pyproject.toml",
+        "type": "config",
+        "summary": "Central Python project manifest declaring dependencies and optional extras and configuring the build backend, uv package sources, Ruff linting/formatting, coverage, pytest, and Mypy strict type checking with Django/DRF stubs."
+      },
+      {
+        "id": "config:.ebextensions/00__packages.config",
+        "name": "00__packages.config",
+        "type": "config",
+        "summary": "Elastic Beanstalk extension installing OS-level yum packages (git, xmlsec1, xmlsec1-openssl) required for SAML/XML signing support on the deployment host."
+      },
+      {
+        "id": "config:.ebextensions/01__upgrade_pip.config",
+        "name": "01__upgrade_pip.config",
+        "type": "config",
+        "summary": "Elastic Beanstalk extension that upgrades pip in the application virtualenv before dependency installation during deployment."
+      },
+      {
+        "id": "config:.ebextensions/02__collectstatic.config",
+        "name": "02__collectstatic.config",
+        "type": "config",
+        "summary": "Elastic Beanstalk container command running Django collectstatic to gather static assets during deployment."
+      },
+      {
+        "id": "config:.ebextensions/03__django.config",
+        "name": "03__django.config",
+        "type": "config",
+        "summary": "Elastic Beanstalk option settings defining the WSGI entry path (app/wsgi.py) and static file mapping for the Django Python container."
+      },
+      {
+        "id": "config:.ebextensions/04__wsgi_custom.config",
+        "name": "04__wsgi_custom.config",
+        "type": "config",
+        "summary": "Elastic Beanstalk extension that injects a custom Apache/httpd config enabling WSGIPassAuthorization and gzip (mod_deflate) compression for text and JSON responses."
+      },
+      {
+        "id": "config:.ebignore",
+        "name": ".ebignore",
+        "type": "config",
+        "summary": "Empty Elastic Beanstalk ignore file controlling which files are excluded from the deployment bundle uploaded by the EB CLI."
+      },
+      {
+        "id": "config:.nvmrc",
+        "name": ".nvmrc",
+        "type": "config",
+        "summary": "Node Version Manager pin specifying the Node.js version used by tooling in the API directory."
+      },
+      {
+        "id": "config:.understand-anything/.understandignore",
+        "name": ".understandignore",
+        "type": "config",
+        "summary": "Ignore patterns for the Understand-Anything codebase analysis tool, excluding generated, vendored, and irrelevant paths from knowledge-graph scanning."
+      },
+      {
+        "id": "config:.understand-anything/config.json",
+        "name": "config.json",
+        "type": "config",
+        "summary": "Configuration for the Understand-Anything analysis tool, setting the output language for generated knowledge-graph content."
+      }
+    ]
+  },
+  "clusters": [
+    {
+      "nodes": [
+        "file:experimentation/stats.py",
+        "file:experimentation/dataclasses.py",
+        "file:experimentation/results_query.py",
+        "file:experimentation/services.py",
+        "file:experimentation/models.py"
+      ],
+      "edgeCount": 10
+    },
+    {
+      "nodes": [
+        "file:organisations/chargebee/chargebee.py",
+        "file:organisations/chargebee/client.py",
+        "file:organisations/chargebee/cache.py",
+        "file:organisations/chargebee/metadata.py",
+        "file:organisations/models.py"
+      ],
+      "edgeCount": 8
+    },
+    {
+      "nodes": [
+        "file:organisations/managers.py",
+        "file:organisations/permissions/models.py"
+      ],
+      "edgeCount": 2
+    },
+    {
+      "nodes": [
+        "file:environments/permissions/managers.py",
+        "file:environments/permissions/models.py"
+      ],
+      "edgeCount": 2
+    }
+  ],
+  "layers": {
+    "count": 8,
+    "list": [
+      {
+        "id": "layer:api",
+        "name": "API & Presentation Layer",
+        "description": "DRF serializers, viewsets and APIViews, URL routing, Django admin registrations, webhook handlers and OpenAPI schema definitions that expose the feature-flag platform over HTTP."
+      },
+      {
+        "id": "layer:service",
+        "name": "Service & Business Logic Layer",
+        "description": "Encapsulated business logic in services.py, Celery tasks, signal receivers, third-party integrations (Chargebee, DynamoDB edge wrappers, ClickHouse), mappers, caches and Prometheus metrics."
+      },
+      {
+        "id": "layer:data",
+        "name": "Data & Domain Models Layer",
+        "description": "Django ORM models and custom managers defining feature flags, environments, identities, segments and organisations, plus the versioning SQL query and lifecycle model mixins."
+      },
+      {
+        "id": "layer:authorization",
+        "name": "Authorization & Access Control Layer",
+        "description": "DRF permission classes, authentication backends, RBAC wrappers and the permission-calculation services that enforce role-based access across organisations, projects and environments."
+      },
+      {
+        "id": "layer:types",
+        "name": "Domain Types, Constants & Errors Layer",
+        "description": "Typed dicts, dataclasses, enums, app-wide constants, value-type definitions and domain exceptions shared as contracts across the Django apps."
+      },
+      {
+        "id": "layer:entry-config",
+        "name": "Entry Points & App Configuration Layer",
+        "description": "Django AppConfig startup hooks (apps.py), package __init__ barrels, management commands, the manage.py entry point and bootstrap admin forms."
+      },
+      {
+        "id": "layer:infrastructure",
+        "name": "Infrastructure & Configuration Layer",
+        "description": "Elastic Beanstalk deployment configs, Makefile/Procfile process definitions, pyproject.toml, environment files and OpenAPI generation filters that build and deploy the service."
+      },
+      {
+        "id": "layer:documentation",
+        "name": "Documentation Layer",
+        "description": "Project README documenting the Flagsmith API codebase."
+      }
+    ]
+  },
+  "nodeSummaryIndex": {
+    "file:organisations/chargebee/metadata.py": {
+      "name": "metadata.py",
+      "type": "file",
+      "summary": "Dataclasses describing Chargebee object metadata and items used to compute subscription limits."
+    },
+    "file:organisations/chargebee/serializers.py": {
+      "name": "serializers.py",
+      "type": "file",
+      "summary": "Serialisers validating Chargebee webhook payloads for payment and subscription events."
+    },
+    "file:organisations/chargebee/tasks.py": {
+      "name": "tasks.py",
+      "type": "file",
+      "summary": "Async task refreshing the Chargebee plan and addon metadata cache."
+    },
+    "file:organisations/chargebee/webhook_event_types.py": {
+      "name": "webhook_event_types.py",
+      "type": "file",
+      "summary": "Enumeration of Chargebee webhook event type identifiers."
+    },
+    "file:organisations/chargebee/webhook_handlers.py": {
+      "name": "webhook_handlers.py",
+      "type": "file",
+      "summary": "Handlers for incoming Chargebee webhooks driving cache rebuilds and subscription state changes on payment events."
+    },
+    "file:organisations/constants.py": {
+      "name": "constants.py",
+      "type": "file",
+      "summary": "App-wide constants for the organisations app such as alert thresholds."
+    },
+    "file:organisations/exceptions.py": {
+      "name": "exceptions.py",
+      "type": "file",
+      "summary": "Domain exceptions for the organisations app, such as missing paid subscription."
+    },
+    "file:organisations/invites/admin.py": {
+      "name": "admin.py",
+      "type": "file",
+      "summary": "Registers the Invite model in the Django admin with custom display fields."
+    },
+    "file:organisations/invites/exceptions.py": {
+      "name": "exceptions.py",
+      "type": "file",
+      "summary": "Domain exceptions for invites covering expired invites and disabled invite links."
+    },
+    "file:organisations/invites/models.py": {
+      "name": "models.py",
+      "type": "file",
+      "summary": "Models for organisation invites and invite links, including expiry checks and invitation email delivery."
+    },
+    "file:organisations/invites/serializers.py": {
+      "name": "serializers.py",
+      "type": "file",
+      "summary": "Serialisers for representing invite links and listing organisation invites."
+    },
+    "file:organisations/invites/views.py": {
+      "name": "views.py",
+      "type": "file",
+      "summary": "Viewsets and function views for managing invites and invite links, including join-by-email/link flows and seat-limit enforcement."
+    },
+    "file:organisations/management/commands/check_if_organisations_over_plan_limit.py": {
+      "name": "check_if_organisations_over_plan_limit.py",
+      "type": "file",
+      "summary": "Management command that flags organisations exceeding their plan seat limit and dispatches alert tasks."
+    },
+    "file:organisations/management/commands/createinitialorganisation.py": {
+      "name": "createinitialorganisation.py",
+      "type": "file",
+      "summary": "Management command bootstrapping an initial organisation and attaching the initial superuser."
+    },
+    "file:organisations/managers.py": {
+      "name": "managers.py",
+      "type": "file",
+      "summary": "Custom model manager scoping organisation permission querysets."
+    },
+    "file:organisations/models.py": {
+      "name": "models.py",
+      "type": "file",
+      "summary": "Core organisations domain models: Organisation, Subscription, user membership, subscription caches, billing, and API-usage tracking with extensive billing and plan-limit logic."
+    },
+    "file:api_keys/admin.py": {
+      "name": "admin.py",
+      "type": "file",
+      "summary": "Registers the MasterAPIKey model in the Django admin site."
+    },
+    "file:api_keys/authentication.py": {
+      "name": "authentication.py",
+      "type": "file",
+      "summary": "DRF authentication backend that resolves a master API key from the request and yields an APIKeyUser."
+    },
+    "file:api_keys/models.py": {
+      "name": "models.py",
+      "type": "file",
+      "summary": "Defines the MasterAPIKey model and manager for organisation-scoped master API keys, including role cleanup on delete."
+    },
+    "file:api_keys/serializers.py": {
+      "name": "serializers.py",
+      "type": "file",
+      "summary": "Serialiser for creating and representing master API keys, returning the plaintext key once on creation."
+    },
+    "file:api_keys/user.py": {
+      "name": "user.py",
+      "type": "file",
+      "summary": "Pseudo-user object representing a master API key, exposing permission-check methods mirroring the authenticated user interface."
+    },
+    "file:api_keys/views.py": {
+      "name": "views.py",
+      "type": "file",
+      "summary": "DRF viewset for listing and creating organisation-scoped master API keys."
+    },
+    "file:audit/permissions.py": {
+      "name": "permissions.py",
+      "type": "file",
+      "summary": "DRF permission classes gating access to organisation- and project-scoped audit logs."
+    },
+    "file:audit/urls.py": {
+      "name": "urls.py",
+      "type": "file",
+      "summary": "URL routing for the global audit log endpoint."
+    },
+    "file:audit/views.py": {
+      "name": "views.py",
+      "type": "file",
+      "summary": "Audit-log viewsets providing organisation, project, and global scopes with subscription-based visibility limits."
+    },
+    "file:features/versioning/constants.py": {
+      "name": "constants.py",
+      "type": "file",
+      "summary": "Constant definitions for the feature versioning subsystem."
+    },
+    "file:organisations/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Package marker for the organisations Django app."
+    },
+    "file:organisations/chargebee/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Chargebee package barrel re-exporting billing helper functions from the chargebee module."
+    },
+    "file:organisations/chargebee/cache.py": {
+      "name": "cache.py",
+      "type": "file",
+      "summary": "Caches Chargebee plan and addon metadata in Django cache, refreshing from the Chargebee API on miss."
+    },
+    "file:organisations/chargebee/chargebee.py": {
+      "name": "chargebee.py",
+      "type": "file",
+      "summary": "Chargebee integration layer wrapping the Chargebee client for subscriptions, hosted pages, seat and API-call upgrades, and metadata extraction."
+    },
+    "file:organisations/chargebee/client.py": {
+      "name": "client.py",
+      "type": "file",
+      "summary": "Initialises and configures the global Chargebee SDK client from settings."
+    },
+    "file:organisations/chargebee/constants.py": {
+      "name": "constants.py",
+      "type": "file",
+      "summary": "Constants for the Chargebee integration such as cache keys and timeouts."
+    },
+    "file:users/constants.py": {
+      "name": "constants.py",
+      "type": "file",
+      "summary": "Module-level constants for the users app."
+    },
+    "file:users/exceptions.py": {
+      "name": "exceptions.py",
+      "type": "file",
+      "summary": "Defines the InvalidInviteError exception raised when a user attempts to accept an invite that does not match their account."
+    },
+    "file:users/forms.py": {
+      "name": "forms.py",
+      "type": "file",
+      "summary": "Django forms for the custom user admin and for the first-run init configuration that creates the initial superuser and updates the site."
+    },
+    "file:users/management/commands/createinitialadminuser.py": {
+      "name": "createinitialadminuser.py",
+      "type": "file",
+      "summary": "Django management command that creates the initial admin superuser if none exists."
+    },
+    "file:users/models.py": {
+      "name": "models.py",
+      "type": "file",
+      "summary": "Core user models: the custom FFAdminUser with organisation/permission helpers, its manager, permission groups and memberships, and Hubspot lead/tracker models."
+    },
+    "file:users/serializers.py": {
+      "name": "serializers.py",
+      "type": "file",
+      "summary": "Serializers for users, permission groups, group memberships, onboarding state and the current-user representation."
+    },
+    "file:users/services.py": {
+      "name": "services.py",
+      "type": "file",
+      "summary": "Service functions for bootstrapping the initial superuser and generating its password reset URL."
+    },
+    "file:users/signals.py": {
+      "name": "signals.py",
+      "type": "file",
+      "summary": "Signal handler that warns when the application is run with insecure default configuration on first user creation."
+    },
+    "file:users/urls.py": {
+      "name": "urls.py",
+      "type": "file",
+      "summary": "URL routing for user and permission-group endpoints including invite acceptance."
+    },
+    "file:users/views.py": {
+      "name": "views.py",
+      "type": "file",
+      "summary": "User API: initial configuration/admin-init views, the user viewset with role updates, and the permission-group viewset with membership management."
+    },
+    "file:organisations/task_helpers.py": {
+      "name": "task_helpers.py",
+      "type": "file",
+      "summary": "Helpers for API usage notification emails: building and sending blocked-flag and threshold-breach notifications for an organisation."
+    },
+    "file:organisations/tasks.py": {
+      "name": "tasks.py",
+      "type": "file",
+      "summary": "Asynchronous and recurring tasks for organisation billing lifecycle: subscription cache updates, API usage notifications, overage charging, and grace-period access restriction."
+    },
+    "file:organisations/urls.py": {
+      "name": "urls.py",
+      "type": "file",
+      "summary": "URL routing for organisation endpoints, wiring nested routers for projects, invites, webhooks, audit logs, metadata and permission viewsets."
+    },
+    "file:organisations/views.py": {
+      "name": "views.py",
+      "type": "file",
+      "summary": "Core organisation API: OrganisationViewSet with subscription, invite, usage and permission actions, the Chargebee webhook endpoint, and webhook/notification viewsets."
+    },
+    "file:permissions/permission_service.py": {
+      "name": "permission_service.py",
+      "type": "file",
+      "summary": "Central permission service computing whether users and master API keys are admins of, or hold permissions on, organisations, projects and environments, and building permitted-object querysets."
+    },
+    "file:permissions/permissions_calculator.py": {
+      "name": "permissions_calculator.py",
+      "type": "file",
+      "summary": "Dataclasses and services that aggregate user, group and role permissions into detailed permission data for organisations, projects and environments."
+    },
+    "file:permissions/rbac_wrapper.py": {
+      "name": "rbac_wrapper.py",
+      "type": "file",
+      "summary": "Open-source stub wrapper for RBAC role-based permission helpers, returning empty results where the enterprise RBAC module is absent."
+    },
+    "file:projects/management/commands/createinitialproject.py": {
+      "name": "createinitialproject.py",
+      "type": "file",
+      "summary": "Django management command that creates an initial project under an organisation during first-time setup."
+    },
+    "file:users/abc.py": {
+      "name": "abc.py",
+      "type": "file",
+      "summary": "Abstract base class defining the user interface (permission and membership checks) implemented by both FFAdminUser and APIKeyUser."
+    },
+    "file:users/admin.py": {
+      "name": "admin.py",
+      "type": "file",
+      "summary": "Django admin configuration for the custom user model, including an inline for organisation membership."
+    },
+    "file:users/auth_type.py": {
+      "name": "auth_type.py",
+      "type": "file",
+      "summary": "Enum of supported user authentication types (e.g. email, Google, GitHub, SAML)."
+    },
+    "file:organisations/permissions/models.py": {
+      "name": "models.py",
+      "type": "file",
+      "summary": "Defines the organisation-level permission models: per-user and per-group organisation permission tables plus the catalogue of available organisation permissions."
+    },
+    "file:organisations/permissions/permissions.py": {
+      "name": "permissions.py",
+      "type": "file",
+      "summary": "DRF permission classes enforcing organisation-scoped access control, including admin checks, nested-entity permissions, and GitHub integration admin gating."
+    },
+    "file:organisations/permissions/serializers.py": {
+      "name": "serializers.py",
+      "type": "file",
+      "summary": "Serializers for reading and writing user and group organisation permission assignments."
+    },
+    "file:organisations/permissions/views.py": {
+      "name": "views.py",
+      "type": "file",
+      "summary": "ViewSets exposing CRUD endpoints for managing user and group organisation permission assignments."
+    },
+    "file:organisations/serializers.py": {
+      "name": "serializers.py",
+      "type": "file",
+      "summary": "Serializers for organisations, subscriptions, invites, webhooks and Influx usage data, including multi-invite creation and Chargebee subscription updates."
+    },
+    "file:organisations/subscription_info_cache.py": {
+      "name": "subscription_info_cache.py",
+      "type": "file",
+      "summary": "Rebuilds the per-organisation subscription information cache by merging API usage data and Chargebee subscription metadata."
+    },
+    "file:organisations/subscriptions/constants.py": {
+      "name": "constants.py",
+      "type": "file",
+      "summary": "Constants and helpers describing subscription plans, plan families, cache entities, and Chargebee/Xero payment sources."
+    },
+    "file:organisations/subscriptions/exceptions.py": {
+      "name": "exceptions.py",
+      "type": "file",
+      "summary": "Exception hierarchy for subscription operations such as invalid plans, cancellation failures, and seat/API-usage upgrade payment failures."
+    },
+    "file:organisations/subscriptions/metadata.py": {
+      "name": "metadata.py",
+      "type": "file",
+      "summary": "BaseSubscriptionMetadata value object aggregating plan limits (seats, API calls, projects) with additive composition for combining allowances."
+    },
+    "file:organisations/subscriptions/permissions.py": {
+      "name": "permissions.py",
+      "type": "file",
+      "summary": "require_minimum_plan permission factory gating SaaS endpoints behind a minimum subscription plan family rank."
+    },
+    "file:organisations/subscriptions/xero/metadata.py": {
+      "name": "metadata.py",
+      "type": "file",
+      "summary": "Xero-specific subscription metadata subclass fixing the payment source to Xero."
+    },
+    "file:audit/serializers.py": {
+      "name": "serializers.py",
+      "type": "file",
+      "summary": "DRF serializers for the audit log, exposing list, retrieve, change-detail, and query-param representations of AuditLog records."
+    },
+    "file:audit/types.py": {
+      "name": "types.py",
+      "type": "file",
+      "summary": "Defines the AuditLogChangeDetail typed structure (field, old, new) used to represent a single field-level change in an audit entry."
+    },
+    "file:environments/dynamodb/migrator.py": {
+      "name": "migrator.py",
+      "type": "file",
+      "summary": "Implements IdentityMigrator, which migrates a project's identities, environments, and API keys from the relational DB into DynamoDB (Edge) in chunked batches."
+    },
+    "file:environments/management/commands/migrate_to_edge.py": {
+      "name": "migrate_to_edge.py",
+      "type": "file",
+      "summary": "Django management command that runs the Edge (DynamoDB) identity migration for a given project via IdentityMigrator."
+    },
+    "file:environments/serializers.py": {
+      "name": "serializers.py",
+      "type": "file",
+      "summary": "DRF serializers for environments covering full/light read views, metadata-aware create/update, cloning, webhooks, and API keys."
+    },
+    "file:features/feature_external_resources/models.py": {
+      "name": "models.py",
+      "type": "file",
+      "summary": "Defines FeatureExternalResource linking a feature to an external resource (e.g. GitHub issue/PR) and notifies GitHub on link/unlink, applying tags and dispatching webhook tasks."
+    },
+    "file:features/feature_external_resources/serializers.py": {
+      "name": "serializers.py",
+      "type": "file",
+      "summary": "Serializer for FeatureExternalResource that JSON-encodes metadata on write and decodes it for representation, hiding internal fields."
+    },
+    "file:features/feature_external_resources/views.py": {
+      "name": "views.py",
+      "type": "file",
+      "summary": "ViewSet managing CRUD of feature external resources, enriching list responses with GitHub issue/PR title and state and dispatching VCS webhooks on create/destroy."
+    },
+    "file:features/multivariate/urls.py": {
+      "name": "urls.py",
+      "type": "file",
+      "summary": "URL routing for the multivariate feature options API, wiring the router to MultivariateFeatureOptionViewSet."
+    },
+    "file:features/multivariate/views.py": {
+      "name": "views.py",
+      "type": "file",
+      "summary": "ViewSet and lookup helper for multivariate feature options, scoping options to a feature and resolving an option by UUID against the user's permitted projects."
+    },
+    "file:features/permissions.py": {
+      "name": "permissions.py",
+      "type": "file",
+      "summary": "DRF permission classes governing access to features, feature states, environment feature states, segment overrides, and external resources, with tag-scoped and admin checks."
+    },
+    "file:metadata/fields.py": {
+      "name": "fields.py",
+      "type": "file",
+      "summary": "Custom Django model field GenericObjectID that serialises a content object's natural key and coerces incoming values to integers with validation."
+    },
+    "file:metadata/models.py": {
+      "name": "models.py",
+      "type": "file",
+      "summary": "Defines the metadata domain models: MetadataField (with typed value validation), MetadataModelField, requirement rules, and the polymorphic Metadata record attached to entities."
+    },
+    "file:metadata/permissions.py": {
+      "name": "permissions.py",
+      "type": "file",
+      "summary": "DRF permission classes for metadata fields and model fields, enforcing organisation-admin and project-admin access on create and object operations."
+    },
+    "file:metadata/serializers.py": {
+      "name": "serializers.py",
+      "type": "file",
+      "summary": "DRF serializers for the metadata domain, including field/model-field serialisers, query-param serialisers, and a MetadataSerializerMixin that validates and persists required metadata for owning entities."
+    },
+    "file:metadata/urls.py": {
+      "name": "urls.py",
+      "type": "file",
+      "summary": "URL routing for the metadata API, registering the metadata field and model-field viewsets with the router."
+    },
+    "file:metadata/views.py": {
+      "name": "views.py",
+      "type": "file",
+      "summary": "ViewSets for metadata fields and model fields, scoping querysets by organisation/project and exposing supported content types and requirement targets."
+    },
+    "file:organisations/admin.py": {
+      "name": "admin.py",
+      "type": "file",
+      "summary": "Django admin configuration for organisations, registering inlines for projects, subscriptions, members, and subscription cache plus annotated user/project counts."
+    },
+    "file:organisations/subscriptions/serializers/mixins.py": {
+      "name": "mixins.py",
+      "type": "file",
+      "summary": "Serializer mixin that makes configured fields read-only when an organisation's subscription plan is invalid, matched against a regex of disallowed plans."
+    },
+    "file:permissions/models.py": {
+      "name": "models.py",
+      "type": "file",
+      "summary": "Defines the PermissionModel record and AbstractBasePermissionModel mixin providing add_permission/set_permissions helpers for permission-bearing entities."
+    },
+    "file:permissions/serializers.py": {
+      "name": "serializers.py",
+      "type": "file",
+      "summary": "DRF serializers for the permission domain, including an abstract create/update user-permission serializer and detailed/derived permission representations."
+    },
+    "file:projects/admin.py": {
+      "name": "admin.py",
+      "type": "file",
+      "summary": "Django admin configuration for projects, registering environment/feature/segment/tag inlines and a bulk action to delete all segments for selected projects."
+    },
+    "file:projects/code_references/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Empty package initialiser marking projects/code_references as a Python package."
+    },
+    "file:environments/admin.py": {
+      "name": "admin.py",
+      "type": "file",
+      "summary": "Django admin registration for the Environment model, exposing webhook inlines and a bulk action to rebuild environment documents."
+    },
+    "file:environments/api_keys.py": {
+      "name": "api_keys.py",
+      "type": "file",
+      "summary": "Helper functions that generate hashed client- and server-side environment API keys with the appropriate prefixes."
+    },
+    "file:environments/authentication.py": {
+      "name": "authentication.py",
+      "type": "file",
+      "summary": "DRF authentication class that resolves the X-Environment-Key header to an Environment, used by SDK endpoints."
+    },
+    "file:environments/constants.py": {
+      "name": "constants.py",
+      "type": "file",
+      "summary": "App-wide constant definitions for the environments app, such as cache keys and configuration flags."
+    },
+    "file:environments/enums.py": {
+      "name": "enums.py",
+      "type": "file",
+      "summary": "Enumerations for the environments app, including the environment document cache mode."
+    },
+    "file:environments/exceptions.py": {
+      "name": "exceptions.py",
+      "type": "file",
+      "summary": "Custom exception types for the environments app, including the missing environment header error."
+    },
+    "file:environments/identities/admin.py": {
+      "name": "admin.py",
+      "type": "file",
+      "summary": "Django admin registration for the Identity model with display and search configuration."
+    },
+    "file:environments/identities/managers.py": {
+      "name": "managers.py",
+      "type": "file",
+      "summary": "Custom Django manager for Identity providing SDK get-or-create and context-prefetching query helpers."
+    },
+    "file:environments/identities/models.py": {
+      "name": "models.py",
+      "type": "file",
+      "summary": "Identity model holding per-user state in an environment, with feature-state resolution, segment matching and trait generation/update logic."
+    },
+    "file:environments/identities/serializers.py": {
+      "name": "serializers.py",
+      "type": "file",
+      "summary": "DRF serializers for identities, including the all-feature-states response shape with multivariate and segment override details."
+    },
+    "file:environments/identities/traits/admin.py": {
+      "name": "admin.py",
+      "type": "file",
+      "summary": "Django admin registration for the Trait model with display and filtering configuration."
+    },
+    "file:environments/identities/traits/constants.py": {
+      "name": "constants.py",
+      "type": "file",
+      "summary": "Constants for identity traits, mapping trait value types to feature value type identifiers."
+    },
+    "file:environments/identities/traits/exceptions.py": {
+      "name": "exceptions.py",
+      "type": "file",
+      "summary": "Custom exception types for trait persistence failures."
+    },
+    "file:environments/identities/traits/fields.py": {
+      "name": "fields.py",
+      "type": "file",
+      "summary": "Custom DRF serializer field that serialises and deserialises polymorphic trait values with length validation."
+    },
+    "file:environments/identities/traits/models.py": {
+      "name": "models.py",
+      "type": "file",
+      "summary": "Trait model storing typed key/value user attributes, with type coercion helpers and transient-trait support."
+    },
+    "file:environments/identities/traits/serializers.py": {
+      "name": "serializers.py",
+      "type": "file",
+      "summary": "DRF serializers for traits, including increment-value, bulk-delete and full/basic representations."
+    },
+    "file:environments/identities/traits/views.py": {
+      "name": "views.py",
+      "type": "file",
+      "summary": "DRF viewsets and SDK endpoints for managing identity traits: nested CRUD, single/bulk SDK upserts and increment operations."
+    },
+    "file:environments/identities/views.py": {
+      "name": "views.py",
+      "type": "file",
+      "summary": "DRF viewsets and SDK endpoints for identities, including dashboard CRUD and SDK identify/get-flags responses."
+    },
+    "file:environments/models.py": {
+      "name": "models.py",
+      "type": "file",
+      "summary": "Core Environment model plus Webhook and EnvironmentAPIKey, covering caching, DynamoDB sync, versioning, cloning and metrics querysets."
+    },
+    "file:environments/permissions/managers.py": {
+      "name": "managers.py",
+      "type": "file",
+      "summary": "Custom manager filtering environment permission models by the relevant permission scope."
+    },
+    "file:environments/permissions/models.py": {
+      "name": "models.py",
+      "type": "file",
+      "summary": "Permission models for environments: the base permission model and per-user and per-group environment permission assignments."
+    },
+    "file:environments/permissions/permissions.py": {
+      "name": "permissions.py",
+      "type": "file",
+      "summary": "DRF permission classes governing access to environments, identities, traits and nested environment resources."
+    },
+    "file:environments/permissions/serializers.py": {
+      "name": "serializers.py",
+      "type": "file",
+      "summary": "DRF serializers for creating, updating and listing user and group environment permissions."
+    },
+    "file:environments/permissions/views.py": {
+      "name": "views.py",
+      "type": "file",
+      "summary": "DRF viewsets for managing per-user and per-group environment permissions, scoping querysets to a given environment and saving via the matching create/list serializer."
+    },
+    "file:environments/sdk/serializers.py": {
+      "name": "serializers.py",
+      "type": "file",
+      "summary": "SDK-facing serializers for identifying users and creating/updating traits, including transient identity handling and integration dispatch on identify."
+    },
+    "file:environments/sdk/serializers_mixins.py": {
+      "name": "serializers_mixins.py",
+      "type": "file",
+      "summary": "Serializer mixin that hides sensitive fields from the serialized representation when configured to do so."
+    },
+    "file:environments/sdk/services.py": {
+      "name": "services.py",
+      "type": "file",
+      "summary": "Business logic for resolving transient, identified-transient, and persisted identities from SDK trait payloads, deriving deterministic transient identifiers."
+    },
+    "file:environments/sdk/types.py": {
+      "name": "types.py",
+      "type": "file",
+      "summary": "TypedDict definitions for SDK trait value and trait data payloads used across the SDK serialization layer."
+    },
+    "file:environments/sdk/views.py": {
+      "name": "views.py",
+      "type": "file",
+      "summary": "SDK environment document API view that authenticates with an environment key and returns the cached environment document with last-modified support."
+    },
+    "file:environments/urls.py": {
+      "name": "urls.py",
+      "type": "file",
+      "summary": "URL routing for the environments app, wiring nested routers for environments, traits, identities, permissions, webhooks, API keys and feature endpoints."
+    },
+    "file:environments/views.py": {
+      "name": "views.py",
+      "type": "file",
+      "summary": "Core environment viewsets exposing CRUD, cloning, trait-key listing, permission inspection, v2 versioning toggles, webhooks, API keys and environment metrics."
+    },
+    "file:features/constants.py": {
+      "name": "constants.py",
+      "type": "file",
+      "summary": "App-wide constants for feature states: state types, statuses, reserved multivariate control variant key, tag filtering strategies and the 32-bit integer ceiling."
+    },
+    "file:features/feature_segments/limits.py": {
+      "name": "limits.py",
+      "type": "file",
+      "summary": "Enforces the per-environment segment override limit, counting existing overrides across versioning modes before allowing new segment overrides to be created."
+    },
+    "file:features/feature_segments/permissions.py": {
+      "name": "permissions.py",
+      "type": "file",
+      "summary": "DRF permission class governing access to feature segment endpoints by checking the user's environment-level permissions for the targeted environment."
+    },
+    "file:features/feature_segments/serializers.py": {
+      "name": "serializers.py",
+      "type": "file",
+      "summary": "Serializers for creating, listing, cloning and re-prioritising feature segment overrides, including segment override limit checks and priority-collision resolution."
+    },
+    "file:features/feature_segments/views.py": {
+      "name": "views.py",
+      "type": "file",
+      "summary": "Viewset for feature segment overrides supporting listing scoped to permitted projects/environments, priority updates, and lookup by UUID."
+    },
+    "file:features/feature_states/permissions.py": {
+      "name": "permissions.py",
+      "type": "file",
+      "summary": "DRF permission class authorising direct environment feature-state updates by verifying the user's update permission on the environment."
+    },
+    "file:features/feature_states/views.py": {
+      "name": "views.py",
+      "type": "file",
+      "summary": "Function-based SDK endpoints for updating flags (v1/v2) and deleting segment overrides, guarded against use when change-request workflows are enabled."
+    },
+    "file:features/helpers.py": {
+      "name": "helpers.py",
+      "type": "file",
+      "summary": "Helper to coerce a stored string feature value into its correctly typed Python value based on the feature state value type."
+    },
+    "file:features/multivariate/serializers.py": {
+      "name": "serializers.py",
+      "type": "file",
+      "summary": "Serializers for multivariate feature options and their values, validating unique keys and that weighted percentage allocations do not exceed 100%."
+    },
+    "file:features/serializers.py": {
+      "name": "serializers.py",
+      "type": "file",
+      "summary": "Central feature serialization module defining feature, feature-state and owner serializers used across admin and SDK APIs, with metadata, segment override and GitHub/GitLab integration hooks."
+    },
+    "file:features/urls.py": {
+      "name": "urls.py",
+      "type": "file",
+      "summary": "URL routing for the features app, registering feature, feature-state and feature-segment viewsets plus import/export endpoints."
+    },
+    "file:features/utils.py": {
+      "name": "utils.py",
+      "type": "file",
+      "summary": "Type-detection and coercion helpers determining whether a feature value is an integer, 32-bit integer or boolean and converting string values accordingly."
+    },
+    "file:features/value_types.py": {
+      "name": "value_types.py",
+      "type": "file",
+      "summary": "Constant definitions for feature state value types (integer, string, boolean, float) and the choices tuple used by feature value models."
+    },
+    "file:features/versioning/serializers.py": {
+      "name": "serializers.py",
+      "type": "file",
+      "summary": "Serializers for environment feature versions, handling creation/update/deletion of feature states within a version, segment override limits and publishing."
+    },
+    "file:features/views.py": {
+      "name": "views.py",
+      "type": "file",
+      "summary": "Primary feature API surface: feature CRUD with owner management and analytics, feature-state viewsets (environment, identity, simple), and SDK flag retrieval with caching."
+    },
+    "file:features/feature_health/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Empty package initialiser marking the feature_health Django app as a Python package."
+    },
+    "file:features/feature_health/admin.py": {
+      "name": "admin.py",
+      "type": "file",
+      "summary": "Django admin registration for FeatureHealthProvider, surfacing the signed webhook URL in the changelist view."
+    },
+    "file:features/feature_health/constants.py": {
+      "name": "constants.py",
+      "type": "file",
+      "summary": "App-wide constant values for the feature health domain, such as the unhealthy tag label and event limits."
+    },
+    "file:features/feature_health/mappers.py": {
+      "name": "mappers.py",
+      "type": "file",
+      "summary": "Maps provider-agnostic FeatureHealthEventData DTOs into persisted FeatureHealthEvent model instances bound to a feature and environment."
+    },
+    "file:features/feature_health/models.py": {
+      "name": "models.py",
+      "type": "file",
+      "summary": "Core Django models for feature health: FeatureHealthProvider configuration plus FeatureHealthEvent records with a manager that returns the latest event per feature and project, integrating with the audit log."
+    },
+    "file:features/feature_health/providers/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Empty package initialiser marking the providers sub-package as a Python package."
+    },
+    "file:features/feature_health/providers/generic/mappers.py": {
+      "name": "mappers.py",
+      "type": "file",
+      "summary": "Generic provider payload mapper that validates a sample event payload and converts it into a FeatureHealthProviderResponse with normalised event status."
+    },
+    "file:features/feature_health/providers/grafana/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Grafana provider package barrel re-exporting the get_provider_response service entry point."
+    },
+    "file:features/feature_health/providers/grafana/constants.py": {
+      "name": "constants.py",
+      "type": "file",
+      "summary": "Grafana-specific constant labels used when parsing Alertmanager alert instances."
+    },
+    "file:features/feature_health/providers/grafana/mappers.py": {
+      "name": "mappers.py",
+      "type": "file",
+      "summary": "Parses Grafana Alertmanager webhook payloads into alert instances and maps each into FeatureHealthEventData with structured reason text and URL blocks."
+    },
+    "file:features/feature_health/providers/grafana/services.py": {
+      "name": "services.py",
+      "type": "file",
+      "summary": "Grafana provider service that converts a raw webhook payload into a FeatureHealthProviderResponse by mapping each alert instance to event data."
+    },
+    "file:features/feature_health/providers/grafana/types.py": {
+      "name": "types.py",
+      "type": "file",
+      "summary": "Pydantic type definitions modelling Grafana Alertmanager alert instances and the webhook envelope."
+    },
+    "file:features/feature_health/providers/services.py": {
+      "name": "services.py",
+      "type": "file",
+      "summary": "Provider webhook path service that signs and reverses a FeatureHealthProvider UUID into a webhook URL path and resolves an incoming path back to its provider."
+    },
+    "file:features/feature_health/providers/webhook/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Webhook provider package barrel re-exporting the get_provider_response service entry point."
+    },
+    "file:features/feature_health/providers/webhook/mappers.py": {
+      "name": "mappers.py",
+      "type": "file",
+      "summary": "Webhook provider payload mapper that validates a generic webhook event payload and converts it into a FeatureHealthProviderResponse with normalised event status."
+    },
+    "file:features/feature_health/providers/webhook/services.py": {
+      "name": "services.py",
+      "type": "file",
+      "summary": "Thin webhook provider service delegating payload mapping to the webhook mappers module."
+    },
+    "file:features/feature_health/providers/webhook/types.py": {
+      "name": "types.py",
+      "type": "file",
+      "summary": "Pydantic type definition for the inbound webhook event payload (environment, feature, status, reason)."
+    },
+    "file:features/feature_health/serializers.py": {
+      "name": "serializers.py",
+      "type": "file",
+      "summary": "DRF serializers for feature health events and providers, including nested reason text/URL block serialization and webhook URL exposure."
+    },
+    "file:features/feature_health/services.py": {
+      "name": "services.py",
+      "type": "file",
+      "summary": "Core feature health business logic: dispatches provider payloads, creates FeatureHealthEvent records, toggles the unhealthy feature tag, and dismisses events with audit logging."
+    },
+    "file:features/feature_health/tasks.py": {
+      "name": "tasks.py",
+      "type": "file",
+      "summary": "Registers the async task that recomputes a feature's unhealthy tag from its latest health events."
+    },
+    "file:features/feature_health/types.py": {
+      "name": "types.py",
+      "type": "file",
+      "summary": "Pydantic DTOs for provider-agnostic feature health data: event reasons, event data, and the aggregate provider response."
+    },
+    "file:features/feature_health/views.py": {
+      "name": "views.py",
+      "type": "file",
+      "summary": "DRF viewsets and the public webhook endpoint for feature health: lists/dismisses events, creates providers, and ingests provider webhook payloads."
+    },
+    "file:projects/permissions.py": {
+      "name": "permissions.py",
+      "type": "file",
+      "summary": "DRF permission classes enforcing project-level and nested-resource authorization, including organisation project-count quota checks on creation."
+    },
+    "file:projects/serializers.py": {
+      "name": "serializers.py",
+      "type": "file",
+      "summary": "DRF serializers for listing, creating, updating, and retrieving projects, plus user/group project-permission serializers, with migration-status and edge-identity derivation."
+    },
+    "file:projects/services.py": {
+      "name": "services.py",
+      "type": "file",
+      "summary": "Service helper that fetches a project's live segments from cache, populating it from the database on a miss."
+    },
+    "file:projects/tags/admin.py": {
+      "name": "admin.py",
+      "type": "file",
+      "summary": "Django admin registration and list configuration for the Tag model."
+    },
+    "file:projects/tags/models.py": {
+      "name": "models.py",
+      "type": "file",
+      "summary": "Defines the Tag model and TagType enum used to label features and other project entities."
+    },
+    "file:projects/tags/permissions.py": {
+      "name": "permissions.py",
+      "type": "file",
+      "summary": "DRF permission class gating tag management against the user's project-level permissions."
+    },
+    "file:projects/tags/serializers.py": {
+      "name": "serializers.py",
+      "type": "file",
+      "summary": "DRF serializer for the Tag model with validation of tag fields."
+    },
+    "file:projects/tags/views.py": {
+      "name": "views.py",
+      "type": "file",
+      "summary": "DRF viewset for CRUD operations on project tags, scoped to projects the requesting user is permitted to access."
+    },
+    "file:projects/tasks.py": {
+      "name": "tasks.py",
+      "type": "file",
+      "summary": "Async tasks for writing project environments to DynamoDB, migrating environments to Edge V2, and cascade-deleting project child entities."
+    },
+    "file:projects/urls.py": {
+      "name": "urls.py",
+      "type": "file",
+      "summary": "Top-level URL routing for the projects app, mounting nested routers for features, segments, environments, metadata, audit logs, tags, and permissions."
+    },
+    "file:projects/views.py": {
+      "name": "views.py",
+      "type": "file",
+      "summary": "Core ProjectViewSet plus project-permission viewsets, handling project CRUD, environment listing, permission introspection, and Edge migration triggering."
+    },
+    "file:projects/code_references/constants.py": {
+      "name": "constants.py",
+      "type": "file",
+      "summary": "Holds app-wide constant values for the code references feature within the projects app."
+    },
+    "file:projects/code_references/models.py": {
+      "name": "models.py",
+      "type": "file",
+      "summary": "Defines the VCSRepository and ScannedCodeReferences Django models that persist feature-flag code references discovered by repository scans."
+    },
+    "file:projects/code_references/permissions.py": {
+      "name": "permissions.py",
+      "type": "file",
+      "summary": "DRF permission classes gating submission and viewing of feature-flag code references against the user's project permissions."
+    },
+    "file:projects/code_references/serializers.py": {
+      "name": "serializers.py",
+      "type": "file",
+      "summary": "DRF serializers for submitting, summarising, and counting feature-flag code references discovered during repository scans."
+    },
+    "file:projects/code_references/services.py": {
+      "name": "services.py",
+      "type": "file",
+      "summary": "Business logic for recording repository scans and annotating/querying feature querysets with code-reference summaries, including permalink construction."
+    },
+    "file:projects/code_references/types.py": {
+      "name": "types.py",
+      "type": "file",
+      "summary": "TypedDict and enum definitions describing code-reference data transfer objects (submitted, stored, summarised) exchanged within the feature."
+    },
+    "file:projects/code_references/urls.py": {
+      "name": "urls.py",
+      "type": "file",
+      "summary": "URL routing for the code references API, wiring scan-create and reference-detail views into the projects app."
+    },
+    "file:projects/code_references/views.py": {
+      "name": "views.py",
+      "type": "file",
+      "summary": "DRF API views for creating feature-flag code reference scans and retrieving code references for a given feature flag."
+    },
+    "file:projects/exceptions.py": {
+      "name": "exceptions.py",
+      "type": "file",
+      "summary": "Custom exception classes for project-level error conditions such as Dynamo migration failures and oversized projects."
+    },
+    "file:projects/managers.py": {
+      "name": "managers.py",
+      "type": "file",
+      "summary": "Custom Django model manager that eager-loads related fields for the Project queryset."
+    },
+    "file:projects/models.py": {
+      "name": "models.py",
+      "type": "file",
+      "summary": "Core Project model plus project-scoped permission models, covering Dynamo/Edge V2 migration, segment caching, dynamo writes, and cascade deletion."
+    },
+    "file:audit/constants.py": {
+      "name": "constants.py",
+      "type": "file",
+      "summary": "Defines printf-style audit-log message templates for every auditable domain event (features, segments, environments, change requests, release pipelines) plus the audit datetime format."
+    },
+    "file:audit/models.py": {
+      "name": "models.py",
+      "type": "file",
+      "summary": "Defines the AuditLog Django model recording project/environment-scoped change events, including resolution of the related historical record and triggering of environment document rebuilds."
+    },
+    "file:audit/related_object_type.py": {
+      "name": "related_object_type.py",
+      "type": "file",
+      "summary": "Declares the RelatedObjectType enum classifying which domain entity an audit log entry refers to (feature, segment, environment, change request, etc.)."
+    },
+    "file:audit/services.py": {
+      "name": "services.py",
+      "type": "file",
+      "summary": "Business-logic helper that resolves the concrete audited model instance referenced by an AuditLog record from its historical record and related object type."
+    },
+    "file:audit/signals.py": {
+      "name": "signals.py",
+      "type": "file",
+      "summary": "Wires Django post-save signals on AuditLog to fan out events to integrations (Datadog, New Relic, Dynatrace, Grafana, Slack, Sentry), trigger webhooks, and emit feature-went-live signals."
+    },
+    "file:audit/tasks.py": {
+      "name": "tasks.py",
+      "type": "file",
+      "summary": "Asynchronous Flagsmith tasks that create AuditLog entries for feature-state lifecycle events, historical records, and segment-priority changes."
+    },
+    "file:environments/managers.py": {
+      "name": "managers.py",
+      "type": "file",
+      "summary": "Custom Django manager for the Environment model providing document-builder prefetching and natural-key lookups for environment serialization."
+    },
+    "file:environments/tasks.py": {
+      "name": "tasks.py",
+      "type": "file",
+      "summary": "Asynchronous tasks for environment lifecycle: rebuilding the DynamoDB environment document, processing audit-driven updates, deleting environments, and cloning feature states."
+    },
+    "file:features/admin.py": {
+      "name": "admin.py",
+      "type": "file",
+      "summary": "Registers Django admin configurations for Feature, FeatureSegment, FeatureState, and FeatureStateValue models with inlines and custom add/change views."
+    },
+    "file:features/audit_helpers.py": {
+      "name": "audit_helpers.py",
+      "type": "file",
+      "summary": "Helper functions that build human-readable audit-log messages for identity-override, segment-override, and environment feature-state creation events."
+    },
+    "file:features/custom_lifecycle.py": {
+      "name": "custom_lifecycle.py",
+      "type": "file",
+      "summary": "Mixin adding lifecycle-condition checks (was, was-not, changes-to) over a model's initial versus current field values for feature lifecycle tracking."
+    },
+    "file:features/feature_states/models.py": {
+      "name": "models.py",
+      "type": "file",
+      "summary": "Abstract base model storing a typed feature-state value (string, integer, boolean) with get/set helpers used by concrete feature-state value models."
+    },
+    "file:features/feature_states/serializers.py": {
+      "name": "serializers.py",
+      "type": "file",
+      "summary": "DRF serializers for updating feature flags and remote-config values, including segment-override updates, v1/v2 flag update flows, and feature-state value validation."
+    },
+    "file:features/feature_types.py": {
+      "name": "feature_types.py",
+      "type": "file",
+      "summary": "Defines the feature-type constants (STANDARD, MULTIVARIATE, deprecated CONFIG/FLAG) and derives the Django choices tuple from the shared FeatureType schema."
+    },
+    "file:features/managers.py": {
+      "name": "managers.py",
+      "type": "file",
+      "summary": "Custom Django managers for feature models, notably FeatureStateManager which filters to currently-live feature states accounting for v2 versioning."
+    },
+    "file:features/models.py": {
+      "name": "models.py",
+      "type": "file",
+      "summary": "Core feature domain models: Feature, FeatureSegment, FeatureState, and FeatureStateValue, implementing flag values, segment overrides, versioning, cloning, and audit-log integration."
+    },
+    "file:features/multivariate/models.py": {
+      "name": "models.py",
+      "type": "file",
+      "summary": "Models for multivariate feature options and their per-feature-state percentage allocations, including conversion between standard and multivariate features."
+    },
+    "file:features/release_pipelines/core/constants.py": {
+      "name": "constants.py",
+      "type": "file",
+      "summary": "Defines the MAX_PIPELINE_STAGES limit for release pipelines."
+    },
+    "file:features/release_pipelines/core/exceptions.py": {
+      "name": "exceptions.py",
+      "type": "file",
+      "summary": "Custom exception hierarchy for release pipelines, including a base ReleasePipelineError and InvalidPipelineStateError."
+    },
+    "file:features/release_pipelines/core/models.py": {
+      "name": "models.py",
+      "type": "file",
+      "summary": "Defines the release pipeline data model — pipelines composed of ordered stages with triggers and actions (including phased rollouts) that progressively promote feature versions across environments."
+    },
+    "file:features/signals.py": {
+      "name": "signals.py",
+      "type": "file",
+      "summary": "Declares the Django dispatch signals used across the features app, such as the feature-flag-went-live event."
+    },
+    "file:features/tasks.py": {
+      "name": "tasks.py",
+      "type": "file",
+      "summary": "Asynchronous tasks for the features app, primarily building and dispatching feature-state-change webhook payloads and deleting features."
+    },
+    "file:features/versioning/dataclasses.py": {
+      "name": "dataclasses.py",
+      "type": "file",
+      "summary": "Internal data-transfer objects for feature versioning — change sets and conflict descriptors used when publishing flag and segment-override changes."
+    },
+    "file:features/versioning/exceptions.py": {
+      "name": "exceptions.py",
+      "type": "file",
+      "summary": "Exception hierarchy for feature versioning errors, including disallowed direct feature-state writes and attempts to modify a live version."
+    },
+    "file:features/versioning/managers.py": {
+      "name": "managers.py",
+      "type": "file",
+      "summary": "Custom Django manager for EnvironmentFeatureVersion that resolves the latest published versions per environment via a raw SQL query."
+    },
+    "file:features/versioning/models.py": {
+      "name": "models.py",
+      "type": "file",
+      "summary": "Core feature versioning models — EnvironmentFeatureVersion (immutable published versions of an environment's feature states) and VersionChangeSet (deferred change sets with conflict detection)."
+    },
+    "file:features/versioning/permissions.py": {
+      "name": "permissions.py",
+      "type": "file",
+      "summary": "DRF permission classes gating access to environment feature versions and their feature states based on environment and tag-scoped permissions."
+    },
+    "file:features/versioning/receivers.py": {
+      "name": "receivers.py",
+      "type": "file",
+      "summary": "Signal receivers wiring feature-version lifecycle events to side effects — cloning prior states, rebuilding environment documents, triggering webhooks, and writing audit logs."
+    },
+    "file:features/versioning/schemas.py": {
+      "name": "schemas.py",
+      "type": "file",
+      "summary": "Marshmallow schemas serialising environment feature versions and their feature states into webhook payload data."
+    },
+    "file:features/versioning/signals.py": {
+      "name": "signals.py",
+      "type": "file",
+      "summary": "Declares the Django dispatch signal fired when an environment feature version is published."
+    },
+    "file:features/versioning/tasks.py": {
+      "name": "tasks.py",
+      "type": "file",
+      "summary": "Asynchronous tasks driving feature versioning — enabling/disabling v2 versioning, creating initial versions, dispatching version webhooks, publishing scheduled change sets, and emitting audit logs."
+    },
+    "file:features/versioning/urls.py": {
+      "name": "urls.py",
+      "type": "file",
+      "summary": "URL routing for the feature versioning API, wiring environment feature version and feature-state viewsets to nested routes."
+    },
+    "file:features/versioning/versioning_service.py": {
+      "name": "versioning_service.py",
+      "type": "file",
+      "summary": "Business-logic layer for feature versioning — resolving live feature states/versions and applying flag and segment-override updates, branching between v1 (direct state) and v2 (versioned) semantics."
+    },
+    "file:features/versioning/views.py": {
+      "name": "views.py",
+      "type": "file",
+      "summary": "DRF viewsets exposing the feature versioning API — listing/creating/publishing environment feature versions and managing the feature states nested under a version."
+    },
+    "file:features/workflows/core/exceptions.py": {
+      "name": "exceptions.py",
+      "type": "file",
+      "summary": "Exception hierarchy for the change-request workflow, covering unapproved commits, self-approval, and deletion of committed change requests."
+    },
+    "file:features/workflows/core/models.py": {
+      "name": "models.py",
+      "type": "file",
+      "summary": "Change-request workflow models — ChangeRequest with approval/commit lifecycle, ChangeRequestApproval, and group assignment, including audit logging and email notifications."
+    },
+    "file:segments/tasks.py": {
+      "name": "tasks.py",
+      "type": "file",
+      "summary": "Asynchronous tasks for the segments app — deleting a segment and recording a segment-deleted audit log entry."
+    },
+    "file:experimentation/results_query.py": {
+      "name": "results_query.py",
+      "type": "file",
+      "summary": "Builds the parameterised ClickHouse SQL that computes per-variant metric aggregates (count/sum/sum-of-squares) and decodes result rows into VariantStats for statistical inference."
+    },
+    "file:experimentation/serializers.py": {
+      "name": "serializers.py",
+      "type": "file",
+      "summary": "DRF serializers for warehouse connections, metrics, experiments and their exposures/results, including validation of metric definitions, variant uniqueness, and feature compatibility."
+    },
+    "file:experimentation/services.py": {
+      "name": "services.py",
+      "type": "file",
+      "summary": "Core business-logic layer: feature-flag gating, ClickHouse client/queries for exposures and metric stats, results summarisation with SRM and inference, experiment status transitions, and audit-log creation."
+    },
+    "file:experimentation/stats.py": {
+      "name": "stats.py",
+      "type": "file",
+      "summary": "Pure statistics helpers: two-sample lift inference with confidence interval and chance-to-win, plus a sample-ratio-mismatch (SRM) chi-squared p-value, implemented without scipy."
+    },
+    "file:experimentation/tasks.py": {
+      "name": "tasks.py",
+      "type": "file",
+      "summary": "Asynchronous task-processor tasks that sync environment keys to ingestion and recompute experiment exposures and results, recording refresh/failure state on the computation models."
+    },
+    "file:experimentation/types.py": {
+      "name": "types.py",
+      "type": "file",
+      "summary": "TypedDict definitions for metric-definition payloads, per-experiment metric results, and Snowflake warehouse configuration used across serializers and services."
+    },
+    "file:experimentation/urls.py": {
+      "name": "urls.py",
+      "type": "file",
+      "summary": "Top-level URL routing for the experimentation app, wiring the warehouse-connection viewset into the environment API."
+    },
+    "file:experimentation/views.py": {
+      "name": "views.py",
+      "type": "file",
+      "summary": "DRF viewsets for warehouse connections, experiments, experiment metrics, and metrics — handling CRUD, connection testing, status transitions, and exposures/results refresh endpoints."
+    },
+    "file:experimentation/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Empty package marker for the experimentation Django app, which houses A/B experiment, metric, and data-warehouse connection features."
+    },
+    "file:experimentation/constants.py": {
+      "name": "constants.py",
+      "type": "file",
+      "summary": "App-wide constants for the experimentation feature: feature-flag keys, the SDK exposure event name, refresh intervals, and statistical sample-size floors used in results inference."
+    },
+    "file:experimentation/dataclasses.py": {
+      "name": "dataclasses.py",
+      "type": "file",
+      "summary": "Internal data-transfer dataclasses for warehouse stats, exposure buckets/timeseries, and metric result aggregates passed between the services and query layers."
+    },
+    "file:experimentation/experiment_urls.py": {
+      "name": "experiment_urls.py",
+      "type": "file",
+      "summary": "URL routing that registers the experiment and nested experiment-metric viewsets under the environment-scoped API."
+    },
+    "file:experimentation/ingestion_sync_service.py": {
+      "name": "ingestion_sync_service.py",
+      "type": "file",
+      "summary": "Thin Redis-cluster client wrapper that pushes environment API keys to (and removes them from) the events-ingestion service so warehouse ingestion knows which environments to accept."
+    },
+    "file:experimentation/metric_definitions.py": {
+      "name": "metric_definitions.py",
+      "type": "file",
+      "summary": "Versioned validator registry for metric definition payloads, dispatching to per-version validators (currently v1) to enforce the event/aggregation schema."
+    },
+    "file:experimentation/metric_urls.py": {
+      "name": "metric_urls.py",
+      "type": "file",
+      "summary": "URL routing registering the environment-scoped metric viewset for the experimentation API."
+    },
+    "file:experimentation/models.py": {
+      "name": "models.py",
+      "type": "file",
+      "summary": "Django ORM models for the experimentation domain: warehouse connections, experiments and their computations, exposures, results, and metrics with their aggregation/direction enums."
+    },
+    "file:experimentation/permissions.py": {
+      "name": "permissions.py",
+      "type": "file",
+      "summary": "DRF permission classes gating warehouse-connection and experiment endpoints on the relevant feature flag and environment-admin rights."
+    },
+    "file:environments/dynamodb/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Package entry point for the DynamoDB environments subpackage, re-exporting the wrapper classes, DTO types, and capacity exception for convenient import elsewhere."
+    },
+    "file:environments/dynamodb/constants.py": {
+      "name": "constants.py",
+      "type": "file",
+      "summary": "Defines DynamoDB table key names, document key prefixes, and capacity-related constants shared across the environments DynamoDB wrappers."
+    },
+    "file:environments/dynamodb/services.py": {
+      "name": "services.py",
+      "type": "file",
+      "summary": "Business-logic layer that migrates project environments to the v2 DynamoDB document model, paginating identity overrides within a capacity budget and writing the resulting changeset."
+    },
+    "file:environments/dynamodb/types.py": {
+      "name": "types.py",
+      "type": "file",
+      "summary": "Dataclass DTOs for DynamoDB project metadata and identity-override changesets, including the DynamoProjectMetadata record that tracks identity migration lifecycle state."
+    },
+    "file:environments/dynamodb/utils.py": {
+      "name": "utils.py",
+      "type": "file",
+      "summary": "Helper utilities for DynamoDB documents: estimating serialised document size, JSON-encoding Decimals, and building/parsing v2 identity-override document keys."
+    },
+    "file:environments/dynamodb/wrappers/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Package entry point for the DynamoDB wrappers subpackage, re-exporting the environment API key, environment, and identity wrapper classes."
+    },
+    "file:environments/dynamodb/wrappers/base.py": {
+      "name": "base.py",
+      "type": "file",
+      "summary": "Abstract base wrapper providing shared DynamoDB table access (lazy boto3 resource, table-name resolution, enablement check) and paginated scan/query iteration for concrete wrappers."
+    },
+    "file:environments/dynamodb/wrappers/environment_api_key_wrapper.py": {
+      "name": "environment_api_key_wrapper.py",
+      "type": "file",
+      "summary": "DynamoDB wrapper for persisting and deleting environment API key documents using batched writes."
+    },
+    "file:environments/dynamodb/wrappers/environment_wrapper.py": {
+      "name": "environment_wrapper.py",
+      "type": "file",
+      "summary": "DynamoDB wrappers for environment documents covering both the legacy and v2 schemas, handling optional compression, identity-override read/write/delete, and emitting document size and compression-ratio metrics."
+    },
+    "file:environments/dynamodb/wrappers/exceptions.py": {
+      "name": "exceptions.py",
+      "type": "file",
+      "summary": "Defines the CapacityBudgetExceeded exception raised when a DynamoDB migration scan exhausts its allotted read-capacity budget."
+    },
+    "file:environments/dynamodb/wrappers/identity_wrapper.py": {
+      "name": "identity_wrapper.py",
+      "type": "file",
+      "summary": "DynamoDB wrapper for identity documents providing CRUD, UUID lookups, capacity-bounded paginated iteration, search, and engine-based segment-membership resolution for an identity."
+    },
+    "file:environments/metrics.py": {
+      "name": "metrics.py",
+      "type": "file",
+      "summary": "Declares Prometheus histogram metrics for DynamoDB environment document size and compression ratio used by the environment wrappers."
+    },
+    "file:features/dataclasses.py": {
+      "name": "dataclasses.py",
+      "type": "file",
+      "summary": "Defines the EnvironmentFeatureOverridesData DTO that tallies segment and identity override counts per feature for an environment."
+    },
+    "file:features/features_service.py": {
+      "name": "features_service.py",
+      "type": "file",
+      "summary": "Business-logic service that aggregates per-feature override counts for an environment, dispatching to either the core (relational) or edge (DynamoDB) data source depending on the project's identity overrides backend."
+    },
+    "file:segment_membership/mappers.py": {
+      "name": "mappers.py",
+      "type": "file",
+      "summary": "Maps DynamoDB identity documents into ClickHouse row tuples, flattening and coercing trait values for the segment-membership backfill pipeline."
+    },
+    "file:segment_membership/metrics.py": {
+      "name": "metrics.py",
+      "type": "file",
+      "summary": "Defines Prometheus counters and histograms tracking segment-membership backfill and refresh task volume, duration, and failures."
+    },
+    "file:segment_membership/models.py": {
+      "name": "models.py",
+      "type": "file",
+      "summary": "Django model storing per-segment, per-environment membership counts produced by the ClickHouse-backed refresh task."
+    },
+    "file:segment_membership/services.py": {
+      "name": "services.py",
+      "type": "file",
+      "summary": "Business logic for segment-membership counting: feature-flag gating, refresh enqueueing, ClickHouse cursor management, and computing per-segment membership counts via translated segment SQL."
+    },
+    "file:segment_membership/tasks.py": {
+      "name": "tasks.py",
+      "type": "file",
+      "summary": "Async tasks that backfill DynamoDB identities into ClickHouse and refresh per-project segment-membership counts, persisting results to SegmentMembershipCount."
+    },
+    "file:segments/admin.py": {
+      "name": "admin.py",
+      "type": "file",
+      "summary": "Django admin registrations and inline editors for Segment, SegmentRule, and Condition models."
+    },
+    "file:segments/models.py": {
+      "name": "models.py",
+      "type": "file",
+      "summary": "Core segment data model defining Segment, SegmentRule, Condition, and WhitelistedSegment with versioning, cloning, custom managers, and audit-log integration."
+    },
+    "file:segments/permissions.py": {
+      "name": "permissions.py",
+      "type": "file",
+      "summary": "DRF permission class enforcing project-scoped view and object permissions for segment endpoints."
+    },
+    "file:segments/serializers.py": {
+      "name": "serializers.py",
+      "type": "file",
+      "summary": "DRF serializers for segments, nested rules and conditions, with validation for project segment limits, rule/condition limits, metadata, and clone operations."
+    },
+    "file:segments/services.py": {
+      "name": "services.py",
+      "type": "file",
+      "summary": "Business logic for soft-deleting segments with audit logging and deep-copying segment rules and conditions during clone operations."
+    },
+    "file:segments/urls.py": {
+      "name": "urls.py",
+      "type": "file",
+      "summary": "URL routing for the segments app, wiring the lookup-by-uuid view into the URL conf."
+    },
+    "file:segments/views.py": {
+      "name": "views.py",
+      "type": "file",
+      "summary": "DRF viewset and view exposing segment CRUD, associated-features listing, clone, soft-delete, and identity-filtered segment lookup endpoints."
+    },
+    "file:features/import_export/constants.py": {
+      "name": "constants.py",
+      "type": "file",
+      "summary": "Defines app-wide constant values for the feature import/export module, such as status flags (processing, success, failed) and the maximum upload file size."
+    },
+    "file:features/import_export/mappers.py": {
+      "name": "mappers.py",
+      "type": "file",
+      "summary": "Maps exported feature data dictionaries back into Feature model instances scoped to a project during the import process."
+    },
+    "file:features/import_export/models.py": {
+      "name": "models.py",
+      "type": "file",
+      "summary": "Django models persisting feature export jobs, feature import jobs, and the Flagsmith-on-Flagsmith feature export, including their status and serialized JSON payloads."
+    },
+    "file:features/import_export/permissions.py": {
+      "name": "permissions.py",
+      "type": "file",
+      "summary": "DRF permission classes governing who may create exports, download exports, upload imports, and list import/export jobs based on environment, project, and organisation admin rights."
+    },
+    "file:features/import_export/serializers.py": {
+      "name": "serializers.py",
+      "type": "file",
+      "summary": "DRF serializers that validate and create feature export/import jobs, enforce upload file-size limits, and dispatch the async Celery tasks that perform the work."
+    },
+    "file:features/import_export/services.py": {
+      "name": "services.py",
+      "type": "file",
+      "summary": "Business-logic service that overwrites an existing feature's states and multivariate options for a given environment when importing feature data."
+    },
+    "file:features/import_export/tasks.py": {
+      "name": "tasks.py",
+      "type": "file",
+      "summary": "Celery/recurring tasks that perform feature exports and imports for an environment, retire stalled jobs, clear stale records, and generate the Flagsmith-on-Flagsmith export."
+    },
+    "file:features/import_export/types.py": {
+      "name": "types.py",
+      "type": "file",
+      "summary": "TypedDict definitions describing the JSON shape of exported feature data and its multivariate option entries, used as DTOs across the import/export flow."
+    },
+    "file:features/import_export/views.py": {
+      "name": "views.py",
+      "type": "file",
+      "summary": "DRF API views and endpoints for creating feature exports, uploading imports, downloading export payloads, fetching the Flagsmith-on-Flagsmith export, and listing import/export jobs."
+    },
+    "config:.env-ci": {
+      "name": ".env-ci",
+      "type": "config",
+      "summary": "Environment variable defaults loaded during continuous-integration test runs for the Flagsmith API."
+    },
+    "config:.env-local": {
+      "name": ".env-local",
+      "type": "config",
+      "summary": "Environment variable defaults for local development of the Flagsmith API server and database."
+    },
+    "pipeline:Makefile": {
+      "name": "Makefile",
+      "type": "pipeline",
+      "summary": "Build and developer-workflow automation defining 28 targets for installing dependencies, linting, type-checking, running tests, managing Docker services, applying Django migrations, serving the app, and generating OpenAPI SDK and integration client types."
+    },
+    "pipeline:Procfile": {
+      "name": "Procfile",
+      "type": "pipeline",
+      "summary": "Process-type declaration defining the release migration step and the gunicorn-served web process for the Flagsmith WSGI application."
+    },
+    "document:README.md": {
+      "name": "README.md",
+      "type": "document",
+      "summary": "Developer guide for the Flagsmith API covering local setup, testing, metrics, structured logging, feature flags, migrations, typing, and the Django app architecture conventions."
+    },
+    "config:openapi-filter-flagsmith-sdk.yml": {
+      "name": "openapi-filter-flagsmith-sdk.yml",
+      "type": "config",
+      "summary": "openapi-format filter rules used when generating the published Flagsmith SDK OpenAPI schema, controlling operationIds, inverse tags, and unused-component pruning."
+    },
+    "config:openapi-filter-grafana.yaml": {
+      "name": "openapi-filter-grafana.yaml",
+      "type": "config",
+      "summary": "openapi-format filter rules for trimming the upstream Grafana OpenAPI spec down to the operations needed to generate the Grafana integration client types."
+    },
+    "config:openapi-filter-launchdarkly.yaml": {
+      "name": "openapi-filter-launchdarkly.yaml",
+      "type": "config",
+      "summary": "openapi-format filter rules for trimming the upstream LaunchDarkly OpenAPI spec down to the operations needed to generate the LaunchDarkly integration client types."
+    },
+    "config:pyproject.toml": {
+      "name": "pyproject.toml",
+      "type": "config",
+      "summary": "Central Python project manifest declaring dependencies and optional extras and configuring the build backend, uv package sources, Ruff linting/formatting, coverage, pytest, and Mypy strict type checking with Django/DRF stubs."
+    },
+    "config:.ebextensions/00__packages.config": {
+      "name": "00__packages.config",
+      "type": "config",
+      "summary": "Elastic Beanstalk extension installing OS-level yum packages (git, xmlsec1, xmlsec1-openssl) required for SAML/XML signing support on the deployment host."
+    },
+    "config:.ebextensions/01__upgrade_pip.config": {
+      "name": "01__upgrade_pip.config",
+      "type": "config",
+      "summary": "Elastic Beanstalk extension that upgrades pip in the application virtualenv before dependency installation during deployment."
+    },
+    "config:.ebextensions/02__collectstatic.config": {
+      "name": "02__collectstatic.config",
+      "type": "config",
+      "summary": "Elastic Beanstalk container command running Django collectstatic to gather static assets during deployment."
+    },
+    "config:.ebextensions/03__django.config": {
+      "name": "03__django.config",
+      "type": "config",
+      "summary": "Elastic Beanstalk option settings defining the WSGI entry path (app/wsgi.py) and static file mapping for the Django Python container."
+    },
+    "config:.ebextensions/04__wsgi_custom.config": {
+      "name": "04__wsgi_custom.config",
+      "type": "config",
+      "summary": "Elastic Beanstalk extension that injects a custom Apache/httpd config enabling WSGIPassAuthorization and gzip (mod_deflate) compression for text and JSON responses."
+    },
+    "config:.ebignore": {
+      "name": ".ebignore",
+      "type": "config",
+      "summary": "Empty Elastic Beanstalk ignore file controlling which files are excluded from the deployment bundle uploaded by the EB CLI."
+    },
+    "config:.nvmrc": {
+      "name": ".nvmrc",
+      "type": "config",
+      "summary": "Node Version Manager pin specifying the Node.js version used by tooling in the API directory."
+    },
+    "config:.understand-anything/.understandignore": {
+      "name": ".understandignore",
+      "type": "config",
+      "summary": "Ignore patterns for the Understand-Anything codebase analysis tool, excluding generated, vendored, and irrelevant paths from knowledge-graph scanning."
+    },
+    "config:.understand-anything/config.json": {
+      "name": "config.json",
+      "type": "config",
+      "summary": "Configuration for the Understand-Anything analysis tool, setting the output language for generated knowledge-graph content."
+    },
+    "file:api_keys/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Empty package marker for the api_keys Django app."
+    },
+    "file:api_keys/apps.py": {
+      "name": "apps.py",
+      "type": "file",
+      "summary": "Django AppConfig for the api_keys app, which manages master API key issuance and validation."
+    },
+    "file:audit/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Empty package marker for the audit Django app."
+    },
+    "file:audit/apps.py": {
+      "name": "apps.py",
+      "type": "file",
+      "summary": "Django AppConfig for the audit app that wires up audit-log signal handlers when the application is ready."
+    },
+    "file:environments/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Empty package marker for the environments Django app."
+    },
+    "file:environments/apps.py": {
+      "name": "apps.py",
+      "type": "file",
+      "summary": "Django AppConfig for the environments app, which models per-project deployment environments and their feature states."
+    },
+    "file:environments/identities/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Empty package marker for the environments.identities Django app."
+    },
+    "file:environments/identities/apps.py": {
+      "name": "apps.py",
+      "type": "file",
+      "summary": "Django AppConfig for the identities app that registers identity-related signal handlers at startup."
+    },
+    "file:environments/identities/traits/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Empty package marker for the environments.identities.traits package."
+    },
+    "file:environments/identities/traits/openapi.py": {
+      "name": "openapi.py",
+      "type": "file",
+      "summary": "drf-spectacular OpenAPI schema extension that documents the polymorphic trait value field as accepting string, integer, number, or boolean."
+    },
+    "file:environments/management/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Empty package marker for the environments management package."
+    },
+    "file:environments/management/commands/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Empty package marker for the environments management commands package."
+    },
+    "file:environments/management/serializers.py": {
+      "name": "serializers.py",
+      "type": "file",
+      "summary": "Empty placeholder module for environments management command serializers."
+    },
+    "file:environments/permissions/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Empty package marker for the environments.permissions Django app."
+    },
+    "file:environments/permissions/apps.py": {
+      "name": "apps.py",
+      "type": "file",
+      "summary": "Django AppConfig for the environment-permissions app, which manages user and group access control scoped to environments."
+    },
+    "file:environments/sdk/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Empty package marker for the environments.sdk package."
+    },
+    "file:experimentation/apps.py": {
+      "name": "apps.py",
+      "type": "file",
+      "summary": "Django AppConfig for the experimentation app, declaring its application name for the framework's app registry."
+    },
+    "file:features/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Empty package initialiser marking the features directory as a Python package."
+    },
+    "file:features/apps.py": {
+      "name": "apps.py",
+      "type": "file",
+      "summary": "Django AppConfig for the core features app whose ready() hook wires up signal receivers when the app loads."
+    },
+    "file:features/exceptions.py": {
+      "name": "exceptions.py",
+      "type": "file",
+      "summary": "Defines domain exception types for feature-state versioning errors, including an already-exists error carrying contextual detail."
+    },
+    "file:features/feature_external_resources/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Empty package initialiser marking the feature_external_resources directory as a Python package."
+    },
+    "file:features/feature_external_resources/apps.py": {
+      "name": "apps.py",
+      "type": "file",
+      "summary": "Django AppConfig for the feature_external_resources app, declaring its application name for the framework's app registry."
+    },
+    "file:features/feature_health/apps.py": {
+      "name": "apps.py",
+      "type": "file",
+      "summary": "Django AppConfig for the feature_health app, declaring its application name and default auto field."
+    },
+    "file:features/feature_segments/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Empty package initialiser marking the feature_segments directory as a Python package."
+    },
+    "file:features/feature_states/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Empty package initialiser marking the feature_states directory as a Python package."
+    },
+    "file:features/fields.py": {
+      "name": "fields.py",
+      "type": "file",
+      "summary": "Empty module placeholder reserved for custom Django model or serializer field definitions in the features app."
+    },
+    "file:features/import_export/apps.py": {
+      "name": "apps.py",
+      "type": "file",
+      "summary": "Django AppConfig for the features import/export app, declaring its application name for the framework's app registry."
+    },
+    "file:features/multivariate/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Empty package initialiser marking the multivariate features directory as a Python package."
+    },
+    "file:features/multivariate/apps.py": {
+      "name": "apps.py",
+      "type": "file",
+      "summary": "Django AppConfig for the multivariate features app, declaring its application name and default auto field."
+    },
+    "file:features/release_pipelines/core/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Empty package initialiser marking the release_pipelines core directory as a Python package."
+    },
+    "file:features/release_pipelines/core/apps.py": {
+      "name": "apps.py",
+      "type": "file",
+      "summary": "Django AppConfig for the release_pipelines core app, declaring its dotted application path and label."
+    },
+    "file:features/versioning/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Empty package initialiser marking the feature versioning directory as a Python package."
+    },
+    "file:features/versioning/apps.py": {
+      "name": "apps.py",
+      "type": "file",
+      "summary": "Django AppConfig for the feature versioning app whose ready() hook wires up versioning signal receivers at startup."
+    },
+    "file:features/versioning/sql/get_latest_versions.sql": {
+      "name": "get_latest_versions.sql",
+      "type": "file",
+      "summary": "Parameterised SQL query that returns the latest published environment feature version per feature/environment as of a given time, filtered by environment id or API key."
+    },
+    "file:features/workflows/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Empty package initialiser marking the workflows directory as a Python package."
+    },
+    "file:features/workflows/core/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Empty package initialiser marking the workflows core directory as a Python package."
+    },
+    "file:features/workflows/core/apps.py": {
+      "name": "apps.py",
+      "type": "file",
+      "summary": "Django AppConfig for the workflows core app, declaring its dotted application path and label."
+    },
+    "file:manage.py": {
+      "name": "manage.py",
+      "type": "file",
+      "summary": "Django management command-line entry point that sets the default settings module and dispatches administrative commands."
+    },
+    "file:metadata/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Empty package initialiser marking the metadata directory as a Python package."
+    },
+    "file:metadata/apps.py": {
+      "name": "apps.py",
+      "type": "file",
+      "summary": "Django AppConfig for the metadata app, declaring its application name and default auto field."
+    },
+    "file:organisations/apps.py": {
+      "name": "apps.py",
+      "type": "file",
+      "summary": "Django AppConfig for the organisations app, declaring its application name for the framework's app registry."
+    },
+    "file:organisations/chargebee/apps.py": {
+      "name": "apps.py",
+      "type": "file",
+      "summary": "Django AppConfig for the Chargebee billing integration sub-app within the organisations package."
+    },
+    "file:organisations/invites/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Empty package marker for the organisation invites Django sub-app."
+    },
+    "file:organisations/invites/apps.py": {
+      "name": "apps.py",
+      "type": "file",
+      "summary": "Django AppConfig for the organisation invites sub-app that manages user invitations."
+    },
+    "file:organisations/permissions/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Empty package marker for the organisation permissions Django sub-app."
+    },
+    "file:organisations/permissions/apps.py": {
+      "name": "apps.py",
+      "type": "file",
+      "summary": "Django AppConfig for the organisation permissions sub-app governing organisation-level access control."
+    },
+    "file:organisations/subscriptions/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Empty package marker for the organisation subscriptions Django sub-app."
+    },
+    "file:organisations/subscriptions/serializers/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Empty package marker for the subscriptions serializers package."
+    },
+    "file:organisations/subscriptions/xero/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Empty package marker for the Xero billing integration package within subscriptions."
+    },
+    "file:permissions/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Empty package marker for the top-level shared permissions package."
+    },
+    "file:projects/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Empty package marker for the projects Django app."
+    },
+    "file:projects/apps.py": {
+      "name": "apps.py",
+      "type": "file",
+      "summary": "Django AppConfig for the core projects app, which models Flagsmith projects."
+    },
+    "file:projects/code_references/apps.py": {
+      "name": "apps.py",
+      "type": "file",
+      "summary": "Django AppConfig for the code references sub-app that tracks where feature flags are referenced in source code."
+    },
+    "file:projects/tags/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Empty package marker for the project tags Django sub-app."
+    },
+    "file:projects/tags/apps.py": {
+      "name": "apps.py",
+      "type": "file",
+      "summary": "Django AppConfig for the project tags sub-app that manages labels applied to features."
+    },
+    "file:segment_membership/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Empty package marker for the segment membership Django app."
+    },
+    "file:segment_membership/apps.py": {
+      "name": "apps.py",
+      "type": "file",
+      "summary": "Django AppConfig for the segment membership app that tracks which identities belong to which segments."
+    },
+    "file:segments/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Empty package marker for the segments Django app."
+    },
+    "file:segments/apps.py": {
+      "name": "apps.py",
+      "type": "file",
+      "summary": "Django AppConfig for the segments app, which models rule-based grouping of identities for targeted flag delivery."
+    },
+    "file:segments/types.py": {
+      "name": "types.py",
+      "type": "file",
+      "summary": "Custom type definitions for the segments app, exposing the SegmentEngineMetadata TypedDict."
+    },
+    "file:users/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Empty package marker for the users Django app."
+    },
+    "file:users/apps.py": {
+      "name": "apps.py",
+      "type": "file",
+      "summary": "Django AppConfig for the users app that wires up signal handlers during application startup via its ready hook."
+    },
+    "file:users/emails.py": {
+      "name": "emails.py",
+      "type": "file",
+      "summary": "Overrides Djoser's activation and confirmation email classes to use Flagsmith-branded templates."
+    },
+    "file:users/management/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Empty package marker for the users management package containing Django management commands."
+    },
+    "file:users/management/commands/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Empty package marker for the users management commands package."
+    },
+    "file:users/tasks.py": {
+      "name": "tasks.py",
+      "type": "file",
+      "summary": "Defines the asynchronous task that notifies a user at their previous address when their account email is changed."
+    }
+  },
+  "totalNodes": 350,
+  "totalEdges": 746
+}

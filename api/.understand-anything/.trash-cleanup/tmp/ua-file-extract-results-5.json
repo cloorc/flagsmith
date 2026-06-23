@@ -1,0 +1,5868 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 23,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "environments/permissions/views.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 84,
+      "nonEmptyLines": 65,
+      "classes": [
+        {
+          "name": "UserEnvironmentPermissionsViewSet",
+          "startLine": 19,
+          "endLine": 50,
+          "methods": [
+            "get_queryset",
+            "get_serializer_class",
+            "perform_create",
+            "perform_update"
+          ],
+          "properties": []
+        },
+        {
+          "name": "UserPermissionGroupEnvironmentPermissionsViewSet",
+          "startLine": 53,
+          "endLine": 84,
+          "methods": [
+            "get_queryset",
+            "get_serializer_class",
+            "perform_create",
+            "perform_update"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "UserEnvironmentPermissionsViewSet",
+          "line": 19,
+          "isDefault": false
+        },
+        {
+          "name": "UserPermissionGroupEnvironmentPermissionsViewSet",
+          "line": 53,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "get_queryset",
+          "callee": "getattr",
+          "lineNumber": 24
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "UserEnvironmentPermission.objects.none",
+          "lineNumber": 25
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "self.kwargs.get",
+          "lineNumber": 27
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "ValidationError",
+          "lineNumber": 28
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "UserEnvironmentPermission.objects.filter",
+          "lineNumber": 30
+        },
+        {
+          "caller": "perform_create",
+          "callee": "Environment.objects.get",
+          "lineNumber": 41
+        },
+        {
+          "caller": "perform_create",
+          "callee": "serializer.save",
+          "lineNumber": 44
+        },
+        {
+          "caller": "perform_update",
+          "callee": "Environment.objects.get",
+          "lineNumber": 47
+        },
+        {
+          "caller": "perform_update",
+          "callee": "serializer.save",
+          "lineNumber": 50
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "getattr",
+          "lineNumber": 58
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "UserPermissionGroupEnvironmentPermission.objects.none",
+          "lineNumber": 59
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "self.kwargs.get",
+          "lineNumber": 61
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "ValidationError",
+          "lineNumber": 62
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "UserPermissionGroupEnvironmentPermission.objects.filter",
+          "lineNumber": 64
+        },
+        {
+          "caller": "perform_create",
+          "callee": "Environment.objects.get",
+          "lineNumber": 75
+        },
+        {
+          "caller": "perform_create",
+          "callee": "serializer.save",
+          "lineNumber": 78
+        },
+        {
+          "caller": "perform_update",
+          "callee": "Environment.objects.get",
+          "lineNumber": 81
+        },
+        {
+          "caller": "perform_update",
+          "callee": "serializer.save",
+          "lineNumber": 84
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 2,
+        "functionCount": 0,
+        "classCount": 2
+      }
+    },
+    {
+      "path": "environments/sdk/serializers.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 197,
+      "nonEmptyLines": 163,
+      "classes": [
+        {
+          "name": "SDKCreateUpdateTraitSerializer",
+          "startLine": 30,
+          "endLine": 72,
+          "methods": [
+            "create",
+            "validate",
+            "_get_identity"
+          ],
+          "properties": []
+        },
+        {
+          "name": "SDKBulkCreateUpdateTraitSerializer",
+          "startLine": 75,
+          "endLine": 115,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "IdentitySerializerWithTraitsAndSegments",
+          "startLine": 118,
+          "endLine": 127,
+          "methods": [
+            "update",
+            "create"
+          ],
+          "properties": []
+        },
+        {
+          "name": "IdentifyWithTraitsSerializer",
+          "startLine": 130,
+          "endLine": 197,
+          "methods": [
+            "save",
+            "validate_traits"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "SDKCreateUpdateTraitSerializer",
+          "line": 30,
+          "isDefault": false
+        },
+        {
+          "name": "SDKBulkCreateUpdateTraitSerializer",
+          "line": 75,
+          "isDefault": false
+        },
+        {
+          "name": "IdentitySerializerWithTraitsAndSegments",
+          "line": 118,
+          "isDefault": false
+        },
+        {
+          "name": "IdentifyWithTraitsSerializer",
+          "line": 130,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "create",
+          "callee": "self._get_identity",
+          "lineNumber": 40
+        },
+        {
+          "caller": "create",
+          "callee": "Trait.get_trait_value_key_name",
+          "lineNumber": 46
+        },
+        {
+          "caller": "create",
+          "callee": "Trait.objects.update_or_create",
+          "lineNumber": 57
+        },
+        {
+          "caller": "validate",
+          "callee": "request.environment.trait_persistence_allowed",
+          "lineNumber": 63
+        },
+        {
+          "caller": "validate",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 64
+        },
+        {
+          "caller": "_get_identity",
+          "callee": "Identity.objects.get_or_create",
+          "lineNumber": 70
+        },
+        {
+          "caller": "update",
+          "callee": "self.save",
+          "lineNumber": 86
+        },
+        {
+          "caller": "save",
+          "callee": "self._build_identifier_trait_items_dictionary",
+          "lineNumber": 89
+        },
+        {
+          "caller": "save",
+          "callee": "identity_trait_items.items",
+          "lineNumber": 91
+        },
+        {
+          "caller": "save",
+          "callee": "Identity.objects.get_or_create",
+          "lineNumber": 92
+        },
+        {
+          "caller": "save",
+          "callee": "modified_traits.extend",
+          "lineNumber": 96
+        },
+        {
+          "caller": "save",
+          "callee": "identity.update_traits",
+          "lineNumber": 96
+        },
+        {
+          "caller": "_build_identifier_trait_items_dictionary",
+          "callee": "defaultdict",
+          "lineNumber": 106
+        },
+        {
+          "caller": "_build_identifier_trait_items_dictionary",
+          "callee": "identity_trait_items[item[\"identity\"][\"identifier\"]].append",
+          "lineNumber": 110
+        },
+        {
+          "caller": "_build_identifier_trait_items_dictionary",
+          "callee": "dict",
+          "lineNumber": 111
+        },
+        {
+          "caller": "_build_identifier_trait_items_dictionary",
+          "callee": "item.items",
+          "lineNumber": 111
+        },
+        {
+          "caller": "save",
+          "callee": "self.validated_data.get",
+          "lineNumber": 150
+        },
+        {
+          "caller": "save",
+          "callee": "self.validated_data.get",
+          "lineNumber": 153
+        },
+        {
+          "caller": "save",
+          "callee": "get_transient_identity_and_traits",
+          "lineNumber": 157
+        },
+        {
+          "caller": "save",
+          "callee": "get_identified_transient_identity_and_traits",
+          "lineNumber": 165
+        },
+        {
+          "caller": "save",
+          "callee": "get_persisted_identity_and_traits",
+          "lineNumber": 174
+        },
+        {
+          "caller": "save",
+          "callee": "identity.get_all_feature_states",
+          "lineNumber": 180
+        },
+        {
+          "caller": "save",
+          "callee": "self.context.get",
+          "lineNumber": 182
+        },
+        {
+          "caller": "save",
+          "callee": "identify_integrations",
+          "lineNumber": 184
+        },
+        {
+          "caller": "validate_traits",
+          "callee": "request.environment.trait_persistence_allowed",
+          "lineNumber": 195
+        }
+      ],
+      "metrics": {
+        "importCount": 10,
+        "exportCount": 4,
+        "functionCount": 0,
+        "classCount": 4
+      }
+    },
+    {
+      "path": "environments/sdk/serializers_mixins.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 8,
+      "nonEmptyLines": 8,
+      "classes": [
+        {
+          "name": "HideSensitiveFieldsSerializerMixin",
+          "startLine": 1,
+          "endLine": 8,
+          "methods": [
+            "to_representation"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "HideSensitiveFieldsSerializerMixin",
+          "line": 1,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "to_representation",
+          "callee": "super().to_representation",
+          "lineNumber": 3
+        },
+        {
+          "caller": "to_representation",
+          "callee": "super",
+          "lineNumber": 3
+        },
+        {
+          "caller": "to_representation",
+          "callee": "isinstance",
+          "lineNumber": 7
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "environments/sdk/services.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 121,
+      "nonEmptyLines": 106,
+      "functions": [
+        {
+          "name": "get_transient_identity_and_traits",
+          "startLine": 17,
+          "endLine": 33,
+          "params": [
+            "environment",
+            "sdk_trait_data"
+          ]
+        },
+        {
+          "name": "get_identified_transient_identity_and_traits",
+          "startLine": 36,
+          "endLine": 58,
+          "params": [
+            "environment",
+            "identifier",
+            "sdk_trait_data"
+          ]
+        },
+        {
+          "name": "get_persisted_identity_and_traits",
+          "startLine": 61,
+          "endLine": 91,
+          "params": [
+            "environment",
+            "identifier",
+            "sdk_trait_data"
+          ]
+        },
+        {
+          "name": "get_transient_identifier",
+          "startLine": 94,
+          "endLine": 104,
+          "params": [
+            "sdk_trait_data"
+          ]
+        },
+        {
+          "name": "_get_transient_identity",
+          "startLine": 107,
+          "endLine": 115,
+          "params": [
+            "environment",
+            "identifier"
+          ]
+        },
+        {
+          "name": "_ensure_transient",
+          "startLine": 118,
+          "endLine": 121,
+          "params": [
+            "sdk_trait_data"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "get_transient_identity_and_traits",
+          "line": 17,
+          "isDefault": false
+        },
+        {
+          "name": "get_identified_transient_identity_and_traits",
+          "line": 36,
+          "isDefault": false
+        },
+        {
+          "name": "get_persisted_identity_and_traits",
+          "line": 61,
+          "isDefault": false
+        },
+        {
+          "name": "get_transient_identifier",
+          "line": 94,
+          "isDefault": false
+        },
+        {
+          "name": "_get_transient_identity",
+          "line": 107,
+          "isDefault": false
+        },
+        {
+          "name": "_ensure_transient",
+          "line": 118,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "get_transient_identity_and_traits",
+          "callee": "_get_transient_identity",
+          "lineNumber": 27
+        },
+        {
+          "caller": "get_transient_identity_and_traits",
+          "callee": "get_transient_identifier",
+          "lineNumber": 29
+        },
+        {
+          "caller": "get_transient_identity_and_traits",
+          "callee": "identity.generate_traits",
+          "lineNumber": 32
+        },
+        {
+          "caller": "get_transient_identity_and_traits",
+          "callee": "_ensure_transient",
+          "lineNumber": 32
+        },
+        {
+          "caller": "get_identified_transient_identity_and_traits",
+          "callee": "_ensure_transient",
+          "lineNumber": 47
+        },
+        {
+          "caller": "get_identified_transient_identity_and_traits",
+          "callee": "Identity.objects.filter(\n        environment=environment,\n        identifier=identifier,\n    ).first",
+          "lineNumber": 48
+        },
+        {
+          "caller": "get_identified_transient_identity_and_traits",
+          "callee": "Identity.objects.filter",
+          "lineNumber": 48
+        },
+        {
+          "caller": "get_identified_transient_identity_and_traits",
+          "callee": "identity.update_traits",
+          "lineNumber": 52
+        },
+        {
+          "caller": "get_identified_transient_identity_and_traits",
+          "callee": "_get_transient_identity",
+          "lineNumber": 54
+        },
+        {
+          "caller": "get_identified_transient_identity_and_traits",
+          "callee": "identity.generate_traits",
+          "lineNumber": 58
+        },
+        {
+          "caller": "get_persisted_identity_and_traits",
+          "callee": "Identity.objects.get_or_create",
+          "lineNumber": 71
+        },
+        {
+          "caller": "get_persisted_identity_and_traits",
+          "callee": "identity.generate_traits",
+          "lineNumber": 77
+        },
+        {
+          "caller": "get_persisted_identity_and_traits",
+          "callee": "identity.update_traits",
+          "lineNumber": 82
+        },
+        {
+          "caller": "get_persisted_identity_and_traits",
+          "callee": "list",
+          "lineNumber": 83
+        },
+        {
+          "caller": "get_persisted_identity_and_traits",
+          "callee": "{\n            trait.trait_key: trait\n            for trait in chain(\n                identity.identity_traits.all(),\n                identity.generate_traits(sdk_trait_data, persist=False),\n            )\n        }.values",
+          "lineNumber": 84
+        },
+        {
+          "caller": "get_persisted_identity_and_traits",
+          "callee": "chain",
+          "lineNumber": 86
+        },
+        {
+          "caller": "get_persisted_identity_and_traits",
+          "callee": "identity.identity_traits.all",
+          "lineNumber": 87
+        },
+        {
+          "caller": "get_persisted_identity_and_traits",
+          "callee": "identity.generate_traits",
+          "lineNumber": 88
+        },
+        {
+          "caller": "get_transient_identifier",
+          "callee": "hashlib.sha256(\n            \"\".join(\n                f\"{trait['trait_key']}{trait_value['value']}\"\n                for trait in sorted(sdk_trait_data, key=itemgetter(\"trait_key\"))\n                if (trait_value := trait[\"trait_value\"]) is not None\n            ).encode(),\n            usedforsecurity=False,\n        ).hexdigest",
+          "lineNumber": 96
+        },
+        {
+          "caller": "get_transient_identifier",
+          "callee": "hashlib.sha256",
+          "lineNumber": 96
+        },
+        {
+          "caller": "get_transient_identifier",
+          "callee": "\"\".join(\n                f\"{trait['trait_key']}{trait_value['value']}\"\n                for trait in sorted(sdk_trait_data, key=itemgetter(\"trait_key\"))\n                if (trait_value := trait[\"trait_value\"]) is not None\n            ).encode",
+          "lineNumber": 97
+        },
+        {
+          "caller": "get_transient_identifier",
+          "callee": "\"\".join",
+          "lineNumber": 97
+        },
+        {
+          "caller": "get_transient_identifier",
+          "callee": "sorted",
+          "lineNumber": 99
+        },
+        {
+          "caller": "get_transient_identifier",
+          "callee": "itemgetter",
+          "lineNumber": 99
+        },
+        {
+          "caller": "get_transient_identifier",
+          "callee": "uuid.uuid4",
+          "lineNumber": 104
+        },
+        {
+          "caller": "_get_transient_identity",
+          "callee": "Identity",
+          "lineNumber": 111
+        },
+        {
+          "caller": "_get_transient_identity",
+          "callee": "timezone.now",
+          "lineNumber": 112
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 6,
+        "functionCount": 6,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "environments/sdk/types.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 14,
+      "nonEmptyLines": 9,
+      "classes": [
+        {
+          "name": "SDKTraitValueData",
+          "startLine": 6,
+          "endLine": 8,
+          "methods": [],
+          "properties": [
+            "type",
+            "value"
+          ]
+        },
+        {
+          "name": "SDKTraitData",
+          "startLine": 11,
+          "endLine": 14,
+          "methods": [],
+          "properties": [
+            "trait_key",
+            "trait_value",
+            "transient"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "SDKTraitValueData",
+          "line": 6,
+          "isDefault": false
+        },
+        {
+          "name": "SDKTraitData",
+          "line": 11,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 0,
+        "classCount": 2
+      }
+    },
+    {
+      "path": "environments/sdk/views.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 50,
+      "nonEmptyLines": 42,
+      "functions": [
+        {
+          "name": "get_last_modified",
+          "startLine": 20,
+          "endLine": 22,
+          "params": [
+            "request"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "SDKEnvironmentAPIView",
+          "startLine": 26,
+          "endLine": 50,
+          "methods": [
+            "get_authenticators",
+            "get"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "get_last_modified",
+          "line": 20,
+          "isDefault": false
+        },
+        {
+          "name": "SDKEnvironmentAPIView",
+          "line": 25,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "get_authenticators",
+          "callee": "EnvironmentKeyAuthentication",
+          "lineNumber": 31
+        },
+        {
+          "caller": "get",
+          "callee": "Environment.get_environment_document",
+          "lineNumber": 43
+        },
+        {
+          "caller": "get",
+          "callee": "Response",
+          "lineNumber": 47
+        },
+        {
+          "caller": "get",
+          "callee": "updated_at.timestamp",
+          "lineNumber": 49
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 2,
+        "functionCount": 1,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "environments/urls.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 188,
+      "nonEmptyLines": 179,
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "environments/views.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 388,
+      "nonEmptyLines": 338,
+      "classes": [
+        {
+          "name": "EnvironmentViewSet",
+          "startLine": 87,
+          "endLine": 320,
+          "methods": [
+            "get_serializer_class",
+            "get_serializer_context",
+            "get_queryset",
+            "perform_create",
+            "get_by_uuid",
+            "trait_keys",
+            "clone",
+            "delete_traits",
+            "permissions",
+            "user_permissions",
+            "detailed_permissions",
+            "get_document",
+            "enable_v2_versioning",
+            "disable_v2_versioning"
+          ],
+          "properties": []
+        },
+        {
+          "name": "NestedEnvironmentViewSet",
+          "startLine": 323,
+          "endLine": 342,
+          "methods": [
+            "get_queryset",
+            "perform_create",
+            "perform_update",
+            "_get_environment"
+          ],
+          "properties": [
+            "model_class"
+          ]
+        },
+        {
+          "name": "WebhookViewSet",
+          "startLine": 345,
+          "endLine": 356,
+          "methods": [],
+          "properties": [
+            "model_class",
+            "webhook_type"
+          ]
+        },
+        {
+          "name": "EnvironmentAPIKeyViewSet",
+          "startLine": 359,
+          "endLine": 369,
+          "methods": [],
+          "properties": [
+            "model_class"
+          ]
+        },
+        {
+          "name": "EnvironmentMetricsViewSet",
+          "startLine": 372,
+          "endLine": 388,
+          "methods": [
+            "list"
+          ],
+          "properties": [
+            "serializer_class"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "EnvironmentViewSet",
+          "line": 70,
+          "isDefault": false
+        },
+        {
+          "name": "NestedEnvironmentViewSet",
+          "line": 323,
+          "isDefault": false
+        },
+        {
+          "name": "WebhookViewSet",
+          "line": 345,
+          "isDefault": false
+        },
+        {
+          "name": "EnvironmentAPIKeyViewSet",
+          "line": 359,
+          "isDefault": false
+        },
+        {
+          "name": "EnvironmentMetricsViewSet",
+          "line": 372,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "get_serializer_context",
+          "callee": "super(EnvironmentViewSet, self).get_serializer_context",
+          "lineNumber": 107
+        },
+        {
+          "caller": "get_serializer_context",
+          "callee": "super",
+          "lineNumber": 107
+        },
+        {
+          "caller": "get_serializer_context",
+          "callee": "self.kwargs.get",
+          "lineNumber": 108
+        },
+        {
+          "caller": "get_serializer_context",
+          "callee": "self.get_object",
+          "lineNumber": 109
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "getattr",
+          "lineNumber": 113
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "Environment.objects.none",
+          "lineNumber": 114
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "self.request.query_params.get",
+          "lineNumber": 117
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "self.request.data.get",
+          "lineNumber": 119
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "Project.objects.get",
+          "lineNumber": 122
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "ValidationError",
+          "lineNumber": 124
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "self.request.user.get_permitted_environments",
+          "lineNumber": 126
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "Environment.objects.all",
+          "lineNumber": 131
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "EnvironmentFeatureVersion.objects.get_latest_versions_by_environment_api_key",
+          "lineNumber": 137
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "queryset.annotate",
+          "lineNumber": 144
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "Count",
+          "lineNumber": 145
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "Q",
+          "lineNumber": 147
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "queryset.annotate",
+          "lineNumber": 153
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "Count",
+          "lineNumber": 154
+        },
+        {
+          "caller": "perform_create",
+          "callee": "serializer.save",
+          "lineNumber": 160
+        },
+        {
+          "caller": "perform_create",
+          "callee": "getattr",
+          "lineNumber": 161
+        },
+        {
+          "caller": "perform_create",
+          "callee": "UserEnvironmentPermission.objects.create",
+          "lineNumber": 162
+        },
+        {
+          "caller": "get_by_uuid",
+          "callee": "self.get_queryset",
+          "lineNumber": 172
+        },
+        {
+          "caller": "get_by_uuid",
+          "callee": "get_object_or_404",
+          "lineNumber": 173
+        },
+        {
+          "caller": "get_by_uuid",
+          "callee": "request.user.has_environment_permission",
+          "lineNumber": 174
+        },
+        {
+          "caller": "get_by_uuid",
+          "callee": "PermissionDenied",
+          "lineNumber": 175
+        },
+        {
+          "caller": "get_by_uuid",
+          "callee": "self.get_serializer",
+          "lineNumber": 177
+        },
+        {
+          "caller": "get_by_uuid",
+          "callee": "Response",
+          "lineNumber": 178
+        },
+        {
+          "caller": "trait_keys",
+          "callee": "Trait.objects.filter(\n                identity__environment=self.get_object()\n            )\n            .order_by()\n            .values_list(\"trait_key\", flat=True)\n            .distinct",
+          "lineNumber": 184
+        },
+        {
+          "caller": "trait_keys",
+          "callee": "Trait.objects.filter(\n                identity__environment=self.get_object()\n            )\n            .order_by()\n            .values_list",
+          "lineNumber": 184
+        },
+        {
+          "caller": "trait_keys",
+          "callee": "Trait.objects.filter(\n                identity__environment=self.get_object()\n            )\n            .order_by",
+          "lineNumber": 184
+        },
+        {
+          "caller": "trait_keys",
+          "callee": "Trait.objects.filter",
+          "lineNumber": 184
+        },
+        {
+          "caller": "trait_keys",
+          "callee": "self.get_object",
+          "lineNumber": 185
+        },
+        {
+          "caller": "trait_keys",
+          "callee": "self.get_serializer",
+          "lineNumber": 194
+        },
+        {
+          "caller": "trait_keys",
+          "callee": "serializer.is_valid",
+          "lineNumber": 195
+        },
+        {
+          "caller": "trait_keys",
+          "callee": "Response",
+          "lineNumber": 196
+        },
+        {
+          "caller": "trait_keys",
+          "callee": "Response",
+          "lineNumber": 198
+        },
+        {
+          "caller": "clone",
+          "callee": "self.get_serializer",
+          "lineNumber": 205
+        },
+        {
+          "caller": "clone",
+          "callee": "serializer.is_valid",
+          "lineNumber": 206
+        },
+        {
+          "caller": "clone",
+          "callee": "serializer.save",
+          "lineNumber": 207
+        },
+        {
+          "caller": "clone",
+          "callee": "self.get_object",
+          "lineNumber": 207
+        },
+        {
+          "caller": "clone",
+          "callee": "getattr",
+          "lineNumber": 209
+        },
+        {
+          "caller": "clone",
+          "callee": "UserEnvironmentPermission.objects.create",
+          "lineNumber": 210
+        },
+        {
+          "caller": "clone",
+          "callee": "Response",
+          "lineNumber": 214
+        },
+        {
+          "caller": "delete_traits",
+          "callee": "self.get_serializer",
+          "lineNumber": 218
+        },
+        {
+          "caller": "delete_traits",
+          "callee": "serializer.is_valid",
+          "lineNumber": 219
+        },
+        {
+          "caller": "delete_traits",
+          "callee": "serializer.delete",
+          "lineNumber": 220
+        },
+        {
+          "caller": "delete_traits",
+          "callee": "Response",
+          "lineNumber": 221
+        },
+        {
+          "caller": "delete_traits",
+          "callee": "Response",
+          "lineNumber": 223
+        },
+        {
+          "caller": "permissions",
+          "callee": "Response",
+          "lineNumber": 231
+        },
+        {
+          "caller": "permissions",
+          "callee": "PermissionModelSerializer",
+          "lineNumber": 232
+        },
+        {
+          "caller": "permissions",
+          "callee": "EnvironmentPermissionModel.objects.all",
+          "lineNumber": 233
+        },
+        {
+          "caller": "user_permissions",
+          "callee": "getattr",
+          "lineNumber": 247
+        },
+        {
+          "caller": "user_permissions",
+          "callee": "Response",
+          "lineNumber": 248
+        },
+        {
+          "caller": "user_permissions",
+          "callee": "self.get_object",
+          "lineNumber": 255
+        },
+        {
+          "caller": "user_permissions",
+          "callee": "get_environment_permission_data",
+          "lineNumber": 257
+        },
+        {
+          "caller": "user_permissions",
+          "callee": "UserObjectPermissionsSerializer",
+          "lineNumber": 260
+        },
+        {
+          "caller": "user_permissions",
+          "callee": "Response",
+          "lineNumber": 261
+        },
+        {
+          "caller": "detailed_permissions",
+          "callee": "self.get_object",
+          "lineNumber": 273
+        },
+        {
+          "caller": "detailed_permissions",
+          "callee": "int",
+          "lineNumber": 275
+        },
+        {
+          "caller": "detailed_permissions",
+          "callee": "request.user.is_environment_admin",
+          "lineNumber": 278
+        },
+        {
+          "caller": "detailed_permissions",
+          "callee": "PermissionDenied",
+          "lineNumber": 280
+        },
+        {
+          "caller": "detailed_permissions",
+          "callee": "get_object_or_404",
+          "lineNumber": 282
+        },
+        {
+          "caller": "detailed_permissions",
+          "callee": "get_environment_permission_data",
+          "lineNumber": 284
+        },
+        {
+          "caller": "detailed_permissions",
+          "callee": "UserDetailedPermissionsSerializer",
+          "lineNumber": 285
+        },
+        {
+          "caller": "detailed_permissions",
+          "callee": "permission_data.to_detailed_permissions_data",
+          "lineNumber": 286
+        },
+        {
+          "caller": "detailed_permissions",
+          "callee": "Response",
+          "lineNumber": 288
+        },
+        {
+          "caller": "get_document",
+          "callee": "self.get_object",
+          "lineNumber": 294
+        },
+        {
+          "caller": "get_document",
+          "callee": "Response",
+          "lineNumber": 296
+        },
+        {
+          "caller": "get_document",
+          "callee": "Environment.get_environment_document",
+          "lineNumber": 296
+        },
+        {
+          "caller": "enable_v2_versioning",
+          "callee": "self.get_object",
+          "lineNumber": 301
+        },
+        {
+          "caller": "enable_v2_versioning",
+          "callee": "Response",
+          "lineNumber": 303
+        },
+        {
+          "caller": "enable_v2_versioning",
+          "callee": "enable_v2_versioning.delay",
+          "lineNumber": 307
+        },
+        {
+          "caller": "enable_v2_versioning",
+          "callee": "Response",
+          "lineNumber": 308
+        },
+        {
+          "caller": "disable_v2_versioning",
+          "callee": "self.get_object",
+          "lineNumber": 313
+        },
+        {
+          "caller": "disable_v2_versioning",
+          "callee": "Response",
+          "lineNumber": 315
+        },
+        {
+          "caller": "disable_v2_versioning",
+          "callee": "disable_v2_versioning.delay",
+          "lineNumber": 319
+        },
+        {
+          "caller": "disable_v2_versioning",
+          "callee": "Response",
+          "lineNumber": 320
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "self.model_class.objects.filter",
+          "lineNumber": 328
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "self.kwargs.get",
+          "lineNumber": 329
+        },
+        {
+          "caller": "perform_create",
+          "callee": "serializer.save",
+          "lineNumber": 333
+        },
+        {
+          "caller": "perform_create",
+          "callee": "self._get_environment",
+          "lineNumber": 333
+        },
+        {
+          "caller": "perform_update",
+          "callee": "serializer.save",
+          "lineNumber": 336
+        },
+        {
+          "caller": "perform_update",
+          "callee": "self._get_environment",
+          "lineNumber": 336
+        },
+        {
+          "caller": "_get_environment",
+          "callee": "Environment.objects.get",
+          "lineNumber": 339
+        },
+        {
+          "caller": "_get_environment",
+          "callee": "self.kwargs.get",
+          "lineNumber": 340
+        },
+        {
+          "caller": "list",
+          "callee": "self.get_object",
+          "lineNumber": 384
+        },
+        {
+          "caller": "list",
+          "callee": "EnvironmentMetricsService",
+          "lineNumber": 385
+        },
+        {
+          "caller": "list",
+          "callee": "metrics_service.get_metrics_payload",
+          "lineNumber": 386
+        },
+        {
+          "caller": "list",
+          "callee": "self.get_serializer",
+          "lineNumber": 387
+        },
+        {
+          "caller": "list",
+          "callee": "Response",
+          "lineNumber": 388
+        }
+      ],
+      "metrics": {
+        "importCount": 12,
+        "exportCount": 5,
+        "functionCount": 0,
+        "classCount": 5
+      }
+    },
+    {
+      "path": "features/constants.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 18,
+      "nonEmptyLines": 14,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "features/feature_segments/limits.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 51,
+      "nonEmptyLines": 40,
+      "functions": [
+        {
+          "name": "exceeds_segment_override_limit",
+          "startLine": 12,
+          "endLine": 51,
+          "params": [
+            "environment",
+            "segment_ids_to_create_overrides",
+            "segment_ids_to_delete_overrides",
+            "exclusive"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "exceeds_segment_override_limit",
+          "line": 12,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "exceeds_segment_override_limit",
+          "callee": "is_edge_enabled",
+          "lineNumber": 18
+        },
+        {
+          "caller": "exceeds_segment_override_limit",
+          "callee": "Q",
+          "lineNumber": 21
+        },
+        {
+          "caller": "exceeds_segment_override_limit",
+          "callee": "EnvironmentFeatureVersion.objects.get_latest_versions_by_environment_id",
+          "lineNumber": 33
+        },
+        {
+          "caller": "exceeds_segment_override_limit",
+          "callee": "Q",
+          "lineNumber": 37
+        },
+        {
+          "caller": "exceeds_segment_override_limit",
+          "callee": "environment.feature_segments.filter",
+          "lineNumber": 39
+        },
+        {
+          "caller": "exceeds_segment_override_limit",
+          "callee": "existing_overrides.count",
+          "lineNumber": 40
+        },
+        {
+          "caller": "exceeds_segment_override_limit",
+          "callee": "set",
+          "lineNumber": 42
+        },
+        {
+          "caller": "exceeds_segment_override_limit",
+          "callee": "existing_overrides.values_list",
+          "lineNumber": 42
+        },
+        {
+          "caller": "exceeds_segment_override_limit",
+          "callee": "len",
+          "lineNumber": 43
+        },
+        {
+          "caller": "exceeds_segment_override_limit",
+          "callee": "set(segment_ids_to_delete_overrides).intersection",
+          "lineNumber": 44
+        },
+        {
+          "caller": "exceeds_segment_override_limit",
+          "callee": "set",
+          "lineNumber": 44
+        },
+        {
+          "caller": "exceeds_segment_override_limit",
+          "callee": "len",
+          "lineNumber": 46
+        },
+        {
+          "caller": "exceeds_segment_override_limit",
+          "callee": "_check",
+          "lineNumber": 48
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "features/feature_segments/permissions.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 43,
+      "nonEmptyLines": 33,
+      "classes": [
+        {
+          "name": "FeatureSegmentPermissions",
+          "startLine": 9,
+          "endLine": 43,
+          "methods": [
+            "has_permission",
+            "has_object_permission"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "FeatureSegmentPermissions",
+          "line": 9,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "has_permission",
+          "callee": "super().has_permission",
+          "lineNumber": 11
+        },
+        {
+          "caller": "has_permission",
+          "callee": "super",
+          "lineNumber": 11
+        },
+        {
+          "caller": "has_permission",
+          "callee": "int",
+          "lineNumber": 25
+        },
+        {
+          "caller": "has_permission",
+          "callee": "request.data.get",
+          "lineNumber": 25
+        },
+        {
+          "caller": "has_permission",
+          "callee": "Environment.objects.get",
+          "lineNumber": 30
+        },
+        {
+          "caller": "has_permission",
+          "callee": "request.user.has_environment_permission",
+          "lineNumber": 34
+        },
+        {
+          "caller": "has_object_permission",
+          "callee": "request.user.has_environment_permission",
+          "lineNumber": 41
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "features/feature_segments/serializers.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 196,
+      "nonEmptyLines": 159,
+      "classes": [
+        {
+          "name": "FeatureSegmentCreateSerializer",
+          "startLine": 20,
+          "endLine": 42,
+          "methods": [
+            "validate"
+          ],
+          "properties": []
+        },
+        {
+          "name": "CustomCreateSegmentOverrideFeatureSegmentSerializer",
+          "startLine": 45,
+          "endLine": 80,
+          "methods": [
+            "save"
+          ],
+          "properties": []
+        },
+        {
+          "name": "FeatureSegmentQuerySerializer",
+          "startLine": 83,
+          "endLine": 85,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "FeatureSegmentListSerializer",
+          "startLine": 88,
+          "endLine": 120,
+          "methods": [
+            "get_value",
+            "get_segment_name",
+            "get_is_feature_specific"
+          ],
+          "properties": []
+        },
+        {
+          "name": "FeatureSegmentChangePrioritiesListSerializer",
+          "startLine": 123,
+          "endLine": 184,
+          "methods": [
+            "validate",
+            "create",
+            "_validate_unique_environment_feature_version"
+          ],
+          "properties": []
+        },
+        {
+          "name": "FeatureSegmentChangePrioritiesSerializer",
+          "startLine": 187,
+          "endLine": 196,
+          "methods": [],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "FeatureSegmentCreateSerializer",
+          "line": 20,
+          "isDefault": false
+        },
+        {
+          "name": "CustomCreateSegmentOverrideFeatureSegmentSerializer",
+          "line": 45,
+          "isDefault": false
+        },
+        {
+          "name": "FeatureSegmentQuerySerializer",
+          "line": 83,
+          "isDefault": false
+        },
+        {
+          "name": "FeatureSegmentListSerializer",
+          "line": 88,
+          "isDefault": false
+        },
+        {
+          "name": "FeatureSegmentChangePrioritiesListSerializer",
+          "line": 123,
+          "isDefault": false
+        },
+        {
+          "name": "FeatureSegmentChangePrioritiesSerializer",
+          "line": 187,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "validate",
+          "callee": "super().validate",
+          "lineNumber": 27
+        },
+        {
+          "caller": "validate",
+          "callee": "super",
+          "lineNumber": 27
+        },
+        {
+          "caller": "validate",
+          "callee": "exceeds_segment_override_limit",
+          "lineNumber": 28
+        },
+        {
+          "caller": "validate",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 29
+        },
+        {
+          "caller": "validate",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 35
+        },
+        {
+          "caller": "save",
+          "callee": "self.validated_data.get",
+          "lineNumber": 61
+        },
+        {
+          "caller": "save",
+          "callee": "FeatureSegment.objects.filter",
+          "lineNumber": 64
+        },
+        {
+          "caller": "save",
+          "callee": "kwargs.get",
+          "lineNumber": 67
+        },
+        {
+          "caller": "save",
+          "callee": "isinstance",
+          "lineNumber": 71
+        },
+        {
+          "caller": "save",
+          "callee": "collision_qs.exclude",
+          "lineNumber": 72
+        },
+        {
+          "caller": "save",
+          "callee": "collision_qs.first",
+          "lineNumber": 73
+        },
+        {
+          "caller": "save",
+          "callee": "collision.to",
+          "lineNumber": 78
+        },
+        {
+          "caller": "save",
+          "callee": "super().save",
+          "lineNumber": 80
+        },
+        {
+          "caller": "save",
+          "callee": "super",
+          "lineNumber": 80
+        },
+        {
+          "caller": "get_value",
+          "callee": "instance.get_value",
+          "lineNumber": 114
+        },
+        {
+          "caller": "validate",
+          "callee": "super().validate",
+          "lineNumber": 125
+        },
+        {
+          "caller": "validate",
+          "callee": "super",
+          "lineNumber": 125
+        },
+        {
+          "caller": "validate",
+          "callee": "len",
+          "lineNumber": 126
+        },
+        {
+          "caller": "validate",
+          "callee": "list",
+          "lineNumber": 129
+        },
+        {
+          "caller": "validate",
+          "callee": "FeatureSegment.objects.filter(\n                id__in=[item[\"id\"] for item in validated_attrs]\n            )\n            .select_related(\"environment\")\n            .prefetch_related",
+          "lineNumber": 130
+        },
+        {
+          "caller": "validate",
+          "callee": "FeatureSegment.objects.filter(\n                id__in=[item[\"id\"] for item in validated_attrs]\n            )\n            .select_related",
+          "lineNumber": 130
+        },
+        {
+          "caller": "validate",
+          "callee": "FeatureSegment.objects.filter",
+          "lineNumber": 130
+        },
+        {
+          "caller": "validate",
+          "callee": "len",
+          "lineNumber": 137
+        },
+        {
+          "caller": "validate",
+          "callee": "len",
+          "lineNumber": 137
+        },
+        {
+          "caller": "validate",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 138
+        },
+        {
+          "caller": "validate",
+          "callee": "set",
+          "lineNumber": 142
+        },
+        {
+          "caller": "validate",
+          "callee": "set",
+          "lineNumber": 143
+        },
+        {
+          "caller": "validate",
+          "callee": "environment_ids.add",
+          "lineNumber": 146
+        },
+        {
+          "caller": "validate",
+          "callee": "feature_ids.add",
+          "lineNumber": 147
+        },
+        {
+          "caller": "validate",
+          "callee": "len",
+          "lineNumber": 149
+        },
+        {
+          "caller": "validate",
+          "callee": "len",
+          "lineNumber": 149
+        },
+        {
+          "caller": "validate",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 150
+        },
+        {
+          "caller": "validate",
+          "callee": "self.context[\"request\"].user.has_environment_permission",
+          "lineNumber": 156
+        },
+        {
+          "caller": "validate",
+          "callee": "PermissionDenied",
+          "lineNumber": 159
+        },
+        {
+          "caller": "validate",
+          "callee": "self._validate_unique_environment_feature_version",
+          "lineNumber": 162
+        },
+        {
+          "caller": "create",
+          "callee": "FeatureSegment.to_id_priority_tuple_pairs",
+          "lineNumber": 167
+        },
+        {
+          "caller": "create",
+          "callee": "FeatureSegment.update_priorities",
+          "lineNumber": 168
+        },
+        {
+          "caller": "_validate_unique_environment_feature_version",
+          "callee": "feature_states.extend",
+          "lineNumber": 176
+        },
+        {
+          "caller": "_validate_unique_environment_feature_version",
+          "callee": "feature_segment.feature_states.all",
+          "lineNumber": 176
+        },
+        {
+          "caller": "_validate_unique_environment_feature_version",
+          "callee": "len",
+          "lineNumber": 181
+        },
+        {
+          "caller": "_validate_unique_environment_feature_version",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 182
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 6,
+        "functionCount": 0,
+        "classCount": 6
+      }
+    },
+    {
+      "path": "features/feature_segments/views.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 113,
+      "nonEmptyLines": 95,
+      "classes": [
+        {
+          "name": "FeatureSegmentViewSet",
+          "startLine": 45,
+          "endLine": 113,
+          "methods": [
+            "get_queryset",
+            "get_serializer_class",
+            "update_priorities",
+            "get_by_uuid"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "FeatureSegmentViewSet",
+          "line": 28,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "get_queryset",
+          "callee": "getattr",
+          "lineNumber": 51
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "FeatureSegment.objects.none",
+          "lineNumber": 52
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "self.request.user.get_permitted_projects",
+          "lineNumber": 54
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "FeatureSegment.objects.filter",
+          "lineNumber": 58
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "FeatureSegmentQuerySerializer",
+          "lineNumber": 63
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "filter_serializer.is_valid",
+          "lineNumber": 66
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "Environment.objects.get",
+          "lineNumber": 69
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "queryset.filter",
+          "lineNumber": 71
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "get_current_live_environment_feature_version",
+          "lineNumber": 72
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "queryset.select_related(\"segment\").filter",
+          "lineNumber": 78
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "queryset.select_related",
+          "lineNumber": 78
+        },
+        {
+          "caller": "update_priorities",
+          "callee": "self.get_serializer",
+          "lineNumber": 97
+        },
+        {
+          "caller": "update_priorities",
+          "callee": "serializer.is_valid",
+          "lineNumber": 98
+        },
+        {
+          "caller": "update_priorities",
+          "callee": "serializer.save",
+          "lineNumber": 99
+        },
+        {
+          "caller": "update_priorities",
+          "callee": "Response",
+          "lineNumber": 100
+        },
+        {
+          "caller": "update_priorities",
+          "callee": "FeatureSegmentListSerializer",
+          "lineNumber": 101
+        },
+        {
+          "caller": "get_by_uuid",
+          "callee": "self.get_queryset",
+          "lineNumber": 110
+        },
+        {
+          "caller": "get_by_uuid",
+          "callee": "get_object_or_404",
+          "lineNumber": 111
+        },
+        {
+          "caller": "get_by_uuid",
+          "callee": "self.get_serializer",
+          "lineNumber": 112
+        },
+        {
+          "caller": "get_by_uuid",
+          "callee": "Response",
+          "lineNumber": 113
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "features/feature_states/permissions.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 19,
+      "nonEmptyLines": 15,
+      "classes": [
+        {
+          "name": "EnvironmentUpdateFeatureStatePermission",
+          "startLine": 9,
+          "endLine": 19,
+          "methods": [
+            "has_permission"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "EnvironmentUpdateFeatureStatePermission",
+          "line": 9,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "has_permission",
+          "callee": "view.kwargs.get",
+          "lineNumber": 11
+        },
+        {
+          "caller": "has_permission",
+          "callee": "Environment.objects.get",
+          "lineNumber": 13
+        },
+        {
+          "caller": "has_permission",
+          "callee": "request.user.has_environment_permission",
+          "lineNumber": 17
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "features/feature_states/views.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 186,
+      "nonEmptyLines": 156,
+      "functions": [
+        {
+          "name": "_check_workflow_not_enabled",
+          "startLine": 19,
+          "endLine": 24,
+          "params": [
+            "environment"
+          ]
+        },
+        {
+          "name": "update_flag_v1",
+          "startLine": 67,
+          "endLine": 78,
+          "params": [
+            "request",
+            "environment_key"
+          ]
+        },
+        {
+          "name": "update_flag_v2",
+          "startLine": 129,
+          "endLine": 140,
+          "params": [
+            "request",
+            "environment_key"
+          ]
+        },
+        {
+          "name": "delete_segment_override",
+          "startLine": 175,
+          "endLine": 186,
+          "params": [
+            "request",
+            "environment_key"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "_check_workflow_not_enabled",
+          "line": 19,
+          "isDefault": false
+        },
+        {
+          "name": "update_flag_v1",
+          "line": 27,
+          "isDefault": false
+        },
+        {
+          "name": "update_flag_v2",
+          "line": 81,
+          "isDefault": false
+        },
+        {
+          "name": "delete_segment_override",
+          "line": 143,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "_check_workflow_not_enabled",
+          "callee": "PermissionDenied",
+          "lineNumber": 21
+        },
+        {
+          "caller": "update_flag_v1",
+          "callee": "Environment.objects.get",
+          "lineNumber": 68
+        },
+        {
+          "caller": "update_flag_v1",
+          "callee": "_check_workflow_not_enabled",
+          "lineNumber": 69
+        },
+        {
+          "caller": "update_flag_v1",
+          "callee": "UpdateFlagSerializer",
+          "lineNumber": 71
+        },
+        {
+          "caller": "update_flag_v1",
+          "callee": "serializer.is_valid",
+          "lineNumber": 75
+        },
+        {
+          "caller": "update_flag_v1",
+          "callee": "serializer.save",
+          "lineNumber": 76
+        },
+        {
+          "caller": "update_flag_v1",
+          "callee": "Response",
+          "lineNumber": 78
+        },
+        {
+          "caller": "update_flag_v2",
+          "callee": "Environment.objects.get",
+          "lineNumber": 130
+        },
+        {
+          "caller": "update_flag_v2",
+          "callee": "_check_workflow_not_enabled",
+          "lineNumber": 131
+        },
+        {
+          "caller": "update_flag_v2",
+          "callee": "UpdateFlagV2Serializer",
+          "lineNumber": 133
+        },
+        {
+          "caller": "update_flag_v2",
+          "callee": "serializer.is_valid",
+          "lineNumber": 137
+        },
+        {
+          "caller": "update_flag_v2",
+          "callee": "serializer.save",
+          "lineNumber": 138
+        },
+        {
+          "caller": "update_flag_v2",
+          "callee": "Response",
+          "lineNumber": 140
+        },
+        {
+          "caller": "delete_segment_override",
+          "callee": "Environment.objects.get",
+          "lineNumber": 176
+        },
+        {
+          "caller": "delete_segment_override",
+          "callee": "_check_workflow_not_enabled",
+          "lineNumber": 177
+        },
+        {
+          "caller": "delete_segment_override",
+          "callee": "DeleteSegmentOverrideSerializer",
+          "lineNumber": 179
+        },
+        {
+          "caller": "delete_segment_override",
+          "callee": "serializer.is_valid",
+          "lineNumber": 183
+        },
+        {
+          "caller": "delete_segment_override",
+          "callee": "serializer.save",
+          "lineNumber": 184
+        },
+        {
+          "caller": "delete_segment_override",
+          "callee": "Response",
+          "lineNumber": 186
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 4,
+        "functionCount": 4,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "features/helpers.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 12,
+      "nonEmptyLines": 8,
+      "functions": [
+        {
+          "name": "get_correctly_typed_value",
+          "startLine": 6,
+          "endLine": 12,
+          "params": [
+            "value_type",
+            "string_value"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "get_correctly_typed_value",
+          "line": 6,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "get_correctly_typed_value",
+          "callee": "int",
+          "lineNumber": 8
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "features/multivariate/serializers.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 117,
+      "nonEmptyLines": 94,
+      "classes": [
+        {
+          "name": "NestedMultivariateFeatureOptionSerializer",
+          "startLine": 13,
+          "endLine": 30,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "MultivariateOptionValuesSerializer",
+          "startLine": 33,
+          "endLine": 45,
+          "methods": [
+            "get_value"
+          ],
+          "properties": []
+        },
+        {
+          "name": "FeatureMVOptionsValuesResponseSerializer",
+          "startLine": 48,
+          "endLine": 57,
+          "methods": [
+            "get_control_value"
+          ],
+          "properties": []
+        },
+        {
+          "name": "MultivariateFeatureOptionSerializer",
+          "startLine": 60,
+          "endLine": 117,
+          "methods": [
+            "get_unique_together_validators",
+            "validate_key",
+            "validate",
+            "_validate_key_is_unique",
+            "_get_siblings"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "NestedMultivariateFeatureOptionSerializer",
+          "line": 13,
+          "isDefault": false
+        },
+        {
+          "name": "MultivariateOptionValuesSerializer",
+          "line": 33,
+          "isDefault": false
+        },
+        {
+          "name": "FeatureMVOptionsValuesResponseSerializer",
+          "line": 48,
+          "isDefault": false
+        },
+        {
+          "name": "MultivariateFeatureOptionSerializer",
+          "line": 60,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "get_value",
+          "callee": "bool",
+          "lineNumber": 42
+        },
+        {
+          "caller": "get_value",
+          "callee": "int",
+          "lineNumber": 44
+        },
+        {
+          "caller": "get_value",
+          "callee": "str",
+          "lineNumber": 45
+        },
+        {
+          "caller": "get_control_value",
+          "callee": "obj.get",
+          "lineNumber": 53
+        },
+        {
+          "caller": "get_control_value",
+          "callee": "fs.get_feature_state_value",
+          "lineNumber": 56
+        },
+        {
+          "caller": "validate_key",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 77
+        },
+        {
+          "caller": "validate",
+          "callee": "super().validate",
+          "lineNumber": 81
+        },
+        {
+          "caller": "validate",
+          "callee": "super",
+          "lineNumber": 81
+        },
+        {
+          "caller": "validate",
+          "callee": "self._get_siblings(attrs[\"feature\"]).aggregate",
+          "lineNumber": 83
+        },
+        {
+          "caller": "validate",
+          "callee": "self._get_siblings",
+          "lineNumber": 83
+        },
+        {
+          "caller": "validate",
+          "callee": "Sum",
+          "lineNumber": 84
+        },
+        {
+          "caller": "validate",
+          "callee": "ValidationError",
+          "lineNumber": 93
+        },
+        {
+          "caller": "validate",
+          "callee": "self._validate_key_is_unique",
+          "lineNumber": 97
+        },
+        {
+          "caller": "_validate_key_is_unique",
+          "callee": "attrs.get",
+          "lineNumber": 102
+        },
+        {
+          "caller": "_validate_key_is_unique",
+          "callee": "self._get_siblings(attrs[\"feature\"]).filter(key=key).exists",
+          "lineNumber": 105
+        },
+        {
+          "caller": "_validate_key_is_unique",
+          "callee": "self._get_siblings(attrs[\"feature\"]).filter",
+          "lineNumber": 105
+        },
+        {
+          "caller": "_validate_key_is_unique",
+          "callee": "self._get_siblings",
+          "lineNumber": 105
+        },
+        {
+          "caller": "_validate_key_is_unique",
+          "callee": "ValidationError",
+          "lineNumber": 106
+        },
+        {
+          "caller": "_get_siblings",
+          "callee": "feature.multivariate_options.all",
+          "lineNumber": 113
+        },
+        {
+          "caller": "_get_siblings",
+          "callee": "siblings.exclude",
+          "lineNumber": 115
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 4,
+        "functionCount": 0,
+        "classCount": 4
+      }
+    },
+    {
+      "path": "features/serializers.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 855,
+      "nonEmptyLines": 708,
+      "classes": [
+        {
+          "name": "FeatureStateSerializerSmall",
+          "startLine": 62,
+          "endLine": 78,
+          "methods": [
+            "get_feature_state_value"
+          ],
+          "properties": []
+        },
+        {
+          "name": "FeatureQuerySerializer",
+          "startLine": 81,
+          "endLine": 175,
+          "methods": [
+            "project",
+            "validate_identity",
+            "validate_owners",
+            "validate_group_owners",
+            "validate_tags"
+          ],
+          "properties": []
+        },
+        {
+          "name": "_FeatureOwnersField",
+          "startLine": 178,
+          "endLine": 183,
+          "methods": [
+            "get_queryset",
+            "to_representation"
+          ],
+          "properties": []
+        },
+        {
+          "name": "_FeatureGroupOwnersField",
+          "startLine": 186,
+          "endLine": 191,
+          "methods": [
+            "get_queryset",
+            "to_representation"
+          ],
+          "properties": []
+        },
+        {
+          "name": "CreateFeatureSerializer",
+          "startLine": 194,
+          "endLine": 447,
+          "methods": [
+            "to_internal_value",
+            "create",
+            "validate_project_features_limit",
+            "validate_multivariate_options",
+            "validate_owners",
+            "validate_group_owners",
+            "validate_name",
+            "validate",
+            "_validate_enforce_feature_owners",
+            "get_environment_feature_state",
+            "get_segment_feature_state",
+            "get_num_segment_overrides",
+            "get_num_identity_overrides",
+            "get_last_modified_in_any_environment",
+            "get_last_modified_in_current_environment"
+          ],
+          "properties": []
+        },
+        {
+          "name": "FeatureSerializerWithMetadata",
+          "startLine": 450,
+          "endLine": 484,
+          "methods": [
+            "validate",
+            "create",
+            "update"
+          ],
+          "properties": []
+        },
+        {
+          "name": "UpdateFeatureSerializerWithMetadata",
+          "startLine": 487,
+          "endLine": 498,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "ListFeatureSerializer",
+          "startLine": 501,
+          "endLine": 504,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "UpdateFeatureSerializer",
+          "startLine": 507,
+          "endLine": 518,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "FeatureSerializer",
+          "startLine": 521,
+          "endLine": 533,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "SDKFeatureSerializer",
+          "startLine": 536,
+          "endLine": 542,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "FeatureStateSerializerFull",
+          "startLine": 545,
+          "endLine": 573,
+          "methods": [
+            "get_feature_state_value"
+          ],
+          "properties": []
+        },
+        {
+          "name": "FeatureOwnerInputSerializer",
+          "startLine": 576,
+          "endLine": 583,
+          "methods": [
+            "add_owners",
+            "remove_users"
+          ],
+          "properties": []
+        },
+        {
+          "name": "FeatureGroupOwnerInputSerializer",
+          "startLine": 586,
+          "endLine": 595,
+          "methods": [
+            "add_group_owners",
+            "remove_group_owners"
+          ],
+          "properties": []
+        },
+        {
+          "name": "ProjectFeatureSerializer",
+          "startLine": 598,
+          "endLine": 616,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "SDKFeatureStateSerializer",
+          "startLine": 619,
+          "endLine": 628,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "SDKIdentityFeatureStateSerializer",
+          "startLine": 631,
+          "endLine": 649,
+          "methods": [
+            "get_variant"
+          ],
+          "properties": []
+        },
+        {
+          "name": "FeatureStateSerializerBasic",
+          "startLine": 652,
+          "endLine": 756,
+          "methods": [
+            "get_feature_state_value",
+            "save",
+            "validate_feature",
+            "validate_environment",
+            "validate"
+          ],
+          "properties": []
+        },
+        {
+          "name": "FeatureStateSerializerWithIdentity",
+          "startLine": 759,
+          "endLine": 765,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "FeatureStateSerializerCreate",
+          "startLine": 768,
+          "endLine": 771,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "FeatureInfluxDataSerializer",
+          "startLine": 774,
+          "endLine": 775,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "FeatureEvaluationDataSerializer",
+          "startLine": 778,
+          "endLine": 781,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "GetInfluxDataQuerySerializer",
+          "startLine": 784,
+          "endLine": 787,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "GetUsageDataQuerySerializer",
+          "startLine": 790,
+          "endLine": 797,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "WritableNestedFeatureStateSerializer",
+          "startLine": 800,
+          "endLine": 804,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "SegmentAssociatedFeatureStateSerializer",
+          "startLine": 807,
+          "endLine": 810,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "AssociatedFeaturesQuerySerializer",
+          "startLine": 813,
+          "endLine": 814,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "SDKFeatureStatesQuerySerializer",
+          "startLine": 817,
+          "endLine": 820,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "EnvironmentFeatureStatesQuerySerializer",
+          "startLine": 823,
+          "endLine": 827,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "CustomCreateSegmentOverrideFeatureStateSerializer",
+          "startLine": 830,
+          "endLine": 855,
+          "methods": [
+            "_get_save_kwargs",
+            "create"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "FeatureStateSerializerSmall",
+          "line": 62,
+          "isDefault": false
+        },
+        {
+          "name": "FeatureQuerySerializer",
+          "line": 81,
+          "isDefault": false
+        },
+        {
+          "name": "_FeatureOwnersField",
+          "line": 178,
+          "isDefault": false
+        },
+        {
+          "name": "_FeatureGroupOwnersField",
+          "line": 186,
+          "isDefault": false
+        },
+        {
+          "name": "CreateFeatureSerializer",
+          "line": 194,
+          "isDefault": false
+        },
+        {
+          "name": "FeatureSerializerWithMetadata",
+          "line": 450,
+          "isDefault": false
+        },
+        {
+          "name": "UpdateFeatureSerializerWithMetadata",
+          "line": 487,
+          "isDefault": false
+        },
+        {
+          "name": "ListFeatureSerializer",
+          "line": 501,
+          "isDefault": false
+        },
+        {
+          "name": "UpdateFeatureSerializer",
+          "line": 507,
+          "isDefault": false
+        },
+        {
+          "name": "FeatureSerializer",
+          "line": 521,
+          "isDefault": false
+        },
+        {
+          "name": "SDKFeatureSerializer",
+          "line": 536,
+          "isDefault": false
+        },
+        {
+          "name": "FeatureStateSerializerFull",
+          "line": 545,
+          "isDefault": false
+        },
+        {
+          "name": "FeatureOwnerInputSerializer",
+          "line": 576,
+          "isDefault": false
+        },
+        {
+          "name": "FeatureGroupOwnerInputSerializer",
+          "line": 586,
+          "isDefault": false
+        },
+        {
+          "name": "ProjectFeatureSerializer",
+          "line": 598,
+          "isDefault": false
+        },
+        {
+          "name": "SDKFeatureStateSerializer",
+          "line": 619,
+          "isDefault": false
+        },
+        {
+          "name": "SDKIdentityFeatureStateSerializer",
+          "line": 631,
+          "isDefault": false
+        },
+        {
+          "name": "FeatureStateSerializerBasic",
+          "line": 652,
+          "isDefault": false
+        },
+        {
+          "name": "FeatureStateSerializerWithIdentity",
+          "line": 759,
+          "isDefault": false
+        },
+        {
+          "name": "FeatureStateSerializerCreate",
+          "line": 768,
+          "isDefault": false
+        },
+        {
+          "name": "FeatureInfluxDataSerializer",
+          "line": 774,
+          "isDefault": false
+        },
+        {
+          "name": "FeatureEvaluationDataSerializer",
+          "line": 778,
+          "isDefault": false
+        },
+        {
+          "name": "GetInfluxDataQuerySerializer",
+          "line": 784,
+          "isDefault": false
+        },
+        {
+          "name": "GetUsageDataQuerySerializer",
+          "line": 790,
+          "isDefault": false
+        },
+        {
+          "name": "WritableNestedFeatureStateSerializer",
+          "line": 800,
+          "isDefault": false
+        },
+        {
+          "name": "SegmentAssociatedFeatureStateSerializer",
+          "line": 807,
+          "isDefault": false
+        },
+        {
+          "name": "AssociatedFeaturesQuerySerializer",
+          "line": 813,
+          "isDefault": false
+        },
+        {
+          "name": "SDKFeatureStatesQuerySerializer",
+          "line": 817,
+          "isDefault": false
+        },
+        {
+          "name": "EnvironmentFeatureStatesQuerySerializer",
+          "line": 823,
+          "isDefault": false
+        },
+        {
+          "name": "CustomCreateSegmentOverrideFeatureStateSerializer",
+          "line": 830,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "get_feature_state_value",
+          "callee": "obj.get_feature_state_value",
+          "lineNumber": 78
+        },
+        {
+          "caller": "get_feature_state_value",
+          "callee": "self.context.get",
+          "lineNumber": 78
+        },
+        {
+          "caller": "project",
+          "callee": "isinstance",
+          "lineNumber": 141
+        },
+        {
+          "caller": "project",
+          "callee": "self.context.get",
+          "lineNumber": 141
+        },
+        {
+          "caller": "project",
+          "callee": "RuntimeError",
+          "lineNumber": 144
+        },
+        {
+          "caller": "project",
+          "callee": "type",
+          "lineNumber": 144
+        },
+        {
+          "caller": "validate_identity",
+          "callee": "UUID",
+          "lineNumber": 149
+        },
+        {
+          "caller": "validate_identity",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 151
+        },
+        {
+          "caller": "validate_identity",
+          "callee": "value.isdigit",
+          "lineNumber": 152
+        },
+        {
+          "caller": "validate_identity",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 153
+        },
+        {
+          "caller": "validate_owners",
+          "callee": "int",
+          "lineNumber": 158
+        },
+        {
+          "caller": "validate_owners",
+          "callee": "owner_id.strip",
+          "lineNumber": 158
+        },
+        {
+          "caller": "validate_owners",
+          "callee": "owners.split",
+          "lineNumber": 158
+        },
+        {
+          "caller": "validate_owners",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 160
+        },
+        {
+          "caller": "validate_group_owners",
+          "callee": "int",
+          "lineNumber": 165
+        },
+        {
+          "caller": "validate_group_owners",
+          "callee": "group_owner_id.strip",
+          "lineNumber": 165
+        },
+        {
+          "caller": "validate_group_owners",
+          "callee": "group_owners.split",
+          "lineNumber": 166
+        },
+        {
+          "caller": "validate_group_owners",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 169
+        },
+        {
+          "caller": "validate_tags",
+          "callee": "int",
+          "lineNumber": 173
+        },
+        {
+          "caller": "validate_tags",
+          "callee": "tag_id.strip",
+          "lineNumber": 173
+        },
+        {
+          "caller": "validate_tags",
+          "callee": "tags.split",
+          "lineNumber": 173
+        },
+        {
+          "caller": "validate_tags",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 175
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "FFAdminUser.objects.all",
+          "lineNumber": 180
+        },
+        {
+          "caller": "to_representation",
+          "callee": "UserListSerializer",
+          "lineNumber": 183
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "UserPermissionGroup.objects.all",
+          "lineNumber": 188
+        },
+        {
+          "caller": "to_representation",
+          "callee": "UserPermissionGroupSummarySerializer",
+          "lineNumber": 191
+        },
+        {
+          "caller": "to_internal_value",
+          "callee": "data.get",
+          "lineNumber": 265
+        },
+        {
+          "caller": "to_internal_value",
+          "callee": "isinstance",
+          "lineNumber": 265
+        },
+        {
+          "caller": "to_internal_value",
+          "callee": "str",
+          "lineNumber": 266
+        },
+        {
+          "caller": "to_internal_value",
+          "callee": "super(CreateFeatureSerializer, self).to_internal_value",
+          "lineNumber": 267
+        },
+        {
+          "caller": "to_internal_value",
+          "callee": "super",
+          "lineNumber": 267
+        },
+        {
+          "caller": "create",
+          "callee": "self.validate_project_features_limit",
+          "lineNumber": 271
+        },
+        {
+          "caller": "create",
+          "callee": "validated_data.pop",
+          "lineNumber": 274
+        },
+        {
+          "caller": "create",
+          "callee": "validated_data.pop",
+          "lineNumber": 275
+        },
+        {
+          "caller": "create",
+          "callee": "validated_data.pop",
+          "lineNumber": 277
+        },
+        {
+          "caller": "create",
+          "callee": "super(CreateFeatureSerializer, self).create",
+          "lineNumber": 278
+        },
+        {
+          "caller": "create",
+          "callee": "super",
+          "lineNumber": 278
+        },
+        {
+          "caller": "create",
+          "callee": "instance.owners.add",
+          "lineNumber": 281
+        },
+        {
+          "caller": "create",
+          "callee": "getattr",
+          "lineNumber": 282
+        },
+        {
+          "caller": "create",
+          "callee": "instance.owners.add",
+          "lineNumber": 284
+        },
+        {
+          "caller": "create",
+          "callee": "instance.group_owners.add",
+          "lineNumber": 287
+        },
+        {
+          "caller": "validate_project_features_limit",
+          "callee": "is_edge_enabled",
+          "lineNumber": 292
+        },
+        {
+          "caller": "validate_project_features_limit",
+          "callee": "project.features.count",
+          "lineNumber": 294
+        },
+        {
+          "caller": "validate_project_features_limit",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 295
+        },
+        {
+          "caller": "validate_multivariate_options",
+          "callee": "self.context.get",
+          "lineNumber": 304
+        },
+        {
+          "caller": "validate_multivariate_options",
+          "callee": "user.is_project_admin",
+          "lineNumber": 307
+        },
+        {
+          "caller": "validate_multivariate_options",
+          "callee": "PermissionDenied",
+          "lineNumber": 309
+        },
+        {
+          "caller": "validate_multivariate_options",
+          "callee": "sum",
+          "lineNumber": 312
+        },
+        {
+          "caller": "validate_multivariate_options",
+          "callee": "mv_option.get",
+          "lineNumber": 313
+        },
+        {
+          "caller": "validate_multivariate_options",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 317
+        },
+        {
+          "caller": "validate_owners",
+          "callee": "user.has_project_permission",
+          "lineNumber": 325
+        },
+        {
+          "caller": "validate_owners",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 329
+        },
+        {
+          "caller": "validate_group_owners",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 345
+        },
+        {
+          "caller": "validate_name",
+          "callee": "project.is_feature_name_valid",
+          "lineNumber": 356
+        },
+        {
+          "caller": "validate_name",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 357
+        },
+        {
+          "caller": "validate_name",
+          "callee": "view.kwargs.get",
+          "lineNumber": 362
+        },
+        {
+          "caller": "validate_name",
+          "callee": "Feature.objects.filter",
+          "lineNumber": 365
+        },
+        {
+          "caller": "validate_name",
+          "callee": "existing_feature_queryset.exclude",
+          "lineNumber": 367
+        },
+        {
+          "caller": "validate_name",
+          "callee": "existing_feature_queryset.exists",
+          "lineNumber": 371
+        },
+        {
+          "caller": "validate_name",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 372
+        },
+        {
+          "caller": "validate",
+          "callee": "str",
+          "lineNumber": 382
+        },
+        {
+          "caller": "validate",
+          "callee": "view.kwargs.get",
+          "lineNumber": 382
+        },
+        {
+          "caller": "validate",
+          "callee": "project_id.isdigit",
+          "lineNumber": 383
+        },
+        {
+          "caller": "validate",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 384
+        },
+        {
+          "caller": "validate",
+          "callee": "any",
+          "lineNumber": 387
+        },
+        {
+          "caller": "validate",
+          "callee": "int",
+          "lineNumber": 387
+        },
+        {
+          "caller": "validate",
+          "callee": "attrs.get",
+          "lineNumber": 387
+        },
+        {
+          "caller": "validate",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 388
+        },
+        {
+          "caller": "validate",
+          "callee": "self._validate_enforce_feature_owners",
+          "lineNumber": 392
+        },
+        {
+          "caller": "_validate_enforce_feature_owners",
+          "callee": "attrs.get",
+          "lineNumber": 401
+        },
+        {
+          "caller": "_validate_enforce_feature_owners",
+          "callee": "attrs.get",
+          "lineNumber": 402
+        },
+        {
+          "caller": "_validate_enforce_feature_owners",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 404
+        },
+        {
+          "caller": "get_environment_feature_state",
+          "callee": "self.context.get",
+          "lineNumber": 413
+        },
+        {
+          "caller": "get_environment_feature_state",
+          "callee": "feature_states.get",
+          "lineNumber": 414
+        },
+        {
+          "caller": "get_environment_feature_state",
+          "callee": "FeatureStateSerializerSmall",
+          "lineNumber": 416
+        },
+        {
+          "caller": "get_segment_feature_state",
+          "callee": "self.context.get",
+          "lineNumber": 422
+        },
+        {
+          "caller": "get_segment_feature_state",
+          "callee": "segment_feature_states.get",
+          "lineNumber": 423
+        },
+        {
+          "caller": "get_segment_feature_state",
+          "callee": "FeatureStateSerializerSmall",
+          "lineNumber": 425
+        },
+        {
+          "caller": "get_last_modified_in_any_environment",
+          "callee": "getattr",
+          "lineNumber": 442
+        },
+        {
+          "caller": "get_last_modified_in_current_environment",
+          "callee": "getattr",
+          "lineNumber": 447
+        },
+        {
+          "caller": "validate",
+          "callee": "super().validate",
+          "lineNumber": 466
+        },
+        {
+          "caller": "validate",
+          "callee": "super",
+          "lineNumber": 466
+        },
+        {
+          "caller": "validate",
+          "callee": "self._validate_required_metadata",
+          "lineNumber": 469
+        },
+        {
+          "caller": "validate",
+          "callee": "attrs.get",
+          "lineNumber": 470
+        },
+        {
+          "caller": "create",
+          "callee": "validated_data.pop",
+          "lineNumber": 475
+        },
+        {
+          "caller": "create",
+          "callee": "super().create",
+          "lineNumber": 476
+        },
+        {
+          "caller": "create",
+          "callee": "super",
+          "lineNumber": 476
+        },
+        {
+          "caller": "create",
+          "callee": "self._update_metadata",
+          "lineNumber": 477
+        },
+        {
+          "caller": "update",
+          "callee": "validated_data.pop",
+          "lineNumber": 481
+        },
+        {
+          "caller": "update",
+          "callee": "super().update",
+          "lineNumber": 482
+        },
+        {
+          "caller": "update",
+          "callee": "super",
+          "lineNumber": 482
+        },
+        {
+          "caller": "update",
+          "callee": "self._update_metadata",
+          "lineNumber": 483
+        },
+        {
+          "caller": "get_feature_state_value",
+          "callee": "obj.get_feature_state_value",
+          "lineNumber": 573
+        },
+        {
+          "caller": "get_feature_state_value",
+          "callee": "self.context.get",
+          "lineNumber": 573
+        },
+        {
+          "caller": "add_owners",
+          "callee": "feature.owners.add",
+          "lineNumber": 579
+        },
+        {
+          "caller": "remove_users",
+          "callee": "feature.owners.remove",
+          "lineNumber": 583
+        },
+        {
+          "caller": "add_group_owners",
+          "callee": "feature.group_owners.add",
+          "lineNumber": 591
+        },
+        {
+          "caller": "remove_group_owners",
+          "callee": "feature.group_owners.remove",
+          "lineNumber": 595
+        },
+        {
+          "caller": "get_variant",
+          "callee": "obj.get_multivariate_feature_state_value",
+          "lineNumber": 642
+        },
+        {
+          "caller": "get_variant",
+          "callee": "identity.get_hash_key",
+          "lineNumber": 643
+        },
+        {
+          "caller": "get_variant",
+          "callee": "isinstance",
+          "lineNumber": 647
+        },
+        {
+          "caller": "get_feature_state_value",
+          "callee": "obj.get_feature_state_value",
+          "lineNumber": 679
+        },
+        {
+          "caller": "get_feature_state_value",
+          "callee": "self.context.get",
+          "lineNumber": 679
+        },
+        {
+          "caller": "save",
+          "callee": "super().save",
+          "lineNumber": 683
+        },
+        {
+          "caller": "save",
+          "callee": "super",
+          "lineNumber": 683
+        },
+        {
+          "caller": "save",
+          "callee": "feature_state.feature.external_resources.exists",
+          "lineNumber": 688
+        },
+        {
+          "caller": "save",
+          "callee": "feature_state.environment.project.github_project.exists",
+          "lineNumber": 689
+        },
+        {
+          "caller": "save",
+          "callee": "feature_state.environment.project.organisation.github_config.exists",
+          "lineNumber": 690
+        },
+        {
+          "caller": "save",
+          "callee": "call_github_task",
+          "lineNumber": 692
+        },
+        {
+          "caller": "save",
+          "callee": "isinstance",
+          "lineNumber": 701
+        },
+        {
+          "caller": "save",
+          "callee": "post_gitlab_state_change_comment_for_feature_state",
+          "lineNumber": 702
+        },
+        {
+          "caller": "save",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 707
+        },
+        {
+          "caller": "save",
+          "callee": "str",
+          "lineNumber": 707
+        },
+        {
+          "caller": "validate_feature",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 711
+        },
+        {
+          "caller": "validate_environment",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 718
+        },
+        {
+          "caller": "validate",
+          "callee": "attrs.get",
+          "lineNumber": 724
+        },
+        {
+          "caller": "validate",
+          "callee": "attrs.get",
+          "lineNumber": 725
+        },
+        {
+          "caller": "validate",
+          "callee": "attrs.get",
+          "lineNumber": 726
+        },
+        {
+          "caller": "validate",
+          "callee": "attrs.pop",
+          "lineNumber": 727
+        },
+        {
+          "caller": "validate",
+          "callee": "attrs.get",
+          "lineNumber": 728
+        },
+        {
+          "caller": "validate",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 731
+        },
+        {
+          "caller": "validate",
+          "callee": "Identity.objects.get",
+          "lineNumber": 735
+        },
+        {
+          "caller": "validate",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 740
+        },
+        {
+          "caller": "validate",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 743
+        },
+        {
+          "caller": "validate",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 746
+        },
+        {
+          "caller": "validate",
+          "callee": "attrs.get",
+          "lineNumber": 750
+        },
+        {
+          "caller": "validate",
+          "callee": "sum",
+          "lineNumber": 751
+        },
+        {
+          "caller": "validate",
+          "callee": "v.get",
+          "lineNumber": 751
+        },
+        {
+          "caller": "validate",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 752
+        },
+        {
+          "caller": "_get_save_kwargs",
+          "callee": "super()._get_save_kwargs",
+          "lineNumber": 840
+        },
+        {
+          "caller": "_get_save_kwargs",
+          "callee": "super",
+          "lineNumber": 840
+        },
+        {
+          "caller": "_get_save_kwargs",
+          "callee": "self.context.get",
+          "lineNumber": 842
+        },
+        {
+          "caller": "_get_save_kwargs",
+          "callee": "self.context.get",
+          "lineNumber": 843
+        },
+        {
+          "caller": "_get_save_kwargs",
+          "callee": "self.context.get",
+          "lineNumber": 844
+        },
+        {
+          "caller": "create",
+          "callee": "exceeds_segment_override_limit",
+          "lineNumber": 851
+        },
+        {
+          "caller": "create",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 852
+        },
+        {
+          "caller": "create",
+          "callee": "super().create",
+          "lineNumber": 855
+        },
+        {
+          "caller": "create",
+          "callee": "super",
+          "lineNumber": 855
+        }
+      ],
+      "metrics": {
+        "importCount": 14,
+        "exportCount": 30,
+        "functionCount": 0,
+        "classCount": 30
+      }
+    },
+    {
+      "path": "features/urls.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 57,
+      "nonEmptyLines": 52,
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "features/utils.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 49,
+      "nonEmptyLines": 35,
+      "functions": [
+        {
+          "name": "get_value_type",
+          "startLine": 8,
+          "endLine": 19,
+          "params": [
+            "value"
+          ]
+        },
+        {
+          "name": "is_32_bit_integer",
+          "startLine": 22,
+          "endLine": 23,
+          "params": [
+            "value"
+          ]
+        },
+        {
+          "name": "is_integer",
+          "startLine": 26,
+          "endLine": 31,
+          "params": [
+            "value",
+            "max_abs_value"
+          ]
+        },
+        {
+          "name": "is_boolean",
+          "startLine": 34,
+          "endLine": 35,
+          "params": [
+            "value"
+          ]
+        },
+        {
+          "name": "get_integer_from_string",
+          "startLine": 38,
+          "endLine": 42,
+          "params": [
+            "value"
+          ]
+        },
+        {
+          "name": "get_boolean_from_string",
+          "startLine": 45,
+          "endLine": 49,
+          "params": [
+            "value"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "get_value_type",
+          "line": 8,
+          "isDefault": false
+        },
+        {
+          "name": "is_32_bit_integer",
+          "line": 22,
+          "isDefault": false
+        },
+        {
+          "name": "is_integer",
+          "line": 26,
+          "isDefault": false
+        },
+        {
+          "name": "is_boolean",
+          "line": 34,
+          "isDefault": false
+        },
+        {
+          "name": "get_integer_from_string",
+          "line": 38,
+          "isDefault": false
+        },
+        {
+          "name": "get_boolean_from_string",
+          "line": 45,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "get_value_type",
+          "callee": "is_32_bit_integer",
+          "lineNumber": 14
+        },
+        {
+          "caller": "get_value_type",
+          "callee": "is_boolean",
+          "lineNumber": 16
+        },
+        {
+          "caller": "is_32_bit_integer",
+          "callee": "is_integer",
+          "lineNumber": 23
+        },
+        {
+          "caller": "is_integer",
+          "callee": "int",
+          "lineNumber": 28
+        },
+        {
+          "caller": "is_integer",
+          "callee": "abs",
+          "lineNumber": 29
+        },
+        {
+          "caller": "get_integer_from_string",
+          "callee": "int",
+          "lineNumber": 40
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 6,
+        "functionCount": 6,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "features/value_types.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 9,
+      "nonEmptyLines": 9,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "features/versioning/serializers.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 365,
+      "nonEmptyLines": 317,
+      "classes": [
+        {
+          "name": "CustomEnvironmentFeatureVersionFeatureStateSerializer",
+          "startLine": 29,
+          "endLine": 62,
+          "methods": [
+            "save"
+          ],
+          "properties": []
+        },
+        {
+          "name": "EnvironmentFeatureVersionSerializer",
+          "startLine": 65,
+          "endLine": 89,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "EnvironmentFeatureVersionRetrieveSerializer",
+          "startLine": 92,
+          "endLine": 110,
+          "methods": [
+            "get_previous_version_uuid"
+          ],
+          "properties": []
+        },
+        {
+          "name": "EnvironmentFeatureVersionCreateSerializer",
+          "startLine": 113,
+          "endLine": 337,
+          "methods": [
+            "segment_ids_to_create_overrides",
+            "create",
+            "_create_feature_state",
+            "_update_feature_state",
+            "_delete_feature_states",
+            "_is_segment_override",
+            "_validate_segment_override_limit",
+            "_validate_v2_versioning"
+          ],
+          "properties": []
+        },
+        {
+          "name": "EnvironmentFeatureVersionPublishSerializer",
+          "startLine": 340,
+          "endLine": 361,
+          "methods": [
+            "save"
+          ],
+          "properties": []
+        },
+        {
+          "name": "EnvironmentFeatureVersionQuerySerializer",
+          "startLine": 364,
+          "endLine": 365,
+          "methods": [],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "CustomEnvironmentFeatureVersionFeatureStateSerializer",
+          "line": 29,
+          "isDefault": false
+        },
+        {
+          "name": "EnvironmentFeatureVersionSerializer",
+          "line": 65,
+          "isDefault": false
+        },
+        {
+          "name": "EnvironmentFeatureVersionRetrieveSerializer",
+          "line": 92,
+          "isDefault": false
+        },
+        {
+          "name": "EnvironmentFeatureVersionCreateSerializer",
+          "line": 113,
+          "isDefault": false
+        },
+        {
+          "name": "EnvironmentFeatureVersionPublishSerializer",
+          "line": 340,
+          "isDefault": false
+        },
+        {
+          "name": "EnvironmentFeatureVersionQuerySerializer",
+          "line": 364,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "save",
+          "callee": "super().save",
+          "lineNumber": 41
+        },
+        {
+          "caller": "save",
+          "callee": "super",
+          "lineNumber": 41
+        },
+        {
+          "caller": "save",
+          "callee": "feature_state.feature.external_resources.exists",
+          "lineNumber": 46
+        },
+        {
+          "caller": "save",
+          "callee": "feature_state.environment.project.github_project.exists",
+          "lineNumber": 48
+        },
+        {
+          "caller": "save",
+          "callee": "feature_state.environment.project.organisation.github_config.exists",
+          "lineNumber": 49
+        },
+        {
+          "caller": "save",
+          "callee": "call_github_task",
+          "lineNumber": 51
+        },
+        {
+          "caller": "save",
+          "callee": "post_gitlab_state_change_comment_for_feature_state",
+          "lineNumber": 60
+        },
+        {
+          "caller": "get_previous_version_uuid",
+          "callee": "environment_feature_version.get_previous_version",
+          "lineNumber": 107
+        },
+        {
+          "caller": "get_previous_version_uuid",
+          "callee": "str",
+          "lineNumber": 110
+        },
+        {
+          "caller": "segment_ids_to_create_overrides",
+          "callee": "self.initial_data.get",
+          "lineNumber": 163
+        },
+        {
+          "caller": "segment_ids_to_create_overrides",
+          "callee": "fs.get",
+          "lineNumber": 164
+        },
+        {
+          "caller": "create",
+          "callee": "self._validate_segment_override_limit",
+          "lineNumber": 174
+        },
+        {
+          "caller": "create",
+          "callee": "self._validate_v2_versioning",
+          "lineNumber": 175
+        },
+        {
+          "caller": "create",
+          "callee": "validated_data.pop",
+          "lineNumber": 183
+        },
+        {
+          "caller": "create",
+          "callee": "super().create",
+          "lineNumber": 185
+        },
+        {
+          "caller": "create",
+          "callee": "super",
+          "lineNumber": 185
+        },
+        {
+          "caller": "create",
+          "callee": "self.initial_data.get",
+          "lineNumber": 187
+        },
+        {
+          "caller": "create",
+          "callee": "self._create_feature_state",
+          "lineNumber": 190
+        },
+        {
+          "caller": "create",
+          "callee": "self.initial_data.get",
+          "lineNumber": 195
+        },
+        {
+          "caller": "create",
+          "callee": "self._update_feature_state",
+          "lineNumber": 198
+        },
+        {
+          "caller": "create",
+          "callee": "self._delete_feature_states",
+          "lineNumber": 200
+        },
+        {
+          "caller": "create",
+          "callee": "self.initial_data.get",
+          "lineNumber": 201
+        },
+        {
+          "caller": "create",
+          "callee": "self.validated_data.get",
+          "lineNumber": 204
+        },
+        {
+          "caller": "create",
+          "callee": "version.publish",
+          "lineNumber": 206
+        },
+        {
+          "caller": "create",
+          "callee": "isinstance",
+          "lineNumber": 208
+        },
+        {
+          "caller": "_create_feature_state",
+          "callee": "self._is_segment_override",
+          "lineNumber": 219
+        },
+        {
+          "caller": "_create_feature_state",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 220
+        },
+        {
+          "caller": "_create_feature_state",
+          "callee": "version.feature_states.filter(\n                feature_segment__segment_id=segment_id\n            )\n            .select_related(\"feature_segment__segment\")\n            .first",
+          "lineNumber": 228
+        },
+        {
+          "caller": "_create_feature_state",
+          "callee": "version.feature_states.filter(\n                feature_segment__segment_id=segment_id\n            )\n            .select_related",
+          "lineNumber": 228
+        },
+        {
+          "caller": "_create_feature_state",
+          "callee": "version.feature_states.filter",
+          "lineNumber": 228
+        },
+        {
+          "caller": "_create_feature_state",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 234
+        },
+        {
+          "caller": "_create_feature_state",
+          "callee": "CustomEnvironmentFeatureVersionFeatureStateSerializer",
+          "lineNumber": 247
+        },
+        {
+          "caller": "_create_feature_state",
+          "callee": "fs_serializer.is_valid",
+          "lineNumber": 251
+        },
+        {
+          "caller": "_create_feature_state",
+          "callee": "fs_serializer.save",
+          "lineNumber": 252
+        },
+        {
+          "caller": "_update_feature_state",
+          "callee": "self._is_segment_override",
+          "lineNumber": 257
+        },
+        {
+          "caller": "_update_feature_state",
+          "callee": "version.feature_states.get",
+          "lineNumber": 260
+        },
+        {
+          "caller": "_update_feature_state",
+          "callee": "Segment.objects.get",
+          "lineNumber": 266
+        },
+        {
+          "caller": "_update_feature_state",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 267
+        },
+        {
+          "caller": "_update_feature_state",
+          "callee": "version.feature_states.get",
+          "lineNumber": 278
+        },
+        {
+          "caller": "_update_feature_state",
+          "callee": "instance.multivariate_feature_state_values.all",
+          "lineNumber": 281
+        },
+        {
+          "caller": "_update_feature_state",
+          "callee": "feature_state.get",
+          "lineNumber": 282
+        },
+        {
+          "caller": "_update_feature_state",
+          "callee": "next",
+          "lineNumber": 285
+        },
+        {
+          "caller": "_update_feature_state",
+          "callee": "filter",
+          "lineNumber": 286
+        },
+        {
+          "caller": "_update_feature_state",
+          "callee": "CustomEnvironmentFeatureVersionFeatureStateSerializer",
+          "lineNumber": 298
+        },
+        {
+          "caller": "_update_feature_state",
+          "callee": "fs_serializer.is_valid",
+          "lineNumber": 307
+        },
+        {
+          "caller": "_update_feature_state",
+          "callee": "fs_serializer.save",
+          "lineNumber": 308
+        },
+        {
+          "caller": "_delete_feature_states",
+          "callee": "version.feature_segments.filter(segment_id__in=segment_ids).delete",
+          "lineNumber": 315
+        },
+        {
+          "caller": "_delete_feature_states",
+          "callee": "version.feature_segments.filter",
+          "lineNumber": 315
+        },
+        {
+          "caller": "_is_segment_override",
+          "callee": "feature_state.get",
+          "lineNumber": 318
+        },
+        {
+          "caller": "_validate_segment_override_limit",
+          "callee": "exceeds_segment_override_limit",
+          "lineNumber": 321
+        },
+        {
+          "caller": "_validate_segment_override_limit",
+          "callee": "self.initial_data.get",
+          "lineNumber": 324
+        },
+        {
+          "caller": "_validate_segment_override_limit",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 329
+        },
+        {
+          "caller": "_validate_v2_versioning",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 335
+        },
+        {
+          "caller": "save",
+          "callee": "self.validated_data.get",
+          "lineNumber": 344
+        },
+        {
+          "caller": "save",
+          "callee": "isinstance",
+          "lineNumber": 351
+        },
+        {
+          "caller": "save",
+          "callee": "isinstance",
+          "lineNumber": 353
+        },
+        {
+          "caller": "save",
+          "callee": "self.instance.publish",
+          "lineNumber": 356
+        }
+      ],
+      "metrics": {
+        "importCount": 7,
+        "exportCount": 6,
+        "functionCount": 0,
+        "classCount": 6
+      }
+    },
+    {
+      "path": "features/views.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 1179,
+      "nonEmptyLines": 1023,
+      "functions": [
+        {
+          "name": "get_feature_by_uuid",
+          "startLine": 119,
+          "endLine": 126,
+          "params": [
+            "request",
+            "uuid"
+          ]
+        },
+        {
+          "name": "get_feature_state_by_uuid",
+          "startLine": 955,
+          "endLine": 962,
+          "params": [
+            "request",
+            "uuid"
+          ]
+        },
+        {
+          "name": "get_multivariate_options",
+          "startLine": 1112,
+          "endLine": 1134,
+          "params": [
+            "request",
+            "feature_id"
+          ]
+        },
+        {
+          "name": "organisation_has_got_feature",
+          "startLine": 1137,
+          "endLine": 1154,
+          "params": [
+            "request",
+            "organisation"
+          ]
+        },
+        {
+          "name": "create_segment_override",
+          "startLine": 1166,
+          "endLine": 1179,
+          "params": [
+            "request",
+            "environment_api_key",
+            "feature_pk"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "FeatureViewSet",
+          "startLine": 162,
+          "endLine": 600,
+          "methods": [
+            "get_serializer_class",
+            "get_queryset",
+            "paginate_queryset",
+            "perform_create",
+            "perform_update",
+            "perform_destroy",
+            "get_serializer_context",
+            "apply_state_to_queryset",
+            "add_group_owners",
+            "remove_group_owners",
+            "add_owners",
+            "remove_owners",
+            "_validate_owner_removal",
+            "get_influx_data",
+            "get_evaluation_data",
+            "_trigger_feature_state_change_webhooks",
+            "filter_owners_and_group_owners",
+            "_filter_queryset"
+          ],
+          "properties": []
+        },
+        {
+          "name": "BaseFeatureStateViewSet",
+          "startLine": 632,
+          "endLine": 803,
+          "methods": [
+            "get_serializer_class",
+            "get_serializer_context",
+            "get_queryset",
+            "_apply_query_param_filters",
+            "get_environment_from_request",
+            "create",
+            "update",
+            "partial_update",
+            "destroy",
+            "update_feature_state_value"
+          ],
+          "properties": []
+        },
+        {
+          "name": "EnvironmentFeatureStateViewSet",
+          "startLine": 814,
+          "endLine": 828,
+          "methods": [
+            "get_queryset",
+            "get_serializer_class"
+          ],
+          "properties": []
+        },
+        {
+          "name": "IdentityFeatureStateViewSet",
+          "startLine": 831,
+          "endLine": 883,
+          "methods": [
+            "get_queryset",
+            "all",
+            "clone_from_given_identity"
+          ],
+          "properties": []
+        },
+        {
+          "name": "SimpleFeatureStateViewSet",
+          "startLine": 908,
+          "endLine": 950,
+          "methods": [
+            "create",
+            "update",
+            "get_queryset"
+          ],
+          "properties": []
+        },
+        {
+          "name": "SDKFeatureStates",
+          "startLine": 966,
+          "endLine": 1099,
+          "methods": [
+            "get",
+            "_additional_filters",
+            "_get_flags_from_cache",
+            "_get_flags_response_with_identifier"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "get_feature_by_uuid",
+          "line": 117,
+          "isDefault": false
+        },
+        {
+          "name": "FeatureViewSet",
+          "line": 129,
+          "isDefault": false
+        },
+        {
+          "name": "BaseFeatureStateViewSet",
+          "line": 603,
+          "isDefault": false
+        },
+        {
+          "name": "EnvironmentFeatureStateViewSet",
+          "line": 806,
+          "isDefault": false
+        },
+        {
+          "name": "IdentityFeatureStateViewSet",
+          "line": 831,
+          "isDefault": false
+        },
+        {
+          "name": "SimpleFeatureStateViewSet",
+          "line": 886,
+          "isDefault": false
+        },
+        {
+          "name": "get_feature_state_by_uuid",
+          "line": 953,
+          "isDefault": false
+        },
+        {
+          "name": "SDKFeatureStates",
+          "line": 965,
+          "isDefault": false
+        },
+        {
+          "name": "get_multivariate_options",
+          "line": 1102,
+          "isDefault": false
+        },
+        {
+          "name": "organisation_has_got_feature",
+          "line": 1137,
+          "isDefault": false
+        },
+        {
+          "name": "create_segment_override",
+          "line": 1157,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "get_feature_by_uuid",
+          "callee": "request.user.get_permitted_projects",
+          "lineNumber": 120
+        },
+        {
+          "caller": "get_feature_by_uuid",
+          "callee": "Feature.objects.filter(project__in=accessible_projects).prefetch_related",
+          "lineNumber": 121
+        },
+        {
+          "caller": "get_feature_by_uuid",
+          "callee": "Feature.objects.filter",
+          "lineNumber": 121
+        },
+        {
+          "caller": "get_feature_by_uuid",
+          "callee": "get_object_or_404",
+          "lineNumber": 124
+        },
+        {
+          "caller": "get_feature_by_uuid",
+          "callee": "CreateFeatureSerializer",
+          "lineNumber": 125
+        },
+        {
+          "caller": "get_feature_by_uuid",
+          "callee": "Response",
+          "lineNumber": 126
+        },
+        {
+          "caller": "get_serializer_class",
+          "callee": "{\n            \"list\": ListFeatureSerializer,\n            \"retrieve\": ListFeatureSerializer,\n            \"create\": ListFeatureSerializer,\n            \"update\": UpdateFeatureSerializer,\n            \"partial_update\": UpdateFeatureSerializer,\n        }.get",
+          "lineNumber": 167
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "getattr",
+          "lineNumber": 176
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "Feature.objects.none",
+          "lineNumber": 177
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "self.request.user.get_permitted_projects",
+          "lineNumber": 179
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "get_object_or_404",
+          "lineNumber": 181
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "project.features.all()\n            .annotate(\n                last_modified_in_any_environment=Max(\n                    \"feature_states__environment_feature_version__created_at\",\n                    filter=Q(\n                        feature_states__environment_feature_version__published_at__isnull=False\n                    ),\n                ),\n            )\n            .prefetch_related",
+          "lineNumber": 184
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "project.features.all()\n            .annotate",
+          "lineNumber": 184
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "project.features.all",
+          "lineNumber": 184
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "Max",
+          "lineNumber": 186
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "Q",
+          "lineNumber": 188
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "FeatureQuerySerializer",
+          "lineNumber": 198
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "query_serializer.is_valid",
+          "lineNumber": 202
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "annotate_feature_queryset_with_code_references_summary",
+          "lineNumber": 205
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "self._filter_queryset",
+          "lineNumber": 207
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "query_data.get",
+          "lineNumber": 209
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "queryset.annotate",
+          "lineNumber": 210
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "Max",
+          "lineNumber": 211
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "Q",
+          "lineNumber": 213
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "self.apply_state_to_queryset",
+          "lineNumber": 221
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "query_data.get",
+          "lineNumber": 227
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "queryset.annotate",
+          "lineNumber": 228
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "Exists",
+          "lineNumber": 229
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "FeatureSegment.objects.filter",
+          "lineNumber": 230
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "OuterRef",
+          "lineNumber": 231
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "override_ordering.append",
+          "lineNumber": 237
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "query_data.get",
+          "lineNumber": 238
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "get_overridden_feature_ids_for_edge_identity",
+          "lineNumber": 241
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "queryset.annotate",
+          "lineNumber": 244
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "Case",
+          "lineNumber": 245
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "When",
+          "lineNumber": 246
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "Value",
+          "lineNumber": 246
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "Value",
+          "lineNumber": 247
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "BooleanField",
+          "lineNumber": 248
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "queryset.annotate",
+          "lineNumber": 252
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "Exists",
+          "lineNumber": 253
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "FeatureState.objects.filter",
+          "lineNumber": 254
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "OuterRef",
+          "lineNumber": 255
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "override_ordering.append",
+          "lineNumber": 260
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "queryset.order_by",
+          "lineNumber": 261
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "self.paginate_queryset",
+          "lineNumber": 264
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "Environment.objects.get",
+          "lineNumber": 265
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "Q",
+          "lineNumber": 267
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "get_environment_flags_list",
+          "lineNumber": 272
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "query_data.get",
+          "lineNumber": 279
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "Q",
+          "lineNumber": 280
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "get_environment_flags_list",
+          "lineNumber": 285
+        },
+        {
+          "caller": "paginate_queryset",
+          "callee": "getattr",
+          "lineNumber": 297
+        },
+        {
+          "caller": "paginate_queryset",
+          "callee": "super().paginate_queryset",
+          "lineNumber": 300
+        },
+        {
+          "caller": "paginate_queryset",
+          "callee": "super",
+          "lineNumber": 300
+        },
+        {
+          "caller": "perform_create",
+          "callee": "serializer.save",
+          "lineNumber": 304
+        },
+        {
+          "caller": "perform_create",
+          "callee": "int",
+          "lineNumber": 305
+        },
+        {
+          "caller": "perform_create",
+          "callee": "self.kwargs.get",
+          "lineNumber": 305
+        },
+        {
+          "caller": "perform_update",
+          "callee": "serializer.save",
+          "lineNumber": 310
+        },
+        {
+          "caller": "perform_update",
+          "callee": "self.kwargs.get",
+          "lineNumber": 310
+        },
+        {
+          "caller": "perform_destroy",
+          "callee": "list",
+          "lineNumber": 313
+        },
+        {
+          "caller": "perform_destroy",
+          "callee": "instance.feature_states.filter",
+          "lineNumber": 314
+        },
+        {
+          "caller": "perform_destroy",
+          "callee": "self._trigger_feature_state_change_webhooks",
+          "lineNumber": 316
+        },
+        {
+          "caller": "perform_destroy",
+          "callee": "instance.delete",
+          "lineNumber": 317
+        },
+        {
+          "caller": "get_serializer_context",
+          "callee": "super().get_serializer_context",
+          "lineNumber": 320
+        },
+        {
+          "caller": "get_serializer_context",
+          "callee": "super",
+          "lineNumber": 320
+        },
+        {
+          "caller": "get_serializer_context",
+          "callee": "getattr",
+          "lineNumber": 321
+        },
+        {
+          "caller": "get_serializer_context",
+          "callee": "getattr",
+          "lineNumber": 322
+        },
+        {
+          "caller": "get_serializer_context",
+          "callee": "get_object_or_404",
+          "lineNumber": 323
+        },
+        {
+          "caller": "get_serializer_context",
+          "callee": "Project.objects.all",
+          "lineNumber": 323
+        },
+        {
+          "caller": "get_serializer_context",
+          "callee": "context.update",
+          "lineNumber": 324
+        },
+        {
+          "caller": "get_serializer_context",
+          "callee": "get_object_or_404",
+          "lineNumber": 332
+        },
+        {
+          "caller": "get_serializer_context",
+          "callee": "get_overrides_data",
+          "lineNumber": 335
+        },
+        {
+          "caller": "apply_state_to_queryset",
+          "callee": "query_data.get",
+          "lineNumber": 342
+        },
+        {
+          "caller": "apply_state_to_queryset",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 343
+        },
+        {
+          "caller": "apply_state_to_queryset",
+          "callee": "Q",
+          "lineNumber": 350
+        },
+        {
+          "caller": "apply_state_to_queryset",
+          "callee": "Q",
+          "lineNumber": 352
+        },
+        {
+          "caller": "apply_state_to_queryset",
+          "callee": "value_search.lower",
+          "lineNumber": 357
+        },
+        {
+          "caller": "apply_state_to_queryset",
+          "callee": "value_search.lower",
+          "lineNumber": 358
+        },
+        {
+          "caller": "apply_state_to_queryset",
+          "callee": "Q",
+          "lineNumber": 359
+        },
+        {
+          "caller": "apply_state_to_queryset",
+          "callee": "value_search.isdigit",
+          "lineNumber": 364
+        },
+        {
+          "caller": "apply_state_to_queryset",
+          "callee": "int",
+          "lineNumber": 365
+        },
+        {
+          "caller": "apply_state_to_queryset",
+          "callee": "Q",
+          "lineNumber": 366
+        },
+        {
+          "caller": "apply_state_to_queryset",
+          "callee": "Q",
+          "lineNumber": 370
+        },
+        {
+          "caller": "apply_state_to_queryset",
+          "callee": "Q",
+          "lineNumber": 372
+        },
+        {
+          "caller": "apply_state_to_queryset",
+          "callee": "Q",
+          "lineNumber": 374
+        },
+        {
+          "caller": "apply_state_to_queryset",
+          "callee": "getattr",
+          "lineNumber": 378
+        },
+        {
+          "caller": "apply_state_to_queryset",
+          "callee": "Environment.objects.get",
+          "lineNumber": 379
+        },
+        {
+          "caller": "apply_state_to_queryset",
+          "callee": "get_environment_flags_list",
+          "lineNumber": 381
+        },
+        {
+          "caller": "apply_state_to_queryset",
+          "callee": "FeatureState.objects.filter(\n            filter_search_q & filter_enabled_q,\n            id__in=[fs.id for fs in feature_states],\n        ).values_list",
+          "lineNumber": 386
+        },
+        {
+          "caller": "apply_state_to_queryset",
+          "callee": "FeatureState.objects.filter",
+          "lineNumber": 386
+        },
+        {
+          "caller": "apply_state_to_queryset",
+          "callee": "queryset.filter",
+          "lineNumber": 391
+        },
+        {
+          "caller": "add_group_owners",
+          "callee": "self.get_object",
+          "lineNumber": 399
+        },
+        {
+          "caller": "add_group_owners",
+          "callee": "FeatureGroupOwnerInputSerializer",
+          "lineNumber": 402
+        },
+        {
+          "caller": "add_group_owners",
+          "callee": "serializer.is_valid",
+          "lineNumber": 403
+        },
+        {
+          "caller": "add_group_owners",
+          "callee": "UserPermissionGroup.objects.filter(\n            id__in=serializer.validated_data[\"group_ids\"],\n            organisation_id=feature.project.organisation_id,\n        ).count",
+          "lineNumber": 405
+        },
+        {
+          "caller": "add_group_owners",
+          "callee": "UserPermissionGroup.objects.filter",
+          "lineNumber": 405
+        },
+        {
+          "caller": "add_group_owners",
+          "callee": "len",
+          "lineNumber": 408
+        },
+        {
+          "caller": "add_group_owners",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 409
+        },
+        {
+          "caller": "add_group_owners",
+          "callee": "serializer.add_group_owners",
+          "lineNumber": 411
+        },
+        {
+          "caller": "add_group_owners",
+          "callee": "Response",
+          "lineNumber": 412
+        },
+        {
+          "caller": "add_group_owners",
+          "callee": "self.get_serializer",
+          "lineNumber": 412
+        },
+        {
+          "caller": "remove_group_owners",
+          "callee": "self.get_object",
+          "lineNumber": 421
+        },
+        {
+          "caller": "remove_group_owners",
+          "callee": "FeatureGroupOwnerInputSerializer",
+          "lineNumber": 422
+        },
+        {
+          "caller": "remove_group_owners",
+          "callee": "serializer.is_valid",
+          "lineNumber": 423
+        },
+        {
+          "caller": "remove_group_owners",
+          "callee": "self._validate_owner_removal",
+          "lineNumber": 424
+        },
+        {
+          "caller": "remove_group_owners",
+          "callee": "len",
+          "lineNumber": 427
+        },
+        {
+          "caller": "remove_group_owners",
+          "callee": "serializer.remove_group_owners",
+          "lineNumber": 429
+        },
+        {
+          "caller": "remove_group_owners",
+          "callee": "Response",
+          "lineNumber": 430
+        },
+        {
+          "caller": "remove_group_owners",
+          "callee": "self.get_serializer",
+          "lineNumber": 430
+        },
+        {
+          "caller": "add_owners",
+          "callee": "FeatureOwnerInputSerializer",
+          "lineNumber": 439
+        },
+        {
+          "caller": "add_owners",
+          "callee": "serializer.is_valid",
+          "lineNumber": 440
+        },
+        {
+          "caller": "add_owners",
+          "callee": "self.get_object",
+          "lineNumber": 441
+        },
+        {
+          "caller": "add_owners",
+          "callee": "FFAdminUser.objects.filter",
+          "lineNumber": 443
+        },
+        {
+          "caller": "add_owners",
+          "callee": "user.has_project_permission",
+          "lineNumber": 446
+        },
+        {
+          "caller": "add_owners",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 447
+        },
+        {
+          "caller": "add_owners",
+          "callee": "serializer.add_owners",
+          "lineNumber": 449
+        },
+        {
+          "caller": "add_owners",
+          "callee": "Response",
+          "lineNumber": 450
+        },
+        {
+          "caller": "add_owners",
+          "callee": "self.get_serializer",
+          "lineNumber": 450
+        },
+        {
+          "caller": "remove_owners",
+          "callee": "FeatureOwnerInputSerializer",
+          "lineNumber": 458
+        },
+        {
+          "caller": "remove_owners",
+          "callee": "serializer.is_valid",
+          "lineNumber": 459
+        },
+        {
+          "caller": "remove_owners",
+          "callee": "self.get_object",
+          "lineNumber": 461
+        },
+        {
+          "caller": "remove_owners",
+          "callee": "self._validate_owner_removal",
+          "lineNumber": 462
+        },
+        {
+          "caller": "remove_owners",
+          "callee": "len",
+          "lineNumber": 464
+        },
+        {
+          "caller": "remove_owners",
+          "callee": "serializer.remove_users",
+          "lineNumber": 467
+        },
+        {
+          "caller": "remove_owners",
+          "callee": "Response",
+          "lineNumber": 469
+        },
+        {
+          "caller": "remove_owners",
+          "callee": "self.get_serializer",
+          "lineNumber": 469
+        },
+        {
+          "caller": "_validate_owner_removal",
+          "callee": "feature.owners.count",
+          "lineNumber": 480
+        },
+        {
+          "caller": "_validate_owner_removal",
+          "callee": "feature.group_owners.count",
+          "lineNumber": 482
+        },
+        {
+          "caller": "_validate_owner_removal",
+          "callee": "serializers.ValidationError",
+          "lineNumber": 486
+        },
+        {
+          "caller": "get_influx_data",
+          "callee": "get_object_or_404",
+          "lineNumber": 498
+        },
+        {
+          "caller": "get_influx_data",
+          "callee": "GetInfluxDataQuerySerializer",
+          "lineNumber": 500
+        },
+        {
+          "caller": "get_influx_data",
+          "callee": "query_serializer.is_valid",
+          "lineNumber": 501
+        },
+        {
+          "caller": "get_influx_data",
+          "callee": "timezone.now",
+          "lineNumber": 503
+        },
+        {
+          "caller": "get_influx_data",
+          "callee": "period.endswith",
+          "lineNumber": 504
+        },
+        {
+          "caller": "get_influx_data",
+          "callee": "timedelta",
+          "lineNumber": 505
+        },
+        {
+          "caller": "get_influx_data",
+          "callee": "int",
+          "lineNumber": 505
+        },
+        {
+          "caller": "get_influx_data",
+          "callee": "period.endswith",
+          "lineNumber": 506
+        },
+        {
+          "caller": "get_influx_data",
+          "callee": "timedelta",
+          "lineNumber": 507
+        },
+        {
+          "caller": "get_influx_data",
+          "callee": "int",
+          "lineNumber": 507
+        },
+        {
+          "caller": "get_influx_data",
+          "callee": "ValidationError",
+          "lineNumber": 509
+        },
+        {
+          "caller": "get_influx_data",
+          "callee": "get_multiple_event_list_for_feature",
+          "lineNumber": 511
+        },
+        {
+          "caller": "get_influx_data",
+          "callee": "FeatureInfluxDataSerializer",
+          "lineNumber": 517
+        },
+        {
+          "caller": "get_influx_data",
+          "callee": "Response",
+          "lineNumber": 518
+        },
+        {
+          "caller": "get_evaluation_data",
+          "callee": "get_object_or_404",
+          "lineNumber": 530
+        },
+        {
+          "caller": "get_evaluation_data",
+          "callee": "GetUsageDataQuerySerializer",
+          "lineNumber": 532
+        },
+        {
+          "caller": "get_evaluation_data",
+          "callee": "filters.is_valid",
+          "lineNumber": 533
+        },
+        {
+          "caller": "get_evaluation_data",
+          "callee": "get_feature_evaluation_data",
+          "lineNumber": 535
+        },
+        {
+          "caller": "get_evaluation_data",
+          "callee": "FeatureEvaluationDataSerializer",
+          "lineNumber": 538
+        },
+        {
+          "caller": "get_evaluation_data",
+          "callee": "Response",
+          "lineNumber": 540
+        },
+        {
+          "caller": "_trigger_feature_state_change_webhooks",
+          "callee": "trigger_feature_state_change_webhooks",
+          "lineNumber": 546
+        },
+        {
+          "caller": "filter_owners_and_group_owners",
+          "callee": "Q",
+          "lineNumber": 555
+        },
+        {
+          "caller": "filter_owners_and_group_owners",
+          "callee": "query_data.get",
+          "lineNumber": 556
+        },
+        {
+          "caller": "filter_owners_and_group_owners",
+          "callee": "Q",
+          "lineNumber": 557
+        },
+        {
+          "caller": "filter_owners_and_group_owners",
+          "callee": "Q",
+          "lineNumber": 561
+        },
+        {
+          "caller": "filter_owners_and_group_owners",
+          "callee": "query_data.get",
+          "lineNumber": 562
+        },
+        {
+          "caller": "filter_owners_and_group_owners",
+          "callee": "Q",
+          "lineNumber": 563
+        },
+        {
+          "caller": "filter_owners_and_group_owners",
+          "callee": "queryset.filter",
+          "lineNumber": 567
+        },
+        {
+          "caller": "_filter_queryset",
+          "callee": "query_data.get",
+          "lineNumber": 576
+        },
+        {
+          "caller": "_filter_queryset",
+          "callee": "queryset.filter",
+          "lineNumber": 577
+        },
+        {
+          "caller": "_filter_queryset",
+          "callee": "query_data.get",
+          "lineNumber": 580
+        },
+        {
+          "caller": "_filter_queryset",
+          "callee": "queryset.filter",
+          "lineNumber": 581
+        },
+        {
+          "caller": "_filter_queryset",
+          "callee": "queryset.filter",
+          "lineNumber": 583
+        },
+        {
+          "caller": "_filter_queryset",
+          "callee": "reduce",
+          "lineNumber": 586
+        },
+        {
+          "caller": "_filter_queryset",
+          "callee": "qs.filter",
+          "lineNumber": 587
+        },
+        {
+          "caller": "_filter_queryset",
+          "callee": "queryset.filter",
+          "lineNumber": 593
+        },
+        {
+          "caller": "_filter_queryset",
+          "callee": "query_data.get",
+          "lineNumber": 595
+        },
+        {
+          "caller": "_filter_queryset",
+          "callee": "queryset.filter",
+          "lineNumber": 596
+        },
+        {
+          "caller": "_filter_queryset",
+          "callee": "self.filter_owners_and_group_owners",
+          "lineNumber": 598
+        },
+        {
+          "caller": "get_serializer_context",
+          "callee": "super().get_serializer_context",
+          "lineNumber": 650
+        },
+        {
+          "caller": "get_serializer_context",
+          "callee": "super",
+          "lineNumber": 650
+        },
+        {
+          "caller": "get_serializer_context",
+          "callee": "self.get_environment_from_request",
+          "lineNumber": 652
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "getattr",
+          "lineNumber": 659
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "FeatureState.objects.none",
+          "lineNumber": 660
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "Environment.objects.get",
+          "lineNumber": 665
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "get_environment_flags_queryset",
+          "lineNumber": 666
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "self.request.query_params.get",
+          "lineNumber": 668
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "self._apply_query_param_filters",
+          "lineNumber": 670
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "queryset.prefetch_related",
+          "lineNumber": 673
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "queryset.select_related",
+          "lineNumber": 677
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "NotFound",
+          "lineNumber": 679
+        },
+        {
+          "caller": "_apply_query_param_filters",
+          "callee": "self.request.query_params.get",
+          "lineNumber": 682
+        },
+        {
+          "caller": "_apply_query_param_filters",
+          "callee": "queryset.filter",
+          "lineNumber": 683
+        },
+        {
+          "caller": "_apply_query_param_filters",
+          "callee": "int",
+          "lineNumber": 684
+        },
+        {
+          "caller": "get_environment_from_request",
+          "callee": "Environment.objects.get",
+          "lineNumber": 692
+        },
+        {
+          "caller": "create",
+          "callee": "Response",
+          "lineNumber": 705
+        },
+        {
+          "caller": "create",
+          "callee": "self.get_environment_from_request",
+          "lineNumber": 707
+        },
+        {
+          "caller": "create",
+          "callee": "self.kwargs.get",
+          "lineNumber": 710
+        },
+        {
+          "caller": "create",
+          "callee": "require_direct_state_write",
+          "lineNumber": 714
+        },
+        {
+          "caller": "create",
+          "callee": "bool",
+          "lineNumber": 716
+        },
+        {
+          "caller": "create",
+          "callee": "self.get_serializer",
+          "lineNumber": 719
+        },
+        {
+          "caller": "create",
+          "callee": "serializer.is_valid",
+          "lineNumber": 721
+        },
+        {
+          "caller": "create",
+          "callee": "serializer.save",
+          "lineNumber": 722
+        },
+        {
+          "caller": "create",
+          "callee": "self.get_success_headers",
+          "lineNumber": 723
+        },
+        {
+          "caller": "create",
+          "callee": "self.update_feature_state_value",
+          "lineNumber": 726
+        },
+        {
+          "caller": "create",
+          "callee": "Response",
+          "lineNumber": 730
+        },
+        {
+          "caller": "create",
+          "callee": "FeatureStateSerializerBasic",
+          "lineNumber": 731
+        },
+        {
+          "caller": "update",
+          "callee": "self.get_object",
+          "lineNumber": 741
+        },
+        {
+          "caller": "update",
+          "callee": "require_direct_state_write_for_state",
+          "lineNumber": 742
+        },
+        {
+          "caller": "update",
+          "callee": "self.update_feature_state_value",
+          "lineNumber": 748
+        },
+        {
+          "caller": "update",
+          "callee": "isinstance",
+          "lineNumber": 752
+        },
+        {
+          "caller": "update",
+          "callee": "self.get_serializer",
+          "lineNumber": 757
+        },
+        {
+          "caller": "update",
+          "callee": "serializer.is_valid",
+          "lineNumber": 760
+        },
+        {
+          "caller": "update",
+          "callee": "serializer.save",
+          "lineNumber": 761
+        },
+        {
+          "caller": "update",
+          "callee": "getattr",
+          "lineNumber": 763
+        },
+        {
+          "caller": "update",
+          "callee": "self.get_object",
+          "lineNumber": 766
+        },
+        {
+          "caller": "update",
+          "callee": "self.get_serializer",
+          "lineNumber": 767
+        },
+        {
+          "caller": "update",
+          "callee": "Response",
+          "lineNumber": 769
+        },
+        {
+          "caller": "partial_update",
+          "callee": "self.update",
+          "lineNumber": 775
+        },
+        {
+          "caller": "destroy",
+          "callee": "require_direct_state_write_for_state",
+          "lineNumber": 778
+        },
+        {
+          "caller": "destroy",
+          "callee": "self.get_object",
+          "lineNumber": 778
+        },
+        {
+          "caller": "destroy",
+          "callee": "super().destroy",
+          "lineNumber": 779
+        },
+        {
+          "caller": "destroy",
+          "callee": "super",
+          "lineNumber": 779
+        },
+        {
+          "caller": "update_feature_state_value",
+          "callee": "feature_state.generate_feature_state_value_data",
+          "lineNumber": 782
+        },
+        {
+          "caller": "update_feature_state_value",
+          "callee": "hasattr",
+          "lineNumber": 786
+        },
+        {
+          "caller": "update_feature_state_value",
+          "callee": "FeatureStateValueSerializer",
+          "lineNumber": 787
+        },
+        {
+          "caller": "update_feature_state_value",
+          "callee": "FeatureStateValueSerializer",
+          "lineNumber": 793
+        },
+        {
+          "caller": "update_feature_state_value",
+          "callee": "feature_state_value_serializer.is_valid",
+          "lineNumber": 795
+        },
+        {
+          "caller": "update_feature_state_value",
+          "callee": "feature_state_value_serializer.save",
+          "lineNumber": 796
+        },
+        {
+          "caller": "update_feature_state_value",
+          "callee": "Response",
+          "lineNumber": 798
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "super().get_queryset().filter",
+          "lineNumber": 818
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "super().get_queryset",
+          "lineNumber": 818
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "super",
+          "lineNumber": 818
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "queryset.exclude",
+          "lineNumber": 822
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "queryset.filter",
+          "lineNumber": 823
+        },
+        {
+          "caller": "get_serializer_class",
+          "callee": "super().get_serializer_class",
+          "lineNumber": 828
+        },
+        {
+          "caller": "get_serializer_class",
+          "callee": "super",
+          "lineNumber": 828
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "getattr",
+          "lineNumber": 835
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "FeatureState.objects.none",
+          "lineNumber": 836
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "super().get_queryset().filter",
+          "lineNumber": 838
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "super().get_queryset",
+          "lineNumber": 838
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "super",
+          "lineNumber": 838
+        },
+        {
+          "caller": "all",
+          "callee": "get_object_or_404",
+          "lineNumber": 842
+        },
+        {
+          "caller": "all",
+          "callee": "identity.get_all_feature_states",
+          "lineNumber": 843
+        },
+        {
+          "caller": "all",
+          "callee": "IdentityAllFeatureStatesSerializer",
+          "lineNumber": 845
+        },
+        {
+          "caller": "all",
+          "callee": "Response",
+          "lineNumber": 855
+        },
+        {
+          "caller": "clone_from_given_identity",
+          "callee": "IdentitySourceIdentityRequestSerializer",
+          "lineNumber": 866
+        },
+        {
+          "caller": "clone_from_given_identity",
+          "callee": "serializer.is_valid",
+          "lineNumber": 869
+        },
+        {
+          "caller": "clone_from_given_identity",
+          "callee": "get_object_or_404",
+          "lineNumber": 871
+        },
+        {
+          "caller": "clone_from_given_identity",
+          "callee": "get_object_or_404",
+          "lineNumber": 874
+        },
+        {
+          "caller": "clone_from_given_identity",
+          "callee": "request.data.get",
+          "lineNumber": 875
+        },
+        {
+          "caller": "clone_from_given_identity",
+          "callee": "FeatureState.copy_identity_feature_states",
+          "lineNumber": 879
+        },
+        {
+          "caller": "clone_from_given_identity",
+          "callee": "self.all",
+          "lineNumber": 883
+        },
+        {
+          "caller": "create",
+          "callee": "request.data.get",
+          "lineNumber": 919
+        },
+        {
+          "caller": "create",
+          "callee": "bool",
+          "lineNumber": 920
+        },
+        {
+          "caller": "create",
+          "callee": "request.data.get",
+          "lineNumber": 920
+        },
+        {
+          "caller": "create",
+          "callee": "get_object_or_404",
+          "lineNumber": 922
+        },
+        {
+          "caller": "create",
+          "callee": "require_direct_state_write",
+          "lineNumber": 923
+        },
+        {
+          "caller": "create",
+          "callee": "bool",
+          "lineNumber": 925
+        },
+        {
+          "caller": "create",
+          "callee": "request.data.get",
+          "lineNumber": 925
+        },
+        {
+          "caller": "create",
+          "callee": "super().create",
+          "lineNumber": 927
+        },
+        {
+          "caller": "create",
+          "callee": "super",
+          "lineNumber": 927
+        },
+        {
+          "caller": "update",
+          "callee": "require_direct_state_write_for_state",
+          "lineNumber": 930
+        },
+        {
+          "caller": "update",
+          "callee": "self.get_object",
+          "lineNumber": 930
+        },
+        {
+          "caller": "update",
+          "callee": "super().update",
+          "lineNumber": 931
+        },
+        {
+          "caller": "update",
+          "callee": "super",
+          "lineNumber": 931
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "getattr",
+          "lineNumber": 934
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "FeatureState.objects.none",
+          "lineNumber": 935
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "FeatureState.objects.all",
+          "lineNumber": 938
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "self.request.query_params.get",
+          "lineNumber": 941
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "ValidationError",
+          "lineNumber": 942
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "get_object_or_404",
+          "lineNumber": 944
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "get_environment_flags_queryset",
+          "lineNumber": 945
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "queryset.select_related(\"feature_state_value\").prefetch_related",
+          "lineNumber": 946
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "queryset.select_related",
+          "lineNumber": 946
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "NotFound",
+          "lineNumber": 950
+        },
+        {
+          "caller": "get_feature_state_by_uuid",
+          "callee": "request.user.get_permitted_projects",
+          "lineNumber": 956
+        },
+        {
+          "caller": "get_feature_state_by_uuid",
+          "callee": "FeatureState.objects.filter(\n        feature__project__in=accessible_projects\n    ).select_related",
+          "lineNumber": 957
+        },
+        {
+          "caller": "get_feature_state_by_uuid",
+          "callee": "FeatureState.objects.filter",
+          "lineNumber": 957
+        },
+        {
+          "caller": "get_feature_state_by_uuid",
+          "callee": "get_object_or_404",
+          "lineNumber": 960
+        },
+        {
+          "caller": "get_feature_state_by_uuid",
+          "callee": "WritableNestedFeatureStateSerializer",
+          "lineNumber": 961
+        },
+        {
+          "caller": "get_feature_state_by_uuid",
+          "callee": "Response",
+          "lineNumber": 962
+        },
+        {
+          "caller": "get",
+          "callee": "self._get_flags_response_with_identifier",
+          "lineNumber": 1001
+        },
+        {
+          "caller": "get",
+          "callee": "get_environment_flags_list",
+          "lineNumber": 1004
+        },
+        {
+          "caller": "get",
+          "callee": "Response",
+          "lineNumber": 1011
+        },
+        {
+          "caller": "get",
+          "callee": "Response",
+          "lineNumber": 1016
+        },
+        {
+          "caller": "get",
+          "callee": "self.get_serializer",
+          "lineNumber": 1016
+        },
+        {
+          "caller": "get",
+          "callee": "self._get_flags_from_cache",
+          "lineNumber": 1019
+        },
+        {
+          "caller": "get",
+          "callee": "self.get_serializer",
+          "lineNumber": 1021
+        },
+        {
+          "caller": "get",
+          "callee": "get_environment_flags_list",
+          "lineNumber": 1022
+        },
+        {
+          "caller": "get",
+          "callee": "Response",
+          "lineNumber": 1031
+        },
+        {
+          "caller": "get",
+          "callee": "updated_at.timestamp",
+          "lineNumber": 1033
+        },
+        {
+          "caller": "_additional_filters",
+          "callee": "Q",
+          "lineNumber": 1038
+        },
+        {
+          "caller": "_additional_filters",
+          "callee": "self.request.environment.get_hide_disabled_flags",
+          "lineNumber": 1040
+        },
+        {
+          "caller": "_additional_filters",
+          "callee": "Q",
+          "lineNumber": 1041
+        },
+        {
+          "caller": "_additional_filters",
+          "callee": "Q",
+          "lineNumber": 1044
+        },
+        {
+          "caller": "_get_flags_from_cache",
+          "callee": "flags_cache.get",
+          "lineNumber": 1056
+        },
+        {
+          "caller": "_get_flags_from_cache",
+          "callee": "self.get_serializer",
+          "lineNumber": 1058
+        },
+        {
+          "caller": "_get_flags_from_cache",
+          "callee": "get_environment_flags_list",
+          "lineNumber": 1059
+        },
+        {
+          "caller": "_get_flags_from_cache",
+          "callee": "flags_cache.set",
+          "lineNumber": 1066
+        },
+        {
+          "caller": "_get_flags_response_with_identifier",
+          "callee": "Identity.objects.get_or_create",
+          "lineNumber": 1073
+        },
+        {
+          "caller": "_get_flags_response_with_identifier",
+          "callee": "is_database_replica_setup",
+          "lineNumber": 1078
+        },
+        {
+          "caller": "_get_flags_response_with_identifier",
+          "callee": "using_database_replica(Identity.objects)\n                .with_context()\n                .get",
+          "lineNumber": 1080
+        },
+        {
+          "caller": "_get_flags_response_with_identifier",
+          "callee": "using_database_replica(Identity.objects)\n                .with_context",
+          "lineNumber": 1080
+        },
+        {
+          "caller": "_get_flags_response_with_identifier",
+          "callee": "using_database_replica",
+          "lineNumber": 1080
+        },
+        {
+          "caller": "_get_flags_response_with_identifier",
+          "callee": "request.GET.get",
+          "lineNumber": 1085
+        },
+        {
+          "caller": "_get_flags_response_with_identifier",
+          "callee": "identity.get_all_feature_states",
+          "lineNumber": 1086
+        },
+        {
+          "caller": "_get_flags_response_with_identifier",
+          "callee": "Response",
+          "lineNumber": 1088
+        },
+        {
+          "caller": "_get_flags_response_with_identifier",
+          "callee": "Response",
+          "lineNumber": 1092
+        },
+        {
+          "caller": "_get_flags_response_with_identifier",
+          "callee": "self.get_serializer",
+          "lineNumber": 1093
+        },
+        {
+          "caller": "_get_flags_response_with_identifier",
+          "callee": "identity.get_all_feature_states",
+          "lineNumber": 1097
+        },
+        {
+          "caller": "_get_flags_response_with_identifier",
+          "callee": "self.get_serializer",
+          "lineNumber": 1098
+        },
+        {
+          "caller": "_get_flags_response_with_identifier",
+          "callee": "Response",
+          "lineNumber": 1099
+        },
+        {
+          "caller": "get_multivariate_options",
+          "callee": "get_object_or_404",
+          "lineNumber": 1114
+        },
+        {
+          "caller": "get_multivariate_options",
+          "callee": "FeatureState.objects.get_live_feature_states(\n            environment=environment,\n            additional_filters=Q(\n                identity__isnull=True,\n                feature_segment__isnull=True,\n                feature_id=feature.id,\n            ),\n        )\n        .filter(feature__is_archived=False)\n        .select_related(\"feature_state_value\")\n        .first",
+          "lineNumber": 1116
+        },
+        {
+          "caller": "get_multivariate_options",
+          "callee": "FeatureState.objects.get_live_feature_states(\n            environment=environment,\n            additional_filters=Q(\n                identity__isnull=True,\n                feature_segment__isnull=True,\n                feature_id=feature.id,\n            ),\n        )\n        .filter(feature__is_archived=False)\n        .select_related",
+          "lineNumber": 1116
+        },
+        {
+          "caller": "get_multivariate_options",
+          "callee": "FeatureState.objects.get_live_feature_states(\n            environment=environment,\n            additional_filters=Q(\n                identity__isnull=True,\n                feature_segment__isnull=True,\n                feature_id=feature.id,\n            ),\n        )\n        .filter",
+          "lineNumber": 1116
+        },
+        {
+          "caller": "get_multivariate_options",
+          "callee": "FeatureState.objects.get_live_feature_states",
+          "lineNumber": 1116
+        },
+        {
+          "caller": "get_multivariate_options",
+          "callee": "Q",
+          "lineNumber": 1118
+        },
+        {
+          "caller": "get_multivariate_options",
+          "callee": "feature.multivariate_options.all",
+          "lineNumber": 1131
+        },
+        {
+          "caller": "get_multivariate_options",
+          "callee": "FeatureMVOptionsValuesResponseSerializer",
+          "lineNumber": 1133
+        },
+        {
+          "caller": "get_multivariate_options",
+          "callee": "Response",
+          "lineNumber": 1134
+        },
+        {
+          "caller": "organisation_has_got_feature",
+          "callee": "request.META.get",
+          "lineNumber": 1148
+        },
+        {
+          "caller": "organisation_has_got_feature",
+          "callee": "organisation.save",
+          "lineNumber": 1153
+        },
+        {
+          "caller": "create_segment_override",
+          "callee": "get_object_or_404",
+          "lineNumber": 1169
+        },
+        {
+          "caller": "create_segment_override",
+          "callee": "get_object_or_404",
+          "lineNumber": 1170
+        },
+        {
+          "caller": "create_segment_override",
+          "callee": "require_direct_state_write",
+          "lineNumber": 1172
+        },
+        {
+          "caller": "create_segment_override",
+          "callee": "CustomCreateSegmentOverrideFeatureStateSerializer",
+          "lineNumber": 1174
+        },
+        {
+          "caller": "create_segment_override",
+          "callee": "serializer.is_valid",
+          "lineNumber": 1177
+        },
+        {
+          "caller": "create_segment_override",
+          "callee": "serializer.save",
+          "lineNumber": 1178
+        },
+        {
+          "caller": "create_segment_override",
+          "callee": "Response",
+          "lineNumber": 1179
+        }
+      ],
+      "metrics": {
+        "importCount": 17,
+        "exportCount": 11,
+        "functionCount": 5,
+        "classCount": 6
+      }
+    }
+  ]
+}

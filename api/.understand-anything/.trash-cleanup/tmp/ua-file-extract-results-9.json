@@ -1,0 +1,3704 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 18,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "features/release_pipelines/core/models.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 288,
+      "nonEmptyLines": 247,
+      "classes": [
+        {
+          "name": "StageTriggerType",
+          "startLine": 31,
+          "endLine": 33,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "StageActionType",
+          "startLine": 36,
+          "endLine": 50,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "ReleasePipeline",
+          "startLine": 53,
+          "endLine": 141,
+          "methods": [
+            "publish",
+            "unpublish",
+            "get_first_stage",
+            "get_last_stage",
+            "get_create_log_message",
+            "get_delete_log_message",
+            "get_feature_versions_in_pipeline_qs",
+            "has_feature_in_flight",
+            "_get_project",
+            "url"
+          ],
+          "properties": []
+        },
+        {
+          "name": "PipelineStage",
+          "startLine": 144,
+          "endLine": 206,
+          "methods": [
+            "get_next_stage",
+            "get_phased_rollout_action",
+            "get_in_stage_feature_versions_qs",
+            "get_completed_feature_versions_qs"
+          ],
+          "properties": []
+        },
+        {
+          "name": "PipelineStageTrigger",
+          "startLine": 209,
+          "endLine": 221,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "PipelineStageAction",
+          "startLine": 224,
+          "endLine": 235,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "PhasedRolloutState",
+          "startLine": 238,
+          "endLine": 288,
+          "methods": [
+            "set_initial_split",
+            "increase_split",
+            "complete_rollout"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "StageTriggerType",
+          "line": 31,
+          "isDefault": false
+        },
+        {
+          "name": "StageActionType",
+          "line": 36,
+          "isDefault": false
+        },
+        {
+          "name": "ReleasePipeline",
+          "line": 53,
+          "isDefault": false
+        },
+        {
+          "name": "PipelineStage",
+          "line": 144,
+          "isDefault": false
+        },
+        {
+          "name": "PipelineStageTrigger",
+          "line": 209,
+          "isDefault": false
+        },
+        {
+          "name": "PipelineStageAction",
+          "line": 224,
+          "isDefault": false
+        },
+        {
+          "name": "PhasedRolloutState",
+          "line": 238,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "publish",
+          "callee": "InvalidPipelineStateError",
+          "lineNumber": 80
+        },
+        {
+          "caller": "publish",
+          "callee": "timezone.now",
+          "lineNumber": 81
+        },
+        {
+          "caller": "publish",
+          "callee": "self.save",
+          "lineNumber": 83
+        },
+        {
+          "caller": "unpublish",
+          "callee": "InvalidPipelineStateError",
+          "lineNumber": 87
+        },
+        {
+          "caller": "unpublish",
+          "callee": "self.save",
+          "lineNumber": 90
+        },
+        {
+          "caller": "get_first_stage",
+          "callee": "self.stages.order_by(\"order\").first",
+          "lineNumber": 93
+        },
+        {
+          "caller": "get_first_stage",
+          "callee": "self.stages.order_by",
+          "lineNumber": 93
+        },
+        {
+          "caller": "get_last_stage",
+          "callee": "self.stages.order_by(\"-order\").first",
+          "lineNumber": 96
+        },
+        {
+          "caller": "get_last_stage",
+          "callee": "self.stages.order_by",
+          "lineNumber": 96
+        },
+        {
+          "caller": "get_feature_versions_in_pipeline_qs",
+          "callee": "EnvironmentFeatureVersion.objects.filter",
+          "lineNumber": 111
+        },
+        {
+          "caller": "get_feature_versions_in_pipeline_qs",
+          "callee": "Q",
+          "lineNumber": 114
+        },
+        {
+          "caller": "get_feature_versions_in_pipeline_qs",
+          "callee": "Q",
+          "lineNumber": 114
+        },
+        {
+          "caller": "get_feature_versions_in_pipeline_qs",
+          "callee": "Q",
+          "lineNumber": 117
+        },
+        {
+          "caller": "get_feature_versions_in_pipeline_qs",
+          "callee": "base_qs.filter",
+          "lineNumber": 118
+        },
+        {
+          "caller": "has_feature_in_flight",
+          "callee": "self.get_feature_versions_in_pipeline_qs().exists",
+          "lineNumber": 125
+        },
+        {
+          "caller": "has_feature_in_flight",
+          "callee": "self.get_feature_versions_in_pipeline_qs",
+          "lineNumber": 125
+        },
+        {
+          "caller": "url",
+          "callee": "AttributeError",
+          "lineNumber": 135
+        },
+        {
+          "caller": "url",
+          "callee": "get_current_site_url",
+          "lineNumber": 138
+        },
+        {
+          "caller": "get_next_stage",
+          "callee": "PipelineStage.objects.filter(pipeline=self.pipeline, order__gt=self.order)\n            .order_by(\"order\")\n            .first",
+          "lineNumber": 168
+        },
+        {
+          "caller": "get_next_stage",
+          "callee": "PipelineStage.objects.filter(pipeline=self.pipeline, order__gt=self.order)\n            .order_by",
+          "lineNumber": 168
+        },
+        {
+          "caller": "get_next_stage",
+          "callee": "PipelineStage.objects.filter",
+          "lineNumber": 168
+        },
+        {
+          "caller": "get_phased_rollout_action",
+          "callee": "self.actions.filter(action_type=StageActionType.PHASED_ROLLOUT).first",
+          "lineNumber": 174
+        },
+        {
+          "caller": "get_phased_rollout_action",
+          "callee": "self.actions.filter",
+          "lineNumber": 174
+        },
+        {
+          "caller": "get_in_stage_feature_versions_qs",
+          "callee": "Q",
+          "lineNumber": 177
+        },
+        {
+          "caller": "get_in_stage_feature_versions_qs",
+          "callee": "Q",
+          "lineNumber": 181
+        },
+        {
+          "caller": "get_in_stage_feature_versions_qs",
+          "callee": "self.environment_feature_versions.filter",
+          "lineNumber": 185
+        },
+        {
+          "caller": "get_completed_feature_versions_qs",
+          "callee": "Q",
+          "lineNumber": 192
+        },
+        {
+          "caller": "get_completed_feature_versions_qs",
+          "callee": "Q",
+          "lineNumber": 193
+        },
+        {
+          "caller": "get_completed_feature_versions_qs",
+          "callee": "Q",
+          "lineNumber": 197
+        },
+        {
+          "caller": "get_completed_feature_versions_qs",
+          "callee": "Q",
+          "lineNumber": 200
+        },
+        {
+          "caller": "get_completed_feature_versions_qs",
+          "callee": "self.environment_feature_versions.filter",
+          "lineNumber": 204
+        },
+        {
+          "caller": "increase_split",
+          "callee": "min",
+          "lineNumber": 274
+        },
+        {
+          "caller": "increase_split",
+          "callee": "self.save",
+          "lineNumber": 275
+        },
+        {
+          "caller": "increase_split",
+          "callee": "self.rollout_segment.rules.first().conditions.first",
+          "lineNumber": 278
+        },
+        {
+          "caller": "increase_split",
+          "callee": "self.rollout_segment.rules.first",
+          "lineNumber": 278
+        },
+        {
+          "caller": "increase_split",
+          "callee": "str",
+          "lineNumber": 280
+        },
+        {
+          "caller": "increase_split",
+          "callee": "condition.save",
+          "lineNumber": 281
+        },
+        {
+          "caller": "complete_rollout",
+          "callee": "self.rollout_segment.delete",
+          "lineNumber": 286
+        },
+        {
+          "caller": "complete_rollout",
+          "callee": "self.save",
+          "lineNumber": 288
+        }
+      ],
+      "metrics": {
+        "importCount": 8,
+        "exportCount": 7,
+        "functionCount": 0,
+        "classCount": 7
+      }
+    },
+    {
+      "path": "features/signals.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 7,
+      "nonEmptyLines": 4,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "features/tasks.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 162,
+      "nonEmptyLines": 139,
+      "functions": [
+        {
+          "name": "trigger_feature_state_change_webhooks",
+          "startLine": 23,
+          "endLine": 64,
+          "params": [
+            "instance",
+            "event_type"
+          ]
+        },
+        {
+          "name": "_get_previous_state",
+          "startLine": 67,
+          "endLine": 86,
+          "params": [
+            "instance",
+            "history_instance",
+            "event_type"
+          ]
+        },
+        {
+          "name": "_get_previous_feature_state_for_change_request",
+          "startLine": 89,
+          "endLine": 115,
+          "params": [
+            "instance"
+          ]
+        },
+        {
+          "name": "_get_feature_state_webhook_data",
+          "startLine": 118,
+          "endLine": 143,
+          "params": [
+            "feature_state",
+            "previous"
+          ]
+        },
+        {
+          "name": "_get_previous_multivariate_values",
+          "startLine": 146,
+          "endLine": 157,
+          "params": [
+            "feature_state"
+          ]
+        },
+        {
+          "name": "delete_feature",
+          "startLine": 161,
+          "endLine": 162,
+          "params": [
+            "feature_id"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "trigger_feature_state_change_webhooks",
+          "line": 23,
+          "isDefault": false
+        },
+        {
+          "name": "_get_previous_state",
+          "line": 67,
+          "isDefault": false
+        },
+        {
+          "name": "_get_previous_feature_state_for_change_request",
+          "line": 89,
+          "isDefault": false
+        },
+        {
+          "name": "_get_feature_state_webhook_data",
+          "line": 118,
+          "isDefault": false
+        },
+        {
+          "name": "_get_previous_multivariate_values",
+          "line": 146,
+          "isDefault": false
+        },
+        {
+          "name": "delete_feature",
+          "line": 160,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "trigger_feature_state_change_webhooks",
+          "callee": "instance.history.first",
+          "lineNumber": 28
+        },
+        {
+          "caller": "trigger_feature_state_change_webhooks",
+          "callee": "history_instance.history_date.strftime",
+          "lineNumber": 30
+        },
+        {
+          "caller": "trigger_feature_state_change_webhooks",
+          "callee": "_get_feature_state_webhook_data",
+          "lineNumber": 46
+        },
+        {
+          "caller": "trigger_feature_state_change_webhooks",
+          "callee": "_get_previous_state",
+          "lineNumber": 49
+        },
+        {
+          "caller": "trigger_feature_state_change_webhooks",
+          "callee": "data.update",
+          "lineNumber": 52
+        },
+        {
+          "caller": "trigger_feature_state_change_webhooks",
+          "callee": "call_environment_webhooks.delay",
+          "lineNumber": 54
+        },
+        {
+          "caller": "trigger_feature_state_change_webhooks",
+          "callee": "call_organisation_webhooks.delay",
+          "lineNumber": 58
+        },
+        {
+          "caller": "_get_previous_state",
+          "callee": "_get_feature_state_webhook_data",
+          "lineNumber": 73
+        },
+        {
+          "caller": "_get_previous_state",
+          "callee": "_get_previous_feature_state_for_change_request",
+          "lineNumber": 77
+        },
+        {
+          "caller": "_get_previous_state",
+          "callee": "_get_feature_state_webhook_data",
+          "lineNumber": 79
+        },
+        {
+          "caller": "_get_previous_state",
+          "callee": "_get_feature_state_webhook_data",
+          "lineNumber": 83
+        },
+        {
+          "caller": "_get_previous_feature_state_for_change_request",
+          "callee": "FeatureState.objects.exclude(\n            change_request_id=instance.change_request_id,\n        )\n        .filter(\n            environment_id=instance.environment_id,\n            feature_id=instance.feature_id,\n            feature_segment=instance.feature_segment,\n            identity=instance.identity,\n            version__isnull=False,\n            live_from__lt=instance.live_from,\n        )\n        .order_by(\"-live_from\")\n        .select_related(\n            \"feature\",\n            \"environment\",\n            \"feature_state_value\",\n            \"feature_segment\",\n            \"identity\",\n        )\n        .first",
+          "lineNumber": 94
+        },
+        {
+          "caller": "_get_previous_feature_state_for_change_request",
+          "callee": "FeatureState.objects.exclude(\n            change_request_id=instance.change_request_id,\n        )\n        .filter(\n            environment_id=instance.environment_id,\n            feature_id=instance.feature_id,\n            feature_segment=instance.feature_segment,\n            identity=instance.identity,\n            version__isnull=False,\n            live_from__lt=instance.live_from,\n        )\n        .order_by(\"-live_from\")\n        .select_related",
+          "lineNumber": 94
+        },
+        {
+          "caller": "_get_previous_feature_state_for_change_request",
+          "callee": "FeatureState.objects.exclude(\n            change_request_id=instance.change_request_id,\n        )\n        .filter(\n            environment_id=instance.environment_id,\n            feature_id=instance.feature_id,\n            feature_segment=instance.feature_segment,\n            identity=instance.identity,\n            version__isnull=False,\n            live_from__lt=instance.live_from,\n        )\n        .order_by",
+          "lineNumber": 94
+        },
+        {
+          "caller": "_get_previous_feature_state_for_change_request",
+          "callee": "FeatureState.objects.exclude(\n            change_request_id=instance.change_request_id,\n        )\n        .filter",
+          "lineNumber": 94
+        },
+        {
+          "caller": "_get_previous_feature_state_for_change_request",
+          "callee": "FeatureState.objects.exclude",
+          "lineNumber": 94
+        },
+        {
+          "caller": "_get_feature_state_webhook_data",
+          "callee": "_get_previous_multivariate_values",
+          "lineNumber": 124
+        },
+        {
+          "caller": "_get_feature_state_webhook_data",
+          "callee": "feature_state.get_feature_state_value",
+          "lineNumber": 126
+        },
+        {
+          "caller": "_get_feature_state_webhook_data",
+          "callee": "list",
+          "lineNumber": 127
+        },
+        {
+          "caller": "_get_feature_state_webhook_data",
+          "callee": "feature_state.multivariate_feature_state_values.select_related(\n                \"multivariate_feature_option\"\n            ).all",
+          "lineNumber": 128
+        },
+        {
+          "caller": "_get_feature_state_webhook_data",
+          "callee": "feature_state.multivariate_feature_state_values.select_related",
+          "lineNumber": 128
+        },
+        {
+          "caller": "_get_feature_state_webhook_data",
+          "callee": "Webhook.generate_webhook_feature_state_data",
+          "lineNumber": 134
+        },
+        {
+          "caller": "_get_feature_state_webhook_data",
+          "callee": "getattr",
+          "lineNumber": 140
+        },
+        {
+          "caller": "_get_previous_multivariate_values",
+          "callee": "MultivariateFeatureStateValue.objects.filter(\n        feature_state_id=feature_state.id\n    ).select_related",
+          "lineNumber": 151
+        },
+        {
+          "caller": "_get_previous_multivariate_values",
+          "callee": "MultivariateFeatureStateValue.objects.filter",
+          "lineNumber": 151
+        },
+        {
+          "caller": "_get_previous_multivariate_values",
+          "callee": "mv.history.first",
+          "lineNumber": 154
+        },
+        {
+          "caller": "_get_previous_multivariate_values",
+          "callee": "mv_values.append",
+          "lineNumber": 156
+        },
+        {
+          "caller": "delete_feature",
+          "callee": "Feature.objects.get(pk=feature_id).delete",
+          "lineNumber": 162
+        },
+        {
+          "caller": "delete_feature",
+          "callee": "Feature.objects.get",
+          "lineNumber": 162
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 6,
+        "functionCount": 6,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "features/versioning/dataclasses.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 50,
+      "nonEmptyLines": 36,
+      "classes": [
+        {
+          "name": "Conflict",
+          "startLine": 12,
+          "endLine": 20,
+          "methods": [
+            "is_environment_default"
+          ],
+          "properties": [
+            "segment_id",
+            "original_cr_id",
+            "published_at"
+          ]
+        },
+        {
+          "name": "FlagChangeSet",
+          "startLine": 24,
+          "endLine": 31,
+          "methods": [],
+          "properties": [
+            "author",
+            "enabled",
+            "feature_state_value",
+            "type_",
+            "segment_id",
+            "segment_priority"
+          ]
+        },
+        {
+          "name": "SegmentOverrideChangeSet",
+          "startLine": 35,
+          "endLine": 40,
+          "methods": [],
+          "properties": [
+            "segment_id",
+            "enabled",
+            "feature_state_value",
+            "type_",
+            "priority"
+          ]
+        },
+        {
+          "name": "FlagChangeSetV2",
+          "startLine": 44,
+          "endLine": 50,
+          "methods": [],
+          "properties": [
+            "author",
+            "environment_default_enabled",
+            "environment_default_value",
+            "environment_default_type",
+            "segment_overrides"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "Conflict",
+          "line": 12,
+          "isDefault": false
+        },
+        {
+          "name": "FlagChangeSet",
+          "line": 23,
+          "isDefault": false
+        },
+        {
+          "name": "SegmentOverrideChangeSet",
+          "line": 34,
+          "isDefault": false
+        },
+        {
+          "name": "FlagChangeSetV2",
+          "line": 43,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 4,
+        "functionCount": 0,
+        "classCount": 4
+      }
+    },
+    {
+      "path": "features/versioning/exceptions.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 20,
+      "nonEmptyLines": 12,
+      "classes": [
+        {
+          "name": "FeatureVersioningError",
+          "startLine": 5,
+          "endLine": 6,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "FeatureVersionDeleteError",
+          "startLine": 9,
+          "endLine": 10,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "CannotModifyLiveVersionError",
+          "startLine": 13,
+          "endLine": 14,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "DirectFeatureStateWriteNotAllowedError",
+          "startLine": 17,
+          "endLine": 20,
+          "methods": [],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "FeatureVersioningError",
+          "line": 5,
+          "isDefault": false
+        },
+        {
+          "name": "FeatureVersionDeleteError",
+          "line": 9,
+          "isDefault": false
+        },
+        {
+          "name": "CannotModifyLiveVersionError",
+          "line": 13,
+          "isDefault": false
+        },
+        {
+          "name": "DirectFeatureStateWriteNotAllowedError",
+          "line": 17,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 4,
+        "functionCount": 0,
+        "classCount": 4
+      }
+    },
+    {
+      "path": "features/versioning/managers.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 69,
+      "nonEmptyLines": 58,
+      "classes": [
+        {
+          "name": "EnvironmentFeatureVersionManager",
+          "startLine": 16,
+          "endLine": 69,
+          "methods": [
+            "get_latest_versions_by_environment_id",
+            "get_latest_versions_by_environment_api_key",
+            "get_latest_versions_as_queryset",
+            "_get_latest_versions"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "EnvironmentFeatureVersionManager",
+          "line": 16,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "get_latest_versions_by_environment_id",
+          "callee": "self._get_latest_versions",
+          "lineNumber": 21
+        },
+        {
+          "caller": "get_latest_versions_by_environment_api_key",
+          "callee": "self._get_latest_versions",
+          "lineNumber": 29
+        },
+        {
+          "caller": "get_latest_versions_as_queryset",
+          "callee": "self.filter",
+          "lineNumber": 41
+        },
+        {
+          "caller": "get_latest_versions_as_queryset",
+          "callee": "self._get_latest_versions",
+          "lineNumber": 44
+        },
+        {
+          "caller": "_get_latest_versions",
+          "callee": "self.raw",
+          "lineNumber": 57
+        },
+        {
+          "caller": "_get_latest_versions",
+          "callee": "timezone.now().isoformat",
+          "lineNumber": 67
+        },
+        {
+          "caller": "_get_latest_versions",
+          "callee": "timezone.now",
+          "lineNumber": 67
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "features/versioning/models.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 389,
+      "nonEmptyLines": 340,
+      "classes": [
+        {
+          "name": "EnvironmentFeatureVersion",
+          "startLine": 33,
+          "endLine": 182,
+          "methods": [
+            "__gt__",
+            "is_live",
+            "published",
+            "create_initial_version",
+            "get_previous_version",
+            "publish"
+          ],
+          "properties": []
+        },
+        {
+          "name": "VersionChangeSet",
+          "startLine": 185,
+          "endLine": 389,
+          "methods": [
+            "add_environment",
+            "get_parsed_feature_states_to_create",
+            "get_parsed_feature_states_to_update",
+            "get_parsed_segment_ids_to_delete_overrides",
+            "publish",
+            "get_conflicts",
+            "includes_change_to_environment_default",
+            "includes_change_to_segment",
+            "_get_conflicts_in_feature_states_to_update",
+            "_get_conflicts_in_feature_states_to_create",
+            "_get_conflicts_in_segment_ids_to_delete_overrides"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "EnvironmentFeatureVersion",
+          "line": 33,
+          "isDefault": false
+        },
+        {
+          "name": "VersionChangeSet",
+          "line": 185,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "is_live",
+          "callee": "timezone.now",
+          "lineNumber": 121
+        },
+        {
+          "caller": "create_initial_version",
+          "callee": "FeatureVersioningError",
+          "lineNumber": 137
+        },
+        {
+          "caller": "create_initial_version",
+          "callee": "cls.objects.filter(environment=environment, feature=feature).exists",
+          "lineNumber": 140
+        },
+        {
+          "caller": "create_initial_version",
+          "callee": "cls.objects.filter",
+          "lineNumber": 140
+        },
+        {
+          "caller": "create_initial_version",
+          "callee": "FeatureVersioningError",
+          "lineNumber": 141
+        },
+        {
+          "caller": "create_initial_version",
+          "callee": "cls.objects.create",
+          "lineNumber": 145
+        },
+        {
+          "caller": "create_initial_version",
+          "callee": "timezone.now",
+          "lineNumber": 146
+        },
+        {
+          "caller": "get_previous_version",
+          "callee": "self.__class__.objects.filter(\n                environment=self.environment,\n                feature=self.feature,\n                live_from__lt=self.live_from or timezone.now(),\n                published_at__isnull=False,\n            )\n            .order_by(\"-live_from\")\n            .exclude(uuid=self.uuid)\n            .first",
+          "lineNumber": 151
+        },
+        {
+          "caller": "get_previous_version",
+          "callee": "self.__class__.objects.filter(\n                environment=self.environment,\n                feature=self.feature,\n                live_from__lt=self.live_from or timezone.now(),\n                published_at__isnull=False,\n            )\n            .order_by(\"-live_from\")\n            .exclude",
+          "lineNumber": 151
+        },
+        {
+          "caller": "get_previous_version",
+          "callee": "self.__class__.objects.filter(\n                environment=self.environment,\n                feature=self.feature,\n                live_from__lt=self.live_from or timezone.now(),\n                published_at__isnull=False,\n            )\n            .order_by",
+          "lineNumber": 151
+        },
+        {
+          "caller": "get_previous_version",
+          "callee": "self.__class__.objects.filter",
+          "lineNumber": 151
+        },
+        {
+          "caller": "get_previous_version",
+          "callee": "timezone.now",
+          "lineNumber": 154
+        },
+        {
+          "caller": "publish",
+          "callee": "timezone.now",
+          "lineNumber": 173
+        },
+        {
+          "caller": "publish",
+          "callee": "self.save",
+          "lineNumber": 181
+        },
+        {
+          "caller": "publish",
+          "callee": "environment_feature_version_published.send",
+          "lineNumber": 182
+        },
+        {
+          "caller": "add_environment",
+          "callee": "RuntimeError",
+          "lineNumber": 248
+        },
+        {
+          "caller": "get_parsed_feature_states_to_create",
+          "callee": "json.loads",
+          "lineNumber": 254
+        },
+        {
+          "caller": "get_parsed_feature_states_to_update",
+          "callee": "json.loads",
+          "lineNumber": 259
+        },
+        {
+          "caller": "get_parsed_segment_ids_to_delete_overrides",
+          "callee": "json.loads",
+          "lineNumber": 264
+        },
+        {
+          "caller": "publish",
+          "callee": "timezone.now",
+          "lineNumber": 271
+        },
+        {
+          "caller": "publish",
+          "callee": "publish_version_change_set",
+          "lineNumber": 272
+        },
+        {
+          "caller": "publish",
+          "callee": "publish_version_change_set.delay",
+          "lineNumber": 275
+        },
+        {
+          "caller": "get_conflicts",
+          "callee": "list",
+          "lineNumber": 281
+        },
+        {
+          "caller": "get_conflicts",
+          "callee": "self.__class__.objects.filter(\n                published_at__gte=self.created_at,\n                feature=self.feature,\n                environment=self.environment,\n            ).select_related",
+          "lineNumber": 282
+        },
+        {
+          "caller": "get_conflicts",
+          "callee": "self.__class__.objects.filter",
+          "lineNumber": 282
+        },
+        {
+          "caller": "get_conflicts",
+          "callee": "self._get_conflicts_in_feature_states_to_update",
+          "lineNumber": 292
+        },
+        {
+          "caller": "get_conflicts",
+          "callee": "self._get_conflicts_in_feature_states_to_create",
+          "lineNumber": 295
+        },
+        {
+          "caller": "get_conflicts",
+          "callee": "self._get_conflicts_in_segment_ids_to_delete_overrides",
+          "lineNumber": 298
+        },
+        {
+          "caller": "includes_change_to_environment_default",
+          "callee": "self.get_parsed_feature_states_to_update",
+          "lineNumber": 305
+        },
+        {
+          "caller": "includes_change_to_segment",
+          "callee": "self.get_parsed_segment_ids_to_delete_overrides",
+          "lineNumber": 313
+        },
+        {
+          "caller": "includes_change_to_segment",
+          "callee": "filter",
+          "lineNumber": 316
+        },
+        {
+          "caller": "includes_change_to_segment",
+          "callee": "self.get_parsed_feature_states_to_create",
+          "lineNumber": 319
+        },
+        {
+          "caller": "includes_change_to_segment",
+          "callee": "self.get_parsed_feature_states_to_update",
+          "lineNumber": 320
+        },
+        {
+          "caller": "_get_conflicts_in_feature_states_to_update",
+          "callee": "self.get_parsed_feature_states_to_update",
+          "lineNumber": 331
+        },
+        {
+          "caller": "_get_conflicts_in_feature_states_to_update",
+          "callee": "change_set.includes_change_to_environment_default",
+          "lineNumber": 337
+        },
+        {
+          "caller": "_get_conflicts_in_feature_states_to_update",
+          "callee": "_conflicts.append",
+          "lineNumber": 338
+        },
+        {
+          "caller": "_get_conflicts_in_feature_states_to_update",
+          "callee": "Conflict",
+          "lineNumber": 339
+        },
+        {
+          "caller": "_get_conflicts_in_feature_states_to_update",
+          "callee": "change_set.includes_change_to_segment",
+          "lineNumber": 344
+        },
+        {
+          "caller": "_get_conflicts_in_feature_states_to_update",
+          "callee": "_conflicts.append",
+          "lineNumber": 345
+        },
+        {
+          "caller": "_get_conflicts_in_feature_states_to_update",
+          "callee": "Conflict",
+          "lineNumber": 346
+        },
+        {
+          "caller": "_get_conflicts_in_feature_states_to_create",
+          "callee": "self.get_parsed_feature_states_to_create",
+          "lineNumber": 359
+        },
+        {
+          "caller": "_get_conflicts_in_feature_states_to_create",
+          "callee": "change_set.includes_change_to_segment",
+          "lineNumber": 363
+        },
+        {
+          "caller": "_get_conflicts_in_feature_states_to_create",
+          "callee": "_conflicts.append",
+          "lineNumber": 366
+        },
+        {
+          "caller": "_get_conflicts_in_feature_states_to_create",
+          "callee": "Conflict",
+          "lineNumber": 367
+        },
+        {
+          "caller": "_get_conflicts_in_segment_ids_to_delete_overrides",
+          "callee": "self.get_parsed_segment_ids_to_delete_overrides",
+          "lineNumber": 379
+        },
+        {
+          "caller": "_get_conflicts_in_segment_ids_to_delete_overrides",
+          "callee": "change_set.includes_change_to_segment",
+          "lineNumber": 381
+        },
+        {
+          "caller": "_get_conflicts_in_segment_ids_to_delete_overrides",
+          "callee": "_conflicts.append",
+          "lineNumber": 382
+        },
+        {
+          "caller": "_get_conflicts_in_segment_ids_to_delete_overrides",
+          "callee": "Conflict",
+          "lineNumber": 383
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 2,
+        "functionCount": 0,
+        "classCount": 2
+      }
+    },
+    {
+      "path": "features/versioning/permissions.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 99,
+      "nonEmptyLines": 80,
+      "classes": [
+        {
+          "name": "EnvironmentFeatureVersionPermissions",
+          "startLine": 17,
+          "endLine": 60,
+          "methods": [
+            "has_permission",
+            "has_object_permission"
+          ],
+          "properties": []
+        },
+        {
+          "name": "EnvironmentFeatureVersionRetrievePermissions",
+          "startLine": 63,
+          "endLine": 67,
+          "methods": [
+            "has_object_permission"
+          ],
+          "properties": []
+        },
+        {
+          "name": "EnvironmentFeatureVersionFeatureStatePermissions",
+          "startLine": 70,
+          "endLine": 99,
+          "methods": [
+            "has_permission",
+            "has_object_permission"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "EnvironmentFeatureVersionPermissions",
+          "line": 17,
+          "isDefault": false
+        },
+        {
+          "name": "EnvironmentFeatureVersionRetrievePermissions",
+          "line": 63,
+          "isDefault": false
+        },
+        {
+          "name": "EnvironmentFeatureVersionFeatureStatePermissions",
+          "line": 70,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "has_permission",
+          "callee": "Environment.objects.get",
+          "lineNumber": 24
+        },
+        {
+          "caller": "has_permission",
+          "callee": "Feature.objects.get",
+          "lineNumber": 31
+        },
+        {
+          "caller": "has_permission",
+          "callee": "list",
+          "lineNumber": 32
+        },
+        {
+          "caller": "has_permission",
+          "callee": "feature.tags.values_list",
+          "lineNumber": 32
+        },
+        {
+          "caller": "has_permission",
+          "callee": "request.user.has_environment_permission",
+          "lineNumber": 34
+        },
+        {
+          "caller": "has_object_permission",
+          "callee": "list",
+          "lineNumber": 54
+        },
+        {
+          "caller": "has_object_permission",
+          "callee": "obj.feature.tags.values_list",
+          "lineNumber": 54
+        },
+        {
+          "caller": "has_object_permission",
+          "callee": "request.user.has_environment_permission",
+          "lineNumber": 56
+        },
+        {
+          "caller": "has_object_permission",
+          "callee": "request.user.has_environment_permission",
+          "lineNumber": 65
+        },
+        {
+          "caller": "has_permission",
+          "callee": "Environment.objects.get",
+          "lineNumber": 73
+        },
+        {
+          "caller": "has_permission",
+          "callee": "request.user.has_environment_permission",
+          "lineNumber": 76
+        },
+        {
+          "caller": "has_permission",
+          "callee": "request.user.has_environment_permission",
+          "lineNumber": 80
+        },
+        {
+          "caller": "has_object_permission",
+          "callee": "request.user.has_environment_permission",
+          "lineNumber": 91
+        },
+        {
+          "caller": "has_object_permission",
+          "callee": "request.user.has_environment_permission",
+          "lineNumber": 96
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 3,
+        "functionCount": 0,
+        "classCount": 3
+      }
+    },
+    {
+      "path": "features/versioning/receivers.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 83,
+      "nonEmptyLines": 66,
+      "functions": [
+        {
+          "name": "add_existing_feature_states",
+          "startLine": 19,
+          "endLine": 32,
+          "params": [
+            "instance",
+            "created",
+            "**kwargs"
+          ]
+        },
+        {
+          "name": "update_live_from",
+          "startLine": 36,
+          "endLine": 38,
+          "params": [
+            "instance",
+            "**kwargs"
+          ]
+        },
+        {
+          "name": "cache_fields",
+          "startLine": 42,
+          "endLine": 43,
+          "params": [
+            "instance",
+            "**kwargs"
+          ]
+        },
+        {
+          "name": "update_environment_document",
+          "startLine": 47,
+          "endLine": 51,
+          "params": [
+            "instance",
+            "**kwargs"
+          ]
+        },
+        {
+          "name": "trigger_webhooks",
+          "startLine": 55,
+          "endLine": 59,
+          "params": [
+            "instance",
+            "**kwargs"
+          ]
+        },
+        {
+          "name": "create_environment_feature_version_published_audit_log",
+          "startLine": 63,
+          "endLine": 68,
+          "params": [
+            "instance",
+            "**kwargs"
+          ]
+        },
+        {
+          "name": "trigger_feature_state_change_went_live_signal",
+          "startLine": 72,
+          "endLine": 83,
+          "params": [
+            "instance",
+            "**kwargs"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "add_existing_feature_states",
+          "line": 18,
+          "isDefault": false
+        },
+        {
+          "name": "update_live_from",
+          "line": 35,
+          "isDefault": false
+        },
+        {
+          "name": "cache_fields",
+          "line": 41,
+          "isDefault": false
+        },
+        {
+          "name": "update_environment_document",
+          "line": 46,
+          "isDefault": false
+        },
+        {
+          "name": "trigger_webhooks",
+          "line": 54,
+          "isDefault": false
+        },
+        {
+          "name": "create_environment_feature_version_published_audit_log",
+          "line": 62,
+          "isDefault": false
+        },
+        {
+          "name": "trigger_feature_state_change_went_live_signal",
+          "line": 71,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "add_existing_feature_states",
+          "callee": "instance.get_previous_version",
+          "lineNumber": 25
+        },
+        {
+          "caller": "add_existing_feature_states",
+          "callee": "previous_environment_feature_version.feature_states.all",
+          "lineNumber": 29
+        },
+        {
+          "caller": "add_existing_feature_states",
+          "callee": "feature_state.clone",
+          "lineNumber": 30
+        },
+        {
+          "caller": "update_live_from",
+          "callee": "timezone.now",
+          "lineNumber": 38
+        },
+        {
+          "caller": "update_environment_document",
+          "callee": "rebuild_environment_document.delay",
+          "lineNumber": 48
+        },
+        {
+          "caller": "trigger_webhooks",
+          "callee": "trigger_update_version_webhooks.delay",
+          "lineNumber": 56
+        },
+        {
+          "caller": "trigger_webhooks",
+          "callee": "str",
+          "lineNumber": 57
+        },
+        {
+          "caller": "create_environment_feature_version_published_audit_log",
+          "callee": "create_environment_feature_version_published_audit_log_task.delay",
+          "lineNumber": 66
+        },
+        {
+          "caller": "create_environment_feature_version_published_audit_log",
+          "callee": "str",
+          "lineNumber": 67
+        },
+        {
+          "caller": "trigger_feature_state_change_went_live_signal",
+          "callee": "get_updated_feature_states_for_version",
+          "lineNumber": 82
+        },
+        {
+          "caller": "trigger_feature_state_change_went_live_signal",
+          "callee": "feature_state_change_went_live.send",
+          "lineNumber": 83
+        }
+      ],
+      "metrics": {
+        "importCount": 6,
+        "exportCount": 7,
+        "functionCount": 7,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "features/versioning/schemas.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 55,
+      "nonEmptyLines": 42,
+      "classes": [
+        {
+          "name": "_FeatureSchema",
+          "startLine": 9,
+          "endLine": 11,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "_UserSchema",
+          "startLine": 14,
+          "endLine": 16,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "_FeatureStateSchema",
+          "startLine": 19,
+          "endLine": 44,
+          "methods": [
+            "get_feature_state_value",
+            "get_multivariate_feature_state_values"
+          ],
+          "properties": []
+        },
+        {
+          "name": "EnvironmentFeatureVersionWebhookDataSerializer",
+          "startLine": 47,
+          "endLine": 55,
+          "methods": [
+            "get_feature_states"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "_FeatureSchema",
+          "line": 9,
+          "isDefault": false
+        },
+        {
+          "name": "_UserSchema",
+          "line": 14,
+          "isDefault": false
+        },
+        {
+          "name": "_FeatureStateSchema",
+          "line": 19,
+          "isDefault": false
+        },
+        {
+          "name": "EnvironmentFeatureVersionWebhookDataSerializer",
+          "line": 47,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "get_feature_state_value",
+          "callee": "obj.get_feature_state_value",
+          "lineNumber": 27
+        },
+        {
+          "caller": "get_multivariate_feature_state_values",
+          "callee": "obj.multivariate_feature_state_values.select_related(\n                \"multivariate_feature_option\"\n            ).all",
+          "lineNumber": 41
+        },
+        {
+          "caller": "get_multivariate_feature_state_values",
+          "callee": "obj.multivariate_feature_state_values.select_related",
+          "lineNumber": 41
+        },
+        {
+          "caller": "get_feature_states",
+          "callee": "_FeatureStateSchema",
+          "lineNumber": 54
+        },
+        {
+          "caller": "get_feature_states",
+          "callee": "schema.dump",
+          "lineNumber": 55
+        },
+        {
+          "caller": "get_feature_states",
+          "callee": "obj.feature_states.all",
+          "lineNumber": 55
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 4,
+        "functionCount": 0,
+        "classCount": 4
+      }
+    },
+    {
+      "path": "features/versioning/signals.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 3,
+      "nonEmptyLines": 2,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "features/versioning/tasks.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 376,
+      "nonEmptyLines": 315,
+      "functions": [
+        {
+          "name": "enable_v2_versioning",
+          "startLine": 45,
+          "endLine": 53,
+          "params": [
+            "environment_id"
+          ]
+        },
+        {
+          "name": "disable_v2_versioning",
+          "startLine": 57,
+          "endLine": 87,
+          "params": [
+            "environment_id"
+          ]
+        },
+        {
+          "name": "_create_initial_feature_versions",
+          "startLine": 90,
+          "endLine": 136,
+          "params": [
+            "environment"
+          ]
+        },
+        {
+          "name": "_get_multivariate_values",
+          "startLine": 139,
+          "endLine": 146,
+          "params": [
+            "feature_state"
+          ]
+        },
+        {
+          "name": "_trigger_feature_state_webhooks_for_version",
+          "startLine": 149,
+          "endLine": 240,
+          "params": [
+            "environment_feature_version"
+          ]
+        },
+        {
+          "name": "trigger_update_version_webhooks",
+          "startLine": 244,
+          "endLine": 261,
+          "params": [
+            "environment_feature_version_uuid"
+          ]
+        },
+        {
+          "name": "create_environment_feature_version_published_audit_log_task",
+          "startLine": 265,
+          "endLine": 280,
+          "params": [
+            "environment_feature_version_uuid"
+          ]
+        },
+        {
+          "name": "publish_version_change_set",
+          "startLine": 284,
+          "endLine": 358,
+          "params": [
+            "version_change_set_id",
+            "user_id",
+            "is_scheduled"
+          ]
+        },
+        {
+          "name": "_send_failed_due_to_conflict_alert_to_change_request_author",
+          "startLine": 361,
+          "endLine": 376,
+          "params": [
+            "version_change_set"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "enable_v2_versioning",
+          "line": 44,
+          "isDefault": false
+        },
+        {
+          "name": "disable_v2_versioning",
+          "line": 56,
+          "isDefault": false
+        },
+        {
+          "name": "_create_initial_feature_versions",
+          "line": 90,
+          "isDefault": false
+        },
+        {
+          "name": "_get_multivariate_values",
+          "line": 139,
+          "isDefault": false
+        },
+        {
+          "name": "_trigger_feature_state_webhooks_for_version",
+          "line": 149,
+          "isDefault": false
+        },
+        {
+          "name": "trigger_update_version_webhooks",
+          "line": 243,
+          "isDefault": false
+        },
+        {
+          "name": "create_environment_feature_version_published_audit_log_task",
+          "line": 264,
+          "isDefault": false
+        },
+        {
+          "name": "publish_version_change_set",
+          "line": 283,
+          "isDefault": false
+        },
+        {
+          "name": "_send_failed_due_to_conflict_alert_to_change_request_author",
+          "line": 361,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "enable_v2_versioning",
+          "callee": "Environment.objects.get",
+          "lineNumber": 48
+        },
+        {
+          "caller": "enable_v2_versioning",
+          "callee": "_create_initial_feature_versions",
+          "lineNumber": 50
+        },
+        {
+          "caller": "enable_v2_versioning",
+          "callee": "environment.save",
+          "lineNumber": 53
+        },
+        {
+          "caller": "disable_v2_versioning",
+          "callee": "Environment.objects.get",
+          "lineNumber": 62
+        },
+        {
+          "caller": "disable_v2_versioning",
+          "callee": "get_environment_flags_queryset",
+          "lineNumber": 64
+        },
+        {
+          "caller": "disable_v2_versioning",
+          "callee": "FeatureState.objects.filter(\n        identity_id__isnull=True, environment=environment\n    ).exclude(id__in=latest_feature_state_ids).delete",
+          "lineNumber": 68
+        },
+        {
+          "caller": "disable_v2_versioning",
+          "callee": "FeatureState.objects.filter(\n        identity_id__isnull=True, environment=environment\n    ).exclude",
+          "lineNumber": 68
+        },
+        {
+          "caller": "disable_v2_versioning",
+          "callee": "FeatureState.objects.filter",
+          "lineNumber": 68
+        },
+        {
+          "caller": "disable_v2_versioning",
+          "callee": "FeatureSegment.objects.filter(environment=environment).exclude(\n        feature_states__id__in=latest_feature_state_ids\n    ).delete",
+          "lineNumber": 71
+        },
+        {
+          "caller": "disable_v2_versioning",
+          "callee": "FeatureSegment.objects.filter(environment=environment).exclude",
+          "lineNumber": 71
+        },
+        {
+          "caller": "disable_v2_versioning",
+          "callee": "FeatureSegment.objects.filter",
+          "lineNumber": 71
+        },
+        {
+          "caller": "disable_v2_versioning",
+          "callee": "latest_feature_states.update",
+          "lineNumber": 77
+        },
+        {
+          "caller": "disable_v2_versioning",
+          "callee": "timezone.now",
+          "lineNumber": 78
+        },
+        {
+          "caller": "disable_v2_versioning",
+          "callee": "FeatureSegment.objects.filter(\n        environment=environment, feature_states__id__in=latest_feature_state_ids\n    ).update",
+          "lineNumber": 80
+        },
+        {
+          "caller": "disable_v2_versioning",
+          "callee": "FeatureSegment.objects.filter",
+          "lineNumber": 80
+        },
+        {
+          "caller": "disable_v2_versioning",
+          "callee": "EnvironmentFeatureVersion.objects.filter(environment=environment).delete",
+          "lineNumber": 84
+        },
+        {
+          "caller": "disable_v2_versioning",
+          "callee": "EnvironmentFeatureVersion.objects.filter",
+          "lineNumber": 84
+        },
+        {
+          "caller": "disable_v2_versioning",
+          "callee": "environment.save",
+          "lineNumber": 87
+        },
+        {
+          "caller": "_create_initial_feature_versions",
+          "callee": "timezone.now",
+          "lineNumber": 93
+        },
+        {
+          "caller": "_create_initial_feature_versions",
+          "callee": "Feature.objects.filter",
+          "lineNumber": 95
+        },
+        {
+          "caller": "_create_initial_feature_versions",
+          "callee": "EnvironmentFeatureVersion.objects.create",
+          "lineNumber": 96
+        },
+        {
+          "caller": "_create_initial_feature_versions",
+          "callee": "get_environment_flags_queryset(\n            environment=environment, feature_name=feature.name\n        ).filter",
+          "lineNumber": 103
+        },
+        {
+          "caller": "_create_initial_feature_versions",
+          "callee": "get_environment_flags_queryset",
+          "lineNumber": 103
+        },
+        {
+          "caller": "_create_initial_feature_versions",
+          "callee": "FeatureSegment.objects.filter",
+          "lineNumber": 106
+        },
+        {
+          "caller": "_create_initial_feature_versions",
+          "callee": "latest_feature_states.update",
+          "lineNumber": 110
+        },
+        {
+          "caller": "_create_initial_feature_versions",
+          "callee": "related_feature_segments.update",
+          "lineNumber": 111
+        },
+        {
+          "caller": "_create_initial_feature_versions",
+          "callee": "FeatureState.objects.filter(\n            feature=feature,\n            live_from__gt=now,\n            change_request__isnull=False,\n            change_request__committed_at__isnull=False,\n            change_request__deleted_at__isnull=True,\n            environment=environment,\n        ).select_related",
+          "lineNumber": 113
+        },
+        {
+          "caller": "_create_initial_feature_versions",
+          "callee": "FeatureState.objects.filter",
+          "lineNumber": 113
+        },
+        {
+          "caller": "_create_initial_feature_versions",
+          "callee": "EnvironmentFeatureVersion.objects.create",
+          "lineNumber": 123
+        },
+        {
+          "caller": "_create_initial_feature_versions",
+          "callee": "FeatureState.objects.bulk_update",
+          "lineNumber": 133
+        },
+        {
+          "caller": "_get_multivariate_values",
+          "callee": "list",
+          "lineNumber": 142
+        },
+        {
+          "caller": "_get_multivariate_values",
+          "callee": "feature_state.multivariate_feature_state_values.select_related(\n            \"multivariate_feature_option\"\n        ).all",
+          "lineNumber": 143
+        },
+        {
+          "caller": "_get_multivariate_values",
+          "callee": "feature_state.multivariate_feature_state_values.select_related",
+          "lineNumber": 143
+        },
+        {
+          "caller": "_trigger_feature_state_webhooks_for_version",
+          "callee": "webhook_mappers.datetime_to_webhook_timestamp",
+          "lineNumber": 163
+        },
+        {
+          "caller": "_trigger_feature_state_webhooks_for_version",
+          "callee": "webhook_mappers.user_or_key_to_changed_by",
+          "lineNumber": 166
+        },
+        {
+          "caller": "_trigger_feature_state_webhooks_for_version",
+          "callee": "get_updated_feature_states_for_version",
+          "lineNumber": 171
+        },
+        {
+          "caller": "_trigger_feature_state_webhooks_for_version",
+          "callee": "environment_feature_version.get_previous_version",
+          "lineNumber": 176
+        },
+        {
+          "caller": "_trigger_feature_state_webhooks_for_version",
+          "callee": "previous_version.feature_states.all",
+          "lineNumber": 179
+        },
+        {
+          "caller": "_trigger_feature_state_webhooks_for_version",
+          "callee": "Webhook.generate_webhook_feature_state_data",
+          "lineNumber": 188
+        },
+        {
+          "caller": "_trigger_feature_state_webhooks_for_version",
+          "callee": "feature_state.get_feature_state_value",
+          "lineNumber": 192
+        },
+        {
+          "caller": "_trigger_feature_state_webhooks_for_version",
+          "callee": "getattr",
+          "lineNumber": 194
+        },
+        {
+          "caller": "_trigger_feature_state_webhooks_for_version",
+          "callee": "_get_multivariate_values",
+          "lineNumber": 196
+        },
+        {
+          "caller": "_trigger_feature_state_webhooks_for_version",
+          "callee": "previous_feature_states_map.get",
+          "lineNumber": 213
+        },
+        {
+          "caller": "_trigger_feature_state_webhooks_for_version",
+          "callee": "Webhook.generate_webhook_feature_state_data",
+          "lineNumber": 217
+        },
+        {
+          "caller": "_trigger_feature_state_webhooks_for_version",
+          "callee": "previous_fs.get_feature_state_value",
+          "lineNumber": 221
+        },
+        {
+          "caller": "_trigger_feature_state_webhooks_for_version",
+          "callee": "getattr",
+          "lineNumber": 223
+        },
+        {
+          "caller": "_trigger_feature_state_webhooks_for_version",
+          "callee": "_get_multivariate_values",
+          "lineNumber": 225
+        },
+        {
+          "caller": "_trigger_feature_state_webhooks_for_version",
+          "callee": "call_environment_webhooks",
+          "lineNumber": 230
+        },
+        {
+          "caller": "_trigger_feature_state_webhooks_for_version",
+          "callee": "call_organisation_webhooks",
+          "lineNumber": 236
+        },
+        {
+          "caller": "trigger_update_version_webhooks",
+          "callee": "EnvironmentFeatureVersion.objects.get",
+          "lineNumber": 245
+        },
+        {
+          "caller": "trigger_update_version_webhooks",
+          "callee": "logger.exception",
+          "lineNumber": 249
+        },
+        {
+          "caller": "trigger_update_version_webhooks",
+          "callee": "_trigger_feature_state_webhooks_for_version",
+          "lineNumber": 253
+        },
+        {
+          "caller": "trigger_update_version_webhooks",
+          "callee": "environment_feature_version_webhook_schema.dump",
+          "lineNumber": 256
+        },
+        {
+          "caller": "trigger_update_version_webhooks",
+          "callee": "call_environment_webhooks",
+          "lineNumber": 257
+        },
+        {
+          "caller": "create_environment_feature_version_published_audit_log_task",
+          "callee": "EnvironmentFeatureVersion.objects.select_related(\n        \"environment\", \"feature\"\n    ).get",
+          "lineNumber": 268
+        },
+        {
+          "caller": "create_environment_feature_version_published_audit_log_task",
+          "callee": "EnvironmentFeatureVersion.objects.select_related",
+          "lineNumber": 268
+        },
+        {
+          "caller": "create_environment_feature_version_published_audit_log_task",
+          "callee": "AuditLog.objects.create",
+          "lineNumber": 272
+        },
+        {
+          "caller": "publish_version_change_set",
+          "callee": "VersionChangeSet.objects.select_related(\n        \"change_request\", \"change_request__user\"\n    ).get",
+          "lineNumber": 287
+        },
+        {
+          "caller": "publish_version_change_set",
+          "callee": "VersionChangeSet.objects.select_related",
+          "lineNumber": 287
+        },
+        {
+          "caller": "publish_version_change_set",
+          "callee": "FFAdminUser.objects.get",
+          "lineNumber": 290
+        },
+        {
+          "caller": "publish_version_change_set",
+          "callee": "version_change_set.get_conflicts",
+          "lineNumber": 293
+        },
+        {
+          "caller": "publish_version_change_set",
+          "callee": "_send_failed_due_to_conflict_alert_to_change_request_author",
+          "lineNumber": 294
+        },
+        {
+          "caller": "publish_version_change_set",
+          "callee": "EnvironmentFeatureVersionCreateSerializer",
+          "lineNumber": 311
+        },
+        {
+          "caller": "publish_version_change_set",
+          "callee": "version_change_set.get_parsed_feature_states_to_create",
+          "lineNumber": 314
+        },
+        {
+          "caller": "publish_version_change_set",
+          "callee": "version_change_set.get_parsed_feature_states_to_update",
+          "lineNumber": 317
+        },
+        {
+          "caller": "publish_version_change_set",
+          "callee": "version_change_set.get_parsed_segment_ids_to_delete_overrides",
+          "lineNumber": 320
+        },
+        {
+          "caller": "publish_version_change_set",
+          "callee": "serializer.is_valid",
+          "lineNumber": 324
+        },
+        {
+          "caller": "publish_version_change_set",
+          "callee": "logger.error",
+          "lineNumber": 325
+        },
+        {
+          "caller": "publish_version_change_set",
+          "callee": "str",
+          "lineNumber": 327
+        },
+        {
+          "caller": "publish_version_change_set",
+          "callee": "_send_failed_due_to_conflict_alert_to_change_request_author",
+          "lineNumber": 330
+        },
+        {
+          "caller": "publish_version_change_set",
+          "callee": "FeatureVersioningError",
+          "lineNumber": 333
+        },
+        {
+          "caller": "publish_version_change_set",
+          "callee": "serializer.save",
+          "lineNumber": 335
+        },
+        {
+          "caller": "publish_version_change_set",
+          "callee": "timezone.now",
+          "lineNumber": 341
+        },
+        {
+          "caller": "publish_version_change_set",
+          "callee": "version.publish",
+          "lineNumber": 348
+        },
+        {
+          "caller": "publish_version_change_set",
+          "callee": "version_change_set.save",
+          "lineNumber": 358
+        },
+        {
+          "caller": "_send_failed_due_to_conflict_alert_to_change_request_author",
+          "callee": "send_mail",
+          "lineNumber": 369
+        },
+        {
+          "caller": "_send_failed_due_to_conflict_alert_to_change_request_author",
+          "callee": "render_to_string",
+          "lineNumber": 371
+        }
+      ],
+      "metrics": {
+        "importCount": 9,
+        "exportCount": 9,
+        "functionCount": 9,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "features/versioning/urls.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 45,
+      "nonEmptyLines": 40,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "features/versioning/versioning_service.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 571,
+      "nonEmptyLines": 477,
+      "functions": [
+        {
+          "name": "require_direct_state_write",
+          "startLine": 20,
+          "endLine": 25,
+          "params": [
+            "environment",
+            "is_identity_override"
+          ]
+        },
+        {
+          "name": "require_direct_state_write_for_state",
+          "startLine": 28,
+          "endLine": 37,
+          "params": [
+            "feature_state"
+          ]
+        },
+        {
+          "name": "get_environment_flags_queryset",
+          "startLine": 40,
+          "endLine": 48,
+          "params": [
+            "environment",
+            "feature_name"
+          ]
+        },
+        {
+          "name": "get_environment_flags_list",
+          "startLine": 51,
+          "endLine": 79,
+          "params": [
+            "environment",
+            "feature_name",
+            "additional_filters",
+            "additional_select_related_args",
+            "additional_prefetch_related_args",
+            "from_replica"
+          ]
+        },
+        {
+          "name": "get_environment_flags_dict",
+          "startLine": 82,
+          "endLine": 114,
+          "params": [
+            "environment",
+            "feature_name",
+            "additional_filters",
+            "additional_select_related_args",
+            "additional_prefetch_related_args",
+            "key_function",
+            "from_replica"
+          ]
+        },
+        {
+          "name": "get_current_live_environment_feature_version",
+          "startLine": 117,
+          "endLine": 129,
+          "params": [
+            "environment_id",
+            "feature_id"
+          ]
+        },
+        {
+          "name": "update_flag",
+          "startLine": 132,
+          "endLine": 138,
+          "params": [
+            "environment",
+            "feature",
+            "change_set"
+          ]
+        },
+        {
+          "name": "_update_flag_for_versioning_v2",
+          "startLine": 141,
+          "endLine": 198,
+          "params": [
+            "environment",
+            "feature",
+            "change_set"
+          ]
+        },
+        {
+          "name": "_update_flag_for_versioning_v1",
+          "startLine": 201,
+          "endLine": 245,
+          "params": [
+            "environment",
+            "feature",
+            "change_set"
+          ]
+        },
+        {
+          "name": "_update_feature_state_value",
+          "startLine": 248,
+          "endLine": 252,
+          "params": [
+            "fsv",
+            "value",
+            "type_"
+          ]
+        },
+        {
+          "name": "_create_segment_override",
+          "startLine": 255,
+          "endLine": 283,
+          "params": [
+            "feature",
+            "environment",
+            "segment_id",
+            "enabled",
+            "priority",
+            "version"
+          ]
+        },
+        {
+          "name": "_update_segment_priority",
+          "startLine": 286,
+          "endLine": 289,
+          "params": [
+            "feature_state",
+            "priority"
+          ]
+        },
+        {
+          "name": "update_flag_v2",
+          "startLine": 292,
+          "endLine": 298,
+          "params": [
+            "environment",
+            "feature",
+            "change_set"
+          ]
+        },
+        {
+          "name": "_update_flag_v2_for_versioning_v2",
+          "startLine": 301,
+          "endLine": 358,
+          "params": [
+            "environment",
+            "feature",
+            "change_set"
+          ]
+        },
+        {
+          "name": "_update_flag_v2_for_versioning_v1",
+          "startLine": 361,
+          "endLine": 418,
+          "params": [
+            "environment",
+            "feature",
+            "change_set"
+          ]
+        },
+        {
+          "name": "delete_segment_override",
+          "startLine": 421,
+          "endLine": 430,
+          "params": [
+            "environment",
+            "feature",
+            "segment_id",
+            "author"
+          ]
+        },
+        {
+          "name": "_delete_segment_override_v1",
+          "startLine": 433,
+          "endLine": 444,
+          "params": [
+            "environment",
+            "feature",
+            "segment_id"
+          ]
+        },
+        {
+          "name": "_delete_segment_override_v2",
+          "startLine": 447,
+          "endLine": 476,
+          "params": [
+            "environment",
+            "feature",
+            "segment_id",
+            "author"
+          ]
+        },
+        {
+          "name": "get_updated_feature_states_for_version",
+          "startLine": 479,
+          "endLine": 522,
+          "params": [
+            "version"
+          ]
+        },
+        {
+          "name": "_get_feature_states_queryset",
+          "startLine": 525,
+          "endLine": 561,
+          "params": [
+            "environment",
+            "feature_name",
+            "additional_filters",
+            "additional_select_related_args",
+            "additional_prefetch_related_args",
+            "from_replica"
+          ]
+        },
+        {
+          "name": "_get_distinct_key",
+          "startLine": 564,
+          "endLine": 571,
+          "params": [
+            "feature_state"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "require_direct_state_write",
+          "line": 20,
+          "isDefault": false
+        },
+        {
+          "name": "require_direct_state_write_for_state",
+          "line": 28,
+          "isDefault": false
+        },
+        {
+          "name": "get_environment_flags_queryset",
+          "line": 40,
+          "isDefault": false
+        },
+        {
+          "name": "get_environment_flags_list",
+          "line": 51,
+          "isDefault": false
+        },
+        {
+          "name": "get_environment_flags_dict",
+          "line": 82,
+          "isDefault": false
+        },
+        {
+          "name": "get_current_live_environment_feature_version",
+          "line": 117,
+          "isDefault": false
+        },
+        {
+          "name": "update_flag",
+          "line": 132,
+          "isDefault": false
+        },
+        {
+          "name": "_update_flag_for_versioning_v2",
+          "line": 141,
+          "isDefault": false
+        },
+        {
+          "name": "_update_flag_for_versioning_v1",
+          "line": 201,
+          "isDefault": false
+        },
+        {
+          "name": "_update_feature_state_value",
+          "line": 248,
+          "isDefault": false
+        },
+        {
+          "name": "_create_segment_override",
+          "line": 255,
+          "isDefault": false
+        },
+        {
+          "name": "_update_segment_priority",
+          "line": 286,
+          "isDefault": false
+        },
+        {
+          "name": "update_flag_v2",
+          "line": 292,
+          "isDefault": false
+        },
+        {
+          "name": "_update_flag_v2_for_versioning_v2",
+          "line": 301,
+          "isDefault": false
+        },
+        {
+          "name": "_update_flag_v2_for_versioning_v1",
+          "line": 361,
+          "isDefault": false
+        },
+        {
+          "name": "delete_segment_override",
+          "line": 421,
+          "isDefault": false
+        },
+        {
+          "name": "_delete_segment_override_v1",
+          "line": 433,
+          "isDefault": false
+        },
+        {
+          "name": "_delete_segment_override_v2",
+          "line": 447,
+          "isDefault": false
+        },
+        {
+          "name": "get_updated_feature_states_for_version",
+          "line": 479,
+          "isDefault": false
+        },
+        {
+          "name": "_get_feature_states_queryset",
+          "line": 525,
+          "isDefault": false
+        },
+        {
+          "name": "_get_distinct_key",
+          "line": 564,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "require_direct_state_write",
+          "callee": "DirectFeatureStateWriteNotAllowedError",
+          "lineNumber": 25
+        },
+        {
+          "caller": "require_direct_state_write_for_state",
+          "callee": "require_direct_state_write",
+          "lineNumber": 34
+        },
+        {
+          "caller": "get_environment_flags_queryset",
+          "callee": "get_environment_flags_list",
+          "lineNumber": 47
+        },
+        {
+          "caller": "get_environment_flags_queryset",
+          "callee": "FeatureState.objects.filter",
+          "lineNumber": 48
+        },
+        {
+          "caller": "get_environment_flags_list",
+          "callee": "list",
+          "lineNumber": 70
+        },
+        {
+          "caller": "get_environment_flags_list",
+          "callee": "get_environment_flags_dict(\n            environment,\n            feature_name,\n            additional_filters,\n            additional_select_related_args,\n            additional_prefetch_related_args,\n            from_replica=from_replica,\n        ).values",
+          "lineNumber": 71
+        },
+        {
+          "caller": "get_environment_flags_list",
+          "callee": "get_environment_flags_dict",
+          "lineNumber": 71
+        },
+        {
+          "caller": "get_environment_flags_dict",
+          "callee": "_get_feature_states_queryset",
+          "lineNumber": 95
+        },
+        {
+          "caller": "get_environment_flags_dict",
+          "callee": "key_function",
+          "lineNumber": 109
+        },
+        {
+          "caller": "get_environment_flags_dict",
+          "callee": "feature_states_dict.get",
+          "lineNumber": 110
+        },
+        {
+          "caller": "get_current_live_environment_feature_version",
+          "callee": "EnvironmentFeatureVersion.objects.filter(\n            environment_id=environment_id,\n            feature_id=feature_id,\n            published_at__isnull=False,\n            live_from__lte=timezone.now(),\n        )\n        .order_by(\"-live_from\")\n        .first",
+          "lineNumber": 121
+        },
+        {
+          "caller": "get_current_live_environment_feature_version",
+          "callee": "EnvironmentFeatureVersion.objects.filter(\n            environment_id=environment_id,\n            feature_id=feature_id,\n            published_at__isnull=False,\n            live_from__lte=timezone.now(),\n        )\n        .order_by",
+          "lineNumber": 121
+        },
+        {
+          "caller": "get_current_live_environment_feature_version",
+          "callee": "EnvironmentFeatureVersion.objects.filter",
+          "lineNumber": 121
+        },
+        {
+          "caller": "get_current_live_environment_feature_version",
+          "callee": "timezone.now",
+          "lineNumber": 125
+        },
+        {
+          "caller": "update_flag",
+          "callee": "_update_flag_for_versioning_v2",
+          "lineNumber": 136
+        },
+        {
+          "caller": "update_flag",
+          "callee": "_update_flag_for_versioning_v1",
+          "lineNumber": 138
+        },
+        {
+          "caller": "_update_flag_for_versioning_v2",
+          "callee": "EnvironmentFeatureVersion.objects.create",
+          "lineNumber": 146
+        },
+        {
+          "caller": "_update_flag_for_versioning_v2",
+          "callee": "new_version.feature_states.get",
+          "lineNumber": 156
+        },
+        {
+          "caller": "_update_flag_for_versioning_v2",
+          "callee": "FeatureSegment.objects.create",
+          "lineNumber": 160
+        },
+        {
+          "caller": "_update_flag_for_versioning_v2",
+          "callee": "FeatureState.objects.create",
+          "lineNumber": 167
+        },
+        {
+          "caller": "_update_flag_for_versioning_v2",
+          "callee": "new_version.feature_states.get",
+          "lineNumber": 176
+        },
+        {
+          "caller": "_update_flag_for_versioning_v2",
+          "callee": "target_feature_state.save",
+          "lineNumber": 182
+        },
+        {
+          "caller": "_update_flag_for_versioning_v2",
+          "callee": "_update_feature_state_value",
+          "lineNumber": 184
+        },
+        {
+          "caller": "_update_flag_for_versioning_v2",
+          "callee": "_update_segment_priority",
+          "lineNumber": 191
+        },
+        {
+          "caller": "_update_flag_for_versioning_v2",
+          "callee": "new_version.publish",
+          "lineNumber": 193
+        },
+        {
+          "caller": "_update_flag_for_versioning_v1",
+          "callee": "Q",
+          "lineNumber": 207
+        },
+        {
+          "caller": "_update_flag_for_versioning_v1",
+          "callee": "Q",
+          "lineNumber": 209
+        },
+        {
+          "caller": "_update_flag_for_versioning_v1",
+          "callee": "get_environment_flags_dict",
+          "lineNumber": 211
+        },
+        {
+          "caller": "_update_flag_for_versioning_v1",
+          "callee": "len",
+          "lineNumber": 217
+        },
+        {
+          "caller": "_update_flag_for_versioning_v1",
+          "callee": "FeatureSegment.objects.create",
+          "lineNumber": 218
+        },
+        {
+          "caller": "_update_flag_for_versioning_v1",
+          "callee": "FeatureState.objects.create",
+          "lineNumber": 224
+        },
+        {
+          "caller": "_update_flag_for_versioning_v1",
+          "callee": "len",
+          "lineNumber": 231
+        },
+        {
+          "caller": "_update_flag_for_versioning_v1",
+          "callee": "list",
+          "lineNumber": 232
+        },
+        {
+          "caller": "_update_flag_for_versioning_v1",
+          "callee": "latest_feature_states.values",
+          "lineNumber": 232
+        },
+        {
+          "caller": "_update_flag_for_versioning_v1",
+          "callee": "target_feature_state.save",
+          "lineNumber": 234
+        },
+        {
+          "caller": "_update_flag_for_versioning_v1",
+          "callee": "_update_feature_state_value",
+          "lineNumber": 236
+        },
+        {
+          "caller": "_update_flag_for_versioning_v1",
+          "callee": "_update_segment_priority",
+          "lineNumber": 243
+        },
+        {
+          "caller": "_update_feature_state_value",
+          "callee": "fsv.set_value",
+          "lineNumber": 251
+        },
+        {
+          "caller": "_update_feature_state_value",
+          "callee": "fsv.save",
+          "lineNumber": 252
+        },
+        {
+          "caller": "_create_segment_override",
+          "callee": "FeatureSegment.objects.create",
+          "lineNumber": 265
+        },
+        {
+          "caller": "_create_segment_override",
+          "callee": "feature_segment.to",
+          "lineNumber": 273
+        },
+        {
+          "caller": "_create_segment_override",
+          "callee": "FeatureState.objects.create",
+          "lineNumber": 275
+        },
+        {
+          "caller": "_update_segment_priority",
+          "callee": "feature_segment.to",
+          "lineNumber": 289
+        },
+        {
+          "caller": "update_flag_v2",
+          "callee": "_update_flag_v2_for_versioning_v2",
+          "lineNumber": 296
+        },
+        {
+          "caller": "update_flag_v2",
+          "callee": "_update_flag_v2_for_versioning_v1",
+          "lineNumber": 298
+        },
+        {
+          "caller": "_update_flag_v2_for_versioning_v2",
+          "callee": "EnvironmentFeatureVersion.objects.create",
+          "lineNumber": 304
+        },
+        {
+          "caller": "_update_flag_v2_for_versioning_v2",
+          "callee": "new_version.feature_states.get",
+          "lineNumber": 311
+        },
+        {
+          "caller": "_update_flag_v2_for_versioning_v2",
+          "callee": "env_default_state.save",
+          "lineNumber": 315
+        },
+        {
+          "caller": "_update_flag_v2_for_versioning_v2",
+          "callee": "_update_feature_state_value",
+          "lineNumber": 317
+        },
+        {
+          "caller": "_update_flag_v2_for_versioning_v2",
+          "callee": "new_version.feature_states.get",
+          "lineNumber": 325
+        },
+        {
+          "caller": "_update_flag_v2_for_versioning_v2",
+          "callee": "segment_state.save",
+          "lineNumber": 329
+        },
+        {
+          "caller": "_update_flag_v2_for_versioning_v2",
+          "callee": "_update_feature_state_value",
+          "lineNumber": 331
+        },
+        {
+          "caller": "_update_flag_v2_for_versioning_v2",
+          "callee": "_update_segment_priority",
+          "lineNumber": 338
+        },
+        {
+          "caller": "_update_flag_v2_for_versioning_v2",
+          "callee": "_create_segment_override",
+          "lineNumber": 340
+        },
+        {
+          "caller": "_update_flag_v2_for_versioning_v2",
+          "callee": "_update_feature_state_value",
+          "lineNumber": 349
+        },
+        {
+          "caller": "_update_flag_v2_for_versioning_v2",
+          "callee": "new_version.publish",
+          "lineNumber": 355
+        },
+        {
+          "caller": "_update_flag_v2_for_versioning_v1",
+          "callee": "get_environment_flags_dict",
+          "lineNumber": 364
+        },
+        {
+          "caller": "_update_flag_v2_for_versioning_v1",
+          "callee": "Q",
+          "lineNumber": 367
+        },
+        {
+          "caller": "_update_flag_v2_for_versioning_v1",
+          "callee": "len",
+          "lineNumber": 369
+        },
+        {
+          "caller": "_update_flag_v2_for_versioning_v1",
+          "callee": "list",
+          "lineNumber": 371
+        },
+        {
+          "caller": "_update_flag_v2_for_versioning_v1",
+          "callee": "env_default_states.values",
+          "lineNumber": 371
+        },
+        {
+          "caller": "_update_flag_v2_for_versioning_v1",
+          "callee": "env_default_state.save",
+          "lineNumber": 373
+        },
+        {
+          "caller": "_update_flag_v2_for_versioning_v1",
+          "callee": "_update_feature_state_value",
+          "lineNumber": 375
+        },
+        {
+          "caller": "_update_flag_v2_for_versioning_v1",
+          "callee": "get_environment_flags_dict",
+          "lineNumber": 384
+        },
+        {
+          "caller": "_update_flag_v2_for_versioning_v1",
+          "callee": "Q",
+          "lineNumber": 387
+        },
+        {
+          "caller": "_update_flag_v2_for_versioning_v1",
+          "callee": "len",
+          "lineNumber": 390
+        },
+        {
+          "caller": "_update_flag_v2_for_versioning_v1",
+          "callee": "_create_segment_override",
+          "lineNumber": 391
+        },
+        {
+          "caller": "_update_flag_v2_for_versioning_v1",
+          "callee": "_update_feature_state_value",
+          "lineNumber": 400
+        },
+        {
+          "caller": "_update_flag_v2_for_versioning_v1",
+          "callee": "len",
+          "lineNumber": 406
+        },
+        {
+          "caller": "_update_flag_v2_for_versioning_v1",
+          "callee": "list",
+          "lineNumber": 407
+        },
+        {
+          "caller": "_update_flag_v2_for_versioning_v1",
+          "callee": "segment_states.values",
+          "lineNumber": 407
+        },
+        {
+          "caller": "_update_flag_v2_for_versioning_v1",
+          "callee": "segment_state.save",
+          "lineNumber": 409
+        },
+        {
+          "caller": "_update_flag_v2_for_versioning_v1",
+          "callee": "_update_feature_state_value",
+          "lineNumber": 411
+        },
+        {
+          "caller": "_update_flag_v2_for_versioning_v1",
+          "callee": "_update_segment_priority",
+          "lineNumber": 418
+        },
+        {
+          "caller": "delete_segment_override",
+          "callee": "_delete_segment_override_v2",
+          "lineNumber": 428
+        },
+        {
+          "caller": "delete_segment_override",
+          "callee": "_delete_segment_override_v1",
+          "lineNumber": 430
+        },
+        {
+          "caller": "_delete_segment_override_v1",
+          "callee": "FeatureSegment.objects.filter(\n        feature=feature,\n        segment_id=segment_id,\n        environment=environment,\n    ).delete",
+          "lineNumber": 438
+        },
+        {
+          "caller": "_delete_segment_override_v1",
+          "callee": "FeatureSegment.objects.filter",
+          "lineNumber": 438
+        },
+        {
+          "caller": "_delete_segment_override_v1",
+          "callee": "NotFound",
+          "lineNumber": 444
+        },
+        {
+          "caller": "_delete_segment_override_v2",
+          "callee": "get_current_live_environment_feature_version",
+          "lineNumber": 453
+        },
+        {
+          "caller": "_delete_segment_override_v2",
+          "callee": "current_version.feature_states.filter(\n            feature_segment__segment_id=segment_id\n        ).exists",
+          "lineNumber": 458
+        },
+        {
+          "caller": "_delete_segment_override_v2",
+          "callee": "current_version.feature_states.filter",
+          "lineNumber": 458
+        },
+        {
+          "caller": "_delete_segment_override_v2",
+          "callee": "NotFound",
+          "lineNumber": 462
+        },
+        {
+          "caller": "_delete_segment_override_v2",
+          "callee": "EnvironmentFeatureVersion.objects.create",
+          "lineNumber": 464
+        },
+        {
+          "caller": "_delete_segment_override_v2",
+          "callee": "new_version.feature_states.get",
+          "lineNumber": 471
+        },
+        {
+          "caller": "_delete_segment_override_v2",
+          "callee": "segment_feature_state.feature_segment.delete",
+          "lineNumber": 474
+        },
+        {
+          "caller": "_delete_segment_override_v2",
+          "callee": "new_version.publish",
+          "lineNumber": 476
+        },
+        {
+          "caller": "multivariate_values_changed",
+          "callee": "fs.multivariate_feature_state_values.all",
+          "lineNumber": 495
+        },
+        {
+          "caller": "multivariate_values_changed",
+          "callee": "previous_fs.multivariate_feature_state_values.all",
+          "lineNumber": 499
+        },
+        {
+          "caller": "get_updated_feature_states_for_version",
+          "callee": "version.get_previous_version",
+          "lineNumber": 503
+        },
+        {
+          "caller": "get_updated_feature_states_for_version",
+          "callee": "get_match_key",
+          "lineNumber": 505
+        },
+        {
+          "caller": "get_updated_feature_states_for_version",
+          "callee": "previous_version.feature_states.all",
+          "lineNumber": 505
+        },
+        {
+          "caller": "get_updated_feature_states_for_version",
+          "callee": "version.feature_states.all",
+          "lineNumber": 511
+        },
+        {
+          "caller": "get_updated_feature_states_for_version",
+          "callee": "previous_feature_states_map.get",
+          "lineNumber": 512
+        },
+        {
+          "caller": "get_updated_feature_states_for_version",
+          "callee": "get_match_key",
+          "lineNumber": 512
+        },
+        {
+          "caller": "get_updated_feature_states_for_version",
+          "callee": "feature_state.get_feature_state_value",
+          "lineNumber": 516
+        },
+        {
+          "caller": "get_updated_feature_states_for_version",
+          "callee": "previous_fs.get_feature_state_value",
+          "lineNumber": 517
+        },
+        {
+          "caller": "get_updated_feature_states_for_version",
+          "callee": "multivariate_values_changed",
+          "lineNumber": 518
+        },
+        {
+          "caller": "get_updated_feature_states_for_version",
+          "callee": "changed_feature_states.append",
+          "lineNumber": 520
+        },
+        {
+          "caller": "_get_feature_states_queryset",
+          "callee": "tuple",
+          "lineNumber": 535
+        },
+        {
+          "caller": "_get_feature_states_queryset",
+          "callee": "tuple",
+          "lineNumber": 536
+        },
+        {
+          "caller": "_get_feature_states_queryset",
+          "callee": "using_database_replica",
+          "lineNumber": 540
+        },
+        {
+          "caller": "_get_feature_states_queryset",
+          "callee": "feature_state_manager.get_live_feature_states(\n            environment=environment,\n            additional_filters=additional_filters,\n        )\n        .select_related(\n            \"environment\",\n            \"feature\",\n            \"feature_state_value\",\n            \"environment_feature_version\",\n            \"feature_segment\",\n            *additional_select_related_args,\n        )\n        .prefetch_related",
+          "lineNumber": 543
+        },
+        {
+          "caller": "_get_feature_states_queryset",
+          "callee": "feature_state_manager.get_live_feature_states(\n            environment=environment,\n            additional_filters=additional_filters,\n        )\n        .select_related",
+          "lineNumber": 543
+        },
+        {
+          "caller": "_get_feature_states_queryset",
+          "callee": "feature_state_manager.get_live_feature_states",
+          "lineNumber": 543
+        },
+        {
+          "caller": "_get_feature_states_queryset",
+          "callee": "queryset.filter",
+          "lineNumber": 559
+        },
+        {
+          "caller": "_get_distinct_key",
+          "callee": "getattr",
+          "lineNumber": 569
+        }
+      ],
+      "metrics": {
+        "importCount": 6,
+        "exportCount": 21,
+        "functionCount": 21,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "features/versioning/views.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 316,
+      "nonEmptyLines": 278,
+      "classes": [
+        {
+          "name": "EnvironmentFeatureVersionViewSet",
+          "startLine": 66,
+          "endLine": 191,
+          "methods": [
+            "__init__",
+            "get_serializer_class",
+            "initial",
+            "get_queryset",
+            "perform_create",
+            "perform_destroy",
+            "publish",
+            "_apply_visibility_limits"
+          ],
+          "properties": []
+        },
+        {
+          "name": "EnvironmentFeatureVersionRetrieveAPIView",
+          "startLine": 194,
+          "endLine": 207,
+          "methods": [
+            "get_queryset"
+          ],
+          "properties": []
+        },
+        {
+          "name": "EnvironmentFeatureVersionFeatureStatesViewSet",
+          "startLine": 234,
+          "endLine": 316,
+          "methods": [
+            "__init__",
+            "get_queryset",
+            "initial",
+            "get_serializer_context",
+            "perform_create",
+            "perform_update",
+            "perform_destroy"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "EnvironmentFeatureVersionViewSet",
+          "line": 50,
+          "isDefault": false
+        },
+        {
+          "name": "EnvironmentFeatureVersionRetrieveAPIView",
+          "line": 194,
+          "isDefault": false
+        },
+        {
+          "name": "EnvironmentFeatureVersionFeatureStatesViewSet",
+          "line": 210,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "__init__",
+          "callee": "super().__init__",
+          "lineNumber": 76
+        },
+        {
+          "caller": "__init__",
+          "callee": "super",
+          "lineNumber": 76
+        },
+        {
+          "caller": "initial",
+          "callee": "super().initial",
+          "lineNumber": 94
+        },
+        {
+          "caller": "initial",
+          "callee": "super",
+          "lineNumber": 94
+        },
+        {
+          "caller": "initial",
+          "callee": "get_object_or_404",
+          "lineNumber": 96
+        },
+        {
+          "caller": "initial",
+          "callee": "Feature.objects.filter",
+          "lineNumber": 97
+        },
+        {
+          "caller": "initial",
+          "callee": "self.request.user.get_permitted_projects",
+          "lineNumber": 98
+        },
+        {
+          "caller": "initial",
+          "callee": "get_object_or_404",
+          "lineNumber": 102
+        },
+        {
+          "caller": "initial",
+          "callee": "self.request.user.get_permitted_environments",
+          "lineNumber": 103
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "getattr",
+          "lineNumber": 113
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "EnvironmentFeatureVersion.objects.none",
+          "lineNumber": 114
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "EnvironmentFeatureVersion.objects.filter",
+          "lineNumber": 116
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "EnvironmentFeatureVersionQuerySerializer",
+          "lineNumber": 120
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "query_serializer.is_valid",
+          "lineNumber": 123
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "query_serializer.validated_data.get",
+          "lineNumber": 125
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "queryset.annotate",
+          "lineNumber": 126
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "ExpressionWrapper",
+          "lineNumber": 127
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "Q",
+          "lineNumber": 128
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "timezone.now",
+          "lineNumber": 128
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "BooleanField",
+          "lineNumber": 129
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "queryset.filter",
+          "lineNumber": 132
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "self._apply_visibility_limits",
+          "lineNumber": 135
+        },
+        {
+          "caller": "perform_create",
+          "callee": "isinstance",
+          "lineNumber": 141
+        },
+        {
+          "caller": "perform_create",
+          "callee": "serializer.save",
+          "lineNumber": 143
+        },
+        {
+          "caller": "perform_destroy",
+          "callee": "FeatureVersionDeleteError",
+          "lineNumber": 149
+        },
+        {
+          "caller": "perform_destroy",
+          "callee": "super().perform_destroy",
+          "lineNumber": 151
+        },
+        {
+          "caller": "perform_destroy",
+          "callee": "super",
+          "lineNumber": 151
+        },
+        {
+          "caller": "publish",
+          "callee": "self.get_object",
+          "lineNumber": 160
+        },
+        {
+          "caller": "publish",
+          "callee": "self.get_serializer",
+          "lineNumber": 161
+        },
+        {
+          "caller": "publish",
+          "callee": "serializer.is_valid",
+          "lineNumber": 162
+        },
+        {
+          "caller": "publish",
+          "callee": "serializer.save",
+          "lineNumber": 163
+        },
+        {
+          "caller": "publish",
+          "callee": "Response",
+          "lineNumber": 164
+        },
+        {
+          "caller": "_apply_visibility_limits",
+          "callee": "subscription.get_subscription_metadata",
+          "lineNumber": 172
+        },
+        {
+          "caller": "_apply_visibility_limits",
+          "callee": "queryset.filter",
+          "lineNumber": 181
+        },
+        {
+          "caller": "_apply_visibility_limits",
+          "callee": "Q",
+          "lineNumber": 182
+        },
+        {
+          "caller": "_apply_visibility_limits",
+          "callee": "timezone.now",
+          "lineNumber": 182
+        },
+        {
+          "caller": "_apply_visibility_limits",
+          "callee": "timedelta",
+          "lineNumber": 182
+        },
+        {
+          "caller": "_apply_visibility_limits",
+          "callee": "Q",
+          "lineNumber": 183
+        },
+        {
+          "caller": "_apply_visibility_limits",
+          "callee": "limited_queryset.exists",
+          "lineNumber": 185
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "EnvironmentFeatureVersion.objects.all",
+          "lineNumber": 207
+        },
+        {
+          "caller": "__init__",
+          "callee": "super().__init__",
+          "lineNumber": 249
+        },
+        {
+          "caller": "__init__",
+          "callee": "super",
+          "lineNumber": 249
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "getattr",
+          "lineNumber": 257
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "FeatureState.objects.none",
+          "lineNumber": 258
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "FeatureState.objects.filter",
+          "lineNumber": 262
+        },
+        {
+          "caller": "initial",
+          "callee": "super().initial",
+          "lineNumber": 269
+        },
+        {
+          "caller": "initial",
+          "callee": "super",
+          "lineNumber": 269
+        },
+        {
+          "caller": "initial",
+          "callee": "get_object_or_404",
+          "lineNumber": 270
+        },
+        {
+          "caller": "initial",
+          "callee": "FeatureVersionDeleteError",
+          "lineNumber": 275
+        },
+        {
+          "caller": "initial",
+          "callee": "get_object_or_404",
+          "lineNumber": 279
+        },
+        {
+          "caller": "initial",
+          "callee": "get_object_or_404",
+          "lineNumber": 282
+        },
+        {
+          "caller": "get_serializer_context",
+          "callee": "super().get_serializer_context",
+          "lineNumber": 285
+        },
+        {
+          "caller": "get_serializer_context",
+          "callee": "super",
+          "lineNumber": 285
+        },
+        {
+          "caller": "perform_create",
+          "callee": "serializer.save",
+          "lineNumber": 295
+        },
+        {
+          "caller": "perform_update",
+          "callee": "serializer.save",
+          "lineNumber": 305
+        },
+        {
+          "caller": "perform_destroy",
+          "callee": "FeatureVersionDeleteError",
+          "lineNumber": 313
+        },
+        {
+          "caller": "perform_destroy",
+          "callee": "super().perform_destroy",
+          "lineNumber": 316
+        },
+        {
+          "caller": "perform_destroy",
+          "callee": "super",
+          "lineNumber": 316
+        }
+      ],
+      "metrics": {
+        "importCount": 8,
+        "exportCount": 3,
+        "functionCount": 0,
+        "classCount": 3
+      }
+    },
+    {
+      "path": "features/workflows/core/exceptions.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 18,
+      "nonEmptyLines": 10,
+      "classes": [
+        {
+          "name": "FeatureWorkflowError",
+          "startLine": 5,
+          "endLine": 6,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "ChangeRequestNotApprovedError",
+          "startLine": 9,
+          "endLine": 10,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "CannotApproveOwnChangeRequest",
+          "startLine": 13,
+          "endLine": 14,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "ChangeRequestDeletionError",
+          "startLine": 17,
+          "endLine": 18,
+          "methods": [],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "FeatureWorkflowError",
+          "line": 5,
+          "isDefault": false
+        },
+        {
+          "name": "ChangeRequestNotApprovedError",
+          "line": 9,
+          "isDefault": false
+        },
+        {
+          "name": "CannotApproveOwnChangeRequest",
+          "line": 13,
+          "isDefault": false
+        },
+        {
+          "name": "ChangeRequestDeletionError",
+          "line": 17,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 4,
+        "functionCount": 0,
+        "classCount": 4
+      }
+    },
+    {
+      "path": "features/workflows/core/models.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 357,
+      "nonEmptyLines": 302,
+      "classes": [
+        {
+          "name": "ChangeRequest",
+          "startLine": 57,
+          "endLine": 257,
+          "methods": [
+            "approve",
+            "commit",
+            "get_create_log_message",
+            "get_delete_log_message",
+            "get_update_log_message",
+            "get_audit_log_author",
+            "_get_environment",
+            "_get_project",
+            "is_approved",
+            "has_approvals",
+            "is_approved_via_project",
+            "is_approved_via_environment",
+            "is_committed",
+            "url",
+            "email_subject",
+            "set_project_from_environment",
+            "create_audit_log_for_related_feature_state",
+            "prevent_change_request_delete_if_committed",
+            "live_from"
+          ],
+          "properties": []
+        },
+        {
+          "name": "ChangeRequestApproval",
+          "startLine": 260,
+          "endLine": 342,
+          "methods": [
+            "send_email_notification_to_assignee",
+            "send_email_notification_to_author",
+            "get_create_log_message",
+            "get_update_log_message",
+            "get_audit_log_related_object_id",
+            "get_audit_log_author",
+            "_get_environment",
+            "_get_project"
+          ],
+          "properties": []
+        },
+        {
+          "name": "ChangeRequestGroupAssignment",
+          "startLine": 345,
+          "endLine": 357,
+          "methods": [
+            "notify_group"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "ChangeRequest",
+          "line": 57,
+          "isDefault": false
+        },
+        {
+          "name": "ChangeRequestApproval",
+          "line": 260,
+          "isDefault": false
+        },
+        {
+          "name": "ChangeRequestGroupAssignment",
+          "line": 345,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "approve",
+          "callee": "CannotApproveOwnChangeRequest",
+          "lineNumber": 110
+        },
+        {
+          "caller": "approve",
+          "callee": "ChangeRequestApproval.objects.update_or_create",
+          "lineNumber": 114
+        },
+        {
+          "caller": "approve",
+          "callee": "timezone.now",
+          "lineNumber": 115
+        },
+        {
+          "caller": "commit",
+          "callee": "ChangeRequestCommitService(self).commit",
+          "lineNumber": 119
+        },
+        {
+          "caller": "commit",
+          "callee": "ChangeRequestCommitService",
+          "lineNumber": 119
+        },
+        {
+          "caller": "is_approved",
+          "callee": "self.is_approved_via_environment",
+          "lineNumber": 153
+        },
+        {
+          "caller": "is_approved",
+          "callee": "self.is_approved_via_project",
+          "lineNumber": 154
+        },
+        {
+          "caller": "has_approvals",
+          "callee": "self.approvals.filter(approved_at__isnull=False).exists",
+          "lineNumber": 157
+        },
+        {
+          "caller": "has_approvals",
+          "callee": "self.approvals.filter",
+          "lineNumber": 157
+        },
+        {
+          "caller": "is_approved_via_project",
+          "callee": "self.approvals.filter(approved_at__isnull=False).count",
+          "lineNumber": 161
+        },
+        {
+          "caller": "is_approved_via_project",
+          "callee": "self.approvals.filter",
+          "lineNumber": 161
+        },
+        {
+          "caller": "is_approved_via_environment",
+          "callee": "self.approvals.filter(approved_at__isnull=False).count",
+          "lineNumber": 169
+        },
+        {
+          "caller": "is_approved_via_environment",
+          "callee": "self.approvals.filter",
+          "lineNumber": 169
+        },
+        {
+          "caller": "url",
+          "callee": "AttributeError",
+          "lineNumber": 181
+        },
+        {
+          "caller": "url",
+          "callee": "get_current_site_url",
+          "lineNumber": 184
+        },
+        {
+          "caller": "create_audit_log_for_related_feature_state",
+          "callee": "self.feature_states.all",
+          "lineNumber": 210
+        },
+        {
+          "caller": "create_audit_log_for_related_feature_state",
+          "callee": "create_feature_state_went_live_audit_log.delay",
+          "lineNumber": 212
+        },
+        {
+          "caller": "create_audit_log_for_related_feature_state",
+          "callee": "create_feature_state_updated_by_change_request_audit_log.delay",
+          "lineNumber": 217
+        },
+        {
+          "caller": "prevent_change_request_delete_if_committed",
+          "callee": "timezone.now",
+          "lineNumber": 229
+        },
+        {
+          "caller": "prevent_change_request_delete_if_committed",
+          "callee": "ChangeRequestDeletionError",
+          "lineNumber": 231
+        },
+        {
+          "caller": "live_from",
+          "callee": "self.feature_states.order_by(\"live_from\").first",
+          "lineNumber": 243
+        },
+        {
+          "caller": "live_from",
+          "callee": "self.feature_states.order_by",
+          "lineNumber": 243
+        },
+        {
+          "caller": "live_from",
+          "callee": "self.change_sets.order_by(\"live_from\").first",
+          "lineNumber": 247
+        },
+        {
+          "caller": "live_from",
+          "callee": "self.change_sets.order_by",
+          "lineNumber": 247
+        },
+        {
+          "caller": "live_from",
+          "callee": "self.environment_feature_versions.order_by(\"live_from\").first",
+          "lineNumber": 253
+        },
+        {
+          "caller": "live_from",
+          "callee": "self.environment_feature_versions.order_by",
+          "lineNumber": 253
+        },
+        {
+          "caller": "send_email_notification_to_assignee",
+          "callee": "send_mail",
+          "lineNumber": 284
+        },
+        {
+          "caller": "send_email_notification_to_assignee",
+          "callee": "render_to_string",
+          "lineNumber": 286
+        },
+        {
+          "caller": "send_email_notification_to_assignee",
+          "callee": "render_to_string",
+          "lineNumber": 291
+        },
+        {
+          "caller": "send_email_notification_to_author",
+          "callee": "send_mail",
+          "lineNumber": 306
+        },
+        {
+          "caller": "send_email_notification_to_author",
+          "callee": "render_to_string",
+          "lineNumber": 308
+        },
+        {
+          "caller": "send_email_notification_to_author",
+          "callee": "render_to_string",
+          "lineNumber": 314
+        },
+        {
+          "caller": "_get_project",
+          "callee": "self.change_request._get_project",
+          "lineNumber": 342
+        },
+        {
+          "caller": "notify_group",
+          "callee": "importlib.import_module",
+          "lineNumber": 354
+        },
+        {
+          "caller": "notify_group",
+          "callee": "workflows_tasks.notify_group_of_change_request_assignment.delay",
+          "lineNumber": 355
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 3,
+        "functionCount": 0,
+        "classCount": 3
+      }
+    },
+    {
+      "path": "segments/tasks.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 37,
+      "nonEmptyLines": 32,
+      "functions": [
+        {
+          "name": "delete_segment",
+          "startLine": 13,
+          "endLine": 14,
+          "params": [
+            "segment_id"
+          ]
+        },
+        {
+          "name": "create_segment_deleted_audit_log",
+          "startLine": 18,
+          "endLine": 37,
+          "params": [
+            "project_id",
+            "segment_name",
+            "segment_id",
+            "segment_uuid",
+            "user_id",
+            "master_api_key_id",
+            "created_date"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "delete_segment",
+          "line": 12,
+          "isDefault": false
+        },
+        {
+          "name": "create_segment_deleted_audit_log",
+          "line": 17,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "delete_segment",
+          "callee": "Segment.objects.get(pk=segment_id).delete",
+          "lineNumber": 14
+        },
+        {
+          "caller": "delete_segment",
+          "callee": "Segment.objects.get",
+          "lineNumber": 14
+        },
+        {
+          "caller": "create_segment_deleted_audit_log",
+          "callee": "AuditLog.objects.create",
+          "lineNumber": 27
+        },
+        {
+          "caller": "create_segment_deleted_audit_log",
+          "callee": "parse_datetime",
+          "lineNumber": 36
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 2,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,1143 @@
+{
+  "files": [
+    {
+      "path": "projects/code_references/constants.py",
+      "language": "python",
+      "sizeLines": 2,
+      "fileCategory": "code"
+    },
+    {
+      "path": "projects/code_references/models.py",
+      "language": "python",
+      "sizeLines": 75,
+      "fileCategory": "code"
+    },
+    {
+      "path": "projects/code_references/permissions.py",
+      "language": "python",
+      "sizeLines": 25,
+      "fileCategory": "code"
+    },
+    {
+      "path": "projects/code_references/serializers.py",
+      "language": "python",
+      "sizeLines": 61,
+      "fileCategory": "code"
+    },
+    {
+      "path": "projects/code_references/services.py",
+      "language": "python",
+      "sizeLines": 187,
+      "fileCategory": "code"
+    },
+    {
+      "path": "projects/code_references/types.py",
+      "language": "python",
+      "sizeLines": 56,
+      "fileCategory": "code"
+    },
+    {
+      "path": "projects/code_references/urls.py",
+      "language": "python",
+      "sizeLines": 18,
+      "fileCategory": "code"
+    },
+    {
+      "path": "projects/code_references/views.py",
+      "language": "python",
+      "sizeLines": 95,
+      "fileCategory": "code"
+    },
+    {
+      "path": "projects/exceptions.py",
+      "language": "python",
+      "sizeLines": 21,
+      "fileCategory": "code"
+    },
+    {
+      "path": "projects/managers.py",
+      "language": "python",
+      "sizeLines": 8,
+      "fileCategory": "code"
+    },
+    {
+      "path": "projects/models.py",
+      "language": "python",
+      "sizeLines": 265,
+      "fileCategory": "code"
+    },
+    {
+      "path": "projects/permissions.py",
+      "language": "python",
+      "sizeLines": 145,
+      "fileCategory": "code"
+    },
+    {
+      "path": "projects/serializers.py",
+      "language": "python",
+      "sizeLines": 169,
+      "fileCategory": "code"
+    },
+    {
+      "path": "projects/services.py",
+      "language": "python",
+      "sizeLines": 35,
+      "fileCategory": "code"
+    },
+    {
+      "path": "projects/tags/admin.py",
+      "language": "python",
+      "sizeLines": 14,
+      "fileCategory": "code"
+    },
+    {
+      "path": "projects/tags/models.py",
+      "language": "python",
+      "sizeLines": 42,
+      "fileCategory": "code"
+    },
+    {
+      "path": "projects/tags/permissions.py",
+      "language": "python",
+      "sizeLines": 29,
+      "fileCategory": "code"
+    },
+    {
+      "path": "projects/tags/serializers.py",
+      "language": "python",
+      "sizeLines": 27,
+      "fileCategory": "code"
+    },
+    {
+      "path": "projects/tags/views.py",
+      "language": "python",
+      "sizeLines": 59,
+      "fileCategory": "code"
+    },
+    {
+      "path": "projects/tasks.py",
+      "language": "python",
+      "sizeLines": 59,
+      "fileCategory": "code"
+    },
+    {
+      "path": "projects/urls.py",
+      "language": "python",
+      "sizeLines": 168,
+      "fileCategory": "code"
+    },
+    {
+      "path": "projects/views.py",
+      "language": "python",
+      "sizeLines": 274,
+      "fileCategory": "code"
+    }
+  ],
+  "batchImportData": {
+    "projects/code_references/constants.py": [],
+    "projects/code_references/models.py": [
+      "projects/code_references/types.py"
+    ],
+    "projects/code_references/permissions.py": [
+      "projects/models.py"
+    ],
+    "projects/code_references/serializers.py": [
+      "projects/code_references/constants.py",
+      "projects/code_references/types.py"
+    ],
+    "projects/code_references/services.py": [
+      "features/models.py",
+      "projects/code_references/models.py",
+      "projects/code_references/types.py",
+      "projects/models.py"
+    ],
+    "projects/code_references/types.py": [
+      "projects/models.py"
+    ],
+    "projects/code_references/urls.py": [
+      "projects/code_references/__init__.py",
+      "projects/code_references/views.py"
+    ],
+    "projects/code_references/views.py": [
+      "features/models.py",
+      "projects/code_references/permissions.py",
+      "projects/code_references/serializers.py",
+      "projects/code_references/services.py",
+      "projects/code_references/types.py",
+      "projects/models.py"
+    ],
+    "projects/exceptions.py": [],
+    "projects/managers.py": [],
+    "projects/models.py": [
+      "environments/dynamodb/__init__.py",
+      "organisations/models.py",
+      "permissions/models.py",
+      "projects/managers.py",
+      "projects/services.py",
+      "projects/tasks.py"
+    ],
+    "projects/permissions.py": [
+      "organisations/models.py",
+      "organisations/permissions/permissions.py",
+      "projects/models.py"
+    ],
+    "projects/serializers.py": [
+      "environments/dynamodb/migrator.py",
+      "environments/dynamodb/types.py",
+      "organisations/models.py",
+      "organisations/subscriptions/serializers/mixins.py",
+      "permissions/serializers.py",
+      "projects/models.py",
+      "users/serializers.py"
+    ],
+    "projects/services.py": [],
+    "projects/tags/admin.py": [
+      "projects/tags/models.py"
+    ],
+    "projects/tags/models.py": [
+      "projects/models.py"
+    ],
+    "projects/tags/permissions.py": [
+      "projects/models.py"
+    ],
+    "projects/tags/serializers.py": [
+      "projects/tags/models.py"
+    ],
+    "projects/tags/views.py": [
+      "projects/tags/models.py",
+      "projects/tags/permissions.py",
+      "projects/tags/serializers.py"
+    ],
+    "projects/tasks.py": [],
+    "projects/urls.py": [
+      "audit/views.py",
+      "features/feature_external_resources/views.py",
+      "features/feature_health/views.py",
+      "features/import_export/views.py",
+      "features/multivariate/views.py",
+      "features/views.py",
+      "metadata/views.py",
+      "projects/tags/views.py",
+      "projects/views.py",
+      "segments/views.py"
+    ],
+    "projects/views.py": [
+      "environments/dynamodb/migrator.py",
+      "environments/identities/models.py",
+      "environments/serializers.py",
+      "permissions/permissions_calculator.py",
+      "permissions/serializers.py",
+      "projects/exceptions.py",
+      "projects/models.py",
+      "projects/permissions.py",
+      "projects/serializers.py",
+      "users/models.py"
+    ]
+  },
+  "neighborMap": {
+    "projects/code_references/serializers.py": [
+      {
+        "path": "features/serializers.py",
+        "batchIndex": 5,
+        "symbols": [
+          "FeatureStateSerializerSmall",
+          "FeatureQuerySerializer",
+          "_FeatureOwnersField",
+          "_FeatureGroupOwnersField",
+          "CreateFeatureSerializer",
+          "FeatureSerializerWithMetadata",
+          "UpdateFeatureSerializerWithMetadata",
+          "ListFeatureSerializer",
+          "UpdateFeatureSerializer",
+          "FeatureSerializer",
+          "SDKFeatureSerializer",
+          "FeatureStateSerializerFull",
+          "FeatureOwnerInputSerializer",
+          "FeatureGroupOwnerInputSerializer",
+          "ProjectFeatureSerializer",
+          "SDKFeatureStateSerializer",
+          "SDKIdentityFeatureStateSerializer",
+          "FeatureStateSerializerBasic",
+          "FeatureStateSerializerWithIdentity",
+          "FeatureStateSerializerCreate",
+          "FeatureInfluxDataSerializer",
+          "FeatureEvaluationDataSerializer",
+          "GetInfluxDataQuerySerializer",
+          "GetUsageDataQuerySerializer",
+          "WritableNestedFeatureStateSerializer",
+          "SegmentAssociatedFeatureStateSerializer",
+          "AssociatedFeaturesQuerySerializer",
+          "SDKFeatureStatesQuerySerializer",
+          "EnvironmentFeatureStatesQuerySerializer",
+          "CustomCreateSegmentOverrideFeatureStateSerializer"
+        ]
+      }
+    ],
+    "projects/code_references/services.py": [
+      {
+        "path": "features/models.py",
+        "batchIndex": 8,
+        "symbols": [
+          "Feature",
+          "get_next_segment_priority",
+          "FeatureSegment",
+          "FeatureState",
+          "FeatureStateValue"
+        ]
+      },
+      {
+        "path": "features/views.py",
+        "batchIndex": 5,
+        "symbols": [
+          "get_feature_by_uuid",
+          "FeatureViewSet",
+          "BaseFeatureStateViewSet",
+          "EnvironmentFeatureStateViewSet",
+          "IdentityFeatureStateViewSet",
+          "SimpleFeatureStateViewSet",
+          "get_feature_state_by_uuid",
+          "SDKFeatureStates",
+          "get_multivariate_options",
+          "organisation_has_got_feature",
+          "create_segment_override"
+        ]
+      }
+    ],
+    "projects/code_references/urls.py": [
+      {
+        "path": "projects/code_references/__init__.py",
+        "batchIndex": 3,
+        "symbols": []
+      }
+    ],
+    "projects/code_references/views.py": [
+      {
+        "path": "features/models.py",
+        "batchIndex": 8,
+        "symbols": [
+          "Feature",
+          "get_next_segment_priority",
+          "FeatureSegment",
+          "FeatureState",
+          "FeatureStateValue"
+        ]
+      }
+    ],
+    "projects/models.py": [
+      {
+        "path": "environments/dynamodb/__init__.py",
+        "batchIndex": 11,
+        "symbols": []
+      },
+      {
+        "path": "organisations/models.py",
+        "batchIndex": 1,
+        "symbols": [
+          "OrganisationRole",
+          "Organisation",
+          "UserOrganisation",
+          "Subscription",
+          "OrganisationWebhook",
+          "OrganisationSubscriptionInformationCache",
+          "OrganisationAPIUsageNotification",
+          "OrganisationBreachedGracePeriod",
+          "APILimitAccessBlock",
+          "HubspotOrganisation",
+          "OrganisationAPIBilling"
+        ]
+      },
+      {
+        "path": "permissions/models.py",
+        "batchIndex": 3,
+        "symbols": [
+          "PermissionModel",
+          "AbstractBasePermissionModel"
+        ]
+      },
+      {
+        "path": "audit/models.py",
+        "batchIndex": 8,
+        "symbols": [
+          "AuditLog"
+        ]
+      },
+      {
+        "path": "audit/permissions.py",
+        "batchIndex": 1,
+        "symbols": [
+          "OrganisationAuditLogPermissions",
+          "ProjectAuditLogPermissions"
+        ]
+      },
+      {
+        "path": "environments/dynamodb/migrator.py",
+        "batchIndex": 3,
+        "symbols": [
+          "IdentityMigrator"
+        ]
+      },
+      {
+        "path": "environments/dynamodb/services.py",
+        "batchIndex": 11,
+        "symbols": [
+          "migrate_environments_to_v2",
+          "_iter_paginated_overrides"
+        ]
+      },
+      {
+        "path": "environments/models.py",
+        "batchIndex": 4,
+        "symbols": [
+          "Environment",
+          "Webhook",
+          "EnvironmentAPIKey"
+        ]
+      },
+      {
+        "path": "environments/permissions/permissions.py",
+        "batchIndex": 4,
+        "symbols": [
+          "EnvironmentKeyPermissions",
+          "EnvironmentPermissions",
+          "IdentityPermissions",
+          "NestedEnvironmentPermissions",
+          "TraitPersistencePermissions",
+          "EnvironmentAdminPermission"
+        ]
+      },
+      {
+        "path": "environments/serializers.py",
+        "batchIndex": 3,
+        "symbols": [
+          "EnvironmentSerializerFull",
+          "EnvironmentSerializerLight",
+          "EnvironmentSerializerWithMetadata",
+          "EnvironmentRetrieveSerializerWithMetadata",
+          "_BaseCreateUpdateEnvironmentSerializer",
+          "CreateEnvironmentSerializer",
+          "UpdateEnvironmentSerializer",
+          "CloneEnvironmentSerializer",
+          "WebhookSerializer",
+          "EnvironmentAPIKeySerializer"
+        ]
+      },
+      {
+        "path": "environments/views.py",
+        "batchIndex": 5,
+        "symbols": [
+          "EnvironmentViewSet",
+          "NestedEnvironmentViewSet",
+          "WebhookViewSet",
+          "EnvironmentAPIKeyViewSet",
+          "EnvironmentMetricsViewSet"
+        ]
+      },
+      {
+        "path": "features/feature_health/views.py",
+        "batchIndex": 6,
+        "symbols": [
+          "FeatureHealthEventViewSet",
+          "FeatureHealthProviderViewSet",
+          "feature_health_webhook"
+        ]
+      },
+      {
+        "path": "features/import_export/mappers.py",
+        "batchIndex": 13,
+        "symbols": [
+          "map_feature_export_data_to_feature"
+        ]
+      },
+      {
+        "path": "features/import_export/permissions.py",
+        "batchIndex": 13,
+        "symbols": [
+          "FeatureImportPermissions",
+          "CreateFeatureExportPermissions",
+          "DownloadFeatureExportPermissions",
+          "FeatureExportListPermissions",
+          "FeatureImportListPermissions"
+        ]
+      },
+      {
+        "path": "features/models.py",
+        "batchIndex": 8,
+        "symbols": [
+          "Feature",
+          "get_next_segment_priority",
+          "FeatureSegment",
+          "FeatureState",
+          "FeatureStateValue"
+        ]
+      },
+      {
+        "path": "features/permissions.py",
+        "batchIndex": 3,
+        "symbols": [
+          "FeaturePermissions",
+          "FeatureStatePermissions",
+          "EnvironmentFeatureStatePermissions",
+          "IdentityFeatureStatePermissions",
+          "CreateSegmentOverridePermissions",
+          "FeatureExternalResourcePermissions"
+        ]
+      },
+      {
+        "path": "features/release_pipelines/core/models.py",
+        "batchIndex": 9,
+        "symbols": [
+          "StageTriggerType",
+          "StageActionType",
+          "ReleasePipeline",
+          "PipelineStage",
+          "PipelineStageTrigger",
+          "PipelineStageAction",
+          "PhasedRolloutState"
+        ]
+      },
+      {
+        "path": "features/serializers.py",
+        "batchIndex": 5,
+        "symbols": [
+          "FeatureStateSerializerSmall",
+          "FeatureQuerySerializer",
+          "_FeatureOwnersField",
+          "_FeatureGroupOwnersField",
+          "CreateFeatureSerializer",
+          "FeatureSerializerWithMetadata",
+          "UpdateFeatureSerializerWithMetadata",
+          "ListFeatureSerializer",
+          "UpdateFeatureSerializer",
+          "FeatureSerializer",
+          "SDKFeatureSerializer",
+          "FeatureStateSerializerFull",
+          "FeatureOwnerInputSerializer",
+          "FeatureGroupOwnerInputSerializer",
+          "ProjectFeatureSerializer",
+          "SDKFeatureStateSerializer",
+          "SDKIdentityFeatureStateSerializer",
+          "FeatureStateSerializerBasic",
+          "FeatureStateSerializerWithIdentity",
+          "FeatureStateSerializerCreate",
+          "FeatureInfluxDataSerializer",
+          "FeatureEvaluationDataSerializer",
+          "GetInfluxDataQuerySerializer",
+          "GetUsageDataQuerySerializer",
+          "WritableNestedFeatureStateSerializer",
+          "SegmentAssociatedFeatureStateSerializer",
+          "AssociatedFeaturesQuerySerializer",
+          "SDKFeatureStatesQuerySerializer",
+          "EnvironmentFeatureStatesQuerySerializer",
+          "CustomCreateSegmentOverrideFeatureStateSerializer"
+        ]
+      },
+      {
+        "path": "features/views.py",
+        "batchIndex": 5,
+        "symbols": [
+          "get_feature_by_uuid",
+          "FeatureViewSet",
+          "BaseFeatureStateViewSet",
+          "EnvironmentFeatureStateViewSet",
+          "IdentityFeatureStateViewSet",
+          "SimpleFeatureStateViewSet",
+          "get_feature_state_by_uuid",
+          "SDKFeatureStates",
+          "get_multivariate_options",
+          "organisation_has_got_feature",
+          "create_segment_override"
+        ]
+      },
+      {
+        "path": "metadata/permissions.py",
+        "batchIndex": 3,
+        "symbols": [
+          "MetadataFieldPermissions",
+          "MetadataModelFieldPermissions"
+        ]
+      },
+      {
+        "path": "metadata/serializers.py",
+        "batchIndex": 3,
+        "symbols": [
+          "MetadataFieldQuerySerializer",
+          "ProjectMetadataFieldQuerySerializer",
+          "SupportedRequiredForModelQuerySerializer",
+          "MetadataModelFieldQuerySerializer",
+          "MetadataModelFieldRequirementSerializer",
+          "MetadataModelFieldNestedSerializer",
+          "MetadataFieldSerializer",
+          "MetaDataModelFieldSerializer",
+          "ContentTypeSerializer",
+          "MetadataSerializer",
+          "MetadataSerializerMixin"
+        ]
+      },
+      {
+        "path": "organisations/admin.py",
+        "batchIndex": 3,
+        "symbols": [
+          "ProjectInline",
+          "SubscriptionInline",
+          "UserOrganisationInline",
+          "OrganisationSubscriptionInformationCacheInline",
+          "OrganisationAdmin"
+        ]
+      },
+      {
+        "path": "permissions/permission_service.py",
+        "batchIndex": 2,
+        "symbols": [
+          "is_user_organisation_admin",
+          "is_user_project_admin",
+          "is_user_environment_admin",
+          "is_master_api_key_project_admin",
+          "is_master_api_key_environment_admin",
+          "get_permitted_projects_for_user",
+          "get_permitted_projects_for_master_api_key",
+          "get_permitted_environments_for_user",
+          "get_permitted_environments_for_master_api_key",
+          "user_has_organisation_permission",
+          "master_api_key_has_organisation_permission",
+          "_is_user_object_admin",
+          "get_base_permission_filter",
+          "get_object_id_from_base_permission_filter",
+          "get_user_permission_filter",
+          "get_group_permission_filter"
+        ]
+      },
+      {
+        "path": "permissions/permissions_calculator.py",
+        "batchIndex": 2,
+        "symbols": [
+          "_PermissionDataBase",
+          "GroupData",
+          "RoleData",
+          "RolePermissionData",
+          "_GroupPermissionBase",
+          "UserPermissionData",
+          "GroupPermissionData",
+          "PermissionDerivedFromData",
+          "DetailedPermissionsData",
+          "UserDetailedPermissionsData",
+          "PermissionData",
+          "_UserDetailedPermissionBuilder",
+          "get_organisation_permission_data",
+          "get_project_permission_data",
+          "get_environment_permission_data",
+          "get_user_permission_data",
+          "get_groups_permission_data",
+          "_OrganisationPermissionService",
+          "_ProjectPermissionService",
+          "_EnvironmentPermissionService"
+        ]
+      },
+      {
+        "path": "permissions/rbac_wrapper.py",
+        "batchIndex": 2,
+        "symbols": [
+          "is_master_api_key_object_admin",
+          "get_permitted_projects_for_master_api_key_using_roles",
+          "get_permitted_environments_for_master_api_key_using_roles",
+          "master_api_key_has_organisation_permission_using_roles"
+        ]
+      },
+      {
+        "path": "projects/admin.py",
+        "batchIndex": 3,
+        "symbols": [
+          "EnvironmentInline",
+          "FeatureInline",
+          "SegmentInline",
+          "TagInline",
+          "ProjectAdmin"
+        ]
+      },
+      {
+        "path": "projects/management/commands/createinitialproject.py",
+        "batchIndex": 2,
+        "symbols": [
+          "Command"
+        ]
+      },
+      {
+        "path": "segment_membership/services.py",
+        "batchIndex": 12,
+        "symbols": [
+          "is_membership_enabled",
+          "enqueue_membership_refresh",
+          "open_clickhouse_cursor",
+          "get_projects_to_process",
+          "compute_segment_counts_for_project"
+        ]
+      },
+      {
+        "path": "segment_membership/tasks.py",
+        "batchIndex": 12,
+        "symbols": [
+          "backfill_identities_to_clickhouse",
+          "refresh_project_segment_counts"
+        ]
+      },
+      {
+        "path": "segments/models.py",
+        "batchIndex": 12,
+        "symbols": [
+          "SegmentManager",
+          "LiveSegmentManager",
+          "ConfiguredOrderManager",
+          "SegmentRuleManager",
+          "SegmentConditionManager",
+          "Segment",
+          "SegmentRule",
+          "Condition",
+          "WhitelistedSegment"
+        ]
+      },
+      {
+        "path": "segments/permissions.py",
+        "batchIndex": 12,
+        "symbols": [
+          "SegmentPermissions"
+        ]
+      },
+      {
+        "path": "segments/serializers.py",
+        "batchIndex": 12,
+        "symbols": [
+          "SegmentMembershipCountSerializer",
+          "ConditionSerializer",
+          "_BaseSegmentRuleSerializer",
+          "_NestedSegmentRuleSerializer",
+          "SegmentRuleSerializer",
+          "SegmentSerializer",
+          "SegmentSerializerBasic",
+          "SegmentListQuerySerializer",
+          "CloneSegmentSerializer"
+        ]
+      },
+      {
+        "path": "segments/views.py",
+        "batchIndex": 12,
+        "symbols": [
+          "SegmentViewSet",
+          "get_segment_by_uuid"
+        ]
+      },
+      {
+        "path": "users/abc.py",
+        "batchIndex": 2,
+        "symbols": [
+          "UserABC"
+        ]
+      },
+      {
+        "path": "users/models.py",
+        "batchIndex": 2,
+        "symbols": [
+          "UTMDataModel",
+          "SignUpType",
+          "UserManager",
+          "FFAdminUser",
+          "UserPermissionGroupMembership",
+          "UserPermissionGroup",
+          "HubspotLead",
+          "HubspotTrackerUTMData",
+          "HubspotTracker"
+        ]
+      }
+    ],
+    "projects/permissions.py": [
+      {
+        "path": "organisations/models.py",
+        "batchIndex": 1,
+        "symbols": [
+          "OrganisationRole",
+          "Organisation",
+          "UserOrganisation",
+          "Subscription",
+          "OrganisationWebhook",
+          "OrganisationSubscriptionInformationCache",
+          "OrganisationAPIUsageNotification",
+          "OrganisationBreachedGracePeriod",
+          "APILimitAccessBlock",
+          "HubspotOrganisation",
+          "OrganisationAPIBilling"
+        ]
+      },
+      {
+        "path": "organisations/permissions/permissions.py",
+        "batchIndex": 2,
+        "symbols": [
+          "NestedOrganisationEntityPermission",
+          "HasOrganisationPermission",
+          "OrganisationPermission",
+          "OrganisationUsersPermission",
+          "UserPermissionGroupPermission",
+          "NestedIsOrganisationAdminPermission",
+          "GithubIsAdminOrganisation",
+          "OrganisationAPIUsageNotificationPermission"
+        ]
+      },
+      {
+        "path": "features/feature_health/views.py",
+        "batchIndex": 6,
+        "symbols": [
+          "FeatureHealthEventViewSet",
+          "FeatureHealthProviderViewSet",
+          "feature_health_webhook"
+        ]
+      },
+      {
+        "path": "features/multivariate/views.py",
+        "batchIndex": 3,
+        "symbols": [
+          "MultivariateFeatureOptionViewSet",
+          "get_mv_feature_option_by_uuid"
+        ]
+      },
+      {
+        "path": "metadata/views.py",
+        "batchIndex": 3,
+        "symbols": [
+          "MetadataFieldViewSet",
+          "MetaDataModelFieldViewSet",
+          "ProjectMetadataFieldViewSet"
+        ]
+      }
+    ],
+    "projects/serializers.py": [
+      {
+        "path": "environments/dynamodb/migrator.py",
+        "batchIndex": 3,
+        "symbols": [
+          "IdentityMigrator"
+        ]
+      },
+      {
+        "path": "environments/dynamodb/types.py",
+        "batchIndex": 11,
+        "symbols": [
+          "ProjectIdentityMigrationStatus",
+          "DynamoProjectMetadata",
+          "IdentityOverrideV2",
+          "IdentityOverridesV2Changeset",
+          "EdgeV2MigrationResult"
+        ]
+      },
+      {
+        "path": "organisations/models.py",
+        "batchIndex": 1,
+        "symbols": [
+          "OrganisationRole",
+          "Organisation",
+          "UserOrganisation",
+          "Subscription",
+          "OrganisationWebhook",
+          "OrganisationSubscriptionInformationCache",
+          "OrganisationAPIUsageNotification",
+          "OrganisationBreachedGracePeriod",
+          "APILimitAccessBlock",
+          "HubspotOrganisation",
+          "OrganisationAPIBilling"
+        ]
+      },
+      {
+        "path": "organisations/subscriptions/serializers/mixins.py",
+        "batchIndex": 3,
+        "symbols": [
+          "ReadOnlyIfNotValidPlanMixin"
+        ]
+      },
+      {
+        "path": "permissions/serializers.py",
+        "batchIndex": 3,
+        "symbols": [
+          "PermissionModelSerializer",
+          "CreateUpdateUserPermissionSerializerABC",
+          "TagBasedPermissionSerializer",
+          "UserObjectPermissionsSerializer",
+          "GroupSerializer",
+          "PermissionRoleSerializer",
+          "DerivedFromSerializer",
+          "BaseDetailedPermissionsSerializer",
+          "DetailedPermissionsSerializer",
+          "UserDetailedPermissionsSerializer"
+        ]
+      },
+      {
+        "path": "users/serializers.py",
+        "batchIndex": 2,
+        "symbols": [
+          "UserIdSerializer",
+          "UserFullSerializer",
+          "UserLoginSerializer",
+          "UserListSerializer",
+          "UserIdsSerializer",
+          "UserPermissionGroupSerializer",
+          "UserPermissionGroupSummarySerializer",
+          "ListUserPermissionGroupMembershipSerializer",
+          "ListUserPermissionGroupSerializer",
+          "UserPermissionGroupMembershipSerializer",
+          "UserPermissionGroupSerializerDetail",
+          "OnboardingToolsSerializer",
+          "OnboardingTaskSerializer",
+          "PatchOnboardingSerializer",
+          "OnboardingResponseTypeSerializer",
+          "CustomCurrentUserSerializer",
+          "ListUsersQuerySerializer",
+          "UTMDataSerializer"
+        ]
+      },
+      {
+        "path": "audit/serializers.py",
+        "batchIndex": 3,
+        "symbols": [
+          "AuditLogListSerializer",
+          "AuditLogChangeDetailsSerializer",
+          "AuditLogRetrieveSerializer",
+          "AuditLogsQueryParamSerializer"
+        ]
+      },
+      {
+        "path": "environments/serializers.py",
+        "batchIndex": 3,
+        "symbols": [
+          "EnvironmentSerializerFull",
+          "EnvironmentSerializerLight",
+          "EnvironmentSerializerWithMetadata",
+          "EnvironmentRetrieveSerializerWithMetadata",
+          "_BaseCreateUpdateEnvironmentSerializer",
+          "CreateEnvironmentSerializer",
+          "UpdateEnvironmentSerializer",
+          "CloneEnvironmentSerializer",
+          "WebhookSerializer",
+          "EnvironmentAPIKeySerializer"
+        ]
+      },
+      {
+        "path": "organisations/views.py",
+        "batchIndex": 2,
+        "symbols": [
+          "OrganisationViewSet",
+          "chargebee_webhook",
+          "OrganisationWebhookViewSet",
+          "OrganisationAPIUsageNotificationView"
+        ]
+      }
+    ],
+    "projects/tags/models.py": [
+      {
+        "path": "features/feature_external_resources/models.py",
+        "batchIndex": 3,
+        "symbols": [
+          "ResourceType",
+          "FeatureExternalResource"
+        ]
+      },
+      {
+        "path": "features/feature_health/services.py",
+        "batchIndex": 6,
+        "symbols": [
+          "get_provider_response",
+          "create_feature_health_events_from_provider",
+          "update_feature_unhealthy_tag",
+          "dismiss_feature_health_event"
+        ]
+      },
+      {
+        "path": "features/models.py",
+        "batchIndex": 8,
+        "symbols": [
+          "Feature",
+          "get_next_segment_priority",
+          "FeatureSegment",
+          "FeatureState",
+          "FeatureStateValue"
+        ]
+      },
+      {
+        "path": "projects/admin.py",
+        "batchIndex": 3,
+        "symbols": [
+          "EnvironmentInline",
+          "FeatureInline",
+          "SegmentInline",
+          "TagInline",
+          "ProjectAdmin"
+        ]
+      }
+    ],
+    "projects/urls.py": [
+      {
+        "path": "audit/views.py",
+        "batchIndex": 1,
+        "symbols": [
+          "_BaseAuditLogViewSet",
+          "AllAuditLogViewSet",
+          "OrganisationAuditLogViewSet",
+          "ProjectAuditLogViewSet"
+        ]
+      },
+      {
+        "path": "features/feature_external_resources/views.py",
+        "batchIndex": 3,
+        "symbols": [
+          "FeatureExternalResourceViewSet"
+        ]
+      },
+      {
+        "path": "features/feature_health/views.py",
+        "batchIndex": 6,
+        "symbols": [
+          "FeatureHealthEventViewSet",
+          "FeatureHealthProviderViewSet",
+          "feature_health_webhook"
+        ]
+      },
+      {
+        "path": "features/import_export/views.py",
+        "batchIndex": 13,
+        "symbols": [
+          "create_feature_export",
+          "feature_import",
+          "download_feature_export",
+          "download_flagsmith_on_flagsmith",
+          "FeatureExportListView",
+          "FeatureImportListView"
+        ]
+      },
+      {
+        "path": "features/multivariate/views.py",
+        "batchIndex": 3,
+        "symbols": [
+          "MultivariateFeatureOptionViewSet",
+          "get_mv_feature_option_by_uuid"
+        ]
+      },
+      {
+        "path": "features/views.py",
+        "batchIndex": 5,
+        "symbols": [
+          "get_feature_by_uuid",
+          "FeatureViewSet",
+          "BaseFeatureStateViewSet",
+          "EnvironmentFeatureStateViewSet",
+          "IdentityFeatureStateViewSet",
+          "SimpleFeatureStateViewSet",
+          "get_feature_state_by_uuid",
+          "SDKFeatureStates",
+          "get_multivariate_options",
+          "organisation_has_got_feature",
+          "create_segment_override"
+        ]
+      },
+      {
+        "path": "metadata/views.py",
+        "batchIndex": 3,
+        "symbols": [
+          "MetadataFieldViewSet",
+          "MetaDataModelFieldViewSet",
+          "ProjectMetadataFieldViewSet"
+        ]
+      },
+      {
+        "path": "segments/views.py",
+        "batchIndex": 12,
+        "symbols": [
+          "SegmentViewSet",
+          "get_segment_by_uuid"
+        ]
+      }
+    ],
+    "projects/views.py": [
+      {
+        "path": "environments/dynamodb/migrator.py",
+        "batchIndex": 3,
+        "symbols": [
+          "IdentityMigrator"
+        ]
+      },
+      {
+        "path": "environments/identities/models.py",
+        "batchIndex": 4,
+        "symbols": [
+          "Identity"
+        ]
+      },
+      {
+        "path": "environments/serializers.py",
+        "batchIndex": 3,
+        "symbols": [
+          "EnvironmentSerializerFull",
+          "EnvironmentSerializerLight",
+          "EnvironmentSerializerWithMetadata",
+          "EnvironmentRetrieveSerializerWithMetadata",
+          "_BaseCreateUpdateEnvironmentSerializer",
+          "CreateEnvironmentSerializer",
+          "UpdateEnvironmentSerializer",
+          "CloneEnvironmentSerializer",
+          "WebhookSerializer",
+          "EnvironmentAPIKeySerializer"
+        ]
+      },
+      {
+        "path": "permissions/permissions_calculator.py",
+        "batchIndex": 2,
+        "symbols": [
+          "_PermissionDataBase",
+          "GroupData",
+          "RoleData",
+          "RolePermissionData",
+          "_GroupPermissionBase",
+          "UserPermissionData",
+          "GroupPermissionData",
+          "PermissionDerivedFromData",
+          "DetailedPermissionsData",
+          "UserDetailedPermissionsData",
+          "PermissionData",
+          "_UserDetailedPermissionBuilder",
+          "get_organisation_permission_data",
+          "get_project_permission_data",
+          "get_environment_permission_data",
+          "get_user_permission_data",
+          "get_groups_permission_data",
+          "_OrganisationPermissionService",
+          "_ProjectPermissionService",
+          "_EnvironmentPermissionService"
+        ]
+      },
+      {
+        "path": "permissions/serializers.py",
+        "batchIndex": 3,
+        "symbols": [
+          "PermissionModelSerializer",
+          "CreateUpdateUserPermissionSerializerABC",
+          "TagBasedPermissionSerializer",
+          "UserObjectPermissionsSerializer",
+          "GroupSerializer",
+          "PermissionRoleSerializer",
+          "DerivedFromSerializer",
+          "BaseDetailedPermissionsSerializer",
+          "DetailedPermissionsSerializer",
+          "UserDetailedPermissionsSerializer"
+        ]
+      },
+      {
+        "path": "users/models.py",
+        "batchIndex": 2,
+        "symbols": [
+          "UTMDataModel",
+          "SignUpType",
+          "UserManager",
+          "FFAdminUser",
+          "UserPermissionGroupMembership",
+          "UserPermissionGroup",
+          "HubspotLead",
+          "HubspotTrackerUTMData",
+          "HubspotTracker"
+        ]
+      }
+    ]
+  }
+}

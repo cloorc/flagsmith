@@ -1,0 +1,932 @@
+{
+  "nodes": [
+    {
+      "id": "file:audit/serializers.py",
+      "type": "file",
+      "name": "serializers.py",
+      "filePath": "audit/serializers.py",
+      "summary": "DRF serializers for the audit log, exposing list, retrieve, change-detail, and query-param representations of AuditLog records.",
+      "tags": [
+        "serialization",
+        "audit",
+        "drf",
+        "django"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:audit/serializers.py:AuditLogRetrieveSerializer",
+      "type": "class",
+      "name": "AuditLogRetrieveSerializer",
+      "filePath": "audit/serializers.py",
+      "lineRange": [
+        38,
+        94
+      ],
+      "summary": "Detailed audit-log serializer that computes change details and a CREATE/DELETE/UPDATE change type from the underlying history record.",
+      "tags": [
+        "serialization",
+        "audit",
+        "drf"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:audit/types.py",
+      "type": "file",
+      "name": "types.py",
+      "filePath": "audit/types.py",
+      "summary": "Defines the AuditLogChangeDetail typed structure (field, old, new) used to represent a single field-level change in an audit entry.",
+      "tags": [
+        "type-definition",
+        "audit",
+        "dataclasses"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:environments/dynamodb/migrator.py",
+      "type": "file",
+      "name": "migrator.py",
+      "filePath": "environments/dynamodb/migrator.py",
+      "summary": "Implements IdentityMigrator, which migrates a project's identities, environments, and API keys from the relational DB into DynamoDB (Edge) in chunked batches.",
+      "tags": [
+        "service",
+        "migration",
+        "dynamodb",
+        "edge"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Uses chunked iteration with select_related/prefetch_related Django querysets to bound memory while streaming identities into DynamoDB wrappers."
+    },
+    {
+      "id": "class:environments/dynamodb/migrator.py:IdentityMigrator",
+      "type": "class",
+      "name": "IdentityMigrator",
+      "filePath": "environments/dynamodb/migrator.py",
+      "lineRange": [
+        20,
+        113
+      ],
+      "summary": "Orchestrates the project's Edge (DynamoDB) migration: tracks migration status, validates whether migration can proceed, triggers it, and writes environments, API keys, and identities to DynamoDB wrappers.",
+      "tags": [
+        "service",
+        "migration",
+        "dynamodb",
+        "edge"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:environments/management/commands/migrate_to_edge.py",
+      "type": "file",
+      "name": "migrate_to_edge.py",
+      "filePath": "environments/management/commands/migrate_to_edge.py",
+      "summary": "Django management command that runs the Edge (DynamoDB) identity migration for a given project via IdentityMigrator.",
+      "tags": [
+        "entry-point",
+        "management-command",
+        "migration",
+        "django"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:environments/management/commands/migrate_to_edge.py:Command",
+      "type": "class",
+      "name": "Command",
+      "filePath": "environments/management/commands/migrate_to_edge.py",
+      "lineRange": [
+        6,
+        21
+      ],
+      "summary": "Management command class parsing a project-id argument and invoking IdentityMigrator.migrate, raising CommandError when migration is not allowed.",
+      "tags": [
+        "management-command",
+        "migration",
+        "entry-point"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:environments/serializers.py",
+      "type": "file",
+      "name": "serializers.py",
+      "filePath": "environments/serializers.py",
+      "summary": "DRF serializers for environments covering full/light read views, metadata-aware create/update, cloning, webhooks, and API keys.",
+      "tags": [
+        "serialization",
+        "environments",
+        "drf",
+        "metadata"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:environments/serializers.py:EnvironmentSerializerWithMetadata",
+      "type": "class",
+      "name": "EnvironmentSerializerWithMetadata",
+      "filePath": "environments/serializers.py",
+      "lineRange": [
+        78,
+        109
+      ],
+      "summary": "Environment serializer mixing in metadata validation and persistence, overriding validate/create/update to enforce required metadata fields.",
+      "tags": [
+        "serialization",
+        "environments",
+        "metadata",
+        "validation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:environments/serializers.py:CloneEnvironmentSerializer",
+      "type": "class",
+      "name": "CloneEnvironmentSerializer",
+      "filePath": "environments/serializers.py",
+      "lineRange": [
+        164,
+        185
+      ],
+      "summary": "Serializer that clones an existing environment into a new one, copying feature states and optionally overrides based on input flags.",
+      "tags": [
+        "serialization",
+        "environments",
+        "clone"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:features/feature_external_resources/models.py",
+      "type": "file",
+      "name": "models.py",
+      "filePath": "features/feature_external_resources/models.py",
+      "summary": "Defines FeatureExternalResource linking a feature to an external resource (e.g. GitHub issue/PR) and notifies GitHub on link/unlink, applying tags and dispatching webhook tasks.",
+      "tags": [
+        "data-model",
+        "github",
+        "integration",
+        "django"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:features/feature_external_resources/models.py:FeatureExternalResource",
+      "type": "class",
+      "name": "FeatureExternalResource",
+      "filePath": "features/feature_external_resources/models.py",
+      "lineRange": [
+        55,
+        160
+      ],
+      "summary": "Model associating a feature with an external GitHub resource; on link it tags the feature and notifies GitHub via task dispatch, and on unlink it sends an unlink notification.",
+      "tags": [
+        "data-model",
+        "github",
+        "integration",
+        "event-handler"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:features/feature_external_resources/serializers.py",
+      "type": "file",
+      "name": "serializers.py",
+      "filePath": "features/feature_external_resources/serializers.py",
+      "summary": "Serializer for FeatureExternalResource that JSON-encodes metadata on write and decodes it for representation, hiding internal fields.",
+      "tags": [
+        "serialization",
+        "github",
+        "drf"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:features/feature_external_resources/serializers.py:FeatureExternalResourceSerializer",
+      "type": "class",
+      "name": "FeatureExternalResourceSerializer",
+      "filePath": "features/feature_external_resources/serializers.py",
+      "lineRange": [
+        8,
+        32
+      ],
+      "summary": "DRF model serializer that validates and serialises external-resource metadata, converting between stored JSON strings and structured representations.",
+      "tags": [
+        "serialization",
+        "validation",
+        "drf"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:features/feature_external_resources/views.py",
+      "type": "file",
+      "name": "views.py",
+      "filePath": "features/feature_external_resources/views.py",
+      "summary": "ViewSet managing CRUD of feature external resources, enriching list responses with GitHub issue/PR title and state and dispatching VCS webhooks on create/destroy.",
+      "tags": [
+        "api-handler",
+        "github",
+        "integration",
+        "drf"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:features/feature_external_resources/views.py:FeatureExternalResourceViewSet",
+      "type": "class",
+      "name": "FeatureExternalResourceViewSet",
+      "filePath": "features/feature_external_resources/views.py",
+      "lineRange": [
+        34,
+        155
+      ],
+      "summary": "DRF ModelViewSet for feature external resources: scopes the queryset to the feature, augments listings with live GitHub metadata, and triggers VCS notifications on mutations.",
+      "tags": [
+        "api-handler",
+        "github",
+        "integration",
+        "drf"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:features/multivariate/urls.py",
+      "type": "file",
+      "name": "urls.py",
+      "filePath": "features/multivariate/urls.py",
+      "summary": "URL routing for the multivariate feature options API, wiring the router to MultivariateFeatureOptionViewSet.",
+      "tags": [
+        "routing",
+        "urls",
+        "multivariate",
+        "django"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:features/multivariate/views.py",
+      "type": "file",
+      "name": "views.py",
+      "filePath": "features/multivariate/views.py",
+      "summary": "ViewSet and lookup helper for multivariate feature options, scoping options to a feature and resolving an option by UUID against the user's permitted projects.",
+      "tags": [
+        "api-handler",
+        "multivariate",
+        "drf"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:features/multivariate/views.py:MultivariateFeatureOptionViewSet",
+      "type": "class",
+      "name": "MultivariateFeatureOptionViewSet",
+      "filePath": "features/multivariate/views.py",
+      "lineRange": [
+        51,
+        80
+      ],
+      "summary": "DRF ViewSet for managing a feature's multivariate options, applying nested project permissions and scoping the queryset to the parent feature.",
+      "tags": [
+        "api-handler",
+        "multivariate",
+        "drf"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:features/multivariate/views.py:get_mv_feature_option_by_uuid",
+      "type": "function",
+      "name": "get_mv_feature_option_by_uuid",
+      "filePath": "features/multivariate/views.py",
+      "lineRange": [
+        85,
+        92
+      ],
+      "summary": "API view that returns a single multivariate feature option resolved by UUID, restricted to the requesting user's permitted projects.",
+      "tags": [
+        "api-handler",
+        "multivariate",
+        "lookup"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:features/permissions.py",
+      "type": "file",
+      "name": "permissions.py",
+      "filePath": "features/permissions.py",
+      "summary": "DRF permission classes governing access to features, feature states, environment feature states, segment overrides, and external resources, with tag-scoped and admin checks.",
+      "tags": [
+        "permissions",
+        "security",
+        "features",
+        "drf"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:features/permissions.py:FeaturePermissions",
+      "type": "class",
+      "name": "FeaturePermissions",
+      "filePath": "features/permissions.py",
+      "lineRange": [
+        42,
+        85
+      ],
+      "summary": "Permission class for feature endpoints, mapping actions to project permissions and enforcing tag-scoped and project-admin access on objects.",
+      "tags": [
+        "permissions",
+        "security",
+        "features"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:features/permissions.py:FeatureStatePermissions",
+      "type": "class",
+      "name": "FeatureStatePermissions",
+      "filePath": "features/permissions.py",
+      "lineRange": [
+        88,
+        151
+      ],
+      "summary": "Permission class for feature-state endpoints resolving environment and feature context to enforce environment-level, tag-scoped update permissions.",
+      "tags": [
+        "permissions",
+        "security",
+        "features"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:features/permissions.py:EnvironmentFeatureStatePermissions",
+      "type": "class",
+      "name": "EnvironmentFeatureStatePermissions",
+      "filePath": "features/permissions.py",
+      "lineRange": [
+        154,
+        198
+      ],
+      "summary": "Permission class for environment-scoped feature-state endpoints, mapping actions to environment permissions with feature tag scoping.",
+      "tags": [
+        "permissions",
+        "security",
+        "features"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:features/permissions.py:CreateSegmentOverridePermissions",
+      "type": "class",
+      "name": "CreateSegmentOverridePermissions",
+      "filePath": "features/permissions.py",
+      "lineRange": [
+        205,
+        217
+      ],
+      "summary": "Permission class authorising creation of segment-override feature states based on the user's environment permissions for the target environment.",
+      "tags": [
+        "permissions",
+        "security",
+        "segment-override"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:metadata/fields.py",
+      "type": "file",
+      "name": "fields.py",
+      "filePath": "metadata/fields.py",
+      "summary": "Custom Django model field GenericObjectID that serialises a content object's natural key and coerces incoming values to integers with validation.",
+      "tags": [
+        "data-model",
+        "django",
+        "field",
+        "metadata"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:audit/serializers.py",
+      "target": "class:audit/serializers.py:AuditLogRetrieveSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:audit/serializers.py",
+      "target": "class:audit/serializers.py:AuditLogRetrieveSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:audit/serializers.py",
+      "target": "file:audit/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:audit/serializers.py",
+      "target": "file:audit/types.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:audit/serializers.py",
+      "target": "file:environments/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:audit/serializers.py",
+      "target": "file:projects/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:audit/serializers.py",
+      "target": "file:users/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/dynamodb/migrator.py",
+      "target": "class:environments/dynamodb/migrator.py:IdentityMigrator",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:environments/dynamodb/migrator.py",
+      "target": "class:environments/dynamodb/migrator.py:IdentityMigrator",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/dynamodb/migrator.py",
+      "target": "file:environments/dynamodb/types.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/dynamodb/migrator.py",
+      "target": "file:environments/dynamodb/wrappers/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/dynamodb/migrator.py",
+      "target": "file:environments/identities/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/dynamodb/migrator.py",
+      "target": "file:environments/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/dynamodb/migrator.py",
+      "target": "file:features/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/dynamodb/migrator.py",
+      "target": "file:features/multivariate/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/dynamodb/migrator.py",
+      "target": "file:projects/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "class:environments/dynamodb/migrator.py:IdentityMigrator",
+      "target": "class:environments/identities/models.py:Identity",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:environments/dynamodb/migrator.py:IdentityMigrator",
+      "target": "class:projects/models.py:Project",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/management/commands/migrate_to_edge.py",
+      "target": "class:environments/management/commands/migrate_to_edge.py:Command",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:environments/management/commands/migrate_to_edge.py",
+      "target": "class:environments/management/commands/migrate_to_edge.py:Command",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/management/commands/migrate_to_edge.py",
+      "target": "file:environments/dynamodb/migrator.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "class:environments/management/commands/migrate_to_edge.py:Command",
+      "target": "class:environments/dynamodb/migrator.py:IdentityMigrator",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/serializers.py",
+      "target": "class:environments/serializers.py:EnvironmentSerializerWithMetadata",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:environments/serializers.py",
+      "target": "class:environments/serializers.py:EnvironmentSerializerWithMetadata",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/serializers.py",
+      "target": "class:environments/serializers.py:CloneEnvironmentSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:environments/serializers.py",
+      "target": "class:environments/serializers.py:CloneEnvironmentSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:environments/serializers.py",
+      "target": "file:environments/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/serializers.py",
+      "target": "file:features/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/serializers.py",
+      "target": "file:metadata/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/serializers.py",
+      "target": "file:organisations/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/serializers.py",
+      "target": "file:organisations/subscriptions/serializers/mixins.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/serializers.py",
+      "target": "file:projects/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:environments/serializers.py",
+      "target": "file:projects/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "class:environments/serializers.py:EnvironmentSerializerWithMetadata",
+      "target": "class:metadata/serializers.py:MetadataSerializerMixin",
+      "type": "inherits",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "file:features/feature_external_resources/models.py",
+      "target": "class:features/feature_external_resources/models.py:FeatureExternalResource",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:features/feature_external_resources/models.py",
+      "target": "class:features/feature_external_resources/models.py:FeatureExternalResource",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/feature_external_resources/models.py",
+      "target": "file:environments/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/feature_external_resources/models.py",
+      "target": "file:features/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/feature_external_resources/models.py",
+      "target": "file:organisations/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/feature_external_resources/models.py",
+      "target": "file:projects/tags/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "class:features/feature_external_resources/models.py:FeatureExternalResource",
+      "target": "class:features/models.py:Feature",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:features/feature_external_resources/models.py:FeatureExternalResource",
+      "target": "class:projects/tags/models.py:Tag",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/feature_external_resources/serializers.py",
+      "target": "class:features/feature_external_resources/serializers.py:FeatureExternalResourceSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:features/feature_external_resources/serializers.py",
+      "target": "class:features/feature_external_resources/serializers.py:FeatureExternalResourceSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/feature_external_resources/serializers.py",
+      "target": "file:features/feature_external_resources/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/feature_external_resources/views.py",
+      "target": "class:features/feature_external_resources/views.py:FeatureExternalResourceViewSet",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:features/feature_external_resources/views.py",
+      "target": "class:features/feature_external_resources/views.py:FeatureExternalResourceViewSet",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/feature_external_resources/views.py",
+      "target": "file:features/feature_external_resources/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/feature_external_resources/views.py",
+      "target": "file:features/feature_external_resources/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/feature_external_resources/views.py",
+      "target": "file:features/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/feature_external_resources/views.py",
+      "target": "file:features/permissions.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/feature_external_resources/views.py",
+      "target": "file:organisations/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "class:features/feature_external_resources/views.py:FeatureExternalResourceViewSet",
+      "target": "class:features/feature_external_resources/serializers.py:FeatureExternalResourceSerializer",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "class:features/feature_external_resources/views.py:FeatureExternalResourceViewSet",
+      "target": "class:features/feature_external_resources/models.py:FeatureExternalResource",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:features/multivariate/urls.py",
+      "target": "file:features/multivariate/views.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/multivariate/views.py",
+      "target": "class:features/multivariate/views.py:MultivariateFeatureOptionViewSet",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:features/multivariate/views.py",
+      "target": "class:features/multivariate/views.py:MultivariateFeatureOptionViewSet",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/multivariate/views.py",
+      "target": "function:features/multivariate/views.py:get_mv_feature_option_by_uuid",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:features/multivariate/views.py",
+      "target": "function:features/multivariate/views.py:get_mv_feature_option_by_uuid",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/multivariate/views.py",
+      "target": "file:features/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/multivariate/views.py",
+      "target": "file:features/multivariate/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/multivariate/views.py",
+      "target": "file:features/multivariate/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/multivariate/views.py",
+      "target": "file:projects/permissions.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/permissions.py",
+      "target": "class:features/permissions.py:FeaturePermissions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:features/permissions.py",
+      "target": "class:features/permissions.py:FeaturePermissions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/permissions.py",
+      "target": "class:features/permissions.py:FeatureStatePermissions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:features/permissions.py",
+      "target": "class:features/permissions.py:FeatureStatePermissions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/permissions.py",
+      "target": "class:features/permissions.py:EnvironmentFeatureStatePermissions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:features/permissions.py",
+      "target": "class:features/permissions.py:EnvironmentFeatureStatePermissions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/permissions.py",
+      "target": "class:features/permissions.py:CreateSegmentOverridePermissions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:features/permissions.py",
+      "target": "class:features/permissions.py:CreateSegmentOverridePermissions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:features/permissions.py",
+      "target": "file:environments/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/permissions.py",
+      "target": "file:features/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:features/permissions.py",
+      "target": "file:projects/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

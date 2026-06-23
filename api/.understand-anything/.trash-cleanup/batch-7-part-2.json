@@ -1,0 +1,919 @@
+{
+  "nodes": [
+    {
+      "id": "file:projects/permissions.py",
+      "type": "file",
+      "name": "permissions.py",
+      "filePath": "projects/permissions.py",
+      "summary": "DRF permission classes enforcing project-level and nested-resource authorization, including organisation project-count quota checks on creation.",
+      "tags": [
+        "permissions",
+        "authorization",
+        "projects"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:projects/serializers.py",
+      "type": "file",
+      "name": "serializers.py",
+      "filePath": "projects/serializers.py",
+      "summary": "DRF serializers for listing, creating, updating, and retrieving projects, plus user/group project-permission serializers, with migration-status and edge-identity derivation.",
+      "tags": [
+        "serialization",
+        "projects",
+        "drf-serializer",
+        "permissions"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:projects/services.py",
+      "type": "file",
+      "name": "services.py",
+      "filePath": "projects/services.py",
+      "summary": "Service helper that fetches a project's live segments from cache, populating it from the database on a miss.",
+      "tags": [
+        "service",
+        "caching",
+        "segments",
+        "business-logic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:projects/tags/admin.py",
+      "type": "file",
+      "name": "admin.py",
+      "filePath": "projects/tags/admin.py",
+      "summary": "Django admin registration and list configuration for the Tag model.",
+      "tags": [
+        "admin",
+        "tags",
+        "django-admin"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:projects/tags/models.py",
+      "type": "file",
+      "name": "models.py",
+      "filePath": "projects/tags/models.py",
+      "summary": "Defines the Tag model and TagType enum used to label features and other project entities.",
+      "tags": [
+        "data-model",
+        "tags",
+        "django-model"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:projects/tags/permissions.py",
+      "type": "file",
+      "name": "permissions.py",
+      "filePath": "projects/tags/permissions.py",
+      "summary": "DRF permission class gating tag management against the user's project-level permissions.",
+      "tags": [
+        "permissions",
+        "tags",
+        "authorization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:projects/tags/serializers.py",
+      "type": "file",
+      "name": "serializers.py",
+      "filePath": "projects/tags/serializers.py",
+      "summary": "DRF serializer for the Tag model with validation of tag fields.",
+      "tags": [
+        "serialization",
+        "tags",
+        "drf-serializer",
+        "validation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:projects/tags/views.py",
+      "type": "file",
+      "name": "views.py",
+      "filePath": "projects/tags/views.py",
+      "summary": "DRF viewset for CRUD operations on project tags, scoped to projects the requesting user is permitted to access.",
+      "tags": [
+        "api-handler",
+        "tags",
+        "drf-view"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:projects/tasks.py",
+      "type": "file",
+      "name": "tasks.py",
+      "filePath": "projects/tasks.py",
+      "summary": "Async tasks for writing project environments to DynamoDB, migrating environments to Edge V2, and cascade-deleting project child entities.",
+      "tags": [
+        "service",
+        "async-task",
+        "projects",
+        "edge-migration"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:projects/urls.py",
+      "type": "file",
+      "name": "urls.py",
+      "filePath": "projects/urls.py",
+      "summary": "Top-level URL routing for the projects app, mounting nested routers for features, segments, environments, metadata, audit logs, tags, and permissions.",
+      "tags": [
+        "routing",
+        "urls",
+        "projects",
+        "entry-point"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:projects/views.py",
+      "type": "file",
+      "name": "views.py",
+      "filePath": "projects/views.py",
+      "summary": "Core ProjectViewSet plus project-permission viewsets, handling project CRUD, environment listing, permission introspection, and Edge migration triggering.",
+      "tags": [
+        "api-handler",
+        "projects",
+        "drf-view",
+        "permissions"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:projects/permissions.py:ProjectPermissions",
+      "type": "class",
+      "name": "ProjectPermissions",
+      "filePath": "projects/permissions.py",
+      "lineRange": [
+        13,
+        64
+      ],
+      "summary": "Primary DRF permission class for the project viewset, enforcing organisation membership, project-count quotas on create, and admin/object-level checks.",
+      "tags": [
+        "permissions",
+        "authorization",
+        "projects"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:projects/permissions.py:IsProjectAdmin",
+      "type": "class",
+      "name": "IsProjectAdmin",
+      "filePath": "projects/permissions.py",
+      "lineRange": [
+        67,
+        99
+      ],
+      "summary": "DRF permission class requiring the requesting user to be an admin of the project resolved from the request or object.",
+      "tags": [
+        "permissions",
+        "authorization",
+        "projects"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:projects/permissions.py:NestedProjectPermissions",
+      "type": "class",
+      "name": "NestedProjectPermissions",
+      "filePath": "projects/permissions.py",
+      "lineRange": [
+        102,
+        145
+      ],
+      "summary": "DRF permission class for nested project resources, mapping viewset actions to required project permissions with an admin fallback.",
+      "tags": [
+        "permissions",
+        "authorization",
+        "projects"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:projects/serializers.py:ProjectListSerializer",
+      "type": "class",
+      "name": "ProjectListSerializer",
+      "filePath": "projects/serializers.py",
+      "lineRange": [
+        21,
+        71
+      ],
+      "summary": "Serializer for listing projects, deriving Edge identity-migration status and whether edge identities are in use.",
+      "tags": [
+        "serialization",
+        "projects",
+        "drf-serializer"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:projects/serializers.py:ProjectCreateSerializer",
+      "type": "class",
+      "name": "ProjectCreateSerializer",
+      "filePath": "projects/serializers.py",
+      "lineRange": [
+        74,
+        104
+      ],
+      "summary": "Serializer for creating projects, resolving the owning organisation's subscription from request data.",
+      "tags": [
+        "serialization",
+        "projects",
+        "drf-serializer"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:projects/serializers.py:ProjectRetrieveSerializer",
+      "type": "class",
+      "name": "ProjectRetrieveSerializer",
+      "filePath": "projects/serializers.py",
+      "lineRange": [
+        114,
+        143
+      ],
+      "summary": "Serializer for retrieving a single project, including computed total feature and segment counts.",
+      "tags": [
+        "serialization",
+        "projects",
+        "drf-serializer"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:projects/services.py:get_project_segments_from_cache",
+      "type": "function",
+      "name": "get_project_segments_from_cache",
+      "filePath": "projects/services.py",
+      "lineRange": [
+        15,
+        35
+      ],
+      "summary": "Returns a project's live segments from cache, querying and populating the cache on a miss.",
+      "tags": [
+        "service",
+        "caching",
+        "segments"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:projects/tags/models.py:Tag",
+      "type": "class",
+      "name": "Tag",
+      "filePath": "projects/tags/models.py",
+      "lineRange": [
+        15,
+        42
+      ],
+      "summary": "Django model for a project tag, carrying label, colour, type, and project association.",
+      "tags": [
+        "data-model",
+        "tags",
+        "django-model"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:projects/tags/permissions.py:TagPermissions",
+      "type": "class",
+      "name": "TagPermissions",
+      "filePath": "projects/tags/permissions.py",
+      "lineRange": [
+        10,
+        29
+      ],
+      "summary": "DRF permission class gating tag CRUD against the user's project permissions at both view and object level.",
+      "tags": [
+        "permissions",
+        "tags",
+        "authorization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:projects/tags/serializers.py:TagSerializer",
+      "type": "class",
+      "name": "TagSerializer",
+      "filePath": "projects/tags/serializers.py",
+      "lineRange": [
+        8,
+        27
+      ],
+      "summary": "DRF serializer for the Tag model with field validation.",
+      "tags": [
+        "serialization",
+        "tags",
+        "drf-serializer",
+        "validation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:projects/tags/views.py:TagViewSet",
+      "type": "class",
+      "name": "TagViewSet",
+      "filePath": "projects/tags/views.py",
+      "lineRange": [
+        14,
+        59
+      ],
+      "summary": "DRF viewset for tag CRUD scoped to permitted projects, with a custom get-by-uuid lookup action.",
+      "tags": [
+        "api-handler",
+        "tags",
+        "drf-view"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:projects/tasks.py:migrate_project_environments_to_v2",
+      "type": "function",
+      "name": "migrate_project_environments_to_v2",
+      "filePath": "projects/tasks.py",
+      "lineRange": [
+        18,
+        33
+      ],
+      "summary": "Async task that migrates a project's environments to Edge V2 within a transaction and records the migration result.",
+      "tags": [
+        "async-task",
+        "edge-migration",
+        "projects"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:projects/tasks.py:handle_cascade_delete",
+      "type": "function",
+      "name": "handle_cascade_delete",
+      "filePath": "projects/tasks.py",
+      "lineRange": [
+        37,
+        59
+      ],
+      "summary": "Async task that cascade-deletes a project's environments, segments, and features by enqueuing per-entity delete tasks.",
+      "tags": [
+        "async-task",
+        "projects",
+        "deletion"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:projects/views.py:ProjectViewSet",
+      "type": "class",
+      "name": "ProjectViewSet",
+      "filePath": "projects/views.py",
+      "lineRange": [
+        70,
+        219
+      ],
+      "summary": "Main viewset for project CRUD plus custom actions for environments, permissions, detailed permissions, user permissions, and Edge migration.",
+      "tags": [
+        "api-handler",
+        "projects",
+        "drf-view",
+        "permissions"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:projects/views.py:BaseProjectPermissionsViewSet",
+      "type": "class",
+      "name": "BaseProjectPermissionsViewSet",
+      "filePath": "projects/views.py",
+      "lineRange": [
+        222,
+        240
+      ],
+      "summary": "Abstract base viewset for project-permission CRUD, scoping the queryset to a project and persisting via serializer.",
+      "tags": [
+        "api-handler",
+        "permissions",
+        "drf-view"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:projects/views.py:get_user_project_permissions",
+      "type": "function",
+      "name": "get_user_project_permissions",
+      "filePath": "projects/views.py",
+      "lineRange": [
+        266,
+        274
+      ],
+      "summary": "Function-based view returning the resolved permission data for a specific user on a specific project.",
+      "tags": [
+        "api-handler",
+        "permissions",
+        "projects"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:projects/permissions.py",
+      "target": "file:organisations/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/permissions.py",
+      "target": "file:organisations/permissions/permissions.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/permissions.py",
+      "target": "file:projects/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/serializers.py",
+      "target": "file:environments/dynamodb/migrator.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/serializers.py",
+      "target": "file:environments/dynamodb/types.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/serializers.py",
+      "target": "file:organisations/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/serializers.py",
+      "target": "file:organisations/subscriptions/serializers/mixins.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/serializers.py",
+      "target": "file:permissions/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/serializers.py",
+      "target": "file:projects/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/serializers.py",
+      "target": "file:users/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/tags/admin.py",
+      "target": "file:projects/tags/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/tags/models.py",
+      "target": "file:projects/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/tags/permissions.py",
+      "target": "file:projects/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/tags/serializers.py",
+      "target": "file:projects/tags/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/tags/views.py",
+      "target": "file:projects/tags/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/tags/views.py",
+      "target": "file:projects/tags/permissions.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/tags/views.py",
+      "target": "file:projects/tags/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/urls.py",
+      "target": "file:audit/views.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/urls.py",
+      "target": "file:features/feature_external_resources/views.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/urls.py",
+      "target": "file:features/feature_health/views.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/urls.py",
+      "target": "file:features/import_export/views.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/urls.py",
+      "target": "file:features/multivariate/views.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/urls.py",
+      "target": "file:features/views.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/urls.py",
+      "target": "file:metadata/views.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/urls.py",
+      "target": "file:projects/tags/views.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/urls.py",
+      "target": "file:projects/views.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/urls.py",
+      "target": "file:segments/views.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/views.py",
+      "target": "file:environments/dynamodb/migrator.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/views.py",
+      "target": "file:environments/identities/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/views.py",
+      "target": "file:environments/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/views.py",
+      "target": "file:permissions/permissions_calculator.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/views.py",
+      "target": "file:permissions/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/views.py",
+      "target": "file:projects/exceptions.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/views.py",
+      "target": "file:projects/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/views.py",
+      "target": "file:projects/permissions.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/views.py",
+      "target": "file:projects/serializers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/views.py",
+      "target": "file:users/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projects/permissions.py",
+      "target": "class:projects/permissions.py:ProjectPermissions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:projects/permissions.py",
+      "target": "class:projects/permissions.py:IsProjectAdmin",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:projects/permissions.py",
+      "target": "class:projects/permissions.py:NestedProjectPermissions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:projects/permissions.py",
+      "target": "class:projects/permissions.py:ProjectPermissions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:projects/permissions.py",
+      "target": "class:projects/permissions.py:IsProjectAdmin",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:projects/permissions.py",
+      "target": "class:projects/permissions.py:NestedProjectPermissions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:projects/serializers.py",
+      "target": "class:projects/serializers.py:ProjectListSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:projects/serializers.py",
+      "target": "class:projects/serializers.py:ProjectCreateSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:projects/serializers.py",
+      "target": "class:projects/serializers.py:ProjectRetrieveSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:projects/serializers.py",
+      "target": "class:projects/serializers.py:ProjectListSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:projects/serializers.py",
+      "target": "class:projects/serializers.py:ProjectCreateSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:projects/serializers.py",
+      "target": "class:projects/serializers.py:ProjectRetrieveSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:projects/services.py",
+      "target": "function:projects/services.py:get_project_segments_from_cache",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:projects/services.py",
+      "target": "function:projects/services.py:get_project_segments_from_cache",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:projects/tags/models.py",
+      "target": "class:projects/tags/models.py:Tag",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:projects/tags/models.py",
+      "target": "class:projects/tags/models.py:Tag",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:projects/tags/permissions.py",
+      "target": "class:projects/tags/permissions.py:TagPermissions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:projects/tags/permissions.py",
+      "target": "class:projects/tags/permissions.py:TagPermissions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:projects/tags/serializers.py",
+      "target": "class:projects/tags/serializers.py:TagSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:projects/tags/serializers.py",
+      "target": "class:projects/tags/serializers.py:TagSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:projects/tags/views.py",
+      "target": "class:projects/tags/views.py:TagViewSet",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:projects/tags/views.py",
+      "target": "class:projects/tags/views.py:TagViewSet",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:projects/tasks.py",
+      "target": "function:projects/tasks.py:migrate_project_environments_to_v2",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:projects/tasks.py",
+      "target": "function:projects/tasks.py:handle_cascade_delete",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:projects/tasks.py",
+      "target": "function:projects/tasks.py:migrate_project_environments_to_v2",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:projects/tasks.py",
+      "target": "function:projects/tasks.py:handle_cascade_delete",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:projects/views.py",
+      "target": "class:projects/views.py:ProjectViewSet",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:projects/views.py",
+      "target": "class:projects/views.py:BaseProjectPermissionsViewSet",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:projects/views.py",
+      "target": "function:projects/views.py:get_user_project_permissions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:projects/views.py",
+      "target": "class:projects/views.py:ProjectViewSet",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:projects/views.py",
+      "target": "class:projects/views.py:BaseProjectPermissionsViewSet",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:projects/views.py",
+      "target": "function:projects/views.py:get_user_project_permissions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:projects/views.py:ProjectViewSet",
+      "target": "function:projects/views.py:get_user_project_permissions",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

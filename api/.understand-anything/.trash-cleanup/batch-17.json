@@ -1,0 +1,330 @@
+{
+  "nodes": [
+    {
+      "id": "file:organisations/chargebee/apps.py",
+      "type": "file",
+      "name": "apps.py",
+      "filePath": "organisations/chargebee/apps.py",
+      "summary": "Django AppConfig for the Chargebee billing integration sub-app within the organisations package.",
+      "tags": ["django-app", "config", "billing", "boilerplate"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:organisations/invites/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "organisations/invites/__init__.py",
+      "summary": "Empty package marker for the organisation invites Django sub-app.",
+      "tags": ["entry-point", "package-marker", "boilerplate"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:organisations/invites/apps.py",
+      "type": "file",
+      "name": "apps.py",
+      "filePath": "organisations/invites/apps.py",
+      "summary": "Django AppConfig for the organisation invites sub-app that manages user invitations.",
+      "tags": ["django-app", "config", "invites", "boilerplate"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:organisations/permissions/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "organisations/permissions/__init__.py",
+      "summary": "Empty package marker for the organisation permissions Django sub-app.",
+      "tags": ["entry-point", "package-marker", "boilerplate"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:organisations/permissions/apps.py",
+      "type": "file",
+      "name": "apps.py",
+      "filePath": "organisations/permissions/apps.py",
+      "summary": "Django AppConfig for the organisation permissions sub-app governing organisation-level access control.",
+      "tags": ["django-app", "config", "permissions", "boilerplate"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:organisations/subscriptions/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "organisations/subscriptions/__init__.py",
+      "summary": "Empty package marker for the organisation subscriptions Django sub-app.",
+      "tags": ["entry-point", "package-marker", "boilerplate"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:organisations/subscriptions/serializers/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "organisations/subscriptions/serializers/__init__.py",
+      "summary": "Empty package marker for the subscriptions serializers package.",
+      "tags": ["entry-point", "package-marker", "serialization", "boilerplate"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:organisations/subscriptions/xero/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "organisations/subscriptions/xero/__init__.py",
+      "summary": "Empty package marker for the Xero billing integration package within subscriptions.",
+      "tags": ["entry-point", "package-marker", "billing", "boilerplate"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:permissions/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "permissions/__init__.py",
+      "summary": "Empty package marker for the top-level shared permissions package.",
+      "tags": ["entry-point", "package-marker", "permissions", "boilerplate"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:projects/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "projects/__init__.py",
+      "summary": "Empty package marker for the projects Django app.",
+      "tags": ["entry-point", "package-marker", "boilerplate"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:projects/apps.py",
+      "type": "file",
+      "name": "apps.py",
+      "filePath": "projects/apps.py",
+      "summary": "Django AppConfig for the core projects app, which models Flagsmith projects.",
+      "tags": ["django-app", "config", "projects", "boilerplate"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:projects/code_references/apps.py",
+      "type": "file",
+      "name": "apps.py",
+      "filePath": "projects/code_references/apps.py",
+      "summary": "Django AppConfig for the code references sub-app that tracks where feature flags are referenced in source code.",
+      "tags": ["django-app", "config", "code-references", "boilerplate"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:projects/tags/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "projects/tags/__init__.py",
+      "summary": "Empty package marker for the project tags Django sub-app.",
+      "tags": ["entry-point", "package-marker", "boilerplate"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:projects/tags/apps.py",
+      "type": "file",
+      "name": "apps.py",
+      "filePath": "projects/tags/apps.py",
+      "summary": "Django AppConfig for the project tags sub-app that manages labels applied to features.",
+      "tags": ["django-app", "config", "tags", "boilerplate"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:segment_membership/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "segment_membership/__init__.py",
+      "summary": "Empty package marker for the segment membership Django app.",
+      "tags": ["entry-point", "package-marker", "boilerplate"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:segment_membership/apps.py",
+      "type": "file",
+      "name": "apps.py",
+      "filePath": "segment_membership/apps.py",
+      "summary": "Django AppConfig for the segment membership app that tracks which identities belong to which segments.",
+      "tags": ["django-app", "config", "segments", "boilerplate"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:segments/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "segments/__init__.py",
+      "summary": "Empty package marker for the segments Django app.",
+      "tags": ["entry-point", "package-marker", "boilerplate"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:segments/apps.py",
+      "type": "file",
+      "name": "apps.py",
+      "filePath": "segments/apps.py",
+      "summary": "Django AppConfig for the segments app, which models rule-based grouping of identities for targeted flag delivery.",
+      "tags": ["django-app", "config", "segments", "boilerplate"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:segments/types.py",
+      "type": "file",
+      "name": "types.py",
+      "filePath": "segments/types.py",
+      "summary": "Custom type definitions for the segments app, exposing the SegmentEngineMetadata TypedDict.",
+      "tags": ["type-definition", "segments", "typed-dict"],
+      "complexity": "simple",
+      "languageNotes": "Uses typing_extensions.TypedDict to type segment engine metadata payloads."
+    },
+    {
+      "id": "file:users/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "users/__init__.py",
+      "summary": "Empty package marker for the users Django app.",
+      "tags": ["entry-point", "package-marker", "boilerplate"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:users/apps.py",
+      "type": "file",
+      "name": "apps.py",
+      "filePath": "users/apps.py",
+      "summary": "Django AppConfig for the users app that wires up signal handlers during application startup via its ready hook.",
+      "tags": ["django-app", "config", "users", "event-handler"],
+      "complexity": "simple",
+      "languageNotes": "Lazily imports the signals module inside ready() to register receivers without import-time side effects."
+    },
+    {
+      "id": "file:users/emails.py",
+      "type": "file",
+      "name": "emails.py",
+      "filePath": "users/emails.py",
+      "summary": "Overrides Djoser's activation and confirmation email classes to use Flagsmith-branded templates.",
+      "tags": ["email", "users", "template", "djoser"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:users/management/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "users/management/__init__.py",
+      "summary": "Empty package marker for the users management package containing Django management commands.",
+      "tags": ["entry-point", "package-marker", "boilerplate"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:users/management/commands/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "users/management/commands/__init__.py",
+      "summary": "Empty package marker for the users management commands package.",
+      "tags": ["entry-point", "package-marker", "boilerplate"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:users/tasks.py",
+      "type": "file",
+      "name": "tasks.py",
+      "filePath": "users/tasks.py",
+      "summary": "Defines the asynchronous task that notifies a user at their previous address when their account email is changed.",
+      "tags": ["async-task", "users", "email", "notification"],
+      "complexity": "simple",
+      "languageNotes": "Task is registered with the custom task processor via the @register_task_handler decorator."
+    },
+    {
+      "id": "function:users/tasks.py:send_email_changed_notification_email",
+      "type": "function",
+      "name": "send_email_changed_notification_email",
+      "filePath": "users/tasks.py",
+      "lineRange": [9, 22],
+      "summary": "Async task handler that renders the email-updated template and sends a notification to the user's original email address after an email change.",
+      "tags": ["async-task", "email", "notification", "users"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:segments/types.py:SegmentEngineMetadata",
+      "type": "class",
+      "name": "SegmentEngineMetadata",
+      "filePath": "segments/types.py",
+      "lineRange": [4, 5],
+      "summary": "TypedDict describing segment engine metadata, carrying the segment primary key.",
+      "tags": ["type-definition", "typed-dict", "segments"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:users/emails.py:ActivationEmail",
+      "type": "class",
+      "name": "ActivationEmail",
+      "filePath": "users/emails.py",
+      "lineRange": [4, 9],
+      "summary": "Subclasses Djoser's ActivationEmail to use the Flagsmith account activation template.",
+      "tags": ["email", "template", "djoser", "users"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:users/emails.py:ConfirmationEmail",
+      "type": "class",
+      "name": "ConfirmationEmail",
+      "filePath": "users/emails.py",
+      "lineRange": [12, 17],
+      "summary": "Subclasses Djoser's ConfirmationEmail to use the Flagsmith account confirmation template.",
+      "tags": ["email", "template", "djoser", "users"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:users/tasks.py",
+      "target": "function:users/tasks.py:send_email_changed_notification_email",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:users/tasks.py",
+      "target": "function:users/tasks.py:send_email_changed_notification_email",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:segments/types.py",
+      "target": "class:segments/types.py:SegmentEngineMetadata",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:segments/types.py",
+      "target": "class:segments/types.py:SegmentEngineMetadata",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:users/emails.py",
+      "target": "class:users/emails.py:ActivationEmail",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:users/emails.py",
+      "target": "class:users/emails.py:ActivationEmail",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:users/emails.py",
+      "target": "class:users/emails.py:ConfirmationEmail",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:users/emails.py",
+      "target": "class:users/emails.py:ConfirmationEmail",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

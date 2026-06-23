@@ -1,0 +1,16 @@
+{
+  "fixedSectionOk": true,
+  "nodesRecovered": 2,
+  "edgesRestored": 2,
+  "crossBatchEdgesAdded": 0,
+  "typesRemapped": 0,
+  "complexityRemapped": 0,
+  "notes": [
+    "Fixed section sane: no single fix pattern indicated an upstream defect. All 865 assembled nodes had valid IDs (no missing-id recoveries needed), all types are valid (file/class/function/config/pipeline/document), all complexity values normalized to simple/moderate/complex, and the merged graph had zero dangling edges.",
+    "Recovered class:organisations/invites/exceptions.py:InviteLinksDisabledError - a real exception class at exceptions.py:9, dropped by the significance filter. Restored the depends_on edge from class:organisations/invites/models.py:Invite (weight 0.6) and added the parent contains edge.",
+    "Recovered function:environments/tasks.py:rebuild_environment_document - a real @register_task_handler function at tasks.py:27, dropped by the significance filter. It is imported and called by environments/admin.py:39. Restored the calls edge from file:environments/admin.py (weight 0.8) and added the parent contains edge.",
+    "Cross-batch import-map check: 751 in-scope import relationships, 740 imports edges already present. The 11 apparent gaps were all self-referential file->file entries (import-map artifacts, e.g. package-relative self-imports); no genuine cross-batch imports edge was missing, so none were added. The merge script's 'recovered 0' was correct.",
+    "Out-of-scope cross-app edges (targets in excluded apps such as core/, app/, integrations/) were intentionally ignored per the scoped-analysis instructions.",
+    "Final graph: 867 nodes, 1855 edges, zero dangling edges."
+  ]
+}

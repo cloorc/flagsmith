@@ -1,0 +1,1523 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 22,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "features/feature_health/__init__.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 1,
+      "nonEmptyLines": 0,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "features/feature_health/admin.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 35,
+      "nonEmptyLines": 29,
+      "classes": [
+        {
+          "name": "FeatureHealthProviderAdmin",
+          "startLine": 13,
+          "endLine": 35,
+          "methods": [
+            "changelist_view",
+            "webhook_url"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "FeatureHealthProviderAdmin",
+          "line": 12,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "changelist_view",
+          "callee": "super().changelist_view",
+          "lineNumber": 28
+        },
+        {
+          "caller": "changelist_view",
+          "callee": "super",
+          "lineNumber": 28
+        },
+        {
+          "caller": "webhook_url",
+          "callee": "get_webhook_path_from_provider",
+          "lineNumber": 34
+        },
+        {
+          "caller": "webhook_url",
+          "callee": "self.request.build_absolute_uri",
+          "lineNumber": 35
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "features/feature_health/constants.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 14,
+      "nonEmptyLines": 11,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "features/feature_health/mappers.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 32,
+      "nonEmptyLines": 28,
+      "functions": [
+        {
+          "name": "map_feature_health_event_data_to_feature_health_event",
+          "startLine": 12,
+          "endLine": 32,
+          "params": [
+            "feature_health_event_data",
+            "feature",
+            "environment"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "map_feature_health_event_data_to_feature_health_event",
+          "line": 12,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "map_feature_health_event_data_to_feature_health_event",
+          "callee": "json.dumps",
+          "lineNumber": 19
+        },
+        {
+          "caller": "map_feature_health_event_data_to_feature_health_event",
+          "callee": "FeatureHealthEvent",
+          "lineNumber": 22
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "features/feature_health/models.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 181,
+      "nonEmptyLines": 154,
+      "classes": [
+        {
+          "name": "FeatureHealthProviderName",
+          "startLine": 27,
+          "endLine": 29,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "FeatureHealthEventType",
+          "startLine": 32,
+          "endLine": 34,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "FeatureHealthProvider",
+          "startLine": 37,
+          "endLine": 76,
+          "methods": [
+            "get_create_log_message",
+            "get_delete_log_message",
+            "get_audit_log_author",
+            "_get_project"
+          ],
+          "properties": []
+        },
+        {
+          "name": "FeatureHealthEventManager",
+          "startLine": 79,
+          "endLine": 118,
+          "methods": [
+            "get_latest_by_feature",
+            "get_latest_by_project"
+          ],
+          "properties": []
+        },
+        {
+          "name": "FeatureHealthEvent",
+          "startLine": 121,
+          "endLine": 181,
+          "methods": [
+            "get_create_log_message",
+            "_get_project",
+            "_get_environment"
+          ],
+          "properties": [
+            "objects"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "FeatureHealthProviderName",
+          "line": 27,
+          "isDefault": false
+        },
+        {
+          "name": "FeatureHealthEventType",
+          "line": 32,
+          "isDefault": false
+        },
+        {
+          "name": "FeatureHealthProvider",
+          "line": 37,
+          "isDefault": false
+        },
+        {
+          "name": "FeatureHealthEventManager",
+          "line": 79,
+          "isDefault": false
+        },
+        {
+          "name": "FeatureHealthEvent",
+          "line": 121,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "get_latest_by_feature",
+          "callee": "self.filter(feature=feature)\n            .order_by(\n                \"provider_name\",\n                \"environment_id\",\n                \"external_id\",\n                \"-created_at\",\n            )\n            .distinct",
+          "lineNumber": 85
+        },
+        {
+          "caller": "get_latest_by_feature",
+          "callee": "self.filter(feature=feature)\n            .order_by",
+          "lineNumber": 85
+        },
+        {
+          "caller": "get_latest_by_feature",
+          "callee": "self.filter",
+          "lineNumber": 85
+        },
+        {
+          "caller": "get_latest_by_project",
+          "callee": "self.filter(feature__project=project)\n            .order_by(\n                \"provider_name\",\n                \"environment_id\",\n                \"external_id\",\n                \"feature_id\",\n                \"-created_at\",\n            )\n            .distinct",
+          "lineNumber": 104
+        },
+        {
+          "caller": "get_latest_by_project",
+          "callee": "self.filter(feature__project=project)\n            .order_by",
+          "lineNumber": 104
+        },
+        {
+          "caller": "get_latest_by_project",
+          "callee": "self.filter",
+          "lineNumber": 104
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 5,
+        "functionCount": 0,
+        "classCount": 5
+      }
+    },
+    {
+      "path": "features/feature_health/providers/__init__.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 1,
+      "nonEmptyLines": 0,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "features/feature_health/providers/generic/mappers.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 46,
+      "nonEmptyLines": 39,
+      "functions": [
+        {
+          "name": "map_sample_event_status_to_feature_health_event_type",
+          "startLine": 19,
+          "endLine": 26,
+          "params": [
+            "status"
+          ]
+        },
+        {
+          "name": "map_payload_to_provider_response",
+          "startLine": 29,
+          "endLine": 46,
+          "params": [
+            "payload"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "map_sample_event_status_to_feature_health_event_type",
+          "line": 19,
+          "isDefault": false
+        },
+        {
+          "name": "map_payload_to_provider_response",
+          "line": 29,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "map_payload_to_provider_response",
+          "callee": "_sample_event_type_adapter.validate_json",
+          "lineNumber": 32
+        },
+        {
+          "caller": "map_payload_to_provider_response",
+          "callee": "FeatureHealthProviderResponse",
+          "lineNumber": 34
+        },
+        {
+          "caller": "map_payload_to_provider_response",
+          "callee": "FeatureHealthEventData",
+          "lineNumber": 36
+        },
+        {
+          "caller": "map_payload_to_provider_response",
+          "callee": "event_data.get",
+          "lineNumber": 38
+        },
+        {
+          "caller": "map_payload_to_provider_response",
+          "callee": "map_sample_event_status_to_feature_health_event_type",
+          "lineNumber": 39
+        },
+        {
+          "caller": "map_payload_to_provider_response",
+          "callee": "event_data.get",
+          "lineNumber": 42
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 2,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "features/feature_health/providers/grafana/__init__.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 5,
+      "nonEmptyLines": 4,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "features/feature_health/providers/grafana/constants.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 2,
+      "nonEmptyLines": 2,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "features/feature_health/providers/grafana/mappers.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 83,
+      "nonEmptyLines": 72,
+      "functions": [
+        {
+          "name": "map_payload_to_alert_instances",
+          "startLine": 19,
+          "endLine": 22,
+          "params": [
+            "payload"
+          ]
+        },
+        {
+          "name": "map_alert_instance_to_feature_health_event_reason",
+          "startLine": 25,
+          "endLine": 60,
+          "params": [
+            "alert_instance"
+          ]
+        },
+        {
+          "name": "map_alert_instance_to_feature_health_event_data",
+          "startLine": 63,
+          "endLine": 83,
+          "params": [
+            "alert_instance"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "map_payload_to_alert_instances",
+          "line": 19,
+          "isDefault": false
+        },
+        {
+          "name": "map_alert_instance_to_feature_health_event_reason",
+          "line": 25,
+          "isDefault": false
+        },
+        {
+          "name": "map_alert_instance_to_feature_health_event_data",
+          "line": 63,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "map_payload_to_alert_instances",
+          "callee": "GrafanaWebhookData.model_validate_json",
+          "lineNumber": 20
+        },
+        {
+          "caller": "map_alert_instance_to_feature_health_event_reason",
+          "callee": "alert_instance.labels.get",
+          "lineNumber": 33
+        },
+        {
+          "caller": "map_alert_instance_to_feature_health_event_reason",
+          "callee": "annotations.get",
+          "lineNumber": 34
+        },
+        {
+          "caller": "map_alert_instance_to_feature_health_event_reason",
+          "callee": "reason_data[\"text_blocks\"].append",
+          "lineNumber": 35
+        },
+        {
+          "caller": "map_alert_instance_to_feature_health_event_reason",
+          "callee": "annotations.get",
+          "lineNumber": 41
+        },
+        {
+          "caller": "map_alert_instance_to_feature_health_event_reason",
+          "callee": "reason_data[\"text_blocks\"].append",
+          "lineNumber": 42
+        },
+        {
+          "caller": "map_alert_instance_to_feature_health_event_reason",
+          "callee": "reason_data[\"url_blocks\"].append",
+          "lineNumber": 50
+        },
+        {
+          "caller": "map_alert_instance_to_feature_health_event_reason",
+          "callee": "reason_data[\"url_blocks\"].append",
+          "lineNumber": 54
+        },
+        {
+          "caller": "map_alert_instance_to_feature_health_event_reason",
+          "callee": "reason_data[\"url_blocks\"].append",
+          "lineNumber": 56
+        },
+        {
+          "caller": "map_alert_instance_to_feature_health_event_reason",
+          "callee": "annotations.get",
+          "lineNumber": 57
+        },
+        {
+          "caller": "map_alert_instance_to_feature_health_event_reason",
+          "callee": "reason_data[\"url_blocks\"].append",
+          "lineNumber": 58
+        },
+        {
+          "caller": "map_alert_instance_to_feature_health_event_data",
+          "callee": "labels.get",
+          "lineNumber": 67
+        },
+        {
+          "caller": "map_alert_instance_to_feature_health_event_data",
+          "callee": "FeatureHealthEventData",
+          "lineNumber": 74
+        },
+        {
+          "caller": "map_alert_instance_to_feature_health_event_data",
+          "callee": "labels.get",
+          "lineNumber": 77
+        },
+        {
+          "caller": "map_alert_instance_to_feature_health_event_data",
+          "callee": "map_alert_instance_to_feature_health_event_reason",
+          "lineNumber": 80
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 3,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "features/feature_health/providers/grafana/services.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 20,
+      "nonEmptyLines": 16,
+      "functions": [
+        {
+          "name": "get_provider_response",
+          "startLine": 11,
+          "endLine": 20,
+          "params": [
+            "payload"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "get_provider_response",
+          "line": 11,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "get_provider_response",
+          "callee": "map_payload_to_alert_instances",
+          "lineNumber": 14
+        },
+        {
+          "caller": "get_provider_response",
+          "callee": "map_alert_instance_to_feature_health_event_data",
+          "lineNumber": 15
+        },
+        {
+          "caller": "get_provider_response",
+          "callee": "events.append",
+          "lineNumber": 18
+        },
+        {
+          "caller": "get_provider_response",
+          "callee": "FeatureHealthProviderResponse",
+          "lineNumber": 20
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "features/feature_health/providers/grafana/types.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 23,
+      "nonEmptyLines": 16,
+      "classes": [
+        {
+          "name": "AlertmanagerAlertInstance",
+          "startLine": 6,
+          "endLine": 13,
+          "methods": [],
+          "properties": [
+            "annotations",
+            "generatorURL",
+            "endsAt",
+            "fingerprint",
+            "labels",
+            "startsAt",
+            "status"
+          ]
+        },
+        {
+          "name": "GrafanaAlertInstance",
+          "startLine": 16,
+          "endLine": 19,
+          "methods": [],
+          "properties": [
+            "dashboardURL",
+            "panelURL",
+            "silenceURL"
+          ]
+        },
+        {
+          "name": "GrafanaWebhookData",
+          "startLine": 22,
+          "endLine": 23,
+          "methods": [],
+          "properties": [
+            "alerts"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "AlertmanagerAlertInstance",
+          "line": 6,
+          "isDefault": false
+        },
+        {
+          "name": "GrafanaAlertInstance",
+          "line": 16,
+          "isDefault": false
+        },
+        {
+          "name": "GrafanaWebhookData",
+          "line": 22,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 3,
+        "functionCount": 0,
+        "classCount": 3
+      }
+    },
+    {
+      "path": "features/feature_health/providers/services.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 35,
+      "nonEmptyLines": 27,
+      "functions": [
+        {
+          "name": "get_webhook_path_from_provider",
+          "startLine": 14,
+          "endLine": 23,
+          "params": [
+            "provider"
+          ]
+        },
+        {
+          "name": "get_provider_from_webhook_path",
+          "startLine": 26,
+          "endLine": 35,
+          "params": [
+            "path"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "get_webhook_path_from_provider",
+          "line": 14,
+          "isDefault": false
+        },
+        {
+          "name": "get_provider_from_webhook_path",
+          "line": 26,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "get_webhook_path_from_provider",
+          "callee": "_provider_webhook_signer.sign_object",
+          "lineNumber": 17
+        },
+        {
+          "caller": "get_webhook_path_from_provider",
+          "callee": "reverse",
+          "lineNumber": 20
+        },
+        {
+          "caller": "get_provider_from_webhook_path",
+          "callee": "_provider_webhook_signer.unsign_object",
+          "lineNumber": 28
+        },
+        {
+          "caller": "get_provider_from_webhook_path",
+          "callee": "logger.warning",
+          "lineNumber": 30
+        },
+        {
+          "caller": "get_provider_from_webhook_path",
+          "callee": "uuid.UUID",
+          "lineNumber": 32
+        },
+        {
+          "caller": "get_provider_from_webhook_path",
+          "callee": "FeatureHealthProvider.objects.filter(\n        uuid=feature_health_provider_uuid\n    ).first",
+          "lineNumber": 33
+        },
+        {
+          "caller": "get_provider_from_webhook_path",
+          "callee": "FeatureHealthProvider.objects.filter",
+          "lineNumber": 33
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 2,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "features/feature_health/providers/webhook/__init__.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 5,
+      "nonEmptyLines": 4,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "features/feature_health/providers/webhook/mappers.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 46,
+      "nonEmptyLines": 39,
+      "functions": [
+        {
+          "name": "map_sample_event_status_to_feature_health_event_type",
+          "startLine": 19,
+          "endLine": 26,
+          "params": [
+            "status"
+          ]
+        },
+        {
+          "name": "map_payload_to_provider_response",
+          "startLine": 29,
+          "endLine": 46,
+          "params": [
+            "payload"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "map_sample_event_status_to_feature_health_event_type",
+          "line": 19,
+          "isDefault": false
+        },
+        {
+          "name": "map_payload_to_provider_response",
+          "line": 29,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "map_payload_to_provider_response",
+          "callee": "_sample_event_type_adapter.validate_json",
+          "lineNumber": 32
+        },
+        {
+          "caller": "map_payload_to_provider_response",
+          "callee": "FeatureHealthProviderResponse",
+          "lineNumber": 34
+        },
+        {
+          "caller": "map_payload_to_provider_response",
+          "callee": "FeatureHealthEventData",
+          "lineNumber": 36
+        },
+        {
+          "caller": "map_payload_to_provider_response",
+          "callee": "event_data.get",
+          "lineNumber": 38
+        },
+        {
+          "caller": "map_payload_to_provider_response",
+          "callee": "map_sample_event_status_to_feature_health_event_type",
+          "lineNumber": 39
+        },
+        {
+          "caller": "map_payload_to_provider_response",
+          "callee": "event_data.get",
+          "lineNumber": 42
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 2,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "features/feature_health/providers/webhook/services.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 8,
+      "nonEmptyLines": 6,
+      "functions": [
+        {
+          "name": "get_provider_response",
+          "startLine": 7,
+          "endLine": 8,
+          "params": [
+            "payload"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "get_provider_response",
+          "line": 7,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "get_provider_response",
+          "callee": "map_payload_to_provider_response",
+          "lineNumber": 8
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "features/feature_health/providers/webhook/types.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 14,
+      "nonEmptyLines": 9,
+      "classes": [
+        {
+          "name": "WebhookEvent",
+          "startLine": 10,
+          "endLine": 14,
+          "methods": [],
+          "properties": [
+            "environment",
+            "feature",
+            "status",
+            "reason"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "WebhookEvent",
+          "line": 10,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "features/feature_health/serializers.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 89,
+      "nonEmptyLines": 70,
+      "classes": [
+        {
+          "name": "FeatureHealthEventReasonTextBlockSerializer",
+          "startLine": 22,
+          "endLine": 26,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "FeatureHealthEventReasonUrlBlockSerializer",
+          "startLine": 29,
+          "endLine": 33,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "FeatureHealthEventReasonSerializer",
+          "startLine": 36,
+          "endLine": 50,
+          "methods": [
+            "to_representation"
+          ],
+          "properties": []
+        },
+        {
+          "name": "FeatureHealthEventSerializer",
+          "startLine": 53,
+          "endLine": 66,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "FeatureHealthProviderSerializer",
+          "startLine": 69,
+          "endLine": 85,
+          "methods": [
+            "get_webhook_url"
+          ],
+          "properties": []
+        },
+        {
+          "name": "CreateFeatureHealthProviderSerializer",
+          "startLine": 88,
+          "endLine": 89,
+          "methods": [],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "FeatureHealthEventReasonTextBlockSerializer",
+          "line": 22,
+          "isDefault": false
+        },
+        {
+          "name": "FeatureHealthEventReasonUrlBlockSerializer",
+          "line": 29,
+          "isDefault": false
+        },
+        {
+          "name": "FeatureHealthEventReasonSerializer",
+          "line": 36,
+          "isDefault": false
+        },
+        {
+          "name": "FeatureHealthEventSerializer",
+          "line": 53,
+          "isDefault": false
+        },
+        {
+          "name": "FeatureHealthProviderSerializer",
+          "line": 69,
+          "isDefault": false
+        },
+        {
+          "name": "CreateFeatureHealthProviderSerializer",
+          "line": 88,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "to_representation",
+          "callee": "super().to_representation",
+          "lineNumber": 50
+        },
+        {
+          "caller": "to_representation",
+          "callee": "super",
+          "lineNumber": 50
+        },
+        {
+          "caller": "to_representation",
+          "callee": "json.loads",
+          "lineNumber": 50
+        },
+        {
+          "caller": "get_webhook_url",
+          "callee": "get_webhook_path_from_provider",
+          "lineNumber": 75
+        },
+        {
+          "caller": "get_webhook_url",
+          "callee": "request.build_absolute_uri",
+          "lineNumber": 76
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 6,
+        "functionCount": 0,
+        "classCount": 6
+      }
+    },
+    {
+      "path": "features/feature_health/services.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 156,
+      "nonEmptyLines": 137,
+      "functions": [
+        {
+          "name": "get_provider_response",
+          "startLine": 43,
+          "endLine": 56,
+          "params": [
+            "provider",
+            "payload"
+          ]
+        },
+        {
+          "name": "create_feature_health_events_from_provider",
+          "startLine": 59,
+          "endLine": 92,
+          "params": [
+            "provider",
+            "payload"
+          ]
+        },
+        {
+          "name": "update_feature_unhealthy_tag",
+          "startLine": 95,
+          "endLine": 114,
+          "params": [
+            "feature"
+          ]
+        },
+        {
+          "name": "dismiss_feature_health_event",
+          "startLine": 117,
+          "endLine": 156,
+          "params": [
+            "feature_health_event",
+            "dismissed_by"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "get_provider_response",
+          "line": 43,
+          "isDefault": false
+        },
+        {
+          "name": "create_feature_health_events_from_provider",
+          "line": 59,
+          "isDefault": false
+        },
+        {
+          "name": "update_feature_unhealthy_tag",
+          "line": 95,
+          "isDefault": false
+        },
+        {
+          "name": "dismiss_feature_health_event",
+          "line": 117,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "get_provider_response",
+          "callee": "logger.error",
+          "lineNumber": 50
+        },
+        {
+          "caller": "create_feature_health_events_from_provider",
+          "callee": "get_provider_response",
+          "lineNumber": 65
+        },
+        {
+          "caller": "create_feature_health_events_from_provider",
+          "callee": "set",
+          "lineNumber": 68
+        },
+        {
+          "caller": "create_feature_health_events_from_provider",
+          "callee": "Feature.objects.filter(\n                project=provider.project, name=event_data.feature_name\n            ).first",
+          "lineNumber": 71
+        },
+        {
+          "caller": "create_feature_health_events_from_provider",
+          "callee": "Feature.objects.filter",
+          "lineNumber": 71
+        },
+        {
+          "caller": "create_feature_health_events_from_provider",
+          "callee": "feature_ids_to_update.add",
+          "lineNumber": 74
+        },
+        {
+          "caller": "create_feature_health_events_from_provider",
+          "callee": "Environment.objects.filter(\n                        project=project,\n                        name=environment_name,\n                    ).first",
+          "lineNumber": 76
+        },
+        {
+          "caller": "create_feature_health_events_from_provider",
+          "callee": "Environment.objects.filter",
+          "lineNumber": 76
+        },
+        {
+          "caller": "create_feature_health_events_from_provider",
+          "callee": "events_to_create.append",
+          "lineNumber": 82
+        },
+        {
+          "caller": "create_feature_health_events_from_provider",
+          "callee": "map_feature_health_event_data_to_feature_health_event",
+          "lineNumber": 83
+        },
+        {
+          "caller": "create_feature_health_events_from_provider",
+          "callee": "FeatureHealthEvent.objects.bulk_create",
+          "lineNumber": 89
+        },
+        {
+          "caller": "create_feature_health_events_from_provider",
+          "callee": "tasks.update_feature_unhealthy_tag.delay",
+          "lineNumber": 91
+        },
+        {
+          "caller": "update_feature_unhealthy_tag",
+          "callee": "*FeatureHealthEvent.objects.get_latest_by_feature",
+          "lineNumber": 97
+        },
+        {
+          "caller": "update_feature_unhealthy_tag",
+          "callee": "Tag.objects.get_or_create",
+          "lineNumber": 99
+        },
+        {
+          "caller": "update_feature_unhealthy_tag",
+          "callee": "any",
+          "lineNumber": 106
+        },
+        {
+          "caller": "update_feature_unhealthy_tag",
+          "callee": "FeatureHealthEventType",
+          "lineNumber": 107
+        },
+        {
+          "caller": "update_feature_unhealthy_tag",
+          "callee": "feature.tags.add",
+          "lineNumber": 111
+        },
+        {
+          "caller": "update_feature_unhealthy_tag",
+          "callee": "feature.tags.remove",
+          "lineNumber": 113
+        },
+        {
+          "caller": "update_feature_unhealthy_tag",
+          "callee": "feature.save",
+          "lineNumber": 114
+        },
+        {
+          "caller": "dismiss_feature_health_event",
+          "callee": "FeatureHealthEventType",
+          "lineNumber": 124
+        },
+        {
+          "caller": "dismiss_feature_health_event",
+          "callee": "logger.warning",
+          "lineNumber": 127
+        },
+        {
+          "caller": "dismiss_feature_health_event",
+          "callee": "FeatureHealthEvent.objects.create",
+          "lineNumber": 145
+        },
+        {
+          "caller": "dismiss_feature_health_event",
+          "callee": "json.dumps",
+          "lineNumber": 149
+        },
+        {
+          "caller": "dismiss_feature_health_event",
+          "callee": "tasks.update_feature_unhealthy_tag.delay",
+          "lineNumber": 154
+        }
+      ],
+      "metrics": {
+        "importCount": 12,
+        "exportCount": 4,
+        "functionCount": 4,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "features/feature_health/tasks.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 12,
+      "nonEmptyLines": 9,
+      "functions": [
+        {
+          "name": "update_feature_unhealthy_tag",
+          "startLine": 10,
+          "endLine": 12,
+          "params": [
+            "feature_id"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "update_feature_unhealthy_tag",
+          "line": 9,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "update_feature_unhealthy_tag",
+          "callee": "Feature.objects.filter(id=feature_id).first",
+          "lineNumber": 11
+        },
+        {
+          "caller": "update_feature_unhealthy_tag",
+          "callee": "Feature.objects.filter",
+          "lineNumber": 11
+        },
+        {
+          "caller": "update_feature_unhealthy_tag",
+          "callee": "services.update_feature_unhealthy_tag",
+          "lineNumber": 12
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "features/feature_health/types.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 39,
+      "nonEmptyLines": 27,
+      "classes": [
+        {
+          "name": "FeatureHealthEventReasonTextBlock",
+          "startLine": 11,
+          "endLine": 13,
+          "methods": [],
+          "properties": [
+            "text",
+            "title"
+          ]
+        },
+        {
+          "name": "FeatureHealthEventReasonUrlBlock",
+          "startLine": 16,
+          "endLine": 18,
+          "methods": [],
+          "properties": [
+            "url",
+            "title"
+          ]
+        },
+        {
+          "name": "FeatureHealthEventReason",
+          "startLine": 21,
+          "endLine": 23,
+          "methods": [],
+          "properties": [
+            "text_blocks",
+            "url_blocks"
+          ]
+        },
+        {
+          "name": "FeatureHealthEventData",
+          "startLine": 27,
+          "endLine": 34,
+          "methods": [],
+          "properties": [
+            "feature_name",
+            "type",
+            "provider_name",
+            "reason",
+            "environment_name",
+            "external_id",
+            "created_at"
+          ]
+        },
+        {
+          "name": "FeatureHealthProviderResponse",
+          "startLine": 38,
+          "endLine": 39,
+          "methods": [],
+          "properties": [
+            "events"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "FeatureHealthEventReasonTextBlock",
+          "line": 11,
+          "isDefault": false
+        },
+        {
+          "name": "FeatureHealthEventReasonUrlBlock",
+          "line": 16,
+          "isDefault": false
+        },
+        {
+          "name": "FeatureHealthEventReason",
+          "line": 21,
+          "isDefault": false
+        },
+        {
+          "name": "FeatureHealthEventData",
+          "line": 26,
+          "isDefault": false
+        },
+        {
+          "name": "FeatureHealthProviderResponse",
+          "line": 37,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 5,
+        "functionCount": 0,
+        "classCount": 5
+      }
+    },
+    {
+      "path": "features/feature_health/views.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 155,
+      "nonEmptyLines": 134,
+      "functions": [
+        {
+          "name": "feature_health_webhook",
+          "startLine": 148,
+          "endLine": 155,
+          "params": [
+            "request"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "FeatureHealthEventViewSet",
+          "startLine": 46,
+          "endLine": 78,
+          "methods": [
+            "get_permissions",
+            "get_queryset",
+            "dismiss"
+          ],
+          "properties": []
+        },
+        {
+          "name": "FeatureHealthProviderViewSet",
+          "startLine": 81,
+          "endLine": 143,
+          "methods": [
+            "get_permissions",
+            "get_queryset",
+            "get_object",
+            "create"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "FeatureHealthEventViewSet",
+          "line": 38,
+          "isDefault": false
+        },
+        {
+          "name": "FeatureHealthProviderViewSet",
+          "line": 81,
+          "isDefault": false
+        },
+        {
+          "name": "feature_health_webhook",
+          "line": 146,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "get_permissions",
+          "callee": "NestedProjectPermissions",
+          "lineNumber": 56
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "getattr",
+          "lineNumber": 66
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "self.model_class.objects.none",
+          "lineNumber": 67
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "get_object_or_404",
+          "lineNumber": 69
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "self.model_class.objects.get_latest_by_project",
+          "lineNumber": 70
+        },
+        {
+          "caller": "dismiss",
+          "callee": "dismiss_feature_health_event",
+          "lineNumber": 74
+        },
+        {
+          "caller": "dismiss",
+          "callee": "self.get_object",
+          "lineNumber": 75
+        },
+        {
+          "caller": "dismiss",
+          "callee": "Response",
+          "lineNumber": 78
+        },
+        {
+          "caller": "get_permissions",
+          "callee": "NestedProjectPermissions",
+          "lineNumber": 93
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "getattr",
+          "lineNumber": 96
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "self.model_class.objects.none",
+          "lineNumber": 97
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "get_object_or_404",
+          "lineNumber": 99
+        },
+        {
+          "caller": "get_queryset",
+          "callee": "self.model_class.objects.filter",
+          "lineNumber": 100
+        },
+        {
+          "caller": "get_object",
+          "callee": "get_object_or_404",
+          "lineNumber": 103
+        },
+        {
+          "caller": "create",
+          "callee": "CreateFeatureHealthProviderSerializer",
+          "lineNumber": 119
+        },
+        {
+          "caller": "create",
+          "callee": "request_serializer.is_valid",
+          "lineNumber": 120
+        },
+        {
+          "caller": "create",
+          "callee": "get_object_or_404",
+          "lineNumber": 122
+        },
+        {
+          "caller": "create",
+          "callee": "isinstance",
+          "lineNumber": 125
+        },
+        {
+          "caller": "create",
+          "callee": "self.model_class.objects.create",
+          "lineNumber": 128
+        },
+        {
+          "caller": "create",
+          "callee": "FeatureHealthProviderSerializer",
+          "lineNumber": 134
+        },
+        {
+          "caller": "create",
+          "callee": "self.get_success_headers",
+          "lineNumber": 138
+        },
+        {
+          "caller": "create",
+          "callee": "Response",
+          "lineNumber": 139
+        },
+        {
+          "caller": "feature_health_webhook",
+          "callee": "get_provider_from_webhook_path",
+          "lineNumber": 150
+        },
+        {
+          "caller": "feature_health_webhook",
+          "callee": "Response",
+          "lineNumber": 151
+        },
+        {
+          "caller": "feature_health_webhook",
+          "callee": "request.body.decode",
+          "lineNumber": 152
+        },
+        {
+          "caller": "feature_health_webhook",
+          "callee": "create_feature_health_events_from_provider",
+          "lineNumber": 153
+        },
+        {
+          "caller": "feature_health_webhook",
+          "callee": "Response",
+          "lineNumber": 154
+        },
+        {
+          "caller": "feature_health_webhook",
+          "callee": "Response",
+          "lineNumber": 155
+        }
+      ],
+      "metrics": {
+        "importCount": 7,
+        "exportCount": 3,
+        "functionCount": 1,
+        "classCount": 2
+      }
+    }
+  ]
+}

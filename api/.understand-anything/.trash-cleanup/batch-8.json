@@ -1,0 +1,720 @@
+{
+  "nodes": [
+    {
+      "id": "file:audit/constants.py",
+      "type": "file",
+      "name": "constants.py",
+      "filePath": "audit/constants.py",
+      "summary": "Defines printf-style audit-log message templates for every auditable domain event (features, segments, environments, change requests, release pipelines) plus the audit datetime format.",
+      "tags": ["constants", "audit", "logging", "templates"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:audit/models.py",
+      "type": "file",
+      "name": "models.py",
+      "filePath": "audit/models.py",
+      "summary": "Defines the AuditLog Django model recording project/environment-scoped change events, including resolution of the related historical record and triggering of environment document rebuilds.",
+      "tags": ["data-model", "audit", "django-model"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:audit/related_object_type.py",
+      "type": "file",
+      "name": "related_object_type.py",
+      "filePath": "audit/related_object_type.py",
+      "summary": "Declares the RelatedObjectType enum classifying which domain entity an audit log entry refers to (feature, segment, environment, change request, etc.).",
+      "tags": ["constants", "audit", "enum", "type-definition"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:audit/services.py",
+      "type": "file",
+      "name": "services.py",
+      "filePath": "audit/services.py",
+      "summary": "Business-logic helper that resolves the concrete audited model instance referenced by an AuditLog record from its historical record and related object type.",
+      "tags": ["service", "audit", "business-logic"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:audit/signals.py",
+      "type": "file",
+      "name": "signals.py",
+      "filePath": "audit/signals.py",
+      "summary": "Wires Django post-save signals on AuditLog to fan out events to integrations (Datadog, New Relic, Dynatrace, Grafana, Slack, Sentry), trigger webhooks, and emit feature-went-live signals.",
+      "tags": ["event-handler", "audit", "signals", "integration"],
+      "complexity": "complex",
+      "languageNotes": "Uses Django signal receivers with a callable signal-handler class and decorator-based event filtering (track_only)."
+    },
+    {
+      "id": "file:audit/tasks.py",
+      "type": "file",
+      "name": "tasks.py",
+      "filePath": "audit/tasks.py",
+      "summary": "Asynchronous Flagsmith tasks that create AuditLog entries for feature-state lifecycle events, historical records, and segment-priority changes.",
+      "tags": ["tasks", "audit", "async", "business-logic"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:environments/managers.py",
+      "type": "file",
+      "name": "managers.py",
+      "filePath": "environments/managers.py",
+      "summary": "Custom Django manager for the Environment model providing document-builder prefetching and natural-key lookups for environment serialization.",
+      "tags": ["data-model", "manager", "query", "django"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:environments/tasks.py",
+      "type": "file",
+      "name": "tasks.py",
+      "filePath": "environments/tasks.py",
+      "summary": "Asynchronous tasks for environment lifecycle: rebuilding the DynamoDB environment document, processing audit-driven updates, deleting environments, and cloning feature states.",
+      "tags": ["tasks", "async", "environment", "dynamodb"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:features/admin.py",
+      "type": "file",
+      "name": "admin.py",
+      "filePath": "features/admin.py",
+      "summary": "Registers Django admin configurations for Feature, FeatureSegment, FeatureState, and FeatureStateValue models with inlines and custom add/change views.",
+      "tags": ["admin", "django", "configuration"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:features/audit_helpers.py",
+      "type": "file",
+      "name": "audit_helpers.py",
+      "filePath": "features/audit_helpers.py",
+      "summary": "Helper functions that build human-readable audit-log messages for identity-override, segment-override, and environment feature-state creation events.",
+      "tags": ["utility", "audit", "helpers"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:features/custom_lifecycle.py",
+      "type": "file",
+      "name": "custom_lifecycle.py",
+      "filePath": "features/custom_lifecycle.py",
+      "summary": "Mixin adding lifecycle-condition checks (was, was-not, changes-to) over a model's initial versus current field values for feature lifecycle tracking.",
+      "tags": ["mixin", "data-model", "lifecycle"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:features/feature_states/models.py",
+      "type": "file",
+      "name": "models.py",
+      "filePath": "features/feature_states/models.py",
+      "summary": "Abstract base model storing a typed feature-state value (string, integer, boolean) with get/set helpers used by concrete feature-state value models.",
+      "tags": ["data-model", "abstract-model", "django"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:features/feature_states/serializers.py",
+      "type": "file",
+      "name": "serializers.py",
+      "filePath": "features/feature_states/serializers.py",
+      "summary": "DRF serializers for updating feature flags and remote-config values, including segment-override updates, v1/v2 flag update flows, and feature-state value validation.",
+      "tags": ["serialization", "drf", "validation", "feature-state"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:features/feature_types.py",
+      "type": "file",
+      "name": "feature_types.py",
+      "filePath": "features/feature_types.py",
+      "summary": "Defines the feature-type constants (STANDARD, MULTIVARIATE, deprecated CONFIG/FLAG) and derives the Django choices tuple from the shared FeatureType schema.",
+      "tags": ["constants", "type-definition", "feature"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:features/managers.py",
+      "type": "file",
+      "name": "managers.py",
+      "filePath": "features/managers.py",
+      "summary": "Custom Django managers for feature models, notably FeatureStateManager which filters to currently-live feature states accounting for v2 versioning.",
+      "tags": ["data-model", "manager", "query", "django"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:features/models.py",
+      "type": "file",
+      "name": "models.py",
+      "filePath": "features/models.py",
+      "summary": "Core feature domain models: Feature, FeatureSegment, FeatureState, and FeatureStateValue, implementing flag values, segment overrides, versioning, cloning, and audit-log integration.",
+      "tags": ["data-model", "django-model", "feature", "core"],
+      "complexity": "complex",
+      "languageNotes": "Large central model module (~1200 lines) mixing audit-log hooks, versioning, multivariate and lifecycle behaviour."
+    },
+    {
+      "id": "file:features/multivariate/models.py",
+      "type": "file",
+      "name": "models.py",
+      "filePath": "features/multivariate/models.py",
+      "summary": "Models for multivariate feature options and their per-feature-state percentage allocations, including conversion between standard and multivariate features.",
+      "tags": ["data-model", "django-model", "multivariate", "feature"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:features/release_pipelines/core/constants.py",
+      "type": "file",
+      "name": "constants.py",
+      "filePath": "features/release_pipelines/core/constants.py",
+      "summary": "Defines the MAX_PIPELINE_STAGES limit for release pipelines.",
+      "tags": ["constants", "release-pipeline", "configuration"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:features/release_pipelines/core/exceptions.py",
+      "type": "file",
+      "name": "exceptions.py",
+      "filePath": "features/release_pipelines/core/exceptions.py",
+      "summary": "Custom exception hierarchy for release pipelines, including a base ReleasePipelineError and InvalidPipelineStateError.",
+      "tags": ["exceptions", "release-pipeline", "error-handling"],
+      "complexity": "simple"
+    },
+
+    {
+      "id": "class:audit/models.py:AuditLog",
+      "type": "class",
+      "name": "AuditLog",
+      "filePath": "audit/models.py",
+      "lineRange": [26, 168],
+      "summary": "Django model representing a single audit-log entry, resolving its historical record and author, and triggering environment-document rebuilds on environment changes.",
+      "tags": ["data-model", "audit", "django-model"],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:audit/related_object_type.py:RelatedObjectType",
+      "type": "class",
+      "name": "RelatedObjectType",
+      "filePath": "audit/related_object_type.py",
+      "lineRange": [4, 17],
+      "summary": "Enum classifying the domain entity (feature, segment, environment, change request, etc.) that an audit log entry pertains to.",
+      "tags": ["enum", "audit", "type-definition"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:audit/services.py:get_audited_instance_from_audit_log_record",
+      "type": "function",
+      "name": "get_audited_instance_from_audit_log_record",
+      "filePath": "audit/services.py",
+      "lineRange": [8, 63],
+      "summary": "Resolves and returns the concrete model instance an AuditLog record refers to by inspecting its related object type and historical record.",
+      "tags": ["service", "audit", "business-logic"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:audit/signals.py:_AuditLogSignalHandler",
+      "type": "class",
+      "name": "_AuditLogSignalHandler",
+      "filePath": "audit/signals.py",
+      "lineRange": [43, 49],
+      "summary": "Callable signal-handler wrapper used to register integration dispatch functions as Django post-save receivers on AuditLog.",
+      "tags": ["event-handler", "signals", "audit"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:audit/signals.py:call_webhooks",
+      "type": "function",
+      "name": "call_webhooks",
+      "filePath": "audit/signals.py",
+      "lineRange": [74, 94],
+      "summary": "Signal receiver that dispatches organisation and environment webhooks in response to a saved AuditLog entry.",
+      "tags": ["event-handler", "audit", "webhook"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:audit/signals.py:track_only",
+      "type": "function",
+      "name": "track_only",
+      "filePath": "audit/signals.py",
+      "lineRange": [97, 115],
+      "summary": "Decorator factory restricting an integration dispatch function to only fire for audit logs of specific related object types.",
+      "tags": ["decorator", "audit", "filter"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:audit/signals.py:send_audit_log_event_to_datadog",
+      "type": "function",
+      "name": "send_audit_log_event_to_datadog",
+      "filePath": "audit/signals.py",
+      "lineRange": [136, 149],
+      "summary": "Signal receiver forwarding audit-log events to the configured Datadog integration.",
+      "tags": ["event-handler", "integration", "datadog"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:audit/signals.py:send_audit_log_event_to_slack",
+      "type": "function",
+      "name": "send_audit_log_event_to_slack",
+      "filePath": "audit/signals.py",
+      "lineRange": [198, 210],
+      "summary": "Signal receiver forwarding audit-log events to the configured Slack integration.",
+      "tags": ["event-handler", "integration", "slack"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:audit/signals.py:send_feature_flag_went_live_signal",
+      "type": "function",
+      "name": "send_feature_flag_went_live_signal",
+      "filePath": "audit/signals.py",
+      "lineRange": [215, 230],
+      "summary": "Signal receiver that emits the feature-flag-went-live signal when a relevant feature-state audit log is created.",
+      "tags": ["event-handler", "audit", "feature-state"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:audit/signals.py:trigger_feature_state_change_webhooks",
+      "type": "function",
+      "name": "trigger_feature_state_change_webhooks",
+      "filePath": "audit/signals.py",
+      "lineRange": [250, 277],
+      "summary": "Signal receiver triggering feature-state change webhooks for the affected environment when an audit log is recorded.",
+      "tags": ["event-handler", "audit", "webhook", "feature-state"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:audit/tasks.py:_create_feature_state_audit_log_for_change_request",
+      "type": "function",
+      "name": "_create_feature_state_audit_log_for_change_request",
+      "filePath": "audit/tasks.py",
+      "lineRange": [35, 77],
+      "summary": "Internal helper creating an audit-log entry describing a feature-state change driven by a change request.",
+      "tags": ["audit", "async", "change-request", "helper"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:audit/tasks.py:create_audit_log_from_historical_record",
+      "type": "function",
+      "name": "create_audit_log_from_historical_record",
+      "filePath": "audit/tasks.py",
+      "lineRange": [81, 138],
+      "summary": "Task building an AuditLog entry from a django-simple-history historical record, resolving the log message and author.",
+      "tags": ["audit", "async", "history", "task"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:audit/tasks.py:create_segment_priorities_changed_audit_log",
+      "type": "function",
+      "name": "create_segment_priorities_changed_audit_log",
+      "filePath": "audit/tasks.py",
+      "lineRange": [142, 203],
+      "summary": "Task creating an audit-log entry recording reordering of feature-segment priorities, attributing the change to a user or master API key.",
+      "tags": ["audit", "async", "segment", "task"],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:environments/managers.py:EnvironmentManager",
+      "type": "class",
+      "name": "EnvironmentManager",
+      "filePath": "environments/managers.py",
+      "lineRange": [9, 62],
+      "summary": "Custom manager for the Environment model providing document-builder prefetch optimisation and natural-key lookup support.",
+      "tags": ["manager", "query", "django", "environment"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:environments/tasks.py:clone_environment_feature_states",
+      "type": "function",
+      "name": "clone_environment_feature_states",
+      "filePath": "environments/tasks.py",
+      "lineRange": [66, 110],
+      "summary": "Task cloning all feature states from a source environment into a newly created clone environment.",
+      "tags": ["async", "environment", "feature-state", "task"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:environments/tasks.py:delete_environment_from_dynamo",
+      "type": "function",
+      "name": "delete_environment_from_dynamo",
+      "filePath": "environments/tasks.py",
+      "lineRange": [48, 57],
+      "summary": "Task removing an environment's document from the DynamoDB environment table.",
+      "tags": ["async", "environment", "dynamodb", "task"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:environments/tasks.py:process_environment_update",
+      "type": "function",
+      "name": "process_environment_update",
+      "filePath": "environments/tasks.py",
+      "lineRange": [32, 44],
+      "summary": "Task processing an environment update triggered by an audit log, rebuilding affected environment documents.",
+      "tags": ["async", "environment", "audit", "task"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:features/admin.py:FeatureAdmin",
+      "type": "class",
+      "name": "FeatureAdmin",
+      "filePath": "features/admin.py",
+      "lineRange": [17, 40],
+      "summary": "Django admin configuration for the Feature model defining list display, filters, and inlines.",
+      "tags": ["admin", "django", "configuration"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:features/admin.py:FeatureSegmentAdmin",
+      "type": "class",
+      "name": "FeatureSegmentAdmin",
+      "filePath": "features/admin.py",
+      "lineRange": [43, 52],
+      "summary": "Django admin configuration for FeatureSegment with overridden add and change views.",
+      "tags": ["admin", "django", "configuration"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:features/admin.py:FeatureStateAdmin",
+      "type": "class",
+      "name": "FeatureStateAdmin",
+      "filePath": "features/admin.py",
+      "lineRange": [55, 79],
+      "summary": "Django admin configuration for the FeatureState model.",
+      "tags": ["admin", "django", "configuration"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:features/admin.py:FeatureStateValueAdmin",
+      "type": "class",
+      "name": "FeatureStateValueAdmin",
+      "filePath": "features/admin.py",
+      "lineRange": [82, 102],
+      "summary": "Django admin configuration for the FeatureStateValue model.",
+      "tags": ["admin", "django", "configuration"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:features/audit_helpers.py:get_identity_override_created_audit_message",
+      "type": "function",
+      "name": "get_identity_override_created_audit_message",
+      "filePath": "features/audit_helpers.py",
+      "lineRange": [17, 29],
+      "summary": "Builds the audit-log message for the creation of an identity-level feature-state override.",
+      "tags": ["utility", "audit", "feature-state"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:features/audit_helpers.py:get_environment_feature_state_created_audit_message",
+      "type": "function",
+      "name": "get_environment_feature_state_created_audit_message",
+      "filePath": "features/audit_helpers.py",
+      "lineRange": [44, 55],
+      "summary": "Builds the audit-log message for the creation of an environment-level feature state.",
+      "tags": ["utility", "audit", "feature-state"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:features/custom_lifecycle.py:CustomLifecycleModelMixin",
+      "type": "class",
+      "name": "CustomLifecycleModelMixin",
+      "filePath": "features/custom_lifecycle.py",
+      "lineRange": [6, 43],
+      "summary": "Model mixin providing condition checks comparing a field's initial loaded value against its current value to track lifecycle transitions.",
+      "tags": ["mixin", "data-model", "lifecycle"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:features/feature_states/models.py:AbstractBaseFeatureValueModel",
+      "type": "class",
+      "name": "AbstractBaseFeatureValueModel",
+      "filePath": "features/feature_states/models.py",
+      "lineRange": [18, 77],
+      "summary": "Abstract Django model storing a feature value across typed columns (string, integer, boolean) with get/set value helpers.",
+      "tags": ["abstract-model", "data-model", "feature-state"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:features/feature_states/serializers.py:BaseFeatureUpdateSerializer",
+      "type": "class",
+      "name": "BaseFeatureUpdateSerializer",
+      "filePath": "features/feature_states/serializers.py",
+      "lineRange": [19, 45],
+      "summary": "Base DRF serializer resolving the target feature and environment context and validating segment references for feature updates.",
+      "tags": ["serialization", "drf", "validation"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:features/feature_states/serializers.py:FeatureValueSerializer",
+      "type": "class",
+      "name": "FeatureValueSerializer",
+      "filePath": "features/feature_states/serializers.py",
+      "lineRange": [69, 92],
+      "summary": "Serializer validating a feature-state value payload for remote-config updates.",
+      "tags": ["serialization", "drf", "validation"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:features/feature_states/serializers.py:UpdateFlagSerializer",
+      "type": "class",
+      "name": "UpdateFlagSerializer",
+      "filePath": "features/feature_states/serializers.py",
+      "lineRange": [95, 123],
+      "summary": "v1 serializer for updating a flag's value and segment override, persisting changes via its save method.",
+      "tags": ["serialization", "drf", "feature-state"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:features/feature_states/serializers.py:UpdateFlagV2Serializer",
+      "type": "class",
+      "name": "UpdateFlagV2Serializer",
+      "filePath": "features/feature_states/serializers.py",
+      "lineRange": [138, 194],
+      "summary": "v2 serializer for updating a flag with multiple segment overrides, validating and persisting them as a change set.",
+      "tags": ["serialization", "drf", "feature-state", "versioning"],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:features/feature_states/serializers.py:DeleteSegmentOverrideSerializer",
+      "type": "class",
+      "name": "DeleteSegmentOverrideSerializer",
+      "filePath": "features/feature_states/serializers.py",
+      "lineRange": [201, 215],
+      "summary": "Serializer validating and performing deletion of a segment-level feature-state override.",
+      "tags": ["serialization", "drf", "feature-state"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:features/managers.py:FeatureStateManager",
+      "type": "class",
+      "name": "FeatureStateManager",
+      "filePath": "features/managers.py",
+      "lineRange": [26, 64],
+      "summary": "Custom manager for FeatureState exposing get_live_feature_states, which filters to currently-live states accounting for v2 versioning.",
+      "tags": ["manager", "query", "feature-state", "versioning"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:features/models.py:Feature",
+      "type": "class",
+      "name": "Feature",
+      "filePath": "features/models.py",
+      "lineRange": [92, 235],
+      "summary": "Core Feature model representing a flag or remote config, creating initial feature states, integration comments, and audit-log messages.",
+      "tags": ["data-model", "django-model", "feature", "core"],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:features/models.py:FeatureSegment",
+      "type": "class",
+      "name": "FeatureSegment",
+      "filePath": "features/models.py",
+      "lineRange": [248, 458],
+      "summary": "Model linking a feature to a segment for segment overrides, managing priority ordering, cloning, and audit logging.",
+      "tags": ["data-model", "django-model", "segment", "feature"],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:features/models.py:FeatureState",
+      "type": "class",
+      "name": "FeatureState",
+      "filePath": "features/models.py",
+      "lineRange": [461, 1125],
+      "summary": "Central model representing the enabled state and value of a feature in an environment/segment/identity context, handling versioning, scheduling, cloning, multivariate values, and audit logs.",
+      "tags": ["data-model", "django-model", "feature-state", "core"],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:features/models.py:FeatureStateValue",
+      "type": "class",
+      "name": "FeatureStateValue",
+      "filePath": "features/models.py",
+      "lineRange": [1128, 1212],
+      "summary": "Model holding the typed value for a feature state with cloning, copy-from, and audit-log behaviour.",
+      "tags": ["data-model", "django-model", "feature-state"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:features/models.py:get_next_segment_priority",
+      "type": "function",
+      "name": "get_next_segment_priority",
+      "filePath": "features/models.py",
+      "lineRange": [238, 245],
+      "summary": "Computes the next available priority value for a feature's segment overrides.",
+      "tags": ["utility", "segment", "feature"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:features/multivariate/models.py:MultivariateFeatureOption",
+      "type": "class",
+      "name": "MultivariateFeatureOption",
+      "filePath": "features/multivariate/models.py",
+      "lineRange": [33, 112],
+      "summary": "Model for a multivariate feature variant value, with helpers to make a feature multivariate or standard and to create per-state values.",
+      "tags": ["data-model", "django-model", "multivariate"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:features/multivariate/models.py:MultivariateFeatureStateValue",
+      "type": "class",
+      "name": "MultivariateFeatureStateValue",
+      "filePath": "features/multivariate/models.py",
+      "lineRange": [115, 189],
+      "summary": "Model storing the percentage allocation of a multivariate option within a specific feature state, with validation and cloning.",
+      "tags": ["data-model", "django-model", "multivariate", "feature-state"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:features/release_pipelines/core/exceptions.py:ReleasePipelineError",
+      "type": "class",
+      "name": "ReleasePipelineError",
+      "filePath": "features/release_pipelines/core/exceptions.py",
+      "lineRange": [5, 6],
+      "summary": "Base exception type for release-pipeline errors.",
+      "tags": ["exceptions", "release-pipeline", "error-handling"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:features/release_pipelines/core/exceptions.py:InvalidPipelineStateError",
+      "type": "class",
+      "name": "InvalidPipelineStateError",
+      "filePath": "features/release_pipelines/core/exceptions.py",
+      "lineRange": [9, 10],
+      "summary": "Exception raised when a release pipeline is in an invalid state for the attempted operation.",
+      "tags": ["exceptions", "release-pipeline", "error-handling"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    { "source": "file:audit/models.py", "target": "file:api_keys/models.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:audit/models.py", "target": "file:audit/related_object_type.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:audit/models.py", "target": "file:projects/models.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+
+    { "source": "file:audit/services.py", "target": "file:audit/models.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:audit/services.py", "target": "file:audit/related_object_type.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:audit/services.py", "target": "file:features/models.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:audit/services.py", "target": "file:features/versioning/models.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+
+    { "source": "file:audit/signals.py", "target": "file:audit/models.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:audit/signals.py", "target": "file:audit/related_object_type.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:audit/signals.py", "target": "file:audit/serializers.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:audit/signals.py", "target": "file:audit/services.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:audit/signals.py", "target": "file:features/models.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:audit/signals.py", "target": "file:features/multivariate/models.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:audit/signals.py", "target": "file:features/signals.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:audit/signals.py", "target": "file:organisations/models.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+
+    { "source": "file:audit/tasks.py", "target": "file:audit/constants.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:audit/tasks.py", "target": "file:audit/models.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+
+    { "source": "file:environments/managers.py", "target": "file:features/models.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:environments/managers.py", "target": "file:features/multivariate/models.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:environments/managers.py", "target": "file:segments/models.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+
+    { "source": "file:environments/tasks.py", "target": "file:audit/models.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:environments/tasks.py", "target": "file:environments/dynamodb/__init__.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:environments/tasks.py", "target": "file:environments/models.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:environments/tasks.py", "target": "file:features/multivariate/models.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:environments/tasks.py", "target": "file:features/versioning/models.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:environments/tasks.py", "target": "file:features/versioning/versioning_service.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+
+    { "source": "file:features/admin.py", "target": "file:features/models.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+
+    { "source": "file:features/audit_helpers.py", "target": "file:audit/constants.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+
+    { "source": "file:features/feature_states/models.py", "target": "file:features/value_types.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+
+    { "source": "file:features/feature_states/serializers.py", "target": "file:environments/models.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:features/feature_states/serializers.py", "target": "file:features/models.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:features/feature_states/serializers.py", "target": "file:features/versioning/dataclasses.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:features/feature_states/serializers.py", "target": "file:features/versioning/versioning_service.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:features/feature_states/serializers.py", "target": "file:segments/models.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+
+    { "source": "file:features/managers.py", "target": "file:features/versioning/models.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+
+    { "source": "file:features/models.py", "target": "file:audit/constants.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:features/models.py", "target": "file:audit/related_object_type.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:features/models.py", "target": "file:audit/tasks.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:features/models.py", "target": "file:features/audit_helpers.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:features/models.py", "target": "file:features/constants.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:features/models.py", "target": "file:features/custom_lifecycle.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:features/models.py", "target": "file:features/feature_states/models.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:features/models.py", "target": "file:features/feature_types.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:features/models.py", "target": "file:features/helpers.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:features/models.py", "target": "file:features/managers.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:features/models.py", "target": "file:features/multivariate/models.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:features/models.py", "target": "file:features/signals.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:features/models.py", "target": "file:features/utils.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:features/models.py", "target": "file:features/value_types.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:features/models.py", "target": "file:features/versioning/models.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:features/models.py", "target": "file:metadata/models.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:features/models.py", "target": "file:projects/models.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:features/models.py", "target": "file:projects/tags/models.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+
+    { "source": "file:features/multivariate/models.py", "target": "file:audit/related_object_type.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:features/multivariate/models.py", "target": "file:features/feature_states/models.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:features/multivariate/models.py", "target": "file:features/feature_types.py", "type": "imports", "direction": "forward", "weight": 0.7 },
+
+    { "source": "file:audit/models.py", "target": "class:audit/models.py:AuditLog", "type": "contains", "direction": "forward", "weight": 1.0 },
+    { "source": "file:audit/models.py", "target": "class:audit/models.py:AuditLog", "type": "exports", "direction": "forward", "weight": 0.8 },
+
+    { "source": "file:audit/related_object_type.py", "target": "class:audit/related_object_type.py:RelatedObjectType", "type": "contains", "direction": "forward", "weight": 1.0 },
+    { "source": "file:audit/related_object_type.py", "target": "class:audit/related_object_type.py:RelatedObjectType", "type": "exports", "direction": "forward", "weight": 0.8 },
+
+    { "source": "file:audit/services.py", "target": "function:audit/services.py:get_audited_instance_from_audit_log_record", "type": "contains", "direction": "forward", "weight": 1.0 },
+    { "source": "file:audit/services.py", "target": "function:audit/services.py:get_audited_instance_from_audit_log_record", "type": "exports", "direction": "forward", "weight": 0.8 },
+
+    { "source": "file:audit/signals.py", "target": "class:audit/signals.py:_AuditLogSignalHandler", "type": "contains", "direction": "forward", "weight": 1.0 },
+    { "source": "file:audit/signals.py", "target": "function:audit/signals.py:call_webhooks", "type": "contains", "direction": "forward", "weight": 1.0 },
+    { "source": "file:audit/signals.py", "target": "function:audit/signals.py:track_only", "type": "contains", "direction": "forward", "weight": 1.0 },
+    { "source": "file:audit/signals.py", "target": "function:audit/signals.py:send_audit_log_event_to_datadog", "type": "contains", "direction": "forward", "weight": 1.0 },
+    { "source": "file:audit/signals.py", "target": "function:audit/signals.py:send_audit_log_event_to_slack", "type": "contains", "direction": "forward", "weight": 1.0 },
+    { "source": "file:audit/signals.py", "target": "function:audit/signals.py:send_feature_flag_went_live_signal", "type": "contains", "direction": "forward", "weight": 1.0 },
+    { "source": "file:audit/signals.py", "target": "function:audit/signals.py:trigger_feature_state_change_webhooks", "type": "contains", "direction": "forward", "weight": 1.0 },
+    { "source": "function:audit/signals.py:send_audit_log_event_to_slack", "target": "function:audit/signals.py:track_only", "type": "calls", "direction": "forward", "weight": 0.8 },
+
+    { "source": "file:audit/tasks.py", "target": "function:audit/tasks.py:_create_feature_state_audit_log_for_change_request", "type": "contains", "direction": "forward", "weight": 1.0 },
+    { "source": "file:audit/tasks.py", "target": "function:audit/tasks.py:create_audit_log_from_historical_record", "type": "contains", "direction": "forward", "weight": 1.0 },
+    { "source": "file:audit/tasks.py", "target": "function:audit/tasks.py:create_segment_priorities_changed_audit_log", "type": "contains", "direction": "forward", "weight": 1.0 },
+    { "source": "function:audit/tasks.py:create_audit_log_from_historical_record", "target": "class:audit/models.py:AuditLog", "type": "calls", "direction": "forward", "weight": 0.8 },
+
+    { "source": "file:environments/managers.py", "target": "class:environments/managers.py:EnvironmentManager", "type": "contains", "direction": "forward", "weight": 1.0 },
+    { "source": "file:environments/managers.py", "target": "class:environments/managers.py:EnvironmentManager", "type": "exports", "direction": "forward", "weight": 0.8 },
+
+    { "source": "file:environments/tasks.py", "target": "function:environments/tasks.py:clone_environment_feature_states", "type": "contains", "direction": "forward", "weight": 1.0 },
+    { "source": "file:environments/tasks.py", "target": "function:environments/tasks.py:delete_environment_from_dynamo", "type": "contains", "direction": "forward", "weight": 1.0 },
+    { "source": "file:environments/tasks.py", "target": "function:environments/tasks.py:process_environment_update", "type": "contains", "direction": "forward", "weight": 1.0 },
+
+    { "source": "file:features/admin.py", "target": "class:features/admin.py:FeatureAdmin", "type": "contains", "direction": "forward", "weight": 1.0 },
+    { "source": "file:features/admin.py", "target": "class:features/admin.py:FeatureSegmentAdmin", "type": "contains", "direction": "forward", "weight": 1.0 },
+    { "source": "file:features/admin.py", "target": "class:features/admin.py:FeatureStateAdmin", "type": "contains", "direction": "forward", "weight": 1.0 },
+    { "source": "file:features/admin.py", "target": "class:features/admin.py:FeatureStateValueAdmin", "type": "contains", "direction": "forward", "weight": 1.0 },
+
+    { "source": "file:features/audit_helpers.py", "target": "function:features/audit_helpers.py:get_identity_override_created_audit_message", "type": "contains", "direction": "forward", "weight": 1.0 },
+    { "source": "file:features/audit_helpers.py", "target": "function:features/audit_helpers.py:get_environment_feature_state_created_audit_message", "type": "contains", "direction": "forward", "weight": 1.0 },
+
+    { "source": "file:features/custom_lifecycle.py", "target": "class:features/custom_lifecycle.py:CustomLifecycleModelMixin", "type": "contains", "direction": "forward", "weight": 1.0 },
+    { "source": "file:features/custom_lifecycle.py", "target": "class:features/custom_lifecycle.py:CustomLifecycleModelMixin", "type": "exports", "direction": "forward", "weight": 0.8 },
+
+    { "source": "file:features/feature_states/models.py", "target": "class:features/feature_states/models.py:AbstractBaseFeatureValueModel", "type": "contains", "direction": "forward", "weight": 1.0 },
+    { "source": "file:features/feature_states/models.py", "target": "class:features/feature_states/models.py:AbstractBaseFeatureValueModel", "type": "exports", "direction": "forward", "weight": 0.8 },
+
+    { "source": "file:features/feature_states/serializers.py", "target": "class:features/feature_states/serializers.py:BaseFeatureUpdateSerializer", "type": "contains", "direction": "forward", "weight": 1.0 },
+    { "source": "file:features/feature_states/serializers.py", "target": "class:features/feature_states/serializers.py:FeatureValueSerializer", "type": "contains", "direction": "forward", "weight": 1.0 },
+    { "source": "file:features/feature_states/serializers.py", "target": "class:features/feature_states/serializers.py:UpdateFlagSerializer", "type": "contains", "direction": "forward", "weight": 1.0 },
+    { "source": "file:features/feature_states/serializers.py", "target": "class:features/feature_states/serializers.py:UpdateFlagV2Serializer", "type": "contains", "direction": "forward", "weight": 1.0 },
+    { "source": "file:features/feature_states/serializers.py", "target": "class:features/feature_states/serializers.py:DeleteSegmentOverrideSerializer", "type": "contains", "direction": "forward", "weight": 1.0 },
+
+    { "source": "file:features/managers.py", "target": "class:features/managers.py:FeatureStateManager", "type": "contains", "direction": "forward", "weight": 1.0 },
+    { "source": "file:features/managers.py", "target": "class:features/managers.py:FeatureStateManager", "type": "exports", "direction": "forward", "weight": 0.8 },
+
+    { "source": "file:features/models.py", "target": "class:features/models.py:Feature", "type": "contains", "direction": "forward", "weight": 1.0 },
+    { "source": "file:features/models.py", "target": "class:features/models.py:FeatureSegment", "type": "contains", "direction": "forward", "weight": 1.0 },
+    { "source": "file:features/models.py", "target": "class:features/models.py:FeatureState", "type": "contains", "direction": "forward", "weight": 1.0 },
+    { "source": "file:features/models.py", "target": "class:features/models.py:FeatureStateValue", "type": "contains", "direction": "forward", "weight": 1.0 },
+    { "source": "file:features/models.py", "target": "function:features/models.py:get_next_segment_priority", "type": "contains", "direction": "forward", "weight": 1.0 },
+    { "source": "file:features/models.py", "target": "class:features/models.py:Feature", "type": "exports", "direction": "forward", "weight": 0.8 },
+    { "source": "file:features/models.py", "target": "class:features/models.py:FeatureSegment", "type": "exports", "direction": "forward", "weight": 0.8 },
+    { "source": "file:features/models.py", "target": "class:features/models.py:FeatureState", "type": "exports", "direction": "forward", "weight": 0.8 },
+    { "source": "file:features/models.py", "target": "class:features/models.py:FeatureStateValue", "type": "exports", "direction": "forward", "weight": 0.8 },
+
+    { "source": "file:features/multivariate/models.py", "target": "class:features/multivariate/models.py:MultivariateFeatureOption", "type": "contains", "direction": "forward", "weight": 1.0 },
+    { "source": "file:features/multivariate/models.py", "target": "class:features/multivariate/models.py:MultivariateFeatureStateValue", "type": "contains", "direction": "forward", "weight": 1.0 },
+    { "source": "file:features/multivariate/models.py", "target": "class:features/multivariate/models.py:MultivariateFeatureOption", "type": "exports", "direction": "forward", "weight": 0.8 },
+    { "source": "file:features/multivariate/models.py", "target": "class:features/multivariate/models.py:MultivariateFeatureStateValue", "type": "exports", "direction": "forward", "weight": 0.8 },
+
+    { "source": "file:features/release_pipelines/core/exceptions.py", "target": "class:features/release_pipelines/core/exceptions.py:ReleasePipelineError", "type": "contains", "direction": "forward", "weight": 1.0 },
+    { "source": "file:features/release_pipelines/core/exceptions.py", "target": "class:features/release_pipelines/core/exceptions.py:InvalidPipelineStateError", "type": "contains", "direction": "forward", "weight": 1.0 },
+    { "source": "class:features/release_pipelines/core/exceptions.py:InvalidPipelineStateError", "target": "class:features/release_pipelines/core/exceptions.py:ReleasePipelineError", "type": "inherits", "direction": "forward", "weight": 0.9 }
+  ]
+}

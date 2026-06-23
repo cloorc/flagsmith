@@ -1,0 +1,228 @@
+{
+  "projectRoot": "/Users/wadii/flagsmith-projects/flagsmith/api",
+  "batchFiles": [
+    {
+      "path": "features/feature_health/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_health/admin.py",
+      "language": "python",
+      "sizeLines": 35,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_health/constants.py",
+      "language": "python",
+      "sizeLines": 14,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_health/mappers.py",
+      "language": "python",
+      "sizeLines": 32,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_health/models.py",
+      "language": "python",
+      "sizeLines": 181,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_health/providers/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_health/providers/generic/mappers.py",
+      "language": "python",
+      "sizeLines": 46,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_health/providers/grafana/__init__.py",
+      "language": "python",
+      "sizeLines": 5,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_health/providers/grafana/constants.py",
+      "language": "python",
+      "sizeLines": 2,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_health/providers/grafana/mappers.py",
+      "language": "python",
+      "sizeLines": 83,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_health/providers/grafana/services.py",
+      "language": "python",
+      "sizeLines": 20,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_health/providers/grafana/types.py",
+      "language": "python",
+      "sizeLines": 23,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_health/providers/services.py",
+      "language": "python",
+      "sizeLines": 35,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_health/providers/webhook/__init__.py",
+      "language": "python",
+      "sizeLines": 5,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_health/providers/webhook/mappers.py",
+      "language": "python",
+      "sizeLines": 46,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_health/providers/webhook/services.py",
+      "language": "python",
+      "sizeLines": 8,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_health/providers/webhook/types.py",
+      "language": "python",
+      "sizeLines": 14,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_health/serializers.py",
+      "language": "python",
+      "sizeLines": 89,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_health/services.py",
+      "language": "python",
+      "sizeLines": 156,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_health/tasks.py",
+      "language": "python",
+      "sizeLines": 12,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_health/types.py",
+      "language": "python",
+      "sizeLines": 39,
+      "fileCategory": "code"
+    },
+    {
+      "path": "features/feature_health/views.py",
+      "language": "python",
+      "sizeLines": 155,
+      "fileCategory": "code"
+    }
+  ],
+  "batchImportData": {
+    "features/feature_health/__init__.py": [],
+    "features/feature_health/admin.py": [
+      "features/feature_health/models.py",
+      "features/feature_health/providers/services.py"
+    ],
+    "features/feature_health/constants.py": [],
+    "features/feature_health/mappers.py": [
+      "features/feature_health/models.py",
+      "features/feature_health/types.py"
+    ],
+    "features/feature_health/models.py": [
+      "audit/related_object_type.py",
+      "features/feature_health/constants.py"
+    ],
+    "features/feature_health/providers/__init__.py": [],
+    "features/feature_health/providers/generic/mappers.py": [
+      "features/feature_health/models.py",
+      "features/feature_health/providers/webhook/types.py",
+      "features/feature_health/types.py"
+    ],
+    "features/feature_health/providers/grafana/__init__.py": [
+      "features/feature_health/providers/grafana/services.py"
+    ],
+    "features/feature_health/providers/grafana/constants.py": [],
+    "features/feature_health/providers/grafana/mappers.py": [
+      "features/feature_health/models.py",
+      "features/feature_health/providers/grafana/constants.py",
+      "features/feature_health/providers/grafana/types.py",
+      "features/feature_health/types.py"
+    ],
+    "features/feature_health/providers/grafana/services.py": [
+      "features/feature_health/providers/grafana/mappers.py",
+      "features/feature_health/types.py"
+    ],
+    "features/feature_health/providers/grafana/types.py": [],
+    "features/feature_health/providers/services.py": [
+      "features/feature_health/models.py"
+    ],
+    "features/feature_health/providers/webhook/__init__.py": [
+      "features/feature_health/providers/webhook/services.py"
+    ],
+    "features/feature_health/providers/webhook/mappers.py": [
+      "features/feature_health/models.py",
+      "features/feature_health/providers/webhook/types.py",
+      "features/feature_health/types.py"
+    ],
+    "features/feature_health/providers/webhook/services.py": [
+      "features/feature_health/providers/webhook/mappers.py",
+      "features/feature_health/types.py"
+    ],
+    "features/feature_health/providers/webhook/types.py": [
+      "features/feature_health/types.py"
+    ],
+    "features/feature_health/serializers.py": [
+      "features/feature_health/models.py",
+      "features/feature_health/providers/services.py",
+      "features/feature_health/types.py"
+    ],
+    "features/feature_health/services.py": [
+      "api_keys/user.py",
+      "environments/models.py",
+      "features/feature_health/constants.py",
+      "features/feature_health/mappers.py",
+      "features/feature_health/models.py",
+      "features/feature_health/providers/__init__.py",
+      "features/feature_health/providers/grafana/__init__.py",
+      "features/feature_health/providers/webhook/__init__.py",
+      "features/feature_health/types.py",
+      "features/models.py",
+      "projects/tags/models.py",
+      "users/models.py"
+    ],
+    "features/feature_health/tasks.py": [
+      "features/feature_health/__init__.py",
+      "features/feature_health/services.py",
+      "features/models.py"
+    ],
+    "features/feature_health/types.py": [
+      "features/dataclasses.py"
+    ],
+    "features/feature_health/views.py": [
+      "features/feature_health/models.py",
+      "features/feature_health/providers/services.py",
+      "features/feature_health/serializers.py",
+      "features/feature_health/services.py",
+      "projects/models.py",
+      "projects/permissions.py",
+      "users/models.py"
+    ]
+  }
+}
