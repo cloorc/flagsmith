@@ -141,25 +141,27 @@ const ExperimentExposuresPanel: FC<ExperimentExposuresPanelProps> = ({
     [payload, identities],
   )
 
-  const isRefreshing = viewState.kind === 'refreshing' || isSubmitting
+  const isRefreshing =
+    refreshRequested || viewState.kind === 'refreshing' || isSubmitting
   const headline = payload ? getHeadlineTotal(payload) : 0
   const hasData = !!payload && headline > 0
 
   const handleRefresh = useCallback(async () => {
+    setRefreshRequested(true)
+    setPollStartedAt(Date.now())
     const result = await refresh({
       environmentId,
       experimentId: experiment.id,
     })
     if ('error' in result && result.error) {
+      setRefreshRequested(false)
+      setPollStartedAt(null)
       const seconds = parseRetryAfter(result.error)
       if (seconds !== null) {
         setRetryAfter(seconds)
       } else {
         toast('Failed to refresh exposures', 'danger')
       }
-    } else {
-      setRefreshRequested(true)
-      setPollStartedAt(Date.now())
     }
   }, [refresh, environmentId, experiment.id])
 

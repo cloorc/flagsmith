@@ -91,21 +91,23 @@ const ExperimentResultsRefreshControl: FC<
     return () => clearInterval(timer)
   }, [retryAfter !== null]) // eslint-disable-line react-hooks/exhaustive-deps
 
-  const isRefreshing = viewState.kind === 'refreshing' || isSubmitting
+  const isRefreshing =
+    refreshRequested || viewState.kind === 'refreshing' || isSubmitting
   const hasData = !!results?.payload
 
   const handleRefresh = useCallback(async () => {
+    setRefreshRequested(true)
+    setPollStartedAt(Date.now())
     const result = await refresh({ environmentId, experimentId })
     if ('error' in result && result.error) {
+      setRefreshRequested(false)
+      setPollStartedAt(null)
       const seconds = parseRetryAfter(result.error)
       if (seconds !== null) {
         setRetryAfter(seconds)
       } else {
         toast('Failed to refresh results', 'danger')
       }
-    } else {
-      setRefreshRequested(true)
-      setPollStartedAt(Date.now())
     }
   }, [refresh, environmentId, experimentId])
 
