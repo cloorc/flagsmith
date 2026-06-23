@@ -68,6 +68,8 @@ const OnboardingFlow: FC = () => {
   // first-evaluation signal lands (#7767, behind useOnboardingConnection); the
   // Dev toggle is real now.
   const connection = useOnboardingConnection()
+  // Session-only and one-way: a reload resets them, so the checklist reflects
+  // what the user did this visit, not durable progress. Fine for onboarding.
   const [installCopied, setInstallCopied] = useState(false)
   const [snippetCopied, setSnippetCopied] = useState(false)
   const {
