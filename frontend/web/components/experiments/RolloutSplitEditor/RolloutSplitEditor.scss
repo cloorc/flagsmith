@@ -58,20 +58,6 @@
     }
   }
 
-  &__bar {
-    display: flex;
-    height: 10px;
-    width: 100%;
-    border-radius: var(--radius-full);
-    overflow: hidden;
-    background: var(--color-surface-emphasis);
-  }
-
-  &__bar-segment {
-    height: 100%;
-    transition: width var(--duration-fast) var(--easing-standard);
-  }
-
   &__hint {
     font-size: var(--font-body-sm-size);
   }

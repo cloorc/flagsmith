@@ -77,6 +77,23 @@ export const getRolloutSummaryRows = (
   })),
 ]
 
+export type TrafficSegment = {
+  label: string
+  percentage: number
+  colour: string
+}
+
+export const getTrafficSegments = (
+  feature: ProjectFlag,
+  variationSplit: VariationSplitEntry[],
+  rolloutPercentage: number,
+): TrafficSegment[] =>
+  getRolloutSummaryRows(feature, variationSplit).map((row, index) => ({
+    colour: index === 0 ? CONTROL_COLOUR : getVariationColour(index - 1),
+    label: row.label,
+    percentage: (rolloutPercentage * row.percentage) / 100,
+  }))
+
 export const buildRolloutSummary = (
   rolloutPercentage: number,
   rows: RolloutSummaryRow[],

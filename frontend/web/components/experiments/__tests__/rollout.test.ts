@@ -3,6 +3,7 @@ import {
   getControlPercentage,
   getEvenSplit,
   getRolloutSummaryRows,
+  getTrafficSegments,
   getVariationSplitDefaults,
 } from 'components/experiments/rollout'
 import { MultivariateOption, ProjectFlag } from 'common/types/responses'
@@ -69,6 +70,23 @@ describe('rollout helpers', () => {
       { label: 'Control', percentage: 0 },
       { label: 'big', percentage: 60 },
       { label: 'Variant_2', percentage: 40 },
+    ])
+  })
+
+  it('getTrafficSegments scales each arm by the rollout percentage', () => {
+    expect(
+      getTrafficSegments(
+        feature([option({ id: 10 }), option({ id: 11 })]),
+        [
+          { multivariate_feature_option: 10, percentage_allocation: 40 },
+          { multivariate_feature_option: 11, percentage_allocation: 30 },
+        ],
+        50,
+      ).map(({ label, percentage }) => ({ label, percentage })),
+    ).toEqual([
+      { label: 'Control', percentage: 15 },
+      { label: 'Variant_1', percentage: 20 },
+      { label: 'Variant_2', percentage: 15 },
     ])
   })
 

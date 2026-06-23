@@ -1,6 +1,5 @@
 import { ChangeEvent, FC } from 'react'
 import { colorSurfaceEmphasis, colorTextAction } from 'common/theme/tokens'
-import Button from 'components/base/forms/Button'
 import Input from 'components/base/forms/Input'
 import Utils from 'common/utils/utils'
 import './RolloutSlider.scss'
@@ -10,7 +9,6 @@ type RolloutSliderProps = {
   onChange: (value: number) => void
 }
 
-const STEP = 5
 const TICKS = [0, 25, 50, 75, 100]
 
 const clamp = (value: number): number => Math.min(100, Math.max(0, value))
@@ -29,6 +27,7 @@ const RolloutSlider: FC<RolloutSliderProps> = ({ onChange, value }) => {
         <Input
           type='number'
           size='small'
+          underline
           min={0}
           max={100}
           value={value}
@@ -40,17 +39,6 @@ const RolloutSlider: FC<RolloutSliderProps> = ({ onChange, value }) => {
       </div>
 
       <div className='rollout-slider__row'>
-        <Button
-          theme='outline'
-          size='xxSmall'
-          className='rollout-slider__step'
-          onClick={() => onChange(clamp(value - STEP))}
-          disabled={value <= 0}
-          aria-label='Decrease by 5 percent'
-        >
-          -5%
-        </Button>
-
         <div className='rollout-slider__track'>
           <input
             type='range'
@@ -81,17 +69,6 @@ const RolloutSlider: FC<RolloutSliderProps> = ({ onChange, value }) => {
             ))}
           </div>
         </div>
-
-        <Button
-          theme='outline'
-          size='xxSmall'
-          className='rollout-slider__step'
-          onClick={() => onChange(clamp(value + STEP))}
-          disabled={value >= 100}
-          aria-label='Increase by 5 percent'
-        >
-          +5%
-        </Button>
       </div>
     </div>
   )

@@ -1,12 +1,11 @@
-import { FC, Fragment } from 'react'
+import { FC } from 'react'
 import { ProjectFlag } from 'common/types/responses'
 import Icon from 'components/icons/Icon'
-import ColorSwatch from 'components/ColorSwatch'
+import DistributionBar from 'components/experiments/DistributionBar'
 import {
-  CONTROL_COLOUR,
   VariationSplitEntry,
   getRolloutSummaryRows,
-  getVariationColour,
+  getTrafficSegments,
 } from 'components/experiments/rollout'
 import './RolloutSummary.scss'
 
@@ -16,38 +15,74 @@ type RolloutSummaryProps = {
   variationSplit: VariationSplitEntry[]
 }
 
+const formatPercentage = (value: number): string =>
+  `${Number(value.toFixed(1))}%`
+
 const RolloutSummary: FC<RolloutSummaryProps> = ({
   rolloutPercentage,
   selectedFeature,
   variationSplit,
 }) => {
   const rows = getRolloutSummaryRows(selectedFeature, variationSplit)
+  const arms = getTrafficSegments(
+    selectedFeature,
+    variationSplit,
+    rolloutPercentage,
+  )
+    .map((segment, index) => ({
+      colour: segment.colour,
+      label: segment.label,
+      scaled: segment.percentage,
+      weight: rows[index]?.percentage ?? 0,
+    }))
+    .filter((arm) => arm.scaled > 0)
+  const notReleased = Math.max(0, 100 - rolloutPercentage)
+
+  const barSegments = [
+    ...arms.map((arm) => ({
+      colour: arm.colour,
+      key: arm.label,
+      weight: arm.scaled,
+    })),
+    { hatched: true, key: 'not-released', weight: notReleased },
+  ]
 
   return (
     <div className='rollout-summary'>
-      <Icon name='people' width={20} />
-      <span>
-        {rolloutPercentage}% of eligible identities enter the experiment.
-        <br />
-        {rows.map((row, index) => (
-          <Fragment key={row.label}>
-            {index > 0 && ', '}
-            <ColorSwatch
-              className='rollout-summary__swatch'
-              color={
-                index === 0 ? CONTROL_COLOUR : getVariationColour(index - 1)
-              }
-              size='sm'
-              shape='circle'
-            />
-            <strong>{row.label}</strong> {row.percentage}%
-          </Fragment>
+      <div className='rollout-summary__header'>
+        <span className='rollout-summary__title'>Rollout configuration</span>
+        <span className='rollout-summary__not-released'>
+          <Icon name='eye-off' width={16} />
+          Not released to {notReleased}%
+        </span>
+      </div>
+
+      <DistributionBar segments={barSegments} />
+
+      <div className='rollout-summary__legend'>
+        {arms.map((arm) => (
+          <div
+            key={arm.label}
+            className='rollout-summary__legend-item'
+            style={{ width: `${arm.scaled}%` }}
+          >
+            <span className='rollout-summary__legend-label'>{arm.label}</span>
+            <span className='rollout-summary__legend-value'>
+              {formatPercentage(arm.weight)}
+            </span>
+          </div>
         ))}
-        .
-        <br />
-        Actual time-to-significance depends on traffic, baseline rate, and the
-        lift you're trying to detect.
-      </span>
+      </div>
+
+      <div className='rollout-summary__note'>
+        <Icon name='people' width={20} />
+        <span>
+          {rolloutPercentage}% of eligible identities enter the experiment.
+          <br />
+          Actual time-to-significance depends on traffic, baseline rate, and the
+          lift you're trying to detect.
+        </span>
+      </div>
     </div>
   )
 }

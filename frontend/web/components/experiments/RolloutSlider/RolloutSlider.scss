@@ -15,7 +15,6 @@
   }
 
   &__field-input {
-    padding-right: 22px;
     -moz-appearance: textfield;
     appearance: textfield;
 
@@ -24,6 +23,10 @@
       -webkit-appearance: none;
       margin: 0;
     }
+  }
+
+  &__field .input-container.input-underline input.rollout-slider__field-input {
+    padding-right: 22px;
   }
 
   &__field-suffix {
@@ -40,12 +43,6 @@
     align-items: center;
     justify-content: center;
     gap: 12px;
-  }
-
-  &__row &__step {
-    height: 20px;
-    line-height: 18px;
-    padding: 0 8px;
   }
 
   &__track {

@@ -40,19 +40,6 @@ const RolloutSplitEditor: FC<RolloutSplitEditorProps> = ({
       ),
     )
 
-  const segments = [
-    {
-      colour: CONTROL_COLOUR,
-      key: 'control',
-      weight: Math.max(0, controlPercentage),
-    },
-    ...multivariateOptions.map((option, index) => ({
-      colour: getVariationColour(index),
-      key: String(option.id),
-      weight: getPercentage(option.id),
-    })),
-  ]
-
   return (
     <div className='rollout-split'>
       {invalid && (
@@ -109,21 +96,6 @@ const RolloutSplitEditor: FC<RolloutSplitEditorProps> = ({
             </span>
           </div>
         ))}
-      </div>
-
-      <div className='rollout-split__bar'>
-        {segments.map((segment) =>
-          segment.weight > 0 ? (
-            <div
-              key={segment.key}
-              className='rollout-split__bar-segment'
-              style={{
-                background: segment.colour,
-                width: `${segment.weight}%`,
-              }}
-            />
-          ) : null,
-        )}
       </div>
 
       <p className='rollout-split__hint text-muted mb-0'>
