@@ -1,8 +1,11 @@
 import { FC, useCallback, useEffect, useMemo, useState } from 'react'
+import moment from 'moment'
 import { LineChart } from 'components/charts'
 import ContentCard from 'components/base/grid/ContentCard'
 import Button from 'components/base/forms/Button'
+import RefreshControl from 'components/base/forms/RefreshControl'
 import Icon from 'components/icons/Icon'
+import { colorIconDanger } from 'common/theme/tokens'
 import {
   useGetExperimentExposuresQuery,
   useRefreshExperimentExposuresMutation,
@@ -21,8 +24,13 @@ import {
   canRefreshExposures,
   deriveExposuresViewState,
 } from './exposuresViewState'
-import AsOfRefreshControl, { AsOfLabel } from './AsOfRefreshControl'
 import './results.scss'
+
+const AsOfLabel: FC<{ asOf: string | null }> = ({ asOf }) => (
+  <span className='text-muted fs-caption'>
+    {asOf ? `As of ${moment.utc(asOf).format('D MMM YYYY, HH:mm')} UTC` : ''}
+  </span>
+)
 
 const buildLegendLabels = (totals: VariantTotal[]): Record<string, string> => {
   const labels: Record<string, string> = {}
@@ -156,26 +164,21 @@ const ExperimentExposuresPanel: FC<ExperimentExposuresPanelProps> = ({
   }, [refresh, environmentId, experiment.id])
 
   const action = (
-    <div className='d-flex flex-column align-items-end'>
-      <AsOfRefreshControl
-        asOf={exposures?.as_of ?? null}
-        disabled={
-          !availability.canRefresh || isRefreshing || retryAfter !== null
-        }
-        disabledReason={
-          availability.reason
-            ? REFRESH_DISABLED_COPY[availability.reason]
-            : undefined
-        }
-        isRefreshing={isRefreshing && hasData}
-        onRefresh={handleRefresh}
-      />
-      {retryAfter !== null && (
-        <div className='text-muted fs-caption mt-1 text-end'>
-          Computing, retry in {formatCountdown(retryAfter)}
-        </div>
-      )}
-    </div>
+    <RefreshControl
+      disabled={!availability.canRefresh || isRefreshing || retryAfter !== null}
+      disabledReason={
+        availability.reason
+          ? REFRESH_DISABLED_COPY[availability.reason]
+          : undefined
+      }
+      isRefreshing={isRefreshing && hasData}
+      label={
+        retryAfter !== null
+          ? `Computing, retry in ${formatCountdown(retryAfter)}`
+          : undefined
+      }
+      onRefresh={handleRefresh}
+    />
   )
 
   const asOf = exposures?.as_of ?? null
@@ -207,7 +210,7 @@ const ExperimentExposuresPanel: FC<ExperimentExposuresPanelProps> = ({
               <>
                 <br />
                 <span className='d-inline-flex align-items-center gap-1 text-danger'>
-                  <Icon fill='#e53e3e' name='warning' width={14} />
+                  <Icon fill={colorIconDanger} name='warning' width={14} />
                   The last exposure computation failed. Showing previously
                   computed data.
                 </span>
@@ -244,7 +247,7 @@ const ExperimentExposuresPanel: FC<ExperimentExposuresPanelProps> = ({
               <>
                 <br />
                 <span className='d-inline-flex align-items-center gap-1 text-danger'>
-                  <Icon fill='#e53e3e' name='warning' width={14} />
+                  <Icon fill={colorIconDanger} name='warning' width={14} />
                   The last exposure computation failed. Showing previously
                   computed data.
                 </span>
@@ -256,7 +259,7 @@ const ExperimentExposuresPanel: FC<ExperimentExposuresPanelProps> = ({
 
       {!payload && viewState.kind === 'error' && (
         <div className='d-flex align-items-center justify-content-center gap-1 text-danger fs-caption py-4'>
-          <Icon fill='#e53e3e' name='warning' width={14} />
+          <Icon fill={colorIconDanger} name='warning' width={14} />
           The last exposure computation failed.
         </div>
       )}

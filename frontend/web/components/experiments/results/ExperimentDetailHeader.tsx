@@ -12,6 +12,7 @@ import {
   useStartExperimentMutation,
   useUpdateExperimentMutation,
 } from 'common/services/useExperiment'
+import ExperimentResultsRefreshControl from './ExperimentResultsRefreshControl'
 import { Experiment } from 'common/types/responses'
 import Tooltip from 'components/Tooltip'
 import { getPrimaryMetric } from 'components/experiments/constants'
@@ -269,14 +270,23 @@ const ExperimentDetailHeader: FC<ExperimentDetailHeaderProps> = ({
   return (
     <>
       <div className='mb-4'>
-        <div className='flex-row justify-content-between align-items-center'>
+        <div className='flex-row justify-content-between align-items-start'>
           <div className='flex-row align-items-center gap-2'>
             <h2 className='text-default fw-bold mb-0' style={{ fontSize: 20 }}>
               {experiment.name}
             </h2>
             <StatusBadge status={experiment.status} />
           </div>
-          {renderActions()}
+          <div className='d-flex flex-column align-items-end gap-2'>
+            {renderActions()}
+            {experiment.status !== 'created' && (
+              <ExperimentResultsRefreshControl
+                environmentId={environmentId}
+                experimentId={experiment.id}
+                status={experiment.status}
+              />
+            )}
+          </div>
         </div>
         <div className='d-flex align-items-center gap-2 fs-caption mt-2'>
           {metricName && <strong>{metricName}</strong>}
