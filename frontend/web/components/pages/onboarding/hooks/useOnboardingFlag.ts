@@ -38,15 +38,22 @@ export const useOnboardingFlag = (
 
   const [updateFeatureState, { isLoading }] = useUpdateFeatureStateMutation()
 
-  const toggle = (enabled: boolean) => {
+  // Persisted toggle. Not optimistic: the Switch reflects the RTK-cached state
+  // and is disabled mid-flight, so a failure just leaves the old value. Toast on
+  // failure, matching the header rename UX, rather than failing silently.
+  const toggle = async (enabled: boolean) => {
     if (!environment || !state) {
       return
     }
-    updateFeatureState({
-      body: { enabled },
-      environmentFlagId: state.id,
-      environmentId: environment.api_key,
-    })
+    try {
+      await updateFeatureState({
+        body: { enabled },
+        environmentFlagId: state.id,
+        environmentId: environment.api_key,
+      }).unwrap()
+    } catch {
+      toast('Couldn’t update your flag. Please try again.', 'danger')
+    }
   }
 
   return {
