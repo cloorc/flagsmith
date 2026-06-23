@@ -1061,6 +1061,11 @@ export type Req = {
   getExperiment: { environmentId: string; experimentId: number }
   getExperimentExposures: { environmentId: string; experimentId: number }
   refreshExperimentExposures: { environmentId: string; experimentId: number }
+  getExperimentBayesianResults: { environmentId: string; experimentId: number }
+  refreshExperimentBayesianResults: {
+    environmentId: string
+    experimentId: number
+  }
   getMetrics: PagedRequest<{
     environmentId: string
     q?: string

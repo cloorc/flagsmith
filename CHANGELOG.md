@@ -1,5 +1,34 @@
 # Changelog
 
+## [2.245.0](https://github.com/Flagsmith/flagsmith/compare/v2.244.1...v2.245.0) (2026-06-23)
+
+
+### Features
+
+* **experiments:** Bayesian analysis scorecards and results UI ([#7813](https://github.com/Flagsmith/flagsmith/issues/7813)) ([91238bb](https://github.com/Flagsmith/flagsmith/commit/91238bb744420ca71f38a5062c993601940d2e9e))
+
+
+### Bug Fixes
+
+* **clickhouse:** Avoid excess ALTER statements for no-op `migrate` ([#7853](https://github.com/Flagsmith/flagsmith/issues/7853)) ([0b85fe1](https://github.com/Flagsmith/flagsmith/commit/0b85fe174957fd2cf7db52b7e6a8069928c91893))
+
+## [2.244.1](https://github.com/Flagsmith/flagsmith/compare/v2.244.0...v2.244.1) (2026-06-22)
+
+
+### Bug Fixes
+
+* **clickhouse:** Intermittent migration failures from replica metadata lag ([#7847](https://github.com/Flagsmith/flagsmith/issues/7847)) ([70f0ec3](https://github.com/Flagsmith/flagsmith/commit/70f0ec3f6fd3c2fea8fa87f1de1c42e04b198a85))
+
+
+### Dependency Updates
+
+* **mcp:** update dependency pydantic-settings to v2.14.2 [security] ([#7841](https://github.com/Flagsmith/flagsmith/issues/7841)) ([59f3b2e](https://github.com/Flagsmith/flagsmith/commit/59f3b2e13038005b9878ec2891e857e23e00e944))
+
+
+### CI
+
+* **api:** Add ClickHouse to the local and CI test stack ([#7848](https://github.com/Flagsmith/flagsmith/issues/7848)) ([d991940](https://github.com/Flagsmith/flagsmith/commit/d9919400a1b8093ee7bc6c5c527adf16c416bae1))
+
 ## [2.244.0](https://github.com/Flagsmith/flagsmith/compare/v2.243.1...v2.244.0) (2026-06-22)
 
 
