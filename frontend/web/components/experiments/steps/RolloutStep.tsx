@@ -4,11 +4,10 @@ import Button from 'components/base/forms/Button'
 import ContentCard from 'components/base/grid/ContentCard'
 import RolloutSlider from 'components/experiments/RolloutSlider'
 import RolloutSplitEditor from 'components/experiments/RolloutSplitEditor'
+import RolloutSummary from 'components/experiments/RolloutSummary'
 import {
   VariationSplitEntry,
-  buildRolloutSummary,
   getEvenSplit,
-  getRolloutSummaryRows,
 } from 'components/experiments/rollout'
 
 type RolloutStepProps = {
@@ -41,7 +40,7 @@ const RolloutStep: FC<RolloutStepProps> = ({
       <ContentCard
         white
         title='Sample Size'
-        description='Select what share of eligible identities enters the experiment.'
+        description="What percentage of eligible users enters the experiment? The rest keep the flag's environment default and aren't part of the result."
       >
         <RolloutSlider value={rolloutPercentage} onChange={onRolloutChange} />
       </ContentCard>
@@ -69,14 +68,11 @@ const RolloutStep: FC<RolloutStepProps> = ({
         />
       </ContentCard>
 
-      <ContentCard white title='Summary'>
-        <p className='mb-0'>
-          {buildRolloutSummary(
-            rolloutPercentage,
-            getRolloutSummaryRows(selectedFeature, variationSplit),
-          )}
-        </p>
-      </ContentCard>
+      <RolloutSummary
+        selectedFeature={selectedFeature}
+        rolloutPercentage={rolloutPercentage}
+        variationSplit={variationSplit}
+      />
     </div>
   )
 }

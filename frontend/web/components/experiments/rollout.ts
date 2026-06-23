@@ -23,8 +23,8 @@ export const getVariationSplitDefaults = (
     return {
       multivariate_feature_option: option.id,
       percentage_allocation:
-        override?.percentage_allocation ??
-        option.default_percentage_allocation ??
+        override?.percentage_allocation ||
+        option.default_percentage_allocation ||
         0,
     }
   })

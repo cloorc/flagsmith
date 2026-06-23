@@ -1,0 +1,22 @@
+.rollout-summary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: var(--color-surface-subtle);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-lg);
+  font-size: var(--font-body-sm-size);
+  color: var(--color-text-secondary);
+
+  svg,
+  .icon {
+    color: var(--color-icon-action);
+    flex-shrink: 0;
+  }
+
+  strong {
+    color: var(--color-text-default);
+    font-weight: var(--font-weight-semibold);
+  }
+}

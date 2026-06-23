@@ -136,7 +136,7 @@ const RolloutSplitEditor: FC<RolloutSplitEditorProps> = ({
       </div>
 
       <p className='rollout-split__hint text-muted mb-0'>
-        Bucketing is deterministic on the SDK identifier — the same identity
+        Bucketing is deterministic on the SDK identifier. The same identity
         always lands in the same variation.
       </p>
     </div>
