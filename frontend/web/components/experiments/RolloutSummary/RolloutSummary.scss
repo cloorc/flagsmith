@@ -1,7 +1,8 @@
 .rollout-summary {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 12px;
+  line-height: 1.6;
   padding: 14px 16px;
   background: var(--color-surface-subtle);
   border: 1px solid var(--color-border-default);
@@ -18,5 +19,10 @@
   strong {
     color: var(--color-text-default);
     font-weight: var(--font-weight-semibold);
+  }
+
+  &__swatch {
+    margin-right: 4px;
+    vertical-align: middle;
   }
 }

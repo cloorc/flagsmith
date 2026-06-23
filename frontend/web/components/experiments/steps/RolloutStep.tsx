@@ -40,7 +40,7 @@ const RolloutStep: FC<RolloutStepProps> = ({
       <ContentCard
         white
         title='Sample Size'
-        description="What percentage of eligible users enters the experiment? The rest keep the flag's environment default and aren't part of the result."
+        description='What percentage of eligible users enters the experiment? The experiment flag will be disabled for the remaining portion of the users.'
       >
         <RolloutSlider value={rolloutPercentage} onChange={onRolloutChange} />
       </ContentCard>

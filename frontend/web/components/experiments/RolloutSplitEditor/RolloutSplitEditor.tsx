@@ -6,21 +6,12 @@ import ColorSwatch from 'components/ColorSwatch'
 import Utils from 'common/utils/utils'
 import { getDefaultVariantKey } from 'common/utils/multivariate'
 import {
-  CHART_COLOURS,
-  colorTextAction,
-  colorTextSuccess,
-} from 'common/theme/tokens'
-import {
+  CONTROL_COLOUR,
   VariationSplitEntry,
   getControlPercentage,
+  getVariationColour,
 } from 'components/experiments/rollout'
 import './RolloutSplitEditor.scss'
-
-const CONTROL_COLOUR = colorTextSuccess
-const VARIATION_COLOURS = [colorTextAction, ...CHART_COLOURS]
-
-const getVariationColour = (index: number): string =>
-  VARIATION_COLOURS[index % VARIATION_COLOURS.length]
 
 type RolloutSplitEditorProps = {
   multivariateOptions: MultivariateOption[]

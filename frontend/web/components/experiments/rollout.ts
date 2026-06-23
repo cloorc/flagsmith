@@ -1,5 +1,10 @@
 import { MultivariateOption, ProjectFlag } from 'common/types/responses'
 import { getDefaultVariantKey } from 'common/utils/multivariate'
+import {
+  CHART_COLOURS,
+  colorTextAction,
+  colorTextSuccess,
+} from 'common/theme/tokens'
 
 export type VariationSplitEntry = {
   multivariate_feature_option: number
@@ -11,13 +16,18 @@ export type RolloutSummaryRow = {
   percentage: number
 }
 
+export const CONTROL_COLOUR = colorTextSuccess
+export const VARIATION_COLOURS = [colorTextAction, ...CHART_COLOURS]
+
+export const getVariationColour = (index: number): string =>
+  VARIATION_COLOURS[index % VARIATION_COLOURS.length]
+
 export const getVariationSplitDefaults = (
-  feature: ProjectFlag,
-): VariationSplitEntry[] => {
-  const envValues =
-    feature.environment_feature_state?.multivariate_feature_state_values ?? []
-  return feature.multivariate_options.map((option) => {
-    const override = envValues.find(
+  options: MultivariateOption[],
+  environmentValues: VariationSplitEntry[] = [],
+): VariationSplitEntry[] =>
+  options.map((option) => {
+    const override = environmentValues.find(
       (value) => value.multivariate_feature_option === option.id,
     )
     return {
@@ -28,7 +38,6 @@ export const getVariationSplitDefaults = (
         0,
     }
   })
-}
 
 export const getEvenSplit = (
   options: MultivariateOption[],

@@ -19,19 +19,8 @@ const option = (over: Partial<MultivariateOption>): MultivariateOption => ({
   ...over,
 })
 
-const feature = (
-  options: MultivariateOption[],
-  envValues?: {
-    multivariate_feature_option: number
-    percentage_allocation: number
-  }[],
-): ProjectFlag =>
-  ({
-    environment_feature_state: envValues
-      ? { multivariate_feature_state_values: envValues }
-      : undefined,
-    multivariate_options: options,
-  } as ProjectFlag)
+const feature = (options: MultivariateOption[]): ProjectFlag =>
+  ({ multivariate_options: options } as ProjectFlag)
 
 describe('rollout helpers', () => {
   it('getEvenSplit splits weight evenly across control and variants', () => {
@@ -44,13 +33,11 @@ describe('rollout helpers', () => {
   it('getVariationSplitDefaults derives weights from the environment, falling back to feature defaults', () => {
     expect(
       getVariationSplitDefaults(
-        feature(
-          [
-            option({ default_percentage_allocation: 60, id: 10 }),
-            option({ default_percentage_allocation: 40, id: 11 }),
-          ],
-          [{ multivariate_feature_option: 10, percentage_allocation: 70 }],
-        ),
+        [
+          option({ default_percentage_allocation: 60, id: 10 }),
+          option({ default_percentage_allocation: 40, id: 11 }),
+        ],
+        [{ multivariate_feature_option: 10, percentage_allocation: 70 }],
       ),
     ).toEqual([
       { multivariate_feature_option: 10, percentage_allocation: 70 },

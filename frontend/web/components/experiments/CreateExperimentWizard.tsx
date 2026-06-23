@@ -6,6 +6,8 @@ import {
   ProjectFlag,
 } from 'common/types/responses'
 import { useCreateExperimentMutation } from 'common/services/useExperiment'
+import { useGetFeatureStatesQuery } from 'common/services/useFeatureState'
+import { useProjectEnvironments } from 'common/hooks/useProjectEnvironments'
 import { METRIC_DIRECTION_TO_EXPECTED_DIRECTION } from './constants'
 import WizardStepper from './WizardStepper'
 import WizardNavButtons from './WizardNavButtons'
@@ -51,11 +53,32 @@ const CreateExperimentWizard: FC<CreateExperimentWizardProps> = ({
   )
   const [completedSteps, setCompletedSteps] = useState<Set<number>>(new Set())
 
+  const { getEnvironmentIdFromKey } = useProjectEnvironments(projectId)
+  const numericEnvId = getEnvironmentIdFromKey(environmentId)
+
+  const { data: featureStatesData } = useGetFeatureStatesQuery(
+    { environment: numericEnvId, feature: selectedFeature?.id },
+    { skip: !selectedFeature || !numericEnvId },
+  )
+
+  const environmentFeatureState = useMemo(
+    () =>
+      featureStatesData?.results?.find(
+        (state) => !state.feature_segment && !state.identity,
+      ),
+    [featureStatesData],
+  )
+
   useEffect(() => {
     setVariationSplit(
-      selectedFeature ? getVariationSplitDefaults(selectedFeature) : [],
+      selectedFeature
+        ? getVariationSplitDefaults(
+            selectedFeature.multivariate_options,
+            environmentFeatureState?.multivariate_feature_state_values,
+          )
+        : [],
     )
-  }, [selectedFeature])
+  }, [selectedFeature, environmentFeatureState])
 
   const [createExperiment, { isLoading: isSubmitting }] =
     useCreateExperimentMutation()
