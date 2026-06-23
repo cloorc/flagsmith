@@ -49,7 +49,7 @@ const ExperimentResultsRefreshControl: FC<
 
   const { data: results } = useGetExperimentBayesianResultsQuery(
     { environmentId, experimentId },
-    { pollingInterval: pollInterval, refetchOnMountOrArgChange: true },
+    { pollingInterval: pollInterval },
   )
   const [refresh, { isLoading: isSubmitting }] =
     useRefreshExperimentBayesianResultsMutation()
@@ -131,7 +131,6 @@ const ExperimentResultsRefreshControl: FC<
       isRefreshing={isRefreshing && hasData}
       label={label}
       onRefresh={handleRefresh}
-      theme='primary'
     >
       Refresh results
     </RefreshControl>
