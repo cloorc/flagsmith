@@ -27,8 +27,9 @@ const DEFAULT_PROJECT_NAME = 'My first project'
 const DEV_ENVIRONMENT_NAME = 'Development'
 const PROD_ENVIRONMENT_NAME = 'Production'
 // Attached to the demo flag so the flags table shows an "Onboarding" badge.
+// Green from the product tag palette (Constants.tagColors), not an arbitrary hex.
 const ONBOARDING_TAG = {
-  color: '#057A55',
+  color: '#3cb371',
   description: 'Created during onboarding',
   label: 'Onboarding',
 }
