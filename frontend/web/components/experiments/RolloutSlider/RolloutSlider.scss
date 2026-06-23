@@ -1,14 +1,21 @@
 .rollout-slider {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  padding: 8px 4px;
+  justify-content: center;
+  padding: 28px 4px 8px;
 
-  &__readout {
-    font-size: 2rem;
-    font-weight: var(--font-weight-bold);
+  &__track {
+    position: relative;
+    width: 50%;
+  }
+
+  &__value {
+    position: absolute;
+    top: -24px;
+    transform: translateX(-50%);
+    font-size: var(--font-body-size);
+    font-weight: var(--font-weight-semibold);
     color: var(--color-text-default);
+    white-space: nowrap;
   }
 
   &__input {
@@ -17,14 +24,13 @@
     -webkit-appearance: none;
     height: 6px;
     border-radius: var(--radius-full);
-    background: var(--color-surface-muted);
     cursor: pointer;
 
     &::-webkit-slider-thumb {
       -webkit-appearance: none;
       appearance: none;
-      width: 20px;
-      height: 20px;
+      width: 18px;
+      height: 18px;
       border-radius: 50%;
       background: var(--color-text-action);
       border: 2px solid var(--color-surface-default);
@@ -32,8 +38,8 @@
     }
 
     &::-moz-range-thumb {
-      width: 20px;
-      height: 20px;
+      width: 18px;
+      height: 18px;
       border: 2px solid var(--color-surface-default);
       border-radius: 50%;
       background: var(--color-text-action);
@@ -42,7 +48,7 @@
   }
 
   &__scale {
-    width: 100%;
+    margin-top: 8px;
     display: flex;
     justify-content: space-between;
     font-size: var(--font-caption-size);

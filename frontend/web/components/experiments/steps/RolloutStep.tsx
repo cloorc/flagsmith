@@ -1,11 +1,13 @@
 import { FC } from 'react'
 import { ProjectFlag } from 'common/types/responses'
+import Button from 'components/base/forms/Button'
 import ContentCard from 'components/base/grid/ContentCard'
 import RolloutSlider from 'components/experiments/RolloutSlider'
 import RolloutSplitEditor from 'components/experiments/RolloutSplitEditor'
 import {
   VariationSplitEntry,
   buildRolloutSummary,
+  getEvenSplit,
   getRolloutSummaryRows,
 } from 'components/experiments/rollout'
 
@@ -26,7 +28,7 @@ const RolloutStep: FC<RolloutStepProps> = ({
 }) => {
   if (!selectedFeature) {
     return (
-      <ContentCard title='Rollout configuration'>
+      <ContentCard white title='Rollout configuration'>
         <p className='text-muted mb-0'>
           Select a feature flag in the Setup step to configure the rollout.
         </p>
@@ -34,32 +36,40 @@ const RolloutStep: FC<RolloutStepProps> = ({
     )
   }
 
-  const controlValue =
-    selectedFeature.environment_feature_state?.feature_state_value?.toString() ??
-    ''
-
   return (
     <div className='d-flex flex-column gap-4'>
       <ContentCard
+        white
         title='Sample Size'
-        description='Choose what share of eligible identities enters the experiment.'
+        description='Select what share of eligible identities enters the experiment.'
       >
         <RolloutSlider value={rolloutPercentage} onChange={onRolloutChange} />
       </ContentCard>
 
       <ContentCard
+        white
         title='Variation Split'
-        description='How traffic entering the experiment is divided across variations. Values come from the feature; adjust the weights for this experiment.'
+        description='Distribute sampled identities across control and treatment variations. Control takes one of the slots; weights must sum to 100.'
+        action={
+          <Button
+            theme='outline'
+            size='xSmall'
+            onClick={() =>
+              onSplitChange(getEvenSplit(selectedFeature.multivariate_options))
+            }
+          >
+            Split evenly
+          </Button>
+        }
       >
         <RolloutSplitEditor
-          controlValue={controlValue}
           multivariateOptions={selectedFeature.multivariate_options}
           variationSplit={variationSplit}
           onChange={onSplitChange}
         />
       </ContentCard>
 
-      <ContentCard title='Summary'>
+      <ContentCard white title='Summary'>
         <p className='mb-0'>
           {buildRolloutSummary(
             rolloutPercentage,

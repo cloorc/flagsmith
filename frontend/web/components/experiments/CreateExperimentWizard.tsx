@@ -53,9 +53,7 @@ const CreateExperimentWizard: FC<CreateExperimentWizardProps> = ({
 
   useEffect(() => {
     setVariationSplit(
-      selectedFeature
-        ? getVariationSplitDefaults(selectedFeature.multivariate_options)
-        : [],
+      selectedFeature ? getVariationSplitDefaults(selectedFeature) : [],
     )
   }, [selectedFeature])
 

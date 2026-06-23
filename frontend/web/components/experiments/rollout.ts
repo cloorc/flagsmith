@@ -11,20 +11,36 @@ export type RolloutSummaryRow = {
   percentage: number
 }
 
-export const getMultivariateOptionValue = (mv: MultivariateOption): string => {
-  if (mv.type === 'unicode') return mv.string_value
-  if (mv.type === 'int') return String(mv.integer_value ?? '')
-  if (mv.type === 'bool') return String(mv.boolean_value ?? '')
-  return ''
+export const getVariationSplitDefaults = (
+  feature: ProjectFlag,
+): VariationSplitEntry[] => {
+  const envValues =
+    feature.environment_feature_state?.multivariate_feature_state_values ?? []
+  return feature.multivariate_options.map((option) => {
+    const override = envValues.find(
+      (value) => value.multivariate_feature_option === option.id,
+    )
+    return {
+      multivariate_feature_option: option.id,
+      percentage_allocation:
+        override?.percentage_allocation ??
+        option.default_percentage_allocation ??
+        0,
+    }
+  })
 }
 
-export const getVariationSplitDefaults = (
+export const getEvenSplit = (
   options: MultivariateOption[],
-): VariationSplitEntry[] =>
-  options.map((option) => ({
+): VariationSplitEntry[] => {
+  const slots = options.length + 1
+  const base = Math.floor(100 / slots)
+  const remainder = 100 - base * slots
+  return options.map((option, index) => ({
     multivariate_feature_option: option.id,
-    percentage_allocation: option.default_percentage_allocation ?? 0,
+    percentage_allocation: base + (index + 1 < remainder ? 1 : 0),
   }))
+}
 
 export const getControlPercentage = (
   variationSplit: VariationSplitEntry[],

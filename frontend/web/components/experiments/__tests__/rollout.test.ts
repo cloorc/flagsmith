@@ -1,7 +1,7 @@
 import {
   buildRolloutSummary,
   getControlPercentage,
-  getMultivariateOptionValue,
+  getEvenSplit,
   getRolloutSummaryRows,
   getVariationSplitDefaults,
 } from 'components/experiments/rollout'
@@ -19,24 +19,41 @@ const option = (over: Partial<MultivariateOption>): MultivariateOption => ({
   ...over,
 })
 
-const feature = (options: MultivariateOption[]): ProjectFlag =>
-  ({ multivariate_options: options } as ProjectFlag)
+const feature = (
+  options: MultivariateOption[],
+  envValues?: {
+    multivariate_feature_option: number
+    percentage_allocation: number
+  }[],
+): ProjectFlag =>
+  ({
+    environment_feature_state: envValues
+      ? { multivariate_feature_state_values: envValues }
+      : undefined,
+    multivariate_options: options,
+  } as ProjectFlag)
 
 describe('rollout helpers', () => {
-  it('getMultivariateOptionValue renders a value as a string', () => {
-    expect(
-      getMultivariateOptionValue(option({ integer_value: 7, type: 'int' })),
-    ).toBe('7')
+  it('getEvenSplit splits weight evenly across control and variants', () => {
+    expect(getEvenSplit([option({ id: 10 }), option({ id: 11 })])).toEqual([
+      { multivariate_feature_option: 10, percentage_allocation: 33 },
+      { multivariate_feature_option: 11, percentage_allocation: 33 },
+    ])
   })
 
-  it('getVariationSplitDefaults maps options to id + default allocation', () => {
+  it('getVariationSplitDefaults derives weights from the environment, falling back to feature defaults', () => {
     expect(
-      getVariationSplitDefaults([
-        option({ default_percentage_allocation: 60, id: 10 }),
-        option({ default_percentage_allocation: 40, id: 11 }),
-      ]),
+      getVariationSplitDefaults(
+        feature(
+          [
+            option({ default_percentage_allocation: 60, id: 10 }),
+            option({ default_percentage_allocation: 40, id: 11 }),
+          ],
+          [{ multivariate_feature_option: 10, percentage_allocation: 70 }],
+        ),
+      ),
     ).toEqual([
-      { multivariate_feature_option: 10, percentage_allocation: 60 },
+      { multivariate_feature_option: 10, percentage_allocation: 70 },
       { multivariate_feature_option: 11, percentage_allocation: 40 },
     ])
   })

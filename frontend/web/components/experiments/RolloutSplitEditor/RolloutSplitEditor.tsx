@@ -5,23 +5,30 @@ import ErrorMessage from 'components/ErrorMessage'
 import ColorSwatch from 'components/ColorSwatch'
 import Utils from 'common/utils/utils'
 import { getDefaultVariantKey } from 'common/utils/multivariate'
-import { colorTextAction, colorTextSuccess } from 'common/theme/tokens'
+import {
+  CHART_COLOURS,
+  colorTextAction,
+  colorTextSuccess,
+} from 'common/theme/tokens'
 import {
   VariationSplitEntry,
   getControlPercentage,
-  getMultivariateOptionValue,
 } from 'components/experiments/rollout'
 import './RolloutSplitEditor.scss'
 
+const CONTROL_COLOUR = colorTextSuccess
+const VARIATION_COLOURS = [colorTextAction, ...CHART_COLOURS]
+
+const getVariationColour = (index: number): string =>
+  VARIATION_COLOURS[index % VARIATION_COLOURS.length]
+
 type RolloutSplitEditorProps = {
-  controlValue: string
   multivariateOptions: MultivariateOption[]
   variationSplit: VariationSplitEntry[]
   onChange: (entries: VariationSplitEntry[]) => void
 }
 
 const RolloutSplitEditor: FC<RolloutSplitEditorProps> = ({
-  controlValue,
   multivariateOptions,
   onChange,
   variationSplit,
@@ -42,6 +49,19 @@ const RolloutSplitEditor: FC<RolloutSplitEditorProps> = ({
       ),
     )
 
+  const segments = [
+    {
+      colour: CONTROL_COLOUR,
+      key: 'control',
+      weight: Math.max(0, controlPercentage),
+    },
+    ...multivariateOptions.map((option, index) => ({
+      colour: getVariationColour(index),
+      key: String(option.id),
+      weight: getPercentage(option.id),
+    })),
+  ]
+
   return (
     <div className='rollout-split'>
       {invalid && (
@@ -51,49 +71,41 @@ const RolloutSplitEditor: FC<RolloutSplitEditorProps> = ({
         />
       )}
 
-      <div className='rollout-split__row'>
-        <div className='rollout-split__name'>
-          <ColorSwatch color={colorTextSuccess} size='md' shape='circle' />
-          <span className='rollout-split__name-text'>Control</span>
-          <span className='rollout-split__control-tag'>control</span>
-        </div>
-        <div className='rollout-split__value'>
-          {controlValue ? (
-            <span className='rollout-split__value-badge' title={controlValue}>
-              {controlValue}
-            </span>
-          ) : null}
-        </div>
-        <div className='rollout-split__weight'>
-          <span className='rollout-split__weight-readonly'>
-            {Math.max(0, controlPercentage)}
+      <div className='rollout-split__rows'>
+        <div className='rollout-split__row'>
+          <span className='rollout-split__name'>
+            <ColorSwatch color={CONTROL_COLOUR} size='md' shape='circle' />
+            <span className='rollout-split__name-text'>Control</span>
+            <span className='rollout-split__control-tag'>control</span>
           </span>
-          <span className='text-muted'>%</span>
+          <span className='rollout-split__weight'>
+            <Input
+              type='number'
+              size='small'
+              centered
+              readOnly
+              value={Math.max(0, controlPercentage)}
+            />
+            <span className='text-muted'>%</span>
+          </span>
         </div>
-      </div>
 
-      {multivariateOptions.map((option, index) => {
-        const value = getMultivariateOptionValue(option)
-        return (
+        {multivariateOptions.map((option, index) => (
           <div key={option.id} className='rollout-split__row'>
-            <div className='rollout-split__name'>
-              <ColorSwatch color={colorTextAction} size='md' shape='circle' />
+            <span className='rollout-split__name'>
+              <ColorSwatch
+                color={getVariationColour(index)}
+                size='md'
+                shape='circle'
+              />
               <span className='rollout-split__name-text'>
                 {option.key || getDefaultVariantKey(index)}
               </span>
-            </div>
-            <div className='rollout-split__value'>
-              {value ? (
-                <span className='rollout-split__value-badge' title={value}>
-                  {value}
-                </span>
-              ) : null}
-            </div>
-            <div className='rollout-split__weight'>
+            </span>
+            <span className='rollout-split__weight'>
               <Input
                 type='number'
                 size='small'
-                underline
                 centered
                 value={getPercentage(option.id)}
                 step='any'
@@ -103,10 +115,30 @@ const RolloutSplitEditor: FC<RolloutSplitEditorProps> = ({
                 }}
               />
               <span className='text-muted'>%</span>
-            </div>
+            </span>
           </div>
-        )
-      })}
+        ))}
+      </div>
+
+      <div className='rollout-split__bar'>
+        {segments.map((segment) =>
+          segment.weight > 0 ? (
+            <div
+              key={segment.key}
+              className='rollout-split__bar-segment'
+              style={{
+                background: segment.colour,
+                width: `${segment.weight}%`,
+              }}
+            />
+          ) : null,
+        )}
+      </div>
+
+      <p className='rollout-split__hint text-muted mb-0'>
+        Bucketing is deterministic on the SDK identifier — the same identity
+        always lands in the same variation.
+      </p>
     </div>
   )
 }

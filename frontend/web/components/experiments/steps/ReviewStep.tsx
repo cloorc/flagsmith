@@ -39,6 +39,7 @@ const ReviewStep: FC<ReviewStepProps> = ({
   return (
     <div className='d-flex flex-column gap-4'>
       <ContentCard
+        white
         title='Setup'
         action={
           <Button theme='text' size='xSmall' onClick={onEditSetup}>
@@ -77,6 +78,7 @@ const ReviewStep: FC<ReviewStepProps> = ({
 
       {selectedFeature && (
         <ContentCard
+          white
           title='Rollout'
           action={
             <Button theme='text' size='xSmall' onClick={onEditRollout}>
@@ -94,6 +96,7 @@ const ReviewStep: FC<ReviewStepProps> = ({
       )}
 
       <ContentCard
+        white
         title={selectedMetric ? 'Measurement (1 metric)' : 'Measurement'}
         action={
           <Button theme='text' size='xSmall' onClick={onEditMeasurement}>
