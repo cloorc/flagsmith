@@ -37,8 +37,13 @@ const OnboardingFlagsTable: FC<OnboardingFlagsTableProps> = ({
 }) => {
   const waiting = status === 'waiting'
   return (
-    <section className='onboarding-flags'>
-      <h3 className='onboarding-flags__title'>Your flags</h3>
+    <section
+      className='onboarding-flags'
+      aria-labelledby='onboarding-flags-title'
+    >
+      <h3 className='onboarding-flags__title' id='onboarding-flags-title'>
+        Your flags
+      </h3>
       <div
         className={classNames('onboarding-flags__table', {
           'onboarding-flags__table--waiting': waiting,
@@ -70,6 +75,7 @@ const OnboardingFlagsTable: FC<OnboardingFlagsTableProps> = ({
                 checked={flag.enabled}
                 disabled={togglingFlag === flag.name}
                 onChange={(enabled) => onToggle(flag, enabled)}
+                aria-label={`Toggle ${flag.name}`}
               />
             </div>
           </div>

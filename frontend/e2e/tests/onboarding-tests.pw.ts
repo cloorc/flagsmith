@@ -1,0 +1,115 @@
+import { test, expect } from '../test-setup';
+import {
+  byId,
+  createHelpers,
+  getFlagsmith,
+  log,
+  visualSnapshot,
+} from '../helpers';
+import { E2E_SIGN_UP_USER, PASSWORD } from '../config';
+
+// The single-page onboarding flow (onboarding_quickstart_flow) a new user lands
+// on at /getting-started. Mirror of the legacy signup test's guard: this runs
+// only when the flag is on, the legacy signup test runs only when it's off.
+test.describe('Onboarding', () => {
+  test('New user connects via the single-page onboarding flow @oss', async ({
+    page,
+  }, testInfo) => {
+    const { addErrorLogging, click, setText, waitForElementVisible } =
+      createHelpers(page);
+    const flagsmith = await getFlagsmith();
+
+    test.skip(
+      !flagsmith.hasFeature('onboarding_quickstart_flow'),
+      'Onboarding flow is behind onboarding_quickstart_flow',
+    );
+
+    await addErrorLogging();
+
+    // Sign up a fresh user; with the flag on, a getting-started user is routed
+    // to /getting-started where the flow bootstraps the org / project / flag.
+    log('Sign up');
+    await page.goto('/');
+    await click(byId('jsSignup'));
+    await waitForElementVisible(byId('firstName'));
+    await setText(byId('firstName'), 'Bullet');
+    await setText(byId('lastName'), 'Train');
+    await setText(byId('email'), E2E_SIGN_UP_USER);
+    await setText(byId('password'), PASSWORD);
+    await click(byId('signup-btn'));
+
+    // Land on the flow. Navigating explicitly is robust to the exact post-signup
+    // redirect; the gate + idempotent bootstrap render the flow either way.
+    log('Land on the onboarding flow');
+    await page.goto('/getting-started');
+    await waitForElementVisible(byId('onboarding-flow'), 30000);
+    await visualSnapshot(page, 'onboarding-flow', testInfo);
+
+    // The verify terminal starts pre-connection: LISTENING, nothing ticked.
+    await expect(page.locator(byId('onboarding-terminal-badge'))).toHaveText(
+      /LISTENING/,
+    );
+    await expect(page.locator(byId('onboarding-step-0'))).toHaveAttribute(
+      'data-done',
+      'false',
+    );
+
+    // Copying the install + wire snippets ticks the checklist.
+    log('Copy snippets, checklist ticks');
+    await click(byId('onboarding-copy-install'));
+    await expect(page.locator(byId('onboarding-step-0'))).toHaveAttribute(
+      'data-done',
+      'true',
+    );
+    await click(byId('onboarding-copy-wire'));
+    await expect(page.locator(byId('onboarding-step-1'))).toHaveAttribute(
+      'data-done',
+      'true',
+    );
+
+    // The Development toggle is real and persists (updateFeatureState).
+    log('Toggle the flag');
+    const flagSwitch = page.locator(byId('onboarding-flag-switch'));
+    await flagSwitch.waitFor({ state: 'visible' });
+    const wasChecked = (await flagSwitch.getAttribute('class'))?.includes(
+      'switch-checked',
+    );
+    await flagSwitch.click();
+    await expect(flagSwitch).toHaveClass(
+      wasChecked ? /switch-unchecked/ : /switch-checked/,
+    );
+
+    // The Onboarding badge (attached in bootstrap) shows in the flags table.
+    // Scope + exact: the header crumb also contains the word "Onboarding".
+    const flagsTable = page.locator('.onboarding-flags');
+    await expect(
+      flagsTable.getByText('Onboarding', { exact: true }),
+    ).toBeVisible();
+
+    // Rename the flag. Names are immutable, so this delete + recreates; the
+    // Onboarding tag must survive (the recreate carries the old flag's tags).
+    log('Rename the flag');
+    const flagInput = page.getByLabel('Flag name');
+    await flagInput.fill('renamed_demo_flag');
+    await flagInput.press('Enter');
+
+    // Reload to prove the rename persisted server-side and the tag came with it
+    // (bootstrap is idempotent and reuses the renamed flag on revisit).
+    await page.reload();
+    await waitForElementVisible(byId('onboarding-flow'), 30000);
+    await expect(page.getByLabel('Flag name')).toHaveValue('renamed_demo_flag');
+    await expect(
+      page.locator('.onboarding-flags').getByText('Onboarding', { exact: true }),
+    ).toBeVisible();
+    await visualSnapshot(page, 'onboarding-renamed', testInfo);
+
+    // The connected state is stubbed behind ?connected pending #7767; it flips
+    // the badge to LIVE so the connected UI is exercised end to end.
+    log('Connected state');
+    await page.goto('/getting-started?connected');
+    await waitForElementVisible(byId('onboarding-flow'), 30000);
+    await expect(page.locator(byId('onboarding-terminal-badge'))).toHaveText(
+      /LIVE/,
+    );
+  });
+});
