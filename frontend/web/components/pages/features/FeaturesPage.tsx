@@ -404,7 +404,7 @@ const FeaturesPage: FC<FeaturesPageProps> = ({
             <FormGroup className='mb-4'>{renderFeaturesList()}</FormGroup>
 
             {deepLinkedFeature && (
-              <div style={{ display: 'none' }} data-test='deep-linked-feature'>
+              <div className='d-none' data-test='deep-linked-feature'>
                 {renderPermissionedFeatureRow(
                   deepLinkedFeature.projectFlag,
                   -1,

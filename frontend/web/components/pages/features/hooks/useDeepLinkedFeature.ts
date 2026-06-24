@@ -36,11 +36,10 @@ export function useDeepLinkedFeature(args: {
   } = args
 
   const featureParam = (Utils.fromParam() as Record<string, string>).feature
-  const decision = shouldDeepFetchFeature({
-    featureParam,
-    isListLoaded,
-    projectFlags,
-  })
+  const decision = useMemo(
+    () => shouldDeepFetchFeature({ featureParam, isListLoaded, projectFlags }),
+    [featureParam, isListLoaded, projectFlags],
+  )
 
   const environmentNumericId = environmentApiKey
     ? getEnvironmentIdFromKey(environmentApiKey)
@@ -50,14 +49,25 @@ export function useDeepLinkedFeature(args: {
     decision ? { id: decision.featureId, project: projectId } : skipToken,
   )
 
-  const { data: featureStatesData } = useGetFeatureStatesQuery(
-    decision && environmentNumericId
-      ? { environment: environmentNumericId, feature: decision.featureId }
-      : skipToken,
-  )
+  const { data: featureStatesData, isFetching: isFetchingFeatureStates } =
+    useGetFeatureStatesQuery(
+      decision && environmentNumericId
+        ? { environment: environmentNumericId, feature: decision.featureId }
+        : skipToken,
+    )
+
+  // When the feature has an environment, hold off until its state has resolved
+  // so the slideout opens with the real enabled/value state rather than blanks.
+  // The two queries fire together but settle independently, and the slideout is
+  // opened with a one-time snapshot, so a late feature state would never reach
+  // it. When no environment id is known we can't fetch state, so open anyway.
+  const awaitingFeatureState =
+    !!decision &&
+    !!environmentNumericId &&
+    (isFetchingFeatureStates || !featureStatesData)
 
   return useMemo(() => {
-    if (!decision || isError || !projectFlag) {
+    if (!decision || isError || !projectFlag || awaitingFeatureState) {
       return null
     }
     return {
@@ -67,5 +77,5 @@ export function useDeepLinkedFeature(args: {
       ),
       projectFlag,
     }
-  }, [decision, isError, projectFlag, featureStatesData])
+  }, [decision, isError, projectFlag, featureStatesData, awaitingFeatureState])
 }
