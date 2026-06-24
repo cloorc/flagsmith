@@ -1,16 +1,14 @@
 import { test, expect } from '../test-setup';
-import {
-  byId,
-  createHelpers,
-  getFlagsmith,
-  log,
-  visualSnapshot,
-} from '../helpers';
+import { byId, createHelpers, getFlagsmith, log, visualSnapshot } from '../helpers';
 import { E2E_SIGN_UP_USER, PASSWORD } from '../config';
 
 // The single-page onboarding flow (onboarding_quickstart_flow) a new user lands
 // on at /getting-started. Mirror of the legacy signup test's guard: this runs
 // only when the flag is on, the legacy signup test runs only when it's off.
+//
+// Selectors are accessibility-first (roles / labels / text), not data-test ids:
+// the header inputs expose aria-labels, the copy buttons and the flag switch
+// carry accessible names, and the flags table is a labelled region.
 test.describe('Onboarding', () => {
   test('New user connects via the single-page onboarding flow @oss', async ({
     page,
@@ -25,6 +23,13 @@ test.describe('Onboarding', () => {
     );
 
     await addErrorLogging();
+
+    // The flow renders once bootstrap settles (it shows a loader, then an error
+    // heading on failure - so the welcome heading means "ready").
+    const flowReady = async () =>
+      page
+        .getByRole('heading', { name: /Welcome/ })
+        .waitFor({ state: 'visible', timeout: 30000 });
 
     // Sign up a fresh user; with the flag on, a getting-started user is routed
     // to /getting-started where the flow bootstraps the org / project / flag.
@@ -42,34 +47,26 @@ test.describe('Onboarding', () => {
     // redirect; the gate + idempotent bootstrap render the flow either way.
     log('Land on the onboarding flow');
     await page.goto('/getting-started');
-    await waitForElementVisible(byId('onboarding-flow'), 30000);
+    await flowReady();
     await visualSnapshot(page, 'onboarding-flow', testInfo);
 
     // The verify terminal starts pre-connection: LISTENING, nothing ticked.
-    await expect(page.locator(byId('onboarding-terminal-badge'))).toHaveText(
-      /LISTENING/,
-    );
-    await expect(page.locator(byId('onboarding-step-0'))).toHaveAttribute(
-      'data-done',
-      'false',
-    );
+    await expect(page.getByText('LISTENING')).toBeVisible();
+    await expect(page.getByText('Copy install command')).not.toContainText('✓');
 
-    // Copying the install + wire snippets ticks the checklist.
+    // Copying the install + wire snippets ticks the checklist (the visible
+    // [✓] prefix is the done state).
     log('Copy snippets, checklist ticks');
-    await click(byId('onboarding-copy-install'));
-    await expect(page.locator(byId('onboarding-step-0'))).toHaveAttribute(
-      'data-done',
-      'true',
-    );
-    await click(byId('onboarding-copy-wire'));
-    await expect(page.locator(byId('onboarding-step-1'))).toHaveAttribute(
-      'data-done',
-      'true',
-    );
+    await page.getByRole('button', { name: 'Copy install command' }).click();
+    await expect(page.getByText('Copy install command')).toContainText('✓');
+    await page.getByRole('button', { name: 'Copy code snippet' }).click();
+    await expect(page.getByText('Copy code snippet')).toContainText('✓');
 
-    // The Development toggle is real and persists (updateFeatureState).
+    // The Development toggle is real and persists (updateFeatureState). There
+    // are two switches on the page (theme + flag), so scope to the flags region.
     log('Toggle the flag');
-    const flagSwitch = page.locator(byId('onboarding-flag-switch'));
+    const flagsTable = page.getByRole('region', { name: 'Your flags' });
+    const flagSwitch = flagsTable.getByRole('switch');
     await flagSwitch.waitFor({ state: 'visible' });
     const wasChecked = (await flagSwitch.getAttribute('class'))?.includes(
       'switch-checked',
@@ -80,11 +77,8 @@ test.describe('Onboarding', () => {
     );
 
     // The Onboarding badge (attached in bootstrap) shows in the flags table.
-    // Scope + exact: the header crumb also contains the word "Onboarding".
-    const flagsTable = page.locator('.onboarding-flags');
-    await expect(
-      flagsTable.getByText('Onboarding', { exact: true }),
-    ).toBeVisible();
+    // Exact match: the header crumb also contains the word "Onboarding".
+    await expect(flagsTable.getByText('Onboarding', { exact: true })).toBeVisible();
 
     // Rename the flag. Names are immutable, so this delete + recreates; the
     // Onboarding tag must survive (the recreate carries the old flag's tags).
@@ -96,10 +90,12 @@ test.describe('Onboarding', () => {
     // Reload to prove the rename persisted server-side and the tag came with it
     // (bootstrap is idempotent and reuses the renamed flag on revisit).
     await page.reload();
-    await waitForElementVisible(byId('onboarding-flow'), 30000);
+    await flowReady();
     await expect(page.getByLabel('Flag name')).toHaveValue('renamed_demo_flag');
     await expect(
-      page.locator('.onboarding-flags').getByText('Onboarding', { exact: true }),
+      page
+        .getByRole('region', { name: 'Your flags' })
+        .getByText('Onboarding', { exact: true }),
     ).toBeVisible();
     await visualSnapshot(page, 'onboarding-renamed', testInfo);
 
@@ -107,9 +103,7 @@ test.describe('Onboarding', () => {
     // the badge to LIVE so the connected UI is exercised end to end.
     log('Connected state');
     await page.goto('/getting-started?connected');
-    await waitForElementVisible(byId('onboarding-flow'), 30000);
-    await expect(page.locator(byId('onboarding-terminal-badge'))).toHaveText(
-      /LIVE/,
-    );
+    await flowReady();
+    await expect(page.getByText('LIVE', { exact: true })).toBeVisible();
   });
 });
