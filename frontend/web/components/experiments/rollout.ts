@@ -1,4 +1,8 @@
-import { MultivariateOption, ProjectFlag } from 'common/types/responses'
+import {
+  FlagsmithValue,
+  MultivariateOption,
+  ProjectFlag,
+} from 'common/types/responses'
 import { getDefaultVariantKey } from 'common/utils/multivariate'
 import {
   CHART_COLOURS,
@@ -9,6 +13,23 @@ import {
 export type VariationSplitEntry = {
   multivariate_feature_option: number
   percentage_allocation: number
+}
+
+export type RolloutFeatureValue = {
+  type: 'integer' | 'string' | 'boolean'
+  value: string
+}
+
+export const toRolloutFeatureValue = (
+  value: FlagsmithValue,
+): RolloutFeatureValue => {
+  if (typeof value === 'boolean') {
+    return { type: 'boolean', value: value ? 'true' : 'false' }
+  }
+  if (typeof value === 'number') {
+    return { type: 'integer', value: String(value) }
+  }
+  return { type: 'string', value: value ?? '' }
 }
 
 export type RolloutSummaryRow = {

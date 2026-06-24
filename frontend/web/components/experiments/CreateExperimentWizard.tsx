@@ -1,10 +1,5 @@
 import { FC, useCallback, useEffect, useMemo, useState } from 'react'
-import {
-  ExpectedDirection,
-  FeatureStateValue,
-  Metric,
-  ProjectFlag,
-} from 'common/types/responses'
+import { ExpectedDirection, Metric, ProjectFlag } from 'common/types/responses'
 import { useCreateExperimentMutation } from 'common/services/useExperiment'
 import { useGetFeatureStatesQuery } from 'common/services/useFeatureState'
 import { useProjectEnvironments } from 'common/hooks/useProjectEnvironments'
@@ -14,11 +9,11 @@ import WizardNavButtons from './WizardNavButtons'
 import LivePreviewPanel from './LivePreviewPanel'
 import SetupStep from './steps/SetupStep'
 import RolloutStep from './steps/RolloutStep'
-import Utils from 'common/utils/utils'
 import {
   VariationSplitEntry,
   getControlPercentage,
   getVariationSplitDefaults,
+  toRolloutFeatureValue,
 } from './rollout'
 import MeasurementStep from './steps/MeasurementStep'
 import ReviewStep from './steps/ReviewStep'
@@ -144,9 +139,7 @@ const CreateExperimentWizard: FC<CreateExperimentWizardProps> = ({
         body: {
           experiment_rollout: {
             enabled: false,
-            feature_state_value: Utils.valueToFeatureState(
-              controlValue,
-            ) as FeatureStateValue,
+            feature_state_value: toRolloutFeatureValue(controlValue),
             multivariate_feature_state_values: variationSplit,
             rollout_percentage: rolloutPercentage,
           },

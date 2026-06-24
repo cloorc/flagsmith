@@ -1043,7 +1043,10 @@ export type Req = {
       experiment_rollout: {
         enabled: boolean
         rollout_percentage: number
-        feature_state_value: FeatureStateValue
+        feature_state_value: {
+          type: 'integer' | 'string' | 'boolean'
+          value: string
+        }
         multivariate_feature_state_values: {
           multivariate_feature_option: number
           percentage_allocation: number

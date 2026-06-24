@@ -5,6 +5,7 @@ import {
   getRolloutSummaryRows,
   getTrafficSegments,
   getVariationSplitDefaults,
+  toRolloutFeatureValue,
 } from 'components/experiments/rollout'
 import { MultivariateOption, ProjectFlag } from 'common/types/responses'
 
@@ -88,6 +89,19 @@ describe('rollout helpers', () => {
       { label: 'Variant_1', percentage: 20 },
       { label: 'Variant_2', percentage: 15 },
     ])
+  })
+
+  it('toRolloutFeatureValue wraps a typed control value as { type, value }', () => {
+    expect(toRolloutFeatureValue('control')).toEqual({
+      type: 'string',
+      value: 'control',
+    })
+    expect(toRolloutFeatureValue(42)).toEqual({ type: 'integer', value: '42' })
+    expect(toRolloutFeatureValue(true)).toEqual({
+      type: 'boolean',
+      value: 'true',
+    })
+    expect(toRolloutFeatureValue(null)).toEqual({ type: 'string', value: '' })
   })
 
   it('buildRolloutSummary describes rollout and split in one sentence', () => {
