@@ -745,12 +745,12 @@ export type ProjectFlag = {
 }
 
 export type LifecycleStage =
-  | 'NEW'
-  | 'LIVE'
-  | 'PERMANENT'
-  | 'STALE'
-  | 'NEEDS_MONITORING'
-  | 'TO_REMOVE'
+  | 'new'
+  | 'live'
+  | 'permanent'
+  | 'stale'
+  | 'needs_monitoring'
+  | 'to_remove'
 
 export type LifecycleStatusCounts = Record<LifecycleStage, number>
 

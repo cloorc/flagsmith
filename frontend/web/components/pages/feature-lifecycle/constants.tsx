@@ -6,12 +6,12 @@ import { SortOrder } from 'common/types/requests'
 import { LifecycleStage, TagStrategy } from 'common/types/responses'
 
 export const SECTION_TO_STAGE: Record<Section, LifecycleStage> = {
-  live: 'LIVE',
-  monitor: 'NEEDS_MONITORING',
-  new: 'NEW',
-  permanent: 'PERMANENT',
-  remove: 'TO_REMOVE',
-  stale: 'STALE',
+  live: 'live',
+  monitor: 'needs_monitoring',
+  new: 'new',
+  permanent: 'permanent',
+  remove: 'to_remove',
+  stale: 'stale',
 }
 
 export const DEFAULT_FILTER_STATE: FilterState = {
@@ -24,19 +24,6 @@ export const DEFAULT_FILTER_STATE: FilterState = {
   tag_strategy: TagStrategy.INTERSECTION,
   tags: [],
   value_search: '',
-}
-
-export const PERIOD_VALUES = [1, 7, 14, 30, 90]
-
-function dayLabel(days: number): string {
-  return days === 1 ? '1 day' : `${days} days`
-}
-
-export function buildPeriodOptions(prefix: string) {
-  return PERIOD_VALUES.map((v) => ({
-    label: `${prefix} ${dayLabel(v)}`,
-    value: v,
-  }))
 }
 
 export const STALE_TOOLTIP =

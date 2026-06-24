@@ -137,14 +137,10 @@ export const projectFlagService = service
         Req['getLifecycleStatusCounts']
       >({
         providesTags: (_res, _meta, req) => [
-          {
-            id: [req?.project, req?.environment].filter(Boolean).join('-'),
-            type: 'ProjectFlag',
-          },
+          { id: req?.environment, type: 'ProjectFlag' },
         ],
-        query: ({ project, ...params }) => ({
-          params,
-          url: `projects/${project}/features/lifecycle-status-counts/`,
+        query: ({ environment }) => ({
+          url: `environments/${environment}/feature-lifecycle-counts/`,
         }),
       }),
 

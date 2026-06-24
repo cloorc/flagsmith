@@ -24,7 +24,6 @@ import {
   MONITOR_TOOLTIP,
   SECTIONS,
   STALE_TOOLTIP,
-  buildPeriodOptions,
 } from './constants'
 import type { Section } from './types'
 import type { FilterState } from 'common/types/featureFilters'
@@ -43,10 +42,6 @@ function useSectionParam(): Section {
     return valid.includes(section as Section) ? (section as Section) : 'new'
   }, [section])
 }
-
-// A single evaluation window classifies stale, no-code-reference features
-// into "needs monitoring" (evaluated within the window) versus "to remove".
-const DEFAULT_EVALUATION_PERIOD_DAYS = 7
 
 const FeatureLifecyclePage: FC = () => {
   const routeContext = useRouteContext()
@@ -70,15 +65,8 @@ const FeatureLifecyclePage: FC = () => {
     (s) => s.key === section,
   ) as (typeof SECTIONS)[number]
 
-  const [evaluationPeriodDays, setEvaluationPeriodDays] = useState(
-    DEFAULT_EVALUATION_PERIOD_DAYS,
-  )
-
   const { counts, isLoading: isLoadingCounts } = useLifecycleCounts({
     environmentId,
-    evaluationPeriodDays,
-    filters,
-    projectId: projectIdNum,
   })
 
   const {
@@ -87,7 +75,6 @@ const FeatureLifecyclePage: FC = () => {
     isLoading: isLoadingFlags,
   } = useLifecycleSectionFlags({
     environmentId,
-    evaluationPeriodDays,
     filters,
     projectId: projectIdNum,
     section,
@@ -139,10 +126,6 @@ const FeatureLifecyclePage: FC = () => {
         return null
     }
   }
-
-  const periodPrefix =
-    section === 'monitor' ? 'Evaluated within' : 'No evaluations in'
-  const periodOptions = buildPeriodOptions(periodPrefix)
 
   return (
     <div data-test='cleanup-page' id='cleanup-page'>
@@ -209,20 +192,6 @@ const FeatureLifecyclePage: FC = () => {
                 )}
               </PageTitle>
             </div>
-            {(section === 'monitor' || section === 'remove') && (
-              <div className='mb-3' style={{ maxWidth: 300 }}>
-                <Select
-                  value={periodOptions.find(
-                    (o) => o.value === evaluationPeriodDays,
-                  )}
-                  onChange={(v: { value: number }) =>
-                    setEvaluationPeriodDays(v.value)
-                  }
-                  options={periodOptions}
-                  className='react-select'
-                />
-              </div>
-            )}
             {renderSection()}
           </div>
         </div>

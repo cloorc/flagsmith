@@ -16,13 +16,11 @@ import type {
 type BaseOptions = {
   projectId: number
   environmentId: number | undefined
-  evaluationPeriodDays: number
   filters: FilterState
 }
 
-// Filter params shared by the counts endpoint and the per-section list.
-// The backend now owns lifecycle classification, so no client-side
-// tag/code-reference logic remains here.
+// Filter params for the per-section list. The backend owns lifecycle
+// classification, so no client-side tag/code-reference logic remains here.
 function useFilterParams(filters: FilterState) {
   return useMemo(() => {
     const params: {
@@ -48,24 +46,16 @@ function useFilterParams(filters: FilterState) {
   }, [filters])
 }
 
-// Sidebar counts for every lifecycle stage in a single API call.
+// Sidebar counts for every lifecycle stage in a single API call. The counts
+// endpoint is environment-scoped and unfiltered — it reports the whole
+// environment regardless of the active list filters.
 export function useLifecycleCounts({
   environmentId,
-  evaluationPeriodDays,
-  filters,
-  projectId,
-}: BaseOptions) {
-  const filterParams = useFilterParams(filters)
-
+}: {
+  environmentId: number | undefined
+}) {
   const query = useGetLifecycleStatusCountsQuery(
-    environmentId
-      ? {
-          environment: environmentId,
-          evaluation_period_days: evaluationPeriodDays,
-          project: String(projectId),
-          ...filterParams,
-        }
-      : skipToken,
+    environmentId ? { environment: environmentId } : skipToken,
     { refetchOnMountOrArgChange: true },
   )
 
@@ -83,12 +73,12 @@ export function useLifecycleCounts({
     const data = query.data
     if (!data) return {}
     return {
-      live: data.LIVE,
-      monitor: data.NEEDS_MONITORING,
-      new: data.NEW,
-      permanent: data.PERMANENT,
-      remove: data.TO_REMOVE,
-      stale: data.STALE,
+      live: data.live,
+      monitor: data.needs_monitoring,
+      new: data.new,
+      permanent: data.permanent,
+      remove: data.to_remove,
+      stale: data.stale,
     }
   }, [query.data])
 
@@ -98,7 +88,6 @@ export function useLifecycleCounts({
 // Flags for the currently active section, classified by the backend.
 export function useLifecycleSectionFlags({
   environmentId,
-  evaluationPeriodDays,
   filters,
   projectId,
   section,
@@ -109,21 +98,13 @@ export function useLifecycleSectionFlags({
     if (!environmentId) return null
     return {
       environment: environmentId,
-      evaluation_period_days: evaluationPeriodDays,
       lifecycle_stage: SECTION_TO_STAGE[section],
       project: String(projectId),
       sort_direction: filters.sort.sortOrder,
       sort_field: filters.sort.sortBy,
       ...filterParams,
     }
-  }, [
-    environmentId,
-    evaluationPeriodDays,
-    section,
-    projectId,
-    filters.sort,
-    filterParams,
-  ])
+  }, [environmentId, section, projectId, filters.sort, filterParams])
 
   const query = useGetProjectFlagsQuery(params ?? skipToken, {
     refetchOnMountOrArgChange: true,

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setLifecycleEnvironment } from 'common/lifecycleEnvironmentSlice'
 import { useProjectEnvironments } from 'common/hooks/useProjectEnvironments'
 import { StoreStateType } from 'common/store'
+import { predictProdEnvironment } from './predictProdEnvironment'
 
 // Resolves the environment used for lifecycle classification for a project.
 // Preference order: the user's stored choice → an environment whose name
@@ -16,11 +17,10 @@ export function useLifecycleEnvironment(projectId: number) {
     (state: StoreStateType) => state.lifecycleEnvironment.byProject[projectId],
   )
 
-  const defaultEnvironmentId = useMemo(() => {
-    if (!environments.length) return undefined
-    const prod = environments.find((e) => e.name.toLowerCase().includes('prod'))
-    return prod?.id ?? environments[0].id
-  }, [environments])
+  const defaultEnvironmentId = useMemo(
+    () => predictProdEnvironment(environments),
+    [environments],
+  )
 
   const environmentId = storedEnvironmentId ?? defaultEnvironmentId
 
