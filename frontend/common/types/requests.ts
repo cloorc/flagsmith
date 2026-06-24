@@ -263,6 +263,12 @@ export type Req = {
     tag: Omit<Tag, 'id' | 'project' | 'type' | 'is_system_tag' | 'is_permanent'>
   }
   getSegment: { projectId: number; id: number }
+  getSegmentMembers: PagedRequest<{
+    projectId: number
+    id: number
+    environment: number
+    pages?: (string | undefined)[]
+  }>
   updateAccount: Account
   deleteAccount: {
     current_password: string

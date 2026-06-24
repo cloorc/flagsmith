@@ -75,6 +75,7 @@ type CreateSegmentType = {
   onComplete?: (segment: Segment) => void
   readOnly?: boolean
   segment?: Segment
+  membersEnabled: boolean
 }
 type CreateSegmentError = {
   status: number
@@ -103,6 +104,7 @@ const CreateSegment: FC<CreateSegmentType> = ({
   identities,
   identitiesLoading,
   identity,
+  membersEnabled,
   onCancel,
   onComplete,
   page,
@@ -597,6 +599,7 @@ const CreateSegment: FC<CreateSegmentType> = ({
             <div className='my-4'>
               <CreateSegmentUsersTabContent
                 projectId={projectId}
+                segmentId={segment.id}
                 environmentId={environmentId}
                 setEnvironmentId={setEnvironmentId}
                 identitiesLoading={identitiesLoading}
@@ -607,6 +610,7 @@ const CreateSegment: FC<CreateSegmentType> = ({
                 searchInput={searchInput}
                 setSearchInput={setSearchInput}
                 memberships={segment.membership_counts}
+                membersEnabled={membersEnabled}
               />
             </div>
           </TabItem>
@@ -740,6 +744,13 @@ const LoadingCreateSegment: FC<LoadingCreateSegmentType> = (props) => {
 
   const isEdge = Utils.getIsEdge()
 
+  // When membership inspection is enabled, the Identities tab uses the
+  // dedicated segment members endpoint, so the legacy identities list (and its
+  // request) is not needed.
+  const membersEnabled = Utils.getFlagsmithHasFeature(
+    'segment_membership_inspection',
+  )
+
   const { data: identities, isLoading: identitiesLoading } =
     useGetIdentitiesQuery(
       {
@@ -752,7 +763,7 @@ const LoadingCreateSegment: FC<LoadingCreateSegmentType> = (props) => {
         q: search,
       },
       {
-        skip: !environmentId,
+        skip: !environmentId || membersEnabled,
       },
     )
 
@@ -772,6 +783,7 @@ const LoadingCreateSegment: FC<LoadingCreateSegmentType> = (props) => {
       page={page}
       environmentId={environmentId}
       setEnvironmentId={setEnvironmentId}
+      membersEnabled={membersEnabled}
     />
   )
 }

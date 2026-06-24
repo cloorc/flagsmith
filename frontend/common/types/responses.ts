@@ -165,6 +165,15 @@ export type SegmentMembership = {
   count: number
   last_synced_at: string
 }
+export type SegmentMember = {
+  identifier: string
+  identity_key: string
+  traits: Record<string, FlagsmithValue> | null
+}
+export type SegmentMembersResponse = PagedResponse<SegmentMember> & {
+  // Pass as `cursor` to fetch the next page; null when there are no more rows.
+  next_cursor: string | null
+}
 export type Segment = {
   id: number
   rules: SegmentRule[]
@@ -1260,6 +1269,7 @@ export type WarehouseConnection = {
 export type Res = {
   segments: PagedResponse<Segment>
   segment: Segment
+  segmentMembers: SegmentMembersResponse
   auditLogs: PagedResponse<AuditLogItem>
   organisationLicence: {}
   organisation: Organisation
