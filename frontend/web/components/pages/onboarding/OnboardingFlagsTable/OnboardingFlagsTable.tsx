@@ -37,14 +37,17 @@ const OnboardingFlagsTable: FC<OnboardingFlagsTableProps> = ({
 }) => {
   const waiting = status === 'waiting'
   return (
-    <section className='onboarding-flags'>
-      <h3 className='onboarding-flags__title'>Your flags</h3>
+    <section className='onboarding-flags d-flex flex-column align-items-center'>
+      <h3 className='onboarding-flags__title m-0 fw-bold'>Your flags</h3>
       <div
-        className={classNames('onboarding-flags__table', {
-          'onboarding-flags__table--waiting': waiting,
-        })}
+        className={classNames(
+          'onboarding-flags__table bg-surface-default rounded-xl',
+          {
+            'onboarding-flags__table--waiting': waiting,
+          },
+        )}
       >
-        <div className='onboarding-flags__head'>
+        <div className='onboarding-flags__head d-flex align-items-center'>
           <span className='onboarding-flags__col onboarding-flags__col--feature'>
             FEATURE
           </span>
@@ -53,16 +56,19 @@ const OnboardingFlagsTable: FC<OnboardingFlagsTableProps> = ({
           </span>
         </div>
         {flags.map((flag) => (
-          <div className='onboarding-flags__row' key={flag.name}>
-            <div className='onboarding-flags__feature'>
-              <div className='onboarding-flags__name-row'>
+          <div
+            className='onboarding-flags__row d-flex align-items-center'
+            key={flag.name}
+          >
+            <div className='onboarding-flags__feature d-flex flex-column gap-1'>
+              <div className='d-flex align-items-center gap-2'>
                 <FeatureName name={flag.name} />
                 {flag.tags?.map((tag) => (
                   <Tag key={tag.id ?? tag.label} tag={tag} />
                 ))}
               </div>
               {flag.description && (
-                <p className='onboarding-flags__desc'>{flag.description}</p>
+                <p className='onboarding-flags__desc m-0'>{flag.description}</p>
               )}
             </div>
             <div className='onboarding-flags__toggle'>

@@ -31,7 +31,7 @@ const OnboardingTerminal: FC<OnboardingTerminalProps> = ({
 
   return (
     <div className='onboarding-terminal'>
-      <div className='onboarding-terminal__bar'>
+      <div className='onboarding-terminal__bar d-flex align-items-center gap-2'>
         <span className='onboarding-terminal__dot onboarding-terminal__dot--red' />
         <span className='onboarding-terminal__dot onboarding-terminal__dot--amber' />
         <span className='onboarding-terminal__dot onboarding-terminal__dot--green' />
@@ -39,17 +39,23 @@ const OnboardingTerminal: FC<OnboardingTerminalProps> = ({
           flagsmith — sdk console
         </span>
         <span
-          className={classNames('onboarding-terminal__badge', {
-            'onboarding-terminal__badge--listening': !connected,
-            'onboarding-terminal__badge--live': connected,
-          })}
+          className={classNames(
+            'onboarding-terminal__badge d-inline-flex align-items-center gap-1 ms-auto',
+            {
+              'onboarding-terminal__badge--listening': !connected,
+              'onboarding-terminal__badge--live': connected,
+            },
+          )}
         >
           <span className='onboarding-terminal__badge-dot' />
           {connected ? 'LIVE' : 'LISTENING'}
         </span>
       </div>
 
-      <div className='onboarding-terminal__body' aria-live='polite'>
+      <div
+        className='onboarding-terminal__body d-flex flex-column gap-2'
+        aria-live='polite'
+      >
         {!connected && (
           <p className='onboarding-terminal__line onboarding-terminal__line--muted'>
             awaiting first request
