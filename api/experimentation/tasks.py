@@ -11,9 +11,7 @@ logger = structlog.get_logger("experimentation")
 
 
 @register_task_handler()
-def sync_environment_ingestion_keys(environment_id: int) -> None:
-    """Whitelist an environment's client key and every valid server-side key for
-    warehouse ingestion. Run when a warehouse connection is created."""
+def write_environment_ingestion_keys(environment_id: int) -> None:
     environment = (
         Environment.objects.filter(id=environment_id)
         .prefetch_related("api_keys")
@@ -37,8 +35,6 @@ def sync_environment_ingestion_keys(environment_id: int) -> None:
 
 @register_task_handler()
 def remove_environment_ingestion_keys(environment_id: int) -> None:
-    """Remove an environment's client key and all its server-side keys from the
-    ingestion whitelist. Run when a warehouse connection is deleted."""
     environment = (
         Environment.objects.filter(id=environment_id)
         .prefetch_related("api_keys")
@@ -53,10 +49,7 @@ def remove_environment_ingestion_keys(environment_id: int) -> None:
 
 
 @register_task_handler()
-def reconcile_server_side_key_ingestion(environment_api_key_id: int) -> None:
-    """Reconcile a single server-side key with the ingestion whitelist: whitelist
-    it while valid, otherwise ensure it is absent. Idempotent, so it covers
-    create, (de)activation and expiry changes in one path."""
+def write_environment_ingestion_key(environment_api_key_id: int) -> None:
     api_key = (
         EnvironmentAPIKey.objects.select_related("environment")
         .filter(id=environment_api_key_id)
@@ -76,8 +69,7 @@ def reconcile_server_side_key_ingestion(environment_api_key_id: int) -> None:
 
 
 @register_task_handler()
-def remove_server_side_key_from_ingestion(key: str) -> None:
-    """Remove a deleted server-side key from the ingestion whitelist."""
+def remove_environment_ingestion_key(key: str) -> None:
     ingestion_sync_service.delete_ingestion_key(key)
 
 

@@ -24,13 +24,13 @@ from experimentation.models import (
 from experimentation.stats import VariantStats
 
 
-def test_warehouse_connection__after_create__enqueues_ingestion_sync_task(
+def test_warehouse_connection__after_create__enqueues_ingestion_write_task(
     environment: Environment,
     mocker: MockerFixture,
 ) -> None:
     # Given
     mock_task = mocker.patch(
-        "experimentation.tasks.sync_environment_ingestion_keys",
+        "experimentation.tasks.write_environment_ingestion_keys",
     )
 
     # When

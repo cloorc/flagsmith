@@ -30,10 +30,6 @@ def set_ingestion_key(
     environment_key: str,
     expires_at: datetime | None = None,
 ) -> None:
-    """Whitelist ``key`` for warehouse ingestion, mapping it to the canonical
-    ``environment_key`` (the environment's client API key) the pipeline stores
-    events under. ``expires_at`` sets a matching Redis TTL so a time-limited
-    server-side key falls out of the whitelist automatically."""
     redis_key = f"{INGESTION_ENVIRONMENT_KEY_PREFIX}{key}"
     _get_client().set(
         redis_key,

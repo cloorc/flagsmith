@@ -75,9 +75,9 @@ class WarehouseConnection(LifecycleModelMixin, SoftDeleteExportableModel):  # ty
 
     @hook(AFTER_CREATE)  # type: ignore[misc]
     def sync_to_ingestion_on_create(self) -> None:
-        from experimentation.tasks import sync_environment_ingestion_keys
+        from experimentation.tasks import write_environment_ingestion_keys
 
-        sync_environment_ingestion_keys.delay(
+        write_environment_ingestion_keys.delay(
             kwargs={"environment_id": self.environment_id},
         )
 

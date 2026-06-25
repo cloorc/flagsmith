@@ -1,15 +1,17 @@
 from pytest_mock import MockerFixture
 
 from environments.models import Environment, EnvironmentAPIKey
+from experimentation.models import WarehouseConnection
 
 
-def test_environment_api_key__created__enqueues_reconcile(
-    environment: Environment,
+def test_environment_api_key__created_with_warehouse__enqueues_write(
+    warehouse_connection: WarehouseConnection,
     mocker: MockerFixture,
 ) -> None:
     # Given
+    environment = warehouse_connection.environment
     mock_task = mocker.patch(
-        "experimentation.signals.reconcile_server_side_key_ingestion",
+        "experimentation.signals.write_environment_ingestion_key",
     )
 
     # When
@@ -21,14 +23,15 @@ def test_environment_api_key__created__enqueues_reconcile(
     )
 
 
-def test_environment_api_key__updated__enqueues_reconcile(
-    environment: Environment,
+def test_environment_api_key__updated_with_warehouse__enqueues_write(
+    warehouse_connection: WarehouseConnection,
     mocker: MockerFixture,
 ) -> None:
     # Given
+    environment = warehouse_connection.environment
     api_key = EnvironmentAPIKey.objects.create(environment=environment, name="backend")
     mock_task = mocker.patch(
-        "experimentation.signals.reconcile_server_side_key_ingestion",
+        "experimentation.signals.write_environment_ingestion_key",
     )
 
     # When
@@ -41,15 +44,32 @@ def test_environment_api_key__updated__enqueues_reconcile(
     )
 
 
-def test_environment_api_key__deleted__enqueues_removal(
+def test_environment_api_key__saved_without_warehouse__does_not_enqueue(
     environment: Environment,
     mocker: MockerFixture,
 ) -> None:
     # Given
+    mock_task = mocker.patch(
+        "experimentation.signals.write_environment_ingestion_key",
+    )
+
+    # When
+    EnvironmentAPIKey.objects.create(environment=environment, name="backend")
+
+    # Then
+    mock_task.delay.assert_not_called()
+
+
+def test_environment_api_key__deleted_with_warehouse__enqueues_removal(
+    warehouse_connection: WarehouseConnection,
+    mocker: MockerFixture,
+) -> None:
+    # Given
+    environment = warehouse_connection.environment
     api_key = EnvironmentAPIKey.objects.create(environment=environment, name="backend")
     key = api_key.key
     mock_task = mocker.patch(
-        "experimentation.signals.remove_server_side_key_from_ingestion",
+        "experimentation.signals.remove_environment_ingestion_key",
     )
 
     # When
@@ -57,3 +77,20 @@ def test_environment_api_key__deleted__enqueues_removal(
 
     # Then
     mock_task.delay.assert_called_once_with(kwargs={"key": key})
+
+
+def test_environment_api_key__deleted_without_warehouse__does_not_enqueue(
+    environment: Environment,
+    mocker: MockerFixture,
+) -> None:
+    # Given
+    api_key = EnvironmentAPIKey.objects.create(environment=environment, name="backend")
+    mock_task = mocker.patch(
+        "experimentation.signals.remove_environment_ingestion_key",
+    )
+
+    # When
+    api_key.delete()
+
+    # Then
+    mock_task.delay.assert_not_called()

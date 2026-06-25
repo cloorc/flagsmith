@@ -25,14 +25,14 @@ from experimentation.stats import VariantStats
 from experimentation.tasks import (
     compute_experiment_exposures,
     compute_experiment_results,
-    reconcile_server_side_key_ingestion,
+    remove_environment_ingestion_key,
     remove_environment_ingestion_keys,
-    remove_server_side_key_from_ingestion,
-    sync_environment_ingestion_keys,
+    write_environment_ingestion_key,
+    write_environment_ingestion_keys,
 )
 
 
-def test_sync_environment_ingestion_keys__valid_keys__whitelists_client_and_server(
+def test_write_environment_ingestion_keys__valid_keys__whitelists_client_and_server(
     environment: Environment,
     mocker: MockerFixture,
 ) -> None:
@@ -56,7 +56,7 @@ def test_sync_environment_ingestion_keys__valid_keys__whitelists_client_and_serv
     )
 
     # When
-    sync_environment_ingestion_keys(environment_id=environment.id)
+    write_environment_ingestion_keys(environment_id=environment.id)
 
     # Then only the client key and the valid server-side key are whitelisted
     assert mock_set.call_args_list == [
@@ -69,7 +69,7 @@ def test_sync_environment_ingestion_keys__valid_keys__whitelists_client_and_serv
     ]
 
 
-def test_sync_environment_ingestion_keys__missing_environment__does_nothing(
+def test_write_environment_ingestion_keys__missing_environment__does_nothing(
     db: None,
     mocker: MockerFixture,
 ) -> None:
@@ -79,7 +79,7 @@ def test_sync_environment_ingestion_keys__missing_environment__does_nothing(
     )
 
     # When
-    sync_environment_ingestion_keys(environment_id=404404)
+    write_environment_ingestion_keys(environment_id=404404)
 
     # Then
     mock_set.assert_not_called()
@@ -127,7 +127,7 @@ def test_remove_environment_ingestion_keys__missing_environment__does_nothing(
     mock_delete.assert_not_called()
 
 
-def test_reconcile_server_side_key_ingestion__valid_key__whitelists_it(
+def test_write_environment_ingestion_key__valid_key__whitelists_it(
     environment: Environment,
     mocker: MockerFixture,
 ) -> None:
@@ -145,7 +145,7 @@ def test_reconcile_server_side_key_ingestion__valid_key__whitelists_it(
     )
 
     # When
-    reconcile_server_side_key_ingestion(environment_api_key_id=api_key.id)
+    write_environment_ingestion_key(environment_api_key_id=api_key.id)
 
     # Then it is whitelisted under the environment's client key
     mock_set.assert_called_once_with(
@@ -156,7 +156,7 @@ def test_reconcile_server_side_key_ingestion__valid_key__whitelists_it(
     mock_delete.assert_not_called()
 
 
-def test_reconcile_server_side_key_ingestion__invalid_key__removes_it(
+def test_write_environment_ingestion_key__invalid_key__removes_it(
     environment: Environment,
     mocker: MockerFixture,
 ) -> None:
@@ -172,14 +172,14 @@ def test_reconcile_server_side_key_ingestion__invalid_key__removes_it(
     )
 
     # When
-    reconcile_server_side_key_ingestion(environment_api_key_id=api_key.id)
+    write_environment_ingestion_key(environment_api_key_id=api_key.id)
 
     # Then it is removed from the whitelist
     mock_delete.assert_called_once_with(api_key.key)
     mock_set.assert_not_called()
 
 
-def test_reconcile_server_side_key_ingestion__missing_key__does_nothing(
+def test_write_environment_ingestion_key__missing_key__does_nothing(
     db: None,
     mocker: MockerFixture,
 ) -> None:
@@ -192,14 +192,14 @@ def test_reconcile_server_side_key_ingestion__missing_key__does_nothing(
     )
 
     # When
-    reconcile_server_side_key_ingestion(environment_api_key_id=404404)
+    write_environment_ingestion_key(environment_api_key_id=404404)
 
     # Then
     mock_set.assert_not_called()
     mock_delete.assert_not_called()
 
 
-def test_remove_server_side_key_from_ingestion__valid_key__calls_service(
+def test_remove_environment_ingestion_key__valid_key__calls_service(
     mocker: MockerFixture,
 ) -> None:
     # Given
@@ -208,7 +208,7 @@ def test_remove_server_side_key_from_ingestion__valid_key__calls_service(
     )
 
     # When
-    remove_server_side_key_from_ingestion(key="ser.test-key-001")
+    remove_environment_ingestion_key(key="ser.test-key-001")
 
     # Then
     mock_delete.assert_called_once_with("ser.test-key-001")
