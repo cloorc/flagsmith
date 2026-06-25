@@ -12,7 +12,9 @@ from experimentation.tasks import (
 
 
 def _environment_has_warehouse_connection(environment_id: int) -> bool:
-    return WarehouseConnection.objects.filter(environment_id=environment_id).exists()
+    return bool(
+        WarehouseConnection.objects.filter(environment_id=environment_id).exists()
+    )
 
 
 @receiver(post_save, sender=EnvironmentAPIKey)
