@@ -42,12 +42,14 @@ from experimentation.serializers import (
     ExperimentListSerializer,
     ExperimentMetricSerializer,
     ExperimentResultsSerializer,
+    ExperimentRolloutSerializer,
     ExperimentSerializer,
     MetricSerializer,
     WarehouseConnectionSerializer,
 )
 from experimentation.services import (
     annotate_warehouse_event_stats,
+    apply_experiment_rollout,
     create_experiment_audit_log,
     create_metric_audit_log,
     create_warehouse_audit_log,
@@ -176,7 +178,7 @@ class ExperimentViewSet(
         return context
 
     def get_serializer_class(self) -> type[BaseSerializer[Experiment]]:
-        if self.action in ("list", "retrieve", "start", "pause", "complete"):
+        if self.action in ("list", "retrieve", "start", "pause", "complete", "rollout"):
             return ExperimentListSerializer
         return ExperimentSerializer
 
@@ -289,6 +291,17 @@ class ExperimentViewSet(
     @action(detail=True, methods=["post"])
     def complete(self, request: Request, **kwargs: object) -> Response:
         return self._transition_status(ExperimentStatus.COMPLETED)
+
+    @action(detail=True, methods=["patch"])
+    def rollout(self, request: Request, **kwargs: object) -> Response:
+        experiment: Experiment = self.get_object()
+        serializer = ExperimentRolloutSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        apply_experiment_rollout(
+            experiment,
+            ExperimentRolloutSerializer.to_spec(serializer.validated_data, request),
+        )
+        return Response(self.get_serializer(experiment).data)
 
     @action(detail=True, methods=["get"])
     def exposures(self, request: Request, **kwargs: object) -> Response:

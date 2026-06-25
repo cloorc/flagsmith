@@ -8,8 +8,11 @@ import structlog
 from clickhouse_driver import Client
 from clickhouse_driver.util.helpers import parse_url
 from django.conf import settings
+from django.db import transaction
 from django.db.models import Q
 from django.utils import timezone
+from flag_engine.segments.constants import PERCENTAGE_SPLIT
+from rest_framework.exceptions import ValidationError
 
 from audit.models import AuditLog
 from audit.related_object_type import RelatedObjectType
@@ -32,6 +35,7 @@ from experimentation.dataclasses import (
     MetricSpec,
     ResultsAggregates,
     ResultsSummary,
+    RolloutSpec,
     WarehouseEventStats,
 )
 from experimentation.models import (
@@ -50,7 +54,10 @@ from experimentation.stats import (
     srm_p_value,
 )
 from features.models import FeatureState
+from features.versioning.dataclasses import FlagChangeSet
+from features.versioning.versioning_service import update_flag
 from integrations.flagsmith.client import get_openfeature_client
+from segments.models import Condition, Segment, SegmentRule
 
 if typing.TYPE_CHECKING:
     from collections.abc import Sequence
@@ -510,6 +517,79 @@ def transition_experiment_status(
     experiment.save()
     create_experiment_audit_log(experiment, user, action=target_status)
     return experiment
+
+
+def _create_rollout_segment(
+    experiment: Experiment, rollout_percentage: float
+) -> Segment:
+    segment: Segment = Segment.objects.create(
+        name=f"experiment-{experiment.id}-rollout",
+        project=experiment.feature.project,
+        is_system_segment=True,
+    )
+    rule = SegmentRule.objects.create(segment=segment, type=SegmentRule.ALL_RULE)
+    Condition.objects.create(
+        rule=rule,
+        operator=PERCENTAGE_SPLIT,
+        property="$.identity.key",
+        value=str(rollout_percentage),
+    )
+    return segment
+
+
+def validate_rollout_spec(experiment: Experiment, spec: RolloutSpec) -> None:
+    option_ids = [v.multivariate_feature_option_id for v in spec.multivariate_values]
+    if len(option_ids) != len(set(option_ids)):
+        raise ValidationError("Multivariate options must be unique")
+    valid_option_ids = set(
+        experiment.feature.multivariate_options.values_list("id", flat=True)
+    )
+    if invalid := set(option_ids) - valid_option_ids:
+        raise ValidationError(
+            f"Multivariate options {sorted(invalid)} do not belong to the feature"
+        )
+    total = sum(v.percentage_allocation for v in spec.multivariate_values)
+    if total > 100:
+        raise ValidationError(
+            f"Multivariate allocations must not exceed 100%, got {total}%."
+        )
+
+
+def _sync_rollout_segment(experiment: Experiment, rollout_percentage: float) -> Segment:
+    segment = experiment.rollout_segment
+    if segment is not None:
+        condition = Condition.objects.get(
+            rule__segment=segment, operator=PERCENTAGE_SPLIT
+        )
+        condition.value = str(rollout_percentage)
+        condition.save()
+        return segment
+    segment = _create_rollout_segment(experiment, rollout_percentage)
+    experiment.rollout_segment = segment
+    experiment.save()
+    return segment
+
+
+def apply_experiment_rollout(experiment: Experiment, spec: RolloutSpec) -> None:
+    if experiment.status in (ExperimentStatus.RUNNING, ExperimentStatus.COMPLETED):
+        raise ValidationError(
+            f"Cannot change the rollout of a {experiment.status} experiment."
+        )
+    validate_rollout_spec(experiment, spec)
+    with transaction.atomic():
+        segment = _sync_rollout_segment(experiment, spec.rollout_percentage)
+        update_flag(
+            experiment.environment,
+            experiment.feature,
+            FlagChangeSet(
+                author=spec.author,
+                enabled=spec.enabled,
+                feature_state_value=spec.feature_state_value,
+                type_=spec.value_type,
+                segment_id=segment.id,
+                multivariate_values=spec.multivariate_values,
+            ),
+        )
 
 
 def mark_warehouse_pending_connection(

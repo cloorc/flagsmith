@@ -130,6 +130,15 @@ Logged at `warning` from:
 Attributes:
  - `path`
 
+### `feature_lifecycle.summarised`
+
+Logged at `info` from:
+ - `api/features/feature_lifecycle/views.py:52`
+
+Attributes:
+ - `environment.id`
+ - `organisation.id`
+
 ### `gitlab.api_call.failed`
 
 Logged at `error` from:
@@ -476,7 +485,7 @@ Attributes:
 ### `warehouse.connection.connected`
 
 Logged at `info` from:
- - `api/experimentation/services.py:545`
+ - `api/experimentation/services.py:625`
 
 Attributes:
  - `environment.id`
@@ -485,7 +494,7 @@ Attributes:
 ### `warehouse.connection.test_event_sent`
 
 Logged at `info` from:
- - `api/experimentation/services.py:525`
+ - `api/experimentation/services.py:605`
 
 Attributes:
  - `environment.id`
@@ -494,7 +503,7 @@ Attributes:
 ### `warehouse.srm.overallocated`
 
 Logged at `error` from:
- - `api/experimentation/services.py:381`
+ - `api/experimentation/services.py:388`
 
 Attributes:
  - `environment.id`
@@ -504,7 +513,7 @@ Attributes:
 ### `warehouse.srm.unkeyed_variant`
 
 Logged at `error` from:
- - `api/experimentation/services.py:367`
+ - `api/experimentation/services.py:374`
 
 Attributes:
  - `environment.id`

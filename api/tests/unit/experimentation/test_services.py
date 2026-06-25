@@ -2,10 +2,13 @@ from dataclasses import asdict
 from datetime import datetime, timezone
 
 import pytest
+from flag_engine.segments.constants import PERCENTAGE_SPLIT
 from pytest_django.fixtures import SettingsWrapper
 from pytest_mock import MockerFixture
 from pytest_structlog import StructuredLogCapture
+from rest_framework.exceptions import ValidationError
 
+from core.dataclasses import AuthorData
 from environments.models import Environment
 from experimentation import services
 from experimentation.dataclasses import (
@@ -15,6 +18,7 @@ from experimentation.dataclasses import (
     ExposuresTimeseriesPoint,
     MetricSpec,
     ResultsAggregates,
+    RolloutSpec,
     WarehouseEventStats,
 )
 from experimentation.models import (
@@ -35,6 +39,9 @@ from features.feature_types import MULTIVARIATE
 from features.models import Feature, FeatureState
 from features.multivariate.models import MultivariateFeatureOption
 from features.value_types import STRING
+from features.versioning.dataclasses import MultivariateValueChangeSet
+from segments.models import Condition
+from users.models import FFAdminUser
 
 
 def test_get_clickhouse_client__configured_url__builds_client_with_timeouts(
@@ -1301,3 +1308,173 @@ def test_compute_results_summary__experiment__queries_warehouse_and_builds(
     assert summary.srm_p_value == pytest.approx(1.0)
     assert summary.metrics[0].metric_id == metric.id
     assert summary.metrics[0].inference["variant_a"] is not None
+
+
+def test_apply_experiment_rollout__no_segment__creates_segment_and_override(
+    experiment: Experiment,
+    multivariate_options: list[MultivariateFeatureOption],
+    admin_user: FFAdminUser,
+) -> None:
+    # Given
+    option_a, option_b, _ = multivariate_options
+
+    # When
+    services.apply_experiment_rollout(
+        experiment,
+        RolloutSpec(
+            enabled=True,
+            rollout_percentage=42.0,
+            feature_state_value="control",
+            value_type="string",
+            multivariate_values=[
+                MultivariateValueChangeSet(option_a.id, 60.0),
+                MultivariateValueChangeSet(option_b.id, 40.0),
+            ],
+            author=AuthorData(user=admin_user),
+        ),
+    )
+
+    # Then
+    experiment.refresh_from_db()
+    segment = experiment.rollout_segment
+    assert segment is not None
+    assert segment.is_system_segment is True
+    condition = Condition.objects.get(rule__segment=segment)
+    assert condition.operator == PERCENTAGE_SPLIT
+    assert condition.value == "42.0"
+
+    override = FeatureState.objects.get(
+        environment=experiment.environment,
+        feature=experiment.feature,
+        feature_segment__segment=segment,
+    )
+    assert override.enabled is True
+    allocations = {
+        mv.multivariate_feature_option_id: mv.percentage_allocation
+        for mv in override.multivariate_feature_state_values.all()
+    }
+    assert allocations == {option_a.id: 60.0, option_b.id: 40.0}
+
+
+def test_apply_experiment_rollout__existing_segment__updates_percentage_and_enabled(
+    experiment_with_rollout: Experiment,
+    multivariate_options: list[MultivariateFeatureOption],
+    admin_user: FFAdminUser,
+) -> None:
+    # Given
+    experiment = experiment_with_rollout
+    option_a, option_b, _ = multivariate_options
+
+    # When
+    services.apply_experiment_rollout(
+        experiment,
+        RolloutSpec(
+            enabled=False,
+            rollout_percentage=80.0,
+            feature_state_value="control",
+            value_type="string",
+            multivariate_values=[
+                MultivariateValueChangeSet(option_a.id, 50.0),
+                MultivariateValueChangeSet(option_b.id, 50.0),
+            ],
+            author=AuthorData(user=admin_user),
+        ),
+    )
+
+    # Then
+    condition = Condition.objects.get(rule__segment=experiment.rollout_segment)
+    assert condition.value == "80.0"
+    override = FeatureState.objects.get(
+        environment=experiment.environment,
+        feature=experiment.feature,
+        feature_segment__segment=experiment.rollout_segment,
+    )
+    assert override.enabled is False
+
+
+@pytest.mark.parametrize(
+    "status",
+    [ExperimentStatus.RUNNING, ExperimentStatus.COMPLETED],
+)
+def test_apply_experiment_rollout__running_or_completed__raises(
+    status: ExperimentStatus,
+    experiment_with_rollout: Experiment,
+    admin_user: FFAdminUser,
+) -> None:
+    # Given
+    experiment = experiment_with_rollout
+    experiment.status = status
+    experiment.save()
+
+    # When / Then
+    with pytest.raises(ValidationError):
+        services.apply_experiment_rollout(
+            experiment,
+            RolloutSpec(
+                enabled=True,
+                rollout_percentage=50.0,
+                feature_state_value="control",
+                value_type="string",
+                multivariate_values=[],
+                author=AuthorData(user=admin_user),
+            ),
+        )
+
+
+def test_apply_experiment_rollout__duplicate_options__raises(
+    experiment: Experiment,
+    multivariate_options: list[MultivariateFeatureOption],
+    admin_user: FFAdminUser,
+) -> None:
+    # Given
+    option_a, _, _ = multivariate_options
+
+    # When / Then
+    with pytest.raises(ValidationError):
+        services.apply_experiment_rollout(
+            experiment,
+            RolloutSpec(
+                enabled=True,
+                rollout_percentage=20.0,
+                feature_state_value="control",
+                value_type="string",
+                multivariate_values=[
+                    MultivariateValueChangeSet(option_a.id, 40.0),
+                    MultivariateValueChangeSet(option_a.id, 60.0),
+                ],
+                author=AuthorData(user=admin_user),
+            ),
+        )
+
+
+def test_apply_experiment_rollout__update_flag_fails__rolls_back(
+    experiment_with_rollout: Experiment,
+    admin_user: FFAdminUser,
+    mocker: MockerFixture,
+) -> None:
+    # Given
+    experiment = experiment_with_rollout
+    mocker.patch(
+        "experimentation.services.update_flag",
+        side_effect=RuntimeError("boom"),
+    )
+
+    # When / Then
+    with pytest.raises(RuntimeError):
+        services.apply_experiment_rollout(
+            experiment,
+            RolloutSpec(
+                enabled=False,
+                rollout_percentage=80.0,
+                feature_state_value="control",
+                value_type="string",
+                multivariate_values=[],
+                author=AuthorData(user=admin_user),
+            ),
+        )
+
+    # Then
+    condition = Condition.objects.get(
+        rule__segment=experiment.rollout_segment, operator=PERCENTAGE_SPLIT
+    )
+    assert condition.value == "20.0"

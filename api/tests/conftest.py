@@ -64,6 +64,7 @@ from xdist import get_xdist_worker_id  # type: ignore[import-untyped]
 
 from api_keys.models import MasterAPIKey
 from api_keys.user import APIKeyUser
+from app_analytics.influxdb_wrapper import InfluxDBWrapper
 from environments.dynamodb import (
     DynamoEnvironmentV2Wrapper,
     DynamoEnvironmentWrapper,
@@ -228,6 +229,12 @@ def django_db_setup(request: pytest.FixtureRequest) -> None:
     for db_settings in settings.DATABASES.values():
         test_db_name = f"{TEST_DATABASE_PREFIX}{db_settings['NAME']}_{test_db_suffix}"
         db_settings["NAME"] = test_db_name
+
+
+@pytest.fixture()
+def mock_influxdb_client(mocker: MockerFixture) -> MagicMock:
+    client: MagicMock = mocker.patch.object(InfluxDBWrapper, "get_client").return_value
+    return client
 
 
 @pytest.fixture(autouse=True)

@@ -26,6 +26,7 @@ type SegmentOverridesTabProps = {
   segmentOverrides?: SegmentOverrideValue[]
   updateSegments: (segments: SegmentOverrideValue[]) => void
   controlValue: string | number | boolean | null
+  controlEnabled?: boolean
   onSegmentsChange: () => void
   saveFeatureSegments: (schedule: boolean) => void
   isSaving: boolean
@@ -38,6 +39,7 @@ type SegmentOverridesTabProps = {
 }
 
 const SegmentOverridesTab: FC<SegmentOverridesTabProps> = ({
+  controlEnabled,
   controlValue,
   disableCreate,
   environmentId,
@@ -56,6 +58,7 @@ const SegmentOverridesTab: FC<SegmentOverridesTabProps> = ({
 }) => {
   const [showCreateSegment, setShowCreateSegment] = useState(false)
   const [enabledSegment, setEnabledSegment] = useState(false)
+  const [isComparing, setIsComparing] = useState(false)
 
   const { getEnvironment } = useProjectEnvironments(projectId)
   const environment = getEnvironment(environmentId)
@@ -73,7 +76,7 @@ const SegmentOverridesTab: FC<SegmentOverridesTabProps> = ({
   const { permission: savePermission } = useHasPermission({
     id: environmentId,
     level: 'environment',
-    permission: Utils.getManageFeaturePermission(is4Eyes, false),
+    permission: Utils.getManageFeaturePermission(is4Eyes),
     tags: projectFlag.tags,
   })
 
@@ -138,33 +141,38 @@ const SegmentOverridesTab: FC<SegmentOverridesTabProps> = ({
         )}
       >
         <div>
-          <Row className='align-items-center mb-2 gap-4'>
-            <div className='flex-fill'>
-              <Tooltip
-                title={
-                  <h5 className='mb-0'>
-                    Segment Overrides <Icon name='info-outlined' />
-                  </h5>
-                }
-                place='top'
-              >
-                {Constants.strings.SEGMENT_OVERRIDES_DESCRIPTION}
-              </Tooltip>
-            </div>
-            {!showCreateSegment && manageSegmentOverrides && !disableCreate && (
-              <div className='text-right'>
-                <Button
-                  size='small'
-                  onClick={() => {
-                    setShowCreateSegment(true)
-                  }}
-                  theme='outline'
+          <Row className='align-items-center mb-2 gap-4 segment-overrides-title'>
+            {!isComparing && (
+              <div className='flex-fill'>
+                <Tooltip
+                  title={
+                    <h5 className='mb-0'>
+                      Segment Overrides <Icon name='info-outlined' />
+                    </h5>
+                  }
+                  place='top'
                 >
-                  Create Feature-Specific Segment
-                </Button>
+                  {Constants.strings.SEGMENT_OVERRIDES_DESCRIPTION}
+                </Tooltip>
               </div>
             )}
-            {!showCreateSegment && !noPermissions && (
+            {!isComparing &&
+              !showCreateSegment &&
+              manageSegmentOverrides &&
+              !disableCreate && (
+                <div className='text-right'>
+                  <Button
+                    size='small'
+                    onClick={() => {
+                      setShowCreateSegment(true)
+                    }}
+                    theme='outline'
+                  >
+                    Create Feature-Specific Segment
+                  </Button>
+                </div>
+              )}
+            {!isComparing && !showCreateSegment && !noPermissions && (
               <Button
                 onClick={() => changeSegment(segmentOverrides || [])}
                 type='button'
@@ -197,6 +205,7 @@ const SegmentOverridesTab: FC<SegmentOverridesTabProps> = ({
               <WarningMessage warningMessage={featureWarning} />
               <SegmentOverrides
                 setShowCreateSegment={setShowCreateSegment}
+                onCompareChange={setIsComparing}
                 readOnly={!manageSegmentOverrides}
                 is4Eyes={is4Eyes}
                 showEditSegment
@@ -207,6 +216,7 @@ const SegmentOverridesTab: FC<SegmentOverridesTabProps> = ({
                 environmentId={environmentId}
                 value={segmentOverrides}
                 controlValue={controlValue}
+                controlEnabled={controlEnabled}
                 onChange={(v: SegmentOverrideValue[]) => {
                   onSegmentsChange()
                   updateSegments(v)
@@ -219,8 +229,8 @@ const SegmentOverridesTab: FC<SegmentOverridesTabProps> = ({
               <Loader />
             </div>
           )}
-          {!showCreateSegment && <ModalHR className='mt-4' />}
-          {!showCreateSegment && (
+          {!isComparing && !showCreateSegment && <ModalHR className='mt-4' />}
+          {!isComparing && !showCreateSegment && (
             <div>
               <p className='text-right mt-4 fs-small lh-sm modal-caption'>
                 Re-order overrides to adjust priority.
@@ -249,10 +259,7 @@ const SegmentOverridesTab: FC<SegmentOverridesTabProps> = ({
                 {isVersioned && is4Eyes
                   ? Utils.renderWithPermission(
                       savePermission,
-                      Utils.getManageFeaturePermissionDescription(
-                        is4Eyes,
-                        false,
-                      ),
+                      Utils.getManageFeaturePermissionDescription(is4Eyes),
                       <Button
                         onClick={() => saveFeatureSegments(false)}
                         type='button'
